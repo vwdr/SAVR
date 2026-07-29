@@ -39,6 +39,29 @@ class BootstrapTests(unittest.TestCase):
         milestone_rows = [line for line in text.splitlines() if line.startswith("| ") and ". " in line]
         self.assertEqual(sum(" IN_PROGRESS " in line for line in milestone_rows), 1)
 
+    def test_phase1_setup_is_project_scoped(self) -> None:
+        text = (ROOT / "scripts" / "setup_phase1_environment.sh").read_text(encoding="utf-8")
+        self.assertIn('readonly EXPECTED_ROOT="/home/ved/SAVR"', text)
+        self.assertNotIn("sudo", text)
+        self.assertNotIn("shell init", text)
+        self.assertIn("MICROMAMBA_SHA256", text)
+        self.assertIn('export LIBERO_CONFIG_PATH="${CACHE_ROOT}/libero"', text)
+
+    def test_phase1_reproducibility_evidence_is_tracked(self) -> None:
+        conda_lock = ROOT / "environment" / "locks" / "conda-linux-64-explicit.txt"
+        pip_lock = ROOT / "environment" / "locks" / "pip-freeze.txt"
+        report = ROOT / "reports" / "PHASE1_REPORT.md"
+        self.assertTrue(conda_lock.is_file())
+        self.assertTrue(pip_lock.is_file())
+        self.assertTrue(report.is_file())
+        self.assertIn("@EXPLICIT", conda_lock.read_text(encoding="utf-8"))
+        pip_text = pip_lock.read_text(encoding="utf-8")
+        self.assertIn("torch==2.2.0+cu118", pip_text)
+        self.assertIn(
+            "openvla-oft.git@e4287e94541f459edc4feabc4e181f537cd569a8",
+            pip_text,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -11,6 +11,10 @@ __pycache__/
 .env.*
 !.env.example
 .conda/
+.micromamba/
+envs/
+cache/
+third_party/
 
 # Models, datasets, and generated results
 checkpoints/
@@ -20,6 +24,13 @@ results/*
 !results/.gitkeep
 artifacts/*
 !artifacts/.gitkeep
+
+# Generated environment inventories and runtime logs
+environment/locks/*
+!environment/locks/.gitkeep
+!environment/locks/conda-linux-64-explicit.txt
+!environment/locks/pip-freeze.txt
+reports/runtime/
 
 # Editors and OS
 .DS_Store

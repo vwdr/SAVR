@@ -23,14 +23,23 @@ REQUIRED_FILES = (
     "docs/SAVR_EXECUTION_PROTOCOL.md",
     "docs/STACK_ASSESSMENT.md",
     "docs/UPSTREAM_PINS.md",
+    "environment/README.md",
+    "environment/libero-config.yaml",
+    "environment/locks/.gitkeep",
+    "environment/locks/conda-linux-64-explicit.txt",
+    "environment/locks/pip-freeze.txt",
+    "environment/phase1-conda.yml",
     "manuscript/README.md",
     "manuscript/State-Aware Visual Refresh for Efficient VLA Inference.tex",
     "pyproject.toml",
     "references/efficiency_papers.txt",
     "reports/BOOTSTRAP_REPORT.md",
+    "reports/PHASE1_REPORT.md",
     "reports/titan_bootstrap_diagnostics.json",
     "schemas/episode_result.schema.json",
     "schemas/run_manifest.schema.json",
+    "scripts/setup_phase1_environment.sh",
+    "scripts/verify_phase1_environment.py",
 )
 
 

@@ -46,19 +46,19 @@ Last updated: 2026-07-29
 ## D-006 — Phase 1 authorization
 
 - Classification: `BLOCKER`
-- Status: OPEN
-- Decision: No environment installation, checkpoint/dataset download, simulator run, or GPU use may begin until the user approves the Phase 1 resource estimate.
+- Status: COMPLETE
+- Decision: The user approved the bounded Phase 1 environment/source installation with up to `11 GiB` transfer and a `25 GiB` project-local disk cap. This approval did not include checkpoints, datasets, model loading, or GPU use.
 - Evidence: Sections 11 and 19 of `docs/SAVR_EXECUTION_PROTOCOL.md`.
-- Approver: User approval required.
+- Approver: User, 2026-07-29.
 
 ## D-007 — Phase 1 resource proposal
 
 - Classification: `DECISION`
-- Status: PROPOSED
+- Status: COMPLETE
 - Decision: Use a project-local Python 3.10.14 environment with the pinned OpenVLA-OFT/LIBERO dependency family, skip FlashAttention, exclude checkpoints and training datasets from Phase 1, and enforce a `25 GiB` installed/cache cap with at most `11 GiB` network transfer.
 - Alternatives: Reduce the cap and attempt a smaller environment; or defer the project if the shared storage budget is unacceptable.
-- Evidence: `docs/PHASE1_RESOURCE_ESTIMATE.md`; official OpenVLA-OFT setup/LIBERO documentation; official PyTorch 2.2.0 installation matrix; current TITAN project-filesystem measurement.
-- Approver: User approval required.
+- Evidence: `docs/PHASE1_RESOURCE_ESTIMATE.md` and `reports/PHASE1_REPORT.md`; measured project storage was about `14.70 GiB`. Exact transfer bytes were not directly metered and remain `UNVERIFIED`.
+- Approver: User, 2026-07-29.
 
 ## D-008 — Candidate four-suite checkpoint
 
@@ -68,3 +68,19 @@ Last updated: 2026-07-29
 - Alternatives: Use the four task-specific checkpoints only if baseline reproduction or scientific review rejects the combined checkpoint.
 - Evidence: Official OpenVLA-OFT LIBERO documentation and Hugging Face repository metadata recorded in `docs/UPSTREAM_PINS.md`.
 - Approver: Formal checkpoint approval is deferred to Phase 2.
+
+## D-009 — Phase 1 compatibility pins
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Use NumPy `1.26.4`, robosuite `1.4.1`, MuJoCo `2.3.7`, OpenCV `4.6.0.66`, Gym `0.25.2`, OSMesa from mesalib `24.3.4`, protobuf `4.21.12`, tensorflow-metadata `1.17.2`, and array-record `0.4.1` for the validated Phase 1 environment.
+- Evidence: The upstream dependency family required these compatibility corrections before `pip check`, OpenVLA imports, and CPU-only rendering all passed. Exact resolved packages are in `environment/locks/`.
+- Approver: Phase 1 implementation evidence; checkpoint review pending.
+
+## D-010 — LIBERO account-path uncertainty
+
+- Classification: `BLOCKER`
+- Status: COMPLETE
+- Decision: The initial upstream LIBERO import created an empty `/home/ved/.libero` directory before prompting. With explicit user authorization, only that path was inspected, confirmed empty and timestamp-matched to the import, removed with `rmdir`, and verified absent. All LIBERO access remains forced to `/home/ved/SAVR/cache/libero`.
+- Evidence: Narrow `stat`/depth-two inspection and empty-directory removal on 2026-07-29; project-local `LIBERO_CONFIG_PATH` controls in the setup and verification scripts.
+- Approver: User, 2026-07-29.
