@@ -101,6 +101,17 @@ class BootstrapTests(unittest.TestCase):
         self.assertIn("CUDA_VISIBLE_DEVICES", text)
         self.assertIn('"checkpoint_restored"', text)
 
+    def test_phase2b_analysis_enforces_matrix_and_threshold(self) -> None:
+        text = (ROOT / "scripts" / "analyze_phase2b_pilot.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn('EXPECTED_ROOT = Path("/home/ved/SAVR")', text)
+        self.assertIn("EXPECTED_PAIRS", text)
+        self.assertIn("SUCCESS_THRESHOLD = 45", text)
+        self.assertIn("checkpoint_restored", text)
+        self.assertIn("visual_share_of_total_cuda", text)
+        self.assertIn("return 0 if threshold_passed else 2", text)
+
 
 if __name__ == "__main__":
     unittest.main()
