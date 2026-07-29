@@ -8,7 +8,11 @@ Phase 2 — Unmodified Full Refresh reproduction: **IN PROGRESS**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
-The bounded Phase 1 installation and CPU-only simulator smoke test passed. The Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6. Active gate: review and explicit approval of `docs/PHASE2B_PILOT_PROPOSAL.md`.
+The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
+Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
+The approved Phase 2B all-task pilot is complete and passed its predeclared
+feasibility threshold. Active gate: review and explicit approval of the Phase
+2B checkpoint PR.
 
 ## Research objective
 
@@ -63,23 +67,31 @@ Completed:
 - one unmodified Full Refresh LIBERO-Spatial task 0 / initial-state 0 / seed 0 episode completed successfully
 - model fit one TITAN RTX with about `14.98 GiB` peak allocated memory
 - checkpoint metadata restored byte-for-byte after the official local loading path
+- approved Phase 2B pilot completed all `50/50` planned calibration episodes
+- Full Refresh achieved `49/50` successes, with at least `4/5` on every task and no runtime errors
+- steady-state visual backbone plus projector time measured `15.874%` of total query CUDA time and `15.873%` of policy-query wall time
+- the Phase 2B run, component timing, resource use, and safety audit were reconciled in `reports/PHASE2B_PILOT_REPORT.md`
 
 Not completed:
 
 - the manuscript method has not yet been reconciled with OpenVLA-OFT's exact visual-feature boundary
 - no dataset has been downloaded
 - no policy wrapper or cache implementation exists
-- no correctness, latency, success, threshold, or ablation experiment has run
-- no empirical claim is supported yet
-- no all-task Full Refresh pilot or component-level visual-encoder timing has run
+- no SAVR/PR/VOR correctness, latency, success, threshold, or ablation experiment has run
+- no empirical SAVR performance claim is supported yet
+- the Phase 2B checkpoint PR has not yet been reviewed or merged
 
 ## Next authorized action
 
-Review the Phase 2B proposal. Do not run the 50-episode all-Spatial-task pilot without explicit approval of its one-GPU, three-hour, two-GiB, coverage, instrumentation, and stop-rule bounds.
+Review the Phase 2B evidence and checkpoint PR. Do not begin Phase 3 controller
+or cache implementation until the checkpoint is explicitly approved and
+merged.
 
 ## Candidate initial stack
 
-OpenVLA-OFT with LIBERO remains the leading candidate. Its Python imports and CPU-only LIBERO rendering are now verified in the project-local environment. Model loading, GPU compatibility, baseline success, and the exact visual-feature interception point remain unverified and belong to later gated phases.
+OpenVLA-OFT with LIBERO remains the leading stack. Model loading, one-GPU
+compatibility, and baseline feasibility are verified. The exact cache
+interception boundary and output-parity behavior remain Phase 3/4 work.
 
 ## Bootstrap checkpoint
 

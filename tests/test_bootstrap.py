@@ -32,7 +32,7 @@ class BootstrapTests(unittest.TestCase):
 
     def test_project_status_does_not_claim_results(self) -> None:
         text = (ROOT / "PROJECT_STATUS.md").read_text(encoding="utf-8")
-        self.assertIn("no empirical claim is supported yet", text)
+        self.assertIn("no empirical SAVR performance claim is supported yet", text)
 
     def test_exactly_one_phase_is_in_progress(self) -> None:
         text = (ROOT / "docs" / "MILESTONES.md").read_text(encoding="utf-8")

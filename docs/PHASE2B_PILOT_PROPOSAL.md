@@ -2,7 +2,8 @@
 
 Prepared: 2026-07-29
 
-Status: proposal only; no Phase 2B GPU run is authorized
+Status: approved and executed on 2026-07-29; see
+`reports/PHASE2B_PILOT_REPORT.md`
 
 ## Purpose
 
