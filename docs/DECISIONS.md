@@ -47,6 +47,24 @@ Last updated: 2026-07-29
 
 - Classification: `BLOCKER`
 - Status: OPEN
-- Decision: No environment installation, checkpoint/dataset download, simulator run, or GPU use may begin until Phase 0 closes and the user approves the Phase 1 resource estimate.
+- Decision: No environment installation, checkpoint/dataset download, simulator run, or GPU use may begin until the user approves the Phase 1 resource estimate.
 - Evidence: Sections 11 and 19 of `docs/SAVR_EXECUTION_PROTOCOL.md`.
 - Approver: User approval required.
+
+## D-007 — Phase 1 resource proposal
+
+- Classification: `DECISION`
+- Status: PROPOSED
+- Decision: Use a project-local Python 3.10.14 environment with the pinned OpenVLA-OFT/LIBERO dependency family, skip FlashAttention, exclude checkpoints and training datasets from Phase 1, and enforce a `25 GiB` installed/cache cap with at most `11 GiB` network transfer.
+- Alternatives: Reduce the cap and attempt a smaller environment; or defer the project if the shared storage budget is unacceptable.
+- Evidence: `docs/PHASE1_RESOURCE_ESTIMATE.md`; official OpenVLA-OFT setup/LIBERO documentation; official PyTorch 2.2.0 installation matrix; current TITAN project-filesystem measurement.
+- Approver: User approval required.
+
+## D-008 — Candidate four-suite checkpoint
+
+- Classification: `HYPOTHESIS`
+- Status: OPEN
+- Decision: Prefer the official combined four-suite checkpoint for Phase 2 because it covers all target suites with one `14.84 GiB` model instead of four checkpoints totaling about `59.38 GiB`.
+- Alternatives: Use the four task-specific checkpoints only if baseline reproduction or scientific review rejects the combined checkpoint.
+- Evidence: Official OpenVLA-OFT LIBERO documentation and Hugging Face repository metadata recorded in `docs/UPSTREAM_PINS.md`.
+- Approver: Formal checkpoint approval is deferred to Phase 2.

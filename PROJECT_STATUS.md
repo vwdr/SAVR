@@ -4,11 +4,11 @@ Last updated: 2026-07-29
 
 ## Current phase
 
-Phase 0 — Establish authoritative state: **IN PROGRESS**
+Phase 1 — Environment and storage feasibility: **IN PROGRESS**
 
-The preparation PR containing the unchanged manuscript and execution protocol was merged as commit `2ef3f59aa5543e8347d02df0802c5d949997203d`. GitHub, TITAN, and the local review copy were synchronized to that `main` commit before the Phase 0 ledger branch was created.
+Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. GitHub, TITAN, and the local review copy agreed at `9a5bbd5a208465898985b7d91ee7bc34a657ec9b` before the Phase 1 branch was created.
 
-Active gate: review and explicit approval of the Phase 0 ledger PR. Phase 1 has not begun.
+Active gate: approval of the bounded Phase 1 environment/source download and installation proposal. No installation or substantial asset download has begun.
 
 ## Research objective
 
@@ -46,6 +46,9 @@ Completed:
 - preparation PR #1 merged with explicit approval
 - authoritative `main` synchronized across GitHub, TITAN, and the local review copy
 - milestone and decision ledgers prepared for review
+- Phase 0 ledger PR #2 merged and synchronized
+- official Phase 1 requirements, revisions, and asset sizes verified
+- bounded Phase 1 resource proposal prepared
 
 Not completed:
 
@@ -59,7 +62,7 @@ Not completed:
 
 ## Next authorized action
 
-Complete Phase 0 by reviewing and merging the ledger PR, then synchronize the resulting `main` commit across GitHub, TITAN, and the local review copy. Environment installation, downloads, simulation, and GPU work remain unauthorized.
+After explicit approval, create the environment and all caches inside `/home/ved/SAVR`, install only the pinned dependency family, verify imports, and attempt CPU-only headless LIBERO rendering. Checkpoint/dataset downloads and GPU work remain unauthorized.
 
 ## Candidate initial stack
 

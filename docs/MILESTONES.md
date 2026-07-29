@@ -6,8 +6,8 @@ Exactly one phase may be `IN_PROGRESS`.
 
 | Phase | Status | Completion evidence | Next gate |
 |---|---|---|---|
-| 0. Establish authoritative state | IN_PROGRESS | Private GitHub repository verified; preparation PR #1 merged; GitHub, TITAN, and local `main` synchronized at `2ef3f59`; manuscript SHA-256 verified as `4a0fe130f1cbc5557f77a518dcb65a703a647b1c4b8091499d8bfd8e10ab6e4f`; worktrees clean before this ledger branch | Review and approve the Phase 0 ledger PR |
-| 1. Environment and storage feasibility | NOT_STARTED | — | User approval for estimated downloads and project-local installation |
+| 0. Establish authoritative state | COMPLETE | Preparation PR #1 and ledger PR #2 merged with explicit approval; GitHub, TITAN, and local `main` synchronized at `9a5bbd5`; manuscript SHA-256 verified as `4a0fe130f1cbc5557f77a518dcb65a703a647b1c4b8091499d8bfd8e10ab6e4f`; worktrees clean | — |
+| 1. Environment and storage feasibility | IN_PROGRESS | Official requirements, upstream revisions, asset sizes, and current project-filesystem capacity verified; project-local installation proposal prepared | User approval for the Phase 1 network/disk budget |
 | 2. Unmodified FR reproduction | NOT_STARTED | — | User-approved GPU ID and FR reproduction evidence |
 | 3. Controller and cache implementation | NOT_STARTED | — | Unit-tested implementation |
 | 4. Correctness and instrumentation | NOT_STARTED | — | FR parity and logging audit |
@@ -21,7 +21,7 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-Phase 0 is the only active phase. No Phase 1 installation, download, simulation, or GPU work is authorized.
+Phase 1 is the only active phase. Planning and read-only verification are authorized; installation, asset download, simulation, and GPU work remain unauthorized.
 
 ## Phase 0 remaining checklist
 
@@ -30,5 +30,16 @@ Phase 0 is the only active phase. No Phase 1 installation, download, simulation,
 - [x] Synchronize GitHub, TITAN, and local `main`.
 - [x] Verify manuscript provenance and clean worktrees.
 - [x] Create milestone and decision ledgers.
-- [ ] Merge the ledger PR with explicit user approval.
-- [ ] Synchronize the resulting `main` commit everywhere and mark Phase 0 complete.
+- [x] Merge the ledger PR with explicit user approval.
+- [x] Synchronize the resulting `main` commit everywhere and mark Phase 0 complete.
+
+## Phase 1 current checklist
+
+- [x] Verify official upstream requirements and revisions.
+- [x] Verify checkpoint/dataset sizes and whether training data are required.
+- [x] Measure current project size and project-filesystem free space.
+- [x] Prepare a bounded project-local resource proposal.
+- [ ] Obtain explicit user approval for Phase 1 downloads and installation.
+- [ ] Install and lock the environment inside `/home/ved/SAVR`.
+- [ ] Verify imports and CPU-only headless rendering.
+- [ ] Report actual storage usage and close Phase 1.
