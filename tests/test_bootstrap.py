@@ -75,6 +75,19 @@ class BootstrapTests(unittest.TestCase):
         self.assertIn('os.environ["CUDA_VISIBLE_DEVICES"] = ""', text)
         self.assertIn("ADDITIONAL_PROJECT_CAP_BYTES = 20 * 1024**3", text)
 
+    def test_phase2a_smoke_is_single_gpu_and_single_episode(self) -> None:
+        text = (ROOT / "scripts" / "run_phase2a_fr_smoke.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn('EXPECTED_ROOT = Path("/home/ved/SAVR")', text)
+        self.assertIn("TASK_ID = 0", text)
+        self.assertIn("INITIAL_STATE_ID = 0", text)
+        self.assertIn("num_trials_per_task=1", text)
+        self.assertIn("torch.cuda.device_count() != 1", text)
+        self.assertIn("upstream_eval.run_task(", text)
+        self.assertIn('"policy": "FR"', text)
+        self.assertIn('"checkpoint_restored"', text)
+
 
 if __name__ == "__main__":
     unittest.main()

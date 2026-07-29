@@ -42,6 +42,7 @@ REQUIRED_FILES = (
     "schemas/run_manifest.schema.json",
     "scripts/setup_phase1_environment.sh",
     "scripts/download_phase2_checkpoint.py",
+    "scripts/run_phase2a_fr_smoke.py",
     "scripts/verify_phase1_environment.py",
 )
 
