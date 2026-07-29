@@ -36,6 +36,7 @@ REQUIRED_FILES = (
     "references/efficiency_papers.txt",
     "reports/BOOTSTRAP_REPORT.md",
     "reports/PHASE1_REPORT.md",
+    "reports/PHASE2A_CHECKPOINT_REPORT.md",
     "reports/titan_bootstrap_diagnostics.json",
     "schemas/episode_result.schema.json",
     "schemas/run_manifest.schema.json",

@@ -8,7 +8,7 @@ Phase 2 — Unmodified Full Refresh reproduction: **IN PROGRESS**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
-The bounded Phase 1 installation and CPU-only simulator smoke test passed. Phase 2A resource limits and proposal PR #5 were explicitly approved and merged. The pinned checkpoint download is authorized. Active GPU gate: the permitted GPU ID must be coordinated without inspecting or inferring other users' allocations.
+The bounded Phase 1 installation and CPU-only simulator smoke test passed. Phase 2A resource limits and proposal PR #5 were explicitly approved and merged. The pinned combined checkpoint was downloaded and verified within the approved limits. Active GPU gate: the permitted GPU ID must be coordinated without inspecting or inferring other users' allocations.
 
 ## Research objective
 
@@ -57,19 +57,21 @@ Completed:
 - actual Phase 1 project storage measured at about `14.70 GiB`, below the `25 GiB` cap
 - the empty `/home/ved/.libero` artifact from the interrupted upstream prompt was narrowly inspected, removed with `rmdir`, and verified absent
 - Phase 1 accepted and completed
+- pinned combined four-suite checkpoint revision and all 25 declared file sizes verified
+- Phase 2A checkpoint storage remained within the approved additional-storage cap
 
 Not completed:
 
 - the manuscript method has not yet been reconciled with OpenVLA-OFT's exact visual-feature boundary
-- no base VLA/checkpoint has been formally accepted
-- no model checkpoint or dataset has been downloaded
+- no checkpoint has been loaded and no unmodified Full Refresh episode has run
+- no dataset has been downloaded
 - no policy wrapper or cache implementation exists
 - no correctness, latency, success, threshold, or ablation experiment has run
 - no empirical claim is supported yet
 
 ## Next authorized action
 
-Download and verify only the pinned combined checkpoint within the approved `16 GiB` transfer and `20 GiB` additional-storage limits. Do not launch a GPU workload until a permitted GPU ID is explicitly identified.
+Obtain a permitted GPU ID from the user or university administrator. Do not inspect shared processes or allocations and do not launch a GPU workload until that ID is explicitly identified.
 
 ## Candidate initial stack
 
