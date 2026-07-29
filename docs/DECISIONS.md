@@ -101,3 +101,19 @@ Last updated: 2026-07-29
 - Decision: The pinned combined checkpoint resolved to the expected revision and 25 files totaling `15,939,168,050` bytes. All local files matched their declared sizes, and additional project allocation was about `14.85 GiB`, below the approved `20 GiB` cap.
 - Evidence: `reports/PHASE2A_CHECKPOINT_REPORT.md` and the project-local runtime inventory `reports/runtime/phase2_checkpoint.json`.
 - Approver: Direct download and verification evidence; no scientific result is implied.
+
+## D-013 — Responsible GPU selection
+
+- Classification: `DECISION`
+- Status: COMPLETE
+- Decision: After explicit user authorization, inspect only aggregate per-GPU memory/utilization and select GPU 0 because repeated samples showed 0% utilization, 6 MiB used, and 24,018 MiB free. Do not inspect process identities.
+- Evidence: Three selection samples, one immediate pre-launch sample, and one post-run sample recorded in `reports/PHASE2A_FR_SMOKE_REPORT.md`.
+- Approver: User, 2026-07-29.
+
+## D-014 — Phase 2A Full Refresh feasibility
+
+- Classification: `FACT`
+- Status: COMPLETE
+- Decision: The pinned combined checkpoint loaded and completed one unmodified Full Refresh LIBERO-Spatial task 0 / initial-state 0 / seed 0 episode on one TITAN RTX. Peak allocated memory was about `14.98 GiB`. This is feasibility evidence only.
+- Evidence: `reports/PHASE2A_FR_SMOKE_REPORT.md` and immutable run `results/phase2a-fr-20260729T220204Z` on TITAN.
+- Approver: Direct smoke evidence; no paper-level performance claim is approved.
