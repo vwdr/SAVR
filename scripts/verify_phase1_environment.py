@@ -21,6 +21,7 @@ def main() -> int:
     os.environ["PYOPENGL_PLATFORM"] = "osmesa"
     os.environ["PYTHONNOUSERSITE"] = "1"
     os.environ["LIBERO_CONFIG_PATH"] = str(project_root / "cache" / "libero")
+    os.environ.setdefault("TF_CPP_MIN_LOG_LEVEL", "2")
 
     environment_library = project_root / "envs" / "openvla-oft" / "lib"
     library_path = os.environ.get("LD_LIBRARY_PATH", "")
@@ -33,9 +34,11 @@ def main() -> int:
     import gym
     import mujoco
     import numpy as np
+    import prismatic
     import robosuite
     import torch
     import transformers
+    from experiments.robot import openvla_utils
     from libero.libero import benchmark, get_libero_path
     from libero.libero.envs import OffScreenRenderEnv
 
@@ -76,6 +79,7 @@ def main() -> int:
 
     report = {
         "cpu_only_requested": True,
+        "cuda_visible_devices": os.environ.get("CUDA_VISIBLE_DEVICES"),
         "cuda_initialized": torch.cuda.is_initialized(),
         "mujoco_gl": os.environ["MUJOCO_GL"],
         "pyopengl_platform": os.environ["PYOPENGL_PLATFORM"],
@@ -85,6 +89,10 @@ def main() -> int:
         "reward_after_one_zero_action": float(reward),
         "done_after_one_zero_action": bool(done),
         "image_shapes": image_shapes,
+        "openvla_imports": {
+            "openvla_utils": str(Path(openvla_utils.__file__).resolve()),
+            "prismatic": str(Path(prismatic.__file__).resolve()),
+        },
         "versions": versions,
     }
     print(json.dumps(report, indent=2, sort_keys=True))
