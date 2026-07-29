@@ -9,7 +9,7 @@ Exactly one phase may be `IN_PROGRESS`.
 | 0. Establish authoritative state | COMPLETE | Preparation PR #1 and ledger PR #2 merged with explicit approval; GitHub, TITAN, and local `main` synchronized at `9a5bbd5`; manuscript SHA-256 verified as `4a0fe130f1cbc5557f77a518dcb65a703a647b1c4b8091499d8bfd8e10ab6e4f`; worktrees clean | — |
 | 1. Environment and storage feasibility | COMPLETE | Installation, dependency locks, imports, and CPU-only OSMesa LIBERO smoke test passed; `reports/PHASE1_REPORT.md`; empty account-path artifact identified and reversed with user authorization | — |
 | 2. Unmodified FR reproduction | COMPLETE | Checkpoint fit one TITAN RTX; 50/50 pilot episodes completed with 49 successes; component timing accepted and merged in PR #8; explicit go decision received | — |
-| 3. Controller and cache implementation | IN_PROGRESS | Exact projected-visual-feature boundary verified in pinned source; bounded design recorded | Unit-tested implementation and code review |
+| 3. Controller and cache implementation | IN_PROGRESS | Controller, signals, cache, adapter, and immutable records implemented; 29 CPU tests plus Ruff/mypy/package checks passed | User review and approval of the Phase 3 checkpoint PR |
 | 4. Correctness and instrumentation | NOT_STARTED | — | FR parity and logging audit |
 | 5. Smoke policies and external-baseline feasibility | NOT_STARTED | — | Core-policy smoke completion and VLA-Cache decision |
 | 6. Calibration and power | NOT_STARTED | — | Frozen configurations, sample size, and margin approval |
@@ -21,9 +21,10 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-Phase 3 is the only active phase. Controller/cache implementation and CPU unit
-tests are authorized. GPU execution, simulator evaluation, Phase 4 parity,
-threshold calibration, and performance claims remain unauthorized.
+Phase 3 is the only active phase. Its implementation and CPU validation are
+complete and awaiting checkpoint review. GPU execution, simulator evaluation,
+Phase 4 parity, threshold calibration, and performance claims remain
+unauthorized.
 
 ## Phase 0 remaining checklist
 
@@ -68,10 +69,10 @@ threshold calibration, and performance claims remain unauthorized.
 
 - [x] Verify the exact pinned OpenVLA-OFT projected-feature boundary.
 - [x] Freeze the controller/cache adapter design and exclusions.
-- [ ] Implement common FR, PR, VOR, and SAVR controllers.
-- [ ] Implement exact image, state, and action signals.
-- [ ] Implement context-safe projected-feature caching.
-- [ ] Implement the no-upstream-edit OpenVLA-OFT adapter.
-- [ ] Implement immutable query and episode records.
-- [ ] Pass CPU unit tests and repository validation.
+- [x] Implement common FR, PR, VOR, and SAVR controllers.
+- [x] Implement exact image, state, and action signals.
+- [x] Implement context-safe projected-feature caching.
+- [x] Implement the no-upstream-edit OpenVLA-OFT adapter.
+- [x] Implement immutable query and episode records.
+- [x] Pass CPU unit tests and repository validation.
 - [ ] Obtain explicit approval and merge the Phase 3 checkpoint PR.

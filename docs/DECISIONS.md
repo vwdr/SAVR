@@ -152,3 +152,12 @@ Last updated: 2026-07-29
 - Exclusions: No GPU/simulator run, parity claim, calibration, download, or Phase 4 work.
 - Evidence: User go decision on 2026-07-29; pinned OpenVLA-OFT commit `e4287e94541f459edc4feabc4e181f537cd569a8`; `docs/PHASE3_IMPLEMENTATION_DESIGN.md`.
 - Approver: User, 2026-07-29.
+
+## D-019 — Phase 3 implementation evidence
+
+- Classification: `FACT`
+- Status: COMPLETE
+- Decision: The project-owned FR/PR/VOR/SAVR controllers, exact signal functions, projected-feature cache, exception-safe OpenVLA-OFT adapter, and immutable record store are implemented. All `29` dependency-light tests pass locally and in TITAN's pinned environment; Ruff and mypy pass; the package builds; pinned upstream source remains clean.
+- Limitation: Fake-model CPU evidence does not establish real-model action parity, cached-tensor compatibility, GPU timing, or simulator correctness. Those remain Phase 4 gates.
+- Evidence: `reports/PHASE3_IMPLEMENTATION_REPORT.md`; `src/savr/`; `tests/unit/`.
+- Approver: Direct implementation evidence; checkpoint acceptance remains pending.
