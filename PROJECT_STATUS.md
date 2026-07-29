@@ -34,10 +34,11 @@ Completed:
 - repository safety and reproducibility rules
 - initial experiment plan and machine-readable result contracts
 - bounded TITAN hardware/bootstrap diagnostics
+- original LaTeX manuscript added unchanged with a recorded SHA-256 checksum
 
 Not completed:
 
-- the manuscript source is not available in the synced project files
+- the manuscript method has not yet been reconciled with OpenVLA-OFT's exact visual-feature boundary
 - no base VLA or benchmark has been formally accepted
 - no environment has been created
 - no dependencies, datasets, or checkpoints have been installed/downloaded
@@ -51,7 +52,7 @@ OpenVLA-OFT with LIBERO is the leading candidate because its official repository
 
 ## Bootstrap checkpoint
 
-Bootstrap is accepted only when:
+Bootstrap was accepted on 2026-07-29 after:
 
 - the private GitHub repository exists
 - the repository is present at `/home/ved/SAVR`

@@ -20,6 +20,7 @@ REQUIRED_FILES = (
     "docs/STACK_ASSESSMENT.md",
     "docs/UPSTREAM_PINS.md",
     "manuscript/README.md",
+    "manuscript/State-Aware Visual Refresh for Efficient VLA Inference.tex",
     "pyproject.toml",
     "references/efficiency_papers.txt",
     "reports/BOOTSTRAP_REPORT.md",

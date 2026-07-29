@@ -31,7 +31,7 @@ Planned primary outcomes:
 - `schemas/`: machine-readable run and episode schemas
 - `scripts/`: bootstrap-only diagnostics and validation
 - `references/`: project-provided literature material
-- `manuscript/`: placeholder until the actual manuscript source is supplied
+- `manuscript/`: original LaTeX manuscript and provenance note
 
 ## Bootstrap validation
 
