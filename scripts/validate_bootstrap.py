@@ -20,6 +20,7 @@ REQUIRED_FILES = (
     "docs/MILESTONES.md",
     "docs/PHASE1_RESOURCE_ESTIMATE.md",
     "docs/PHASE2_RESOURCE_ESTIMATE.md",
+    "docs/PHASE2B_PILOT_PROPOSAL.md",
     "docs/RESULTS_SCHEMA.md",
     "docs/SAVR_EXECUTION_PROTOCOL.md",
     "docs/STACK_ASSESSMENT.md",

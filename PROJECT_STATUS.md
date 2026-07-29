@@ -8,7 +8,7 @@ Phase 2 — Unmodified Full Refresh reproduction: **IN PROGRESS**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
-The bounded Phase 1 installation and CPU-only simulator smoke test passed. The Phase 2A checkpoint was verified, and one unmodified Full Refresh smoke episode succeeded on responsibly selected idle GPU 0. Active gate: review PR #6 and prepare a separately bounded Phase 2B all-Spatial-task pilot proposal.
+The bounded Phase 1 installation and CPU-only simulator smoke test passed. The Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6. Active gate: review and explicit approval of `docs/PHASE2B_PILOT_PROPOSAL.md`.
 
 ## Research objective
 
@@ -75,7 +75,7 @@ Not completed:
 
 ## Next authorized action
 
-Review and merge the Phase 2A evidence PR. Then prepare a bounded Phase 2B all-Spatial-task Full Refresh pilot proposal; do not start the pilot without explicit approval.
+Review the Phase 2B proposal. Do not run the 50-episode all-Spatial-task pilot without explicit approval of its one-GPU, three-hour, two-GiB, coverage, instrumentation, and stop-rule bounds.
 
 ## Candidate initial stack
 
