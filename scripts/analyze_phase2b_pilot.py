@@ -62,6 +62,14 @@ def main() -> int:
         )
     if any(episode["status"] != "COMPLETED" for episode in episodes):
         raise SystemExit("Every episode must have terminal status COMPLETED")
+    if (
+        manifest["status"] != "COMPLETE"
+        or manifest["terminal_episode_count"] != 50
+        or manifest["completed_episode_count"] != 50
+        or manifest["error_episode_count"] != 0
+        or manifest["missing_pairs"]
+    ):
+        raise SystemExit("Manifest does not describe a complete, error-free 50-episode run")
     if not manifest.get("checkpoint_restored"):
         raise SystemExit("Checkpoint restoration was not confirmed")
     if manifest["checkpoint_hashes_before"] != manifest["checkpoint_hashes_after_restore"]:
@@ -70,8 +78,11 @@ def main() -> int:
     queries = [query for episode in episodes for query in episode["queries"]]
     warmup_queries = [query for query in queries if query["warmup"]]
     steady_queries = [query for query in queries if not query["warmup"]]
-    if len(warmup_queries) != 3:
-        raise SystemExit(f"Expected exactly 3 warmup queries, found {len(warmup_queries)}")
+    global_query_indices = [query["global_query_index"] for query in queries]
+    if global_query_indices != list(range(len(queries))):
+        raise SystemExit("Global query indices are not complete and ordered")
+    if [query["global_query_index"] for query in warmup_queries] != [0, 1, 2]:
+        raise SystemExit("Exactly global queries 0-2 must be marked as warmup")
     if any(query["action_chunk_length"] != 8 for query in queries):
         raise SystemExit("Every action query must return the frozen chunk length of 8")
 
@@ -122,6 +133,7 @@ def main() -> int:
         parse_utc(manifest["completed_at_utc"])
         - parse_utc(manifest["started_at_utc"])
     ).total_seconds()
+    visual_share_of_query_wall = visual_cuda / query_wall
     threshold_passed = (
         success_count >= SUCCESS_THRESHOLD
         and all(item["successes"] > 0 for item in per_task.values())
@@ -167,7 +179,11 @@ def main() -> int:
             "steady_query_count": len(steady_queries),
             "metrics": timing,
             "visual_share_of_total_cuda": visual_cuda / total_cuda,
-            "visual_share_of_policy_query_wall": visual_cuda / query_wall,
+            "visual_share_of_policy_query_wall": visual_share_of_query_wall,
+            "ideal_visual_elimination_query_speedup": 1
+            / (1 - visual_share_of_query_wall),
+            "visual_cuda_share_of_complete_run_wall": visual_cuda
+            / (run_seconds * 1000),
             "run_wall_seconds": run_seconds,
             "episode_wall_seconds": summary(
                 [episode["episode_seconds"] for episode in episodes]
