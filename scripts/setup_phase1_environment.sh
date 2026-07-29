@@ -109,12 +109,15 @@ run_python python -m pip install \
   "dlimp @ git+https://github.com/moojink/dlimp_openvla.git@${DLIMP_COMMIT}"
 
 run_python python -m pip install \
+  numpy==1.26.4 \
   "imageio[ffmpeg]" \
   robosuite==1.4.1 \
-  bddl \
-  easydict \
-  cloudpickle \
-  gym
+  mujoco==2.3.7 \
+  opencv-python==4.6.0.66 \
+  bddl==1.0.1 \
+  easydict==1.9 \
+  cloudpickle==2.1.0 \
+  gym==0.25.2
 
 run_python python -m pip install --no-deps --editable "${THIRD_PARTY}/LIBERO"
 run_python python -m pip install --no-deps --editable "${THIRD_PARTY}/openvla-oft"
