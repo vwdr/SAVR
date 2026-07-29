@@ -17,6 +17,7 @@ REQUIRED_FILES = (
     "docs/CODEX_HANDOFF_IMPLEMENTATION.md",
     "docs/EXPERIMENT_PLAN.md",
     "docs/RESULTS_SCHEMA.md",
+    "docs/SAVR_EXECUTION_PROTOCOL.md",
     "docs/STACK_ASSESSMENT.md",
     "docs/UPSTREAM_PINS.md",
     "manuscript/README.md",
