@@ -27,8 +27,11 @@ mkdir -p \
   "${THIRD_PARTY}" \
   "${CACHE_ROOT}/pip" \
   "${CACHE_ROOT}/huggingface" \
+  "${CACHE_ROOT}/libero/datasets" \
   "${CACHE_ROOT}/torch" \
   "${LOCK_DIR}"
+
+cp "${PROJECT_ROOT}/environment/libero-config.yaml" "${CACHE_ROOT}/libero/config.yaml"
 
 if [[ ! -x "${MAMBA_BIN}" ]]; then
   curl -fL \
@@ -77,6 +80,7 @@ fi
 export MAMBA_ROOT_PREFIX="${MAMBA_ROOT}"
 export PIP_CACHE_DIR="${CACHE_ROOT}/pip"
 export HF_HOME="${CACHE_ROOT}/huggingface"
+export LIBERO_CONFIG_PATH="${CACHE_ROOT}/libero"
 export TORCH_HOME="${CACHE_ROOT}/torch"
 export PYTHONNOUSERSITE=1
 

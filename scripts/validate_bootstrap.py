@@ -24,6 +24,7 @@ REQUIRED_FILES = (
     "docs/STACK_ASSESSMENT.md",
     "docs/UPSTREAM_PINS.md",
     "environment/README.md",
+    "environment/libero-config.yaml",
     "environment/locks/.gitkeep",
     "environment/phase1-conda.yml",
     "manuscript/README.md",

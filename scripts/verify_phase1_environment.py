@@ -20,6 +20,7 @@ def main() -> int:
     os.environ["MUJOCO_GL"] = "osmesa"
     os.environ["PYOPENGL_PLATFORM"] = "osmesa"
     os.environ["PYTHONNOUSERSITE"] = "1"
+    os.environ["LIBERO_CONFIG_PATH"] = str(project_root / "cache" / "libero")
 
     environment_library = project_root / "envs" / "openvla-oft" / "lib"
     library_path = os.environ.get("LD_LIBRARY_PATH", "")

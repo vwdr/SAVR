@@ -5,6 +5,7 @@ Phase 1 uses a project-local Micromamba environment. Nothing is installed into t
 Tracked inputs:
 
 - `phase1-conda.yml`: initial Conda-layer requirements
+- `libero-config.yaml`: noninteractive, project-local LIBERO paths
 - `../scripts/setup_phase1_environment.sh`: pinned source and pip installation procedure
 - `../scripts/verify_phase1_environment.py`: import and CPU-render verification
 

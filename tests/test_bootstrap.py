@@ -45,6 +45,7 @@ class BootstrapTests(unittest.TestCase):
         self.assertNotIn("sudo", text)
         self.assertNotIn("shell init", text)
         self.assertIn("MICROMAMBA_SHA256", text)
+        self.assertIn('export LIBERO_CONFIG_PATH="${CACHE_ROOT}/libero"', text)
 
 
 if __name__ == "__main__":
