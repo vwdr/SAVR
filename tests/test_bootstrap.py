@@ -112,6 +112,20 @@ class BootstrapTests(unittest.TestCase):
         self.assertIn("visual_share_of_total_cuda", text)
         self.assertIn("return 0 if threshold_passed else 2", text)
 
+    def test_phase3_adapter_targets_projected_features_without_upstream_edits(self) -> None:
+        design = (ROOT / "docs" / "PHASE3_IMPLEMENTATION_DESIGN.md").read_text(
+            encoding="utf-8"
+        )
+        adapter = (
+            ROOT / "src" / "savr" / "integration" / "openvla_oft.py"
+        ).read_text(encoding="utf-8")
+        self.assertIn("safe cache target is the output", design)
+        self.assertIn("proprioception token", design)
+        self.assertIn('METHOD_NAME = "_process_vision_features"', adapter)
+        self.assertIn("types.MethodType", adapter)
+        self.assertIn("finally:", adapter)
+        self.assertNotIn("third_party", adapter)
+
 
 if __name__ == "__main__":
     unittest.main()

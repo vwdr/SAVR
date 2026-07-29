@@ -21,6 +21,7 @@ REQUIRED_FILES = (
     "docs/PHASE1_RESOURCE_ESTIMATE.md",
     "docs/PHASE2_RESOURCE_ESTIMATE.md",
     "docs/PHASE2B_PILOT_PROPOSAL.md",
+    "docs/PHASE3_IMPLEMENTATION_DESIGN.md",
     "docs/RESULTS_SCHEMA.md",
     "docs/SAVR_EXECUTION_PROTOCOL.md",
     "docs/STACK_ASSESSMENT.md",
@@ -49,6 +50,17 @@ REQUIRED_FILES = (
     "scripts/run_phase2a_fr_smoke.py",
     "scripts/run_phase2b_fr_pilot.py",
     "scripts/verify_phase1_environment.py",
+    "src/savr/__init__.py",
+    "src/savr/cache.py",
+    "src/savr/controllers.py",
+    "src/savr/integration/__init__.py",
+    "src/savr/integration/openvla_oft.py",
+    "src/savr/logging.py",
+    "src/savr/signals.py",
+    "tests/unit/test_cache_and_logging.py",
+    "tests/unit/test_controllers.py",
+    "tests/unit/test_openvla_adapter.py",
+    "tests/unit/test_signals.py",
 )
 
 

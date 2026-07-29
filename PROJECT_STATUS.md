@@ -4,7 +4,7 @@ Last updated: 2026-07-29
 
 ## Current phase
 
-Phase 2 — Unmodified Full Refresh reproduction: **IN PROGRESS**
+Phase 3 — Controller and cache implementation: **IN PROGRESS**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -12,8 +12,9 @@ The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
 Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
 The approved Phase 2B all-task pilot is complete and passed its predeclared
 feasibility threshold. Its evidence was accepted and merged in PR #8. All
-technical Phase 2 exit criteria are satisfied. Active gate: an explicit
-go/no-go decision for the Phase 3 transition.
+technical Phase 2 exit criteria are satisfied. The user approved the Phase 3
+transition. Active gate: review of the bounded controller/cache implementation
+and its CPU unit tests.
 
 ## Research objective
 
@@ -72,21 +73,23 @@ Completed:
 - Full Refresh achieved `49/50` successes, with at least `4/5` on every task and no runtime errors
 - steady-state visual backbone plus projector time measured `15.874%` of total query CUDA time and `15.873%` of policy-query wall time
 - the Phase 2B run, component timing, resource use, and safety audit were reconciled in `reports/PHASE2B_PILOT_REPORT.md`
+- Phase 2 accepted and completed after the explicit Phase 3 go decision
+- pinned OpenVLA-OFT source boundary reconciled with the protocol: projected visual embeddings precede the fresh proprioception token
+- bounded Phase 3 implementation design recorded in `docs/PHASE3_IMPLEMENTATION_DESIGN.md`
 
 Not completed:
 
-- the manuscript method has not yet been reconciled with OpenVLA-OFT's exact visual-feature boundary
 - no dataset has been downloaded
 - no policy wrapper or cache implementation exists
 - no SAVR/PR/VOR correctness, latency, success, threshold, or ablation experiment has run
 - no empirical SAVR performance claim is supported yet
-- the Phase 2-to-Phase 3 status transition has not been authorized
+- Phase 3 implementation and unit-test checkpoint has not been completed
 
 ## Next authorized action
 
-Decide whether the measured `15.87%` optimistic query-latency ceiling justifies
-authorizing a bounded Phase 3 controller/cache implementation proposal. Do not
-begin Phase 3 implementation without explicit approval.
+Implement and review the bounded Phase 3 controller/cache components and
+CPU-only unit tests. Do not run a GPU, simulator, parity, calibration, or
+performance experiment under this authorization.
 
 ## Candidate initial stack
 
