@@ -39,6 +39,13 @@ class BootstrapTests(unittest.TestCase):
         milestone_rows = [line for line in text.splitlines() if line.startswith("| ") and ". " in line]
         self.assertEqual(sum(" IN_PROGRESS " in line for line in milestone_rows), 1)
 
+    def test_phase1_setup_is_project_scoped(self) -> None:
+        text = (ROOT / "scripts" / "setup_phase1_environment.sh").read_text(encoding="utf-8")
+        self.assertIn('readonly EXPECTED_ROOT="/home/ved/SAVR"', text)
+        self.assertNotIn("sudo", text)
+        self.assertNotIn("shell init", text)
+        self.assertIn("MICROMAMBA_SHA256", text)
+
 
 if __name__ == "__main__":
     unittest.main()

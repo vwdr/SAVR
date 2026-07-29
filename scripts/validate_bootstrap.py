@@ -23,6 +23,9 @@ REQUIRED_FILES = (
     "docs/SAVR_EXECUTION_PROTOCOL.md",
     "docs/STACK_ASSESSMENT.md",
     "docs/UPSTREAM_PINS.md",
+    "environment/README.md",
+    "environment/locks/.gitkeep",
+    "environment/phase1-conda.yml",
     "manuscript/README.md",
     "manuscript/State-Aware Visual Refresh for Efficient VLA Inference.tex",
     "pyproject.toml",
@@ -31,6 +34,8 @@ REQUIRED_FILES = (
     "reports/titan_bootstrap_diagnostics.json",
     "schemas/episode_result.schema.json",
     "schemas/run_manifest.schema.json",
+    "scripts/setup_phase1_environment.sh",
+    "scripts/verify_phase1_environment.py",
 )
 
 

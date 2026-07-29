@@ -1,0 +1,10 @@
+name: savr-openvla-oft
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10.14
+  - pip
+  - setuptools
+  - wheel
+  - mesalib
+  - libglvnd
