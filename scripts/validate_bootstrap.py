@@ -45,6 +45,7 @@ REQUIRED_FILES = (
     "scripts/setup_phase1_environment.sh",
     "scripts/download_phase2_checkpoint.py",
     "scripts/run_phase2a_fr_smoke.py",
+    "scripts/run_phase2b_fr_pilot.py",
     "scripts/verify_phase1_environment.py",
 )
 

@@ -88,6 +88,19 @@ class BootstrapTests(unittest.TestCase):
         self.assertIn('"policy": "FR"', text)
         self.assertIn('"checkpoint_restored"', text)
 
+    def test_phase2b_pilot_matches_approved_matrix_and_caps(self) -> None:
+        text = (ROOT / "scripts" / "run_phase2b_fr_pilot.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("TASK_IDS = tuple(range(10))", text)
+        self.assertIn("INITIAL_STATE_IDS = tuple(range(5))", text)
+        self.assertIn("EXPECTED_EPISODES = 50", text)
+        self.assertIn("ARTIFACT_CAP_BYTES = 2 * 1024**3", text)
+        self.assertIn("global_query_index < 3", text)
+        self.assertIn("register_forward_pre_hook", text)
+        self.assertIn("CUDA_VISIBLE_DEVICES", text)
+        self.assertIn('"checkpoint_restored"', text)
+
 
 if __name__ == "__main__":
     unittest.main()
