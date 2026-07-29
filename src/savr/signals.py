@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from numbers import Real
 from typing import Any
 
+_np: Any
 try:
     import numpy as _np
 except ImportError:  # pragma: no cover - exercised by dependency-free CI

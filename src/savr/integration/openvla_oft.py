@@ -109,7 +109,8 @@ class OpenVLAProjectedFeatureAdapter:
     ) -> QueryResult[T]:
         """Execute one otherwise-unmodified upstream policy query."""
 
-        if self._context is None:
+        context = self._context
+        if context is None:
             raise RuntimeError("begin_context must be called before run_query")
         if environment_step < 0:
             raise ValueError("Environment step cannot be negative")
@@ -118,7 +119,7 @@ class OpenVLAProjectedFeatureAdapter:
         decision = self.controller.decide(
             images=images,
             state=state,
-            cache_available=self.cache.available(self._context),
+            cache_available=self.cache.available(context),
             cache_age=self.cache.age,
         )
         decision_seconds = time.perf_counter() - decision_started
@@ -157,7 +158,7 @@ class OpenVLAProjectedFeatureAdapter:
                 )
                 if not effective_decision.refresh:
                     try:
-                        return self.cache.load(self._context, expected)
+                        return self.cache.load(context, expected)
                     except CacheError:
                         effective_decision = effective_decision.force_refresh(
                             "cache_incompatible"
@@ -165,7 +166,7 @@ class OpenVLAProjectedFeatureAdapter:
                         cache_event = "forced_refresh"
 
                 feature = original(pixel_values, language_embeddings, use_film)
-                stored = self.cache.store(self._context, feature)
+                stored = self.cache.store(context, feature)
                 if stored != expected:
                     self.cache.invalidate()
                     raise CacheCompatibilityError(
@@ -215,7 +216,7 @@ class OpenVLAProjectedFeatureAdapter:
             self.record_store.write_query(
                 effective_decision.query_index,
                 {
-                    "context": asdict(self._context),
+                    "context": asdict(context),
                     "environment_step": environment_step,
                     "query_index": effective_decision.query_index,
                     "decision": asdict(effective_decision),
