@@ -125,7 +125,10 @@ run_python python -m pip install \
   cloudpickle==2.1.0 \
   gym==0.25.2
 
-run_python python -m pip install --no-deps --editable "${THIRD_PARTY}/LIBERO"
+run_python python -m pip install \
+  --no-deps \
+  --config-settings editable_mode=compat \
+  --editable "${THIRD_PARTY}/LIBERO"
 run_python python -m pip install --no-deps --editable "${THIRD_PARTY}/openvla-oft"
 run_python python -m pip check
 
