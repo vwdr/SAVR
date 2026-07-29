@@ -1,0 +1,11 @@
+[project]
+name = "savr"
+version = "0.0.0"
+description = "Bootstrap scaffold for State-Aware Visual Refresh research"
+requires-python = ">=3.10"
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

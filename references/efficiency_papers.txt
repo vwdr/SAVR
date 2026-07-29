@@ -1,0 +1,82 @@
+# VLA Inference Efficiency Papers
+
+# ============ Surveys ============
+https://arxiv.org/abs/2510.17111    # Efficient Vision-Language-Action Models for Embodied Manipulation: A Systematic Survey
+https://arxiv.org/abs/2510.24795    # A Survey on Efficient Vision-Language-Action Models
+https://arxiv.org/abs/2508.13073    # Large VLM-based Vision-Language-Action Models for Robotic Manipulation: A Survey
+https://arxiv.org/abs/2505.04769    # Vision-Language-Action (VLA) Models: Concepts, Progress, Applications and Challenges
+https://arxiv.org/abs/2509.19012    # Pure Vision Language Action (VLA) Models: A Comprehensive Survey
+https://arxiv.org/abs/2507.10672    # Vision Language Action Models in Robotic Manipulation: A Systematic Review
+https://arxiv.org/abs/2507.01925    # A Survey on Vision-Language-Action Models: An Action Tokenization Perspective
+
+# ============ Dynamic Inference / Early Exit ============
+https://arxiv.org/abs/2411.02359    # DeeR-VLA: Dynamic Inference of Multimodal Large Language Models for Efficient Robot Execution (NeurIPS 2024)
+https://arxiv.org/abs/2601.19634    # AC2-VLA: Action-Context-Aware Adaptive Computation in VLA Models
+https://arxiv.org/abs/2602.07845    # Recurrent-Depth VLA: Implicit Test-Time Compute Scaling via Latent Iterative Reasoning
+
+# ============ Parallel Decoding / Speculative Decoding ============
+https://arxiv.org/abs/2503.02310    # PD-VLA: Accelerating VLA Model via Parallel Decoding
+https://arxiv.org/abs/2502.19645    # OpenVLA-OFT: Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success
+https://arxiv.org/abs/2507.22424    # Spec-VLA: Speculative Decoding for Vision-Language-Action Models
+https://arxiv.org/abs/2509.05614    # SpecPrune-VLA: Accelerating VLA Models via Action-Aware Self-Speculative Pruning
+
+# ============ CEED-VLA / Consistency Decoding ============
+# CEED-VLA: Consistency VLA with Early-exit Decoding (OpenReview)
+# https://openreview.net/forum?id=8TEfaLfntH
+
+# ============ Lightweight Model Design ============
+https://arxiv.org/abs/2409.12514    # TinyVLA: Towards Fast, Data-Efficient Vision-Language-Action Models (RA-L 2025)
+https://arxiv.org/abs/2510.04898    # HyperVLA: Efficient Inference in VLA Models via Hypernetworks
+https://arxiv.org/abs/2506.01844    # SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics
+https://arxiv.org/abs/2512.00903    # SwiftVLA: Unlocking Spatiotemporal Dynamics for Lightweight VLA
+https://arxiv.org/abs/2509.04996    # FLOWER: Democratizing Generalist Robot Policies with Efficient VLA Flow Policies (950M params)
+https://arxiv.org/abs/2510.19430    # GigaBrain-0: A World Model-Powered VLA Model (GigaBrain-0-Small for edge)
+https://arxiv.org/abs/2507.14049    # EdgeVLA: Efficient Vision-Language-Action Models
+https://arxiv.org/abs/2411.19650    # CogACT: A Foundational VLA Model for Synergizing Cognition and Action
+# MiniVLA: A Better VLA with a Smaller Footprint (Stanford ILIAD, ~1B params)
+# http://ai.stanford.edu/blog/minivla/
+
+# ============ Diffusion / Flow Matching Acceleration ============
+https://arxiv.org/abs/2410.24164    # π₀: A Vision-Language-Action Flow Model for General Robot Control
+https://arxiv.org/abs/2604.05656    # SnapFlow: One-Step Action Generation for Flow-Matching VLAs via Progressive Self-Distillation
+https://arxiv.org/abs/2603.25661    # Fast-dVLA: Accelerating Discrete Diffusion VLA to Real-Time Performance
+https://arxiv.org/abs/2511.14148    # AsyncVLA: Asynchronous Flow Matching for Vision-Language-Action Models
+https://arxiv.org/abs/2601.14945    # TIDAL: Temporally Interleaved Diffusion and Action Loop for High-Frequency VLA Control
+
+# ============ Action Tokenization for Efficiency ============
+https://arxiv.org/abs/2501.09747    # FAST: Efficient Action Tokenization for Vision-Language-Action Models
+https://arxiv.org/abs/2512.04952    # FASTer: Toward Efficient Autoregressive VLA Modeling via Neural Action Tokenization
+
+# ============ Quantization / Extreme Compression ============
+https://arxiv.org/abs/2506.07530    # BitVLA: 1-bit Vision-Language-Action Models for Robotics Manipulation
+https://arxiv.org/abs/2506.10100    # EfficientVLA: Training-Free Acceleration and Compression for VLA Models
+https://arxiv.org/abs/2506.17639    # RLRC: Reinforcement Learning-based Recovery for Compressed VLA Models
+https://arxiv.org/abs/2503.05833    # RPD: Refined Policy Distillation: From VLA Generalists to RL Experts
+
+# ============ Token Pruning / Reduction ============
+https://arxiv.org/abs/2509.12594    # LightVLA: Towards Efficient VLA Models via Differentiable Token Pruning
+https://arxiv.org/abs/2506.12723    # SP-VLA: Joint Model Scheduling and Token Pruning for VLA Acceleration
+https://arxiv.org/abs/2511.16449    # VLA-Pruner: Temporal-Aware Dual-Level Visual Token Pruning for Efficient VLA Inference
+https://arxiv.org/abs/2603.22991    # VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for VLA
+https://arxiv.org/abs/2602.00780    # EcoVLA: Environment-Aware Adaptive Pruning with Interleaved Inference Orchestration
+https://arxiv.org/abs/2603.24941    # Beyond Attention Magnitude: Leveraging Inter-layer Rank Consistency for Efficient VLA
+https://arxiv.org/abs/2507.23318    # FastDriveVLA: Efficient End-to-End Driving via Reconstruction-based Token Pruning
+https://arxiv.org/abs/2509.23655    # Object-Agent-centric Tokenization for VLA Models
+
+# ============ KV Cache Optimization ============
+https://arxiv.org/abs/2502.02175    # VLA-Cache: Efficient VLA Manipulation via Adaptive Token Caching
+https://arxiv.org/abs/2509.21354    # KV-Efficient VLA: Speed up VLMs with RNN-Gated Chunked KV Cache
+https://arxiv.org/abs/2603.14371    # OxyGen: Unified KV Cache Management for VLA under Multi-Task Parallelism
+
+# ============ System-Level / Edge Deployment ============
+https://arxiv.org/abs/2512.20276    # ActionFlow: Pipelined Action Acceleration for VLMs on Edge
+https://arxiv.org/abs/2602.13476    # AsyncVLA (Edge): Asynchronous VLA for Fast and Robust Navigation on the Edge
+https://arxiv.org/abs/2511.05642    # LiteVLA: Efficient VLA Control on CPU-Bound Edge Robots
+https://arxiv.org/abs/2603.03380    # LiteVLA-Edge: Quantized On-Device Multimodal Control for Embedded Robotics
+https://arxiv.org/abs/2503.20020    # Gemini Robotics: Bringing AI into the Physical World (incl. on-device variant)
+
+# ============ MoE / Mixture-of-Layers ============
+# MoLe-VLA: Mixture-of-Layers VLA with Spatio-Temporal Aware Router (referenced in survey 2510.17111)
+
+# ============ Rethinking / Benchmark ============
+https://arxiv.org/abs/2602.22663    # Rethinking the Practicality of VLA Model: A Comprehensive Benchmark and Improved Baseline

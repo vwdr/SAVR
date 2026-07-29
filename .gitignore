@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+
+# Local environments and credentials
+.env
+.env.*
+!.env.example
+.conda/
+
+# Models, datasets, and generated results
+checkpoints/
+data/
+datasets/
+results/*
+!results/.gitkeep
+artifacts/*
+!artifacts/.gitkeep
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/

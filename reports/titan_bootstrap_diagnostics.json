@@ -1,0 +1,74 @@
+{
+  "collected_at_utc": "2026-07-29T17:58:48.313480+00:00",
+  "commands": {
+    "git": {
+      "command": [
+        "git",
+        "--version"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "git version 2.34.1"
+    },
+    "gpu_static": {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=index,name,driver_version,memory.total,compute_cap",
+        "--format=csv,noheader"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "0, NVIDIA TITAN RTX, 570.211.01, 24576 MiB, 7.5\n1, NVIDIA TITAN RTX, 570.211.01, 24576 MiB, 7.5\n2, NVIDIA TITAN RTX, 570.211.01, 24576 MiB, 7.5\n3, NVIDIA TITAN RTX, 570.211.01, 24576 MiB, 7.5"
+    },
+    "nvcc": {
+      "command": [
+        "nvcc",
+        "--version"
+      ],
+      "error": "[Errno 2] No such file or directory: 'nvcc'"
+    },
+    "project_disk": {
+      "command": [
+        "df",
+        "-Pk",
+        "/home/ved/SAVR"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Filesystem     1024-blocks       Used Available Capacity Mounted on\n/dev/nvme0n1p2  1921208544 1346847700 476695004      74% /"
+    },
+    "python": {
+      "command": [
+        "python3",
+        "--version"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Python 3.10.12"
+    }
+  },
+  "executables": {
+    "codex": "/usr/bin/codex",
+    "gh": "/usr/bin/gh",
+    "git": "/usr/bin/git",
+    "nvcc": null,
+    "nvidia-smi": "/usr/bin/nvidia-smi",
+    "python3": "/usr/bin/python3"
+  },
+  "platform": "Linux-6.8.0-111-generic-x86_64-with-glibc2.35",
+  "python_modules_present": {
+    "libero": false,
+    "mujoco": false,
+    "numpy": false,
+    "robosuite": false,
+    "torch": false,
+    "transformers": false
+  },
+  "safety": {
+    "files_outside_project_modified": false,
+    "gpu_allocations_inspected": false,
+    "gpu_workload_launched": false,
+    "processes_inspected": false
+  },
+  "scope": "/home/ved/SAVR"
+}

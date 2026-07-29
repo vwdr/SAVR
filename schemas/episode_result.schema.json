@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/vwdr/SAVR/schemas/episode_result.schema.json",
+  "title": "SAVR Episode Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "episode_id",
+    "task",
+    "initial_state_id",
+    "seed",
+    "status",
+    "success",
+    "steps",
+    "refresh_count",
+    "latency_ms"
+  ],
+  "properties": {
+    "run_id": {"type": "string", "minLength": 1},
+    "episode_id": {"type": "string", "minLength": 1},
+    "task": {"type": "string", "minLength": 1},
+    "initial_state_id": {"type": ["string", "integer"]},
+    "seed": {"type": "integer"},
+    "status": {
+      "type": "string",
+      "enum": ["completed", "failed", "interrupted"]
+    },
+    "success": {"type": "boolean"},
+    "failure_reason": {"type": ["string", "null"]},
+    "steps": {"type": "integer", "minimum": 0},
+    "refresh_count": {"type": "integer", "minimum": 0},
+    "skipped_refresh_count": {"type": "integer", "minimum": 0},
+    "refresh_rate": {"type": "number", "minimum": 0, "maximum": 1},
+    "latency_ms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total_episode", "policy_median", "policy_p95"],
+      "properties": {
+        "total_episode": {"type": "number", "minimum": 0},
+        "policy_median": {"type": "number", "minimum": 0},
+        "policy_p95": {"type": "number", "minimum": 0},
+        "control_step_median": {"type": "number", "minimum": 0},
+        "control_step_p95": {"type": "number", "minimum": 0}
+      }
+    },
+    "peak_gpu_memory_mib": {"type": ["number", "null"], "minimum": 0}
+  }
+}

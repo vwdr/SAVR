@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/vwdr/SAVR/schemas/run_manifest.schema.json",
+  "title": "SAVR Run Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "started_at_utc",
+    "status",
+    "policy",
+    "savr_git_revision",
+    "base_model",
+    "benchmark",
+    "hardware",
+    "software",
+    "configuration"
+  ],
+  "properties": {
+    "run_id": {"type": "string", "minLength": 1},
+    "started_at_utc": {"type": "string", "format": "date-time"},
+    "finished_at_utc": {"type": ["string", "null"], "format": "date-time"},
+    "status": {
+      "type": "string",
+      "enum": ["planned", "running", "completed", "failed", "interrupted"]
+    },
+    "policy": {"type": "string", "enum": ["FR", "PR", "VOR", "SAVR"]},
+    "savr_git_revision": {"type": "string", "minLength": 7},
+    "working_tree_clean": {"type": "boolean"},
+    "base_model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "checkpoint", "revision"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "checkpoint": {"type": "string", "minLength": 1},
+        "revision": {"type": "string", "minLength": 1}
+      }
+    },
+    "benchmark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "revision", "suite"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "revision": {"type": "string", "minLength": 1},
+        "suite": {"type": "string", "minLength": 1}
+      }
+    },
+    "hardware": {"type": "object"},
+    "software": {"type": "object"},
+    "configuration": {"type": "object"},
+    "command": {"type": ["string", "null"]},
+    "notes": {"type": ["string", "null"]}
+  }
+}
