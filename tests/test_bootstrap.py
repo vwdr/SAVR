@@ -62,6 +62,32 @@ class BootstrapTests(unittest.TestCase):
             pip_text,
         )
 
+    def test_phase2_checkpoint_download_is_pinned_and_scoped(self) -> None:
+        text = (ROOT / "scripts" / "download_phase2_checkpoint.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn('EXPECTED_ROOT = Path("/home/ved/SAVR")', text)
+        self.assertIn(
+            'REVISION = "638918f3d1c2e43a39a8a20772bdb8b91835e4b7"',
+            text,
+        )
+        self.assertIn("EXPECTED_REMOTE_BYTES = 15_939_168_050", text)
+        self.assertIn('os.environ["CUDA_VISIBLE_DEVICES"] = ""', text)
+        self.assertIn("ADDITIONAL_PROJECT_CAP_BYTES = 20 * 1024**3", text)
+
+    def test_phase2a_smoke_is_single_gpu_and_single_episode(self) -> None:
+        text = (ROOT / "scripts" / "run_phase2a_fr_smoke.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn('EXPECTED_ROOT = Path("/home/ved/SAVR")', text)
+        self.assertIn("TASK_ID = 0", text)
+        self.assertIn("INITIAL_STATE_ID = 0", text)
+        self.assertIn("num_trials_per_task=1", text)
+        self.assertIn("torch.cuda.device_count() != 1", text)
+        self.assertIn("upstream_eval.run_task(", text)
+        self.assertIn('"policy": "FR"', text)
+        self.assertIn('"checkpoint_restored"', text)
+
 
 if __name__ == "__main__":
     unittest.main()

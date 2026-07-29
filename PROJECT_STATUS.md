@@ -8,7 +8,7 @@ Phase 2 — Unmodified Full Refresh reproduction: **IN PROGRESS**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
-The bounded Phase 1 installation and CPU-only simulator smoke test passed. The user authorized resolution of the account-level LIBERO path audit and merge of the Phase 1 checkpoint. Active gate: review of `docs/PHASE2_RESOURCE_ESTIMATE.md`, explicit approval for the checkpoint download, and identification of the one permitted GPU.
+The bounded Phase 1 installation and CPU-only simulator smoke test passed. The Phase 2A checkpoint was verified, and one unmodified Full Refresh smoke episode succeeded on responsibly selected idle GPU 0. Active gate: review PR #6 and prepare a separately bounded Phase 2B all-Spatial-task pilot proposal.
 
 ## Research objective
 
@@ -57,19 +57,25 @@ Completed:
 - actual Phase 1 project storage measured at about `14.70 GiB`, below the `25 GiB` cap
 - the empty `/home/ved/.libero` artifact from the interrupted upstream prompt was narrowly inspected, removed with `rmdir`, and verified absent
 - Phase 1 accepted and completed
+- pinned combined four-suite checkpoint revision and all 25 declared file sizes verified
+- Phase 2A checkpoint storage remained within the approved additional-storage cap
+- GPU 0 selected using only user-authorized aggregate utilization/memory evidence
+- one unmodified Full Refresh LIBERO-Spatial task 0 / initial-state 0 / seed 0 episode completed successfully
+- model fit one TITAN RTX with about `14.98 GiB` peak allocated memory
+- checkpoint metadata restored byte-for-byte after the official local loading path
 
 Not completed:
 
 - the manuscript method has not yet been reconciled with OpenVLA-OFT's exact visual-feature boundary
-- no base VLA/checkpoint has been formally accepted
-- no model checkpoint or dataset has been downloaded
+- no dataset has been downloaded
 - no policy wrapper or cache implementation exists
 - no correctness, latency, success, threshold, or ablation experiment has run
 - no empirical claim is supported yet
+- no all-task Full Refresh pilot or component-level visual-encoder timing has run
 
 ## Next authorized action
 
-Review the Phase 2A proposal. Do not download the checkpoint until the user approves up to `16 GiB` transfer and `20 GiB` additional project storage. Do not launch a GPU workload until the user identifies the permitted GPU ID and approves the maximum `60-minute` smoke.
+Review and merge the Phase 2A evidence PR. Then prepare a bounded Phase 2B all-Spatial-task Full Refresh pilot proposal; do not start the pilot without explicit approval.
 
 ## Candidate initial stack
 

@@ -50,6 +50,9 @@ Phase 2 is the only active phase. Planning and resource verification are authori
 
 - [x] Record the candidate combined checkpoint revision and exact remote size.
 - [x] Prepare the bounded Phase 2 download/GPU smoke proposal.
-- [ ] Obtain explicit user approval for the checkpoint download.
-- [ ] Obtain the user-selected permitted GPU ID.
-- [ ] Reproduce unmodified Full Refresh according to the Phase 2 protocol.
+- [x] Obtain explicit user approval for the checkpoint download.
+- [x] Download and verify the pinned combined checkpoint within approved limits.
+- [x] Select an idle GPU using user-authorized aggregate inspection.
+- [x] Complete one bounded unmodified Full Refresh smoke episode.
+- [ ] Prepare and approve the all-Spatial-task Full Refresh pilot.
+- [ ] Quantify component timing and complete Phase 2 exit evidence.

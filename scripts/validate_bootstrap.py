@@ -36,10 +36,14 @@ REQUIRED_FILES = (
     "references/efficiency_papers.txt",
     "reports/BOOTSTRAP_REPORT.md",
     "reports/PHASE1_REPORT.md",
+    "reports/PHASE2A_CHECKPOINT_REPORT.md",
+    "reports/PHASE2A_FR_SMOKE_REPORT.md",
     "reports/titan_bootstrap_diagnostics.json",
     "schemas/episode_result.schema.json",
     "schemas/run_manifest.schema.json",
     "scripts/setup_phase1_environment.sh",
+    "scripts/download_phase2_checkpoint.py",
+    "scripts/run_phase2a_fr_smoke.py",
     "scripts/verify_phase1_environment.py",
 )
 
