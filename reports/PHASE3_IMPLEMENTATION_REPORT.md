@@ -2,7 +2,7 @@
 
 Date: 2026-07-29
 
-Status: **COMPLETE — CHECKPOINT REVIEW PENDING**
+Status: **COMPLETE — ACCEPTED IN PR #10**
 
 ## Scope completed
 
@@ -104,6 +104,7 @@ Phase 4 must separately verify:
 - synchronized timing and logging-schema audit
 - interrupted-run recovery
 
-Phase 4 and all GPU/simulator work remain unauthorized. Phase 3 remains
-`IN_PROGRESS` until this report and implementation PR are explicitly approved
-and merged.
+The evidence was explicitly approved and merged in PR #10. All technical
+Phase 3 exit criteria are satisfied. Phase 3 remains administratively
+`IN_PROGRESS` until an explicit Phase 4 go/no-go decision. Phase 4 and all
+GPU/simulator work remain unauthorized.

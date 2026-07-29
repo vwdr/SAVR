@@ -13,8 +13,9 @@ Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
 The approved Phase 2B all-task pilot is complete and passed its predeclared
 feasibility threshold. Its evidence was accepted and merged in PR #8. All
 technical Phase 2 exit criteria are satisfied. The user approved the Phase 3
-transition. The bounded implementation and CPU tests are complete. Active
-gate: review and explicit approval of the Phase 3 checkpoint PR.
+transition. The bounded implementation and CPU tests were accepted and merged
+in PR #10. All technical Phase 3 exit criteria are satisfied. Active gate: an
+explicit go/no-go decision for a bounded Phase 4 correctness proposal.
 
 ## Research objective
 
@@ -82,6 +83,7 @@ Completed:
 - immutable query and episode record storage implemented
 - `29/29` CPU tests passed locally and in TITAN's pinned OpenVLA-OFT environment
 - Ruff, mypy, byte compilation, package build, and upstream-cleanliness checks passed
+- Phase 3 implementation evidence accepted and merged in PR #10
 
 Not completed:
 
@@ -89,13 +91,13 @@ Not completed:
 - no SAVR/PR/VOR correctness, latency, success, threshold, or ablation experiment has run
 - no empirical SAVR performance claim is supported yet
 - real-model FR parity and cached-tensor integration have not run; these belong to Phase 4
-- the Phase 3 checkpoint PR has not been reviewed or merged
+- the Phase 3-to-Phase 4 transition has not been authorized
 
 ## Next authorized action
 
-Review the Phase 3 implementation report and checkpoint PR. Do not run a GPU,
-simulator, real-model parity, calibration, or performance experiment under
-this authorization.
+Decide whether to authorize preparation of a bounded Phase 4 correctness and
+instrumentation proposal. Do not run a GPU, simulator, real-model parity,
+calibration, or performance experiment without explicit approval.
 
 ## Candidate initial stack
 
