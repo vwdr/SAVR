@@ -138,7 +138,7 @@ run_python python -m pip install \
 run_python python -m pip install --no-deps --editable "${THIRD_PARTY}/openvla-oft"
 run_python python -m pip check
 
-"${MAMBA_BIN}" list \
+"${MAMBA_BIN}" env export \
   --root-prefix "${MAMBA_ROOT}" \
   --prefix "${ENV_PREFIX}" \
   --explicit > "${LOCK_DIR}/conda-linux-64-explicit.txt"

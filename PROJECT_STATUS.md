@@ -6,9 +6,9 @@ Last updated: 2026-07-29
 
 Phase 1 — Environment and storage feasibility: **IN PROGRESS**
 
-Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. GitHub, TITAN, and the local review copy agreed at `9a5bbd5a208465898985b7d91ee7bc34a657ec9b` before the Phase 1 branch was created.
+Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
-Active gate: approval of the bounded Phase 1 environment/source download and installation proposal. No installation or substantial asset download has begun.
+The bounded Phase 1 installation and CPU-only simulator smoke test passed on branch `agent/phase-1-environment`. Active gate: review and acceptance of the Phase 1 evidence, including the unresolved account-level LIBERO path audit described in `reports/PHASE1_REPORT.md`.
 
 ## Research objective
 
@@ -49,24 +49,30 @@ Completed:
 - Phase 0 ledger PR #2 merged and synchronized
 - official Phase 1 requirements, revisions, and asset sizes verified
 - bounded Phase 1 resource proposal prepared
+- Phase 1 resource proposal approved by the user
+- project-local Micromamba/Python/OpenVLA-OFT/LIBERO environment installed
+- exact Conda and pip inventories recorded
+- OpenVLA-OFT imports verified without loading a model
+- one CPU-only OSMesa LIBERO-Spatial render/action smoke test passed
+- actual Phase 1 project storage measured at about `14.70 GiB`, below the `25 GiB` cap
 
 Not completed:
 
 - the manuscript method has not yet been reconciled with OpenVLA-OFT's exact visual-feature boundary
-- no base VLA or benchmark has been formally accepted
-- no environment has been created
-- no dependencies, datasets, or checkpoints have been installed/downloaded
+- no base VLA/checkpoint has been formally accepted
+- no model checkpoint or dataset has been downloaded
 - no policy wrapper or cache implementation exists
 - no correctness, latency, success, threshold, or ablation experiment has run
 - no empirical claim is supported yet
+- possible creation of `/home/ved/.libero` by LIBERO's upstream first-import behavior remains uninspected and unresolved
 
 ## Next authorized action
 
-After explicit approval, create the environment and all caches inside `/home/ved/SAVR`, install only the pinned dependency family, verify imports, and attempt CPU-only headless LIBERO rendering. Checkpoint/dataset downloads and GPU work remain unauthorized.
+Review the Phase 1 checkpoint PR and decide whether to accept it. Separately decide whether to authorize a narrowly scoped inspection and possible removal of `/home/ved/.libero`; it will remain untouched without explicit authorization. Checkpoint/dataset downloads and GPU work remain unauthorized.
 
 ## Candidate initial stack
 
-OpenVLA-OFT with LIBERO is the leading candidate because its official repository provides LIBERO checkpoints/evaluation code and reports about 16 GB VRAM for LIBERO inference. TITAN exposes 24 GB TITAN RTX GPUs, so nominal capacity is plausible. Compatibility is not yet proven; TITAN RTX compute capability, CUDA/PyTorch compatibility, simulator rendering, storage, model access, and the exact visual-feature interception point all require a controlled smoke test.
+OpenVLA-OFT with LIBERO remains the leading candidate. Its Python imports and CPU-only LIBERO rendering are now verified in the project-local environment. Model loading, GPU compatibility, baseline success, and the exact visual-feature interception point remain unverified and belong to later gated phases.
 
 ## Bootstrap checkpoint
 

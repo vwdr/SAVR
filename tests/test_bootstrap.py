@@ -47,6 +47,21 @@ class BootstrapTests(unittest.TestCase):
         self.assertIn("MICROMAMBA_SHA256", text)
         self.assertIn('export LIBERO_CONFIG_PATH="${CACHE_ROOT}/libero"', text)
 
+    def test_phase1_reproducibility_evidence_is_tracked(self) -> None:
+        conda_lock = ROOT / "environment" / "locks" / "conda-linux-64-explicit.txt"
+        pip_lock = ROOT / "environment" / "locks" / "pip-freeze.txt"
+        report = ROOT / "reports" / "PHASE1_REPORT.md"
+        self.assertTrue(conda_lock.is_file())
+        self.assertTrue(pip_lock.is_file())
+        self.assertTrue(report.is_file())
+        self.assertIn("@EXPLICIT", conda_lock.read_text(encoding="utf-8"))
+        pip_text = pip_lock.read_text(encoding="utf-8")
+        self.assertIn("torch==2.2.0+cu118", pip_text)
+        self.assertIn(
+            "openvla-oft.git@e4287e94541f459edc4feabc4e181f537cd569a8",
+            pip_text,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

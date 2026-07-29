@@ -28,6 +28,8 @@ artifacts/*
 # Generated environment inventories and runtime logs
 environment/locks/*
 !environment/locks/.gitkeep
+!environment/locks/conda-linux-64-explicit.txt
+!environment/locks/pip-freeze.txt
 reports/runtime/
 
 # Editors and OS
