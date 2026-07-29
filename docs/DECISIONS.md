@@ -117,3 +117,12 @@ Last updated: 2026-07-29
 - Decision: The pinned combined checkpoint loaded and completed one unmodified Full Refresh LIBERO-Spatial task 0 / initial-state 0 / seed 0 episode on one TITAN RTX. Peak allocated memory was about `14.98 GiB`. This is feasibility evidence only.
 - Evidence: `reports/PHASE2A_FR_SMOKE_REPORT.md` and immutable run `results/phase2a-fr-20260729T220204Z` on TITAN.
 - Approver: Direct smoke evidence; no paper-level performance claim is approved.
+
+## D-015 — Phase 2B Full Refresh pilot
+
+- Classification: `DECISION`
+- Status: PROPOSED
+- Decision: Run exactly 50 calibration-split Full Refresh episodes covering all ten LIBERO-Spatial tasks and initial-state IDs `0-4`, with component timing on one responsibly selected idle GPU for at most three hours and two GiB of new artifacts.
+- Review threshold: At least `45/50` successes and no task with `0/5`; otherwise stop for discrepancy review. This is a feasibility threshold, not a paper-level hypothesis test.
+- Evidence: `docs/PHASE2B_PILOT_PROPOSAL.md`; official OpenVLA-OFT paper reports `97.7%` Spatial success for the combined policy; measured Phase 2A runtime and memory.
+- Approver: Explicit user approval required.
