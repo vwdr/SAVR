@@ -7,8 +7,8 @@ Exactly one phase may be `IN_PROGRESS`.
 | Phase | Status | Completion evidence | Next gate |
 |---|---|---|---|
 | 0. Establish authoritative state | COMPLETE | Preparation PR #1 and ledger PR #2 merged with explicit approval; GitHub, TITAN, and local `main` synchronized at `9a5bbd5`; manuscript SHA-256 verified as `4a0fe130f1cbc5557f77a518dcb65a703a647b1c4b8091499d8bfd8e10ab6e4f`; worktrees clean | — |
-| 1. Environment and storage feasibility | IN_PROGRESS | Installation, dependency locks, imports, and CPU-only OSMesa LIBERO smoke test passed; `reports/PHASE1_REPORT.md` records evidence and one unresolved boundary audit item | User review/acceptance of the Phase 1 checkpoint PR and boundary-audit decision |
-| 2. Unmodified FR reproduction | NOT_STARTED | — | User-approved GPU ID and FR reproduction evidence |
+| 1. Environment and storage feasibility | COMPLETE | Installation, dependency locks, imports, and CPU-only OSMesa LIBERO smoke test passed; `reports/PHASE1_REPORT.md`; empty account-path artifact identified and reversed with user authorization | — |
+| 2. Unmodified FR reproduction | IN_PROGRESS | Phase 1 established environment and simulator feasibility; checkpoint revision and size already verified | User approval of checkpoint download and one explicitly selected GPU |
 | 3. Controller and cache implementation | NOT_STARTED | — | Unit-tested implementation |
 | 4. Correctness and instrumentation | NOT_STARTED | — | FR parity and logging audit |
 | 5. Smoke policies and external-baseline feasibility | NOT_STARTED | — | Core-policy smoke completion and VLA-Cache decision |
@@ -21,7 +21,7 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-Phase 1 is the only active phase. Its approved environment installation and one CPU-only simulator smoke test are complete. Checkpoint/dataset downloads, model loading, GPU work, policy implementation, and experiments remain unauthorized.
+Phase 2 is the only active phase. Planning and resource verification are authorized. Checkpoint download, model loading, and GPU execution require explicit user approval and a user-identified GPU. Policy implementation and experiments remain unauthorized.
 
 ## Phase 0 remaining checklist
 
@@ -43,5 +43,13 @@ Phase 1 is the only active phase. Its approved environment installation and one 
 - [x] Install and lock the environment inside `/home/ved/SAVR`.
 - [x] Verify imports and CPU-only headless rendering.
 - [x] Report actual storage usage.
-- [ ] Resolve or explicitly accept the account-level LIBERO path uncertainty.
-- [ ] Obtain user approval and merge the Phase 1 checkpoint PR.
+- [x] Resolve or explicitly accept the account-level LIBERO path uncertainty.
+- [x] Obtain user approval for the Phase 1 checkpoint PR.
+
+## Phase 2 current checklist
+
+- [x] Record the candidate combined checkpoint revision and exact remote size.
+- [ ] Prepare the bounded Phase 2 download/GPU smoke proposal.
+- [ ] Obtain explicit user approval for the checkpoint download.
+- [ ] Obtain the user-selected permitted GPU ID.
+- [ ] Reproduce unmodified Full Refresh according to the Phase 2 protocol.

@@ -80,7 +80,7 @@ Last updated: 2026-07-29
 ## D-010 — LIBERO account-path uncertainty
 
 - Classification: `BLOCKER`
-- Status: OPEN
-- Decision: An initial upstream LIBERO import may have created `/home/ved/.libero` before prompting. The prompt was interrupted immediately. The path has not been inspected, modified, or removed. All subsequent LIBERO access is forced to `/home/ved/SAVR/cache/libero`.
-- Evidence: Direct observation during the first import and the project-local `LIBERO_CONFIG_PATH` controls in the setup and verification scripts.
-- Approver: User direction is required before any narrowly scoped inspection or removal outside `/home/ved/SAVR`.
+- Status: COMPLETE
+- Decision: The initial upstream LIBERO import created an empty `/home/ved/.libero` directory before prompting. With explicit user authorization, only that path was inspected, confirmed empty and timestamp-matched to the import, removed with `rmdir`, and verified absent. All LIBERO access remains forced to `/home/ved/SAVR/cache/libero`.
+- Evidence: Narrow `stat`/depth-two inspection and empty-directory removal on 2026-07-29; project-local `LIBERO_CONFIG_PATH` controls in the setup and verification scripts.
+- Approver: User, 2026-07-29.

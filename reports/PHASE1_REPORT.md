@@ -2,7 +2,7 @@
 
 Date: 2026-07-29
 
-Status: checkpoint evidence prepared; user acceptance pending
+Status: complete; user authorized resolution and merge
 
 ## Scope executed
 
@@ -101,9 +101,14 @@ These corrections are implementation evidence, not scientific results.
 
 No system-wide package, shell configuration, permission, service, process, GPU allocation, checkpoint, or dataset was changed or used.
 
-One uncertainty must be resolved honestly: on the first LIBERO import, upstream code calls `os.makedirs(os.path.expanduser("~/.libero"))` before displaying its configuration prompt. The prompt was interrupted immediately, so `/home/ved/.libero` **may have been created**. It is outside the authorized path and has not been inspected, modified, or removed.
+On the first LIBERO import, upstream code created `/home/ved/.libero` before displaying its configuration prompt. The prompt was interrupted immediately. After the user explicitly authorized narrow inspection and discretionary resolution:
 
-All subsequent LIBERO operations used `/home/ved/SAVR/cache/libero`. Any inspection or removal of the possible account-level directory requires separate, narrow user authorization.
+- the exact path `/home/ved/.libero` was inspected to a maximum depth of two
+- it was confirmed to be an empty directory owned by `ved`, with its timestamp matching the interrupted import
+- `rmdir` removed only that empty directory
+- absence of the path was verified afterward
+
+All subsequent LIBERO operations use `/home/ved/SAVR/cache/libero`. No unrelated account or university-server content was inspected or changed.
 
 ## Phase conclusion
 
@@ -115,5 +120,6 @@ The technical Phase 1 feasibility criteria passed:
 - CPU-only headless LIBERO rendering passed
 - actual project storage is within the approved cap
 - no system or GPU change occurred
+- the sole account-path side effect from the interrupted upstream prompt was identified and reversed
 
-Phase 1 remains `IN_PROGRESS` until the user reviews this checkpoint and decides how to handle the unresolved `/home/ved/.libero` audit item. Phase 2 remains unauthorized.
+Phase 1 is complete. Phase 2 checkpoint download and GPU execution remain unauthorized pending the next explicit resource and GPU-selection gate.

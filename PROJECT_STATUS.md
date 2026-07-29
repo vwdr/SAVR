@@ -4,11 +4,11 @@ Last updated: 2026-07-29
 
 ## Current phase
 
-Phase 1 — Environment and storage feasibility: **IN PROGRESS**
+Phase 2 — Unmodified Full Refresh reproduction: **IN PROGRESS**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
-The bounded Phase 1 installation and CPU-only simulator smoke test passed on branch `agent/phase-1-environment`. Active gate: review and acceptance of the Phase 1 evidence, including the unresolved account-level LIBERO path audit described in `reports/PHASE1_REPORT.md`.
+The bounded Phase 1 installation and CPU-only simulator smoke test passed. The user authorized resolution of the account-level LIBERO path audit and merge of the Phase 1 checkpoint. Active gate: explicit approval for the Phase 2 checkpoint download and identification of the one permitted GPU.
 
 ## Research objective
 
@@ -55,6 +55,8 @@ Completed:
 - OpenVLA-OFT imports verified without loading a model
 - one CPU-only OSMesa LIBERO-Spatial render/action smoke test passed
 - actual Phase 1 project storage measured at about `14.70 GiB`, below the `25 GiB` cap
+- the empty `/home/ved/.libero` artifact from the interrupted upstream prompt was narrowly inspected, removed with `rmdir`, and verified absent
+- Phase 1 accepted and completed
 
 Not completed:
 
@@ -64,11 +66,10 @@ Not completed:
 - no policy wrapper or cache implementation exists
 - no correctness, latency, success, threshold, or ablation experiment has run
 - no empirical claim is supported yet
-- possible creation of `/home/ved/.libero` by LIBERO's upstream first-import behavior remains uninspected and unresolved
 
 ## Next authorized action
 
-Review the Phase 1 checkpoint PR and decide whether to accept it. Separately decide whether to authorize a narrowly scoped inspection and possible removal of `/home/ved/.libero`; it will remain untouched without explicit authorization. Checkpoint/dataset downloads and GPU work remain unauthorized.
+Prepare and review the Phase 2 checkpoint-download and single-GPU smoke proposal. Do not download the checkpoint or launch a GPU workload until the user approves the resource estimate and identifies the permitted GPU.
 
 ## Candidate initial stack
 
