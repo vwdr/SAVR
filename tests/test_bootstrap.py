@@ -34,6 +34,11 @@ class BootstrapTests(unittest.TestCase):
         text = (ROOT / "PROJECT_STATUS.md").read_text(encoding="utf-8")
         self.assertIn("no empirical claim is supported yet", text)
 
+    def test_exactly_one_phase_is_in_progress(self) -> None:
+        text = (ROOT / "docs" / "MILESTONES.md").read_text(encoding="utf-8")
+        milestone_rows = [line for line in text.splitlines() if line.startswith("| ") and ". " in line]
+        self.assertEqual(sum(" IN_PROGRESS " in line for line in milestone_rows), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

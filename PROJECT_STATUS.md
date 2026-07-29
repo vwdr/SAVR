@@ -2,6 +2,14 @@
 
 Last updated: 2026-07-29
 
+## Current phase
+
+Phase 0 — Establish authoritative state: **IN PROGRESS**
+
+The preparation PR containing the unchanged manuscript and execution protocol was merged as commit `2ef3f59aa5543e8347d02df0802c5d949997203d`. GitHub, TITAN, and the local review copy were synchronized to that `main` commit before the Phase 0 ledger branch was created.
+
+Active gate: review and explicit approval of the Phase 0 ledger PR. Phase 1 has not begun.
+
 ## Research objective
 
 Evaluate whether State-Aware Visual Refresh (SAVR), a training-free wrapper around an existing VLA policy, can reduce repeated visual encoding while preserving task success.
@@ -35,6 +43,9 @@ Completed:
 - initial experiment plan and machine-readable result contracts
 - bounded TITAN hardware/bootstrap diagnostics
 - original LaTeX manuscript added unchanged with a recorded SHA-256 checksum
+- preparation PR #1 merged with explicit approval
+- authoritative `main` synchronized across GitHub, TITAN, and the local review copy
+- milestone and decision ledgers prepared for review
 
 Not completed:
 
@@ -45,6 +56,10 @@ Not completed:
 - no policy wrapper or cache implementation exists
 - no correctness, latency, success, threshold, or ablation experiment has run
 - no empirical claim is supported yet
+
+## Next authorized action
+
+Complete Phase 0 by reviewing and merging the ledger PR, then synchronize the resulting `main` commit across GitHub, TITAN, and the local review copy. Environment installation, downloads, simulation, and GPU work remain unauthorized.
 
 ## Candidate initial stack
 
