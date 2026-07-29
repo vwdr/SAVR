@@ -11,6 +11,9 @@ Private GitHub target:
 - repository: `vwdr/SAVR`
 - URL: https://github.com/vwdr/SAVR
 - visibility verified: `PRIVATE`
+- default branch: `main`
+- initial bootstrap commit: `b85828654d0d3ade0977928dc6d908aaae89afb5`
+- initial GitHub Actions run: passed (`bootstrap-validation`, run `30477994373`)
 
 ## Created
 
@@ -52,7 +55,7 @@ The diagnostics queried only static GPU identity/capacity. They did not inspect 
 
 1. The detailed handoff Markdown file referenced in the prior conversation was not present in the current project mirror or local Documents/Downloads search. Bootstrap followed the requirements preserved in the referenced conversation.
 2. The actual SAVR manuscript source was not present. The available PDF, `Paper List – Ved Dwivedi.pdf`, is unrelated linear-algebra coursework and was not copied.
-3. TITAN's GitHub CLI is not authenticated. The private repository was created and will be pushed through the authenticated local Mac CLI without transferring credentials to TITAN.
+3. TITAN's GitHub CLI is not authenticated. The private repository was created and pushed through the authenticated local Mac CLI without transferring credentials to TITAN; this is not a bootstrap blocker.
 4. OpenVLA-OFT + LIBERO remains a candidate, not an accepted or proven stack.
 5. A user-coordinated single-GPU selection, storage approval, and manuscript reconciliation are required before the next handoff.
 
