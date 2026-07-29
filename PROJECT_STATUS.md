@@ -8,7 +8,7 @@ Phase 2 — Unmodified Full Refresh reproduction: **IN PROGRESS**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
-The bounded Phase 1 installation and CPU-only simulator smoke test passed. The user authorized resolution of the account-level LIBERO path audit and merge of the Phase 1 checkpoint. Active gate: review of `docs/PHASE2_RESOURCE_ESTIMATE.md`, explicit approval for the checkpoint download, and identification of the one permitted GPU.
+The bounded Phase 1 installation and CPU-only simulator smoke test passed. Phase 2A resource limits and proposal PR #5 were explicitly approved and merged. The pinned checkpoint download is authorized. Active GPU gate: the permitted GPU ID must be coordinated without inspecting or inferring other users' allocations.
 
 ## Research objective
 
@@ -69,7 +69,7 @@ Not completed:
 
 ## Next authorized action
 
-Review the Phase 2A proposal. Do not download the checkpoint until the user approves up to `16 GiB` transfer and `20 GiB` additional project storage. Do not launch a GPU workload until the user identifies the permitted GPU ID and approves the maximum `60-minute` smoke.
+Download and verify only the pinned combined checkpoint within the approved `16 GiB` transfer and `20 GiB` additional-storage limits. Do not launch a GPU workload until a permitted GPU ID is explicitly identified.
 
 ## Candidate initial stack
 
