@@ -1,0 +1,525 @@
+\documentclass[11pt]{article}
+
+% =========================
+% Packages
+% =========================
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{cite}
+\usepackage{caption}
+\usepackage{longtable}
+\usetikzlibrary{arrows.meta,positioning,fit}
+
+% =========================
+% Formatting
+% =========================
+\setlength{\parindent}{0.25in}
+\setlength{\parskip}{0.35em}
+\setlength{\fboxrule}{0.45pt}
+\setlength{\fboxsep}{6pt}
+\sloppy
+
+% Bold citations and references
+\newcommand{\bcite}[1]{\textbf{\cite{#1}}}
+\newcommand{\bfigref}[1]{\textbf{Fig.~\ref{#1}}}
+\newcommand{\btabref}[1]{\textbf{Table~\ref{#1}}}
+\newcommand{\beqref}[1]{\textbf{Eq.~\ref{#1}}}
+\renewcommand{\refname}{\textbf{References}}
+
+\begin{document}
+\justifying
+
+% =========================
+% Title Block
+% =========================
+\begin{center}
+{\Large \textbf{State-Aware Visual Refresh for Efficient Vision Language Action Inference}}\\[1em]
+
+Ved Dwivedi$^{1}$, Cheng Yang$^{2}$, and Bo Yuan$^{2}$\\[0.5em]
+
+$^{1}$John P. Stevens High School, Edison, New Jersey\\
+$^{2}$Department of Electrical and Computer Engineering, Rutgers University--New Brunswick, Piscataway, New Jersey
+\end{center}
+
+\vspace{1em}
+
+% =========================
+% Abstract
+% =========================
+
+\begin{abstract}
+\justifying
+Vision language action models (VLAs) have improved language-conditioned robot manipulation, but their use in closed-loop control remains computationally expensive. Each control step can require a new visual encoding, even when consecutive observations differ only marginally. We propose State-Aware Visual Refresh (SAVR), a training-free inference controller that decides whether to refresh or reuse visual features using image change, robot state change and recent action change. The method is intentionally lightweight: it wraps around an existing VLA without changing the policy weights or action head. The experimental design compares SAVR with Full Refresh (FR), Periodic Refresh (PR) and Visual-Only Refresh (VOR), testing whether embodied state and action signals provide a more reliable basis for visual reuse than visual similarity alone.
+\end{abstract}
+
+% =========================
+% Keywords
+% =========================
+
+\section*{Keywords}
+
+robotic manipulation; visual refresh; inference efficiency; vision language action models; temporal redundancy; closed-loop control
+
+% =========================
+% Notation
+% =========================
+
+\section*{Notation}
+
+\small
+\begin{longtable}{
+>{\raggedright\arraybackslash}p{0.22\linewidth}
+>{\raggedright\arraybackslash}p{0.70\linewidth}}
+\caption*{Key notation used throughout the manuscript.}\\
+\toprule
+\textbf{Symbol} & \textbf{Meaning} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Symbol} & \textbf{Meaning} \\
+\midrule
+\endhead
+
+$\hat{a}_t$ & Predicted robot action at control step $t$ \\
+$C(g)$ & Deployment cost under refresh controller $g$ \\
+$\Delta_t^{\mathrm{act}}$ & Recent action-change score \\
+$\Delta_t^{\mathrm{img}}$ & Image-change score relative to the most recent refreshed observation \\
+$\Delta_t^{\mathrm{state}}$ & Robot-state-change score \\
+$E_{\phi}$ & Visual encoder with parameters $\phi$ \\
+$\epsilon$ & Maximum acceptable task-success drop relative to FR \\
+$g$ & Refresh controller \\
+$g_t$ & Causal refresh decision rule at control step $t$ \\
+$\gamma_{\mathrm{act}}$ & Action-change refresh threshold \\
+$\gamma_{\mathrm{img}}$ & Image-change refresh threshold \\
+$\gamma_{\mathrm{state}}$ & State-change refresh threshold \\
+$H_{\max}$ & Maximum reuse horizon before forced refresh \\
+$h_t$ & Number of control steps since the most recent refresh \\
+$\mathbb{I}[\cdot]$ & Indicator function \\
+$j$ & Image patch or region index \\
+$k$ & Fixed refresh interval for PR \\
+$M$ & Number of image patches or downsampled image regions \\
+$o_t$ & Camera observation at control step $t$ \\
+$o_{\tau_t}$ & Camera observation at the most recent refreshed step $\tau_t$ \\
+$\pi_{\theta}$ & Base VLA policy with parameters $\theta$ \\
+$r_t$ & Binary visual refresh decision at control step $t$ \\
+$s_t$ & Robot state at control step $t$ \\
+$S(g)$ & Task success under refresh controller $g$ \\
+$t$ & Control step index \\
+$T$ & Episode length \\
+$W_a$ & Action normalization matrix \\
+$W_s$ & State normalization matrix \\
+$x$ & Language instruction \\
+$z_t$ & Visual representation used at control step $t$ \\
+$z_{\tau_t}$ & Cached visual representation from the most recent refreshed step \\
+$\tau_t$ & Most recent refreshed control step at or before $t$ \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+% =========================
+% 1. Introduction
+% =========================
+
+\section{Introduction}
+
+Vision language action models (VLAs) have made language-conditioned robot manipulation substantially more flexible. The RT-1 model showed that transformer-based robot policies can scale with broad robot datasets, while the RT-2 model connected vision language pretraining with action generation. The OpenVLA model later made this line of work more accessible by releasing an open 7B-parameter VLA trained on large-scale robot demonstrations using a Llama~2 backbone with DINOv2 and SigLIP visual features~\bcite{rt1,rt2,openvla}.
+
+The cost of inference remains a practical obstacle. Closed-loop manipulation requires repeated policy calls, often at a frequency where small inefficiencies accumulate over an episode. Recent work has reduced this burden through compact policy design, faster fine-tuning, parallel action decoding, action tokenization and system-level pipelining~\bcite{tinyvla,openvlaoft,fast,actionflow}. These methods make the point that VLA capability alone is insufficient if inference is too slow for deployment.
+
+This paper asks when visual information should be recomputed during closed-loop control. Consecutive observations in manipulation are frequently redundant because the instruction is fixed and the scene often changes gradually, yet global visual similarity can be misleading. Near contact, during grasping or around gripper closure, small changes in robot state may carry more control significance than the apparent change in the image. A visual-only refresh rule may therefore reuse cached information at precisely the steps where the policy needs updated perception.
+
+We propose State-Aware Visual Refresh (SAVR), a training-free inference controller for deciding whether to refresh or reuse visual features at each control step. The SAVR controller combines visual change with changes in robot state and recent policy output. Rather than modifying the VLA, SAVR tests whether embodied state and action dynamics can make visual reuse safer than fixed-rate or visual-only refresh policies.
+
+% =========================
+% 2. Related Work
+% =========================
+
+\section{Related Work}
+
+\subsection{Foundation robot policies and VLA models}
+
+The RT-1 model demonstrated that transformer-based robot policies can scale with large robot datasets, and the RT-2 model extended this trajectory by transferring vision language knowledge into robot action generation~\bcite{rt1,rt2}. The OpenVLA model then provided an open VLA trained on large-scale robot demonstrations~\bcite{openvla}. These systems define the setting studied here: a language-conditioned policy repeatedly maps visual observations and robot state into actions during closed-loop execution.
+
+\subsection{Action-side and system-side efficiency}
+
+A substantial portion of VLA efficiency work reduces the cost of action generation or deployment. The TinyVLA model pursues efficiency through a compact multimodal policy design~\bcite{tinyvla}. The OpenVLA-OFT method improves OpenVLA adaptation through parallel decoding, action chunking, continuous action prediction and an L1 regression objective~\bcite{openvlaoft}. The FAST method changes the action representation through frequency-space action sequence tokenization~\bcite{fast}. The ActionFlow system targets deployment through pipelined execution for faster on-device action generation~\bcite{actionflow}. These methods are important, but they leave open a separate source of cost: repeated visual recomputation across nearby control steps.
+
+\subsection{Visual redundancy and caching}
+
+Visual-side efficiency methods more directly address redundancy in visual observations or visual tokens. The VLA-Cache method is the closest prior work to SAVR because it identifies minimally changed visual tokens across adjacent frames and reuses their computation through KV-cache reuse~\bcite{vlacache}. The VLA-IAP method also reduces inference cost by pruning visual tokens according to interaction alignment~\bcite{vlaiap}. These approaches support the premise that visual computation in manipulation is often redundant. In this paper, we explore when that redundancy is safe to exploit.
+
+\subsection{Adaptive computation}
+
+The AC$^2$-VLA method studies adaptive computation using action context, observation context and selective execution~\bcite{ac2vla}. It suggests that action context can carry information about computational need. The SAVR controller adopts this insight in a narrower form by testing whether robot state and recent action change improve the specific decision of refreshing visual features.
+
+The literature most relevant to SAVR is summarized in \btabref{tab:related_work}.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Relevant VLA efficiency literature and its relationship to SAVR.}
+\label{tab:related_work}
+\begin{tabularx}{\linewidth}{
+>{\raggedright\arraybackslash}p{2.5cm}
+>{\raggedright\arraybackslash}p{3.0cm}
+>{\raggedright\arraybackslash}X
+>{\raggedright\arraybackslash}p{3.2cm}}
+\toprule
+\textbf{Direction} & \textbf{Representative work} & \textbf{Main idea} & \textbf{Relevance to SAVR} \\
+\midrule
+Foundation robot policies and VLA models & RT-1, RT-2, OpenVLA~\bcite{rt1,rt2,openvla}
+& Build robot policies that condition on language, images and robot observations
+& Establishes the closed-loop setting studied here \\
+\addlinespace
+Action-side efficiency & OpenVLA-OFT, FAST~\bcite{openvlaoft,fast}
+& Accelerate action prediction through decoding changes, action chunking or improved tokenization
+& Shows that inference latency is a core bottleneck \\
+\addlinespace
+Compact and system-side efficiency & TinyVLA, ActionFlow~\bcite{tinyvla,actionflow}
+& Reduce model size or improve deployment scheduling
+& Motivates practical inference efficiency on real hardware \\
+\addlinespace
+Visual redundancy & VLA-Cache, VLA-IAP~\bcite{vlacache,vlaiap}
+& Reuse or prune visual computation when observations contain redundancy
+& Provides the closest evidence that visual computation does not always need to be repeated densely \\
+\addlinespace
+Adaptive computation & AC$^2$-VLA~\bcite{ac2vla}
+& Use context, including action context, to adapt computation during inference
+& Motivates adding robot state and action signals to the refresh rule \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% =========================
+% 3. Problem Formulation
+% =========================
+
+\section{Problem Formulation}
+
+Consider a language-conditioned manipulation episode of length $T$. Let $x$ denote the fixed language instruction, $o_t$ the camera observation at control step $t$, $s_t$ the robot state and $\pi_{\theta}$ the base VLA policy. The robot state may include end-effector pose, gripper state, joint positions or other proprioceptive variables available to the policy. At each step, the policy produces an action $\hat{a}_t$.
+
+The visual refresh problem asks whether the current visual representation should be recomputed or whether a cached representation from an earlier step is sufficient. The binary refresh decision is defined as
+\begin{equation}
+r_t =
+\begin{cases}
+1, & \text{refresh visual features at step } t, \\
+0, & \text{reuse cached visual features at step } t.
+\end{cases}
+\label{eq:refresh_decision}
+\end{equation}
+
+In \beqref{eq:refresh_decision}, $r_t$ is the refresh decision at control step $t$. A value of $r_t=1$ triggers visual recomputation, while $r_t=0$ reuses cached visual features.
+
+This definition places dense inference, fixed-rate refresh and adaptive refresh under the same decision framework. The paper can then compare policies by asking how often they choose to refresh, how much latency they save and whether the saved computation harms task success.
+
+Let $\tau_t$ be the most recent step at or before $t$ where $r_{\tau_t}=1$. A refresh controller is a causal decision rule:
+\begin{equation}
+g_t : (o_t, o_{\tau_t}, s_t, s_{t-1}, \hat{a}_{t-1}, \hat{a}_{t-2}) \mapsto r_t .
+\label{eq:gate_definition}
+\end{equation}
+
+In \beqref{eq:gate_definition}, $g_t$ denotes the controller at step $t$, $o_t$ is the current camera observation, $o_{\tau_t}$ is the observation from the most recent refreshed step, $s_t$ and $s_{t-1}$ are the current and previous robot states, $\hat{a}_{t-1}$ and $\hat{a}_{t-2}$ are the two most recent predicted actions and $r_t$ is the output refresh decision.
+
+The value of \beqref{eq:gate_definition} is that it makes the refresh decision explicitly causal. The controller uses only present and past information, which matches the constraints of closed-loop execution. This also clarifies the intended contribution of SAVR: the decision is not based on future failure labels or retraining, but on signals already available during inference.
+
+The objective is to reduce inference cost while maintaining task success relative to FR:
+\begin{equation}
+\min_{g} \ \mathbb{E}[C(g)]
+\quad
+\text{subject to}
+\quad
+\mathbb{E}[S(g)] \geq \mathbb{E}[S(\mathrm{FR})] - \epsilon .
+\label{eq:optimization_objective}
+\end{equation}
+
+In \beqref{eq:optimization_objective}, $g$ is a refresh controller, $C(g)$ is deployment cost under $g$, $S(g)$ is task success under $g$, $\mathbb{E}[\cdot]$ denotes expectation over tasks, episodes or random seeds, $S(\mathrm{FR})$ is the task success of the FR baseline and $\epsilon$ is the maximum acceptable success decrease relative to FR.
+
+This objective formalizes the central trade-off of the paper. Lower latency is not useful if it simply degrades manipulation success, and high success is less deployable if it requires full visual recomputation at every step. The constraint therefore treats FR as the performance reference and asks whether adaptive refresh can reduce cost while remaining within an acceptable success margin.
+
+% =========================
+% 4. Method
+% =========================
+
+\section{Method}
+
+\subsection{Overview}
+
+The SAVR controller is inserted before the visual processing stage of an existing VLA. At each control step, the controller computes image change, robot state change and recent action change. These signals determine whether the current observation is encoded or whether the cached representation is reused. The workflow in \bfigref{fig:savr_pipeline} shows how this decision controls the visual input passed to the base VLA.
+
+\begin{figure}[t]
+\centering
+\fcolorbox{black}{white}{
+\begin{minipage}{0.96\linewidth}
+\centering
+\resizebox{0.98\linewidth}{!}{
+\begin{tikzpicture}[
+    box/.style={draw, rounded corners, thick, minimum height=8mm, align=center, inner sep=4pt},
+    smallbox/.style={draw, rounded corners, thick, minimum height=6mm, align=center, inner sep=3pt},
+    arr/.style={-{Stealth[length=3mm,width=2mm]}, line width=0.85pt}
+]
+
+\node[box, fill=SkyBlue!18] (obs) at (0,0) {$o_t$\\current image};
+\node[box, fill=Green!16] (state) at (0,-1.5) {$s_t,s_{t-1}$\\robot state};
+\node[box, fill=Orange!18] (actions) at (0,-3.0) {$\hat{a}_{t-1},\hat{a}_{t-2}$\\recent actions};
+
+\node[box, fill=SkyBlue!18] (imgdelta) at (3.3,0) {$\Delta_t^{\mathrm{img}}$\\image change};
+\node[box, fill=Green!16] (statedelta) at (3.3,-1.5) {$\Delta_t^{\mathrm{state}}$\\state change};
+\node[box, fill=Orange!18] (actdelta) at (3.3,-3.0) {$\Delta_t^{\mathrm{act}}$\\action change};
+
+\node[box, fill=Red!14] (gate) at (6.6,-1.5) {SAVR gate\\$r_t \in \{0,1\}$};
+
+\node[smallbox, fill=Red!8] (refreshpath) at (8.95,-0.55) {$r_t=1$};
+\node[smallbox, fill=Gray!14] (reusepath) at (8.95,-2.45) {$r_t=0$};
+
+\node[box, fill=SkyBlue!18] (encoder) at (11.45,-0.55) {visual encoder\\$E_{\phi}(o_t)$};
+\node[box, fill=Gray!18] (cache) at (11.45,-2.45) {cached visual\\$z_{\tau_t}$};
+
+\node[box, fill=Purple!14] (merge) at (14.35,-1.5) {visual input\\$z_t$};
+\node[box, fill=Purple!14] (policy) at (17.05,-1.5) {base VLA\\$\pi_{\theta}(x,z_t,s_t)$};
+\node[box, fill=Green!16] (action) at (19.55,-1.5) {$\hat{a}_t$};
+
+\draw[arr] (obs.east) -- (imgdelta.west);
+\draw[arr] (state.east) -- (statedelta.west);
+\draw[arr] (actions.east) -- (actdelta.west);
+
+\draw[arr] (imgdelta.east) -- (gate.north west);
+\draw[arr] (statedelta.east) -- (gate.west);
+\draw[arr] (actdelta.east) -- (gate.south west);
+
+\draw[arr] (gate.east) -- (refreshpath.west);
+\draw[arr] (gate.east) -- (reusepath.west);
+
+\draw[arr] (refreshpath.east) -- (encoder.west);
+\draw[arr] (reusepath.east) -- (cache.west);
+
+\draw[arr] (encoder.east) -- ++(0.35,0) |- (merge.north west);
+\draw[arr] (cache.east) -- ++(0.35,0) |- (merge.south west);
+
+\draw[arr] (merge.east) -- (policy.west);
+\draw[arr] (policy.east) -- (action.west);
+
+\node[
+draw=Black,
+dashed,
+rounded corners,
+inner sep=6pt,
+fit=(imgdelta)(statedelta)(actdelta)(gate),
+label=above:{\small low-cost refresh controller}
+] {};
+
+\end{tikzpicture}
+}
+\end{minipage}
+}
+\caption{SAVR inference pathway. The controller computes image, state and action-change signals, uses them to decide whether to refresh or reuse the visual representation, and then passes the selected visual input to the unchanged base VLA.}
+\label{fig:savr_pipeline}
+\end{figure}
+
+The pathway in \bfigref{fig:savr_pipeline} separates the refresh decision from the base VLA. This separation matters. It allows SAVR to target redundant visual computation without retraining the policy or altering the action head. The figure also makes explicit that the refresh gate does not replace the policy. It only determines whether the visual input to the policy comes from a newly encoded observation or from the cached representation.
+
+\subsection{Refresh Signals}
+
+The image-change signal compares the current observation with the most recent observation that was actually encoded:
+\begin{equation}
+\Delta_t^{\mathrm{img}}
+=
+\frac{1}{M}
+\sum_{j=1}^{M}
+\left\|
+\operatorname{down}(o_t)^{(j)}
+-
+\operatorname{down}(o_{\tau_t})^{(j)}
+\right\|_1 .
+\label{eq:image_change}
+\end{equation}
+
+In \beqref{eq:image_change}, $\Delta_t^{\mathrm{img}}$ is the image-change score at control step $t$, $\operatorname{down}(\cdot)$ is a fixed downsampling operation, $o_t$ is the current camera observation, $o_{\tau_t}$ is the observation from the most recent refreshed step, $j$ indexes a downsampled image patch or region, $M$ is the number of patches or regions and $\|\cdot\|_1$ is the L1 distance.
+
+The equation is included because visual reuse is only defensible when the cached visual representation remains close enough to the current scene. Comparing $o_t$ with $o_{\tau_t}$, rather than only $o_{t-1}$, is important because small frame-to-frame changes can accumulate over several reuse steps. The score therefore measures visual drift from the last representation that the VLA actually encoded.
+
+The state-change signal measures how much the robot has moved since the previous control step:
+\begin{equation}
+\Delta_t^{\mathrm{state}}
+=
+\left\|
+W_s(s_t - s_{t-1})
+\right\|_2 .
+\label{eq:state_change}
+\end{equation}
+
+In \beqref{eq:state_change}, $\Delta_t^{\mathrm{state}}$ is the robot-state-change score at control step $t$, $s_t$ is the current robot state, $s_{t-1}$ is the previous robot state, $W_s$ is a diagonal normalization matrix for state dimensions and $\|\cdot\|_2$ is the Euclidean norm.
+
+The equation captures a limitation of image-only refresh rules. A robot may enter a more visually sensitive part of the task even when the camera frame changes little. End-effector displacement, joint motion or gripper-related changes can make the cached visual representation less reliable for action selection, so the state score acts as an embodied warning signal.
+
+The action-change signal measures short-term variation in the policy output:
+\begin{equation}
+\Delta_t^{\mathrm{act}}
+=
+\left\|
+W_a(\hat{a}_{t-1} - \hat{a}_{t-2})
+\right\|_2 .
+\label{eq:action_change}
+\end{equation}
+
+In \beqref{eq:action_change}, $\Delta_t^{\mathrm{act}}$ is the recent action-change score at control step $t$, $\hat{a}_{t-1}$ is the action predicted at the previous control step, $\hat{a}_{t-2}$ is the action predicted two control steps earlier, $W_a$ is a diagonal normalization matrix for action dimensions and $\|\cdot\|_2$ is the Euclidean norm.
+
+The equation treats the policy output as a weak signal of task phase. Abrupt action changes may reflect grasp initiation, corrective motion, directional reversal or instability caused by stale perception. The action score is not assumed to be sufficient on its own; its role is to add a behavioral signal that may be missed by visual comparison alone.
+
+\subsection{Refresh Rule}
+
+Let $h_t=t-\tau_t$ be the number of steps since the last visual refresh. The SAVR controller refreshes the visual representation if any signal exceeds its threshold or if the cached representation has reached a maximum reuse horizon:
+\begin{equation}
+r_t =
+\mathbb{I}
+\left[
+\Delta_t^{\mathrm{img}} > \gamma_{\mathrm{img}}
+\ \vee\
+\Delta_t^{\mathrm{state}} > \gamma_{\mathrm{state}}
+\ \vee\
+\Delta_t^{\mathrm{act}} > \gamma_{\mathrm{act}}
+\ \vee\
+h_t \geq H_{\max}
+\right] .
+\label{eq:savr_rule}
+\end{equation}
+
+In \beqref{eq:savr_rule}, $r_t$ is the binary refresh decision, $\mathbb{I}[\cdot]$ is the indicator function, $\Delta_t^{\mathrm{img}}$, $\Delta_t^{\mathrm{state}}$ and $\Delta_t^{\mathrm{act}}$ are the image, state and action change scores, $\gamma_{\mathrm{img}}$, $\gamma_{\mathrm{state}}$ and $\gamma_{\mathrm{act}}$ are their corresponding thresholds, $h_t$ is the number of control steps since the most recent refresh, $H_{\max}$ is the maximum allowed reuse horizon and $\vee$ denotes logical OR.
+
+The rule is intentionally interpretable. Image change captures scene drift, state change captures embodied motion and action change captures policy-level instability. The horizon term prevents indefinite reuse even when the three change scores remain below threshold. This design is conservative: it favors refresh when any signal indicates that cached visual features may no longer be reliable.
+
+If the refresh decision is positive, the current observation is encoded:
+\begin{equation}
+z_t = E_{\phi}(o_t).
+\label{eq:refresh_features}
+\end{equation}
+
+In \beqref{eq:refresh_features}, $z_t$ is the visual representation used at control step $t$, $E_{\phi}$ is the visual encoder with parameters $\phi$ and $o_t$ is the current camera observation.
+
+The equation defines the refresh branch of SAVR. When $r_t=1$, the controller pays the visual computation cost to obtain a representation aligned with the current observation. This branch preserves the behavior of dense VLA inference for steps judged to be visually or behaviorally important.
+
+If the refresh decision is negative, the SAVR controller reuses the most recent cached representation:
+\begin{equation}
+z_t = z_{\tau_t}.
+\label{eq:reuse_features}
+\end{equation}
+
+In \beqref{eq:reuse_features}, $z_t$ is the visual representation used at control step $t$ and $z_{\tau_t}$ is the cached visual representation from the most recent refreshed step $\tau_t$.
+
+The equation defines the reuse branch. When $r_t=0$, the controller avoids visual recomputation and forwards the cached representation to the base VLA. The benefit is lower inference cost; the risk is that stale visual features may no longer support the correct action.
+
+The base VLA then predicts the next action:
+\begin{equation}
+\hat{a}_t = \pi_{\theta}(x,z_t,s_t).
+\label{eq:policy_output}
+\end{equation}
+
+In \beqref{eq:policy_output}, $\hat{a}_t$ is the predicted action at control step $t$, $\pi_{\theta}$ is the base VLA policy with parameters $\theta$, $x$ is the language instruction, $z_t$ is the visual representation selected by the refresh controller and $s_t$ is the robot state.
+
+The equation shows that SAVR does not alter the base policy. Both refresh and reuse produce a visual representation $z_t$, which is then passed to the same VLA with the same language instruction and robot state. The method therefore isolates the effect of visual refresh scheduling rather than confounding it with model retraining or action-head changes.
+
+\subsection{Comparison Policies}
+
+The evaluation compares SAVR against three refresh policies. The FR baseline recomputes visual features at every step and serves as the dense reference. The PR baseline recomputes visual features every $k$ steps and tests whether a clock-based rule is sufficient. The VOR baseline uses only $\Delta_t^{\mathrm{img}}$ and removes the robot state and action terms. These baselines isolate the contribution of embodied signals to the refresh decision.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Refresh policies used to evaluate the contribution of robot state and action signals.}
+\label{tab:refresh_policies}
+\begin{tabularx}{\linewidth}{
+>{\raggedright\arraybackslash}p{2.4cm}
+>{\raggedright\arraybackslash}X
+>{\raggedright\arraybackslash}p{3.5cm}}
+\toprule
+\textbf{Policy} & \textbf{Refresh rule} & \textbf{Purpose} \\
+\midrule
+FR & Refresh at every step
+& Measures full-computation reference performance \\
+\addlinespace
+PR & Refresh every $k$ steps
+& Tests whether fixed-rate reuse is sufficient \\
+\addlinespace
+VOR & Refresh when $\Delta_t^{\mathrm{img}} > \gamma_{\mathrm{img}}$ or $h_t \geq H_{\max}$
+& Tests visual similarity without embodied signals \\
+\addlinespace
+SAVR & Refresh using \beqref{eq:savr_rule}
+& Tests whether robot state and recent actions improve the refresh decision \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The comparison policies in \btabref{tab:refresh_policies} separate four effects: dense inference, fixed temporal reuse, visual-only adaptive reuse and state-aware adaptive reuse. This structure is necessary because a favorable result for SAVR would be meaningful only if the state and action terms improve over both PR and VOR.
+
+\subsection{Implementation Scope}
+
+The SAVR controller is intended as a wrapper around an existing VLA when intermediate visual features or projected visual prefixes can be cached. For a single-step policy, the gate is evaluated before each action prediction. For a chunked policy, the gate is evaluated whenever the policy would normally construct a new visual prefix for the next action window. This design keeps the method compatible with OpenVLA-style autoregressive policies and OpenVLA-OFT-style chunked policies~\bcite{openvlaoft}. The implementation should log refresh decisions, latency, task success, skipped refresh percentage and failure cases.
+
+% =========================
+% References
+% =========================
+
+\begin{thebibliography}{10}
+
+\bibitem{rt1}
+A.~Brohan et al.
+\newblock RT-1: Robotics Transformer for Real-World Control at Scale.
+\newblock \emph{arXiv preprint arXiv:2212.06817}, 2022.
+
+\bibitem{rt2}
+A.~Brohan et al.
+\newblock RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control.
+\newblock \emph{arXiv preprint arXiv:2307.15818}, 2023.
+
+\bibitem{openvla}
+M.~J.~Kim et al.
+\newblock OpenVLA: An Open-Source Vision-Language-Action Model.
+\newblock \emph{arXiv preprint arXiv:2406.09246}, 2024.
+
+\bibitem{tinyvla}
+J.~Wen et al.
+\newblock TinyVLA: Towards Fast, Data-Efficient Vision-Language-Action Models for Robotic Manipulation.
+\newblock \emph{arXiv preprint arXiv:2409.12514}, 2024.
+
+\bibitem{openvlaoft}
+M.~J.~Kim, C.~Finn and P.~Liang.
+\newblock Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success.
+\newblock \emph{arXiv preprint arXiv:2502.19645}, 2025.
+
+\bibitem{fast}
+K.~Pertsch et al.
+\newblock FAST: Efficient Action Tokenization for Vision-Language-Action Models.
+\newblock \emph{arXiv preprint arXiv:2501.09747}, 2025.
+
+\bibitem{actionflow}
+Y.~Dai et al.
+\newblock ActionFlow: A Pipelined Action Acceleration for Vision Language Models on Edge.
+\newblock \emph{arXiv preprint arXiv:2512.20276}, 2025.
+
+\bibitem{vlacache}
+S.~Xu et al.
+\newblock VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation.
+\newblock \emph{arXiv preprint arXiv:2502.02175}, 2025.
+
+\bibitem{vlaiap}
+J.~Cheng et al.
+\newblock VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models.
+\newblock \emph{arXiv preprint arXiv:2603.22991}, 2026.
+
+\bibitem{ac2vla}
+W.~Yu et al.
+\newblock AC$^2$-VLA: Action-Context-Aware Adaptive Computation in Vision-Language-Action Models for Efficient Robotic Manipulation.
+\newblock \emph{arXiv preprint arXiv:2601.19634}, 2026.
+
+\end{thebibliography}
+
+\end{document}

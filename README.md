@@ -26,12 +26,13 @@ Planned primary outcomes:
 - `AGENTS.md`: mandatory operating and server-safety rules
 - `PROJECT_STATUS.md`: authoritative scientific and implementation status
 - `docs/EXPERIMENT_PLAN.md`: staged experimental protocol
+- `docs/SAVR_EXECUTION_PROTOCOL.md`: authoritative execution, verification, and anti-hallucination guide
 - `docs/STACK_ASSESSMENT.md`: initial OpenVLA-OFT + LIBERO feasibility assessment
 - `docs/RESULTS_SCHEMA.md`: logging contract
 - `schemas/`: machine-readable run and episode schemas
 - `scripts/`: bootstrap-only diagnostics and validation
 - `references/`: project-provided literature material
-- `manuscript/`: placeholder until the actual manuscript source is supplied
+- `manuscript/`: original LaTeX manuscript and provenance note
 
 ## Bootstrap validation
 

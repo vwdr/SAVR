@@ -1,6 +1,6 @@
 # Next Codex Handoff: Compatibility and FR Smoke Test
 
-Do not execute this handoff until the user approves it and supplies the manuscript source.
+Do not execute this handoff until the user approves it.
 
 ## Goal
 

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import unittest
 from pathlib import Path
@@ -15,10 +16,19 @@ class BootstrapTests(unittest.TestCase):
             self.assertEqual(data["type"], "object")
             self.assertTrue(data["required"])
 
-    def test_manuscript_gap_is_explicit(self) -> None:
+    def test_manuscript_source_is_recorded(self) -> None:
         text = (ROOT / "manuscript" / "README.md").read_text(encoding="utf-8")
-        self.assertIn("not available", text)
-        self.assertIn("Do not reconstruct or invent", text)
+        manuscript = ROOT / "manuscript" / (
+            "State-Aware Visual Refresh for Efficient VLA Inference.tex"
+        )
+        self.assertTrue(manuscript.is_file())
+        digest = hashlib.sha256(manuscript.read_bytes()).hexdigest()
+        self.assertEqual(
+            digest,
+            "4a0fe130f1cbc5557f77a518dcb65a703a647b1c4b8091499d8bfd8e10ab6e4f",
+        )
+        self.assertIn("4a0fe130f1cbc5557f77a518dcb65a703a647b1c4b8091499d8bfd8e10ab6e4f", text)
+        self.assertIn("Do not edit the manuscript", text)
 
     def test_project_status_does_not_claim_results(self) -> None:
         text = (ROOT / "PROJECT_STATUS.md").read_text(encoding="utf-8")
