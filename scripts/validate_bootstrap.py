@@ -39,12 +39,15 @@ REQUIRED_FILES = (
     "reports/PHASE1_REPORT.md",
     "reports/PHASE2A_CHECKPOINT_REPORT.md",
     "reports/PHASE2A_FR_SMOKE_REPORT.md",
+    "reports/PHASE2B_PILOT_REPORT.md",
     "reports/titan_bootstrap_diagnostics.json",
     "schemas/episode_result.schema.json",
     "schemas/run_manifest.schema.json",
     "scripts/setup_phase1_environment.sh",
+    "scripts/analyze_phase2b_pilot.py",
     "scripts/download_phase2_checkpoint.py",
     "scripts/run_phase2a_fr_smoke.py",
+    "scripts/run_phase2b_fr_pilot.py",
     "scripts/verify_phase1_environment.py",
 )
 

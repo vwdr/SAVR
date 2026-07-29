@@ -8,7 +8,7 @@ Exactly one phase may be `IN_PROGRESS`.
 |---|---|---|---|
 | 0. Establish authoritative state | COMPLETE | Preparation PR #1 and ledger PR #2 merged with explicit approval; GitHub, TITAN, and local `main` synchronized at `9a5bbd5`; manuscript SHA-256 verified as `4a0fe130f1cbc5557f77a518dcb65a703a647b1c4b8091499d8bfd8e10ab6e4f`; worktrees clean | — |
 | 1. Environment and storage feasibility | COMPLETE | Installation, dependency locks, imports, and CPU-only OSMesa LIBERO smoke test passed; `reports/PHASE1_REPORT.md`; empty account-path artifact identified and reversed with user authorization | — |
-| 2. Unmodified FR reproduction | IN_PROGRESS | Phase 1 established environment and simulator feasibility; checkpoint revision and size already verified | User approval of checkpoint download and one explicitly selected GPU |
+| 2. Unmodified FR reproduction | IN_PROGRESS | Checkpoint fit one TITAN RTX; 50/50 pilot episodes completed with 49 successes; component timing and run integrity reconciled in `reports/PHASE2B_PILOT_REPORT.md` | User review and approval of the Phase 2B checkpoint PR |
 | 3. Controller and cache implementation | NOT_STARTED | — | Unit-tested implementation |
 | 4. Correctness and instrumentation | NOT_STARTED | — | FR parity and logging audit |
 | 5. Smoke policies and external-baseline feasibility | NOT_STARTED | — | Core-policy smoke completion and VLA-Cache decision |
@@ -21,7 +21,9 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-Phase 2 is the only active phase. Planning and resource verification are authorized. Checkpoint download, model loading, and GPU execution require explicit user approval and a user-identified GPU. Policy implementation and experiments remain unauthorized.
+Phase 2 is the only active phase. Its exit evidence is complete and awaiting
+checkpoint review. Controller/cache implementation and Phase 3 experiments
+remain unauthorized.
 
 ## Phase 0 remaining checklist
 
@@ -55,5 +57,8 @@ Phase 2 is the only active phase. Planning and resource verification are authori
 - [x] Select an idle GPU using user-authorized aggregate inspection.
 - [x] Complete one bounded unmodified Full Refresh smoke episode.
 - [x] Prepare the all-Spatial-task Full Refresh pilot proposal.
-- [ ] Obtain explicit approval for the all-Spatial-task Full Refresh pilot.
-- [ ] Quantify component timing and complete Phase 2 exit evidence.
+- [x] Obtain explicit approval for the all-Spatial-task Full Refresh pilot.
+- [x] Complete all 50 planned episodes and reconcile the run manifest.
+- [x] Pass the predeclared baseline-feasibility threshold.
+- [x] Quantify component timing and complete Phase 2 exit evidence.
+- [ ] Obtain explicit approval and merge the Phase 2B checkpoint PR.

@@ -121,8 +121,17 @@ Last updated: 2026-07-29
 ## D-015 — Phase 2B Full Refresh pilot
 
 - Classification: `DECISION`
-- Status: PROPOSED
+- Status: COMPLETE
 - Decision: Run exactly 50 calibration-split Full Refresh episodes covering all ten LIBERO-Spatial tasks and initial-state IDs `0-4`, with component timing on one responsibly selected idle GPU for at most three hours and two GiB of new artifacts.
 - Review threshold: At least `45/50` successes and no task with `0/5`; otherwise stop for discrepancy review. This is a feasibility threshold, not a paper-level hypothesis test.
-- Evidence: `docs/PHASE2B_PILOT_PROPOSAL.md`; official OpenVLA-OFT paper reports `97.7%` Spatial success for the combined policy; measured Phase 2A runtime and memory.
-- Approver: Explicit user approval required.
+- Evidence: User approval on 2026-07-29; `docs/PHASE2B_PILOT_PROPOSAL.md`; `reports/PHASE2B_PILOT_REPORT.md`.
+- Approver: User, 2026-07-29.
+
+## D-016 — Phase 2B baseline and timing feasibility
+
+- Classification: `FACT`
+- Status: COMPLETE
+- Decision: The fixed calibration pilot completed `50/50` terminal episodes with `49/50` successes and no runtime errors. Every task achieved at least `4/5`. Steady-state visual backbone plus projector execution was `15.874%` of total query CUDA time and `15.873%` of synchronized query wall time.
+- Interpretation: The baseline passed the predeclared feasibility threshold. Complete elimination of measured visual compute would have an optimistic query-time ceiling of about `15.87%` latency reduction or `1.189×` speedup; real SAVR benefit must be lower. Proceeding to bounded implementation/correctness work is scientifically reasonable, but no SAVR performance claim is supported.
+- Evidence: `reports/PHASE2B_PILOT_REPORT.md`; immutable TITAN run `results/phase2b-fr-spatial-pilot-v1`; reproducible aggregation by `scripts/analyze_phase2b_pilot.py`.
+- Approver: Direct run evidence; Phase 2 checkpoint acceptance remains pending.
