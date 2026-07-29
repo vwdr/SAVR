@@ -6,5 +6,5 @@ dependencies:
   - pip
   - setuptools
   - wheel
-  - mesalib
+  - mesalib=24.3.4
   - libglvnd

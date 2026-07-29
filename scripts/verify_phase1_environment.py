@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 from pathlib import Path
 
 
@@ -19,6 +20,13 @@ def main() -> int:
     os.environ["MUJOCO_GL"] = "osmesa"
     os.environ["PYOPENGL_PLATFORM"] = "osmesa"
     os.environ["PYTHONNOUSERSITE"] = "1"
+
+    environment_library = project_root / "envs" / "openvla-oft" / "lib"
+    library_path = os.environ.get("LD_LIBRARY_PATH", "")
+    library_entries = [entry for entry in library_path.split(":") if entry]
+    if str(environment_library) not in library_entries:
+        os.environ["LD_LIBRARY_PATH"] = ":".join([str(environment_library), *library_entries])
+        os.execve(sys.executable, [sys.executable, *sys.argv], os.environ)
 
     import bddl
     import gym

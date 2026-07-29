@@ -66,6 +66,12 @@ if [[ ! -x "${ENV_PREFIX}/bin/python" ]]; then
     --root-prefix "${MAMBA_ROOT}" \
     --prefix "${ENV_PREFIX}" \
     --file "${PROJECT_ROOT}/environment/phase1-conda.yml"
+else
+  "${MAMBA_BIN}" install \
+    --yes \
+    --root-prefix "${MAMBA_ROOT}" \
+    --prefix "${ENV_PREFIX}" \
+    --file "${PROJECT_ROOT}/environment/phase1-conda.yml"
 fi
 
 export MAMBA_ROOT_PREFIX="${MAMBA_ROOT}"
