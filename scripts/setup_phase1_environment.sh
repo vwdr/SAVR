@@ -102,7 +102,7 @@ run_python python -m pip install \
   jsonlines \
   matplotlib \
   peft==0.11.1 \
-  protobuf \
+  protobuf==4.21.12 \
   rich \
   sentencepiece==0.1.99 \
   timm==0.9.10 \
@@ -110,6 +110,8 @@ run_python python -m pip install \
   wandb \
   tensorflow==2.15.0 \
   tensorflow_datasets==4.9.3 \
+  tensorflow-metadata==1.17.2 \
+  array-record==0.4.1 \
   tensorflow_graphics==2021.12.3 \
   diffusers==0.30.3 \
   imageio \
