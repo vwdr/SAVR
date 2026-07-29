@@ -2,7 +2,7 @@
 
 Date: 2026-07-29
 
-Status: **COMPLETE — FEASIBILITY GATE PASSED; CHECKPOINT REVIEW PENDING**
+Status: **COMPLETE — FEASIBILITY GATE PASSED; ACCEPTED IN PR #8**
 
 ## Scope
 
@@ -115,5 +115,6 @@ All Phase 2 exit evidence is now present:
 - no gross baseline-success discrepancy was found
 - visual-encoder latency share is quantified
 
-Phase 2 remains `IN_PROGRESS` until this evidence is reviewed and its PR is
-explicitly approved and merged. Phase 3 remains unauthorized.
+The evidence was explicitly approved and merged in PR #8. All technical Phase
+2 exit criteria are satisfied. Phase 2 remains administratively `IN_PROGRESS`
+until an explicit Phase 3 go/no-go decision; Phase 3 remains unauthorized.

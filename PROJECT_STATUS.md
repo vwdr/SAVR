@@ -11,8 +11,9 @@ Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly appro
 The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
 Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
 The approved Phase 2B all-task pilot is complete and passed its predeclared
-feasibility threshold. Active gate: review and explicit approval of the Phase
-2B checkpoint PR.
+feasibility threshold. Its evidence was accepted and merged in PR #8. All
+technical Phase 2 exit criteria are satisfied. Active gate: an explicit
+go/no-go decision for the Phase 3 transition.
 
 ## Research objective
 
@@ -79,13 +80,13 @@ Not completed:
 - no policy wrapper or cache implementation exists
 - no SAVR/PR/VOR correctness, latency, success, threshold, or ablation experiment has run
 - no empirical SAVR performance claim is supported yet
-- the Phase 2B checkpoint PR has not yet been reviewed or merged
+- the Phase 2-to-Phase 3 status transition has not been authorized
 
 ## Next authorized action
 
-Review the Phase 2B evidence and checkpoint PR. Do not begin Phase 3 controller
-or cache implementation until the checkpoint is explicitly approved and
-merged.
+Decide whether the measured `15.87%` optimistic query-latency ceiling justifies
+authorizing a bounded Phase 3 controller/cache implementation proposal. Do not
+begin Phase 3 implementation without explicit approval.
 
 ## Candidate initial stack
 

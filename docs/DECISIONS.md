@@ -134,4 +134,12 @@ Last updated: 2026-07-29
 - Decision: The fixed calibration pilot completed `50/50` terminal episodes with `49/50` successes and no runtime errors. Every task achieved at least `4/5`. Steady-state visual backbone plus projector execution was `15.874%` of total query CUDA time and `15.873%` of synchronized query wall time.
 - Interpretation: The baseline passed the predeclared feasibility threshold. Complete elimination of measured visual compute would have an optimistic query-time ceiling of about `15.87%` latency reduction or `1.189×` speedup; real SAVR benefit must be lower. Proceeding to bounded implementation/correctness work is scientifically reasonable, but no SAVR performance claim is supported.
 - Evidence: `reports/PHASE2B_PILOT_REPORT.md`; immutable TITAN run `results/phase2b-fr-spatial-pilot-v1`; reproducible aggregation by `scripts/analyze_phase2b_pilot.py`.
-- Approver: Direct run evidence; Phase 2 checkpoint acceptance remains pending.
+- Approver: User accepted the checkpoint by approving PR #8 on 2026-07-29.
+
+## D-017 — Phase 2B checkpoint acceptance
+
+- Classification: `DECISION`
+- Status: COMPLETE
+- Decision: Accept and merge the Phase 2B runner, reproducible analysis, baseline-feasibility evidence, and bounded latency interpretation. This approval does not authorize Phase 3.
+- Evidence: User approval on 2026-07-29; GitHub PR #8; merge commit `6060966f50619522b5c7faad3ee5cad8b7493da5`.
+- Approver: User, 2026-07-29.
