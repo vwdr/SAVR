@@ -160,4 +160,12 @@ Last updated: 2026-07-29
 - Decision: The project-owned FR/PR/VOR/SAVR controllers, exact signal functions, projected-feature cache, exception-safe OpenVLA-OFT adapter, and immutable record store are implemented. All `29` dependency-light tests pass locally and in TITAN's pinned environment; Ruff and mypy pass; the package builds; pinned upstream source remains clean.
 - Limitation: Fake-model CPU evidence does not establish real-model action parity, cached-tensor compatibility, GPU timing, or simulator correctness. Those remain Phase 4 gates.
 - Evidence: `reports/PHASE3_IMPLEMENTATION_REPORT.md`; `src/savr/`; `tests/unit/`.
-- Approver: Direct implementation evidence; checkpoint acceptance remains pending.
+- Approver: User accepted the checkpoint by approving PR #10 on 2026-07-29.
+
+## D-020 — Phase 3 checkpoint acceptance
+
+- Classification: `DECISION`
+- Status: COMPLETE
+- Decision: Accept and merge the Phase 3 controller, signal, cache, adapter, immutable-record, documentation, and CPU-test evidence. This approval does not authorize Phase 4 or GPU/simulator work.
+- Evidence: User approval on 2026-07-29; GitHub PR #10; merge commit `ad838095ea2b8a2fe7fadbde253c86d01d4f5300`.
+- Approver: User, 2026-07-29.
