@@ -4,8 +4,7 @@ Last updated: 2026-07-29
 
 ## Current phase
 
-Phase 5 — Smoke policies and external-baseline feasibility: **IN PROGRESS
-(TECHNICALLY COMPLETE; AWAITING REVIEW)**
+Phase 6 — Calibration and power: **IN PROGRESS**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -20,9 +19,11 @@ proposal was approved. Its expanded CPU suite and bounded six-query
 real-model correctness matrix passed. The evidence was accepted and merged in
 PR #13. All Phase 4 exit criteria are satisfied. The user subsequently
 approved uninterrupted Phase 5 execution through its final checkpoint. The
-bounded core-policy smoke and official VLA-Cache compatibility audit have now
-passed their technical exit gates. The Phase 5 checkpoint awaits user review;
-Phase 6 remains unauthorized.
+bounded core-policy smoke and official VLA-Cache compatibility audit passed
+their technical exit gates and were accepted in PR #15. The user authorized
+uninterrupted Phase 6 execution through its final checkpoint. The Phase 6
+calibration and power rules are frozen before outcome collection in
+`docs/PHASE6_CALIBRATION_PROTOCOL.md`.
 
 ## Research objective
 
@@ -109,6 +110,9 @@ Completed:
 - official VLA-Cache source and its required Transformers fork pinned in an isolated project-local environment
 - official VLA-Cache evaluator technically excluded because its previous-frame path aliases the current frame and its episode path suppresses explicit errors
 - Phase 5 independent evidence reconciliation passed
+- Phase 5 evidence accepted and merged in PR #15 at merge commit `5a4046b2b689d71e2ef0a54a6b67629180d5cdd3`
+- Phase 6 authorized through its final checkpoint
+- Phase 6 calibration population, nine-setting SAVR grid, 2-percentage-point margin, paired power target, matching rules, resource limits, and holdout protections frozen before new outcome collection
 
 Not completed:
 
@@ -117,12 +121,15 @@ Not completed:
 - no empirical SAVR performance claim is supported yet
 - no threshold has been calibrated
 - no Phase 5 success or latency comparison is approved as a paper-level claim
-- Phase 5 checkpoint has not yet been accepted
+- no Phase 6 outcome collection has run
+- no final holdout outcome has been inspected
 
 ## Next authorized action
 
-Review the technically complete Phase 5 checkpoint and draft PR #15. Do not
-begin Phase 6 calibration without a new explicit decision.
+Commit and transfer the frozen Phase 6 protocol and validated resumable runner,
+then collect and reconcile the 100-episode FR calibration traces on one
+responsibly selected GPU. Continue through the Phase 6 checkpoint without
+intermediate approval pauses, but stop before Phase 7.
 
 ## Candidate initial stack
 

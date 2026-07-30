@@ -1,0 +1,12 @@
+{
+  "artifact_cap_bytes": 536870912,
+  "protocol": "PHASE6_CALIBRATION_PROTOCOL.md",
+  "run_id": "phase6-fr-signals-v1",
+  "settings": [
+    {
+      "configuration_id": "fr",
+      "policy": "FR"
+    }
+  ],
+  "wall_cap_seconds": 14400
+}
