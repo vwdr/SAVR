@@ -7,6 +7,7 @@ from savr.controllers import (
     StateAwareVisualRefreshController,
     VisualOnlyRefreshController,
 )
+from savr.timing import SynchronizedQueryTimer
 
 __all__ = [
     "CacheContext",
@@ -14,5 +15,6 @@ __all__ = [
     "PeriodicRefreshController",
     "ProjectedFeatureCache",
     "StateAwareVisualRefreshController",
+    "SynchronizedQueryTimer",
     "VisualOnlyRefreshController",
 ]

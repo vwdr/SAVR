@@ -4,7 +4,7 @@ Last updated: 2026-07-29
 
 ## Current phase
 
-Phase 3 — Controller and cache implementation: **IN PROGRESS**
+Phase 4 — Correctness and instrumentation: **IN PROGRESS**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -14,8 +14,10 @@ The approved Phase 2B all-task pilot is complete and passed its predeclared
 feasibility threshold. Its evidence was accepted and merged in PR #8. All
 technical Phase 2 exit criteria are satisfied. The user approved the Phase 3
 transition. The bounded implementation and CPU tests were accepted and merged
-in PR #10. All technical Phase 3 exit criteria are satisfied. Active gate: an
-explicit approval decision for `docs/PHASE4_CORRECTNESS_PROPOSAL.md`.
+in PR #10. All technical Phase 3 exit criteria are satisfied. The Phase 4
+proposal was approved. Its expanded CPU suite and bounded six-query
+real-model correctness matrix passed. Active gate: review and merge the Phase
+4 checkpoint PR #13. Phase 5 remains unauthorized.
 
 ## Research objective
 
@@ -85,26 +87,33 @@ Completed:
 - Ruff, mypy, byte compilation, package build, and upstream-cleanliness checks passed
 - Phase 3 implementation evidence accepted and merged in PR #10
 - bounded Phase 4 correctness, parity, timing, recovery, GPU, and stop-rule proposal prepared
+- Phase 4 proposal explicitly approved and merged in PR #12
+- expanded Phase 4 controller/cache/timing/recovery suite passed `44/44` tests in TITAN
+- wrapped Full Refresh actions matched unmodified upstream exactly on both controlled queries
+- real VOR reuse skipped the visual backbone/projector, preserved fresh state-B proprioception, and matched the unmodified state-B action chunk exactly
+- all six immutable query records and the run manifest validated
+- checkpoint metadata restored byte-for-byte and the selected GPU returned to its exact pre-run aggregate idle state
 
 Not completed:
 
 - no dataset has been downloaded
-- no SAVR/PR/VOR correctness, latency, success, threshold, or ablation experiment has run
+- no SAVR/PR/VOR trajectory-success, threshold, calibration, or ablation experiment has run
 - no empirical SAVR performance claim is supported yet
-- real-model FR parity and cached-tensor integration have not run; these belong to Phase 4
-- Phase 4 correctness execution has not been authorized
+- Phase 4 query-level correctness is complete, but its checkpoint PR is not yet accepted
+- no Phase 5 policy smoke has been proposed or authorized
 
 ## Next authorized action
 
-Review `docs/PHASE4_CORRECTNESS_PROPOSAL.md`. Do not run its CPU expansion,
-GPU selection, model load, simulator reset, or real-model parity matrix without
-explicit approval.
+Review Phase 4 evidence in `reports/PHASE4_CORRECTNESS_REPORT.md` and PR #13.
+Do not begin Phase 5, policy rollouts, threshold calibration, or performance
+claims without a separate bounded proposal and explicit approval.
 
 ## Candidate initial stack
 
 OpenVLA-OFT with LIBERO remains the leading stack. Model loading, one-GPU
-compatibility, and baseline feasibility are verified. The exact cache
-interception boundary and output-parity behavior remain Phase 3/4 work.
+compatibility, baseline feasibility, cache interception, exact wrapped-FR
+parity, and one controlled real-tensor reuse path are verified. Trajectory
+behavior and calibrated policy evaluation remain future gated work.
 
 ## Bootstrap checkpoint
 

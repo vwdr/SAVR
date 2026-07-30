@@ -67,6 +67,34 @@ class CacheAndLoggingTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 store.write_episode("../outside", {"success": True})
 
+    def test_interrupted_run_remains_visible_and_resumes_missing_only(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            store = ImmutableRecordStore(Path(directory))
+            store.write_run_event(0, "RUNNING", {"run_id": "test"})
+            store.write_query(0, {"status": "completed"})
+            store.write_query(1, {"status": "completed"})
+            store.write_run_event(1, "INTERRUPTED", {"reason": "synthetic"})
+
+            resumed = ImmutableRecordStore(Path(directory))
+            self.assertEqual(resumed.missing_query_indices(range(4)), [2, 3])
+            with self.assertRaises(RecordExistsError):
+                resumed.write_query(1, {"status": "replaced"})
+            resumed.write_query(2, {"status": "completed"})
+            resumed.write_query(3, {"status": "completed"})
+            resumed.write_run_event(2, "COMPLETED", {"queries": 4})
+
+            event_names = sorted(
+                path.name for path in (Path(directory) / "run_events").glob("*.json")
+            )
+            self.assertEqual(
+                event_names,
+                [
+                    "event_00000000_running.json",
+                    "event_00000001_interrupted.json",
+                    "event_00000002_completed.json",
+                ],
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

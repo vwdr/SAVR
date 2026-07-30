@@ -160,6 +160,24 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(model.visual_calls, 2)
         self.assertIn("empty_cache", result.decision.triggers)
 
+    def test_every_context_field_change_resets_cache(self) -> None:
+        variants = (
+            CacheContext("episode-2", "task", "checkpoint", "config"),
+            CacheContext("episode", "task-2", "checkpoint", "config"),
+            CacheContext("episode", "task", "checkpoint-2", "config"),
+            CacheContext("episode", "task", "checkpoint", "config-2"),
+        )
+        for variant in variants:
+            model, adapter = self.make_adapter()
+            adapter.run_query(
+                query=self.make_query(model, [0.0] * 8),
+                images=IMAGES,
+                state=[0.0] * 8,
+                environment_step=10,
+            )
+            self.assertTrue(adapter.begin_context(variant))
+            self.assertFalse(adapter.cache.available(CONTEXT))
+
     def test_failure_restores_method_and_invalidates_cache(self) -> None:
         model, adapter = self.make_adapter()
         original_function = model._process_vision_features.__func__

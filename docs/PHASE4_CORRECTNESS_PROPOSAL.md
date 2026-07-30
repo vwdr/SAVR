@@ -2,7 +2,7 @@
 
 Prepared: 2026-07-29
 
-Status: **PROPOSAL ONLY — EXECUTION NOT AUTHORIZED**
+Status: **APPROVED AND EXECUTED — SEE `reports/PHASE4_CORRECTNESS_REPORT.md`**
 
 ## Purpose
 
@@ -234,7 +234,7 @@ Phase 4 completes only when:
 - checkpoint and upstream source are clean/restored
 - the checkpoint report is reviewed and merged
 
-## Approval requested
+## Approval record
 
 Approve:
 
@@ -245,6 +245,9 @@ Approve:
 5. up to 256 MiB of project-local correctness evidence
 6. the exact parity, integrity, stop, and no-retry rules above
 
-Approval of this proposal would authorize Phase 4 correctness execution only.
-It would not authorize Phase 5, calibration, multi-episode experiments, or
-paper claims.
+The user explicitly approved this bounded proposal and execution. Phase 4 ran
+as `phase4-correctness-v1` at runner revision `28d5eb3`; all correctness gates
+passed. See `reports/PHASE4_CORRECTNESS_REPORT.md`.
+
+This approval did not authorize Phase 5, calibration, multi-episode
+experiments, or paper claims.

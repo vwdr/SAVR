@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/vwdr/SAVR/schemas/query_record.schema.json",
+  "title": "SAVR Query Correctness Record",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "run_id",
+    "query_index",
+    "environment_step",
+    "status",
+    "path",
+    "refresh",
+    "cache_event",
+    "action_shape",
+    "timing"
+  ],
+  "properties": {
+    "run_id": {"type": "string", "minLength": 1},
+    "query_index": {"type": "integer", "minimum": 0},
+    "environment_step": {"type": "integer", "minimum": 0},
+    "status": {
+      "type": "string",
+      "enum": ["completed", "failed", "interrupted"]
+    },
+    "path": {"type": "string", "minLength": 1},
+    "refresh": {"type": "boolean"},
+    "cache_event": {
+      "type": "string",
+      "enum": ["unmodified", "refresh", "reuse", "forced_refresh"]
+    },
+    "action_shape": {
+      "type": "array",
+      "items": {"type": "integer", "minimum": 1}
+    },
+    "timing": {
+      "type": "object",
+      "required": [
+        "decision_wall_ms",
+        "query_wall_ms",
+        "total_cuda_ms",
+        "component_cuda_ms",
+        "component_counts"
+      ],
+      "properties": {
+        "decision_wall_ms": {"type": "number", "minimum": 0},
+        "query_wall_ms": {"type": "number", "minimum": 0},
+        "total_cuda_ms": {"type": "number", "minimum": 0},
+        "component_cuda_ms": {"type": "object"},
+        "component_counts": {"type": "object"}
+      }
+    }
+  }
+}
