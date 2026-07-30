@@ -377,7 +377,7 @@ def main() -> int:
     }
     if manifest_path.exists():
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        if manifest["frozen_config"] != frozen_config:
+        if manifest["configuration"] != frozen_config:
             raise RuntimeError("Existing run manifest differs from frozen configuration")
         if manifest["savr_git_revision"] != project_revision:
             raise RuntimeError("Resume revision differs from the original run revision")
@@ -416,7 +416,6 @@ def main() -> int:
                 "numpy": np.__version__,
             },
             "configuration": frozen_config,
-            "frozen_config": frozen_config,
             "command": f"scripts/run_phase6_calibration.py --config {config_path}",
             "notes": "Phase 6 calibration only; no final holdout outcomes.",
         }

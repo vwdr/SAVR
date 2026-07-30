@@ -75,11 +75,11 @@ def main() -> int:
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     if manifest["status"] != "completed" or summary["status"] != "completed":
         raise RuntimeError("Phase 6 FR collection is not complete")
-    if manifest["frozen_config"]["initial_state_ids"] != list(range(10)):
+    if manifest["configuration"]["initial_state_ids"] != list(range(10)):
         raise RuntimeError("FR calibration state IDs differ from the frozen split")
-    if manifest["frozen_config"]["task_ids"] != list(range(10)):
+    if manifest["configuration"]["task_ids"] != list(range(10)):
         raise RuntimeError("FR calibration task IDs differ from the frozen split")
-    if manifest["frozen_config"]["seed"] != 0:
+    if manifest["configuration"]["seed"] != 0:
         raise RuntimeError("FR calibration seed differs")
 
     episode_paths = sorted((fr_dir / "episodes").glob("*.json"))
