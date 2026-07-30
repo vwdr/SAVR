@@ -4,7 +4,8 @@ Last updated: 2026-07-29
 
 ## Current phase
 
-Phase 4 — Correctness and instrumentation: **IN PROGRESS**
+Phase 5 — Smoke policies and external-baseline feasibility: **IN PROGRESS
+(TECHNICALLY COMPLETE; AWAITING REVIEW)**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -17,9 +18,11 @@ transition. The bounded implementation and CPU tests were accepted and merged
 in PR #10. All technical Phase 3 exit criteria are satisfied. The Phase 4
 proposal was approved. Its expanded CPU suite and bounded six-query
 real-model correctness matrix passed. The evidence was accepted and merged in
-PR #13. All technical Phase 4 exit criteria are satisfied. Active gate: an
-explicit go/no-go decision on preparing the bounded Phase 5 proposal. Phase 5
-execution remains unauthorized.
+PR #13. All Phase 4 exit criteria are satisfied. The user subsequently
+approved uninterrupted Phase 5 execution through its final checkpoint. The
+bounded core-policy smoke and official VLA-Cache compatibility audit have now
+passed their technical exit gates. The Phase 5 checkpoint awaits user review;
+Phase 6 remains unauthorized.
 
 ## Research objective
 
@@ -96,28 +99,38 @@ Completed:
 - all six immutable query records and the run manifest validated
 - checkpoint metadata restored byte-for-byte and the selected GPU returned to its exact pre-run aggregate idle state
 - Phase 4 correctness evidence accepted and merged in PR #13
+- Phase 4 administratively closed after the explicit Phase 5 go decision
+- bounded Phase 5 protocol frozen in `docs/PHASE5_SMOKE_PROTOCOL.md`
+- all 12 fixed Phase 5 core-policy episodes completed with 283 reconciled query records
+- FR refreshed on all 31 queries and succeeded on all three diagnostic states
+- PR completed with 42 refreshes/42 reuses; VOR and SAVR each completed with 30 refreshes/54 reuses
+- all reuse queries skipped both visual components while preserving complete downstream execution
+- diagnostic PR/VOR/SAVR settings reached the horizon without task success, establishing that aggressive uncalibrated reuse is unsafe
+- official VLA-Cache source and its required Transformers fork pinned in an isolated project-local environment
+- official VLA-Cache evaluator technically excluded because its previous-frame path aliases the current frame and its episode path suppresses explicit errors
+- Phase 5 independent evidence reconciliation passed
 
 Not completed:
 
 - no dataset has been downloaded
-- no SAVR/PR/VOR trajectory-success, threshold, calibration, or ablation experiment has run
+- no calibrated trajectory-success comparison, threshold selection, calibration, or ablation experiment has run
 - no empirical SAVR performance claim is supported yet
-- Phase 4 remains administratively active until a Phase 5 go/no-go decision
-- no Phase 5 policy smoke has been proposed or authorized
+- no threshold has been calibrated
+- no Phase 5 success or latency comparison is approved as a paper-level claim
+- Phase 5 checkpoint has not yet been accepted
 
 ## Next authorized action
 
-Decide whether to authorize preparation of a bounded Phase 5 proposal. This
-would authorize proposal research and planning only, not Phase 5 execution.
-Do not run policy rollouts, threshold calibration, or performance experiments
-without a separately reviewed proposal and explicit approval.
+Review the technically complete Phase 5 checkpoint and draft PR #15. Do not
+begin Phase 6 calibration without a new explicit decision.
 
 ## Candidate initial stack
 
 OpenVLA-OFT with LIBERO remains the leading stack. Model loading, one-GPU
 compatibility, baseline feasibility, cache interception, exact wrapped-FR
-parity, and one controlled real-tensor reuse path are verified. Trajectory
-behavior and calibrated policy evaluation remain future gated work.
+parity, real-tensor reuse, and complete trajectories through all four core
+controllers are verified. The diagnostic high-skip policies did not preserve
+task success, so calibration is essential before any comparative evaluation.
 
 ## Bootstrap checkpoint
 

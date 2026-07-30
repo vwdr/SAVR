@@ -10,8 +10,8 @@ Exactly one phase may be `IN_PROGRESS`.
 | 1. Environment and storage feasibility | COMPLETE | Installation, dependency locks, imports, and CPU-only OSMesa LIBERO smoke test passed; `reports/PHASE1_REPORT.md`; empty account-path artifact identified and reversed with user authorization | — |
 | 2. Unmodified FR reproduction | COMPLETE | Checkpoint fit one TITAN RTX; 50/50 pilot episodes completed with 49 successes; component timing accepted and merged in PR #8; explicit go decision received | — |
 | 3. Controller and cache implementation | COMPLETE | Controller, signals, cache, adapter, and immutable records implemented; 29 CPU tests plus Ruff/mypy/package checks passed; accepted in PR #10 | — |
-| 4. Correctness and instrumentation | IN_PROGRESS | 44 TITAN tests passed; six-query run completed with exact FR/reuse parity, zero visual reuse calls, fresh proprioception, valid immutable records, and exact checkpoint restoration; accepted and merged in PR #13 | Explicit go/no-go decision on Phase 5 proposal preparation |
-| 5. Smoke policies and external-baseline feasibility | NOT_STARTED | — | Core-policy smoke completion and VLA-Cache decision |
+| 4. Correctness and instrumentation | COMPLETE | 44 TITAN tests passed; six-query run completed with exact FR/reuse parity, zero visual reuse calls, fresh proprioception, valid immutable records, and exact checkpoint restoration; accepted and merged in PR #13; explicit Phase 5 go decision received | — |
+| 5. Smoke policies and external-baseline feasibility | IN_PROGRESS | 12/12 episodes and 283/283 queries reconciled; all four policies finished; official VLA-Cache technically excluded with pinned evidence; `reports/PHASE5_SMOKE_REPORT.md` | User checkpoint review |
 | 6. Calibration and power | NOT_STARTED | — | Frozen configurations, sample size, and margin approval |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
@@ -21,10 +21,11 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-Phase 4 is the only active phase. Its technical correctness evidence is
-complete, accepted, and merged. It remains administratively active until an
-explicit Phase 5 go/no-go decision. Phase 5 execution, policy rollouts,
-threshold calibration, and performance claims remain unauthorized.
+Phase 5 is the only active phase. Its technical exit criteria are complete:
+all 12 diagnostic episodes and 283 query records reconcile, and the official
+VLA-Cache evaluator has a reproducible technical exclusion. The phase awaits
+checkpoint review. Phase 6 calibration and paper-level performance claims
+remain unauthorized.
 
 ## Phase 0 remaining checklist
 
@@ -92,4 +93,16 @@ threshold calibration, and performance claims remain unauthorized.
 - [x] Validate all immutable records and restore checkpoint metadata exactly.
 - [x] Confirm the selected GPU returned to its pre-run aggregate idle state.
 - [x] Review and merge the Phase 4 checkpoint PR #13.
-- [ ] Obtain an explicit go/no-go decision for Phase 5 proposal preparation.
+- [x] Obtain an explicit go/no-go decision for Phase 5 execution.
+
+## Phase 5 current checklist
+
+- [x] Research and freeze the bounded Phase 5 protocol.
+- [x] Implement and CPU-test the fail-closed core-policy smoke runner.
+- [x] Select one qualifying idle GPU using aggregate-only samples.
+- [x] Complete all 12 core-policy/state episodes.
+- [x] Reconcile refresh trajectories, component counts, and immutable records.
+- [x] Pin and audit the official VLA-Cache implementation.
+- [x] Establish compatibility or document a reproducible technical exclusion.
+- [x] Publish the Phase 5 report and checkpoint PR.
+- [ ] Obtain user acceptance of the Phase 5 checkpoint.

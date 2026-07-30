@@ -156,6 +156,75 @@ class BootstrapTests(unittest.TestCase):
         self.assertIn("np.array_equal", text)
         self.assertNotIn("env.step(", text)
 
+    def test_phase5_runner_matches_the_approved_diagnostic_matrix(self) -> None:
+        protocol = (ROOT / "docs" / "PHASE5_SMOKE_PROTOCOL.md").read_text(
+            encoding="utf-8"
+        )
+        runner = (ROOT / "scripts" / "run_phase5_core_smoke.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("Status: **APPROVED FOR EXECUTION**", protocol)
+        self.assertIn("Episodes: exactly `12`", protocol)
+        self.assertIn("Phase 6 remains", protocol)
+        self.assertIn("unauthorized.", protocol)
+        self.assertIn('EXPECTED_ROOT = Path("/home/ved/SAVR")', runner)
+        self.assertIn('RUN_ID = "phase5-core-smoke-v1"', runner)
+        self.assertIn("ARTIFACT_CAP_BYTES = 1024**3", runner)
+        self.assertIn("WALL_CAP_SECONDS = 2 * 60 * 60", runner)
+        self.assertIn("torch.cuda.device_count() != 1", runner)
+        self.assertIn("HF_HUB_OFFLINE", runner)
+        self.assertIn("TRANSFORMERS_OFFLINE", runner)
+        self.assertIn("validate_complete_matrix", runner)
+        self.assertEqual(runner.count('f"wrapped_{policy.lower()}"'), 1)
+
+    def test_vla_cache_audit_is_pinned_isolated_and_cpu_only(self) -> None:
+        setup = (
+            ROOT / "scripts" / "setup_vla_cache_compatibility.sh"
+        ).read_text(encoding="utf-8")
+        audit = (
+            ROOT / "scripts" / "audit_vla_cache_compatibility.py"
+        ).read_text(encoding="utf-8")
+        for revision in (
+            "a4909880573868dee2769343d52e793c0341678b",
+            "9a90a37acacf453433168db8d7769b7ea3c40c06",
+        ):
+            self.assertIn(revision, setup)
+            self.assertIn(revision, audit)
+        self.assertIn("envs/vla-cache-compat", setup)
+        self.assertIn("--system-site-packages", setup)
+        self.assertIn("--no-deps", setup)
+        self.assertNotIn("sudo", setup)
+        self.assertIn('os.environ["CUDA_VISIBLE_DEVICES"] = ""', audit)
+        self.assertIn("TECHNICAL_EXCLUSION", audit)
+        self.assertIn("prev_img = replay_images[-1]", audit)
+
+    def test_phase5_analysis_reconciles_core_and_external_evidence(self) -> None:
+        text = (ROOT / "scripts" / "analyze_phase5_smoke.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn('CORE_RUN_ID = "phase5-core-smoke-v1"', text)
+        self.assertIn(
+            'VLA_CACHE_RUN_ID = "phase5-vla-cache-compatibility-v1"',
+            text,
+        )
+        self.assertIn("validate_episode_matrix", text)
+        self.assertIn("validate_queries", text)
+        self.assertIn("checkpoint_restored", text)
+        self.assertIn("TECHNICAL_EXCLUSION", text)
+        self.assertIn("Phase 6 calibration remains required", text)
+
+    def test_phase5_report_preserves_the_smoke_claim_boundary(self) -> None:
+        text = (ROOT / "reports" / "PHASE5_SMOKE_REPORT.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("TECHNICALLY COMPLETE; AWAITING CHECKPOINT REVIEW", text)
+        self.assertIn("All 12 fixed episodes", text)
+        self.assertIn("283 policy queries", text)
+        self.assertIn("deliberately aggressive, uncalibrated diagnostic reuse", text)
+        self.assertIn("technically excluded", text)
+        self.assertIn("Phase 6 calibration remains unauthorized", text)
+        self.assertIn("setup deviation occurred and was remediated", text)
+
 
 if __name__ == "__main__":
     unittest.main()
