@@ -126,6 +126,18 @@ class BootstrapTests(unittest.TestCase):
         self.assertIn("finally:", adapter)
         self.assertNotIn("third_party", adapter)
 
+    def test_phase4_proposal_is_bounded_and_still_gated(self) -> None:
+        text = (ROOT / "docs" / "PHASE4_CORRECTNESS_PROPOSAL.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("PROPOSAL ONLY — EXECUTION NOT AUTHORIZED", text)
+        self.assertIn("at most `6`", text)
+        self.assertIn("`45 minutes`", text)
+        self.assertIn("`256 MiB`", text)
+        self.assertIn("numpy.array_equal", text)
+        self.assertIn("zero rollout episodes", text)
+        self.assertIn("Do not silently retry", text)
+
 
 if __name__ == "__main__":
     unittest.main()

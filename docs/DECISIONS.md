@@ -169,3 +169,12 @@ Last updated: 2026-07-29
 - Decision: Accept and merge the Phase 3 controller, signal, cache, adapter, immutable-record, documentation, and CPU-test evidence. This approval does not authorize Phase 4 or GPU/simulator work.
 - Evidence: User approval on 2026-07-29; GitHub PR #10; merge commit `ad838095ea2b8a2fe7fadbde253c86d01d4f5300`.
 - Approver: User, 2026-07-29.
+
+## D-021 — Phase 4 correctness proposal
+
+- Classification: `DECISION`
+- Status: PROPOSED
+- Decision: Before any Phase 5 policy smoke, expand CPU truth-table/recovery tests and run at most six pinned real-model correctness queries on one responsibly selected idle GPU. Require bitwise wrapped-FR equality, zero visual calls on reuse, fresh proprioception, synchronized timing, valid immutable records, and exact checkpoint restoration.
+- Resource bound: No downloads; one GPU; 45 minutes; six policy queries; one simulator reset and zero rollout episodes; 256 MiB new artifacts.
+- Evidence: User authorized proposal preparation on 2026-07-29; `docs/PHASE4_CORRECTNESS_PROPOSAL.md`; Phase 2 measured memory/timing; Phase 3 adapter evidence.
+- Approver: Execution requires separate explicit user approval.
