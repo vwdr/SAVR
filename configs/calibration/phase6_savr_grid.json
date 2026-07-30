@@ -1,0 +1,98 @@
+{
+  "artifact_cap_bytes": 1073741824,
+  "protocol": "PHASE6_CALIBRATION_PROTOCOL.md",
+  "run_id": "phase6-savr-grid-v1",
+  "settings": [
+    {
+      "action_threshold": 0.41265355594792336,
+      "configuration_id": "savr-s25-h2",
+      "image_threshold": 0.0596352486984609,
+      "max_reuse_horizon": 2,
+      "policy": "SAVR",
+      "quantile": 0.691,
+      "state_threshold": 0.2524532435201538,
+      "target_skip_rate": 0.25
+    },
+    {
+      "action_threshold": 0.40276727180912114,
+      "configuration_id": "savr-s25-h4",
+      "image_threshold": 0.05871629942736217,
+      "max_reuse_horizon": 4,
+      "policy": "SAVR",
+      "quantile": 0.669,
+      "state_threshold": 0.23417495665429272,
+      "target_skip_rate": 0.25
+    },
+    {
+      "action_threshold": 0.40276727180912114,
+      "configuration_id": "savr-s25-h8",
+      "image_threshold": 0.05871629942736217,
+      "max_reuse_horizon": 8,
+      "policy": "SAVR",
+      "quantile": 0.669,
+      "state_threshold": 0.23417495665429272,
+      "target_skip_rate": 0.25
+    },
+    {
+      "action_threshold": 0.6685935552654456,
+      "configuration_id": "savr-s50-h2",
+      "image_threshold": 0.07900842692296221,
+      "max_reuse_horizon": 2,
+      "policy": "SAVR",
+      "quantile": 0.917,
+      "state_threshold": 0.7078984899344801,
+      "target_skip_rate": 0.5
+    },
+    {
+      "action_threshold": 0.5980356342514714,
+      "configuration_id": "savr-s50-h4",
+      "image_threshold": 0.07187330091961847,
+      "max_reuse_horizon": 4,
+      "policy": "SAVR",
+      "quantile": 0.871,
+      "state_threshold": 0.509774465796001,
+      "target_skip_rate": 0.5
+    },
+    {
+      "action_threshold": 0.5682663415263309,
+      "configuration_id": "savr-s50-h8",
+      "image_threshold": 0.07027833110291976,
+      "max_reuse_horizon": 8,
+      "policy": "SAVR",
+      "quantile": 0.853,
+      "state_threshold": 0.46864894504387933,
+      "target_skip_rate": 0.5
+    },
+    {
+      "action_threshold": 0.9549020934386597,
+      "configuration_id": "savr-s75-h2",
+      "image_threshold": 0.14457337988377125,
+      "max_reuse_horizon": 2,
+      "policy": "SAVR",
+      "quantile": 1.0,
+      "state_threshold": 1.040539246293303,
+      "target_skip_rate": 0.75
+    },
+    {
+      "action_threshold": 0.9549020934386597,
+      "configuration_id": "savr-s75-h4",
+      "image_threshold": 0.14457337988377125,
+      "max_reuse_horizon": 4,
+      "policy": "SAVR",
+      "quantile": 1.0,
+      "state_threshold": 1.040539246293303,
+      "target_skip_rate": 0.75
+    },
+    {
+      "action_threshold": 0.9166047903776253,
+      "configuration_id": "savr-s75-h8",
+      "image_threshold": 0.12332859789144146,
+      "max_reuse_horizon": 8,
+      "policy": "SAVR",
+      "quantile": 0.996,
+      "state_threshold": 1.0120608195845338,
+      "target_skip_rate": 0.75
+    }
+  ],
+  "wall_cap_seconds": 115200
+}
