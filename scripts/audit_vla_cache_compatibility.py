@@ -98,6 +98,8 @@ def main() -> int:
     episode_errors_swallowed = "raise" not in error_block
 
     import numpy as np
+    import pandas
+    import seaborn
     import skimage
     import tokenizers
     import transformers
@@ -171,6 +173,8 @@ def main() -> int:
             "transformers_path": str(Path(transformers.__file__).resolve()),
             "tokenizers": tokenizers.__version__,
             "skimage": skimage.__version__,
+            "seaborn": seaborn.__version__,
+            "pandas": pandas.__version__,
         },
         "source_hashes": {
             "run_libero_eval.py": sha256(eval_path),
