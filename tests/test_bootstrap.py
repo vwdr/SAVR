@@ -213,6 +213,18 @@ class BootstrapTests(unittest.TestCase):
         self.assertIn("TECHNICAL_EXCLUSION", text)
         self.assertIn("Phase 6 calibration remains required", text)
 
+    def test_phase5_report_preserves_the_smoke_claim_boundary(self) -> None:
+        text = (ROOT / "reports" / "PHASE5_SMOKE_REPORT.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("TECHNICALLY COMPLETE; AWAITING CHECKPOINT REVIEW", text)
+        self.assertIn("All 12 fixed episodes", text)
+        self.assertIn("283 policy queries", text)
+        self.assertIn("deliberately aggressive, uncalibrated diagnostic reuse", text)
+        self.assertIn("technically excluded", text)
+        self.assertIn("Phase 6 calibration remains unauthorized", text)
+        self.assertIn("setup deviation occurred and was remediated", text)
+
 
 if __name__ == "__main__":
     unittest.main()

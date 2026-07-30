@@ -199,9 +199,36 @@ Last updated: 2026-07-29
 ## D-024 — Phase 5 execution authorization
 
 - Classification: `DECISION`
-- Status: ACTIVE
+- Status: COMPLETE
 - Decision: Execute the bounded Phase 5 core-policy smoke and official VLA-Cache compatibility audit without intermediate approval pauses. Run exactly 12 core episodes on LIBERO-Spatial task 0 / initial-state IDs `0-2` / seed 0, using FR, PR, VOR, and SAVR diagnostic configurations. Pin and test VLA-Cache in isolation or document a reproducible technical exclusion.
 - Resource bound: One responsibly selected GPU; two hours and one GiB for the core run; two hours and eight GiB of added project-local storage for external-baseline compatibility; no new checkpoint/dataset; no changes to the validated core environment.
 - Claim boundary: Structural feasibility only. No threshold calibration, non-inferiority conclusion, comparative success claim, latency claim, manuscript edit, or Phase 6 work.
 - Evidence: User blanket approval on 2026-07-29; `docs/PHASE5_SMOKE_PROTOCOL.md`.
 - Approver: User, 2026-07-29.
+
+## D-025 — Phase 5 core-policy smoke evidence
+
+- Classification: `FACT`
+- Status: COMPLETE
+- Decision: All 12 fixed LIBERO-Spatial task-0 episodes and all 283 policy queries reached complete, reconciled records. FR succeeded on three of three states with 31/31 refreshes. Diagnostic PR completed 42 refreshes and 42 reuses; VOR and SAVR each completed 30 refreshes and 54 reuses. All three reuse policies reached the horizon without success under deliberately aggressive uncalibrated settings.
+- Interpretation: All four controller paths are trajectory-operational and their instrumentation is correct. The failure of aggressive diagnostic reuse establishes the need for Phase 6 calibration; it is not a calibrated policy comparison.
+- Evidence: `/home/ved/SAVR/results/phase5-core-smoke-v1`; `/home/ved/SAVR/results/phase5-analysis-v1/analysis.json`; `reports/PHASE5_SMOKE_REPORT.md`.
+- Approver: Direct immutable evidence; checkpoint review pending.
+
+## D-026 — Official VLA-Cache technical exclusion
+
+- Classification: `FACT`
+- Status: COMPLETE
+- Decision: Do not run or report the pinned official VLA-Cache evaluator as a valid external comparison. Its LIBERO loop assigns previous images from the just-appended current frames and suppresses explicit episode error status. The exact source and required Transformers fork import successfully in an isolated project-local environment, but the evaluation semantics violate the frozen Phase 5 validity requirements.
+- Reconsideration condition: Review and explicitly label a minimal previous-frame/error-propagation correction before any VLA-Cache GPU episode.
+- Evidence: `/home/ved/SAVR/results/phase5-vla-cache-compatibility-v1/audit.json`; VLA-Cache `a4909880573868dee2769343d52e793c0341678b`; Transformers `9a90a37acacf453433168db8d7769b7ea3c40c06`.
+- Approver: Direct pinned source/import evidence; checkpoint review pending.
+
+## D-027 — Phase 5 account-cache deviation and remediation
+
+- Classification: `FACT`
+- Status: COMPLETE
+- Decision: The first compatibility setup allowed pip to write build/download cache entries under `/home/ved/.cache/pip`, outside the project boundary. The exact recent files written or updated by that invocation were narrowly inventoried and unlinked, empty leaf directories were removed where safe, and no recent file remained. The setup was corrected to use `/home/ved/SAVR/cache/pip-vla-cache` and disable the account-level version-check cache before retrying.
+- Impact: The validated SAVR environment, system software, unrelated university files, processes, services, and GPU allocations were not modified.
+- Evidence: Command-level inventory/remediation record in the Phase 5 execution log; corrected `scripts/setup_vla_cache_compatibility.sh`; `reports/PHASE5_SMOKE_REPORT.md`.
+- Approver: Safety remediation performed under the user's Phase 5 authorization; checkpoint review pending.
