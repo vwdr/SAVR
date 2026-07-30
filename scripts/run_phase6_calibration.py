@@ -277,7 +277,12 @@ def main() -> int:
     if not selected_uuid:
         raise SystemExit("SAVR_SELECTED_GPU_UUID is required")
 
+    termination_state = {"publishing": False, "requested": False}
+
     def handle_signal(_signum: int, _frame: Any) -> None:
+        if termination_state["publishing"]:
+            termination_state["requested"] = True
+            return
         raise Interrupted("Phase 6 runner received a termination signal")
 
     signal.signal(signal.SIGTERM, handle_signal)
@@ -721,8 +726,6 @@ def main() -> int:
                             raise episode_error
 
                         status = "failed" if episode_error is not None else "completed"
-                        for query_record in staged_queries:
-                            store.write_query(query_record["query_index"], query_record)
                         query_count = len(staged_queries)
                         episode_record = {
                             "run_id": config["run_id"],
@@ -786,8 +789,22 @@ def main() -> int:
                             episode_record,
                             schemas["episode_result.schema.json"],
                         )
-                        store.write_episode(episode_id, episode_record)
+                        termination_state["publishing"] = True
+                        try:
+                            for query_record in staged_queries:
+                                store.write_query(
+                                    query_record["query_index"],
+                                    query_record,
+                                )
+                            store.write_episode(episode_id, episode_record)
+                        finally:
+                            termination_state["publishing"] = False
                         records[episode_id] = episode_record
+                        if termination_state["requested"]:
+                            raise Interrupted(
+                                "Termination was deferred until terminal-record "
+                                "publication completed"
+                            )
                         if episode_error is not None:
                             failed_by_setting[configuration_id] += 1
                         if query_count < 1:
