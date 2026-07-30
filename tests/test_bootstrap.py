@@ -11,7 +11,11 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class BootstrapTests(unittest.TestCase):
     def test_schemas_are_valid_json_objects(self) -> None:
-        for name in ("episode_result.schema.json", "run_manifest.schema.json"):
+        for name in (
+            "episode_result.schema.json",
+            "query_record.schema.json",
+            "run_manifest.schema.json",
+        ):
             data = json.loads((ROOT / "schemas" / name).read_text(encoding="utf-8"))
             self.assertEqual(data["type"], "object")
             self.assertTrue(data["required"])
@@ -137,6 +141,20 @@ class BootstrapTests(unittest.TestCase):
         self.assertIn("numpy.array_equal", text)
         self.assertIn("zero rollout episodes", text)
         self.assertIn("Do not silently retry", text)
+
+    def test_phase4_runner_is_fail_closed_and_bounded(self) -> None:
+        text = (ROOT / "scripts" / "run_phase4_correctness.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn('EXPECTED_ROOT = Path("/home/ved/SAVR")', text)
+        self.assertIn('RUN_ID = "phase4-correctness-v1"', text)
+        self.assertIn("QUERY_COUNT = 6", text)
+        self.assertIn("ARTIFACT_CAP_BYTES = 256 * 1024**2", text)
+        self.assertIn("HF_HUB_OFFLINE", text)
+        self.assertIn("TRANSFORMERS_OFFLINE", text)
+        self.assertIn("torch.cuda.device_count() != 1", text)
+        self.assertIn("np.array_equal", text)
+        self.assertNotIn("env.step(", text)
 
 
 if __name__ == "__main__":

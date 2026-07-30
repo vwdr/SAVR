@@ -45,12 +45,14 @@ REQUIRED_FILES = (
     "reports/PHASE3_IMPLEMENTATION_REPORT.md",
     "reports/titan_bootstrap_diagnostics.json",
     "schemas/episode_result.schema.json",
+    "schemas/query_record.schema.json",
     "schemas/run_manifest.schema.json",
     "scripts/setup_phase1_environment.sh",
     "scripts/analyze_phase2b_pilot.py",
     "scripts/download_phase2_checkpoint.py",
     "scripts/run_phase2a_fr_smoke.py",
     "scripts/run_phase2b_fr_pilot.py",
+    "scripts/run_phase4_correctness.py",
     "scripts/verify_phase1_environment.py",
     "src/savr/__init__.py",
     "src/savr/cache.py",
@@ -59,10 +61,13 @@ REQUIRED_FILES = (
     "src/savr/integration/openvla_oft.py",
     "src/savr/logging.py",
     "src/savr/signals.py",
+    "src/savr/timing.py",
     "tests/unit/test_cache_and_logging.py",
     "tests/unit/test_controllers.py",
     "tests/unit/test_openvla_adapter.py",
+    "tests/unit/test_phase4_runner.py",
     "tests/unit/test_signals.py",
+    "tests/unit/test_timing.py",
 )
 
 
@@ -71,7 +76,11 @@ def main() -> int:
     if missing:
         raise SystemExit(f"Missing required files: {', '.join(missing)}")
 
-    for relative in ("schemas/episode_result.schema.json", "schemas/run_manifest.schema.json"):
+    for relative in (
+        "schemas/episode_result.schema.json",
+        "schemas/query_record.schema.json",
+        "schemas/run_manifest.schema.json",
+    ):
         path = ROOT / relative
         data = json.loads(path.read_text(encoding="utf-8"))
         if data.get("type") != "object" or not data.get("required"):

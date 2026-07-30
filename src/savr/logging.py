@@ -43,8 +43,10 @@ class ImmutableRecordStore:
         self.root = Path(root)
         self.query_dir = self.root / "queries"
         self.episode_dir = self.root / "episodes"
+        self.event_dir = self.root / "run_events"
         self.query_dir.mkdir(parents=True, exist_ok=True)
         self.episode_dir.mkdir(parents=True, exist_ok=True)
+        self.event_dir.mkdir(parents=True, exist_ok=True)
 
     def _write_once(self, path: Path, record: Any) -> Path:
         payload = json.dumps(
@@ -92,3 +94,33 @@ class ImmutableRecordStore:
     def write_episode(self, episode_id: str, record: Any) -> Path:
         identifier = _safe_identifier(episode_id)
         return self._write_once(self.episode_dir / f"{identifier}.json", record)
+
+    def write_run_event(self, sequence: int, status: str, record: Any) -> Path:
+        if sequence < 0:
+            raise ValueError("Run-event sequence cannot be negative")
+        if status not in {
+            "PLANNED",
+            "RUNNING",
+            "COMPLETED",
+            "FAILED",
+            "INTERRUPTED",
+            "INVALIDATED",
+        }:
+            raise ValueError(f"Unsupported run status: {status}")
+        return self._write_once(
+            self.event_dir / f"event_{sequence:08d}_{status.lower()}.json",
+            {"sequence": sequence, "status": status, "record": record},
+        )
+
+    def completed_query_indices(self) -> set[int]:
+        indices = set()
+        for path in self.query_dir.glob("query_*.json"):
+            try:
+                indices.add(int(path.stem.removeprefix("query_")))
+            except ValueError:
+                continue
+        return indices
+
+    def missing_query_indices(self, planned: range) -> list[int]:
+        completed = self.completed_query_indices()
+        return [index for index in planned if index not in completed]
