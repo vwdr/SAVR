@@ -195,3 +195,13 @@ Last updated: 2026-07-29
 - Decision: Accept and merge the Phase 4 controller tests, timing/record infrastructure, bounded real-model runner, immutable correctness evidence, and scientific limitations. This approval does not authorize Phase 5 proposal execution, policy rollouts, threshold calibration, or performance claims.
 - Evidence: User approval on 2026-07-29; GitHub PR #13; merge commit `3e50e6acf1aa6aa33a19566b0c593d2068e1c968`.
 - Approver: User, 2026-07-29.
+
+## D-024 — Phase 5 execution authorization
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Execute the bounded Phase 5 core-policy smoke and official VLA-Cache compatibility audit without intermediate approval pauses. Run exactly 12 core episodes on LIBERO-Spatial task 0 / initial-state IDs `0-2` / seed 0, using FR, PR, VOR, and SAVR diagnostic configurations. Pin and test VLA-Cache in isolation or document a reproducible technical exclusion.
+- Resource bound: One responsibly selected GPU; two hours and one GiB for the core run; two hours and eight GiB of added project-local storage for external-baseline compatibility; no new checkpoint/dataset; no changes to the validated core environment.
+- Claim boundary: Structural feasibility only. No threshold calibration, non-inferiority conclusion, comparative success claim, latency claim, manuscript edit, or Phase 6 work.
+- Evidence: User blanket approval on 2026-07-29; `docs/PHASE5_SMOKE_PROTOCOL.md`.
+- Approver: User, 2026-07-29.

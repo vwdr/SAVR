@@ -4,7 +4,7 @@ Last updated: 2026-07-29
 
 ## Current phase
 
-Phase 4 — Correctness and instrumentation: **IN PROGRESS**
+Phase 5 — Smoke policies and external-baseline feasibility: **IN PROGRESS**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -17,9 +17,10 @@ transition. The bounded implementation and CPU tests were accepted and merged
 in PR #10. All technical Phase 3 exit criteria are satisfied. The Phase 4
 proposal was approved. Its expanded CPU suite and bounded six-query
 real-model correctness matrix passed. The evidence was accepted and merged in
-PR #13. All technical Phase 4 exit criteria are satisfied. Active gate: an
-explicit go/no-go decision on preparing the bounded Phase 5 proposal. Phase 5
-execution remains unauthorized.
+PR #13. All Phase 4 exit criteria are satisfied. The user subsequently
+approved uninterrupted Phase 5 execution through its final checkpoint. The
+bounded core-policy smoke and official VLA-Cache compatibility audit are now
+active; Phase 6 remains unauthorized.
 
 ## Research objective
 
@@ -96,21 +97,22 @@ Completed:
 - all six immutable query records and the run manifest validated
 - checkpoint metadata restored byte-for-byte and the selected GPU returned to its exact pre-run aggregate idle state
 - Phase 4 correctness evidence accepted and merged in PR #13
+- Phase 4 administratively closed after the explicit Phase 5 go decision
+- bounded Phase 5 protocol frozen in `docs/PHASE5_SMOKE_PROTOCOL.md`
 
 Not completed:
 
 - no dataset has been downloaded
 - no SAVR/PR/VOR trajectory-success, threshold, calibration, or ablation experiment has run
 - no empirical SAVR performance claim is supported yet
-- Phase 4 remains administratively active until a Phase 5 go/no-go decision
-- no Phase 5 policy smoke has been proposed or authorized
+- no Phase 5 trajectory episode has yet completed
+- official VLA-Cache compatibility has not yet been established or excluded
 
 ## Next authorized action
 
-Decide whether to authorize preparation of a bounded Phase 5 proposal. This
-would authorize proposal research and planning only, not Phase 5 execution.
-Do not run policy rollouts, threshold calibration, or performance experiments
-without a separately reviewed proposal and explicit approval.
+Execute the bounded Phase 5 core-policy smoke and VLA-Cache compatibility
+audit exactly as frozen in `docs/PHASE5_SMOKE_PROTOCOL.md`, then stop at the
+end-of-phase checkpoint. Do not begin Phase 6 calibration.
 
 ## Candidate initial stack
 

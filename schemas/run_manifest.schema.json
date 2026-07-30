@@ -24,7 +24,7 @@
       "type": "string",
       "enum": ["planned", "running", "completed", "failed", "interrupted"]
     },
-    "policy": {"type": "string", "enum": ["FR", "PR", "VOR", "SAVR"]},
+    "policy": {"type": "string", "enum": ["FR", "PR", "VOR", "SAVR", "MIXED"]},
     "savr_git_revision": {"type": "string", "minLength": 7},
     "working_tree_clean": {"type": "boolean"},
     "base_model": {

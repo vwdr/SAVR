@@ -19,6 +19,7 @@
   "properties": {
     "run_id": {"type": "string", "minLength": 1},
     "episode_id": {"type": "string", "minLength": 1},
+    "policy": {"type": "string", "enum": ["FR", "PR", "VOR", "SAVR"]},
     "task": {"type": "string", "minLength": 1},
     "initial_state_id": {"type": ["string", "integer"]},
     "seed": {"type": "integer"},
@@ -30,8 +31,22 @@
     "failure_reason": {"type": ["string", "null"]},
     "steps": {"type": "integer", "minimum": 0},
     "refresh_count": {"type": "integer", "minimum": 0},
+    "reuse_count": {"type": "integer", "minimum": 0},
+    "query_count": {"type": "integer", "minimum": 0},
     "skipped_refresh_count": {"type": "integer", "minimum": 0},
     "refresh_rate": {"type": "number", "minimum": 0, "maximum": 1},
+    "trigger_counts": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "trajectory_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "started_at_utc": {"type": "string", "format": "date-time"},
+    "finished_at_utc": {"type": "string", "format": "date-time"},
+    "error_type": {"type": ["string", "null"]},
+    "error": {"type": ["string", "null"]},
     "latency_ms": {
       "type": "object",
       "additionalProperties": false,
