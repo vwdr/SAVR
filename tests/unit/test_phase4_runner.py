@@ -6,7 +6,10 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-import numpy as np
+try:
+    import numpy as np
+except ImportError:  # pragma: no cover - exercised by dependency-free CI
+    np = None  # type: ignore[assignment]
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -18,6 +21,7 @@ assert SPEC is not None and SPEC.loader is not None
 RUNNER = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(RUNNER)
 JSONSCHEMA_AVAILABLE = importlib.util.find_spec("jsonschema") is not None
+NUMPY_AVAILABLE = np is not None
 
 
 @dataclass
@@ -33,8 +37,12 @@ class FakeTiming:
 
 
 class Phase4RunnerTests(unittest.TestCase):
-    @unittest.skipUnless(JSONSCHEMA_AVAILABLE, "jsonschema is not installed locally")
+    @unittest.skipUnless(
+        NUMPY_AVAILABLE and JSONSCHEMA_AVAILABLE,
+        "optional runtime validation dependencies are unavailable",
+    )
     def test_all_record_schemas_pass_runtime_preflight(self) -> None:
+        assert np is not None
         jsonschema = importlib.import_module("jsonschema")
         validators = importlib.import_module("jsonschema.validators")
         schemas = RUNNER.validate_schemas(
@@ -51,7 +59,9 @@ class Phase4RunnerTests(unittest.TestCase):
             },
         )
 
+    @unittest.skipUnless(NUMPY_AVAILABLE, "numpy is not installed")
     def test_state_b_is_deterministic_finite_in_range_and_distinct(self) -> None:
+        assert np is not None
         state_a = np.zeros(8, dtype=np.float64)
         statistics = {
             "q01": [-1.0] * 8,
@@ -67,7 +77,9 @@ class Phase4RunnerTests(unittest.TestCase):
         self.assertLessEqual(first[0], 1.0)
         np.testing.assert_array_equal(first[1:], state_a[1:])
 
+    @unittest.skipUnless(NUMPY_AVAILABLE, "numpy is not installed")
     def test_exact_parity_rejects_any_difference(self) -> None:
+        assert np is not None
         reference = np.zeros((8, 7), dtype=np.float32)
         self.assertTrue(RUNNER.exact_parity(reference, reference.copy(), np)["array_equal"])
         changed = reference.copy()
@@ -75,7 +87,9 @@ class Phase4RunnerTests(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "Exact action parity failed"):
             RUNNER.exact_parity(reference, changed, np)
 
+    @unittest.skipUnless(NUMPY_AVAILABLE, "numpy is not installed")
     def test_query_record_requires_eight_by_seven_finite_actions(self) -> None:
+        assert np is not None
         timing: Any = FakeTiming()
         record = RUNNER.query_record(
             index=1,

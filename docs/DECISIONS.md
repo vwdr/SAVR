@@ -173,8 +173,17 @@ Last updated: 2026-07-29
 ## D-021 — Phase 4 correctness proposal
 
 - Classification: `DECISION`
-- Status: PROPOSED
+- Status: COMPLETE
 - Decision: Before any Phase 5 policy smoke, expand CPU truth-table/recovery tests and run at most six pinned real-model correctness queries on one responsibly selected idle GPU. Require bitwise wrapped-FR equality, zero visual calls on reuse, fresh proprioception, synchronized timing, valid immutable records, and exact checkpoint restoration.
 - Resource bound: No downloads; one GPU; 45 minutes; six policy queries; one simulator reset and zero rollout episodes; 256 MiB new artifacts.
-- Evidence: User authorized proposal preparation on 2026-07-29; `docs/PHASE4_CORRECTNESS_PROPOSAL.md`; Phase 2 measured memory/timing; Phase 3 adapter evidence.
-- Approver: Execution requires separate explicit user approval.
+- Evidence: User explicitly approved the proposal and execution on 2026-07-29; `docs/PHASE4_CORRECTNESS_PROPOSAL.md`; `reports/PHASE4_CORRECTNESS_REPORT.md`.
+- Approver: User, 2026-07-29.
+
+## D-022 — Phase 4 correctness evidence
+
+- Classification: `FACT`
+- Status: COMPLETE
+- Decision: The six-query real-model matrix passed. Wrapped FR actions were bitwise identical to unmodified upstream on two invocations. Real VOR reuse produced actions bitwise identical to the state-B upstream reference, executed zero vision-backbone/projector calls, used fresh normalized state B, and advanced cache age from zero to one.
+- Limitation: This is controlled query-level correctness evidence only. It does not establish task success, trajectory safety, calibrated thresholds, latency benefit, or a SAVR performance claim.
+- Evidence: Immutable TITAN run `results/phase4-correctness-v1`; `reports/PHASE4_CORRECTNESS_REPORT.md`; runner revision `28d5eb3dd0874279d04f2c0f51e337b27efdeb09`.
+- Approver: Direct measured evidence; checkpoint review in PR #13 remains pending.

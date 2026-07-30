@@ -43,6 +43,7 @@ REQUIRED_FILES = (
     "reports/PHASE2A_FR_SMOKE_REPORT.md",
     "reports/PHASE2B_PILOT_REPORT.md",
     "reports/PHASE3_IMPLEMENTATION_REPORT.md",
+    "reports/PHASE4_CORRECTNESS_REPORT.md",
     "reports/titan_bootstrap_diagnostics.json",
     "schemas/episode_result.schema.json",
     "schemas/query_record.schema.json",

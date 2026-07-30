@@ -9,8 +9,8 @@ Exactly one phase may be `IN_PROGRESS`.
 | 0. Establish authoritative state | COMPLETE | Preparation PR #1 and ledger PR #2 merged with explicit approval; GitHub, TITAN, and local `main` synchronized at `9a5bbd5`; manuscript SHA-256 verified as `4a0fe130f1cbc5557f77a518dcb65a703a647b1c4b8091499d8bfd8e10ab6e4f`; worktrees clean | — |
 | 1. Environment and storage feasibility | COMPLETE | Installation, dependency locks, imports, and CPU-only OSMesa LIBERO smoke test passed; `reports/PHASE1_REPORT.md`; empty account-path artifact identified and reversed with user authorization | — |
 | 2. Unmodified FR reproduction | COMPLETE | Checkpoint fit one TITAN RTX; 50/50 pilot episodes completed with 49 successes; component timing accepted and merged in PR #8; explicit go decision received | — |
-| 3. Controller and cache implementation | IN_PROGRESS | Controller, signals, cache, adapter, and immutable records implemented; 29 CPU tests plus Ruff/mypy/package checks passed; accepted in PR #10; Phase 4 proposal prepared | Explicit approval of the bounded Phase 4 proposal |
-| 4. Correctness and instrumentation | NOT_STARTED | — | FR parity and logging audit |
+| 3. Controller and cache implementation | COMPLETE | Controller, signals, cache, adapter, and immutable records implemented; 29 CPU tests plus Ruff/mypy/package checks passed; accepted in PR #10 | — |
+| 4. Correctness and instrumentation | IN_PROGRESS | 44 TITAN tests passed; six-query run completed with exact FR/reuse parity, zero visual reuse calls, fresh proprioception, valid immutable records, and exact checkpoint restoration | Review and merge PR #13 |
 | 5. Smoke policies and external-baseline feasibility | NOT_STARTED | — | Core-policy smoke completion and VLA-Cache decision |
 | 6. Calibration and power | NOT_STARTED | — | Frozen configurations, sample size, and margin approval |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
@@ -21,10 +21,10 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-Phase 3 is the only active phase. Its technical exit evidence is complete,
-accepted, and merged. It remains administratively active until an explicit
-Phase 4 proposal approval. GPU execution, simulator evaluation, Phase 4 parity,
-threshold calibration, and performance claims remain unauthorized.
+Phase 4 is the only active phase. Its technical correctness evidence is
+complete. It remains administratively active until PR #13 is reviewed and
+merged. Phase 5, policy rollouts, threshold calibration, and performance claims
+remain unauthorized.
 
 ## Phase 0 remaining checklist
 
@@ -78,4 +78,17 @@ threshold calibration, and performance claims remain unauthorized.
 - [x] Obtain explicit approval and merge the Phase 3 checkpoint PR.
 - [x] Obtain approval to prepare a bounded Phase 4 proposal.
 - [x] Prepare exact Phase 4 parity, resource, integrity, and stop rules.
-- [ ] Obtain explicit approval for Phase 4 correctness execution.
+- [x] Obtain explicit approval for Phase 4 correctness execution.
+
+## Phase 4 current checklist
+
+- [x] Expand controller truth-table and invalid-input tests.
+- [x] Add synchronized query/component timing and CPU fake-backend tests.
+- [x] Add query schema and interrupted-run recovery validation.
+- [x] Freeze and validate the fail-closed six-query runner.
+- [x] Select one qualifying idle GPU using aggregate-only samples.
+- [x] Complete the six-query real-model matrix with exact parity.
+- [x] Verify zero visual calls and fresh proprioception on reuse.
+- [x] Validate all immutable records and restore checkpoint metadata exactly.
+- [x] Confirm the selected GPU returned to its pre-run aggregate idle state.
+- [ ] Review and merge the Phase 4 checkpoint PR #13.

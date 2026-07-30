@@ -134,7 +134,7 @@ class BootstrapTests(unittest.TestCase):
         text = (ROOT / "docs" / "PHASE4_CORRECTNESS_PROPOSAL.md").read_text(
             encoding="utf-8"
         )
-        self.assertIn("PROPOSAL ONLY — EXECUTION NOT AUTHORIZED", text)
+        self.assertIn("APPROVED AND EXECUTED", text)
         self.assertIn("at most `6`", text)
         self.assertIn("`45 minutes`", text)
         self.assertIn("`256 MiB`", text)
