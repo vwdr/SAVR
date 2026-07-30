@@ -2,7 +2,7 @@
 
 Date: 2026-07-29
 
-Status: **TECHNICALLY COMPLETE — CHECKPOINT REVIEW PENDING**
+Status: **COMPLETE — ACCEPTED IN PR #13**
 
 ## Scope
 
@@ -140,5 +140,5 @@ wrapped FR is an exact correctness oracle for this path.
 
 It does not establish trajectory correctness, task success under reuse,
 threshold quality, latency benefit, or a paper-level SAVR claim. Phase 5
-remains unauthorized until this report and PR #13 are reviewed and merged,
-followed by a separately bounded proposal.
+remains unauthorized pending an explicit decision to prepare, review, and
+approve a separately bounded proposal.

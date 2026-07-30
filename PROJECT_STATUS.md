@@ -16,8 +16,10 @@ technical Phase 2 exit criteria are satisfied. The user approved the Phase 3
 transition. The bounded implementation and CPU tests were accepted and merged
 in PR #10. All technical Phase 3 exit criteria are satisfied. The Phase 4
 proposal was approved. Its expanded CPU suite and bounded six-query
-real-model correctness matrix passed. Active gate: review and merge the Phase
-4 checkpoint PR #13. Phase 5 remains unauthorized.
+real-model correctness matrix passed. The evidence was accepted and merged in
+PR #13. All technical Phase 4 exit criteria are satisfied. Active gate: an
+explicit go/no-go decision on preparing the bounded Phase 5 proposal. Phase 5
+execution remains unauthorized.
 
 ## Research objective
 
@@ -93,20 +95,22 @@ Completed:
 - real VOR reuse skipped the visual backbone/projector, preserved fresh state-B proprioception, and matched the unmodified state-B action chunk exactly
 - all six immutable query records and the run manifest validated
 - checkpoint metadata restored byte-for-byte and the selected GPU returned to its exact pre-run aggregate idle state
+- Phase 4 correctness evidence accepted and merged in PR #13
 
 Not completed:
 
 - no dataset has been downloaded
 - no SAVR/PR/VOR trajectory-success, threshold, calibration, or ablation experiment has run
 - no empirical SAVR performance claim is supported yet
-- Phase 4 query-level correctness is complete, but its checkpoint PR is not yet accepted
+- Phase 4 remains administratively active until a Phase 5 go/no-go decision
 - no Phase 5 policy smoke has been proposed or authorized
 
 ## Next authorized action
 
-Review Phase 4 evidence in `reports/PHASE4_CORRECTNESS_REPORT.md` and PR #13.
-Do not begin Phase 5, policy rollouts, threshold calibration, or performance
-claims without a separate bounded proposal and explicit approval.
+Decide whether to authorize preparation of a bounded Phase 5 proposal. This
+would authorize proposal research and planning only, not Phase 5 execution.
+Do not run policy rollouts, threshold calibration, or performance experiments
+without a separately reviewed proposal and explicit approval.
 
 ## Candidate initial stack
 
