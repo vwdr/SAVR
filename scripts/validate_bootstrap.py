@@ -51,6 +51,7 @@ REQUIRED_FILES = (
     "schemas/run_manifest.schema.json",
     "scripts/setup_phase1_environment.sh",
     "scripts/analyze_phase2b_pilot.py",
+    "scripts/analyze_phase5_smoke.py",
     "scripts/audit_vla_cache_compatibility.py",
     "scripts/download_phase2_checkpoint.py",
     "scripts/run_phase2a_fr_smoke.py",
@@ -72,6 +73,7 @@ REQUIRED_FILES = (
     "tests/unit/test_openvla_adapter.py",
     "tests/unit/test_phase4_runner.py",
     "tests/unit/test_phase5_runner.py",
+    "tests/unit/test_phase5_analysis.py",
     "tests/unit/test_signals.py",
     "tests/unit/test_timing.py",
 )

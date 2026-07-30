@@ -198,6 +198,21 @@ class BootstrapTests(unittest.TestCase):
         self.assertIn("TECHNICAL_EXCLUSION", audit)
         self.assertIn("prev_img = replay_images[-1]", audit)
 
+    def test_phase5_analysis_reconciles_core_and_external_evidence(self) -> None:
+        text = (ROOT / "scripts" / "analyze_phase5_smoke.py").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn('CORE_RUN_ID = "phase5-core-smoke-v1"', text)
+        self.assertIn(
+            'VLA_CACHE_RUN_ID = "phase5-vla-cache-compatibility-v1"',
+            text,
+        )
+        self.assertIn("validate_episode_matrix", text)
+        self.assertIn("validate_queries", text)
+        self.assertIn("checkpoint_restored", text)
+        self.assertIn("TECHNICAL_EXCLUSION", text)
+        self.assertIn("Phase 6 calibration remains required", text)
+
 
 if __name__ == "__main__":
     unittest.main()
