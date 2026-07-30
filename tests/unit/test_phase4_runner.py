@@ -17,6 +17,7 @@ SPEC = importlib.util.spec_from_file_location(
 assert SPEC is not None and SPEC.loader is not None
 RUNNER = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(RUNNER)
+JSONSCHEMA_AVAILABLE = importlib.util.find_spec("jsonschema") is not None
 
 
 @dataclass
@@ -32,6 +33,24 @@ class FakeTiming:
 
 
 class Phase4RunnerTests(unittest.TestCase):
+    @unittest.skipUnless(JSONSCHEMA_AVAILABLE, "jsonschema is not installed locally")
+    def test_all_record_schemas_pass_runtime_preflight(self) -> None:
+        jsonschema = importlib.import_module("jsonschema")
+        validators = importlib.import_module("jsonschema.validators")
+        schemas = RUNNER.validate_schemas(
+            ROOT,
+            jsonschema.Draft202012Validator,
+            validators.validate,
+        )
+        self.assertEqual(
+            set(schemas),
+            {
+                "episode_result.schema.json",
+                "query_record.schema.json",
+                "run_manifest.schema.json",
+            },
+        )
+
     def test_state_b_is_deterministic_finite_in_range_and_distinct(self) -> None:
         state_a = np.zeros(8, dtype=np.float64)
         statistics = {

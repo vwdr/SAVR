@@ -166,7 +166,11 @@ def exact_parity(reference: Any, candidate: Any, np: Any) -> dict[str, Any]:
     }
 
 
-def validate_schemas(project_root: Path, validator: Any) -> dict[str, Any]:
+def validate_schemas(
+    project_root: Path,
+    validator_class: Any,
+    validate_function: Any,
+) -> dict[str, Any]:
     schemas = {}
     for name in (
         "episode_result.schema.json",
@@ -174,7 +178,7 @@ def validate_schemas(project_root: Path, validator: Any) -> dict[str, Any]:
         "run_manifest.schema.json",
     ):
         schema = json.loads((project_root / "schemas" / name).read_text(encoding="utf-8"))
-        validator.check_schema(schema)
+        validator_class.check_schema(schema)
         schemas[name] = schema
     synthetic_episode = {
         "run_id": RUN_ID,
@@ -194,7 +198,7 @@ def validate_schemas(project_root: Path, validator: Any) -> dict[str, Any]:
             "policy_p95": 0,
         },
     }
-    validator(synthetic_episode, schemas["episode_result.schema.json"])
+    validate_function(synthetic_episode, schemas["episode_result.schema.json"])
     return schemas
 
 
@@ -368,7 +372,7 @@ def main() -> int:
     if not torch.cuda.is_available() or torch.cuda.device_count() != 1:
         raise RuntimeError("Exactly one selected CUDA device must be visible")
 
-    schemas = validate_schemas(project_root, validate)
+    schemas = validate_schemas(project_root, Draft202012Validator, validate)
     Draft202012Validator.check_schema(schemas["query_record.schema.json"])
     run_dir.mkdir(parents=True, exist_ok=False)
     store = ImmutableRecordStore(run_dir)
