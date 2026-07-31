@@ -333,3 +333,11 @@ Last updated: 2026-07-31
 - Decision: Implement SAVR 2.0 as a separate controller and signal path while reusing the validated projected-feature adapter. Preserve all SAVR 1.0 classes and tests unchanged. Run CPU correctness gates before the bounded real-model check and prohibit calibration until both pass.
 - Evidence: `src/savr/savr2.py`; `tests/unit/test_savr2_controller.py`; `tests/unit/test_savr2_signals.py`; `scripts/run_phase6r_c_correctness.py`.
 - Approver: Frozen Phase 6R protocol and user's blanket Phase 6 authorization, 2026-07-31.
+
+## D-040 — Correct the Phase 6R-C fixture without weakening SAVR 2.0
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve the failed first correctness run, whose real action chunk correctly activated the gripper-transition veto. Do not weaken the veto or reinterpret the run as reuse evidence. Predeclare one recovery using a hashed Phase 6 FR trace, eight additional model queries, no simulator, and the unchanged controller. Cumulative Phase 6R-C usage remains 18/20 queries. Stop before Phase 6R-D if the recovery fails.
+- Evidence: `reports/PHASE6R_C_CORRECTNESS_RECOVERY_PLAN.md`; immutable `phase6r-c-correctness-v1` artifacts on TITAN.
+- Approver: Frozen Phase 6R protocol and user's blanket Phase 6 authorization, 2026-07-31.
