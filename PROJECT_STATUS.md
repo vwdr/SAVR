@@ -4,8 +4,8 @@ Last updated: 2026-07-31
 
 ## Current phase
 
-Phase 6R-C — Implementation and correctness: **COMPLETE
-(ALL CPU AND BOUNDED REAL-MODEL GATES PASSED; PHASE 6R-D AUTHORIZED)**
+Phase 6R-D — Conservative staged calibration: **IN PROGRESS
+(DETERMINISTIC FR-TRACE CANDIDATE DERIVATION PENDING)**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -167,9 +167,9 @@ Not completed:
 
 ## Next authorized action
 
-Publish and synchronize the Phase 6R-C evidence checkpoint. Then begin only
-the frozen Phase 6R-D candidate derivation and Stage 1 safety screen under the
-blanket Phase 6 authorization. The final holdout remains prohibited.
+Derive the three frozen SAVR 2.0 candidates from the existing Phase 6 FR traces
+with the exact protocol replay. Audit and publish those candidate thresholds
+before any Stage 1 GPU rollout. The final holdout remains prohibited.
 
 ## Candidate initial stack
 

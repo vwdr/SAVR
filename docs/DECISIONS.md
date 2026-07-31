@@ -349,3 +349,11 @@ Last updated: 2026-07-31
 - Decision: Accept Phase 6R-C after preserving the first fixture failure and passing the predeclared recovery. The recovery demonstrated exact reuse parity, current proprioception, zero vision-backbone/projector calls on reuse, complete counters/records, and clean checkpoint restoration within 18/20 cumulative queries. This authorizes Phase 6R-D only and is not an online success or efficiency claim.
 - Evidence: `reports/PHASE6R_C_CORRECTNESS_REPORT.md`; recovery summary SHA-256 `9b58b58ef11de5f594066bde4d45c3f56548960431b83c48d25715fdf6e46ef9`.
 - Approver: Frozen Phase 6R protocol and user's blanket Phase 6 authorization, 2026-07-31.
+
+## D-042 — Derive Phase 6R-D candidates with exact offline replay
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Build all eight adjacent-query score-family distributions from the complete 100-episode Phase 6 FR trace. Apply the shared 0.001 linear-quantile grid and 0.90 safety margin, then replay the exact SAVR 2.0 temporal and hard prefix-budget semantics for 5%, 10%, and 15% caps. Freeze the closest never-over-budget candidate for each cap before Stage 1.
+- Evidence: `scripts/derive_phase6r_d_candidates.py`; `tests/unit/test_phase6r_d_derivation.py`; `docs/PHASE6R_PROTOCOL_V1.md` Section 8.
+- Approver: Frozen Phase 6R protocol and user's blanket Phase 6 authorization, 2026-07-31.
