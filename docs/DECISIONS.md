@@ -1,6 +1,6 @@
 # SAVR Decision Log
 
-Last updated: 2026-07-29
+Last updated: 2026-07-30
 
 ## D-001 — University-server safety boundary
 
@@ -275,3 +275,28 @@ Last updated: 2026-07-29
 - Next decision: Either end the current SAVR formulation or predeclare a materially more conservative protocol revision. The current calibration outcomes must remain visible and the split cannot be relabeled as fresh evidence.
 - Evidence: `docs/PHASE6_CALIBRATION_PROTOCOL.md`; D-030; D-031.
 - Approver: Mechanically required by the user-approved frozen Phase 6 protocol.
+
+## D-033 — Pursue a controlled SAVR redesign
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve the original negative Phase 6 evidence and pursue a phased SAVR 2.0 redesign intended to support a meaningful positive-results paper. A positive result is an objective, not a guaranteed conclusion. The final holdout remains protected, and each redesign phase requires approval at its beginning.
+- Evidence: User decision on 2026-07-30; `docs/PHASE6R_REDESIGN_ROADMAP.md`.
+- Approver: User, 2026-07-30.
+
+## D-034 — Phase 6R-A forensic diagnosis authorization
+
+- Classification: `DECISION`
+- Status: COMPLETE
+- Decision: Diagnose the original Phase 6 failures using existing calibration artifacts only. Do not change the method, run a GPU/simulator episode, inspect the final holdout, or describe exploratory associations as final causal evidence.
+- Evidence: User approval on 2026-07-30; `reports/PHASE6R_A_DIAGNOSIS_REPORT.md`.
+- Approver: User, 2026-07-30.
+
+## D-035 — Phase 6R-A diagnosis
+
+- Classification: `FACT`
+- Status: COMPLETE
+- Decision: FR-replay targets underpredicted every online SAVR skip rate; two-camera averaging concealed an individual camera threshold exceedance on 47.77% of best-setting reuse queries, almost entirely from the wrist camera; earlier first reuse and near-threshold decisions were associated with lower success; and all 87 action-comparable best-setting episodes first changed action hash exactly at first reuse.
+- Limitation: The original SAVR records lack raw online observations/actions, task-phase annotations, and rollout videos. The analysis identifies redesign requirements but does not prove a contact-level causal mechanism or validate SAVR 2.0.
+- Evidence: `results/phase6r-a-diagnosis-v1/diagnosis.json`; `reports/PHASE6R_A_DIAGNOSIS_REPORT.md`.
+- Approver: Direct reconciliation of existing immutable Phase 6 evidence.

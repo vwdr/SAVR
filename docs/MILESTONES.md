@@ -1,6 +1,6 @@
 # SAVR Milestones
 
-Last updated: 2026-07-29
+Last updated: 2026-07-30
 
 Exactly one phase may be `IN_PROGRESS`.
 
@@ -13,6 +13,11 @@ Exactly one phase may be `IN_PROGRESS`.
 | 4. Correctness and instrumentation | COMPLETE | 44 TITAN tests passed; six-query run completed with exact FR/reuse parity, zero visual reuse calls, fresh proprioception, valid immutable records, and exact checkpoint restoration; accepted and merged in PR #13; explicit Phase 5 go decision received | — |
 | 5. Smoke policies and external-baseline feasibility | COMPLETE | 12/12 episodes and 283/283 queries reconciled; all four policies finished; official VLA-Cache technically excluded with pinned evidence; accepted and merged in PR #15 at `5a4046b` | — |
 | 6. Calibration and power | STOPPED_NEGATIVE | FR completed 100/100 successes; nine SAVR settings completed 900/900 episodes with no infrastructure errors; best SAVR result was 52/100, so none met the frozen 2-point constraint; negative stop rule applied | User decision on ending or predeclaring a materially more conservative protocol revision |
+| 6R-A. Forensic diagnosis | COMPLETE | Existing Phase 6 artifacts reconciled; closed-loop skip overshoot, concealed wrist-camera changes, unsafe early/consecutive reuse, and threshold-margin weaknesses documented in `reports/PHASE6R_A_DIAGNOSIS_REPORT.md` | User approval for Phase 6R-B |
+| 6R-B. Redesign and protocol | NOT_STARTED | — | Frozen SAVR 2.0 protocol |
+| 6R-C. Implementation and correctness | NOT_STARTED | — | All redesign correctness gates pass |
+| 6R-D. Conservative staged calibration | NOT_STARTED | — | Eligible SAVR 2.0 candidate or predeclared stop |
+| 6R-E. Baselines, selection, and power | NOT_STARTED | — | Frozen candidate set and feasible confirmatory design |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -21,10 +26,10 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-No phase is currently active. Phase 6 stopped at its predeclared negative-result
-gate because no SAVR candidate was eligible. Matched baselines and power
-confirmation were correctly not run. Phase 7 remains unauthorized, and the
-initial-state `10-49` / seed `7,17,27` holdout remains untouched.
+No phase is currently active. Phase 6R-A is complete and Phase 6R-B awaits
+explicit approval. The original Phase 6 negative result remains unchanged.
+Phase 7 remains unauthorized, and the initial-state `10-49` / seed `7,17,27`
+holdout remains untouched.
 
 ## Phase 0 remaining checklist
 
@@ -121,4 +126,16 @@ initial-state `10-49` / seed `7,17,27` holdout remains untouched.
   without an eligible operating point.
 - [x] Record that no primary SAVR/VOR/PR configuration can be frozen under the
   current protocol.
-- [ ] Publish, review, merge, and synchronize the negative Phase 6 checkpoint.
+- [x] Publish, review, merge, and synchronize the negative Phase 6 checkpoint.
+
+## Phase 6R-A current checklist
+
+- [x] Preserve the original Phase 6 protocol and negative evidence unchanged.
+- [x] Reconcile all existing FR/SAVR episodes and query records.
+- [x] Quantify offline-to-online skip-rate transfer.
+- [x] Analyze reuse timing, camera aggregation, threshold margin, reuse streaks,
+  task outcomes, and action-hash divergence.
+- [x] Separate direct observations from plausible causal mechanisms.
+- [x] Define evidence-backed requirements for SAVR 2.0.
+- [x] Confirm no GPU/simulator or final-holdout run was performed.
+- [ ] Publish, review, merge, and synchronize the Phase 6R-A checkpoint.
