@@ -26,6 +26,7 @@ class Policy(str, Enum):
     PR = "PR"
     VOR = "VOR"
     SAVR = "SAVR"
+    SAVR2 = "SAVR2"
 
 
 @dataclass(frozen=True)
@@ -48,6 +49,15 @@ class RefreshDecision:
     state_score: float | None = None
     action_score: float | None = None
     thresholds: dict[str, float | int] = field(default_factory=dict)
+    camera_patch_scores: dict[str, tuple[float, ...]] = field(default_factory=dict)
+    camera_global_scores: dict[str, float] = field(default_factory=dict)
+    state_group_scores: dict[str, float] = field(default_factory=dict)
+    action_group_scores: dict[str, float] = field(default_factory=dict)
+    gripper_transition_veto: bool = False
+    translation_direction_reversals: tuple[bool, ...] = ()
+    stable_fresh_before: int = 0
+    completed_reuses_before: int = 0
+    signals_stable: bool = False
 
     def force_refresh(self, trigger: str) -> "RefreshDecision":
         triggers = tuple(dict.fromkeys((*self.triggers, trigger)))
@@ -62,6 +72,19 @@ class RefreshDecision:
             state_score=self.state_score,
             action_score=self.action_score,
             thresholds=dict(self.thresholds),
+            camera_patch_scores={
+                name: tuple(values) for name, values in self.camera_patch_scores.items()
+            },
+            camera_global_scores=dict(self.camera_global_scores),
+            state_group_scores=dict(self.state_group_scores),
+            action_group_scores=dict(self.action_group_scores),
+            gripper_transition_veto=self.gripper_transition_veto,
+            translation_direction_reversals=tuple(
+                self.translation_direction_reversals
+            ),
+            stable_fresh_before=self.stable_fresh_before,
+            completed_reuses_before=self.completed_reuses_before,
+            signals_stable=self.signals_stable,
         )
 
 
