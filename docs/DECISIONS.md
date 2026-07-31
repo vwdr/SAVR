@@ -390,3 +390,11 @@ Last updated: 2026-07-31
 - Limitation: The design was selected after inspecting Stage 1 failures. States `3-9` are policy-specific fresh validation, not the final holdout. No positive result is guaranteed.
 - Evidence: `reports/PHASE6S_A_FORENSIC_REPORT.md`; `docs/PHASE6S_PROTOCOL_V1.md`.
 - Approver: User authorization and frozen Phase 6S protocol, 2026-07-31.
+
+## D-047 — Accept SAVR3 correctness and begin frozen validation
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept SAVR3 implementation after 102/102 CPU tests and all changed-file static checks pass. Skip an optional additional real-model correctness run because the validated projected-feature adapter is unchanged; enforce its component invariants on every Phase 6S-D query. Run exactly the frozen states-`3-9` configuration without tuning.
+- Evidence: `reports/PHASE6S_C_CORRECTNESS_REPORT.md`; config semantic SHA-256 `10b93d3247f6bec35c7419e362627dffef597ddbcd5dd71f9509a6b66bb52289`.
+- Approver: Frozen Phase 6S protocol and user authorization, 2026-07-31.

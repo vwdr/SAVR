@@ -38,6 +38,8 @@ class SAVR2Configuration:
     minimum_query_index: int = 5
     required_stable_fresh: int = 2
     maximum_consecutive_reuses: int = 1
+    translation_direction_reversal_veto: bool = False
+    policy: Policy = Policy.SAVR2
 
     def __post_init__(self) -> None:
         if not self.configuration_id:
@@ -68,6 +70,12 @@ class SAVR2Configuration:
             raise ValueError("At least one stable fresh query is required")
         if self.maximum_consecutive_reuses != 1:
             raise ValueError("Protocol Version 1 requires isolated reuse")
+        if self.policy not in {Policy.SAVR2, Policy.SAVR3}:
+            raise ValueError("Safety-constrained refresh requires SAVR2 or SAVR3")
+        if self.policy is Policy.SAVR3 and not self.translation_direction_reversal_veto:
+            raise ValueError("SAVR3 requires the frozen translation-reversal veto")
+        if self.policy is Policy.SAVR2 and self.translation_direction_reversal_veto:
+            raise ValueError("The translation-reversal veto belongs to SAVR3")
 
 
 @dataclass(frozen=True)
@@ -168,6 +176,9 @@ class StateAwareVisualRefresh2Controller(RefreshController):
             "maximum_consecutive_reuses": (
                 self.configuration.maximum_consecutive_reuses
             ),
+            "translation_direction_reversal_veto": int(
+                self.configuration.translation_direction_reversal_veto
+            ),
         }
         for name, threshold in self.configuration.image_thresholds.items():
             values[f"image.{name}"] = float(threshold)
@@ -254,6 +265,11 @@ class StateAwareVisualRefresh2Controller(RefreshController):
                     signal_triggers.append("gripper_transition.mixed_latest")
                 if transition.final_gripper_changed:
                     signal_triggers.append("gripper_transition.final_changed")
+                if (
+                    self.configuration.translation_direction_reversal_veto
+                    and any(direction_reversals)
+                ):
+                    signal_triggers.append("translation_direction_reversal")
             except SignalValidationError:
                 signal_triggers.append("invalid_action_history")
 
@@ -273,7 +289,7 @@ class StateAwareVisualRefresh2Controller(RefreshController):
             triggers.append("skip_budget_prefix_cap")
 
         return RefreshDecision(
-            policy=Policy.SAVR2,
+            policy=self.configuration.policy,
             query_index=self._query_index,
             refresh=bool(triggers),
             cache_age_before=cache_age,
@@ -301,8 +317,8 @@ class StateAwareVisualRefresh2Controller(RefreshController):
     ) -> None:
         if decision.query_index != self._query_index:
             raise RuntimeError("Decision/query index does not match SAVR 2.0 state")
-        if decision.policy is not Policy.SAVR2:
-            raise RuntimeError("Decision policy does not match SAVR 2.0")
+        if decision.policy is not self.configuration.policy:
+            raise RuntimeError("Decision policy does not match controller configuration")
 
         if decision.refresh:
             try:

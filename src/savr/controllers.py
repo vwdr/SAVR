@@ -27,6 +27,7 @@ class Policy(str, Enum):
     VOR = "VOR"
     SAVR = "SAVR"
     SAVR2 = "SAVR2"
+    SAVR3 = "SAVR3"
 
 
 @dataclass(frozen=True)

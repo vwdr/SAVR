@@ -4,8 +4,7 @@ Last updated: 2026-07-31
 
 ## Current phase
 
-Phase 6S-B — SAVR3 redesign protocol: **FROZEN BEFORE IMPLEMENTATION OR
-OUTCOME COLLECTION**
+Phase 6S-D — SAVR3 fresh development validation: **AUTHORIZED; NOT YET RUN**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -51,6 +50,10 @@ selects one final SAVR3 candidate: `b15` with a translation-direction-reversal
 veto and wrist threshold `0.375`. Its implementation and one-shot 70-episode
 states-`3-9` validation are frozen in `docs/PHASE6S_PROTOCOL_V1.md`. No SAVR3
 outcome has been observed.
+SAVR3 implementation and correctness are complete: all 102 CPU tests and the
+changed-file static checks pass. The shared, previously validated model/cache
+adapter is unchanged. The frozen 70-episode configuration has semantic SHA-256
+`10b93d3247f6bec35c7419e362627dffef597ddbcd5dd71f9509a6b66bb52289`.
 
 The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
 Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
@@ -182,9 +185,9 @@ Not completed:
 
 ## Next authorized action
 
-Implement and verify the frozen SAVR3 controller, then run its one-shot
-70-episode development validation. Stop and request approval immediately if
-all frozen positive gates pass. Never inspect the final holdout.
+Run and reconcile the frozen one-shot 70-episode SAVR3 development validation.
+Stop and request approval immediately if all frozen positive gates pass. Never
+inspect the final holdout.
 
 ## Candidate initial stack
 

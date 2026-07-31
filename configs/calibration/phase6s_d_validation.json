@@ -1,0 +1,32 @@
+{
+  "artifact_cap_bytes": 1073741824,
+  "initial_state_ids": [3, 4, 5, 6, 7, 8, 9],
+  "protocol": "PHASE6S_PROTOCOL_V1.md",
+  "run_id": "phase6s-d-validation-v1",
+  "save_calibration_traces": true,
+  "seed": 0,
+  "settings": [
+    {
+      "action_thresholds": {
+        "gripper": 1.797821144380998,
+        "rotation": 0.7812834808536592,
+        "translation": 0.9280092130749463
+      },
+      "configuration_id": "savr3-rv-w375-b15",
+      "image_thresholds": {
+        "full_image": 0.3203492696658941,
+        "wrist_image": 0.375
+      },
+      "policy": "SAVR3",
+      "skip_budget": 0.15,
+      "state_thresholds": {
+        "gripper": 1.8,
+        "orientation": 0.42270480698181334,
+        "translation": 1.0480906581712492
+      },
+      "translation_direction_reversal_veto": true
+    }
+  ],
+  "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "wall_cap_seconds": 43200
+}

@@ -86,6 +86,25 @@ class Phase6RunnerTests(unittest.TestCase):
         )
         self.assertEqual(progress["expected"], 90)
 
+    def test_phase6s_validation_config_is_frozen(self) -> None:
+        config = RUNNER.load_config(
+            ROOT / "configs" / "calibration" / "phase6s_d_validation.json"
+        )
+        self.assertEqual(config["protocol"], "PHASE6S_PROTOCOL_V1.md")
+        self.assertEqual(config["initial_state_ids"], [3, 4, 5, 6, 7, 8, 9])
+        self.assertEqual(config["wall_cap_seconds"], 12 * 60 * 60)
+        setting = config["settings"][0]
+        self.assertEqual(setting["configuration_id"], "savr3-rv-w375-b15")
+        self.assertEqual(setting["image_thresholds"]["wrist_image"], 0.375)
+        self.assertIs(setting["translation_direction_reversal_veto"], True)
+        controller = RUNNER.controller_for_setting(
+            setting,
+            state_statistics={"q01": [0.0] * 8, "q99": [1.0] * 8},
+            action_statistics={"q01": [0.0] * 7, "q99": [1.0] * 7},
+            controllers=SimpleNamespace(),
+        )
+        self.assertEqual(controller.configuration.policy.value, "SAVR3")
+
     def test_savr2_episode_invariants_enforce_prefix_and_isolation(self) -> None:
         setting = {"policy": "SAVR2", "skip_budget": 0.15}
         valid = [{"refresh": True} for _ in range(6)] + [{"refresh": False}]
