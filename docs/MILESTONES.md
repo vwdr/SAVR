@@ -16,8 +16,8 @@ Exactly one phase may be `IN_PROGRESS`.
 | 6R-A. Forensic diagnosis | COMPLETE | Existing Phase 6 artifacts reconciled; closed-loop skip overshoot, concealed wrist-camera changes, unsafe early/consecutive reuse, and threshold-margin weaknesses documented in `reports/PHASE6R_A_DIAGNOSIS_REPORT.md` | User approval for Phase 6R-B |
 | 6R-B. Redesign and protocol | COMPLETE | Primary-source review completed; training-free SAVR 2.0 semantics, staged calibration, baselines, power, resources, and stop rules frozen in `docs/PHASE6R_PROTOCOL_V1.md` | Phase 6R-C correctness gates |
 | 6R-C. Implementation and correctness | COMPLETE | 88 CPU tests pass; first fixture correctly vetoed a gripper transition; predeclared recovery passed 8/8 queries with exact action parity, current proprio, and zero visual calls on reuse | Phase 6R-D Stage 1 |
-| 6R-D. Conservative staged calibration | IN_PROGRESS | Deterministic derivation repeated byte-identically; b05/b10/b15 frozen at offline skips 0.00%/6.88%/9.78%; Stage 1 runner/config ready | 90-episode Stage 1 safety screen |
-| 6R-E. Baselines, selection, and power | NOT_STARTED | — | Frozen candidate set and feasible confirmatory design |
+| 6R-D. Conservative staged calibration | STOPPED_NEGATIVE | 90/90 terminal episodes, zero technical failures; b05 30/30 at 0% skip, b10 29/30 at 6.72% skip, b15 27/30 at 10.57% skip; no candidate advanced | New user-authorized protocol, if any |
+| 6R-E. Baselines, selection, and power | NOT_RUN_INELIGIBLE | Phase 6R-D selected no eligible candidate, so the frozen prerequisite failed | Eligible candidate from a future predeclared method |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -26,10 +26,10 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-Phase 6R-D is active under the user's blanket Phase 6 approval. Candidate
-derivation is implemented but no Phase 6R-D rollout has begun. The original
-Phase 6 negative result is unchanged. Phase 7 remains unauthorized, and the
-initial-state `10-49` / seed `7,17,27` holdout remains untouched.
+No phase is active. Phase 6R-D reached its frozen negative stop and Phase 6R-E
+was ineligible. The original Phase 6 and redesign conclusions both remain
+negative. Phase 7 remains unauthorized, and initial-state `10-49` / seed
+`7,17,27` holdout outcomes remain untouched.
 
 ## Phase 6R-B current checklist
 
@@ -70,10 +70,11 @@ initial-state `10-49` / seed `7,17,27` holdout remains untouched.
 - [x] Implement exact temporal and episode-prefix-budget replay.
 - [x] Unit-test quantiles, warm-up, isolated reuse, budget, and transition veto.
 - [x] Derive and audit `b05`, `b10`, and `b15` from all 100 FR traces.
-- [ ] Publish and synchronize the frozen Stage 1 configuration.
-- [ ] Run and reconcile the 30-episode-per-candidate Stage 1 safety screen.
-- [ ] Apply the frozen advancement gates without threshold relaxation.
-- [ ] Run eligible Stage 2 candidates on states `3-9`.
+- [x] Publish and synchronize the frozen Stage 1 configuration in PR #24 at
+  `5e577debd5161f2dc0303615b87f64cac795f58d`.
+- [x] Run and reconcile the 30-episode-per-candidate Stage 1 safety screen.
+- [x] Apply the frozen advancement gates without threshold relaxation.
+- [x] Stop Stage 2 because no candidate was eligible.
 - [ ] Publish, merge, and synchronize the Phase 6R-D evidence checkpoint.
 
 ## Phase 0 remaining checklist
