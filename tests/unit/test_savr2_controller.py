@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
 from savr.cache import CacheContext  # noqa: E402
+from savr.controllers import Policy  # noqa: E402
 from savr.integration.openvla_oft import OpenVLAProjectedFeatureAdapter  # noqa: E402
 from savr.logging import ImmutableRecordStore  # noqa: E402
 from savr.savr2 import (  # noqa: E402
@@ -222,6 +223,75 @@ class SAVR2ControllerTests(unittest.TestCase):
             self.assertEqual(configuration(skip_budget=budget).skip_budget, budget)
         with self.assertRaises(ValueError):
             configuration(skip_budget=0.20)
+
+    def test_savr3_translation_reversal_veto_is_distinct_and_exact(self) -> None:
+        savr3_config = configuration(
+            configuration_id="savr3-rv-w375-b15",
+            policy=Policy.SAVR3,
+            translation_direction_reversal_veto=True,
+        )
+        value = StateAwareVisualRefresh2Controller(
+            configuration=savr3_config,
+            state_q01=[0.0] * 8,
+            state_q99=[1.0] * 8,
+            action_q01=[0.0] * 7,
+            action_q99=[1.0] * 7,
+        )
+        value.reset(
+            CacheContext(
+                "episode", "task", "checkpoint", "savr3-rv-w375-b15"
+            )
+        )
+        positive = [[0.0] * 7 for _ in range(8)]
+        negative = [[0.0] * 7 for _ in range(8)]
+        for row in positive:
+            row[0] = 0.1
+        for row in negative:
+            row[0] = -0.1
+        for _ in range(5):
+            complete_query(value, action=positive)
+        complete_query(value, action=negative)
+        decision = value.decide(
+            images=IMAGES,
+            state=STATE,
+            cache_available=True,
+            cache_age=0,
+        )
+        self.assertIs(decision.policy, Policy.SAVR3)
+        self.assertTrue(decision.translation_direction_reversals[0])
+        self.assertFalse(any(decision.translation_direction_reversals[1:]))
+        self.assertIn("translation_direction_reversal", decision.triggers)
+        self.assertTrue(decision.refresh)
+
+    def test_savr3_zero_mean_is_not_reversal_and_can_reuse(self) -> None:
+        savr3_config = configuration(
+            configuration_id="savr3-rv-w375-b15",
+            policy=Policy.SAVR3,
+            translation_direction_reversal_veto=True,
+        )
+        value = StateAwareVisualRefresh2Controller(
+            configuration=savr3_config,
+            state_q01=[0.0] * 8,
+            state_q99=[1.0] * 8,
+            action_q01=[0.0] * 7,
+            action_q99=[1.0] * 7,
+        )
+        value.reset(
+            CacheContext(
+                "episode", "task", "checkpoint", "savr3-rv-w375-b15"
+            )
+        )
+        for _ in range(7):
+            decision = complete_query(value, action=ACTION)
+        self.assertFalse(any(decision.translation_direction_reversals))
+        self.assertNotIn("translation_direction_reversal", decision.triggers)
+        self.assertFalse(decision.refresh)
+
+    def test_savr3_identity_requires_reversal_veto(self) -> None:
+        with self.assertRaisesRegex(ValueError, "SAVR3 requires"):
+            configuration(policy=Policy.SAVR3)
+        with self.assertRaisesRegex(ValueError, "belongs to SAVR3"):
+            configuration(translation_direction_reversal_veto=True)
 
     def test_adapter_reuse_skips_visual_compute_and_records_all_fields(self) -> None:
         model = FakeModel()

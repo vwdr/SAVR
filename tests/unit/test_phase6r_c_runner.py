@@ -38,11 +38,11 @@ class Phase6RCCorrectnessRunnerTests(unittest.TestCase):
         )
         self.assertEqual(
             set(run_schema["properties"]["policy"]["enum"]),
-            {"FR", "PR", "VOR", "SAVR", "SAVR2", "MIXED"},
+            {"FR", "PR", "VOR", "SAVR", "SAVR2", "SAVR3", "MIXED"},
         )
         self.assertEqual(
             set(episode_schema["properties"]["policy"]["enum"]),
-            {"FR", "PR", "VOR", "SAVR", "SAVR2"},
+            {"FR", "PR", "VOR", "SAVR", "SAVR2", "SAVR3"},
         )
 
 

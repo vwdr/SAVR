@@ -66,6 +66,7 @@ def load_config(path: Path) -> dict[str, Any]:
     if config["protocol"] not in {
         "PHASE6_CALIBRATION_PROTOCOL.md",
         "PHASE6R_PROTOCOL_V1.md",
+        "PHASE6S_PROTOCOL_V1.md",
     }:
         raise ValueError("Configuration names the wrong protocol")
     if not isinstance(config["settings"], list) or not config["settings"]:
@@ -77,7 +78,7 @@ def load_config(path: Path) -> dict[str, Any]:
             raise ValueError("Configuration identifiers must be unique and non-empty")
         identifiers.add(identifier)
         policy = setting.get("policy")
-        if policy not in {"FR", "PR", "VOR", "SAVR", "SAVR2"}:
+        if policy not in {"FR", "PR", "VOR", "SAVR", "SAVR2", "SAVR3"}:
             raise ValueError(f"Unsupported policy in Phase 6 config: {policy}")
         if policy == "PR" and int(setting.get("period", 0)) < 1:
             raise ValueError("PR requires a positive integer period")
@@ -91,7 +92,7 @@ def load_config(path: Path) -> dict[str, Any]:
                 value = float(setting.get(name, -1))
                 if value < 0 or not __import__("math").isfinite(value):
                     raise ValueError(f"{policy} requires a finite non-negative {name}")
-        if policy == "SAVR2":
+        if policy in {"SAVR2", "SAVR3"}:
             expected_thresholds = {
                 "image_thresholds": {"full_image", "wrist_image"},
                 "state_thresholds": {"translation", "orientation", "gripper"},
@@ -100,15 +101,20 @@ def load_config(path: Path) -> dict[str, Any]:
             for field, expected_keys in expected_thresholds.items():
                 values = setting.get(field)
                 if not isinstance(values, dict) or set(values) != expected_keys:
-                    raise ValueError(f"SAVR2 requires exact {field} keys")
+                    raise ValueError(f"{policy} requires exact {field} keys")
                 if any(
                     float(value) < 0
                     or not __import__("math").isfinite(float(value))
                     for value in values.values()
                 ):
-                    raise ValueError(f"SAVR2 requires finite non-negative {field}")
+                    raise ValueError(f"{policy} requires finite non-negative {field}")
             if float(setting.get("skip_budget", -1)) not in {0.05, 0.10, 0.15}:
-                raise ValueError("SAVR2 requires a frozen skip budget")
+                raise ValueError(f"{policy} requires a frozen skip budget")
+            reversal_veto = setting.get("translation_direction_reversal_veto", False)
+            if policy == "SAVR3" and reversal_veto is not True:
+                raise ValueError("SAVR3 requires its frozen translation-reversal veto")
+            if policy == "SAVR2" and reversal_veto:
+                raise ValueError("SAVR2 cannot enable the SAVR3 reversal veto")
     initial_state_ids = config.get("initial_state_ids", list(INITIAL_STATE_IDS))
     if (
         not isinstance(initial_state_ids, list)
@@ -156,7 +162,8 @@ def controller_for_setting(
             action_q01=action_statistics["q01"],
             action_q99=action_statistics["q99"],
         )
-    if policy == "SAVR2":
+    if policy in {"SAVR2", "SAVR3"}:
+        from savr.controllers import Policy
         from savr.savr2 import SAVR2Configuration, StateAwareVisualRefresh2Controller
 
         return StateAwareVisualRefresh2Controller(
@@ -166,6 +173,10 @@ def controller_for_setting(
                 state_thresholds=setting["state_thresholds"],
                 action_thresholds=setting["action_thresholds"],
                 skip_budget=float(setting["skip_budget"]),
+                translation_direction_reversal_veto=bool(
+                    setting.get("translation_direction_reversal_veto", False)
+                ),
+                policy=Policy(policy),
             ),
             state_q01=state_statistics["q01"],
             state_q99=state_statistics["q99"],
@@ -196,7 +207,7 @@ def assert_savr2_episode_invariants(
 ) -> None:
     """Reconcile every online SAVR 2.0 temporal and prefix-budget decision."""
 
-    if setting.get("policy") != "SAVR2":
+    if setting.get("policy") not in {"SAVR2", "SAVR3"}:
         return
     budget = float(setting["skip_budget"])
     reuses = 0
@@ -206,11 +217,11 @@ def assert_savr2_episode_invariants(
         if reuse:
             reuses += 1
             if index < 5:
-                raise RuntimeError("SAVR2 reused before the frozen warm-up boundary")
+                raise RuntimeError("Safety controller reused before the warm-up boundary")
             if previous_reuse:
-                raise RuntimeError("SAVR2 produced consecutive reuse decisions")
+                raise RuntimeError("Safety controller produced consecutive reuse decisions")
         if reuses / (index + 1) > budget + 1e-15:
-            raise RuntimeError("SAVR2 exceeded its episode-prefix skip budget")
+            raise RuntimeError("Safety controller exceeded its episode-prefix skip budget")
         previous_reuse = reuse
 
 
@@ -237,6 +248,7 @@ def calibration_trace(
     }
     for name, values in sorted(representations.items()):
         array = np.asarray(values, dtype=np.float32)
+        shape: tuple[int, ...]
         if array.size == 32 * 32 * 3:
             shape = (32, 32, 3)
         elif array.size == 32 * 32:
