@@ -16,7 +16,7 @@ Exactly one phase may be `IN_PROGRESS`.
 | 6R-A. Forensic diagnosis | COMPLETE | Existing Phase 6 artifacts reconciled; closed-loop skip overshoot, concealed wrist-camera changes, unsafe early/consecutive reuse, and threshold-margin weaknesses documented in `reports/PHASE6R_A_DIAGNOSIS_REPORT.md` | User approval for Phase 6R-B |
 | 6R-B. Redesign and protocol | COMPLETE | Primary-source review completed; training-free SAVR 2.0 semantics, staged calibration, baselines, power, resources, and stop rules frozen in `docs/PHASE6R_PROTOCOL_V1.md` | Phase 6R-C correctness gates |
 | 6R-C. Implementation and correctness | COMPLETE | 88 CPU tests pass; first fixture correctly vetoed a gripper transition; predeclared recovery passed 8/8 queries with exact action parity, current proprio, and zero visual calls on reuse | Phase 6R-D Stage 1 |
-| 6R-D. Conservative staged calibration | IN_PROGRESS | Deterministic candidate-derivation implementation and unit tests pass; existing FR-trace execution pending | Eligible SAVR 2.0 candidate or predeclared stop |
+| 6R-D. Conservative staged calibration | IN_PROGRESS | Deterministic derivation repeated byte-identically; b05/b10/b15 frozen at offline skips 0.00%/6.88%/9.78%; Stage 1 runner/config ready | 90-episode Stage 1 safety screen |
 | 6R-E. Baselines, selection, and power | NOT_STARTED | — | Frozen candidate set and feasible confirmatory design |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
@@ -69,7 +69,7 @@ initial-state `10-49` / seed `7,17,27` holdout remains untouched.
 - [x] Implement exact adjacent-signal distributions and linear quantiles.
 - [x] Implement exact temporal and episode-prefix-budget replay.
 - [x] Unit-test quantiles, warm-up, isolated reuse, budget, and transition veto.
-- [ ] Derive and audit `b05`, `b10`, and `b15` from all 100 FR traces.
+- [x] Derive and audit `b05`, `b10`, and `b15` from all 100 FR traces.
 - [ ] Publish and synchronize the frozen Stage 1 configuration.
 - [ ] Run and reconcile the 30-episode-per-candidate Stage 1 safety screen.
 - [ ] Apply the frozen advancement gates without threshold relaxation.

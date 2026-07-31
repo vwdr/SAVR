@@ -1,0 +1,111 @@
+{
+  "artifact_cap_bytes": 1073741824,
+  "initial_state_ids": [0, 1, 2],
+  "protocol": "PHASE6R_PROTOCOL_V1.md",
+  "protocol_version": "1.0",
+  "run_id": "phase6r-d-stage1-v1",
+  "save_calibration_traces": true,
+  "seed": 0,
+  "settings": [
+    {
+      "action_thresholds": {
+        "gripper": 0.0,
+        "rotation": 0.028594571005705595,
+        "translation": 0.016595828325055417
+      },
+      "configuration_id": "savr2-b05",
+      "image_thresholds": {
+        "full_image": 0.03562500353436917,
+        "wrist_image": 0.06380514577031136
+      },
+      "offline_replay": {
+        "earliest_first_reuse_query": null,
+        "episodes_with_reuse": 0,
+        "maximum_episode_reuses": 0,
+        "queries": 1309,
+        "reuses": 0,
+        "skip_rate": 0.0
+      },
+      "policy": "SAVR2",
+      "safety_margin": 0.9,
+      "skip_budget": 0.05,
+      "state_thresholds": {
+        "gripper": 0.0,
+        "orientation": 0.0,
+        "translation": 0.0
+      },
+      "threshold_quantile": 0.0
+    },
+    {
+      "action_thresholds": {
+        "gripper": 1.7959861963026837,
+        "rotation": 0.6928788309483461,
+        "translation": 0.8911052795935378
+      },
+      "configuration_id": "savr2-b10",
+      "image_thresholds": {
+        "full_image": 0.31577382903937223,
+        "wrist_image": 0.5818976611992921
+      },
+      "offline_replay": {
+        "earliest_first_reuse_query": 9,
+        "episodes_with_reuse": 90,
+        "maximum_episode_reuses": 1,
+        "queries": 1309,
+        "reuses": 90,
+        "skip_rate": 0.06875477463712758
+      },
+      "policy": "SAVR2",
+      "safety_margin": 0.9,
+      "skip_budget": 0.1,
+      "state_thresholds": {
+        "gripper": 1.8,
+        "orientation": 0.38611673376929295,
+        "translation": 1.0330486308596265
+      },
+      "threshold_quantile": 0.999
+    },
+    {
+      "action_thresholds": {
+        "gripper": 1.797821144380998,
+        "rotation": 0.7812834808536592,
+        "translation": 0.9280092130749463
+      },
+      "configuration_id": "savr2-b15",
+      "image_thresholds": {
+        "full_image": 0.3203492696658941,
+        "wrist_image": 0.6124632504463079
+      },
+      "offline_replay": {
+        "earliest_first_reuse_query": 6,
+        "episodes_with_reuse": 95,
+        "maximum_episode_reuses": 2,
+        "queries": 1309,
+        "reuses": 128,
+        "skip_rate": 0.09778456837280367
+      },
+      "policy": "SAVR2",
+      "safety_margin": 0.9,
+      "skip_budget": 0.15,
+      "state_thresholds": {
+        "gripper": 1.8,
+        "orientation": 0.42270480698181334,
+        "translation": 1.0480906581712492
+      },
+      "threshold_quantile": 1.0
+    }
+  ],
+  "source": {
+    "episode_count": 100,
+    "quantile_grid_count": 1001,
+    "quantile_step": 0.001,
+    "query_count": 1309,
+    "run_id": "phase6-fr-signals-v1",
+    "safety_margin": 0.9,
+    "trace_input_sha256": "619c7310dff8ada8498c29df641289677a9318bd30aa2e45d04999aeea8b2114"
+  },
+  "stage": 1,
+  "suite": "libero_spatial",
+  "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "wall_cap_seconds": 57600
+}
