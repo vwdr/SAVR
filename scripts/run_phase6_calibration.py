@@ -63,7 +63,10 @@ def load_config(path: Path) -> dict[str, Any]:
     missing = required - set(config)
     if missing:
         raise ValueError(f"Phase 6 config lacks fields: {sorted(missing)}")
-    if config["protocol"] != "PHASE6_CALIBRATION_PROTOCOL.md":
+    if config["protocol"] not in {
+        "PHASE6_CALIBRATION_PROTOCOL.md",
+        "PHASE6R_PROTOCOL_V1.md",
+    }:
         raise ValueError("Configuration names the wrong protocol")
     if not isinstance(config["settings"], list) or not config["settings"]:
         raise ValueError("Configuration must contain at least one setting")
@@ -74,7 +77,7 @@ def load_config(path: Path) -> dict[str, Any]:
             raise ValueError("Configuration identifiers must be unique and non-empty")
         identifiers.add(identifier)
         policy = setting.get("policy")
-        if policy not in {"FR", "PR", "VOR", "SAVR"}:
+        if policy not in {"FR", "PR", "VOR", "SAVR", "SAVR2"}:
             raise ValueError(f"Unsupported policy in Phase 6 config: {policy}")
         if policy == "PR" and int(setting.get("period", 0)) < 1:
             raise ValueError("PR requires a positive integer period")
@@ -88,6 +91,36 @@ def load_config(path: Path) -> dict[str, Any]:
                 value = float(setting.get(name, -1))
                 if value < 0 or not __import__("math").isfinite(value):
                     raise ValueError(f"{policy} requires a finite non-negative {name}")
+        if policy == "SAVR2":
+            expected_thresholds = {
+                "image_thresholds": {"full_image", "wrist_image"},
+                "state_thresholds": {"translation", "orientation", "gripper"},
+                "action_thresholds": {"translation", "rotation", "gripper"},
+            }
+            for field, expected_keys in expected_thresholds.items():
+                values = setting.get(field)
+                if not isinstance(values, dict) or set(values) != expected_keys:
+                    raise ValueError(f"SAVR2 requires exact {field} keys")
+                if any(
+                    float(value) < 0
+                    or not __import__("math").isfinite(float(value))
+                    for value in values.values()
+                ):
+                    raise ValueError(f"SAVR2 requires finite non-negative {field}")
+            if float(setting.get("skip_budget", -1)) not in {0.05, 0.10, 0.15}:
+                raise ValueError("SAVR2 requires a frozen skip budget")
+    initial_state_ids = config.get("initial_state_ids", list(INITIAL_STATE_IDS))
+    if (
+        not isinstance(initial_state_ids, list)
+        or not initial_state_ids
+        or len(set(initial_state_ids)) != len(initial_state_ids)
+        or any(not isinstance(value, int) or value not in INITIAL_STATE_IDS for value in initial_state_ids)
+    ):
+        raise ValueError("Initial-state IDs must be a unique non-empty subset of 0-9")
+    if config.get("task_ids", list(TASK_IDS)) != list(TASK_IDS):
+        raise ValueError("Phase 6 runner requires the frozen task IDs 0-9")
+    if int(config.get("seed", SEED)) != SEED:
+        raise ValueError("Phase 6 runner requires seed 0")
     if int(config["wall_cap_seconds"]) < 1:
         raise ValueError("Run wall cap must be positive")
     if not 1 <= int(config["artifact_cap_bytes"]) <= GLOBAL_ARTIFACT_CAP_BYTES:
@@ -123,6 +156,22 @@ def controller_for_setting(
             action_q01=action_statistics["q01"],
             action_q99=action_statistics["q99"],
         )
+    if policy == "SAVR2":
+        from savr.savr2 import SAVR2Configuration, StateAwareVisualRefresh2Controller
+
+        return StateAwareVisualRefresh2Controller(
+            configuration=SAVR2Configuration(
+                configuration_id=str(setting["configuration_id"]),
+                image_thresholds=setting["image_thresholds"],
+                state_thresholds=setting["state_thresholds"],
+                action_thresholds=setting["action_thresholds"],
+                skip_budget=float(setting["skip_budget"]),
+            ),
+            state_q01=state_statistics["q01"],
+            state_q99=state_statistics["q99"],
+            action_q01=action_statistics["q01"],
+            action_q99=action_statistics["q99"],
+        )
     raise ValueError(f"Unsupported policy: {policy}")
 
 
@@ -140,6 +189,29 @@ def assert_component_invariants(result: Any, timing: Any) -> None:
     expected_event = "refresh" if result.decision.refresh else "reuse"
     if result.cache_event != expected_event:
         raise RuntimeError("Cache event differs from refresh decision")
+
+
+def assert_savr2_episode_invariants(
+    records: list[dict[str, Any]], setting: dict[str, Any]
+) -> None:
+    """Reconcile every online SAVR 2.0 temporal and prefix-budget decision."""
+
+    if setting.get("policy") != "SAVR2":
+        return
+    budget = float(setting["skip_budget"])
+    reuses = 0
+    previous_reuse = False
+    for index, record in enumerate(records):
+        reuse = not bool(record["refresh"])
+        if reuse:
+            reuses += 1
+            if index < 5:
+                raise RuntimeError("SAVR2 reused before the frozen warm-up boundary")
+            if previous_reuse:
+                raise RuntimeError("SAVR2 produced consecutive reuse decisions")
+        if reuses / (index + 1) > budget + 1e-15:
+            raise RuntimeError("SAVR2 exceeded its episode-prefix skip budget")
+        previous_reuse = reuse
 
 
 def calibration_trace(
@@ -238,8 +310,9 @@ def progress_summary(
     records: dict[str, dict[str, Any]],
     settings: list[dict[str, Any]],
     elapsed: float,
+    expected_pairings: int = EXPECTED_PAIRINGS,
 ) -> dict[str, Any]:
-    expected = EXPECTED_PAIRINGS * len(settings)
+    expected = expected_pairings * len(settings)
     complete = sum(record["status"] == "completed" for record in records.values())
     failed = sum(record["status"] == "failed" for record in records.values())
     terminal = complete + failed
@@ -268,6 +341,10 @@ def main() -> int:
     if project_root not in config_path.parents:
         raise SystemExit("Phase 6 config must be inside /home/ved/SAVR")
     config = load_config(config_path)
+    initial_state_ids = tuple(
+        int(value) for value in config.get("initial_state_ids", INITIAL_STATE_IDS)
+    )
+    expected_pairings = len(TASK_IDS) * len(initial_state_ids)
 
     physical_gpu_id = os.environ.get("SAVR_PHYSICAL_GPU_ID")
     visible_gpu = os.environ.get("CUDA_VISIBLE_DEVICES")
@@ -372,9 +449,9 @@ def main() -> int:
         **config,
         "suite": SUITE,
         "task_ids": list(TASK_IDS),
-        "initial_state_ids": list(INITIAL_STATE_IDS),
+        "initial_state_ids": list(initial_state_ids),
         "seed": SEED,
-        "expected_pairings_per_setting": EXPECTED_PAIRINGS,
+        "expected_pairings_per_setting": expected_pairings,
         "checkpoint_revision": CHECKPOINT_REVISION,
         "openvla_oft_revision": UPSTREAM_REVISION,
         "libero_revision": LIBERO_REVISION,
@@ -525,8 +602,8 @@ def main() -> int:
                 resolution=cfg.env_img_res,
             )
             try:
-                for state_id in INITIAL_STATE_IDS:
-                    pair_index = task_id * len(INITIAL_STATE_IDS) + state_id
+                for state_position, state_id in enumerate(initial_state_ids):
+                    pair_index = task_id * len(initial_state_ids) + state_position
                     rotation = pair_index % len(settings)
                     ordered_settings = settings[rotation:] + settings[:rotation]
                     for setting in ordered_settings:
@@ -659,7 +736,9 @@ def main() -> int:
                                         np=np,
                                     )
                                     query_record["configuration_id"] = configuration_id
-                                    if setting["policy"] == "FR":
+                                    if setting["policy"] == "FR" or bool(
+                                        config.get("save_calibration_traces", False)
+                                    ):
                                         query_record["calibration_trace"] = (
                                             calibration_trace(
                                                 images=images,
@@ -811,6 +890,9 @@ def main() -> int:
                             raise RuntimeError(f"{episode_id} has no policy query")
                         if refresh_count + reuse_count != query_count:
                             raise RuntimeError(f"{episode_id} counters do not reconcile")
+                        assert_savr2_episode_invariants(staged_queries, setting)
+                        if directory_size(run_dir) > int(config["artifact_cap_bytes"]):
+                            raise RuntimeError("Reached frozen run artifact cap")
 
                         elapsed = previous_elapsed + (
                             time.monotonic() - invocation_started
@@ -821,6 +903,7 @@ def main() -> int:
                                 records=records,
                                 settings=settings,
                                 elapsed=elapsed,
+                                expected_pairings=expected_pairings,
                             ),
                         )
             finally:
@@ -834,7 +917,7 @@ def main() -> int:
             )
             for setting in settings
             for task_id in TASK_IDS
-            for state_id in INITIAL_STATE_IDS
+            for state_id in initial_state_ids
         }
         if set(records) != expected_ids:
             raise RuntimeError(
@@ -852,6 +935,7 @@ def main() -> int:
                     elapsed=previous_elapsed + (
                         time.monotonic() - invocation_started
                     ),
+                    expected_pairings=expected_pairings,
                 ),
                 "setting_summaries": {
                     setting["configuration_id"]: {

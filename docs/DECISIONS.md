@@ -357,3 +357,11 @@ Last updated: 2026-07-31
 - Decision: Build all eight adjacent-query score-family distributions from the complete 100-episode Phase 6 FR trace. Apply the shared 0.001 linear-quantile grid and 0.90 safety margin, then replay the exact SAVR 2.0 temporal and hard prefix-budget semantics for 5%, 10%, and 15% caps. Freeze the closest never-over-budget candidate for each cap before Stage 1.
 - Evidence: `scripts/derive_phase6r_d_candidates.py`; `tests/unit/test_phase6r_d_derivation.py`; `docs/PHASE6R_PROTOCOL_V1.md` Section 8.
 - Approver: Frozen Phase 6R protocol and user's blanket Phase 6 authorization, 2026-07-31.
+
+## D-043 — Freeze Phase 6R-D Stage 1 candidates
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Freeze `savr2-b05`, `savr2-b10`, and `savr2-b15` exactly as recorded in `configs/calibration/phase6r_d_stage1.json`. Their offline skip estimates are 0.00%, 6.88%, and 9.78%. Retain `b05` despite zero expected reuse because the protocol requires every candidate; apply the 2% online-skip advancement gate without exception. Run exactly states 0-2 for Stage 1 and preserve all attempts/traces.
+- Evidence: `reports/PHASE6R_D_CANDIDATE_DERIVATION.md`; semantic config SHA-256 `66874e1a2c209ec5809dd1d777de5ce8eeacee63d85e8e4dd1c6f0876bcfc09d`.
+- Approver: Frozen Phase 6R protocol and user's blanket Phase 6 authorization, 2026-07-31.

@@ -5,7 +5,7 @@ Last updated: 2026-07-31
 ## Current phase
 
 Phase 6R-D — Conservative staged calibration: **IN PROGRESS
-(DETERMINISTIC FR-TRACE CANDIDATE DERIVATION PENDING)**
+(STAGE 1 CANDIDATES FROZEN; ONLINE SAFETY SCREEN PENDING)**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -36,6 +36,10 @@ The recovery subsequently passed all eight queries: the real reuse invoked
 zero vision-backbone/projector calls, used current proprioception, and exactly
 matched unmodified actions for the same input. Full evidence and hashes are in
 `reports/PHASE6R_C_CORRECTNESS_REPORT.md`.
+Phase 6R-D then deterministically derived `b05`, `b10`, and `b15` from all
+1,309 existing FR queries. Repeated derivations were byte-identical. The
+tracked Stage 1 matrix contains 90 maximum episodes and is frozen in
+`configs/calibration/phase6r_d_stage1.json`.
 
 The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
 Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
@@ -167,9 +171,9 @@ Not completed:
 
 ## Next authorized action
 
-Derive the three frozen SAVR 2.0 candidates from the existing Phase 6 FR traces
-with the exact protocol replay. Audit and publish those candidate thresholds
-before any Stage 1 GPU rollout. The final holdout remains prohibited.
+Publish and synchronize the frozen Stage 1 configuration and generic SAVR2
+runner support. Then execute only the 90-episode Stage 1 safety screen and
+apply its predeclared gates. The final holdout remains prohibited.
 
 ## Candidate initial stack
 

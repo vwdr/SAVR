@@ -11,6 +11,7 @@ from types import SimpleNamespace
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "scripts"))
+sys.path.insert(0, str(ROOT / "src"))
 
 SPEC = importlib.util.spec_from_file_location(
     "run_phase6_calibration",
@@ -53,6 +54,51 @@ class Phase6RunnerTests(unittest.TestCase):
             path.write_text(json.dumps(config), encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "image_threshold"):
                 RUNNER.load_config(path)
+
+    def test_phase6r_stage1_config_and_controllers_are_frozen(self) -> None:
+        config = RUNNER.load_config(
+            ROOT / "configs" / "calibration" / "phase6r_d_stage1.json"
+        )
+        self.assertEqual(config["protocol"], "PHASE6R_PROTOCOL_V1.md")
+        self.assertEqual(config["initial_state_ids"], [0, 1, 2])
+        self.assertEqual(
+            [setting["configuration_id"] for setting in config["settings"]],
+            ["savr2-b05", "savr2-b10", "savr2-b15"],
+        )
+        for setting in config["settings"]:
+            controller = RUNNER.controller_for_setting(
+                setting,
+                state_statistics={"q01": [0.0] * 8, "q99": [1.0] * 8},
+                action_statistics={"q01": [0.0] * 7, "q99": [1.0] * 7},
+                controllers=SimpleNamespace(),
+            )
+            self.assertEqual(
+                controller.configuration.configuration_id,
+                setting["configuration_id"],
+            )
+
+    def test_stage1_progress_uses_thirty_pairings_per_candidate(self) -> None:
+        progress = RUNNER.progress_summary(
+            records={},
+            settings=[{}, {}, {}],
+            elapsed=0.0,
+            expected_pairings=30,
+        )
+        self.assertEqual(progress["expected"], 90)
+
+    def test_savr2_episode_invariants_enforce_prefix_and_isolation(self) -> None:
+        setting = {"policy": "SAVR2", "skip_budget": 0.15}
+        valid = [{"refresh": True} for _ in range(6)] + [{"refresh": False}]
+        RUNNER.assert_savr2_episode_invariants(valid, setting)
+        with self.assertRaisesRegex(RuntimeError, "consecutive"):
+            RUNNER.assert_savr2_episode_invariants(
+                valid + [{"refresh": False}], setting
+            )
+        with self.assertRaisesRegex(RuntimeError, "prefix"):
+            RUNNER.assert_savr2_episode_invariants(
+                [{"refresh": True} for _ in range(5)] + [{"refresh": False}],
+                {"policy": "SAVR2", "skip_budget": 0.10},
+            )
 
     def test_component_invariants_follow_effective_decision(self) -> None:
         result = SimpleNamespace(
