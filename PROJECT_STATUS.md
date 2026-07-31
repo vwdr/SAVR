@@ -16,6 +16,8 @@ underpredicted online reuse, two-camera averaging concealed frequent
 wrist-camera changes, earlier reuse was associated with lower success, and
 two-query reuse streaks remained unsafe. No new rollout or final-holdout
 outcome was executed. Phase 6R-B requires a separate approval.
+The Phase 6R-A checkpoint was accepted under the phase authorization and
+merged in PR #17 at `5d2f69038b76bf94d94bbabefb92b0aa91df72dc`.
 
 The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
 Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.

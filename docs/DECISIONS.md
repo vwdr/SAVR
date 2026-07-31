@@ -300,3 +300,11 @@ Last updated: 2026-07-30
 - Limitation: The original SAVR records lack raw online observations/actions, task-phase annotations, and rollout videos. The analysis identifies redesign requirements but does not prove a contact-level causal mechanism or validate SAVR 2.0.
 - Evidence: `results/phase6r-a-diagnosis-v1/diagnosis.json`; `reports/PHASE6R_A_DIAGNOSIS_REPORT.md`.
 - Approver: Direct reconciliation of existing immutable Phase 6 evidence.
+
+## D-036 — Phase 6R-A checkpoint acceptance
+
+- Classification: `DECISION`
+- Status: COMPLETE
+- Decision: Accept and merge the reproducible Phase 6R-A forensic analysis, redesign roadmap, diagnosis report, and SAVR 2.0 requirements. This acceptance does not authorize Phase 6R-B research/design, implementation, GPU rollouts, calibration, or final-holdout access.
+- Evidence: User Phase 6R-A authorization; GitHub PR #17; merge commit `5d2f69038b76bf94d94bbabefb92b0aa91df72dc`.
+- Approver: User, 2026-07-30.

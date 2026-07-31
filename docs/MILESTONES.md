@@ -138,4 +138,4 @@ holdout remains untouched.
 - [x] Separate direct observations from plausible causal mechanisms.
 - [x] Define evidence-backed requirements for SAVR 2.0.
 - [x] Confirm no GPU/simulator or final-holdout run was performed.
-- [ ] Publish, review, merge, and synchronize the Phase 6R-A checkpoint.
+- [x] Publish, review, merge, and synchronize the Phase 6R-A checkpoint.
