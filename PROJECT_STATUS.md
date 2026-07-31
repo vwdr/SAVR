@@ -4,8 +4,8 @@ Last updated: 2026-07-31
 
 ## Current phase
 
-Phase 6R-C — Implementation and correctness: **IN PROGRESS
-(CPU GATES PASSED; CORRECTNESS FIXTURE RECOVERY PREDECLARED)**
+Phase 6R-C — Implementation and correctness: **COMPLETE
+(ALL CPU AND BOUNDED REAL-MODEL GATES PASSED; PHASE 6R-D AUTHORIZED)**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -32,6 +32,10 @@ action chunk contained a gripper transition. The failed run remains immutable.
 A no-simulator recovery using a hashed pre-existing FR trace is frozen in
 `reports/PHASE6R_C_CORRECTNESS_RECOVERY_PLAN.md`; it keeps cumulative Phase
 6R-C usage within `18/20` model queries.
+The recovery subsequently passed all eight queries: the real reuse invoked
+zero vision-backbone/projector calls, used current proprioception, and exactly
+matched unmodified actions for the same input. Full evidence and hashes are in
+`reports/PHASE6R_C_CORRECTNESS_REPORT.md`.
 
 The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
 Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
@@ -163,9 +167,9 @@ Not completed:
 
 ## Next authorized action
 
-Publish and synchronize the predeclared Phase 6R-C fixture recovery, then run
-only its eight-query, zero-simulator trace replay. Do not begin calibration
-unless every recovery gate passes. The final holdout remains prohibited.
+Publish and synchronize the Phase 6R-C evidence checkpoint. Then begin only
+the frozen Phase 6R-D candidate derivation and Stage 1 safety screen under the
+blanket Phase 6 authorization. The final holdout remains prohibited.
 
 ## Candidate initial stack
 

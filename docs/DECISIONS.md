@@ -341,3 +341,11 @@ Last updated: 2026-07-31
 - Decision: Preserve the failed first correctness run, whose real action chunk correctly activated the gripper-transition veto. Do not weaken the veto or reinterpret the run as reuse evidence. Predeclare one recovery using a hashed Phase 6 FR trace, eight additional model queries, no simulator, and the unchanged controller. Cumulative Phase 6R-C usage remains 18/20 queries. Stop before Phase 6R-D if the recovery fails.
 - Evidence: `reports/PHASE6R_C_CORRECTNESS_RECOVERY_PLAN.md`; immutable `phase6r-c-correctness-v1` artifacts on TITAN.
 - Approver: Frozen Phase 6R protocol and user's blanket Phase 6 authorization, 2026-07-31.
+
+## D-041 — Accept Phase 6R-C correctness evidence
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept Phase 6R-C after preserving the first fixture failure and passing the predeclared recovery. The recovery demonstrated exact reuse parity, current proprioception, zero vision-backbone/projector calls on reuse, complete counters/records, and clean checkpoint restoration within 18/20 cumulative queries. This authorizes Phase 6R-D only and is not an online success or efficiency claim.
+- Evidence: `reports/PHASE6R_C_CORRECTNESS_REPORT.md`; recovery summary SHA-256 `9b58b58ef11de5f594066bde4d45c3f56548960431b83c48d25715fdf6e46ef9`.
+- Approver: Frozen Phase 6R protocol and user's blanket Phase 6 authorization, 2026-07-31.

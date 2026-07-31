@@ -15,7 +15,7 @@ Exactly one phase may be `IN_PROGRESS`.
 | 6. Calibration and power | STOPPED_NEGATIVE | FR completed 100/100 successes; nine SAVR settings completed 900/900 episodes with no infrastructure errors; best SAVR result was 52/100, so none met the frozen 2-point constraint; negative stop rule applied | User decision on ending or predeclaring a materially more conservative protocol revision |
 | 6R-A. Forensic diagnosis | COMPLETE | Existing Phase 6 artifacts reconciled; closed-loop skip overshoot, concealed wrist-camera changes, unsafe early/consecutive reuse, and threshold-margin weaknesses documented in `reports/PHASE6R_A_DIAGNOSIS_REPORT.md` | User approval for Phase 6R-B |
 | 6R-B. Redesign and protocol | COMPLETE | Primary-source review completed; training-free SAVR 2.0 semantics, staged calibration, baselines, power, resources, and stop rules frozen in `docs/PHASE6R_PROTOCOL_V1.md` | Phase 6R-C correctness gates |
-| 6R-C. Implementation and correctness | IN_PROGRESS | 88 CPU tests pass; first real-model run preserved FR parity and correctly vetoed a transition-bearing fixture; bounded hashed-trace recovery predeclared | Recovery correctness matrix passes |
+| 6R-C. Implementation and correctness | COMPLETE | 88 CPU tests pass; first fixture correctly vetoed a gripper transition; predeclared recovery passed 8/8 queries with exact action parity, current proprio, and zero visual calls on reuse | Phase 6R-D Stage 1 |
 | 6R-D. Conservative staged calibration | NOT_STARTED | — | Eligible SAVR 2.0 candidate or predeclared stop |
 | 6R-E. Baselines, selection, and power | NOT_STARTED | — | Frozen candidate set and feasible confirmatory design |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
@@ -26,11 +26,10 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-Phase 6R-C is active under the user's blanket Phase 6 approval. CPU correctness
-gates pass. The first real-model fixture correctly triggered the gripper veto;
-the predeclared bounded recovery remains. The original Phase 6 negative result
-is unchanged. Phase 7 remains unauthorized, and the initial-state `10-49` /
-seed `7,17,27` holdout remains untouched.
+No phase is active at this checkpoint. Phase 6R-C passed every correctness gate
+and Phase 6R-D is authorized under the user's blanket Phase 6 approval. The
+original Phase 6 negative result is unchanged. Phase 7 remains unauthorized,
+and the initial-state `10-49` / seed `7,17,27` holdout remains untouched.
 
 ## Phase 6R-B current checklist
 
@@ -59,8 +58,9 @@ seed `7,17,27` holdout remains untouched.
 - [x] Preserve the first bounded run and classify its transition veto without
   weakening the controller.
 - [x] Freeze a hashed existing-trace recovery within the cumulative query cap.
-- [ ] Publish and synchronize the recovery-plan checkpoint.
-- [ ] Pass the bounded recovery correctness matrix.
+- [x] Publish and synchronize the recovery-plan checkpoint in PR #21 at
+  `fa7a7d04c0ec544066a5eba908cc2fec147dbbde`.
+- [x] Pass the bounded recovery correctness matrix.
 - [ ] Publish, merge, and synchronize the Phase 6R-C evidence checkpoint.
 
 ## Phase 0 remaining checklist
