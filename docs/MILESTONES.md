@@ -11,8 +11,8 @@ Exactly one phase may be `IN_PROGRESS`.
 | 2. Unmodified FR reproduction | COMPLETE | Checkpoint fit one TITAN RTX; 50/50 pilot episodes completed with 49 successes; component timing accepted and merged in PR #8; explicit go decision received | — |
 | 3. Controller and cache implementation | COMPLETE | Controller, signals, cache, adapter, and immutable records implemented; 29 CPU tests plus Ruff/mypy/package checks passed; accepted in PR #10 | — |
 | 4. Correctness and instrumentation | COMPLETE | 44 TITAN tests passed; six-query run completed with exact FR/reuse parity, zero visual reuse calls, fresh proprioception, valid immutable records, and exact checkpoint restoration; accepted and merged in PR #13; explicit Phase 5 go decision received | — |
-| 5. Smoke policies and external-baseline feasibility | IN_PROGRESS | 12/12 episodes and 283/283 queries reconciled; all four policies finished; official VLA-Cache technically excluded with pinned evidence; `reports/PHASE5_SMOKE_REPORT.md` | User checkpoint review |
-| 6. Calibration and power | NOT_STARTED | — | Frozen configurations, sample size, and margin approval |
+| 5. Smoke policies and external-baseline feasibility | COMPLETE | 12/12 episodes and 283/283 queries reconciled; all four policies finished; official VLA-Cache technically excluded with pinned evidence; accepted and merged in PR #15 at `5a4046b` | — |
+| 6. Calibration and power | STOPPED_NEGATIVE | FR completed 100/100 successes; nine SAVR settings completed 900/900 episodes with no infrastructure errors; best SAVR result was 52/100, so none met the frozen 2-point constraint; negative stop rule applied | User decision on ending or predeclaring a materially more conservative protocol revision |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -21,11 +21,10 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-Phase 5 is the only active phase. Its technical exit criteria are complete:
-all 12 diagnostic episodes and 283 query records reconcile, and the official
-VLA-Cache evaluator has a reproducible technical exclusion. The phase awaits
-checkpoint review. Phase 6 calibration and paper-level performance claims
-remain unauthorized.
+No phase is currently active. Phase 6 stopped at its predeclared negative-result
+gate because no SAVR candidate was eligible. Matched baselines and power
+confirmation were correctly not run. Phase 7 remains unauthorized, and the
+initial-state `10-49` / seed `7,17,27` holdout remains untouched.
 
 ## Phase 0 remaining checklist
 
@@ -105,4 +104,21 @@ remain unauthorized.
 - [x] Pin and audit the official VLA-Cache implementation.
 - [x] Establish compatibility or document a reproducible technical exclusion.
 - [x] Publish the Phase 5 report and checkpoint PR.
-- [ ] Obtain user acceptance of the Phase 5 checkpoint.
+- [x] Obtain user acceptance of the Phase 5 checkpoint.
+
+## Phase 6 current checklist
+
+- [x] Obtain authorization for uninterrupted Phase 6 execution.
+- [x] Freeze the calibration split, margin, candidate grid, selection rules,
+  budget-matching rules, resource limits, and holdout protections.
+- [x] Implement and CPU-test immutable FR signal collection and replay.
+- [x] Collect and reconcile 100 paired FR calibration episodes.
+- [x] Derive and freeze nine SAVR threshold/horizon settings.
+- [x] Complete and reconcile all nine 100-pair SAVR settings.
+- [x] Apply the frozen primary SAVR selection rule.
+- [x] Stop without matched VOR/PR runs because no SAVR candidate was eligible.
+- [x] Record that paired power and the final sample size cannot be confirmed
+  without an eligible operating point.
+- [x] Record that no primary SAVR/VOR/PR configuration can be frozen under the
+  current protocol.
+- [ ] Publish, review, merge, and synchronize the negative Phase 6 checkpoint.

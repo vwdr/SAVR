@@ -50,6 +50,24 @@
     "hardware": {"type": "object"},
     "software": {"type": "object"},
     "configuration": {"type": "object"},
+    "normalization_statistics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unnorm_key",
+        "state_q01",
+        "state_q99",
+        "action_q01",
+        "action_q99"
+      ],
+      "properties": {
+        "unnorm_key": {"type": "string", "minLength": 1},
+        "state_q01": {"type": "array", "items": {"type": "number"}},
+        "state_q99": {"type": "array", "items": {"type": "number"}},
+        "action_q01": {"type": "array", "items": {"type": "number"}},
+        "action_q99": {"type": "array", "items": {"type": "number"}}
+      }
+    },
     "command": {"type": ["string", "null"]},
     "notes": {"type": ["string", "null"]}
   }

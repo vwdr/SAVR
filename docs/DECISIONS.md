@@ -231,4 +231,47 @@ Last updated: 2026-07-29
 - Decision: The first compatibility setup allowed pip to write build/download cache entries under `/home/ved/.cache/pip`, outside the project boundary. The exact recent files written or updated by that invocation were narrowly inventoried and unlinked, empty leaf directories were removed where safe, and no recent file remained. The setup was corrected to use `/home/ved/SAVR/cache/pip-vla-cache` and disable the account-level version-check cache before retrying.
 - Impact: The validated SAVR environment, system software, unrelated university files, processes, services, and GPU allocations were not modified.
 - Evidence: Command-level inventory/remediation record in the Phase 5 execution log; corrected `scripts/setup_vla_cache_compatibility.sh`; `reports/PHASE5_SMOKE_REPORT.md`.
-- Approver: Safety remediation performed under the user's Phase 5 authorization; checkpoint review pending.
+- Approver: Safety remediation performed under the user's Phase 5 authorization and accepted with PR #15.
+
+## D-028 — Phase 5 checkpoint acceptance
+
+- Classification: `DECISION`
+- Status: COMPLETE
+- Decision: Accept and merge the reconciled four-policy smoke evidence, official VLA-Cache technical exclusion, and documented account-cache remediation. The aggressive diagnostic reuse failures remain feasibility evidence only and are not calibrated comparisons.
+- Evidence: User approval; GitHub PR #15; merge commit `5a4046b2b689d71e2ef0a54a6b67629180d5cdd3`.
+- Approver: User, 2026-07-29.
+
+## D-029 — Phase 6 calibration authorization and frozen design
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Execute Phase 6 without intermediate approval pauses through its final checkpoint. Use LIBERO-Spatial tasks `0-9`, initial states `0-9`, and seed `0`; freeze a `2`-percentage-point absolute non-inferiority margin; evaluate SAVR skip targets `25%`, `50%`, and `75%` crossed with horizons `2`, `4`, and `8`; select mechanically; match VOR/PR within `2` absolute refresh-rate points when feasible; and perform paired 90%-power planning at one-sided alpha `0.025`.
+- Resource bound: One responsibly selected GPU, at most `48 GPU-hours`, at most `2 GiB` of new result artifacts, no downloads/training/upstream changes, and no final-holdout execution or inspection.
+- Evidence: User blanket approval; `docs/PHASE6_CALIBRATION_PROTOCOL.md`, frozen before Phase 6 outcome collection.
+- Approver: User, 2026-07-29.
+
+## D-030 — Phase 6 Full Refresh calibration evidence
+
+- Classification: `FACT`
+- Status: COMPLETE
+- Decision: The frozen LIBERO-Spatial calibration oracle completed `100/100` paired episodes with `100/100` successes, `1,309` immutable query traces, and zero infrastructure errors. Protected checkpoint metadata was restored exactly.
+- Evidence: `/home/ved/SAVR/results/phase6-fr-signals-v1`; `/home/ved/SAVR/results/phase6-savr-thresholds-v1/threshold_derivation.json`; combined trace-input SHA-256 `c1724072a9108a77a7c8cec936f4a7e79239dca68aac75a288ca3d4638de9804`.
+- Approver: Direct reconciled evidence; no final inference is implied.
+
+## D-031 — Phase 6 SAVR grid negative result
+
+- Classification: `FACT`
+- Status: COMPLETE
+- Decision: All nine frozen SAVR settings completed all `100` pairings (`900/900` episodes total) with zero infrastructure errors. No candidate met the frozen `-2`-percentage-point calibration constraint. The least-degrading setting, `savr-s25-h2`, achieved `52/100` successes, a paired difference of `-48` percentage points from FR, and an online skip rate of `34.69%`.
+- Interpretation: The FR-derived offline skip targets did not transfer safely to closed-loop trajectories in the tested operating region. This is negative calibration evidence, not a proof that every more-conservative SAVR configuration must fail.
+- Evidence: `/home/ved/SAVR/results/phase6-savr-grid-v1`; `/home/ved/SAVR/results/phase6-savr-selection-v1/selection.json`; `reports/PHASE6_CALIBRATION_REPORT.md`.
+- Approver: Direct reconciled evidence.
+
+## D-032 — Phase 6 negative-result stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Apply the frozen stop rule because no SAVR candidate is eligible. Do not relax thresholds, enlarge the margin, run matched VOR/PR baselines, confirm a final sample size, begin Phase 7, or inspect the final holdout.
+- Next decision: Either end the current SAVR formulation or predeclare a materially more conservative protocol revision. The current calibration outcomes must remain visible and the split cannot be relabeled as fresh evidence.
+- Evidence: `docs/PHASE6_CALIBRATION_PROTOCOL.md`; D-030; D-031.
+- Approver: Mechanically required by the user-approved frozen Phase 6 protocol.

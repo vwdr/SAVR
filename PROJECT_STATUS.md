@@ -4,8 +4,8 @@ Last updated: 2026-07-29
 
 ## Current phase
 
-Phase 5 — Smoke policies and external-baseline feasibility: **IN PROGRESS
-(TECHNICALLY COMPLETE; AWAITING REVIEW)**
+Phase 6 — Calibration and power: **STOPPED
+(NEGATIVE CALIBRATION; EXIT GATE NOT MET)**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -20,9 +20,15 @@ proposal was approved. Its expanded CPU suite and bounded six-query
 real-model correctness matrix passed. The evidence was accepted and merged in
 PR #13. All Phase 4 exit criteria are satisfied. The user subsequently
 approved uninterrupted Phase 5 execution through its final checkpoint. The
-bounded core-policy smoke and official VLA-Cache compatibility audit have now
-passed their technical exit gates. The Phase 5 checkpoint awaits user review;
-Phase 6 remains unauthorized.
+bounded core-policy smoke and official VLA-Cache compatibility audit passed
+their technical exit gates and were accepted in PR #15. The user authorized
+uninterrupted Phase 6 execution through its final checkpoint. The Phase 6
+calibration and power rules are frozen before outcome collection in
+`docs/PHASE6_CALIBRATION_PROTOCOL.md`. FR subsequently completed all 100
+calibration episodes successfully. None of the nine frozen SAVR candidates met
+the 2-percentage-point success constraint; the best achieved `52/100`.
+Accordingly, the frozen protocol stopped before matched baselines, power
+confirmation, Phase 7, or any final-holdout execution.
 
 ## Research objective
 
@@ -109,28 +115,41 @@ Completed:
 - official VLA-Cache source and its required Transformers fork pinned in an isolated project-local environment
 - official VLA-Cache evaluator technically excluded because its previous-frame path aliases the current frame and its episode path suppresses explicit errors
 - Phase 5 independent evidence reconciliation passed
+- Phase 5 evidence accepted and merged in PR #15 at merge commit `5a4046b2b689d71e2ef0a54a6b67629180d5cdd3`
+- Phase 6 authorized through its final checkpoint
+- Phase 6 calibration population, nine-setting SAVR grid, 2-percentage-point margin, paired power target, matching rules, resource limits, and holdout protections frozen before new outcome collection
+- Phase 6 FR signal collection completed `100/100` episodes with `100/100` successes, `1,309` immutable query traces, and no infrastructure errors
+- nine SAVR threshold/horizon settings were derived from the frozen FR trace hash before online evaluation
+- the full SAVR grid completed `900/900` terminal episodes with no infrastructure errors and exact checkpoint restoration
+- no SAVR candidate was eligible: the best setting, `savr-s25-h2`, achieved `52/100` successes and a paired difference of `-48` percentage points versus FR
+- the predeclared negative-result stop rule was applied without relaxing thresholds, the margin, or the split
+- matched VOR/PR runs, final power confirmation, Phase 7, and final-holdout execution were not performed
 
 Not completed:
 
 - no dataset has been downloaded
-- no calibrated trajectory-success comparison, threshold selection, calibration, or ablation experiment has run
-- no empirical SAVR performance claim is supported yet
-- no threshold has been calibrated
+- no eligible primary SAVR configuration exists
+- no matched-budget VOR/PR calibration was run because the SAVR eligibility stop rule fired
+- no paired final sample size was confirmed
+- no positive SAVR performance claim is supported
 - no Phase 5 success or latency comparison is approved as a paper-level claim
-- Phase 5 checkpoint has not yet been accepted
+- no final holdout outcome has been inspected
 
 ## Next authorized action
 
-Review the technically complete Phase 5 checkpoint and draft PR #15. Do not
-begin Phase 6 calibration without a new explicit decision.
+Review the negative Phase 6 checkpoint and report. Do not begin Phase 7 or
+reuse the current calibration split as fresh evidence. A new explicit
+scientific decision is required either to end the current formulation or to
+predeclare a materially more conservative Phase 6 protocol revision.
 
 ## Candidate initial stack
 
 OpenVLA-OFT with LIBERO remains the leading stack. Model loading, one-GPU
 compatibility, baseline feasibility, cache interception, exact wrapped-FR
 parity, real-tensor reuse, and complete trajectories through all four core
-controllers are verified. The diagnostic high-skip policies did not preserve
-task success, so calibration is essential before any comparative evaluation.
+controllers are verified. The Phase 6 online grid found severe closed-loop
+success degradation for every tested reuse setting. The current SAVR operating
+region is therefore not eligible for final evaluation.
 
 ## Bootstrap checkpoint
 
