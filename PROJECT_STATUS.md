@@ -5,7 +5,7 @@ Last updated: 2026-07-31
 ## Current phase
 
 Phase 6R-C — Implementation and correctness: **IN PROGRESS
-(CPU CORRECTNESS GATES PASSED; BOUNDED REAL-MODEL CHECK PENDING)**
+(CPU GATES PASSED; CORRECTNESS FIXTURE RECOVERY PREDECLARED)**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -26,6 +26,12 @@ The separate SAVR 2.0 signal/controller path and bounded Phase 6R-C runner are
 now implemented. All `88` CPU tests pass, including local camera vetoes,
 grouped signals, transition/temporal/budget rules, immutable records, adapter
 reuse, schema compatibility, and the unchanged SAVR 1.0 suite.
+The first bounded real-model run preserved exact FR parity and component
+invariants but correctly vetoed the intended reuse because its initial-state
+action chunk contained a gripper transition. The failed run remains immutable.
+A no-simulator recovery using a hashed pre-existing FR trace is frozen in
+`reports/PHASE6R_C_CORRECTNESS_RECOVERY_PLAN.md`; it keeps cumulative Phase
+6R-C usage within `18/20` model queries.
 
 The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
 Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
@@ -157,10 +163,9 @@ Not completed:
 
 ## Next authorized action
 
-Publish and synchronize the reviewed Phase 6R-C implementation, then run only
-the bounded ten-query, zero-rollout real-model correctness check. Do not begin
-calibration until every Phase 6R-C gate passes. The final holdout remains
-prohibited.
+Publish and synchronize the predeclared Phase 6R-C fixture recovery, then run
+only its eight-query, zero-simulator trace replay. Do not begin calibration
+unless every recovery gate passes. The final holdout remains prohibited.
 
 ## Candidate initial stack
 

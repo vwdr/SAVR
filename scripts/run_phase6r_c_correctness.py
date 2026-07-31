@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import os
@@ -40,6 +41,10 @@ QUERY_CAP = 20
 PLANNED_QUERIES = 10
 ARTIFACT_CAP_BYTES = 256 * 1024**2
 MAX_WALL_SECONDS = 45 * 60
+RECOVERY_RUN_ID = "phase6r-c-trace-recovery-v1"
+RECOVERY_PLANNED_QUERIES = 8
+RECOVERY_TRACE = Path("results/phase6-fr-signals-v1/queries/query_00000000.json")
+RECOVERY_TRACE_SHA256 = "ff9f4bfc004b861260e36d61c5eab641356a9c27c25f7ceccf511e04dd687a63"
 
 
 def query_record(
@@ -97,10 +102,23 @@ def assert_counts(record: dict[str, Any], *, visual: int) -> None:
 
 
 def main() -> int:
+    global RUN_ID
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--replay-existing-fr-trace",
+        action="store_true",
+        help="Use the frozen Phase 6 FR trace without simulator execution",
+    )
+    arguments = parser.parse_args()
+    recovery = bool(arguments.replay_existing_fr_trace)
+    if recovery:
+        RUN_ID = RECOVERY_RUN_ID
+    planned_queries = RECOVERY_PLANNED_QUERIES if recovery else PLANNED_QUERIES
+
     project_root = Path(__file__).resolve().parents[1]
     if project_root != EXPECTED_ROOT:
         raise SystemExit(f"Refusing to run outside {EXPECTED_ROOT}: {project_root}")
-    if PLANNED_QUERIES > QUERY_CAP:
+    if planned_queries > QUERY_CAP:
         raise SystemExit("Planned queries exceed the frozen Phase 6R-C cap")
 
     physical_gpu_id = os.environ.get("SAVR_PHYSICAL_GPU_ID")
@@ -218,15 +236,22 @@ def main() -> int:
             "task_id": TASK_ID,
             "initial_state_id": INITIAL_STATE_ID,
             "seed": SEED,
-            "planned_queries": PLANNED_QUERIES,
+            "planned_queries": planned_queries,
             "query_cap": QUERY_CAP,
             "rollout_episodes": 0,
-            "simulator_resets": 1,
+            "simulator_resets": 0 if recovery else 1,
             "artifact_cap_bytes": ARTIFACT_CAP_BYTES,
             "wall_cap_seconds": MAX_WALL_SECONDS,
             "checkpoint_inventory": checkpoint_inventory,
+            "replay_existing_fr_trace": recovery,
+            "recovery_trace": str(RECOVERY_TRACE) if recovery else None,
+            "recovery_trace_sha256": RECOVERY_TRACE_SHA256 if recovery else None,
         },
-        "command": "scripts/run_phase6r_c_correctness.py",
+        "command": (
+            "scripts/run_phase6r_c_correctness.py --replay-existing-fr-trace"
+            if recovery
+            else "scripts/run_phase6r_c_correctness.py"
+        ),
         "notes": "Phase 6R-C correctness only; no rollout or final-holdout access.",
     }
     validate(manifest, schemas["run_manifest.schema.json"])
@@ -277,25 +302,54 @@ def main() -> int:
         }
         atomic_json(manifest_path, manifest)
 
-        resize_size = get_image_resize_size(cfg)
         task_suite = benchmark.get_benchmark_dict()[SUITE]()
         task = task_suite.get_task(TASK_ID)
-        initial_states = task_suite.get_task_init_states(TASK_ID)
-        current_env, task_description = get_libero_env(
-            task, cfg.model_family, resolution=cfg.env_img_res
-        )
-        current_env.reset()
-        raw_observation = current_env.set_init_state(initial_states[INITIAL_STATE_ID])
-        policy_observation, _ = upstream_eval.prepare_observation(raw_observation, resize_size)
-        current_env.close()
-        current_env = None
-
-        state_a = np.asarray(policy_observation["state"], dtype=np.float64).copy()
-        state_b, perturbation = make_state_b(state_a, state_stats, np)
-        images = {
-            "full_image": np.asarray(policy_observation["full_image"]).copy(),
-            "wrist_image": np.asarray(policy_observation["wrist_image"]).copy(),
-        }
+        task_description = task.language
+        if recovery:
+            trace_path = project_root / RECOVERY_TRACE
+            if sha256(trace_path) != RECOVERY_TRACE_SHA256:
+                raise RuntimeError("Frozen Phase 6 FR recovery trace hash differs")
+            trace_record = json.loads(trace_path.read_text(encoding="utf-8"))
+            if (
+                trace_record.get("episode_id") != "fr_task_00_state_00"
+                or trace_record.get("configuration_id") != "fr"
+                or trace_record.get("environment_step") != 10
+            ):
+                raise RuntimeError("Frozen Phase 6 FR recovery trace identity differs")
+            trace = trace_record["calibration_trace"]
+            state_a = np.asarray(trace["state"], dtype=np.float64)
+            state_b = state_a.copy()
+            perturbation = None
+            images = {}
+            for name in ("full_image", "wrist_image"):
+                shape = tuple(int(value) for value in trace["image_shapes"][name])
+                if shape != (32, 32, 3):
+                    raise RuntimeError(f"Recovery trace image shape differs for {name}")
+                normalized = np.asarray(trace["images"][name], dtype=np.float64).reshape(shape)
+                if not np.isfinite(normalized).all() or not (
+                    (normalized >= 0).all() and (normalized <= 1).all()
+                ):
+                    raise RuntimeError(f"Recovery trace image values are invalid for {name}")
+                images[name] = np.rint(normalized * 255).astype(np.uint8)
+        else:
+            resize_size = get_image_resize_size(cfg)
+            initial_states = task_suite.get_task_init_states(TASK_ID)
+            current_env, task_description = get_libero_env(
+                task, cfg.model_family, resolution=cfg.env_img_res
+            )
+            current_env.reset()
+            raw_observation = current_env.set_init_state(initial_states[INITIAL_STATE_ID])
+            policy_observation, _ = upstream_eval.prepare_observation(
+                raw_observation, resize_size
+            )
+            current_env.close()
+            current_env = None
+            state_a = np.asarray(policy_observation["state"], dtype=np.float64).copy()
+            state_b, perturbation = make_state_b(state_a, state_stats, np)
+            images = {
+                "full_image": np.asarray(policy_observation["full_image"]).copy(),
+                "wrist_image": np.asarray(policy_observation["wrist_image"]).copy(),
+            }
 
         def observation(state: Any) -> dict[str, Any]:
             return {
@@ -381,28 +435,31 @@ def main() -> int:
         assert_counts(record, visual=1)
         publish(record)
 
-        timer.start()
-        fr_result = fr.run_query(
-            query=lambda: upstream_query(state_a),
-            images=images,
-            state=state_a,
-            environment_step=0,
-        )
-        timing = timer.finish()
-        fr_parity = exact_parity(upstream_a, fr_result.value, np)
-        record = query_record(
-            index=1,
-            path="wrapped_fr_state_a",
-            actions=fr_result.value,
-            timing=timing,
-            refresh=fr_result.decision.refresh,
-            cache_event=fr_result.cache_event,
-            decision_seconds=fr_result.decision_seconds,
-            np=np,
-            extra={"decision": asdict(fr_result.decision), "parity": fr_parity},
-        )
-        assert_counts(record, visual=1)
-        publish(record)
+        savr2_record_offset = 1
+        if not recovery:
+            timer.start()
+            fr_result = fr.run_query(
+                query=lambda: upstream_query(state_a),
+                images=images,
+                state=state_a,
+                environment_step=0,
+            )
+            timing = timer.finish()
+            fr_parity = exact_parity(upstream_a, fr_result.value, np)
+            record = query_record(
+                index=1,
+                path="wrapped_fr_state_a",
+                actions=fr_result.value,
+                timing=timing,
+                refresh=fr_result.decision.refresh,
+                cache_event=fr_result.cache_event,
+                decision_seconds=fr_result.decision_seconds,
+                np=np,
+                extra={"decision": asdict(fr_result.decision), "parity": fr_parity},
+            )
+            assert_counts(record, visual=1)
+            publish(record)
+            savr2_record_offset = 2
 
         for query_index in range(6):
             timer.start()
@@ -416,7 +473,7 @@ def main() -> int:
             if not result.decision.refresh or result.cache_event != "refresh":
                 raise RuntimeError(f"SAVR 2.0 warm-up query {query_index} did not refresh")
             record = query_record(
-                index=2 + query_index,
+                index=savr2_record_offset + query_index,
                 path=f"savr2_fresh_q{query_index}",
                 actions=result.value,
                 timing=timing,
@@ -429,38 +486,43 @@ def main() -> int:
             assert_counts(record, visual=1)
             publish(record)
 
-        timer.start()
-        upstream_b = upstream_query(state_b)
-        timing = timer.finish()
-        record = query_record(
-            index=8,
-            path="unmodified_upstream_state_b",
-            actions=upstream_b,
-            timing=timing,
-            refresh=True,
-            cache_event="unmodified",
-            decision_seconds=0.0,
-            np=np,
-        )
-        assert_counts(record, visual=1)
-        publish(record)
+        reuse_state = state_a if recovery else state_b
+        upstream_reuse_reference = upstream_a
+        reuse_record_index = savr2_record_offset + 6
+        if not recovery:
+            timer.start()
+            upstream_reuse_reference = upstream_query(state_b)
+            timing = timer.finish()
+            record = query_record(
+                index=reuse_record_index,
+                path="unmodified_upstream_state_b",
+                actions=upstream_reuse_reference,
+                timing=timing,
+                refresh=True,
+                cache_event="unmodified",
+                decision_seconds=0.0,
+                np=np,
+            )
+            assert_counts(record, visual=1)
+            publish(record)
+            reuse_record_index += 1
 
         proprio_before = len(proprio_inputs)
         timer.start()
         reuse = savr2.run_query(
-            query=lambda: upstream_query(state_b),
+            query=lambda: upstream_query(reuse_state),
             images=images,
-            state=state_b,
+            state=reuse_state,
             environment_step=48,
         )
         timing = timer.finish()
         if reuse.decision.refresh or reuse.cache_event != "reuse":
             raise RuntimeError(f"SAVR 2.0 correctness query did not reuse: {reuse.decision}")
-        reuse_parity = exact_parity(upstream_b, reuse.value, np)
+        reuse_parity = exact_parity(upstream_reuse_reference, reuse.value, np)
         if len(proprio_inputs) != proprio_before + 1:
             raise RuntimeError("SAVR 2.0 reuse did not execute current proprioception once")
         expected_proprio = torch.tensor(
-            normalize_proprio(state_b, state_stats), dtype=proprio_inputs[-1].dtype
+            normalize_proprio(reuse_state, state_stats), dtype=proprio_inputs[-1].dtype
         ).float().numpy().reshape(-1)
         actual_proprio = proprio_inputs[-1].float().numpy().reshape(-1)
         if not np.array_equal(actual_proprio, expected_proprio):
@@ -470,8 +532,8 @@ def main() -> int:
         if any(len(values) != 64 for values in reuse.decision.camera_patch_scores.values()):
             raise RuntimeError("SAVR 2.0 decision omitted patch scores")
         record = query_record(
-            index=9,
-            path="savr2_reuse_state_b",
+            index=reuse_record_index,
+            path="savr2_reuse_trace_state" if recovery else "savr2_reuse_state_b",
             actions=reuse.value,
             timing=timing,
             refresh=reuse.decision.refresh,
@@ -482,13 +544,13 @@ def main() -> int:
                 "decision": asdict(reuse.decision),
                 "parity": reuse_parity,
                 "fresh_proprio_array_equal": True,
-                "normalized_state_b": expected_proprio.tolist(),
+                "normalized_reuse_state": expected_proprio.tolist(),
             },
         )
         assert_counts(record, visual=0)
         publish(record)
 
-        if len(records) != PLANNED_QUERIES:
+        if len(records) != planned_queries:
             raise RuntimeError("Phase 6R-C query count differs from the frozen plan")
         snapshot = savr2_controller.snapshot()
         if snapshot.completed_reuses != 1 or snapshot.query_index != 7:
@@ -499,14 +561,20 @@ def main() -> int:
             "query_count": len(records),
             "query_cap": QUERY_CAP,
             "rollout_episode_count": 0,
-            "simulator_reset_count": 1,
+            "simulator_reset_count": 0 if recovery else 1,
             "exact_fr_parity": True,
+            "fr_parity_source": (
+                "phase6r-c-correctness-v1 queries 0-1"
+                if recovery
+                else RUN_ID
+            ),
             "exact_reuse_parity": True,
             "reuse_visual_backbone_calls": 0,
             "reuse_visual_projector_calls": 0,
             "fresh_proprio_on_reuse": True,
             "savr2_snapshot": asdict(snapshot),
             "controlled_state_perturbation": perturbation,
+            "recovery_trace_sha256": RECOVERY_TRACE_SHA256 if recovery else None,
             "elapsed_seconds": time.monotonic() - started,
             "peak_gpu_memory_allocated_bytes": torch.cuda.max_memory_allocated(),
             "peak_gpu_memory_reserved_bytes": torch.cuda.max_memory_reserved(),
