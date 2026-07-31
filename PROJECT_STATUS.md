@@ -4,8 +4,8 @@ Last updated: 2026-07-31
 
 ## Current phase
 
-Phase 6R-D — Conservative staged calibration: **STOPPED_NEGATIVE
-(NO CANDIDATE PASSED STAGE 1; PHASE 6R-E INELIGIBLE)**
+Phase 6S-B — SAVR3 redesign protocol: **FROZEN BEFORE IMPLEMENTATION OR
+OUTCOME COLLECTION**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -44,6 +44,13 @@ Stage 1 completed all 90 episodes with zero technical failures. `b05` preserved
 30/30 success but skipped 0%; `b10` achieved 6.72% skip with 29/30 success;
 `b15` achieved 10.57% skip with 27/30 success. No candidate passed both frozen
 gates, so Stage 2 and Phase 6R-E were not run.
+The user subsequently authorized uninterrupted Phase 6S work through the first
+predeclared positive method result. Phase 6S-A used only immutable Stage 1
+records to localize the four failed trajectories. The disclosed post-hoc design
+selects one final SAVR3 candidate: `b15` with a translation-direction-reversal
+veto and wrist threshold `0.375`. Its implementation and one-shot 70-episode
+states-`3-9` validation are frozen in `docs/PHASE6S_PROTOCOL_V1.md`. No SAVR3
+outcome has been observed.
 
 The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
 Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
@@ -175,10 +182,9 @@ Not completed:
 
 ## Next authorized action
 
-Publish and synchronize the negative Phase 6R-D checkpoint. Stop before Stage
-2, Phase 6R-E, and the final holdout. Any further redesign would require a new
-predeclared protocol and explicit user direction because the approved Phase 6R
-path has reached its frozen negative stop.
+Implement and verify the frozen SAVR3 controller, then run its one-shot
+70-episode development validation. Stop and request approval immediately if
+all frozen positive gates pass. Never inspect the final holdout.
 
 ## Candidate initial stack
 

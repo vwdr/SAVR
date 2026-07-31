@@ -373,3 +373,20 @@ Last updated: 2026-07-31
 - Decision: Stop Phase 6R-D before Stage 2. `b05` fails the 2% skip gate, while `b10` and `b15` fail the 30/30 success gate. No thresholds, margins, pairings, or advancement criteria are relaxed. Phase 6R-E is ineligible because no candidate advanced. Preserve all four unsuccessful task episodes as scientific outcomes.
 - Evidence: `reports/PHASE6R_D_STAGE1_REPORT.md`; summary SHA-256 `61a0c9ddfb263ba2123da3dd08500260eba6a454bf335f4830022a81c33a9ebe`.
 - Approver: Frozen Phase 6R protocol and user's blanket Phase 6 authorization, 2026-07-31.
+
+## D-045 — Execute Phase 6S through the first positive method gate
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Execute the final SAVR redesign without intermediate approval pauses. Preserve every frozen stop rule and the final holdout. Stop and request user approval immediately after the first predeclared positive method result.
+- Evidence: User authorization on 2026-07-31; `docs/PHASE6S_PROTOCOL_V1.md`.
+- Approver: User, 2026-07-31.
+
+## D-046 — Freeze one disclosed SAVR3 design and validation
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Starting from `savr2-b15`, add a translation-direction-reversal veto and reduce only the wrist threshold to `0.375`. Retain every other SAVR2 rule. Treat states `0-2` as post-hoc design evidence and run SAVR3 once on states `3-9`; require 70/70 success, 7/7 per task, at least 5% online skip, and zero technical or accounting errors.
+- Limitation: The design was selected after inspecting Stage 1 failures. States `3-9` are policy-specific fresh validation, not the final holdout. No positive result is guaranteed.
+- Evidence: `reports/PHASE6S_A_FORENSIC_REPORT.md`; `docs/PHASE6S_PROTOCOL_V1.md`.
+- Approver: User authorization and frozen Phase 6S protocol, 2026-07-31.
