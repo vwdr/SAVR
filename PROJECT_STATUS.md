@@ -1,11 +1,11 @@
 # Project Status
 
-Last updated: 2026-07-30
+Last updated: 2026-07-31
 
 ## Current phase
 
-Phase 6R-A — Forensic diagnosis: **COMPLETE
-(REDESIGN REQUIREMENTS IDENTIFIED; PHASE 6R-B NOT AUTHORIZED)**
+Phase 6R-B — Redesign and protocol: **COMPLETE
+(SAVR 2.0 PROTOCOL FROZEN; PHASE 6R-C AUTHORIZED)**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -15,9 +15,13 @@ offline diagnosis of the existing Phase 6 records found that FR-replay targets
 underpredicted online reuse, two-camera averaging concealed frequent
 wrist-camera changes, earlier reuse was associated with lower success, and
 two-query reuse streaks remained unsafe. No new rollout or final-holdout
-outcome was executed. Phase 6R-B requires a separate approval.
+outcome was executed during Phase 6R-A.
 The Phase 6R-A checkpoint was accepted under the phase authorization and
 merged in PR #17 at `5d2f69038b76bf94d94bbabefb92b0aa91df72dc`.
+On 2026-07-31 the user authorized all remaining Phase 6 work. Phase 6R-B
+reviewed primary VLA-efficiency sources and froze the training-free SAVR 2.0
+controller, staged calibration, comparison, power, resource, and stop rules in
+`docs/PHASE6R_PROTOCOL_V1.md` before implementation or new outcomes.
 
 The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
 Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
@@ -145,14 +149,13 @@ Not completed:
 - no Phase 5 success or latency comparison is approved as a paper-level claim
 - no final holdout outcome has been inspected
 - no Phase 6R-A GPU or simulator run was performed
-- no SAVR 2.0 design has been frozen or implemented
+- no SAVR 2.0 implementation or outcome has been produced yet
 
 ## Next authorized action
 
-Review the Phase 6R-A diagnosis. Do not begin Phase 6R-B until the user
-explicitly approves it. Phase 6R-B may perform primary-source research and
-freeze a SAVR 2.0 design/protocol; it may not implement the redesign, launch
-GPU rollouts, or inspect the final holdout.
+Begin Phase 6R-C under the user's blanket Phase 6 authorization. Implement and
+verify only the frozen SAVR 2.0 protocol. Do not begin calibration until every
+Phase 6R-C correctness gate passes. The final holdout remains prohibited.
 
 ## Candidate initial stack
 

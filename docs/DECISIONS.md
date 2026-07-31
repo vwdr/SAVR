@@ -1,6 +1,6 @@
 # SAVR Decision Log
 
-Last updated: 2026-07-30
+Last updated: 2026-07-31
 
 ## D-001 — University-server safety boundary
 
@@ -308,3 +308,20 @@ Last updated: 2026-07-30
 - Decision: Accept and merge the reproducible Phase 6R-A forensic analysis, redesign roadmap, diagnosis report, and SAVR 2.0 requirements. This acceptance does not authorize Phase 6R-B research/design, implementation, GPU rollouts, calibration, or final-holdout access.
 - Evidence: User Phase 6R-A authorization; GitHub PR #17; merge commit `5d2f69038b76bf94d94bbabefb92b0aa91df72dc`.
 - Approver: User, 2026-07-30.
+
+## D-037 — Blanket authorization for remaining Phase 6R
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Execute Phase 6R-B through Phase 6R-E without additional approval pauses. Continue to announce and audit every phase boundary. Stop for any safety boundary, material scope/resource change, predeclared negative gate, or final-holdout risk. Phase 7 remains unauthorized.
+- Evidence: User instruction on 2026-07-31; `docs/PHASE6R_REDESIGN_ROADMAP.md`.
+- Approver: User, 2026-07-31.
+
+## D-038 — Freeze SAVR 2.0 design before implementation
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Implement a separate training-free SAVR 2.0 controller using independent local per-camera change, grouped state/action change, a gripper-transition veto, minimum query warm-up, two stable fresh queries, isolated reuse, and hard episode-prefix skip caps of 5%, 10%, and 15%. Use the existing FR traces only for candidate generation; require staged online safety screening and retain the 2-point success margin.
+- Alternatives: Learned routing, token-level KV caching, and task-specific thresholds were rejected because they change scope, require training/upstream redesign, or invite calibration overfitting.
+- Evidence: `docs/PHASE6R_B_RESEARCH_AND_DESIGN.md`; frozen `docs/PHASE6R_PROTOCOL_V1.md`; Phase 6R-A diagnosis.
+- Approver: User's blanket Phase 6 authorization, 2026-07-31.

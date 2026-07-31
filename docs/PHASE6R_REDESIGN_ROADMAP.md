@@ -1,8 +1,8 @@
 # Phase 6R SAVR Redesign Roadmap
 
-Status: APPROVED IN PRINCIPLE; PHASE-BY-PHASE AUTHORIZATION REQUIRED
+Status: PHASE 6R-B THROUGH 6R-E AUTHORIZED
 
-Roadmap date: 2026-07-30
+Roadmap date: 2026-07-31
 
 ## Purpose
 
@@ -16,10 +16,11 @@ other final-holdout outcomes remain untouched.
 
 ## Approval rule
 
-The user approves one phase at its beginning. That authorization covers normal
-in-scope work through the phase checkpoint. Work stops mid-phase only for a
-safety boundary, a material scope change, an unexpected resource requirement,
-or a scientific decision not covered by the approved phase.
+The user granted blanket authorization for all remaining Phase 6 work on
+2026-07-31. Phase boundaries remain mandatory and are announced, recorded,
+validated, and synchronized, but no further approval pause is required before
+Phase 7. Work still stops for a safety boundary, material scope change,
+unexpected resource requirement, or scientific decision outside this roadmap.
 
 At each checkpoint:
 
