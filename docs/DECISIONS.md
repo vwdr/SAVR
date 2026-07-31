@@ -325,3 +325,11 @@ Last updated: 2026-07-31
 - Alternatives: Learned routing, token-level KV caching, and task-specific thresholds were rejected because they change scope, require training/upstream redesign, or invite calibration overfitting.
 - Evidence: `docs/PHASE6R_B_RESEARCH_AND_DESIGN.md`; frozen `docs/PHASE6R_PROTOCOL_V1.md`; Phase 6R-A diagnosis.
 - Approver: User's blanket Phase 6 authorization, 2026-07-31.
+
+## D-039 — Keep SAVR 2.0 separate from SAVR 1.0
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Implement SAVR 2.0 as a separate controller and signal path while reusing the validated projected-feature adapter. Preserve all SAVR 1.0 classes and tests unchanged. Run CPU correctness gates before the bounded real-model check and prohibit calibration until both pass.
+- Evidence: `src/savr/savr2.py`; `tests/unit/test_savr2_controller.py`; `tests/unit/test_savr2_signals.py`; `scripts/run_phase6r_c_correctness.py`.
+- Approver: Frozen Phase 6R protocol and user's blanket Phase 6 authorization, 2026-07-31.

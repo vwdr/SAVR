@@ -20,7 +20,7 @@
     "run_id": {"type": "string", "minLength": 1},
     "episode_id": {"type": "string", "minLength": 1},
     "configuration_id": {"type": "string", "minLength": 1},
-    "policy": {"type": "string", "enum": ["FR", "PR", "VOR", "SAVR"]},
+    "policy": {"type": "string", "enum": ["FR", "PR", "VOR", "SAVR", "SAVR2"]},
     "task": {"type": "string", "minLength": 1},
     "initial_state_id": {"type": ["string", "integer"]},
     "seed": {"type": "integer"},

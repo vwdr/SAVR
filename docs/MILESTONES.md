@@ -15,7 +15,7 @@ Exactly one phase may be `IN_PROGRESS`.
 | 6. Calibration and power | STOPPED_NEGATIVE | FR completed 100/100 successes; nine SAVR settings completed 900/900 episodes with no infrastructure errors; best SAVR result was 52/100, so none met the frozen 2-point constraint; negative stop rule applied | User decision on ending or predeclaring a materially more conservative protocol revision |
 | 6R-A. Forensic diagnosis | COMPLETE | Existing Phase 6 artifacts reconciled; closed-loop skip overshoot, concealed wrist-camera changes, unsafe early/consecutive reuse, and threshold-margin weaknesses documented in `reports/PHASE6R_A_DIAGNOSIS_REPORT.md` | User approval for Phase 6R-B |
 | 6R-B. Redesign and protocol | COMPLETE | Primary-source review completed; training-free SAVR 2.0 semantics, staged calibration, baselines, power, resources, and stop rules frozen in `docs/PHASE6R_PROTOCOL_V1.md` | Phase 6R-C correctness gates |
-| 6R-C. Implementation and correctness | NOT_STARTED | — | All redesign correctness gates pass |
+| 6R-C. Implementation and correctness | IN_PROGRESS | 88 CPU tests pass; separate SAVR 2.0 signal/controller path and bounded real-model runner implemented | Bounded real-model correctness matrix passes |
 | 6R-D. Conservative staged calibration | NOT_STARTED | — | Eligible SAVR 2.0 candidate or predeclared stop |
 | 6R-E. Baselines, selection, and power | NOT_STARTED | — | Frozen candidate set and feasible confirmatory design |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
@@ -26,11 +26,10 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-No phase is currently active at this checkpoint. Phase 6R-B is complete and
-Phase 6R-C is authorized under the user's blanket Phase 6 approval. The
-original Phase 6 negative result remains unchanged. Phase 7 remains
-unauthorized, and the initial-state `10-49` / seed `7,17,27` holdout remains
-untouched.
+Phase 6R-C is active under the user's blanket Phase 6 approval. CPU correctness
+gates pass; the bounded real-model check remains. The original Phase 6 negative
+result remains unchanged. Phase 7 remains unauthorized, and the initial-state
+`10-49` / seed `7,17,27` holdout remains untouched.
 
 ## Phase 6R-B current checklist
 
@@ -43,7 +42,20 @@ untouched.
 - [x] Freeze staged candidate promotion and negative stop rules.
 - [x] Freeze comparison, ablation, efficiency, power, and resource rules.
 - [x] Reconfirm the official VLA-Cache technical exclusion.
-- [ ] Publish, merge, and synchronize the Phase 6R-B checkpoint.
+- [x] Publish, merge, and synchronize the Phase 6R-B checkpoint in PR #19 at
+  `f19bd9b325eff5ca08ac59b68e731e9be4f36967`.
+
+## Phase 6R-C current checklist
+
+- [x] Implement SAVR 2.0 without changing SAVR 1.0.
+- [x] Implement independent local camera, grouped state/action, and transition
+  signals.
+- [x] Implement warm-up, stable-fresh, isolated-reuse, and prefix-budget rules.
+- [x] Preserve immutable full decision records and cache fail-closed behavior.
+- [x] Pass all CPU tests, Ruff, mypy, compilation, and diff checks.
+- [ ] Publish and synchronize the implementation checkpoint.
+- [ ] Pass the bounded real-model correctness matrix.
+- [ ] Publish, merge, and synchronize the Phase 6R-C evidence checkpoint.
 
 ## Phase 0 remaining checklist
 

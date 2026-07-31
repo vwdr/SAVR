@@ -4,8 +4,8 @@ Last updated: 2026-07-31
 
 ## Current phase
 
-Phase 6R-B — Redesign and protocol: **COMPLETE
-(SAVR 2.0 PROTOCOL FROZEN; PHASE 6R-C AUTHORIZED)**
+Phase 6R-C — Implementation and correctness: **IN PROGRESS
+(CPU CORRECTNESS GATES PASSED; BOUNDED REAL-MODEL CHECK PENDING)**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -22,6 +22,10 @@ On 2026-07-31 the user authorized all remaining Phase 6 work. Phase 6R-B
 reviewed primary VLA-efficiency sources and froze the training-free SAVR 2.0
 controller, staged calibration, comparison, power, resource, and stop rules in
 `docs/PHASE6R_PROTOCOL_V1.md` before implementation or new outcomes.
+The separate SAVR 2.0 signal/controller path and bounded Phase 6R-C runner are
+now implemented. All `88` CPU tests pass, including local camera vetoes,
+grouped signals, transition/temporal/budget rules, immutable records, adapter
+reuse, schema compatibility, and the unchanged SAVR 1.0 suite.
 
 The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
 Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
@@ -149,13 +153,14 @@ Not completed:
 - no Phase 5 success or latency comparison is approved as a paper-level claim
 - no final holdout outcome has been inspected
 - no Phase 6R-A GPU or simulator run was performed
-- no SAVR 2.0 implementation or outcome has been produced yet
+- no SAVR 2.0 online calibration or rollout outcome has been produced yet
 
 ## Next authorized action
 
-Begin Phase 6R-C under the user's blanket Phase 6 authorization. Implement and
-verify only the frozen SAVR 2.0 protocol. Do not begin calibration until every
-Phase 6R-C correctness gate passes. The final holdout remains prohibited.
+Publish and synchronize the reviewed Phase 6R-C implementation, then run only
+the bounded ten-query, zero-rollout real-model correctness check. Do not begin
+calibration until every Phase 6R-C gate passes. The final holdout remains
+prohibited.
 
 ## Candidate initial stack
 
