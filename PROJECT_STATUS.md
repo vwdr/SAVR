@@ -1,13 +1,21 @@
 # Project Status
 
-Last updated: 2026-07-29
+Last updated: 2026-07-30
 
 ## Current phase
 
-Phase 6 — Calibration and power: **STOPPED
-(NEGATIVE CALIBRATION; EXIT GATE NOT MET)**
+Phase 6R-A — Forensic diagnosis: **COMPLETE
+(REDESIGN REQUIREMENTS IDENTIFIED; PHASE 6R-B NOT AUTHORIZED)**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
+
+The original Phase 6 remains stopped negative and unchanged. The user chose a
+scientifically controlled redesign path and approved Phase 6R-A. A reproducible
+offline diagnosis of the existing Phase 6 records found that FR-replay targets
+underpredicted online reuse, two-camera averaging concealed frequent
+wrist-camera changes, earlier reuse was associated with lower success, and
+two-query reuse streaks remained unsafe. No new rollout or final-holdout
+outcome was executed. Phase 6R-B requires a separate approval.
 
 The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
 Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
@@ -134,13 +142,15 @@ Not completed:
 - no positive SAVR performance claim is supported
 - no Phase 5 success or latency comparison is approved as a paper-level claim
 - no final holdout outcome has been inspected
+- no Phase 6R-A GPU or simulator run was performed
+- no SAVR 2.0 design has been frozen or implemented
 
 ## Next authorized action
 
-Review the negative Phase 6 checkpoint and report. Do not begin Phase 7 or
-reuse the current calibration split as fresh evidence. A new explicit
-scientific decision is required either to end the current formulation or to
-predeclare a materially more conservative Phase 6 protocol revision.
+Review the Phase 6R-A diagnosis. Do not begin Phase 6R-B until the user
+explicitly approves it. Phase 6R-B may perform primary-source research and
+freeze a SAVR 2.0 design/protocol; it may not implement the redesign, launch
+GPU rollouts, or inspect the final holdout.
 
 ## Candidate initial stack
 
