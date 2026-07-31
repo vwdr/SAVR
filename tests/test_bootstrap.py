@@ -36,12 +36,17 @@ class BootstrapTests(unittest.TestCase):
 
     def test_project_status_does_not_claim_results(self) -> None:
         text = (ROOT / "PROJECT_STATUS.md").read_text(encoding="utf-8")
-        self.assertIn("no empirical SAVR performance claim is supported yet", text)
+        self.assertIn("no positive SAVR performance claim is supported", text)
 
     def test_exactly_one_phase_is_in_progress(self) -> None:
         text = (ROOT / "docs" / "MILESTONES.md").read_text(encoding="utf-8")
         milestone_rows = [line for line in text.splitlines() if line.startswith("| ") and ". " in line]
-        self.assertEqual(sum(" IN_PROGRESS " in line for line in milestone_rows), 1)
+        active = sum(" IN_PROGRESS " in line for line in milestone_rows)
+        self.assertLessEqual(active, 1)
+        if active == 0:
+            self.assertTrue(
+                any(" STOPPED_NEGATIVE " in line for line in milestone_rows)
+            )
 
     def test_phase1_setup_is_project_scoped(self) -> None:
         text = (ROOT / "scripts" / "setup_phase1_environment.sh").read_text(encoding="utf-8")
