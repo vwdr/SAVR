@@ -398,3 +398,12 @@ Last updated: 2026-07-31
 - Decision: Accept SAVR3 implementation after 102/102 CPU tests and all changed-file static checks pass. Skip an optional additional real-model correctness run because the validated projected-feature adapter is unchanged; enforce its component invariants on every Phase 6S-D query. Run exactly the frozen states-`3-9` configuration without tuning.
 - Evidence: `reports/PHASE6S_C_CORRECTNESS_REPORT.md`; config semantic SHA-256 `10b93d3247f6bec35c7419e362627dffef597ddbcd5dd71f9509a6b66bb52289`.
 - Approver: Frozen Phase 6S protocol and user authorization, 2026-07-31.
+
+## D-048 — Apply the Phase 6S-D negative stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Stop Phase 6S after the complete frozen SAVR3 validation. The run achieved 69/70 successes and 9/944 reuses (0.9534%), so it failed both the exact success gate and the 5% skip gate. Do not tune or rerun SAVR3, search another local threshold, run Phase 6S-E, or inspect the final holdout. No positive-result approval point was reached.
+- Integrity: All 70 terminal records and 944 queries reconcile; all nine reuses skipped exactly one backbone and projector call; no technical or invariant error occurred; protected checkpoint hashes were restored.
+- Evidence: `reports/PHASE6S_D_VALIDATION_REPORT.md`; analysis SHA-256 `de570a1b79c7e7e50bf5193f5bf2d2f7048c2336abf10c0dd0b460db51f3e789`.
+- Approver: Mechanically required by the frozen Phase 6S protocol, 2026-07-31.

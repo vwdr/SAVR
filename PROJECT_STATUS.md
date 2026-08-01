@@ -4,7 +4,8 @@ Last updated: 2026-07-31
 
 ## Current phase
 
-Phase 6S-D — SAVR3 fresh development validation: **AUTHORIZED; NOT YET RUN**
+Phase 6S-D — SAVR3 fresh development validation: **STOPPED NEGATIVE
+(POSITIVE GATE NOT MET; PHASE 6S-E INELIGIBLE)**
 
 Phase 0 completed after preparation PR #1 and ledger PR #2 were explicitly approved, merged, and synchronized. Phase 1 proposal PR #3 was subsequently approved and merged as `50eabfac111f65995ce515926aaa291d345c3cf2`.
 
@@ -48,12 +49,16 @@ predeclared positive method result. Phase 6S-A used only immutable Stage 1
 records to localize the four failed trajectories. The disclosed post-hoc design
 selects one final SAVR3 candidate: `b15` with a translation-direction-reversal
 veto and wrist threshold `0.375`. Its implementation and one-shot 70-episode
-states-`3-9` validation are frozen in `docs/PHASE6S_PROTOCOL_V1.md`. No SAVR3
-outcome has been observed.
+states-`3-9` validation were frozen in `docs/PHASE6S_PROTOCOL_V1.md`.
 SAVR3 implementation and correctness are complete: all 102 CPU tests and the
 changed-file static checks pass. The shared, previously validated model/cache
 adapter is unchanged. The frozen 70-episode configuration has semantic SHA-256
 `10b93d3247f6bec35c7419e362627dffef597ddbcd5dd71f9509a6b66bb52289`.
+The frozen SAVR3 run subsequently completed all 70 episodes with 69 successes,
+944 queries, nine valid visual reuses (0.9534% skip), zero technical or
+invariant failures, and exact checkpoint restoration. Task 9/state 4 was the
+only unsuccessful episode. SAVR3 missed both the 70/70 success gate and the 5%
+skip gate, so the negative stop applies and Phase 6S-E is ineligible.
 
 The bounded Phase 1 installation and CPU-only simulator smoke test passed. The
 Phase 2A checkpoint and Full Refresh smoke were accepted and merged in PR #6.
@@ -170,6 +175,9 @@ Completed:
 - no SAVR candidate was eligible: the best setting, `savr-s25-h2`, achieved `52/100` successes and a paired difference of `-48` percentage points versus FR
 - the predeclared negative-result stop rule was applied without relaxing thresholds, the margin, or the split
 - matched VOR/PR runs, final power confirmation, Phase 7, and final-holdout execution were not performed
+- the frozen SAVR3 validation completed 70/70 terminal episodes with 69 successes and 9/944 visual reuses
+- all nine SAVR3 reuses exactly skipped both visual components, with zero technical or invariant errors
+- SAVR3 failed the frozen 70/70 success and 5% skip gates, so no tuning or rerun was performed
 
 Not completed:
 
@@ -181,13 +189,14 @@ Not completed:
 - no Phase 5 success or latency comparison is approved as a paper-level claim
 - no final holdout outcome has been inspected
 - no Phase 6R-A GPU or simulator run was performed
-- no SAVR 2.0 online calibration or rollout outcome has been produced yet
+- no SAVR3 matched-baseline or confirmatory evaluation is eligible
 
 ## Next authorized action
 
-Run and reconcile the frozen one-shot 70-episode SAVR3 development validation.
-Stop and request approval immediately if all frozen positive gates pass. Never
-inspect the final holdout.
+No further experiment is authorized by the frozen Phase 6S protocol. Preserve
+the negative result, do not tune or rerun SAVR3, and never inspect the final
+holdout. A new attempt would require a materially different method and new
+independent development evidence.
 
 ## Candidate initial stack
 

@@ -21,8 +21,8 @@ Exactly one phase may be `IN_PROGRESS`.
 | 6S-A. Final forensic localization | COMPLETE | Reproducible design-split analysis localized all four first unsafe reuse events and disclosed the wrist-cap grid | Freeze exactly one SAVR3 design |
 | 6S-B. SAVR3 protocol | COMPLETE | `docs/PHASE6S_PROTOCOL_V1.md` frozen before implementation or outcomes | SAVR3 correctness gates |
 | 6S-C. SAVR3 implementation and correctness | COMPLETE | 102 CPU tests and all changed-file static checks pass; distinct policy/veto, frozen config, and independent gate validator implemented | Frozen states-3-9 validation |
-| 6S-D. Fresh development validation | IN_PROGRESS | — | First predeclared positive gate or immutable negative stop |
-| 6S-E. Matched comparisons and power | NOT_STARTED | — | User approval after positive SAVR3 result |
+| 6S-D. Fresh development validation | STOPPED_NEGATIVE | 70/70 terminal, 69/70 success, 9/944 reuses (0.95%), zero technical/invariant failures; both success and skip gates missed | Materially different method with new independent evidence |
+| 6S-E. Matched comparisons and power | NOT_RUN_INELIGIBLE | SAVR3 did not pass the frozen Phase 6S-D positive gate | Eligible candidate from a future predeclared method |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -31,10 +31,10 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-Phase 6S-D is active under the user's authorization through the first
-predeclared positive method result. Phase 6R-D remains stopped negative and
-Phase 6R-E remains ineligible. Phase 7 is unauthorized, and initial-state
-`10-49` / seed `7,17,27` holdout outcomes remain untouched.
+No phase is active. Phase 6S-D reached its frozen negative stop and Phase 6S-E
+is ineligible. The requested positive method result was not obtained. Phase 7
+is unauthorized, and initial-state `10-49` / seed `7,17,27` holdout outcomes
+remain untouched.
 
 ## Phase 6R-B current checklist
 
@@ -89,9 +89,9 @@ Phase 6R-E remains ineligible. Phase 7 is unauthorized, and initial-state
 - [x] Freeze exactly one SAVR3 controller and a one-shot positive gate.
 - [x] Implement SAVR3 without changing SAVR2 behavior.
 - [x] Pass the complete correctness and changed-file static-check suite.
-- [ ] Run and reconcile exactly 70 states-`3-9` development episodes.
-- [ ] Apply the frozen positive or negative gate without tuning or reruns.
-- [ ] Stop for user approval immediately after a positive method result.
+- [x] Run and reconcile exactly 70 states-`3-9` development episodes.
+- [x] Apply the frozen negative gate without tuning or reruns.
+- [x] Record that no positive-result approval point was reached.
 
 ## Phase 0 remaining checklist
 
