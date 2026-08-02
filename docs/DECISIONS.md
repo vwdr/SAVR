@@ -466,3 +466,30 @@ Last updated: 2026-08-02
   `docs/ACR_SPLIT_AND_RESOURCE_AUDIT.md`; `reports/PHASE_A0_REPORT.md`.
 - Approver: ACR Protocol V1 Phase A0 exit rules, 2026-08-02. Phase A1 still
   requires user authorization.
+
+## D-053 — Authorize ACR Phase A1 only
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Execute the protocol-acceptance and resource-freeze work defined
+  as ACR Phase A1. Reconnect to TITAN only for narrowly scoped repository,
+  static hardware, and storage verification. Freeze schemas, run identities,
+  recovery rules, artifact limits, and estimates from historical measured
+  runtimes. Do not implement ACR, load the model, use a GPU, start a simulator,
+  access an ACR population, derive thresholds, or modify the manuscript.
+- Evidence: User instruction to proceed to Phase A1 on 2026-08-02.
+- Approver: User, 2026-08-02.
+
+## D-054 — Accept the ACR Phase A1 freeze and stop before A2
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept ACR Protocol V1 without amendment and freeze the formal
+  query, episode, and run schemas; deterministic run-ID templates;
+  preserve-and-restart recovery rules; artifact policy; and bounded phase
+  estimates. Keep every protocol hard cap and protected population unchanged.
+  Complete A1 without implementing ACR or starting A2.
+- Evidence: `docs/ACR_PHASE_A1_RESOURCE_FREEZE.md`;
+  `configs/acr/phase_a1_freeze.json`; `reports/PHASE_A1_REPORT.md`.
+- Approver: Mechanically required by ACR Protocol V1 Phase A1. Phase A2 still
+  requires user authorization.

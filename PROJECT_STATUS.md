@@ -4,7 +4,7 @@ Last updated: 2026-08-02
 
 ## Current phase
 
-ACR Phase A0 — **COMPLETE; A1 AWAITING USER AUTHORIZATION**
+ACR Phase A1 — **COMPLETE; A2 AWAITING USER AUTHORIZATION**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -23,8 +23,13 @@ ACR implementation or outcome. The novelty gate passes only for the narrowed
 camera-block contribution recorded in `docs/ACR_NOVELTY_AUDIT.md`. The pinned
 source boundary and bitwise-parity risk are recorded in
 `docs/ACR_IMPLEMENTATION_DESIGN.md`; all protected populations remain
-untouched according to `docs/ACR_SPLIT_AND_RESOURCE_AUDIT.md`. Phase A1 has
-not been authorized.
+untouched according to `docs/ACR_SPLIT_AND_RESOURCE_AUDIT.md`. The user
+authorized Phase A1 on 2026-08-02. A1 accepted the protocol without amendment
+and froze formal record schemas, run identities, recovery rules, artifact
+policies, and bounded phase estimates in
+`docs/ACR_PHASE_A1_RESOURCE_FREEZE.md` and
+`configs/acr/phase_a1_freeze.json`. It used no model, GPU, simulator, ACR
+population, or manuscript. Phase A2 has not been authorized.
 
 ### Legacy SAVR terminal state
 
