@@ -1,0 +1,103 @@
+{
+  "schema_version": "acr.phase-a1-freeze.v1",
+  "freeze_date": "2026-08-02",
+  "a0_base_revision": "7e57f34a5d0b0ca2c3c84f57a61950246ef8aa61",
+  "protocol": {
+    "path": "docs/ACR_EXECUTION_PROTOCOL_V1.md",
+    "sha256": "aa7153a2acae1826e09aa93fd67cb5f15989f4b4f4346be4e2dcc025196d951a"
+  },
+  "revisions": {
+    "openvla_oft": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "libero": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "checkpoint": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7"
+  },
+  "schemas": {
+    "query": {
+      "version": "acr.query.v1",
+      "path": "schemas/acr_query.schema.json",
+      "sha256": "9852af8b40d36c64de6da633991f0a53ecc3d16836c55ea37e88fcf426891704"
+    },
+    "episode": {
+      "version": "acr.episode.v1",
+      "path": "schemas/acr_episode.schema.json",
+      "sha256": "ffc3edb8d8c2b3401e10d2ad66566784c595363710904bbc9ba8f27e18018fa4"
+    },
+    "run": {
+      "version": "acr.run.v1",
+      "path": "schemas/acr_run.schema.json",
+      "sha256": "2abc40e7f5d0d7454736f115719e8e41745f4ed31edd55924f68b370aebf3138"
+    }
+  },
+  "run_ids": {
+    "pattern": "^acr-a[3-8]-[a-z0-9]+(?:-[a-z0-9]+)*-v[0-9]{2}$",
+    "a3": ["acr-a3-correctness-none-v01"],
+    "a4": ["acr-a4-upstream-fr-object-dev00-09-v01"],
+    "a5_templates": [
+      "acr-a5-sa-acr-object-stage1-<candidate>-v01",
+      "acr-a5-sa-acr-object-stage2-<candidate>-v01"
+    ],
+    "a6": [
+      "acr-a6-upstream-fr-goal-confirm-v01",
+      "acr-a6-sa-acr-goal-confirm-v01"
+    ],
+    "a7": [
+      "acr-a7-scene-periodic-acr-goal-baseline-v01",
+      "acr-a7-scene-visual-acr-goal-baseline-v01",
+      "acr-a7-upstream-fr-libero10-transfer-v01",
+      "acr-a7-sa-acr-libero10-transfer-v01"
+    ],
+    "a8_templates": [
+      "acr-a8-upstream-fr-<suite>-final-v01",
+      "acr-a8-sa-acr-<suite>-final-v01"
+    ]
+  },
+  "recovery": {
+    "mode": "preserve-and-restart",
+    "overwrite_allowed": false,
+    "resume_incomplete_episode": false,
+    "continue_from_guessed_cache_state": false,
+    "never_started_pairings_may_resume": true,
+    "incomplete_attempt_retained": true,
+    "replacement_attempt_uses_next_monotonic_attempt_id": true,
+    "attempts_count_toward_phase_caps": true,
+    "scientific_failures_may_be_rerun": false,
+    "technical_recovery_requires_predeclared_rule": true
+  },
+  "hard_caps": {
+    "A1": {"gpu_count": 0, "model_queries": 0, "episode_attempts": 0, "wall_seconds": null, "artifact_bytes": 536870912, "downloads": false},
+    "A2": {"gpu_count": 0, "model_queries": 0, "episode_attempts": 0, "wall_seconds": null, "artifact_bytes": 536870912, "downloads": false},
+    "A3": {"gpu_count": 1, "model_queries": 16, "episode_attempts": 0, "wall_seconds": 3600, "artifact_bytes": 536870912, "downloads": false},
+    "A4": {"gpu_count": 1, "model_queries": null, "episode_attempts": 100, "wall_seconds": 28800, "artifact_bytes": 1073741824, "downloads": false},
+    "A5": {"gpu_count": 1, "model_queries": null, "episode_attempts": 300, "wall_seconds": 86400, "artifact_bytes": 2147483648, "downloads": false},
+    "A6": {"gpu_count": 1, "model_queries": null, "episode_attempts": 200, "wall_seconds": 57600, "artifact_bytes": 2147483648, "downloads": false},
+    "A7": {"gpu_count": 1, "model_queries": null, "episode_attempts": 400, "wall_seconds": 115200, "artifact_bytes": 3221225472, "downloads": false},
+    "A8": {"gpu_count": 1, "model_queries": null, "episode_attempts": 3200, "wall_seconds": 720000, "artifact_bytes": 12884901888, "downloads": false}
+  },
+  "planning_basis": {
+    "steady_query_seconds": 1.26749,
+    "maximum_observed_aggregate_episode_seconds": 89.388,
+    "runtime_envelope_seconds_per_episode": 111.735,
+    "maximum_observed_artifact_bytes_per_episode": 2654102,
+    "artifact_envelope_bytes_per_episode": 3317628,
+    "envelope_multiplier": 1.25
+  },
+  "bounded_estimates": {
+    "A3": {"wall_seconds": 1800, "artifact_bytes": 67108864},
+    "A4": {"wall_seconds": 12974, "artifact_bytes": 331762800},
+    "A5": {"wall_seconds": 35321, "artifact_bytes": 995288400},
+    "A6": {"wall_seconds": 24147, "artifact_bytes": 663525600},
+    "A7": {"wall_seconds": 48294, "artifact_bytes": 1327051200},
+    "A8": {"wall_seconds": 364752, "artifact_bytes": 10616409600}
+  },
+  "artifact_policy": {
+    "root_pattern": "/home/ved/SAVR/results/<run_id>",
+    "immutable_compact_records_required": true,
+    "large_artifacts_committed_to_git": false,
+    "raw_images_default": false,
+    "videos_default": false,
+    "checkpoint_copies_allowed": false,
+    "cap_counts_failed_and_interrupted_attempts": true,
+    "stop_before_cap": true,
+    "deletion_to_evade_cap": false
+  }
+}

@@ -25,7 +25,7 @@ Exactly one phase may be `IN_PROGRESS`.
 | 6S-E. Matched comparisons and power | NOT_RUN_INELIGIBLE | SAVR3 did not pass the frozen Phase 6S-D positive gate | Eligible candidate from a future predeclared method |
 | ACR-P. Proposal and master protocol | COMPLETE | Negative evidence archived; ACR method proposal and `docs/ACR_EXECUTION_PROTOCOL_V1.md` prepared without ACR outcomes; Phase A0 authorized | — |
 | A0. ACR novelty, source, and split audit | COMPLETE | Narrow novelty distinction, pinned camera factorization, 40-task/50-state mapping, historical split ledger, and exact implementation design verified in the A0 audit/report set; no ACR outcome | — |
-| A1. ACR protocol/resource acceptance | NOT_STARTED | — | Explicit user authorization |
+| A1. ACR protocol/resource acceptance | COMPLETE | Protocol accepted without amendment; schemas, run IDs, recovery rules, artifact policy, and bounded resource estimates frozen; no ACR outcome | — |
 | A2. ACR implementation and CPU verification | NOT_STARTED | — | Explicit Phase A2 authorization |
 | A3. ACR bounded real-model correctness | NOT_STARTED | — | CPU gates and explicit GPU authorization |
 | A4. ACR development FR/candidate freeze | NOT_STARTED | — | Exact real-model parity and explicit rollout authorization |
@@ -42,10 +42,10 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-No phase is active. ACR Phase A0 is complete and Phase A1 awaits explicit user
-authorization. A0 narrowed the novelty claim, verified the pinned per-camera
-source boundary, and reconciled all four suite populations without an ACR
-outcome.
+No phase is active. ACR Phase A1 is complete and A2 awaits explicit user
+authorization. A1 accepted the protocol and froze schemas, identities,
+recovery rules, and resources without an ACR outcome or GPU/model/simulator
+use. A2 is limited to implementation and CPU verification.
 The prior SAVR Phase 6S-D remains stopped negative, Phase 6S-E is ineligible,
 and legacy Phase 7 is unauthorized. Initial-state `10-49` / seed `7,17,27`
 outcomes remain untouched across all four supported suites.
