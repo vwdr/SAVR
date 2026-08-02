@@ -1,6 +1,6 @@
 # SAVR Decision Log
 
-Last updated: 2026-07-31
+Last updated: 2026-08-02
 
 ## D-001 — University-server safety boundary
 
@@ -407,3 +407,22 @@ Last updated: 2026-07-31
 - Integrity: All 70 terminal records and 944 queries reconcile; all nine reuses skipped exactly one backbone and projector call; no technical or invariant error occurred; protected checkpoint hashes were restored.
 - Evidence: `reports/PHASE6S_D_VALIDATION_REPORT.md`; analysis SHA-256 `de570a1b79c7e7e50bf5193f5bf2d2f7048c2336abf10c0dd0b460db51f3e789`.
 - Approver: Mechanically required by the frozen Phase 6S protocol, 2026-07-31.
+
+## D-049 — Prepare a separate Asymmetric Camera Refresh route
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve all whole-prefix SAVR negative evidence and prepare a
+  materially different Asymmetric Camera Refresh proposal and phase-gated
+  execution protocol. ACR always refreshes the wrist-camera pathway and may
+  reuse only the scene-camera token block. The protocol separates Object
+  development, Goal confirmation, and LIBERO-10 transfer from a protected,
+  fresh-state four-suite final evaluation. Creating these documents authorizes
+  no implementation, GPU work, simulator outcome, final-holdout access, or
+  manuscript change.
+- Evidence: User instruction on 2026-08-02;
+  `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md`;
+  `docs/ASYMMETRIC_CAMERA_REFRESH_PROPOSAL.md`;
+  `docs/ACR_EXECUTION_PROTOCOL_V1.md`.
+- Approver: User authorized planning, 2026-08-02. Execution remains subject to
+  the protocol's phase gates.
