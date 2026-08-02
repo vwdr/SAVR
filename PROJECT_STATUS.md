@@ -1,8 +1,26 @@
 # Project Status
 
-Last updated: 2026-07-31
+Last updated: 2026-08-02
 
 ## Current phase
+
+ACR planning — **MASTER EXECUTION PROTOCOL PREPARED FOR REVIEW; NO ACR
+IMPLEMENTATION OR OUTCOME PHASE IS ACTIVE**
+
+The original whole-prefix SAVR program remains stopped negative. Its evidence
+is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
+companion `docs/evidence/negative_results_summary.csv`. A materially different
+Asymmetric Camera Refresh route is proposed in
+`docs/ASYMMETRIC_CAMERA_REFRESH_PROPOSAL.md`.
+
+`docs/ACR_EXECUTION_PROTOCOL_V1.md` now defines the staged novelty audit,
+implementation, correctness, development, independent confirmation, matched
+baselines, transfer, power, final evaluation, resource, and stop rules. Its
+creation authorizes no ACR code, GPU run, simulator outcome, final-holdout
+access, or manuscript modification. After user acceptance, the next eligible
+step is ACR Phase A0 only.
+
+### Legacy SAVR terminal state
 
 Phase 6S-D — SAVR3 fresh development validation: **STOPPED NEGATIVE
 (POSITIVE GATE NOT MET; PHASE 6S-E INELIGIBLE)**
