@@ -23,9 +23,9 @@ Exactly one phase may be `IN_PROGRESS`.
 | 6S-C. SAVR3 implementation and correctness | COMPLETE | 102 CPU tests and all changed-file static checks pass; distinct policy/veto, frozen config, and independent gate validator implemented | Frozen states-3-9 validation |
 | 6S-D. Fresh development validation | STOPPED_NEGATIVE | 70/70 terminal, 69/70 success, 9/944 reuses (0.95%), zero technical/invariant failures; both success and skip gates missed | Materially different method with new independent evidence |
 | 6S-E. Matched comparisons and power | NOT_RUN_INELIGIBLE | SAVR3 did not pass the frozen Phase 6S-D positive gate | Eligible candidate from a future predeclared method |
-| ACR-P. Proposal and master protocol | READY_FOR_REVIEW | Negative evidence archived; ACR method proposal and `docs/ACR_EXECUTION_PROTOCOL_V1.md` prepared without ACR outcomes | User review of the master protocol |
-| A0. ACR novelty, source, and split audit | NOT_STARTED | — | Accepted master protocol and Phase A0 authorization |
-| A1. ACR protocol/resource acceptance | NOT_STARTED | — | Accepted novelty and implementation-design evidence |
+| ACR-P. Proposal and master protocol | COMPLETE | Negative evidence archived; ACR method proposal and `docs/ACR_EXECUTION_PROTOCOL_V1.md` prepared without ACR outcomes; Phase A0 authorized | — |
+| A0. ACR novelty, source, and split audit | COMPLETE | Narrow novelty distinction, pinned camera factorization, 40-task/50-state mapping, historical split ledger, and exact implementation design verified in the A0 audit/report set; no ACR outcome | — |
+| A1. ACR protocol/resource acceptance | NOT_STARTED | — | Explicit user authorization |
 | A2. ACR implementation and CPU verification | NOT_STARTED | — | Explicit Phase A2 authorization |
 | A3. ACR bounded real-model correctness | NOT_STARTED | — | CPU gates and explicit GPU authorization |
 | A4. ACR development FR/candidate freeze | NOT_STARTED | — | Exact real-model parity and explicit rollout authorization |
@@ -42,12 +42,13 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-No execution phase is active. ACR-P is ready for user review. The prior SAVR
-Phase 6S-D remains stopped negative, Phase 6S-E is ineligible, and legacy Phase
-7 is unauthorized. Initial-state `10-49` / seed `7,17,27` outcomes remain
-untouched; the ACR protocol additionally reserves those state IDs across all
-four supported suites. Acceptance of the ACR master protocol would authorize
-only the next separately approved phase, beginning with A0.
+No phase is active. ACR Phase A0 is complete and Phase A1 awaits explicit user
+authorization. A0 narrowed the novelty claim, verified the pinned per-camera
+source boundary, and reconciled all four suite populations without an ACR
+outcome.
+The prior SAVR Phase 6S-D remains stopped negative, Phase 6S-E is ineligible,
+and legacy Phase 7 is unauthorized. Initial-state `10-49` / seed `7,17,27`
+outcomes remain untouched across all four supported suites.
 
 ## Phase 6R-B current checklist
 

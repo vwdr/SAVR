@@ -4,8 +4,7 @@ Last updated: 2026-08-02
 
 ## Current phase
 
-ACR planning — **MASTER EXECUTION PROTOCOL PREPARED FOR REVIEW; NO ACR
-IMPLEMENTATION OR OUTCOME PHASE IS ACTIVE**
+ACR Phase A0 — **COMPLETE; A1 AWAITING USER AUTHORIZATION**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -17,8 +16,15 @@ Asymmetric Camera Refresh route is proposed in
 implementation, correctness, development, independent confirmation, matched
 baselines, transfer, power, final evaluation, resource, and stop rules. Its
 creation authorizes no ACR code, GPU run, simulator outcome, final-holdout
-access, or manuscript modification. After user acceptance, the next eligible
-step is ACR Phase A0 only.
+access, or manuscript modification. The user authorized Phase A0 on
+2026-08-02. Phase A0 completed its primary-source/code research, pinned-source
+inspection, split/resource audit, and exact implementation design without an
+ACR implementation or outcome. The novelty gate passes only for the narrowed
+camera-block contribution recorded in `docs/ACR_NOVELTY_AUDIT.md`. The pinned
+source boundary and bitwise-parity risk are recorded in
+`docs/ACR_IMPLEMENTATION_DESIGN.md`; all protected populations remain
+untouched according to `docs/ACR_SPLIT_AND_RESOURCE_AUDIT.md`. Phase A1 has
+not been authorized.
 
 ### Legacy SAVR terminal state
 
