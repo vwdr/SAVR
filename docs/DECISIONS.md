@@ -426,3 +426,43 @@ Last updated: 2026-08-02
   `docs/ACR_EXECUTION_PROTOCOL_V1.md`.
 - Approver: User authorized planning, 2026-08-02. Execution remains subject to
   the protocol's phase gates.
+
+## D-050 — Authorize ACR Phase A0 only
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Execute the ACR novelty, pinned-source, suite/split, resource, and
+  implementation-design audit defined as Phase A0 in
+  `docs/ACR_EXECUTION_PROTOCOL_V1.md`. Do not implement ACR, run a model, use a
+  GPU, launch a simulator, inspect protected outcomes, derive numerical
+  thresholds, modify the manuscript, or begin Phase A1/A2 work.
+- Evidence: User instruction to proceed with Phase A0 on 2026-08-02.
+- Approver: User, 2026-08-02.
+
+## D-051 — Accept the narrowed ACR novelty boundary at Phase A0
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: The ACR novelty gate passes only for the complete conjunction of
+  temporal scene-camera projected-block reuse, an always-fresh wrist block,
+  unchanged scene-first/wrist-second token positions, deterministic
+  training-free fail-closed control, and skipped scene encoder/projector work
+  in chunked two-view OpenVLA-OFT. Do not claim generic adaptive multi-view
+  perception, temporal VLA caching, state-aware efficient inference, or
+  asynchronous multimodal VLA novelty.
+- Evidence: `docs/ACR_NOVELTY_AUDIT.md`; current full-text/code audit completed
+  2026-08-02.
+- Approver: Mechanically required by ACR Protocol V1 Phase A0.
+
+## D-052 — Close ACR Phase A0 and stop before A1
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept the pinned source boundary, four-suite/50-state mapping,
+  consumed-population ledger, absence of ACR outcomes, and exact implementation
+  design. Bitwise camera-factorized projector parity remains unproven and must
+  be a hard A3 stop gate. Complete A0 without starting A1 or A2.
+- Evidence: `docs/ACR_IMPLEMENTATION_DESIGN.md`;
+  `docs/ACR_SPLIT_AND_RESOURCE_AUDIT.md`; `reports/PHASE_A0_REPORT.md`.
+- Approver: ACR Protocol V1 Phase A0 exit rules, 2026-08-02. Phase A1 still
+  requires user authorization.
