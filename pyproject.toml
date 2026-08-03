@@ -6,7 +6,7 @@ requires-python = ">=3.10"
 dependencies = ["jsonschema>=4.18"]
 
 [project.optional-dependencies]
-test = ["pytest>=7"]
+test = ["numpy>=1.24", "pytest>=7"]
 
 [build-system]
 requires = ["setuptools>=68"]
