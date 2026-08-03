@@ -28,7 +28,7 @@ Exactly one phase may be `IN_PROGRESS`.
 | A1. ACR protocol/resource acceptance | COMPLETE | Protocol accepted without amendment; schemas, run IDs, recovery rules, artifact policy, and bounded resource estimates frozen; no ACR outcome | — |
 | A2. ACR implementation and CPU verification | COMPLETE | Separate adapter/controller/cache/signals, camera accounting, immutable compact records, deterministic candidate/statistical utilities; 133 repository tests including 31 ACR tests plus static/build checks pass; no model/GPU/simulator/outcome | — |
 | A3. ACR bounded real-model correctness | COMPLETE | All scientific proofs passed in 12/16 queries; exact token/action parity, camera isolation, reuse/fresh-wrist/current-state, and fail-closed checks; original technical failure preserved; loader changes restored and CPU adjudication passed with no rerun | — |
-| A4. ACR development FR/candidate freeze | NOT_STARTED | — | Exact real-model parity and explicit rollout authorization |
+| A4. ACR development FR/candidate freeze | IN_PROGRESS | User authorization received; exact 100-episode upstream-FR Object population, feasibility gate, resources, recovery, and derivation rules frozen before outcome access | 100 reconciled FR terminals, feasibility pass, and byte-identical candidate derivations |
 | A5. ACR staged development | NOT_STARTED | — | Frozen candidates and explicit development authorization |
 | A6. ACR independent Goal confirmation | NOT_STARTED | — | One frozen eligible method and explicit confirmation authorization |
 | A7. ACR baselines, transfer, and power | NOT_STARTED | — | Positive confirmation and explicit Phase A7 authorization |
@@ -42,11 +42,11 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-No phase is active. ACR Phase A3 is complete with a transparent technical
-recovery and A4 awaits explicit user authorization. All A3 scientific proofs
-passed exactly within 12/16 queries. The original failed attempt remains
-immutable; no model query was rerun. A4 would open the 100-episode Object
-development FR population and is not authorized.
+ACR Phase A4 is the only active phase. It may open exactly the 100-episode
+LIBERO-Object development FR population and then apply the frozen feasibility
+and deterministic candidate-derivation gates. No ACR rollout is authorized.
+All A3 scientific proofs passed exactly within 12/16 queries, and the original
+technical failure remains immutable with no model-query rerun.
 The prior SAVR Phase 6S-D remains stopped negative, Phase 6S-E is ineligible,
 and legacy Phase 7 is unauthorized. Initial-state `10-49` / seed `7,17,27`
 outcomes remain untouched across all four supported suites.

@@ -4,7 +4,7 @@ Last updated: 2026-08-02
 
 ## Current phase
 
-ACR Phase A3 — **COMPLETE WITH TECHNICAL RECOVERY; A4 AWAITING AUTHORIZATION**
+ACR Phase A4 — **IN PROGRESS: DEVELOPMENT FR AND CANDIDATE FREEZE**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -45,7 +45,10 @@ technically failed because the pinned loader's temporary checkpoint rewrites
 were audited before restoration. The files were restored to their accepted
 hashes and a committed CPU-only adjudication passed without any additional
 model query. Total use was 12/16 queries, one GPU, zero simulator resets, zero
-episodes, no benchmark population, and no download. A4 is not authorized.
+episodes, no benchmark population, and no download. The user authorized A4 on
+2026-08-02. A4 is limited to one upstream-FR pass over the 100 LIBERO-Object
+development episodes, the frozen feasibility gate, and two byte-identical
+derivations of exactly three candidates. No ACR rollout is authorized in A4.
 
 ### Legacy SAVR terminal state
 

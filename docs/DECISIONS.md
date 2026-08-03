@@ -556,3 +556,16 @@ Last updated: 2026-08-02
   `results/acr-a3-correctness-none-v01`.
 - Approver: Mechanical A3 evidence adjudication under Protocol V1,
   2026-08-02. A4 still requires explicit user authorization.
+
+## D-059 — Authorize the frozen A4 development-FR population
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Open exactly LIBERO-Object tasks `0-9`, states `0-9`, seed `0`
+  once under unmodified upstream two-view FR. Apply the Protocol V1 feasibility
+  gate before deriving exactly three candidates twice. Permit no ACR rollout,
+  retry, threshold change, replacement candidate, download, protected-population
+  access, or manuscript edit in A4.
+- Evidence: User approval on 2026-08-02; `docs/ACR_PHASE_A4_PREFLIGHT.md`;
+  `configs/acr/development_fr.json`; A3 report and merge `7013e71`.
+- Approver: User, 2026-08-02.
