@@ -52,3 +52,17 @@ def test_exact_array_proof_is_bitwise_and_rejects_tolerance():
     changed[0, 0] = np.nextafter(changed[0, 0], np.float32(2.0))
     with pytest.raises(RuntimeError, match="exact parity failed"):
         RUNNER.exact_array_proof(baseline, changed, np, "test")
+
+
+def test_selected_gpu_snapshot_parses_one_exact_device(monkeypatch):
+    monkeypatch.setattr(
+        RUNNER.subprocess,
+        "check_output",
+        lambda *args, **kwargs: "2, GPU-test, NVIDIA TITAN RTX, 24576, 64, 0\n",
+    )
+    snapshot = RUNNER.selected_gpu_snapshot("2")
+    assert snapshot["index"] == 2
+    assert snapshot["uuid"] == "GPU-test"
+    assert snapshot["memory_used_mib"] == 64
+    with pytest.raises(RuntimeError, match="identity is inconsistent"):
+        RUNNER.selected_gpu_snapshot("1")

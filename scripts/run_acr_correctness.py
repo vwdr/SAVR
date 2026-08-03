@@ -80,6 +80,34 @@ def git_output(path: Path, *arguments: str) -> str:
     return subprocess.check_output(["git", "-C", str(path), *arguments], text=True).strip()
 
 
+def selected_gpu_snapshot(physical_gpu_id: str) -> dict[str, Any]:
+    fields = "index,uuid,name,memory.total,memory.used,utilization.gpu"
+    output = subprocess.check_output(
+        [
+            "nvidia-smi",
+            f"--id={physical_gpu_id}",
+            f"--query-gpu={fields}",
+            "--format=csv,noheader,nounits",
+        ],
+        text=True,
+    ).strip()
+    rows = [row.strip() for row in output.splitlines() if row.strip()]
+    if len(rows) != 1:
+        raise RuntimeError("Selected GPU snapshot did not resolve exactly one device")
+    values = [value.strip() for value in rows[0].split(",")]
+    if len(values) != 6 or values[0] != physical_gpu_id:
+        raise RuntimeError("Selected GPU snapshot identity is inconsistent")
+    return {
+        "index": int(values[0]),
+        "uuid": values[1],
+        "name": values[2],
+        "memory_total_mib": int(values[3]),
+        "memory_used_mib": int(values[4]),
+        "utilization_percent": int(values[5]),
+        "recorded_at_utc": utc_now(),
+    }
+
+
 def require_clean_revision(path: Path, expected: str | None = None) -> str:
     revision = git_output(path, "rev-parse", "HEAD")
     if expected is not None and revision != expected:
@@ -350,6 +378,9 @@ def main() -> int:
     require_clean_revision(upstream_root, OPENVLA_REVISION)
     require_clean_revision(libero_root, LIBERO_REVISION)
     checkpoint_before = validate_checkpoint(project_root, checkpoint)
+    gpu_snapshot_before = selected_gpu_snapshot(physical_gpu_id)
+    if gpu_snapshot_before["uuid"] != selected_uuid:
+        raise RuntimeError("Selected GPU UUID differs from the aggregate pre-run snapshot")
     started_at = utc_now()
     started_wall = time.monotonic()
 
@@ -440,6 +471,7 @@ def main() -> int:
         "rollout_episodes": 0,
         "simulator_resets": 0,
         "checkpoint_before": checkpoint_before,
+        "gpu_snapshot_before": gpu_snapshot_before,
         "proofs": {},
     }
     cfg = upstream_eval.GenerateConfig(
@@ -807,6 +839,9 @@ def main() -> int:
         require_clean_revision(libero_root, LIBERO_REVISION)
         require_clean_revision(project_root, source_revision)
         proof["checkpoint_after"] = checkpoint_after
+        proof["gpu_snapshot_after"] = selected_gpu_snapshot(physical_gpu_id)
+        if proof["gpu_snapshot_after"]["uuid"] != selected_uuid:
+            raise RuntimeError("Selected GPU UUID differs from the aggregate post-run snapshot")
         proof["source_trees_restored"] = True
         proof["query_count"] = len(budget.attempts)
         proof["status"] = "PASS"
