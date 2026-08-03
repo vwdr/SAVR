@@ -1,0 +1,108 @@
+{
+  "schema_version": "acr.a5-development.v1",
+  "phase": "A5",
+  "policy": "sa-acr",
+  "suite": "libero_object",
+  "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "seed": 0,
+  "candidate_source": {
+    "path": "configs/acr/candidates.json",
+    "file_sha256": "8f1503e4f579df9a0a4026b178492566b4ad206830886dfba2418852574567a4",
+    "semantic_sha256": "1cced910aec61f7666c43b90abb12c3da3b804abeb11ca3ea84fb01bc7b279ea"
+  },
+  "eligible_candidates": [
+    {
+      "configuration_id": "acr-t25-h2-b30",
+      "controller_version": "acr-controller-v1",
+      "scene_threshold": 0.2476380718954248,
+      "translation_threshold": 0.5479944908411765,
+      "horizon": 2,
+      "hard_reuse_cap": 0.3
+    },
+    {
+      "configuration_id": "acr-t50-h4-b55",
+      "controller_version": "acr-controller-v1",
+      "scene_threshold": 0.30046895424836606,
+      "translation_threshold": 0.685919037527938,
+      "horizon": 4,
+      "hard_reuse_cap": 0.55
+    },
+    {
+      "configuration_id": "acr-t70-h8-b75",
+      "controller_version": "acr-controller-v1",
+      "scene_threshold": 0.30046895424836606,
+      "translation_threshold": 0.685919037527938,
+      "horizon": 8,
+      "hard_reuse_cap": 0.75
+    }
+  ],
+  "stages": {
+    "stage1": {
+      "initial_state_ids": [0, 1, 2],
+      "attempts_per_candidate": 30,
+      "run_id_template": "acr-a5-sa-acr-object-stage1-<candidate>-v01",
+      "advance_gate": {
+        "terminal_episodes": 30,
+        "successes": 30,
+        "per_task_successes": 3,
+        "minimum_scene_reuse": 0.15,
+        "technical_failures": 0
+      }
+    },
+    "stage2": {
+      "initial_state_ids": [3, 4, 5, 6, 7, 8, 9],
+      "attempts_per_candidate": 70,
+      "run_id_template": "acr-a5-sa-acr-object-stage2-<candidate>-v01",
+      "eligibility_gate": {
+        "maximum_success_loss_vs_fr": 2,
+        "maximum_per_task_success_loss_vs_fr": 1,
+        "minimum_scene_reuse": 0.4,
+        "minimum_visual_cuda_reduction": 0.1,
+        "technical_failures": 0
+      }
+    }
+  },
+  "selection_order": [
+    "highest_paired_success_difference",
+    "within_one_percentage_point_highest_query_latency_reduction",
+    "highest_visual_cuda_reduction",
+    "lowest_horizon",
+    "lexicographic_configuration_id"
+  ],
+  "analysis": {
+    "success_pairing": ["suite", "task_id", "initial_state_id", "seed"],
+    "steady_visual_cuda_point": "sum_steady_visual_cuda_ms_divided_by_steady_query_count",
+    "steady_query_latency_point": "sum_steady_query_wall_ms_divided_by_steady_query_count",
+    "reduction": "one_minus_acr_point_divided_by_upstream_fr_point",
+    "fr_source_run_id": "acr-a4-upstream-fr-object-dev00-09-v01"
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "episode_attempts": 300,
+    "wall_seconds": 86400,
+    "artifact_bytes": 2147483648,
+    "downloads_allowed": false
+  },
+  "timing": {
+    "exclude_global_query_indices_from_steady_state_per_run": [0, 1, 2]
+  },
+  "recovery": {
+    "mode": "preserve-and-restart",
+    "automatic_episode_retry": false,
+    "resume_incomplete_episode": false,
+    "first_attempt_index": 1
+  },
+  "model": {
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "libero_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "num_open_loop_steps": 8,
+    "num_images_in_input": 2,
+    "use_proprio": true,
+    "use_l1_regression": true,
+    "use_diffusion": false,
+    "use_film": false,
+    "center_crop": true
+  }
+}

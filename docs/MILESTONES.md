@@ -29,7 +29,7 @@ At most one phase may be `IN_PROGRESS`.
 | A2. ACR implementation and CPU verification | COMPLETE | Separate adapter/controller/cache/signals, camera accounting, immutable compact records, deterministic candidate/statistical utilities; 133 repository tests including 31 ACR tests plus static/build checks pass; no model/GPU/simulator/outcome | — |
 | A3. ACR bounded real-model correctness | COMPLETE | All scientific proofs passed in 12/16 queries; exact token/action parity, camera isolation, reuse/fresh-wrist/current-state, and fail-closed checks; original technical failure preserved; loader changes restored and CPU adjudication passed with no rerun | — |
 | A4. ACR development FR/candidate freeze | COMPLETE | 100/100 terminal FR episodes, 97 successes, every task ≥8/10, zero technical failures; both independent analyses produced byte-identical records for exactly three frozen candidates | — |
-| A5. ACR staged development | NOT_STARTED | — | Frozen candidates and explicit development authorization |
+| A5. ACR staged development | IN_PROGRESS | User authorization received; exact candidates, 90-episode Stage 1 matrix, gates, resources, and conditional Stage 2 boundary frozen before ACR outcome access | Stage 1 safety screen |
 | A6. ACR independent Goal confirmation | NOT_STARTED | — | One frozen eligible method and explicit confirmation authorization |
 | A7. ACR baselines, transfer, and power | NOT_STARTED | — | Positive confirmation and explicit Phase A7 authorization |
 | A8. ACR primary four-suite final evaluation | NOT_STARTED | — | Frozen final package and separate final-holdout authorization |
@@ -42,10 +42,10 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-No phase is active. ACR Phase A4 is complete: its 100-episode upstream-FR
-population passed the frozen feasibility gate and exactly three candidates
-were derived byte-identically and frozen. No ACR rollout or method outcome has
-yet occurred. A5 remains unauthorized and requires explicit user approval.
+ACR Phase A5 is the only active phase. Its preflight opens exactly Object
+states `0-2` for the three frozen candidates. States `3-9` remain unopened
+until a candidate passes every Stage 1 gate. No threshold, candidate, horizon,
+cap, gate, or split may change after ACR outcome access.
 The prior SAVR Phase 6S-D remains stopped negative, Phase 6S-E is ineligible,
 and legacy Phase 7 is unauthorized. Initial-state `10-49` / seed `7,17,27`
 outcomes remain untouched across all four supported suites.
