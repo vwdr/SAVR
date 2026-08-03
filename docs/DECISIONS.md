@@ -1,6 +1,6 @@
 # SAVR Decision Log
 
-Last updated: 2026-08-02
+Last updated: 2026-08-03
 
 ## D-001 — University-server safety boundary
 
@@ -569,3 +569,22 @@ Last updated: 2026-08-02
 - Evidence: User approval on 2026-08-02; `docs/ACR_PHASE_A4_PREFLIGHT.md`;
   `configs/acr/development_fr.json`; A3 report and merge `7013e71`.
 - Approver: User, 2026-08-02.
+
+## D-060 — Accept A4 feasibility and freeze exactly three candidates
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept the A4 feasibility gate after 100/100 terminal upstream-FR
+  Object episodes, 97 successes, every task at or above 8/10, 1,773
+  reconciled queries/traces, and zero technical failures. Freeze only
+  `acr-t25-h2-b30`, `acr-t50-h4-b55`, and `acr-t70-h8-b75` from the
+  byte-identical deterministic derivations. Preserve both completed CPU
+  analyses and disclose that the recovery was launched after an SSH disconnect
+  before the original analysis completion became visible. This is not an ACR
+  method result. Do not begin A5, alter any candidate, access a protected
+  population, or modify the manuscript without new authorization.
+- Evidence: `reports/PHASE_A4_REPORT.md`;
+  `reports/runtime/acr_a4_analysis.json`; `configs/acr/candidates.json`;
+  immutable TITAN run `results/acr-a4-upstream-fr-object-dev00-09-v01`.
+- Approver: Mechanical A4 exit gate under Protocol V1, 2026-08-03. A5 still
+  requires explicit user authorization.

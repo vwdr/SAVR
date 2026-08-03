@@ -1,0 +1,33 @@
+{
+  "analysis_attempts": [
+    {
+      "record_sha256": "0ce56d2b6c099066ff07c190d76e51543cd1f670494651cc47cdeb4d2195e688",
+      "recorded_at_utc": "2026-08-03T05:55:11.313850+00:00",
+      "semantic_sha256": "f2897ba84e204dc09c6579f4e3638d0bf3ca0a7ac74efbe0abb3b65cd716b0da"
+    },
+    {
+      "record_sha256": "09ccefe3fe7b2aae0842b8295d24ed607dbda1a44278e76407d67042c5f43117",
+      "recorded_at_utc": "2026-08-03T08:28:53.993937+00:00",
+      "semantic_sha256": "e6d5302974df07444508742c1ca8fd78dac95f8c703301ec91e4c49dc703f87e"
+    }
+  ],
+  "analyzer_revision": "cfb27b5a34c3864c77ce19d3881f5b47d2f393e8",
+  "artifact_bytes_after_analysis": 35522545,
+  "candidate_derivations_byte_identical": true,
+  "candidate_payload_semantic_sha256": "1cced910aec61f7666c43b90abb12c3da3b804abeb11ca3ea84fb01bc7b279ea",
+  "candidate_record_sha256": "8f1503e4f579df9a0a4026b178492566b4ad206830886dfba2418852574567a4",
+  "disposition": "PASS_CANDIDATES_FROZEN",
+  "feasibility": {
+    "passed": true,
+    "per_task_successes": {"0": 8, "1": 10, "2": 10, "3": 10, "4": 10, "5": 10, "6": 10, "7": 10, "8": 10, "9": 9},
+    "successes": 97,
+    "technical_failures": 0,
+    "terminal_episodes": 100
+  },
+  "query_records": 1773,
+  "run_id": "acr-a4-upstream-fr-object-dev00-09-v01",
+  "run_records_sha256": "1bdd94262afca7ae5c1839e28302a9c44f4334c8bb831ae2ded6c3c3ef07c97c",
+  "schema_version": "acr.a4-checkpoint.v1",
+  "trace_records": 1773,
+  "trace_sha256": "577d683be265af7919deeb58cbbb895c9b6b1975b093c845b39e34a353fb0d69"
+}
