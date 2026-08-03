@@ -4,7 +4,7 @@ Last updated: 2026-08-03
 
 ## Current phase
 
-ACR Phase A5 — **IN PROGRESS: STAGED ACR DEVELOPMENT**
+ACR Phase A5 — **STOPPED NEGATIVE: NO STAGE 1 CANDIDATE ADVANCED**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -59,7 +59,14 @@ The user authorized A5 on 2026-08-03. A5 first runs exactly the three frozen
 candidates on Object states `0-2` and applies the 30/30 success, per-task,
 15% scene-reuse, and invariant gates. Object states `3-9` remain unavailable
 until the committed analyzer mechanically identifies an advancing candidate.
-No ACR outcome had been observed when the A5 preflight was frozen.
+No ACR outcome had been observed when the A5 preflight was frozen. Stage 1
+subsequently completed all 90 episodes with zero technical failures. The three
+candidates achieved 29/30, 24/30, and 23/30 success with 26.06%, 47.40%, and
+49.44% scene reuse, respectively. Every camera-component invariant passed,
+but every candidate failed the exact success and per-task gates. The committed
+analyzer selected no advancing candidate, so Stage 2 was not run and A5
+stopped negative. A6 is ineligible and was not started. Full evidence is in
+`reports/PHASE_A5_REPORT.md`.
 
 ### Legacy SAVR terminal state
 
@@ -237,6 +244,9 @@ Completed:
 - the frozen SAVR3 validation completed 70/70 terminal episodes with 69 successes and 9/944 visual reuses
 - all nine SAVR3 reuses exactly skipped both visual components, with zero technical or invariant errors
 - SAVR3 failed the frozen 70/70 success and 5% skip gates, so no tuning or rerun was performed
+- ACR A5 Stage 1 completed all 90/90 frozen development episodes with zero technical failures
+- all three ACR candidates passed the reuse and instrumentation gates but failed the exact success and per-task gates
+- ACR Stage 2 and A6 were not run because the frozen analyzer selected no advancing candidate
 
 Not completed:
 
@@ -249,13 +259,15 @@ Not completed:
 - no final holdout outcome has been inspected
 - no Phase 6R-A GPU or simulator run was performed
 - no SAVR3 matched-baseline or confirmatory evaluation is eligible
+- no ACR candidate is eligible for Stage 2 or independent A6 confirmation
 
 ## Next authorized action
 
-No further experiment is authorized by the frozen Phase 6S protocol. Preserve
-the negative result, do not tune or rerun SAVR3, and never inspect the final
-holdout. A new attempt would require a materially different method and new
-independent development evidence.
+No further ACR experiment is authorized or eligible under Protocol V1.
+Preserve the A5 result, do not tune or rerun the frozen candidates, do not open
+Stage 2 or A6 populations, and never inspect the final holdout. A new attempt
+requires a materially different, explicitly authorized, predeclared method
+route and new independent development evidence.
 
 ## Candidate initial stack
 

@@ -604,3 +604,21 @@ Last updated: 2026-08-03
 - Evidence: User approval on 2026-08-03; `docs/ACR_PHASE_A5_PREFLIGHT.md`;
   `configs/acr/development_a5.json`; A4 report and merge `a4ec6b8`.
 - Approver: User, 2026-08-03.
+
+## D-062 — Apply the A5 Stage 1 negative stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Stop A5 before Stage 2 because the committed analyzer selected no
+  advancing candidate. Preserve the 90/90 terminal episodes and every
+  scientific failure. The candidates achieved 29/30, 24/30, and 23/30
+  success with 26.06%, 47.40%, and 49.44% scene reuse; all exact component
+  invariants passed and no technical failure occurred, but every candidate
+  failed the frozen success and per-task gates. Do not tune, rerun, replace,
+  or reinterpret a candidate; do not open Object states `3-9`, A6, or any
+  final holdout; do not modify the manuscript. A6 is ineligible.
+- Evidence: `reports/PHASE_A5_REPORT.md`;
+  `reports/runtime/acr_a5_stage1_analysis.json`; immutable TITAN Stage 1 run
+  records.
+- Approver: Mechanically required by ACR Protocol V1 and the user-authorized
+  frozen A5 preflight, 2026-08-03.
