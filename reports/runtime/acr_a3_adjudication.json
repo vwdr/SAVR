@@ -1,0 +1,33 @@
+{
+  "additional_model_queries": 0,
+  "adjudicator_revision": "e43da7d1f4045e41389dd6dcbf5b66a3fd66a764",
+  "checkpoint_hashes": {
+    "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+  },
+  "checkpoint_restored": true,
+  "control_flow_attestation": {
+    "runner_revision": "043853ab59f5900703172b40a47617183e741e47",
+    "runner_sha256": "60552cccf945eee913cd9df28acbd1249c358f3c3833b5d171fa4ecadd8c2fd8",
+    "terminal_gate": "Checkpoint inventory mismatch: config.json, modeling_prismatic.py"
+  },
+  "disposition": "PASS_WITH_TECHNICAL_RECOVERY",
+  "factorized_action_sha256": "01284327db30978fd7f56d75858941d648dc8a5337e35143d2d7ec68dfd0869d",
+  "original_attempt_status": "failed",
+  "preserved_record_count_before_adjudication": 14,
+  "preserved_records_sha256": "e0c66886cdb8abcc130f044e813abb605a79b60dd64e5cdc7bebe5354e7985e4",
+  "query_cap": 16,
+  "recorded_at_utc": "2026-08-03T00:46:29.445227+00:00",
+  "reuse_current_state_action_sha256": "1da8ef14a8d41991cee17a680440f2132809e851abe77c1b31bad166fa3a6898",
+  "reuse_scene_component_calls": [0, 0, 0],
+  "reuse_wrist_component_calls": [1, 1, 1],
+  "rollout_episodes": 0,
+  "run_id": "acr-a3-correctness-none-v01",
+  "schema_version": "acr.a3-adjudication.v1",
+  "scientific_proofs_passed": true,
+  "simulator_resets": 0,
+  "technical_root_cause": "Pinned loader changes were audited before restoration instead of after restoration.",
+  "total_model_queries": 12,
+  "upstream_trees_clean": true,
+  "upstream_visual_sha256": "21821a9554bdf6fdd87e93712488109c33b39c8157336e00eb47b12175330520"
+}
