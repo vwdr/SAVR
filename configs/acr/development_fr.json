@@ -1,0 +1,57 @@
+{
+  "schema_version": "acr.a4-development-fr.v1",
+  "run_id": "acr-a4-upstream-fr-object-dev00-09-v01",
+  "phase": "A4",
+  "policy": "upstream-fr",
+  "suite": "libero_object",
+  "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "initial_state_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "seed": 0,
+  "expected_attempts": 100,
+  "model": {
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "libero_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "num_open_loop_steps": 8,
+    "num_images_in_input": 2,
+    "use_proprio": true,
+    "use_l1_regression": true,
+    "use_diffusion": false,
+    "use_film": false,
+    "center_crop": true
+  },
+  "timing": {
+    "exclude_global_query_indices_from_steady_state": [0, 1, 2]
+  },
+  "feasibility_gate": {
+    "minimum_aggregate_successes": 90,
+    "minimum_successes_per_task": 8,
+    "required_terminal_episodes": 100,
+    "maximum_technical_failures": 0
+  },
+  "candidate_templates": [
+    {"configuration_id": "acr-t25-h2-b30", "target_reuse": 0.25, "horizon": 2, "hard_reuse_cap": 0.30},
+    {"configuration_id": "acr-t50-h4-b55", "target_reuse": 0.50, "horizon": 4, "hard_reuse_cap": 0.55},
+    {"configuration_id": "acr-t70-h8-b75", "target_reuse": 0.70, "horizon": 8, "hard_reuse_cap": 0.75}
+  ],
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "episode_attempts": 100,
+    "wall_seconds": 28800,
+    "artifact_bytes": 1073741824,
+    "downloads_allowed": false
+  },
+  "artifact_policy": {
+    "raw_images": false,
+    "videos": false,
+    "checkpoint_copies": false,
+    "write_once_records": true
+  },
+  "recovery": {
+    "mode": "preserve-and-stop",
+    "automatic_episode_retry": false,
+    "technical_attempts_count_toward_cap": true,
+    "continue_from_partial_episode": false
+  }
+}
