@@ -522,3 +522,18 @@ Last updated: 2026-08-02
 - Evidence: `reports/PHASE_A2_REPORT.md`; `src/savr/acr/`; `tests/acr/`.
 - Approver: Mechanically required by ACR Protocol V1 Phase A2 exit gate,
   2026-08-02.
+
+## D-057 — Authorize bounded ACR Phase A3
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Run the frozen A3 real-model correctness matrix using at most one
+  responsibly selected GPU, 16 policy queries, 3,600 wall seconds, and 512 MiB
+  of compact artifacts. Use the 12-query deterministic synthetic-input matrix
+  in `docs/ACR_PHASE_A3_PREFLIGHT.md`; leave four queries unused as safety
+  margin. Start no simulator, consume no benchmark population or outcome,
+  perform no download, and modify nothing outside `/home/ved/SAVR`. Any exact
+  projected-token or action parity failure stops A3 immediately without a
+  tolerance, rerun, or rollout.
+- Evidence: User approval on 2026-08-02; A2 completion at `864044d`.
+- Approver: User, 2026-08-02.

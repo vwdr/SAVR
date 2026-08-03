@@ -85,6 +85,7 @@ class OpenVLAAsymmetricCameraAdapter:
         cache: SceneTokenCache | None = None,
         instrumentation: CameraInstrumentation | None = None,
         action_chunk_getter: Callable[[Any], Any] | None = None,
+        projected_tokens_observer: Callable[[Any], None] | None = None,
     ) -> None:
         if not callable(getattr(model, self.METHOD_NAME, None)):
             raise TypeError(f"Model does not expose {self.METHOD_NAME}")
@@ -94,6 +95,7 @@ class OpenVLAAsymmetricCameraAdapter:
         self.cache = cache or SceneTokenCache()
         self.instrumentation = instrumentation or CameraInstrumentation()
         self.action_chunk_getter = action_chunk_getter or (lambda result: result)
+        self.projected_tokens_observer = projected_tokens_observer
         self._context: ACRContext | None = None
         self._lock = threading.Lock()
 
@@ -254,24 +256,33 @@ class OpenVLAAsymmetricCameraAdapter:
                     name="scene", pixels=scene_pixels, expected=expected
                 )
                 if cacheable:
-                    self.cache.store(
-                        context=context,
-                        tokens=scene_tokens,
-                        refresh_query_index=effective.query_index,
+                    self.instrumentation.measure_operation(
+                        "scene.cache-store",
+                        lambda: self.cache.store(
+                            context=context,
+                            tokens=scene_tokens,
+                            refresh_query_index=effective.query_index,
+                        ),
                     )
             else:
                 try:
-                    scene_tokens = self.cache.load(context, expected)
+                    scene_tokens = self.instrumentation.measure_operation(
+                        "scene.cache-load",
+                        lambda: self.cache.load(context, expected),
+                    )
                 except SceneCacheError:
                     effective = effective.force_refresh("cache")
                     cache_event = "forced-refresh"
                     scene_tokens = self._encode_camera(
                         name="scene", pixels=scene_pixels, expected=expected
                     )
-                    self.cache.store(
-                        context=context,
-                        tokens=scene_tokens,
-                        refresh_query_index=effective.query_index,
+                    self.instrumentation.measure_operation(
+                        "scene.cache-store",
+                        lambda: self.cache.store(
+                            context=context,
+                            tokens=scene_tokens,
+                            refresh_query_index=effective.query_index,
+                        ),
                     )
 
             wrist_tokens = self._encode_camera(
@@ -290,6 +301,8 @@ class OpenVLAAsymmetricCameraAdapter:
                 raise RuntimeError("Combined visual block dtype/device changed")
             if not self.tensor_ops.all_finite(combined):
                 raise RuntimeError("Combined visual block contains non-finite values")
+            if self.projected_tokens_observer is not None:
+                self.projected_tokens_observer(combined)
             return combined
 
         try:

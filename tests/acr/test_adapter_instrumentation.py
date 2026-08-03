@@ -175,7 +175,12 @@ def context(configuration):
     )
 
 
-def make_adapter(policy=ACRPolicy.SA_ACR, *, instrumentation=None):
+def make_adapter(
+    policy=ACRPolicy.SA_ACR,
+    *,
+    instrumentation=None,
+    projected_tokens_observer=None,
+):
     configuration = config(policy)
     model = FakeModel()
     adapter = OpenVLAAsymmetricCameraAdapter(
@@ -183,6 +188,7 @@ def make_adapter(policy=ACRPolicy.SA_ACR, *, instrumentation=None):
         controller=ACRController(configuration),
         tensor_ops=FakeOps(),
         instrumentation=instrumentation,
+        projected_tokens_observer=projected_tokens_observer,
     )
     adapter.begin_context(context(configuration))
     return model, adapter
@@ -316,3 +322,12 @@ def test_synchronized_component_timing_is_returned():
     assert result.device_timing.component_counts["scene.siglip"] == 1
     assert result.device_timing.component_counts["wrist.projector"] == 1
     assert backend.synchronizations == 2
+
+
+def test_projected_token_observer_receives_exact_combined_block_once():
+    observed = []
+    model, adapter = make_adapter(projected_tokens_observer=observed.append)
+    run(model, adapter)
+    assert len(observed) == 1
+    assert observed[0] is model.last_tokens
+    assert observed[0].shape == (1, 4, 4)

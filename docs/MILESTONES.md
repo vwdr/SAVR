@@ -27,7 +27,7 @@ Exactly one phase may be `IN_PROGRESS`.
 | A0. ACR novelty, source, and split audit | COMPLETE | Narrow novelty distinction, pinned camera factorization, 40-task/50-state mapping, historical split ledger, and exact implementation design verified in the A0 audit/report set; no ACR outcome | — |
 | A1. ACR protocol/resource acceptance | COMPLETE | Protocol accepted without amendment; schemas, run IDs, recovery rules, artifact policy, and bounded resource estimates frozen; no ACR outcome | — |
 | A2. ACR implementation and CPU verification | COMPLETE | Separate adapter/controller/cache/signals, camera accounting, immutable compact records, deterministic candidate/statistical utilities; 133 repository tests including 31 ACR tests plus static/build checks pass; no model/GPU/simulator/outcome | — |
-| A3. ACR bounded real-model correctness | NOT_STARTED | — | CPU gates and explicit GPU authorization |
+| A3. ACR bounded real-model correctness | IN_PROGRESS | User authorization received; 12-query synthetic-input matrix and fail-closed runner frozen before model access | Exact bitwise parity and all A3 proofs within 16 queries |
 | A4. ACR development FR/candidate freeze | NOT_STARTED | — | Exact real-model parity and explicit rollout authorization |
 | A5. ACR staged development | NOT_STARTED | — | Frozen candidates and explicit development authorization |
 | A6. ACR independent Goal confirmation | NOT_STARTED | — | One frozen eligible method and explicit confirmation authorization |
@@ -42,11 +42,11 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-No phase is active. ACR Phase A2 is complete and A3 awaits explicit user
-authorization. A2 passed its CPU/static/build gates without loading the model,
-using a GPU, starting a simulator, or accessing an ACR population. A3 is the
-bounded real-model parity phase and permits at most 16 policy queries and zero
-rollout episodes.
+ACR Phase A3 is the only active phase. Its predeclared matrix uses 12 of the 16
+allowed real-model queries on deterministic synthetic inputs. It uses one
+responsibly selected GPU, no simulator, no rollout episode, no benchmark
+population, and no download. Exact projected-token/action parity is a hard
+stop gate; no numerical tolerance is permitted.
 The prior SAVR Phase 6S-D remains stopped negative, Phase 6S-E is ineligible,
 and legacy Phase 7 is unauthorized. Initial-state `10-49` / seed `7,17,27`
 outcomes remain untouched across all four supported suites.
