@@ -4,7 +4,7 @@ Last updated: 2026-08-02
 
 ## Current phase
 
-ACR Phase A1 — **COMPLETE; A2 AWAITING USER AUTHORIZATION**
+ACR Phase A2 — **COMPLETE; A3 AWAITING USER AUTHORIZATION**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -29,7 +29,14 @@ and froze formal record schemas, run identities, recovery rules, artifact
 policies, and bounded phase estimates in
 `docs/ACR_PHASE_A1_RESOURCE_FREEZE.md` and
 `configs/acr/phase_a1_freeze.json`. It used no model, GPU, simulator, ACR
-population, or manuscript. Phase A2 has not been authorized.
+population, or manuscript. The user authorized Phase A2 on 2026-08-02. A2
+implemented the separate project-owned camera-factorized adapter, ACR
+controller/signals/cache, synchronized camera accounting, compact immutable
+FR records, deterministic candidate derivation, and frozen statistics. All 133
+repository tests pass, including 31 new ACR tests; source/test Ruff, source
+mypy, bootstrap validation, and package build pass. No model, GPU, simulator,
+ACR outcome, data-derived threshold, or manuscript was used. A3 has not been
+authorized.
 
 ### Legacy SAVR terminal state
 

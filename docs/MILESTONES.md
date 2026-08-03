@@ -26,7 +26,7 @@ Exactly one phase may be `IN_PROGRESS`.
 | ACR-P. Proposal and master protocol | COMPLETE | Negative evidence archived; ACR method proposal and `docs/ACR_EXECUTION_PROTOCOL_V1.md` prepared without ACR outcomes; Phase A0 authorized | — |
 | A0. ACR novelty, source, and split audit | COMPLETE | Narrow novelty distinction, pinned camera factorization, 40-task/50-state mapping, historical split ledger, and exact implementation design verified in the A0 audit/report set; no ACR outcome | — |
 | A1. ACR protocol/resource acceptance | COMPLETE | Protocol accepted without amendment; schemas, run IDs, recovery rules, artifact policy, and bounded resource estimates frozen; no ACR outcome | — |
-| A2. ACR implementation and CPU verification | NOT_STARTED | — | Explicit Phase A2 authorization |
+| A2. ACR implementation and CPU verification | COMPLETE | Separate adapter/controller/cache/signals, camera accounting, immutable compact records, deterministic candidate/statistical utilities; 133 repository tests including 31 ACR tests plus static/build checks pass; no model/GPU/simulator/outcome | — |
 | A3. ACR bounded real-model correctness | NOT_STARTED | — | CPU gates and explicit GPU authorization |
 | A4. ACR development FR/candidate freeze | NOT_STARTED | — | Exact real-model parity and explicit rollout authorization |
 | A5. ACR staged development | NOT_STARTED | — | Frozen candidates and explicit development authorization |
@@ -42,10 +42,11 @@ Exactly one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-No phase is active. ACR Phase A1 is complete and A2 awaits explicit user
-authorization. A1 accepted the protocol and froze schemas, identities,
-recovery rules, and resources without an ACR outcome or GPU/model/simulator
-use. A2 is limited to implementation and CPU verification.
+No phase is active. ACR Phase A2 is complete and A3 awaits explicit user
+authorization. A2 passed its CPU/static/build gates without loading the model,
+using a GPU, starting a simulator, or accessing an ACR population. A3 is the
+bounded real-model parity phase and permits at most 16 policy queries and zero
+rollout episodes.
 The prior SAVR Phase 6S-D remains stopped negative, Phase 6S-E is ineligible,
 and legacy Phase 7 is unauthorized. Initial-state `10-49` / seed `7,17,27`
 outcomes remain untouched across all four supported suites.
