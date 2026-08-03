@@ -588,3 +588,19 @@ Last updated: 2026-08-03
   immutable TITAN run `results/acr-a4-upstream-fr-object-dev00-09-v01`.
 - Approver: Mechanical A4 exit gate under Protocol V1, 2026-08-03. A5 still
   requires explicit user authorization.
+
+## D-061 — Authorize frozen A5 staged development
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Run exactly the three A4-frozen SA-ACR candidates first on
+  LIBERO-Object tasks `0-9`, states `0-2`, seed `0`, for 30 attempts each.
+  Apply every Protocol V1 Stage 1 gate mechanically. Open states `3-9` only
+  for candidates that advance, then apply the frozen development eligibility
+  and selection rules. Use at most one responsibly selected GPU, 300 total
+  attempts, 86,400 seconds, and 2 GiB of A5 artifacts. Permit no download,
+  automatic retry, outcome-driven tuning, protected-population access,
+  manuscript edit, or Phase A6 work.
+- Evidence: User approval on 2026-08-03; `docs/ACR_PHASE_A5_PREFLIGHT.md`;
+  `configs/acr/development_a5.json`; A4 report and merge `a4ec6b8`.
+- Approver: User, 2026-08-03.

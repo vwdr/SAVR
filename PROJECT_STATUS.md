@@ -4,10 +4,7 @@ Last updated: 2026-08-03
 
 ## Current phase
 
-ACR Phase A4 — **COMPLETE: FEASIBILITY PASS; THREE CANDIDATES FROZEN**
-
-No phase is currently active. ACR Phase A5 requires explicit user
-authorization.
+ACR Phase A5 — **IN PROGRESS: STAGED ACR DEVELOPMENT**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -58,6 +55,11 @@ Both the original CPU analysis and a transparently preserved recovery produced
 the same candidate record byte-for-byte. The three eligible candidates are
 frozen in `configs/acr/candidates.json`; no ACR method outcome has yet been
 observed. Full evidence is in `reports/PHASE_A4_REPORT.md`.
+The user authorized A5 on 2026-08-03. A5 first runs exactly the three frozen
+candidates on Object states `0-2` and applies the 30/30 success, per-task,
+15% scene-reuse, and invariant gates. Object states `3-9` remain unavailable
+until the committed analyzer mechanically identifies an advancing candidate.
+No ACR outcome had been observed when the A5 preflight was frozen.
 
 ### Legacy SAVR terminal state
 
