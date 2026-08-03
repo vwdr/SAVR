@@ -378,6 +378,33 @@ def main() -> int:
     require_clean_revision(upstream_root, OPENVLA_REVISION)
     require_clean_revision(libero_root, LIBERO_REVISION)
     checkpoint_before = validate_checkpoint(project_root, checkpoint)
+    protected_names = ("config.json", "modeling_prismatic.py")
+    protected_bytes = {name: (checkpoint / name).read_bytes() for name in protected_names}
+    checkpoint_files_before = {item.name for item in checkpoint.iterdir()}
+
+    def restore_loader_changes() -> dict[str, Any]:
+        for name, content in protected_bytes.items():
+            (checkpoint / name).write_bytes(content)
+        new_files = {item.name for item in checkpoint.iterdir()} - checkpoint_files_before
+        removed_backups: list[str] = []
+        unexpected: list[str] = []
+        for name in sorted(new_files):
+            if ".back." in name:
+                (checkpoint / name).unlink()
+                removed_backups.append(name)
+            else:
+                unexpected.append(name)
+        hashes = {name: file_sha256(checkpoint / name) for name in protected_names}
+        expected_hashes = {
+            name: hashlib.sha256(protected_bytes[name]).hexdigest() for name in protected_names
+        }
+        if hashes != expected_hashes or unexpected:
+            raise RuntimeError("Checkpoint loader restoration failed")
+        return {
+            "restored_hashes": hashes,
+            "removed_loader_backups": removed_backups,
+            "unexpected_new_files": unexpected,
+        }
     gpu_snapshot_before = selected_gpu_snapshot(physical_gpu_id)
     if gpu_snapshot_before["uuid"] != selected_uuid:
         raise RuntimeError("Selected GPU UUID differs from the aggregate pre-run snapshot")
@@ -805,6 +832,8 @@ def main() -> int:
             "work": asdict(reset_result.work),
         }
 
+        proof["loader_restoration"] = restore_loader_changes()
+
         counts = {
             "queries": 10,
             "scene_refreshes": sum(
@@ -892,6 +921,10 @@ def main() -> int:
             del processor
         if "torch" in locals() and torch.cuda.is_available():
             torch.cuda.empty_cache()
+        try:
+            restore_loader_changes()
+        except Exception as restoration_error:
+            print(f"Checkpoint restoration error: {restoration_error}", file=sys.stderr)
         if terminal_error is not None:
             print(f"A3 failed closed after {len(budget.attempts)} queries: {terminal_error}", file=sys.stderr)
 
