@@ -32,6 +32,9 @@ are disabled.
 There is no automatic episode retry. A technical or invariant failure is
 preserved and stops the phase because a replacement would exceed the exact
 100-attempt matrix. A scientific task failure is terminal and is not rerun.
+CPU-only analysis recovery may write a new monotonically named analysis
+attempt after preserving an interrupted attempt; it cannot rerun an episode or
+change derivation semantics.
 
 ## Mechanical gate
 

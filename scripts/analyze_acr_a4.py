@@ -114,6 +114,11 @@ def load_trace(run_dir: Path) -> tuple[FRTraceQuery, ...]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--run-dir", type=Path, default=EXPECTED_ROOT / "results" / RUN_ID)
+    parser.add_argument(
+        "--output-name",
+        choices=("analysis", "analysis-recovery-0002"),
+        default="analysis",
+    )
     arguments = parser.parse_args()
     project_root = Path(__file__).resolve().parents[1]
     if project_root != EXPECTED_ROOT:
@@ -121,7 +126,7 @@ def main() -> int:
     run_dir = arguments.run_dir.resolve()
     if run_dir != EXPECTED_ROOT / "results" / RUN_ID:
         raise SystemExit("A4 analyzer accepts only the frozen result directory")
-    output_root = run_dir / "analysis"
+    output_root = run_dir / arguments.output_name
     if output_root.exists():
         raise SystemExit(f"Immutable A4 analysis already exists: {output_root}")
 
