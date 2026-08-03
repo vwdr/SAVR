@@ -537,3 +537,22 @@ Last updated: 2026-08-02
   tolerance, rerun, or rollout.
 - Evidence: User approval on 2026-08-02; A2 completion at `864044d`.
 - Approver: User, 2026-08-02.
+
+## D-058 — Accept A3 scientific proofs after transparent technical recovery
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept the A3 correctness gate as passed with technical recovery.
+  Preserve the original attempt as `failed`; do not overwrite or relabel it.
+  The committed runner reached its final checkpoint audit only after every
+  exact token/action parity, camera isolation, reuse, current-state, and
+  fail-closed assertion returned successfully. Independent immutable records
+  confirm action hashes and camera component truth. Restore only the pinned
+  loader's two temporary checkpoint rewrites to their accepted hashes and
+  adjudicate the preserved attempt CPU-only. No additional model query,
+  tolerance, simulator access, or population outcome is permitted.
+- Evidence: `reports/PHASE_A3_REPORT.md`;
+  `reports/runtime/acr_a3_adjudication.json`; immutable TITAN run
+  `results/acr-a3-correctness-none-v01`.
+- Approver: Mechanical A3 evidence adjudication under Protocol V1,
+  2026-08-02. A4 still requires explicit user authorization.

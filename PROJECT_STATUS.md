@@ -4,7 +4,7 @@ Last updated: 2026-08-02
 
 ## Current phase
 
-ACR Phase A3 — **IN_PROGRESS: BOUNDED REAL-MODEL CORRECTNESS**
+ACR Phase A3 — **COMPLETE WITH TECHNICAL RECOVERY; A4 AWAITING AUTHORIZATION**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -36,10 +36,16 @@ FR records, deterministic candidate derivation, and frozen statistics. All 133
 repository tests pass, including 31 new ACR tests; source/test Ruff, source
 mypy, bootstrap validation, and package build pass. No model, GPU, simulator,
 ACR outcome, data-derived threshold, or manuscript was used. The user
-authorized A3 on 2026-08-02. A3 is limited to the predeclared 12-query
-synthetic-input correctness matrix in `docs/ACR_PHASE_A3_PREFLIGHT.md`, with a
-hard cap of 16 real-model queries, one GPU, zero simulator resets, zero rollout
-episodes, no benchmark population, and no downloads.
+authorized A3 on 2026-08-02. Its predeclared 12-query synthetic-input matrix
+passed every scientific correctness assertion: exact factorized-FR projected
+tokens/actions, camera-block isolation, zero scene tower/projector work on
+reuse, one fresh wrist path, current-state downstream parity, and fail-closed
+shape/dtype/device/context handling. The original attempt is preserved as
+technically failed because the pinned loader's temporary checkpoint rewrites
+were audited before restoration. The files were restored to their accepted
+hashes and a committed CPU-only adjudication passed without any additional
+model query. Total use was 12/16 queries, one GPU, zero simulator resets, zero
+episodes, no benchmark population, and no download. A4 is not authorized.
 
 ### Legacy SAVR terminal state
 
