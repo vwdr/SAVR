@@ -4,7 +4,7 @@ Last updated: 2026-08-02
 
 ## Current phase
 
-ACR Phase A2 — **COMPLETE; A3 AWAITING USER AUTHORIZATION**
+ACR Phase A3 — **IN_PROGRESS: BOUNDED REAL-MODEL CORRECTNESS**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -35,8 +35,11 @@ controller/signals/cache, synchronized camera accounting, compact immutable
 FR records, deterministic candidate derivation, and frozen statistics. All 133
 repository tests pass, including 31 new ACR tests; source/test Ruff, source
 mypy, bootstrap validation, and package build pass. No model, GPU, simulator,
-ACR outcome, data-derived threshold, or manuscript was used. A3 has not been
-authorized.
+ACR outcome, data-derived threshold, or manuscript was used. The user
+authorized A3 on 2026-08-02. A3 is limited to the predeclared 12-query
+synthetic-input correctness matrix in `docs/ACR_PHASE_A3_PREFLIGHT.md`, with a
+hard cap of 16 real-model queries, one GPU, zero simulator resets, zero rollout
+episodes, no benchmark population, and no downloads.
 
 ### Legacy SAVR terminal state
 
