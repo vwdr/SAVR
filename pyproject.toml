@@ -3,6 +3,10 @@ name = "savr"
 version = "0.1.0"
 description = "State-Aware Visual Refresh controllers for VLA inference"
 requires-python = ">=3.10"
+dependencies = ["jsonschema>=4.18"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
 
 [build-system]
 requires = ["setuptools>=68"]

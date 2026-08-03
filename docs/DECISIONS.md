@@ -493,3 +493,32 @@ Last updated: 2026-08-02
   `configs/acr/phase_a1_freeze.json`; `reports/PHASE_A1_REPORT.md`.
 - Approver: Mechanically required by ACR Protocol V1 Phase A1. Phase A2 still
   requires user authorization.
+
+## D-055 — Authorize ACR Phase A2 only
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Implement the separate project-owned camera-factorized adapter,
+  ACR controller/cache/signals, camera accounting/timing, immutable compact FR
+  records, deterministic candidate derivation, and frozen statistical
+  utilities. Preserve SAVR1-3 and both pinned upstream trees unchanged. Run
+  CPU/static/build tests only. Do not load the checkpoint/model, use a GPU,
+  start LIBERO, access an ACR population, derive outcome-dependent thresholds,
+  begin A3, or modify the manuscript.
+- Evidence: User instruction to proceed on 2026-08-02; A1 exit passed in
+  `reports/PHASE_A1_REPORT.md`.
+- Approver: User, 2026-08-02.
+
+## D-056 — Close ACR Phase A2 and stop before A3
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept the separate project-owned ACR implementation after all
+  133 repository tests, source/test Ruff, source mypy, bootstrap validation,
+  and package build pass. Preserve the A2 code and evidence without loading
+  the real model, selecting a GPU, starting LIBERO, accessing an ACR
+  population, or changing the manuscript. Do not begin A3 until the user
+  explicitly authorizes the bounded real-model correctness phase.
+- Evidence: `reports/PHASE_A2_REPORT.md`; `src/savr/acr/`; `tests/acr/`.
+- Approver: Mechanically required by ACR Protocol V1 Phase A2 exit gate,
+  2026-08-02.
