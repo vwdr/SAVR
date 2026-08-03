@@ -67,7 +67,9 @@ def wilson_interval(successes: int, total: int, confidence: float = 0.95) -> Int
     radius = z / denominator * math.sqrt(
         proportion * (1 - proportion) / total + z * z / (4 * total * total)
     )
-    return Interval(max(0.0, center - radius), min(1.0, center + radius))
+    lower = 0.0 if successes == 0 else max(0.0, center - radius)
+    upper = 1.0 if successes == total else min(1.0, center + radius)
+    return Interval(lower, upper)
 
 
 def newcombe_paired_interval(
