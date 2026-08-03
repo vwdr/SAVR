@@ -1,10 +1,13 @@
 # Project Status
 
-Last updated: 2026-08-02
+Last updated: 2026-08-03
 
 ## Current phase
 
-ACR Phase A4 — **IN PROGRESS: DEVELOPMENT FR AND CANDIDATE FREEZE**
+ACR Phase A4 — **COMPLETE: FEASIBILITY PASS; THREE CANDIDATES FROZEN**
+
+No phase is currently active. ACR Phase A5 requires explicit user
+authorization.
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -49,6 +52,12 @@ episodes, no benchmark population, and no download. The user authorized A4 on
 2026-08-02. A4 is limited to one upstream-FR pass over the 100 LIBERO-Object
 development episodes, the frozen feasibility gate, and two byte-identical
 derivations of exactly three candidates. No ACR rollout is authorized in A4.
+The run completed 100/100 terminal episodes with 97 successes, every task at
+or above 8/10, 1,773 reconciled queries/traces, and zero technical failures.
+Both the original CPU analysis and a transparently preserved recovery produced
+the same candidate record byte-for-byte. The three eligible candidates are
+frozen in `configs/acr/candidates.json`; no ACR method outcome has yet been
+observed. Full evidence is in `reports/PHASE_A4_REPORT.md`.
 
 ### Legacy SAVR terminal state
 
