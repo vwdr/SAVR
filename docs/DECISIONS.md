@@ -869,3 +869,18 @@ Last updated: 2026-08-04
   `tests/acr/test_v3_d_runner_analysis.py`.
 - Approver: Narrow technical recovery under continuing user authorization,
   2026-08-04.
+
+## D-076 — Apply the V3-D negative efficiency stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept the complete 140-episode recovery-2 evidence and stop V3
+  before V3-E. Preserve 67/70 success for both BFR and V3, 25.24% V3 reuse,
+  zero technical failures, all invariants, and the 0.96043 wall ratio versus
+  sequential FR. Reject the positive gate because visual CUDA reduction was
+  8.46% rather than at least 10%, and wall ratio versus BFR was 1.00226 rather
+  than at most 1.00. Do not rerun, retime, remove samples, relax gates, open
+  Goal, or reinterpret the result.
+- Evidence: `reports/PHASE_V3_D_REPORT.md`;
+  `reports/runtime/acr_v3_d.json`; immutable TITAN recovery-2 records.
+- Approver: Mechanical V3-D gate under user authorization, 2026-08-04.

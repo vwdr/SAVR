@@ -151,3 +151,16 @@ def test_action_finite_checker_accepts_pinned_lists_and_rejects_nonfinite() -> N
 def test_policy_context_configuration_identities_are_exact() -> None:
     assert RUNNER.context_configuration_id(RUNNER.POLICIES[0]) == "batched-full-refresh"
     assert RUNNER.context_configuration_id(RUNNER.POLICIES[1]) == "acr-t25-h2-b30"
+
+
+def test_published_v3_d_result_reconciles_negative_gate() -> None:
+    record = json.loads((ROOT / "reports/runtime/acr_v3_d.json").read_text())
+    semantic = dict(record)
+    claimed = semantic.pop("semantic_sha256")
+    assert ANALYZER.value_sha256(semantic) == claimed
+    passed, failures = ANALYZER.evaluate_gate(record)
+    assert passed is False
+    assert failures == ["visual-cuda", "wall-vs-bfr"]
+    assert record["disposition"] == "STOP_NEGATIVE_BEFORE_V3_E"
+    assert record["policies"][RUNNER.POLICIES[0]]["successes"] == 67
+    assert record["policies"][RUNNER.POLICIES[1]]["successes"] == 67

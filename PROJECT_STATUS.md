@@ -4,7 +4,7 @@ Last updated: 2026-08-04
 
 ## Current phase
 
-ACR Version 3 Phase V3-D — **IN PROGRESS: TECHNICAL RECOVERY 2 PREFLIGHT**
+ACR Version 3 Phase V3-D — **STOPPED NEGATIVE; V3-E INELIGIBLE**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -207,6 +207,15 @@ official analysis. `configs/acr/v3_d_recovery_2.json` and
 `docs/ACR_V3_D_TECHNICAL_RECOVERY_2.md` freeze the identity-only correction
 and a complete new 140-episode run; cumulative allowance becomes 143 starts
 with original wall/artifact caps unchanged.
+
+Recovery 2 completed all 140 official episodes with zero technical failures
+and every invariant passing. BFR and V3 both achieved 67/70 success; V3 had
+25.24% scene reuse and a 0.96043 wall ratio versus sequential FR. It failed
+the two remaining frozen efficiency gates: 8.46% visual CUDA reduction versus
+BFR was below 10%, and its 1.00226 wall ratio versus BFR exceeded 1.00. The
+mechanical disposition is negative; V3-E and Goal are ineligible. Full evidence
+is in `reports/PHASE_V3_D_REPORT.md` and
+`reports/runtime/acr_v3_d.json`.
 
 ### Legacy SAVR terminal state
 
@@ -412,12 +421,10 @@ Not completed:
 
 ## Next authorized action
 
-Merge and synchronize the frozen V3-D technical recovery 2, verify it in TITAN's
-pinned CPU environment, select one idle GPU from aggregate device telemetry,
-and execute the unchanged 140-attempt outcome-blind paired Object matrix under
-the recovery-2 run ID. Analyze success only after all terminal records exist.
-V3-E, Goal, and final-holdout access remain unauthorized. V2-D remains
-ineligible and V2-C may not be rerun or reinterpreted.
+Preserve the complete negative V3-D result without rerun, retiming, gate
+change, or reinterpretation. V3-E, Goal, and final-holdout access are
+ineligible under V3. Any further positive-paper attempt requires a materially
+new predeclared method and separate authorization.
 
 ## Candidate initial stack
 
