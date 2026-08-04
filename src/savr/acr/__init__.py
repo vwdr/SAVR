@@ -1,5 +1,15 @@
 """Asymmetric Camera Refresh public interfaces."""
 
+from savr.acr.batched_dual_path import (
+    BatchedCameraWork,
+    BatchedDualPathOpenVLAAdapter,
+    BatchedDualPathResult,
+    BatchedFullRefreshAdapter,
+    BatchedFullRefreshResult,
+    BatchedQueryFailure,
+    BatchedVisionPath,
+    ModelQueryBudget,
+)
 from savr.acr.cache import SceneTokenCache
 from savr.acr.controller import ACRController
 from savr.acr.dual_path import (
@@ -23,10 +33,18 @@ __all__ = [
     "ACRController",
     "ACRPolicy",
     "CameraWork",
+    "BatchedCameraWork",
+    "BatchedDualPathOpenVLAAdapter",
+    "BatchedDualPathResult",
+    "BatchedFullRefreshAdapter",
+    "BatchedFullRefreshResult",
+    "BatchedQueryFailure",
+    "BatchedVisionPath",
     "DualPathFailure",
     "DualPathOpenVLAAdapter",
     "DualPathQueryResult",
     "DualPathWork",
+    "ModelQueryBudget",
     "SceneDecision",
     "SceneTensorMetadata",
     "SceneTokenCache",

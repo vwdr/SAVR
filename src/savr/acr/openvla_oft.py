@@ -43,6 +43,9 @@ class TorchTensorOperations:
     def cat(self, values: Sequence[Any], *, dim: int) -> Any:
         return self.torch.cat(tuple(values), dim=dim)
 
+    def reshape(self, value: Any, shape: Sequence[int]) -> Any:
+        return value.reshape(tuple(shape))
+
     def all_finite(self, value: Any) -> bool:
         return bool(self.torch.isfinite(value).all().item())
 
