@@ -36,8 +36,8 @@ At most one phase may be `IN_PROGRESS`.
 | A9. ACR evidence/manuscript decision | NOT_STARTED | — | Complete final classification |
 | V2-A. Dual-path diagnosis and protocol | COMPLETE | Deterministic A4/A5 diagnosis localized the task 6/state 0 failure without false causal attribution; measured 11.94% visual CUDA reduction but 31.24% wall slowdown; dual execution paths, exact controller, fresh splits, gates, and caps frozen with no new outcome | Explicit Phase V2-B authorization |
 | V2-B. Dual-path implementation and CPU verification | COMPLETE | Separate episode-scoped adapter preserves the exact original refresh object, uses wrist-only reuse, separates physical/logical accounting, and fails closed; 172 tests plus 9 TITAN subtests and all static/build/bootstrap gates pass; `reports/PHASE_V2_B_REPORT.md` | Explicit Phase V2-C authorization |
-| V2-C. Bounded correctness and latency | IN_PROGRESS | Original attempt stopped technically at 7/48 after all six correctness checks and one FR warm-up; valid per-camera low-level counts differed from the runner assertion; restoration passed; a 41-query recovery is frozen in `configs/acr/v2_c_recovery.json` and `docs/ACR_V2_C_RECOVERY_PLAN.md` | Run exactly the remaining five warm-ups and 36 timed queries; apply frozen latency gates |
-| V2-D. Fresh paired Object development | NOT_STARTED | — | Success, reuse, visual CUDA, and query-wall gates pass |
+| V2-C. Bounded correctness and latency | STOPPED_NEGATIVE | Exactly 48/48 cumulative queries; correctness passed by preserved control flow; 36 timed records reconciled; reuse cut median visual CUDA 50.12% but refresh/reuse/weighted wall ratios were 1.40338/1.42995/1.41030, failing all gates; `reports/PHASE_V2_C_REPORT.md` | New predeclared method, if any |
+| V2-D. Fresh paired Object development | NOT_RUN_INELIGIBLE | V2-C failed the frozen latency prerequisite; Object states `3-9` remain unopened for SA-DP-ACR | A new method that passes a separately authorized correctness/latency gate |
 | V2-E. Independent Goal confirmation | NOT_STARTED | — | Positive independent confirmation |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
@@ -47,11 +47,10 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-ACR Version 2 Phase V2-C is the only phase in progress. Its preflight is frozen
-before execution and permits at most 48 real-model queries, one GPU/process,
-zero simulator resets or episodes, and no downloads. Object states `3-9`
-remain unopened for any ACR outcome, Goal remains unopened for ACR, and all
-final populations remain protected.
+No phase is currently in progress. ACR Version 2 Phase V2-C stopped negative
+after exhausting exactly 48/48 queries and failing all frozen latency gates;
+V2-D is ineligible. Object states `3-9` remain unopened for SA-DP-ACR, Goal
+remains unopened for ACR, and all final populations remain protected.
 The prior SAVR Phase 6S-D remains stopped negative, Phase 6S-E is ineligible,
 and legacy Phase 7 is unauthorized. Initial-state `10-49` / seed `7,17,27`
 outcomes remain untouched across all four supported suites.

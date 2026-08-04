@@ -4,7 +4,7 @@ Last updated: 2026-08-03
 
 ## Current phase
 
-ACR Version 2 Phase V2-C — **AUTHORIZED: PREFLIGHT READY**
+ACR Version 2 Phase V2-C — **STOPPED NEGATIVE: LATENCY GATES FAILED**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -100,10 +100,10 @@ performed. Full evidence is in `reports/PHASE_V2_B_REPORT.md`.
 The user authorized Phase V2-C on 2026-08-03. The exact six-query correctness,
 six-query warm-up, and 36-query counterbalanced timing schedule is frozen in
 `configs/acr/v2_c_gate.json` and `docs/ACR_V2_C_PREFLIGHT.md`. The bounded
-runner and its CPU gate tests pass as part of 180 repository tests. No V2-C
-real-model query has yet occurred. V2-C remains limited to 48 model queries,
-one GPU/process, zero simulator resets or episodes, 3,600 seconds, 512 MiB,
-and no download or protected-population access.
+runner and its CPU gate/recovery tests pass as part of 182 repository tests.
+V2-C remained limited to 48 model queries, one GPU/process, zero simulator
+resets or episodes, 3,600 seconds, 512 MiB, and no download or
+protected-population access.
 
 The first immutable V2-C attempt stopped technically after 7/48 queries. All
 six correctness checks completed, followed by one upstream-FR warm-up. The
@@ -113,6 +113,16 @@ method result was accepted. Checkpoint metadata, both pinned source trees, and
 GPU 0 restored cleanly. `docs/ACR_V2_C_RECOVERY_PLAN.md` freezes one 41-query
 recovery: the remaining five warm-ups and all 36 timed queries. Cumulative use
 will be exactly 48/48; the method, counterbalance, and gates are unchanged.
+
+The recovery completed all remaining 41 queries, bringing cumulative V2-C use
+to exactly 48/48. All correctness assertions had passed by preserved control
+flow, all 36 timed records and work invariants reconciled, and no outlier was
+removed. Reuse halved median visual CUDA time (`150.566` to `75.104` ms), but
+dual refresh, dual reuse, and fixed-weight expected wall ratios were `1.40338`,
+`1.42995`, and `1.41030`; all exceed their frozen limits. V2-C therefore
+stopped negative and V2-D is ineligible. Full evidence is in
+`reports/PHASE_V2_C_REPORT.md` and
+`reports/runtime/acr_v2_c_recovery.json`.
 
 ### Legacy SAVR terminal state
 
@@ -314,10 +324,11 @@ Not completed:
 
 ## Next authorized action
 
-The authorized next action is the single frozen 41-query V2-C technical
-recovery. Do not rerun correctness, exceed 48 cumulative queries, run a
-simulator episode, inspect Object state `3-9` ACR outcomes, open Goal, or access
-a final holdout.
+No further V2 execution is authorized. V2-D is ineligible. A future attempt
+would require a new predeclared implementation/protocol and explicit user
+authorization; it may not rerun or reinterpret V2-C. Do not run a simulator
+episode, inspect Object state `3-9` ACR outcomes, open Goal, or access a final
+holdout.
 
 ## Candidate initial stack
 

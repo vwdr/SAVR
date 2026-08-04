@@ -710,3 +710,20 @@ Last updated: 2026-08-03
   `configs/acr/v2_c_recovery.json`; `docs/ACR_V2_C_RECOVERY_PLAN.md`.
 - Approver: Mechanical fail-closed recovery under the user-authorized V2-C
   phase, 2026-08-03.
+
+## D-068 — Apply the V2-C negative latency stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Stop SA-DP-ACR Version 2 before V2-D. Preserve exactly 48/48
+  cumulative queries, all 36 timed records, and the original technical stop.
+  Accept that reuse reduces median visual CUDA work by 50.12%, but reject the
+  method because refresh, reuse, and weighted wall ratios of 1.40338, 1.42995,
+  and 1.41030 fail every frozen latency gate. Do not rerun, retime, delete
+  outliers, reinterpret, open Object states `3-9`, open Goal, or access a final
+  population under V2.
+- Evidence: `reports/PHASE_V2_C_REPORT.md`;
+  `reports/runtime/acr_v2_c_recovery.json`; immutable TITAN parent/recovery
+  records.
+- Approver: Mechanical V2-C stop under the user-authorized frozen protocol,
+  2026-08-03. V2-D is ineligible.
