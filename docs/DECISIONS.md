@@ -773,3 +773,19 @@ Last updated: 2026-08-04
   benchmark outcome, download, protected population, or manuscript was used.
 - Approver: User authorization and mechanical V3-B exit gate, 2026-08-04.
   Phase V3-C remains unauthorized.
+
+## D-071 — Authorize and freeze ACR Version 3 Phase V3-C
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Execute one bounded real-model correctness and latency gate for
+  sequential FR, Batched FR, V3 refresh, and V3 reuse. Consume exactly eight
+  correctness queries, eight untimed warm-ups, and 48 counterbalanced timed
+  queries. Require the frozen two-input token tolerance, bitwise refresh
+  actions, V2-exact reuse, truthful physical/logical work, restoration, and
+  all six latency gates. Use one responsibly selected GPU/process, zero
+  simulator resets or episodes, at most 64 queries, 3,600 seconds, 512 MiB,
+  and no download. Stop before V3-D regardless of the result.
+- Evidence: User approval on 2026-08-04;
+  `configs/acr/v3_c_gate.json`; `docs/ACR_V3_C_PREFLIGHT.md`.
+- Approver: User, 2026-08-04.
