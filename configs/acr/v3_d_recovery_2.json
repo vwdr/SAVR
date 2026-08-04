@@ -1,0 +1,50 @@
+{
+  "schema_version": "acr.v3d-recovery-2.v1",
+  "phase": "V3-D",
+  "source_run_id": "acr-v3d-paired-object-dev03-09-recovery-v01",
+  "recovery_run_id": "acr-v3d-paired-object-dev03-09-recovery-02-v01",
+  "cumulative_attempts_preserved": 3,
+  "official_scientific_episodes_preserved": 0,
+  "excluded_completed_bfr_episodes": 1,
+  "recovery_episode_attempts": 140,
+  "cumulative_episode_attempt_cap": 143,
+  "cumulative_wall_seconds": 43200,
+  "cumulative_artifact_bytes": 2147483648,
+  "automatic_episode_retry": false,
+  "method_population_schedule_and_gates_changed": false,
+  "source_records": {
+    "manifest_sha256": "25e607947d07a97ab4c3f198826cceae552ab9a1cfe31aa67c59bba7acfb78eb",
+    "completion_sha256": "731e1508cce06f52e332af2e61d3c48d2e4fafa803c0409c63fe1e2be15f5dec",
+    "summary_sha256": "b8853c72664f0ec65e6aa30c85c9ac2d565d24cccac47c9c2d251350c23b61ce"
+  },
+  "failure": {
+    "run_attempts_started": 2,
+    "cumulative_attempts_started": 3,
+    "terminal_records": 2,
+    "completed_bfr_queries": 35,
+    "completed_v3_queries": 0,
+    "official_outcomes_observed": 0,
+    "error_type": "ValueError",
+    "error": "Controller and context configuration identities differ",
+    "checkpoint_restored": true,
+    "sources_restored": true,
+    "gpu_released": true
+  },
+  "fix": {
+    "scope": "v3_context_configuration_identity_only",
+    "batched_fr_context_configuration_id": "batched-full-refresh",
+    "v3_context_configuration_id": "acr-t25-h2-b30",
+    "timed_method_path_changed": false,
+    "controller_cache_batching_model_prompt_preprocessing_action_head_changed": false,
+    "regression_test_required": true
+  },
+  "recovery_rules": {
+    "preserve_prior_runs": true,
+    "exclude_partial_bfr_episode_from_official_analysis": true,
+    "new_immutable_run_root": true,
+    "rerun_complete_140_episode_scientific_matrix": true,
+    "outcome_blind_until_recovery_complete": true,
+    "scientific_failure_retry": false,
+    "stop_before_v3_e": true
+  }
+}

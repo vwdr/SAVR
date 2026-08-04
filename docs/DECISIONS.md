@@ -849,3 +849,23 @@ Last updated: 2026-08-04
 - Approver: Narrow technical recovery under the user's continuing V3-D
   authorization and instruction not to pause before a positive method result,
   2026-08-04.
+
+## D-075 — Preserve recovery 1 and freeze V3-D recovery 2
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve recovery 1 after its completed first-pair BFR episode and
+  pre-query V3 identity stop. Keep that BFR episode outcome unopened and
+  exclude it from official analysis. Correct only context identity wiring:
+  BFR uses `batched-full-refresh`; V3 uses the frozen controller identity
+  `acr-t25-h2-b30`. Rerun the complete 140-episode matrix under a new immutable
+  run ID and one model process. Count all three prior starts, making the
+  cumulative cap 143, while retaining the original wall/artifact limits,
+  scientific design, gates, outcome blindness, and no-retry rule. Stop before
+  V3-E.
+- Evidence: Preserved recovery-1 hashes in
+  `configs/acr/v3_d_recovery_2.json`;
+  `docs/ACR_V3_D_TECHNICAL_RECOVERY_2.md`; identity regression test in
+  `tests/acr/test_v3_d_runner_analysis.py`.
+- Approver: Narrow technical recovery under continuing user authorization,
+  2026-08-04.

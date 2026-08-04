@@ -4,7 +4,7 @@ Last updated: 2026-08-04
 
 ## Current phase
 
-ACR Version 3 Phase V3-D — **IN PROGRESS: TECHNICAL RECOVERY PREFLIGHT**
+ACR Version 3 Phase V3-D — **IN PROGRESS: TECHNICAL RECOVERY 2 PREFLIGHT**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -197,6 +197,16 @@ preserves the failed start, changes no scientific design or gate, and raises
 only the cumulative episode-start allowance from 140 to 141. It is frozen in
 `configs/acr/v3_d_recovery.json` and
 `docs/ACR_V3_D_TECHNICAL_RECOVERY.md` pending merge/sync/CPU verification.
+
+Recovery 1 cleared the action-list defect and completed 35 BFR queries for the
+first pair, then stopped before its first V3 query because the runner supplied
+the method label where controller reset requires frozen configuration identity
+`acr-t25-h2-b30`. No V3 action/query occurred, restoration passed, and success
+remains unopened. The partial BFR episode is preserved but excluded from
+official analysis. `configs/acr/v3_d_recovery_2.json` and
+`docs/ACR_V3_D_TECHNICAL_RECOVERY_2.md` freeze the identity-only correction
+and a complete new 140-episode run; cumulative allowance becomes 143 starts
+with original wall/artifact caps unchanged.
 
 ### Legacy SAVR terminal state
 
@@ -402,10 +412,10 @@ Not completed:
 
 ## Next authorized action
 
-Merge and synchronize the frozen V3-D technical recovery, verify it in TITAN's
+Merge and synchronize the frozen V3-D technical recovery 2, verify it in TITAN's
 pinned CPU environment, select one idle GPU from aggregate device telemetry,
 and execute the unchanged 140-attempt outcome-blind paired Object matrix under
-the recovery run ID. Analyze success only after all terminal records exist.
+the recovery-2 run ID. Analyze success only after all terminal records exist.
 V3-E, Goal, and final-holdout access remain unauthorized. V2-D remains
 ineligible and V2-C may not be rerun or reinterpreted.
 

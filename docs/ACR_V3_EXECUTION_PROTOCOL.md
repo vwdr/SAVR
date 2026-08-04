@@ -1,6 +1,6 @@
 # ACR Version 3 Execution Protocol
 
-Status: **FROZEN; V3-C COMPLETE POSITIVE; V3-D TECHNICAL RECOVERY PREFLIGHT**
+Status: **FROZEN; V3-C COMPLETE POSITIVE; V3-D TECHNICAL RECOVERY 2 PREFLIGHT**
 
 Freeze date: 2026-08-04
 
@@ -260,5 +260,8 @@ semantics, and operational safeguards are frozen in
 and synchronize that checkpoint before the first simulator episode. The first
 attempt stopped technically before a completed query or action execution; the
 preserved one-time recovery is frozen in `configs/acr/v3_d_recovery.json` and
-`docs/ACR_V3_D_TECHNICAL_RECOVERY.md`. V3-E remains unauthorized regardless
+`docs/ACR_V3_D_TECHNICAL_RECOVERY.md`. That recovery exposed a second
+context-identity wiring stop before any V3 query; the final full-matrix
+recovery is frozen in `configs/acr/v3_d_recovery_2.json` and
+`docs/ACR_V3_D_TECHNICAL_RECOVERY_2.md`. V3-E remains unauthorized regardless
 of the V3-D result.
