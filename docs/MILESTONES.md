@@ -35,7 +35,7 @@ At most one phase may be `IN_PROGRESS`.
 | A8. ACR primary four-suite final evaluation | NOT_STARTED | — | Frozen final package and separate final-holdout authorization |
 | A9. ACR evidence/manuscript decision | NOT_STARTED | — | Complete final classification |
 | V2-A. Dual-path diagnosis and protocol | COMPLETE | Deterministic A4/A5 diagnosis localized the task 6/state 0 failure without false causal attribution; measured 11.94% visual CUDA reduction but 31.24% wall slowdown; dual execution paths, exact controller, fresh splits, gates, and caps frozen with no new outcome | Explicit Phase V2-B authorization |
-| V2-B. Dual-path implementation and CPU verification | NOT_STARTED | — | All CPU/static/integrity gates pass |
+| V2-B. Dual-path implementation and CPU verification | COMPLETE | Separate episode-scoped adapter preserves the exact original refresh object, uses wrist-only reuse, separates physical/logical accounting, and fails closed; 172 tests plus 9 TITAN subtests and all static/build/bootstrap gates pass; `reports/PHASE_V2_B_REPORT.md` | Explicit Phase V2-C authorization |
 | V2-C. Bounded correctness and latency | NOT_STARTED | — | Bitwise parity and paired latency gate pass |
 | V2-D. Fresh paired Object development | NOT_STARTED | — | Success, reuse, visual CUDA, and query-wall gates pass |
 | V2-E. Independent Goal confirmation | NOT_STARTED | — | Positive independent confirmation |
@@ -47,11 +47,12 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-No phase is currently in progress. ACR Version 2 Phase V2-A is complete and
-the dual-path method is frozen before implementation. Object states `3-9`
+No phase is currently in progress. ACR Version 2 Phase V2-B is complete and
+the dual-path implementation passed its CPU/static gates. Object states `3-9`
 remain unopened for any ACR outcome, Goal remains unopened for ACR, and all
-final populations remain protected. Phase V2-B requires explicit approval and
-permits CPU implementation/testing only.
+final populations remain protected. Phase V2-C requires explicit approval and
+permits at most 48 real-model queries, zero simulator episodes, and the frozen
+correctness/paired-latency gate only.
 The prior SAVR Phase 6S-D remains stopped negative, Phase 6S-E is ineligible,
 and legacy Phase 7 is unauthorized. Initial-state `10-49` / seed `7,17,27`
 outcomes remain untouched across all four supported suites.
