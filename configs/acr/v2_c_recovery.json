@@ -1,0 +1,43 @@
+{
+  "schema_version": "acr.v2-c-recovery.v1",
+  "status": "FROZEN_AFTER_TECHNICAL_STOP_BEFORE_RECOVERY",
+  "run_id": "acr-v2c-latency-recovery-v01",
+  "parent_run_id": "acr-v2c-correctness-latency-v01",
+  "parent_failure_sha256": "745a8cff68921190acc6d738c8febf1667de44b3891d683a377e60172e5354ad",
+  "parent_manifest_sha256": "d1bf6d78493b50902a6547d3f1a69dbb0c4da3c2ad1f7a6dfe38ca2531cfa772",
+  "parent_revision": "b22b557f848feeca6e0ad47b33d207b0bf165a39",
+  "parent_runner_sha256": "a37670197adc50b766d5eb533525701e879a16619116ae40bf03a7fb45f83e99",
+  "parent_queries": {
+    "correctness_completed": 6,
+    "upstream_fr_warmups_completed": 1,
+    "total_consumed": 7
+  },
+  "recovery_queries": {
+    "upstream_fr_warmups": 1,
+    "dual_path_refresh_warmups": 2,
+    "dual_path_reuse_warmups": 2,
+    "timed_per_path": 12,
+    "timed_total": 36,
+    "total": 41,
+    "cumulative_total": 48
+  },
+  "corrected_component_counts": {
+    "upstream-fr": {"siglip": 2, "dinov2": 2, "projector": 1},
+    "dual-path-refresh": {"siglip": 2, "dinov2": 2, "projector": 1},
+    "dual-path-reuse": {"siglip": 1, "dinov2": 1, "projector": 1}
+  },
+  "method_and_gates_changed": false,
+  "reuse_weight": 0.26055045871559634,
+  "resource_caps": {
+    "cumulative_model_queries": 48,
+    "recovery_model_queries": 41,
+    "gpu_count": 1,
+    "model_processes": 1,
+    "rollout_episodes": 0,
+    "simulator_resets": 0,
+    "wall_seconds": 3600,
+    "artifact_bytes": 536870912,
+    "downloads_allowed": false
+  },
+  "semantic_sha256": "8126930c2e2b44efbcb464a293442a1ea3a8b6ddf415aa77ca1a1fff207f92fa"
+}

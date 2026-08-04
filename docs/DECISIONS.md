@@ -692,3 +692,21 @@ Last updated: 2026-08-03
 - Evidence: User approval on 2026-08-03; `configs/acr/v2_c_gate.json`;
   `docs/ACR_V2_C_PREFLIGHT.md`; `scripts/run_acr_v2_c.py`.
 - Approver: User, 2026-08-03.
+
+## D-067 — Preserve the V2-C technical stop and freeze one recovery
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve the original attempt as technically failed after 7/48
+  queries. Accept no timed sample from it. Record that all six correctness
+  assertions completed and the first upstream-FR warm-up reached its
+  synchronized component-count check. Correct only the expected low-level call
+  truth: two SigLIP/two DINOv2 calls for upstream/dual refresh and one each for
+  dual reuse. Run exactly the remaining five warm-ups and 36 timed queries.
+  Cumulative use must equal 48/48. Change no method, timing boundary,
+  counterbalance, gate, or population. A further failure ends V2-C.
+- Evidence: Immutable parent failure SHA-256
+  `745a8cff68921190acc6d738c8febf1667de44b3891d683a377e60172e5354ad`;
+  `configs/acr/v2_c_recovery.json`; `docs/ACR_V2_C_RECOVERY_PLAN.md`.
+- Approver: Mechanical fail-closed recovery under the user-authorized V2-C
+  phase, 2026-08-03.

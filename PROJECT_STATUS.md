@@ -105,6 +105,15 @@ real-model query has yet occurred. V2-C remains limited to 48 model queries,
 one GPU/process, zero simulator resets or episodes, 3,600 seconds, 512 MiB,
 and no download or protected-population access.
 
+The first immutable V2-C attempt stopped technically after 7/48 queries. All
+six correctness checks completed, followed by one upstream-FR warm-up. The
+runner then rejected the valid low-level call truth—two SigLIP and two DINOv2
+calls, one per camera—because it expected one of each. No timed sample or
+method result was accepted. Checkpoint metadata, both pinned source trees, and
+GPU 0 restored cleanly. `docs/ACR_V2_C_RECOVERY_PLAN.md` freezes one 41-query
+recovery: the remaining five warm-ups and all 36 timed queries. Cumulative use
+will be exactly 48/48; the method, counterbalance, and gates are unchanged.
+
 ### Legacy SAVR terminal state
 
 Phase 6S-D — SAVR3 fresh development validation: **STOPPED NEGATIVE
@@ -305,9 +314,10 @@ Not completed:
 
 ## Next authorized action
 
-The authorized next action is the single frozen Phase V2-C real-model
-correctness and paired-latency gate. Do not run a simulator episode, Object
-state `3-9` ACR outcome, Goal confirmation, or final holdout during V2-C.
+The authorized next action is the single frozen 41-query V2-C technical
+recovery. Do not rerun correctness, exceed 48 cumulative queries, run a
+simulator episode, inspect Object state `3-9` ACR outcomes, open Goal, or access
+a final holdout.
 
 ## Candidate initial stack
 
