@@ -1,6 +1,6 @@
 # ACR Version 3 Execution Protocol
 
-Status: **FROZEN; V3-C COMPLETE POSITIVE; V3-D AUTHORIZED/PREFLIGHT**
+Status: **FROZEN; V3-C COMPLETE POSITIVE; V3-D TECHNICAL RECOVERY PREFLIGHT**
 
 Freeze date: 2026-08-04
 
@@ -257,5 +257,8 @@ unchanged until evidence supports the exact claims to be written.
 The user authorized V3-D on 2026-08-04. Its exact paired schedule, analysis
 semantics, and operational safeguards are frozen in
 `configs/acr/v3_d_development.json` and `docs/ACR_V3_D_PREFLIGHT.md`. Publish
-and synchronize that checkpoint before the first simulator episode. V3-E
-remains unauthorized regardless of the V3-D result.
+and synchronize that checkpoint before the first simulator episode. The first
+attempt stopped technically before a completed query or action execution; the
+preserved one-time recovery is frozen in `configs/acr/v3_d_recovery.json` and
+`docs/ACR_V3_D_TECHNICAL_RECOVERY.md`. V3-E remains unauthorized regardless
+of the V3-D result.

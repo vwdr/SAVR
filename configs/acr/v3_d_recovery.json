@@ -1,0 +1,46 @@
+{
+  "schema_version": "acr.v3d-recovery.v1",
+  "phase": "V3-D",
+  "source_run_id": "acr-v3d-paired-object-dev03-09-v01",
+  "recovery_run_id": "acr-v3d-paired-object-dev03-09-recovery-v01",
+  "technical_attempts_preserved": 1,
+  "scientific_terminal_episodes_preserved": 0,
+  "recovery_episode_attempts": 140,
+  "cumulative_episode_attempt_cap": 141,
+  "cumulative_wall_seconds": 43200,
+  "cumulative_artifact_bytes": 2147483648,
+  "automatic_episode_retry": false,
+  "method_population_schedule_and_gates_changed": false,
+  "source_records": {
+    "manifest_sha256": "a521e6d677405958896a567c2e777b9908ee728fb7e96a795a8ba5f309ec0afb",
+    "completion_sha256": "d16854b2bd2d8e6a2ac4d065f868d43e78a9ee925859463c976e1a4b8a027887",
+    "summary_sha256": "d15cdbb5c16eda020e35033369add77e78b25d9cde89a52987d015a6ddcde316"
+  },
+  "failure": {
+    "attempts_started": 1,
+    "terminal_records": 1,
+    "completed_query_records": 0,
+    "action_executions": 0,
+    "success_outcomes_observed": 0,
+    "error_type": "TypeError",
+    "error": "isfinite(): argument 'input' (position 1) must be Tensor, not list",
+    "checkpoint_restored": true,
+    "sources_restored": true,
+    "gpu_released": true
+  },
+  "fix": {
+    "scope": "runner_action_finite_checker_only",
+    "behavior": "convert_list_or_numpy_action_to_numpy_then_apply_isfinite",
+    "timed_method_path_changed": false,
+    "controller_cache_batching_model_prompt_preprocessing_action_head_changed": false,
+    "regression_test_required": true
+  },
+  "recovery_rules": {
+    "preserve_source_attempt": true,
+    "new_immutable_run_root": true,
+    "rerun_complete_140_episode_scientific_matrix": true,
+    "outcome_blind_until_recovery_complete": true,
+    "scientific_failure_retry": false,
+    "stop_before_v3_e": true
+  }
+}

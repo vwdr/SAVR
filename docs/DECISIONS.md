@@ -828,3 +828,24 @@ Last updated: 2026-08-04
   `configs/acr/v3_d_development.json`; `docs/ACR_V3_D_PREFLIGHT.md`;
   `scripts/run_acr_v3_d.py`; `scripts/analyze_acr_v3_d.py`.
 - Approver: User, 2026-08-04.
+
+## D-074 — Preserve the V3-D technical stop and freeze one recovery
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve the first V3-D run as technically failed after one BFR
+  episode start, zero completed query records, zero action executions, and no
+  opened success outcome. Correct only the runner/action representation
+  boundary by supplying a list/NumPy-aware finite checker outside timing.
+  Execute the complete unchanged 140-episode matrix under a new immutable run
+  ID. Count the preserved start, making the cumulative attempt cap 141, while
+  retaining the cumulative 43,200-second and 2-GiB caps. Do not change the
+  method, controller, population, order, timing, gates, outcome blindness, or
+  scientific no-retry rule. Stop before V3-E.
+- Evidence: Immutable TITAN source-run manifest/completion/summary hashes in
+  `configs/acr/v3_d_recovery.json`;
+  `docs/ACR_V3_D_TECHNICAL_RECOVERY.md`; regression test in
+  `tests/acr/test_v3_d_runner_analysis.py`.
+- Approver: Narrow technical recovery under the user's continuing V3-D
+  authorization and instruction not to pause before a positive method result,
+  2026-08-04.
