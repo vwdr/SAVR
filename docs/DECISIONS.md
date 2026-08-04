@@ -1,6 +1,6 @@
 # SAVR Decision Log
 
-Last updated: 2026-08-03
+Last updated: 2026-08-04
 
 ## D-001 — University-server safety boundary
 
@@ -727,3 +727,28 @@ Last updated: 2026-08-03
   records.
 - Approver: Mechanical V2-C stop under the user-authorized frozen protocol,
   2026-08-03. V2-D is ineligible.
+
+## D-069 — Authorize and freeze ACR Version 3 Phase V3-A
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve V2-C as negative and freeze a materially new execution
+  route: State-Aware Batched Dual-Path Asymmetric Camera Refresh
+  (`SA-BDP-ACR`). Retain the exact `acr-t25-h2-b30` controller, batch ordered
+  scene/wrist samples within each vision tower on refresh, and retain
+  wrist-only reuse. Require a Batched Full Refresh ablation so batching and
+  camera-reuse contributions cannot be conflated. Move evidence hashing,
+  serialization, and file I/O outside every synchronized inference boundary.
+  Freeze bfloat16 token tolerance, bitwise action parity, a 64-query
+  correctness/latency gate, fresh populations, resources, and stop rules
+  before implementation. Authorize no V3 implementation, GPU/model query,
+  simulator episode, protected outcome, or manuscript edit in V3-A.
+- Rationale: At the fixed reuse weight, an optimistic zero-overhead scene skip
+  can reduce weighted wall time by at most 1.6202%, below the 2% gate. The
+  pinned two-camera source invokes each vision tower sequentially per camera,
+  so a refresh-acceleration mechanism is necessary and technically testable.
+- Evidence: `reports/ACR_V3_DIAGNOSIS_REPORT.md`;
+  `reports/runtime/acr_v3_feasibility.json`;
+  `docs/ACR_V3_EXECUTION_PROTOCOL.md`; `configs/acr/v3_freeze.json`.
+- Approver: User authorization on 2026-08-04 and mechanical V3-A exit gate.
+  Phase V3-B remains unauthorized.

@@ -28,6 +28,7 @@ REQUIRED_FILES = (
     "docs/SAVR_EXECUTION_PROTOCOL.md",
     "docs/STACK_ASSESSMENT.md",
     "docs/UPSTREAM_PINS.md",
+    "docs/ACR_V3_EXECUTION_PROTOCOL.md",
     "environment/README.md",
     "environment/libero-config.yaml",
     "environment/locks/.gitkeep",
@@ -46,6 +47,8 @@ REQUIRED_FILES = (
     "reports/PHASE3_IMPLEMENTATION_REPORT.md",
     "reports/PHASE4_CORRECTNESS_REPORT.md",
     "reports/PHASE5_SMOKE_REPORT.md",
+    "reports/ACR_V3_DIAGNOSIS_REPORT.md",
+    "reports/runtime/acr_v3_feasibility.json",
     "reports/titan_bootstrap_diagnostics.json",
     "schemas/episode_result.schema.json",
     "schemas/query_record.schema.json",
@@ -53,6 +56,7 @@ REQUIRED_FILES = (
     "scripts/setup_phase1_environment.sh",
     "scripts/analyze_phase2b_pilot.py",
     "scripts/analyze_phase5_smoke.py",
+    "scripts/analyze_acr_v3_feasibility.py",
     "scripts/audit_vla_cache_compatibility.py",
     "scripts/download_phase2_checkpoint.py",
     "scripts/run_phase2a_fr_smoke.py",
@@ -77,6 +81,8 @@ REQUIRED_FILES = (
     "tests/unit/test_phase5_analysis.py",
     "tests/unit/test_signals.py",
     "tests/unit/test_timing.py",
+    "tests/acr/test_v3_feasibility.py",
+    "configs/acr/v3_freeze.json",
 )
 
 
