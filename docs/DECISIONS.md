@@ -789,3 +789,23 @@ Last updated: 2026-08-04
 - Evidence: User approval on 2026-08-04;
   `configs/acr/v3_c_gate.json`; `docs/ACR_V3_C_PREFLIGHT.md`.
 - Approver: User, 2026-08-04.
+
+## D-072 — Accept the positive V3-C correctness and latency result
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept V3-C as the first predeclared positive method result. All
+  64 unique queries completed, both refresh inputs were token-exact, all
+  refresh/reuse actions were bitwise correct, physical/logical work
+  reconciled, and all six latency gates passed. Preserve every repetition and
+  stop before V3-D. This result authorizes no simulator episode, task-success
+  claim, protected-population access, or manuscript change.
+- Quantitative result: BFR/sequential wall ratio `0.9689796428`; V3
+  refresh/BFR `1.0054524993`; V3 reuse/BFR `0.9750279090`; V3
+  weighted/sequential `0.9665817654`; V3 weighted/BFR `0.9975253584`; weighted
+  visual CUDA reduction `31.40923355%`.
+- Evidence: `reports/PHASE_V3_C_REPORT.md`;
+  `reports/runtime/acr_v3_c.json`; result semantic SHA-256
+  `3f77171fbf42015fb0f6e74c0f5d49c8f58890a64355b2de4348407cef79ab02`.
+- Approver: Mechanical V3-C gate under user authorization, 2026-08-04.
+  Phase V3-D requires separate authorization.

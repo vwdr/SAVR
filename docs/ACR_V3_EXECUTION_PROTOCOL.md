@@ -1,6 +1,6 @@
 # ACR Version 3 Execution Protocol
 
-Status: **FROZEN; V3-C AUTHORIZED, PREFLIGHT REQUIRED BEFORE EXECUTION**
+Status: **FROZEN; V3-C COMPLETE POSITIVE; V3-D UNAUTHORIZED**
 
 Freeze date: 2026-08-04
 
@@ -165,7 +165,8 @@ new artifact cap. Stop after verification.
 Administrative status: authorized by the user on 2026-08-04. The exact
 64-query identities and timing order are frozen in
 `configs/acr/v3_c_gate.json` and `docs/ACR_V3_C_PREFLIGHT.md` before model
-execution.
+execution. The phase completed with every correctness and latency gate passing;
+evidence is in `reports/PHASE_V3_C_REPORT.md`.
 
 Requires new authorization after V3-B. Use one responsibly selected idle GPU,
 one model process, zero simulator episodes, at most `64` model queries,
@@ -253,5 +254,5 @@ unchanged until evidence supports the exact claims to be written.
 
 ## 13. Current stop point
 
-V3-C is authorized. Stop after its correctness/latency decision. V3-D remains
-unauthorized even if every V3-C gate passes.
+V3-C is complete with a positive correctness/latency result. Stop before V3-D
+and request separate authorization.
