@@ -137,3 +137,12 @@ def test_visual_cuda_uses_only_frozen_visual_components() -> None:
         )
     )
     assert RUNNER.visual_cuda_ms(result) == 6.0
+
+
+def test_action_finite_checker_accepts_pinned_lists_and_rejects_nonfinite() -> None:
+    import numpy as np
+
+    assert RUNNER.action_is_finite([[0.0] * 7] * 8, np) is True
+    assert RUNNER.action_is_finite([[float("inf")]], np) is False
+    assert RUNNER.action_is_finite([[float("nan")]], np) is False
+    assert RUNNER.action_is_finite(["not-a-number"], np) is False

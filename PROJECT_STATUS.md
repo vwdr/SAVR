@@ -4,7 +4,7 @@ Last updated: 2026-08-04
 
 ## Current phase
 
-ACR Version 3 Phase V3-D — **AUTHORIZED: PREFLIGHT/EXECUTION CHECKPOINT**
+ACR Version 3 Phase V3-D — **IN PROGRESS: TECHNICAL RECOVERY PREFLIGHT**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -186,6 +186,17 @@ all success/reuse/visual/wall/restoration gates, and the one-GPU, 12-hour,
 2-GiB, no-download resource boundary. The runner and independent analyzer are
 implemented and all 221 local tests pass. No V3-D simulator outcome has been
 opened; the pre-execution checkpoint must merge and synchronize before launch.
+
+The first V3-D BFR start then stopped technically before a completed query or
+action execution because the pinned evaluator returned a valid action list to
+the adapter's tensor-only default finite checker. The immutable attempt has
+zero completed query records and no opened success outcome; checkpoint/source
+restoration passed and GPU 1 returned idle. The narrow correction supplies an
+explicit list/NumPy finite checker outside timing. A one-time full recovery
+preserves the failed start, changes no scientific design or gate, and raises
+only the cumulative episode-start allowance from 140 to 141. It is frozen in
+`configs/acr/v3_d_recovery.json` and
+`docs/ACR_V3_D_TECHNICAL_RECOVERY.md` pending merge/sync/CPU verification.
 
 ### Legacy SAVR terminal state
 
@@ -391,12 +402,12 @@ Not completed:
 
 ## Next authorized action
 
-Merge and synchronize the frozen V3-D pre-execution checkpoint, verify it in
-TITAN's pinned CPU environment, select one idle GPU from aggregate device
-telemetry, and execute exactly the 140-attempt outcome-blind paired Object
-matrix. Analyze success only after all terminal records exist. V3-E, Goal, and
-final-holdout access remain unauthorized. V2-D remains ineligible and V2-C may
-not be rerun or reinterpreted.
+Merge and synchronize the frozen V3-D technical recovery, verify it in TITAN's
+pinned CPU environment, select one idle GPU from aggregate device telemetry,
+and execute the unchanged 140-attempt outcome-blind paired Object matrix under
+the recovery run ID. Analyze success only after all terminal records exist.
+V3-E, Goal, and final-holdout access remain unauthorized. V2-D remains
+ineligible and V2-C may not be rerun or reinterpreted.
 
 ## Candidate initial stack
 

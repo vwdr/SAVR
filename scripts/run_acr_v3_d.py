@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import gc
 import hashlib
 import json
@@ -20,7 +21,9 @@ from typing import Any
 
 
 EXPECTED_ROOT = Path("/home/ved/SAVR")
-RUN_ID = "acr-v3d-paired-object-dev03-09-v01"
+PRIMARY_RUN_ID = "acr-v3d-paired-object-dev03-09-v01"
+RECOVERY_RUN_ID = "acr-v3d-paired-object-dev03-09-recovery-v01"
+RUN_ID = PRIMARY_RUN_ID
 PHASE = "V3-D"
 SUITE = "libero_object"
 TASK_IDS = tuple(range(10))
@@ -28,6 +31,7 @@ STATE_IDS = tuple(range(3, 10))
 POLICIES = ("batched-fr", "sa-bdp-acr-t25-h2-b30-v01")
 SEED = 0
 ATTEMPT_CAP = 140
+CUMULATIVE_RECOVERY_ATTEMPT_CAP = 141
 WALL_CAP_SECONDS = 43_200
 ARTIFACT_CAP_BYTES = 2 * 1024**3
 STEADY_EXCLUSIONS = frozenset({0, 1, 2})
@@ -36,6 +40,7 @@ OPENVLA_REVISION = "e4287e94541f459edc4feabc4e181f537cd569a8"
 LIBERO_REVISION = "8f1084e3132a39270c3a13ebe37270a43ece2a01"
 CHECKPOINT_RELATIVE = Path("checkpoints/openvla-7b-oft-libero-four-suite")
 CONFIG_RELATIVE = Path("configs/acr/v3_d_development.json")
+RECOVERY_CONFIG_RELATIVE = Path("configs/acr/v3_d_recovery.json")
 
 
 class Interrupted(RuntimeError):
@@ -145,7 +150,7 @@ def validate_frozen_config(config: dict[str, Any]) -> None:
     if (
         config.get("schema_version") != "acr.v3d-development.v1"
         or config.get("phase") != PHASE
-        or config.get("run_id") != RUN_ID
+        or config.get("run_id") != PRIMARY_RUN_ID
         or config.get("suite") != SUITE
         or config.get("task_ids") != list(TASK_IDS)
         or config.get("initial_state_ids") != list(STATE_IDS)
@@ -233,6 +238,49 @@ def validate_frozen_config(config: dict[str, Any]) -> None:
         raise ValueError("Frozen V3-D first-position balance changed")
 
 
+def validate_recovery_config(project_root: Path, recovery: dict[str, Any]) -> None:
+    expected = {
+        "schema_version": "acr.v3d-recovery.v1",
+        "phase": PHASE,
+        "source_run_id": PRIMARY_RUN_ID,
+        "recovery_run_id": RECOVERY_RUN_ID,
+        "technical_attempts_preserved": 1,
+        "scientific_terminal_episodes_preserved": 0,
+        "recovery_episode_attempts": ATTEMPT_CAP,
+        "cumulative_episode_attempt_cap": CUMULATIVE_RECOVERY_ATTEMPT_CAP,
+        "cumulative_wall_seconds": WALL_CAP_SECONDS,
+        "cumulative_artifact_bytes": ARTIFACT_CAP_BYTES,
+        "automatic_episode_retry": False,
+        "method_population_schedule_and_gates_changed": False,
+    }
+    for key, value in expected.items():
+        if recovery.get(key) != value:
+            raise ValueError(f"Frozen V3-D recovery changed: {key}")
+    source = recovery.get("source_records", {})
+    source_root = project_root / "results" / PRIMARY_RUN_ID
+    for name, expected_hash in {
+        "manifest": "a521e6d677405958896a567c2e777b9908ee728fb7e96a795a8ba5f309ec0afb",
+        "completion": "d16854b2bd2d8e6a2ac4d065f868d43e78a9ee925859463c976e1a4b8a027887",
+        "summary": "d15cdbb5c16eda020e35033369add77e78b25d9cde89a52987d015a6ddcde316",
+    }.items():
+        path = source_root / name / "record.json"
+        if source.get(f"{name}_sha256") != expected_hash or file_sha256(path) != expected_hash:
+            raise ValueError(f"Preserved V3-D technical {name} record changed")
+    summary = json.loads((source_root / "summary/record.json").read_text(encoding="utf-8"))
+    if (
+        summary.get("status") != "failed"
+        or summary.get("attempts_started") != 1
+        or summary.get("terminal_records") != 1
+        or sum(summary.get("query_counts_per_policy", {}).values()) != 0
+        or summary.get("error_type") != "TypeError"
+        or summary.get("error")
+        != "isfinite(): argument 'input' (position 1) must be Tensor, not list"
+        or summary.get("restoration_error") is not None
+        or summary.get("checkpoint_before") != summary.get("checkpoint_after")
+    ):
+        raise ValueError("Preserved V3-D technical attempt is not recovery-eligible")
+
+
 def visual_cuda_ms(result: Any) -> float:
     timing = result.device_timing
     if timing is None:
@@ -246,6 +294,15 @@ def visual_cuda_ms(result: Any) -> float:
         "wrist.projector",
     )
     return sum(float(timing.component_device_ms.get(name, 0.0)) for name in names)
+
+
+def action_is_finite(value: Any, np: Any) -> bool:
+    """Accept the pinned evaluator's list/NumPy action representation."""
+
+    try:
+        return bool(np.isfinite(np.asarray(value)).all())
+    except (TypeError, ValueError):
+        return False
 
 
 def query_record(
@@ -368,6 +425,10 @@ def add_counts(target: dict[str, int], source: dict[str, int]) -> None:
 
 
 def main() -> int:
+    global RUN_ID
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--recovery", action="store_true")
+    arguments = parser.parse_args()
     project_root = Path(__file__).resolve().parents[1]
     if project_root != EXPECTED_ROOT:
         raise SystemExit(f"Refusing to run outside {EXPECTED_ROOT}: {project_root}")
@@ -408,8 +469,33 @@ def main() -> int:
     config_path = project_root / CONFIG_RELATIVE
     config = json.loads(config_path.read_text(encoding="utf-8"))
     validate_frozen_config(config)
+    recovery: dict[str, Any] | None = None
+    prior_attempts = 0
+    prior_wall_seconds = 0.0
+    prior_artifact_bytes = 0
+    if arguments.recovery:
+        recovery_path = project_root / RECOVERY_CONFIG_RELATIVE
+        recovery = json.loads(recovery_path.read_text(encoding="utf-8"))
+        validate_recovery_config(project_root, recovery)
+        RUN_ID = RECOVERY_RUN_ID
+        prior_summary = json.loads(
+            (project_root / "results" / PRIMARY_RUN_ID / "summary" / "record.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        prior_attempts = int(prior_summary["attempts_started"])
+        prior_wall_seconds = float(prior_summary["elapsed_seconds"])
+        prior_artifact_bytes = directory_size(project_root / "results" / PRIMARY_RUN_ID)
     run_configuration_sha256 = value_sha256(
-        {"config_sha256": file_sha256(config_path), "schedule": schedule()}
+        {
+            "config_sha256": file_sha256(config_path),
+            "recovery_config_sha256": (
+                file_sha256(project_root / RECOVERY_CONFIG_RELATIVE)
+                if recovery is not None
+                else None
+            ),
+            "schedule": schedule(),
+        }
     )
     upstream_root = project_root / "third_party/openvla-oft"
     libero_root = project_root / "third_party/LIBERO"
@@ -481,7 +567,9 @@ def main() -> int:
         },
         "counterbalance": config["counterbalance"],
         "planned_attempts": [identity.value for identity in planned],
-        "resource_caps": config["resource_caps"],
+        "resource_caps": recovery if recovery is not None else config["resource_caps"],
+        "recovery": arguments.recovery,
+        "source_technical_run_id": PRIMARY_RUN_ID if arguments.recovery else None,
         "outcome_blind_until_complete": True,
         "revisions": {
             "savr": savr_revision,
@@ -576,11 +664,13 @@ def main() -> int:
             try:
                 for state_id in STATE_IDS:
                     for policy in policy_order(task_id, state_id):
-                        if attempts_started >= ATTEMPT_CAP:
+                        if prior_attempts + attempts_started >= (
+                            CUMULATIVE_RECOVERY_ATTEMPT_CAP if arguments.recovery else ATTEMPT_CAP
+                        ):
                             raise ResourceCap("V3-D episode-attempt cap exhausted")
-                        if time.monotonic() - run_started >= WALL_CAP_SECONDS:
+                        if prior_wall_seconds + time.monotonic() - run_started >= WALL_CAP_SECONDS:
                             raise ResourceCap("V3-D wall-time cap reached before scheduling")
-                        if directory_size(run_dir) >= ARTIFACT_CAP_BYTES:
+                        if prior_artifact_bytes + directory_size(run_dir) >= ARTIFACT_CAP_BYTES:
                             raise ResourceCap("V3-D artifact cap reached before scheduling")
                         identity = AttemptIdentity(
                             RUN_ID, policy, "libero-object", task_id, state_id, SEED, 1
@@ -628,7 +718,10 @@ def main() -> int:
                         tensor_ops = TorchTensorOperations(torch)
                         adapter = (
                             BatchedFullRefreshAdapter(
-                                model=model, tensor_ops=tensor_ops, instrumentation=instrumentation
+                                model=model,
+                                tensor_ops=tensor_ops,
+                                instrumentation=instrumentation,
+                                action_finite_checker=lambda value: action_is_finite(value, np),
                             )
                             if policy == POLICIES[0]
                             else BatchedDualPathOpenVLAAdapter(
@@ -636,13 +729,17 @@ def main() -> int:
                                 controller=ACRController(controller_configuration),
                                 tensor_ops=tensor_ops,
                                 instrumentation=instrumentation,
+                                action_finite_checker=lambda value: action_is_finite(value, np),
                             )
                         )
                         try:
                             with adapter.episode(context):
                                 max_steps = upstream_eval.TASK_MAX_STEPS[cfg.task_suite_name]
                                 while environment_step < max_steps + cfg.num_steps_wait:
-                                    if time.monotonic() - run_started >= WALL_CAP_SECONDS:
+                                    if (
+                                        prior_wall_seconds + time.monotonic() - run_started
+                                        >= WALL_CAP_SECONDS
+                                    ):
                                         raise ResourceCap(
                                             "V3-D wall-time cap reached during episode"
                                         )
@@ -833,7 +930,7 @@ def main() -> int:
                         add_counts(aggregate_counts[policy], episode_counts)
                         if episode_error is not None:
                             raise episode_error
-                        if directory_size(run_dir) >= ARTIFACT_CAP_BYTES:
+                        if prior_artifact_bytes + directory_size(run_dir) >= ARTIFACT_CAP_BYTES:
                             raise ResourceCap("V3-D artifact cap reached")
             finally:
                 current_env.close()
@@ -887,10 +984,12 @@ def main() -> int:
             terminal_status = "failed"
         elapsed_seconds = time.monotonic() - run_started
         artifact_bytes = directory_size(run_dir)
-        if elapsed_seconds > WALL_CAP_SECONDS:
+        cumulative_wall_seconds = prior_wall_seconds + elapsed_seconds
+        cumulative_artifact_bytes = prior_artifact_bytes + artifact_bytes
+        if cumulative_wall_seconds > WALL_CAP_SECONDS:
             caught = caught or ResourceCap("V3-D wall cap exceeded")
             terminal_status = "failed"
-        if artifact_bytes > ARTIFACT_CAP_BYTES:
+        if cumulative_artifact_bytes > ARTIFACT_CAP_BYTES:
             caught = caught or ResourceCap("V3-D artifact cap exceeded")
             terminal_status = "failed"
         completion = {
@@ -906,6 +1005,7 @@ def main() -> int:
             "status": terminal_status,
             "outcomes_aggregated": False,
             "attempts_started": attempts_started,
+            "cumulative_attempts_started": prior_attempts + attempts_started,
             "terminal_records": len(terminal_record_ids),
             "terminal_records_per_policy": {
                 policy: sum(f"/{policy}/" in item for item in terminal_record_ids)
@@ -914,7 +1014,9 @@ def main() -> int:
             "query_counts_per_policy": dict(global_policy_queries),
             "work_counts_per_policy": aggregate_counts,
             "elapsed_seconds": elapsed_seconds,
+            "cumulative_wall_seconds": cumulative_wall_seconds,
             "artifact_bytes": artifact_bytes,
+            "cumulative_artifact_bytes": cumulative_artifact_bytes,
             "gpu_before": gpu_before,
             "gpu_after": gpu_after,
             "checkpoint_before": checkpoint_before,
