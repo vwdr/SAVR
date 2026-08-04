@@ -658,3 +658,22 @@ Last updated: 2026-08-03
   `docs/ACR_V2_EXECUTION_PROTOCOL.md`; `configs/acr/v2_freeze.json`.
 - Approver: Mechanical V2-A freeze under the user-approved positive-paper
   planning route, 2026-08-03. Phase V2-B remains unauthorized.
+
+## D-065 — Authorize and complete ACR Version 2 Phase V2-B
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Implement the frozen SA-DP-ACR execution architecture on CPU only.
+  Keep Version 1 unchanged. Require episode-scoped restoration, exact original
+  refresh return identity, wrist-only reuse, truthful physical/logical
+  accounting, structural fail-closed behavior, production/correctness finite
+  modes, terminal action validation, and immutable recovery identities. Stop
+  after CPU/static verification; do not use a GPU, model, simulator, rollout,
+  new outcome, download, protected population, or manuscript.
+- Evidence: User approval on 2026-08-03; `src/savr/acr/dual_path.py`;
+  `tests/acr/test_dual_path_adapter.py`; `reports/PHASE_V2_B_REPORT.md`.
+- Result: All 172 repository tests plus 9 TITAN subtests pass. All 14 new
+  V2-B tests and changed-file static/build/bootstrap gates pass. The 512 MiB
+  cap was respected. No scientific outcome was collected.
+- Approver: User authorization and mechanical V2-B exit gate, 2026-08-03.
+  Phase V2-C remains unauthorized.

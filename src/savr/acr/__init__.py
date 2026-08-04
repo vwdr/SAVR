@@ -2,6 +2,12 @@
 
 from savr.acr.cache import SceneTokenCache
 from savr.acr.controller import ACRController
+from savr.acr.dual_path import (
+    DualPathFailure,
+    DualPathOpenVLAAdapter,
+    DualPathQueryResult,
+    DualPathWork,
+)
 from savr.acr.types import (
     ACRConfiguration,
     ACRContext,
@@ -17,6 +23,10 @@ __all__ = [
     "ACRController",
     "ACRPolicy",
     "CameraWork",
+    "DualPathFailure",
+    "DualPathOpenVLAAdapter",
+    "DualPathQueryResult",
+    "DualPathWork",
     "SceneDecision",
     "SceneTensorMetadata",
     "SceneTokenCache",

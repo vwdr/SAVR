@@ -4,7 +4,7 @@ Last updated: 2026-08-03
 
 ## Current phase
 
-ACR Version 2 Phase V2-A — **COMPLETE: DIAGNOSIS AND PROTOCOL FROZEN**
+ACR Version 2 Phase V2-B — **COMPLETE: CPU IMPLEMENTATION VERIFIED**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -82,8 +82,21 @@ State-Aware Dual-Path ACR. It retains the exact conservative controller, uses
 the original upstream two-view path on refresh and a wrist-only path on reuse,
 and requires bitwise correctness plus a paired latency gate before any rollout.
 No Version 2 implementation, model query, simulator episode, new population,
-GPU use, protected outcome, or manuscript edit occurred in V2-A. Phase V2-B
-is not yet authorized.
+GPU use, protected outcome, or manuscript edit occurred in V2-A.
+
+The user authorized Phase V2-B on 2026-08-03. The separate episode-scoped
+dual-path adapter now calls the exact original two-view method on refresh and
+returns its original tensor unchanged; reuse executes only a fresh wrist path
+and combines it with the owned cached scene block. It separately accounts for
+physical calls and logical camera work, rejects nested/concurrent use, restores
+the original method on every episode exit, applies structural checks in the
+production path, reserves full projected finite scans for correctness mode,
+and always validates the returned action chunk. All 172 repository tests plus
+9 TITAN subtests pass; the 14 new V2-B tests pass locally and in TITAN's pinned
+CPU environment. Ruff, formatting, mypy, compilation, bootstrap, and package
+build checks pass. No GPU/model/simulator/download/outcome/manuscript work was
+performed. Full evidence is in `reports/PHASE_V2_B_REPORT.md`. Phase V2-C is
+not authorized.
 
 ### Legacy SAVR terminal state
 
@@ -265,7 +278,9 @@ Completed:
 - all three ACR candidates passed the reuse and instrumentation gates but failed the exact success and per-task gates
 - ACR Stage 2 and A6 were not run because the frozen analyzer selected no advancing candidate
 - ACR Version 2 diagnosis reproduced the A5 failure and latency evidence with a deterministic machine record
-- the SA-DP-ACR controller, dual execution paths, independent splits, gates, resources, and stop rules are frozen before Version 2 implementation
+- the SA-DP-ACR controller, dual execution paths, independent splits, gates, resources, and stop rules are frozen
+- the separate SA-DP-ACR adapter and 14-test CPU matrix are implemented without changing Version 1
+- all 172 repository tests plus 9 TITAN subtests and the static/build/bootstrap gates pass
 
 Not completed:
 
@@ -279,14 +294,14 @@ Not completed:
 - no Phase 6R-A GPU or simulator run was performed
 - no SAVR3 matched-baseline or confirmatory evaluation is eligible
 - no ACR candidate is eligible for Stage 2 or independent A6 confirmation
-- no SA-DP-ACR implementation, correctness query, latency microbenchmark, or rollout has begun
+- no SA-DP-ACR real-model correctness query, latency microbenchmark, or rollout has begun
 
 ## Next authorized action
 
-The next possible action is Phase V2-B only: implement and CPU-test the frozen
-dual-path adapter. It requires explicit user authorization. Do not run a model,
-GPU timing query, simulator episode, Object state `3-9` ACR outcome, Goal
-confirmation, or final holdout during V2-B.
+The next possible action is Phase V2-C only: run the bounded real-model
+correctness and paired-latency gate. It requires explicit user authorization.
+Do not run a simulator episode, Object state `3-9` ACR outcome, Goal
+confirmation, or final holdout during V2-C.
 
 ## Candidate initial stack
 
