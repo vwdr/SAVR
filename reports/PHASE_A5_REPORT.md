@@ -27,7 +27,7 @@ paper-level ACR claim.
 | `acr-t50-h4-b55` | 24/30 | 328/692 (47.40%) | 692 | success; per-task success |
 | `acr-t70-h8-b75` | 23/30 | 351/710 (49.44%) | 710 | success; per-task success |
 
-The conservative candidate missed only Object task 6/state 2. Its per-task
+The conservative candidate missed only Object task 6/state 0. Its per-task
 success vector was `3,3,3,3,3,3,2,3,3,3`. The middle candidate's vector was
 `3,3,3,2,2,2,3,1,3,2`; the aggressive candidate's vector was
 `3,3,3,2,2,1,3,1,3,2`. Scientific failures were retained and never rerun.
