@@ -212,7 +212,7 @@ def pixels(scene=1.0, wrist=2.0, *, dtype="float32", channels=12):
     return FakeTensor(values, (1, channels, 2, 2), dtype=dtype)
 
 
-def make_adapter(*, correctness_mode=False, observer=None):
+def make_adapter(*, correctness_mode=False, observer=None, action_finite_checker=None):
     ops = FakeOps()
     model = FakeModel(ops)
     adapter = DualPathOpenVLAAdapter(
@@ -221,6 +221,7 @@ def make_adapter(*, correctness_mode=False, observer=None):
         tensor_ops=ops,
         correctness_mode=correctness_mode,
         projected_tokens_observer=observer,
+        action_finite_checker=action_finite_checker,
     )
     return model, adapter, ops
 
@@ -433,6 +434,20 @@ def test_nonfinite_action_fails_preserves_failure_and_does_not_advance():
         assert adapter.last_failure is not None
         assert adapter.last_failure.query_index == 0
         assert adapter.last_failure.classification == "invariant"
+
+
+def test_custom_action_finite_checker_supports_non_tensor_action_outputs():
+    checked = []
+
+    def checker(value):
+        checked.append(value)
+        return all(math.isfinite(float(item)) for item in value)
+
+    model, adapter, ops = make_adapter(action_finite_checker=checker)
+    with adapter.episode(context()):
+        run(model, adapter)
+    assert len(checked) == 1
+    assert ops.finite_checks == []
 
 
 def test_immutable_v2_identity_and_monotonic_recovery(tmp_path):

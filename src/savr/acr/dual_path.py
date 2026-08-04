@@ -144,6 +144,7 @@ class DualPathOpenVLAAdapter:
         cache: SceneTokenCache | None = None,
         instrumentation: CameraInstrumentation | None = None,
         action_chunk_getter: Callable[[Any], Any] | None = None,
+        action_finite_checker: Callable[[Any], bool] | None = None,
         projected_tokens_observer: Callable[[Any], None] | None = None,
         correctness_mode: bool = False,
     ) -> None:
@@ -155,6 +156,7 @@ class DualPathOpenVLAAdapter:
         self.cache = cache or SceneTokenCache()
         self.instrumentation = instrumentation or CameraInstrumentation()
         self.action_chunk_getter = action_chunk_getter or (lambda result: result)
+        self.action_finite_checker = action_finite_checker or tensor_ops.all_finite
         self.projected_tokens_observer = projected_tokens_observer
         self.correctness_mode = correctness_mode
         self._episode_lock = threading.Lock()
@@ -502,7 +504,7 @@ class DualPathOpenVLAAdapter:
             work = DualPathWork(**{**work.__dict__, "downstream_calls": 1})
             work.validate(scene_refresh=effective.refresh)
             action_chunk = self.action_chunk_getter(value)
-            if not self.tensor_ops.all_finite(action_chunk):
+            if not self.action_finite_checker(action_chunk):
                 raise RuntimeError("Returned action chunk contains non-finite values")
             if effective.refresh:
                 if self.cache.entry is None:
