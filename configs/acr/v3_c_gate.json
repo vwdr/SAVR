@@ -1,0 +1,77 @@
+{
+  "schema_version": "acr.v3-c-gate.v1",
+  "status": "FROZEN_BEFORE_REAL_MODEL_EXECUTION",
+  "run_id": "acr-v3c-correctness-latency-v01",
+  "method_id": "sa-bdp-acr-t25-h2-b30-v01",
+  "batched_fr_id": "batched-fr-v01",
+  "correctness_queries": [
+    "correctness-input-a-upstream-fr",
+    "correctness-input-a-batched-fr",
+    "correctness-input-a-v3-refresh",
+    "correctness-input-b-upstream-fr",
+    "correctness-input-b-batched-fr",
+    "correctness-input-b-v3-refresh",
+    "correctness-input-a-v2-reuse",
+    "correctness-input-a-v3-reuse"
+  ],
+  "correctness": {
+    "inputs": ["deterministic-acr-v3-pattern-a", "deterministic-acr-v3-pattern-b"],
+    "projected_token_rtol": 0.016,
+    "projected_token_atol": 0.00001,
+    "refresh_actions_bitwise": true,
+    "reuse_tokens_and_actions_bitwise_v2": true,
+    "cache_and_restoration_cpu_evidence_required": true
+  },
+  "timing": {
+    "paths": ["sequential-fr", "batched-fr", "v3-refresh", "v3-reuse"],
+    "untimed_warmups_per_path": 2,
+    "timed_repetitions_per_path": 12,
+    "counterbalance": [
+      ["sequential-fr", "batched-fr", "v3-refresh", "v3-reuse"],
+      ["batched-fr", "v3-refresh", "v3-reuse", "sequential-fr"],
+      ["v3-refresh", "v3-reuse", "sequential-fr", "batched-fr"],
+      ["v3-reuse", "sequential-fr", "batched-fr", "v3-refresh"]
+    ],
+    "reuse_weight": 0.26055045871559634,
+    "bfr_sequential_wall_ratio_max": 0.98,
+    "v3_refresh_bfr_wall_ratio_max": 1.02,
+    "v3_reuse_bfr_wall_ratio_max": 0.98,
+    "v3_weighted_sequential_wall_ratio_max": 0.98,
+    "v3_weighted_bfr_wall_ratio_max": 1.0,
+    "v3_weighted_visual_cuda_reduction_min": 0.10,
+    "outlier_deletion": false
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "model_queries": 64,
+    "rollout_episodes": 0,
+    "simulator_resets": 0,
+    "wall_seconds": 3600,
+    "artifact_bytes": 536870912,
+    "downloads_allowed": false
+  },
+  "input": {
+    "instruction": "move the robot safely to the target",
+    "suite_metadata_only": "libero_object",
+    "seed": 0,
+    "state": "midpoint-of-pinned-proprio-q01-q99",
+    "center_crop": true,
+    "number_of_images": 2,
+    "camera_order": ["full_image", "wrist_image"]
+  },
+  "recovery": {
+    "automatic_retry": false,
+    "preserve_parent_attempt": true,
+    "resume_only_unconsumed_query_labels": true,
+    "cumulative_query_cap": 64
+  },
+  "integrity": {
+    "immutable_run": true,
+    "checkpoint_restoration": true,
+    "source_tree_restoration": true,
+    "failure_stops_before_rollout": true,
+    "v2_c_evidence_immutable": true
+  },
+  "semantic_sha256": "b5881c0eafc1b010c2feeb25643b161cdb70ee77013617fb6ba11079b19ddc60"
+}

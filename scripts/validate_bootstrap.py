@@ -29,6 +29,7 @@ REQUIRED_FILES = (
     "docs/STACK_ASSESSMENT.md",
     "docs/UPSTREAM_PINS.md",
     "docs/ACR_V3_EXECUTION_PROTOCOL.md",
+    "docs/ACR_V3_C_PREFLIGHT.md",
     "environment/README.md",
     "environment/libero-config.yaml",
     "environment/locks/.gitkeep",
@@ -58,6 +59,7 @@ REQUIRED_FILES = (
     "scripts/analyze_phase2b_pilot.py",
     "scripts/analyze_phase5_smoke.py",
     "scripts/analyze_acr_v3_feasibility.py",
+    "scripts/run_acr_v3_c.py",
     "scripts/audit_vla_cache_compatibility.py",
     "scripts/download_phase2_checkpoint.py",
     "scripts/run_phase2a_fr_smoke.py",
@@ -85,7 +87,9 @@ REQUIRED_FILES = (
     "tests/unit/test_timing.py",
     "tests/acr/test_v3_feasibility.py",
     "tests/acr/test_batched_dual_path.py",
+    "tests/acr/test_v3_c_runner.py",
     "configs/acr/v3_freeze.json",
+    "configs/acr/v3_c_gate.json",
 )
 
 

@@ -4,7 +4,7 @@ Last updated: 2026-08-04
 
 ## Current phase
 
-ACR Version 3 Phase V3-B — **COMPLETE: CPU IMPLEMENTATION VERIFIED**
+ACR Version 3 Phase V3-C — **IN PROGRESS: PREFLIGHT BEFORE GPU EXECUTION**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -158,6 +158,13 @@ tests plus 9 subtests pass in TITAN's pinned CPU environment, including 18 new
 V3-B tests and six real-PyTorch CPU assertions. No GPU, checkpoint/model query,
 simulator, download, benchmark outcome, protected population, or manuscript
 change occurred. Full evidence is in `reports/PHASE_V3_B_REPORT.md`.
+
+The user authorized V3-C on 2026-08-04. Its exact eight correctness queries,
+eight warm-ups, 48 timed queries, four-path cyclic counterbalance, numerical
+tolerance, latency gates, resource caps, and fail-closed recovery identities
+are frozen in `configs/acr/v3_c_gate.json` and
+`docs/ACR_V3_C_PREFLIGHT.md` before any real-model execution. V3-D remains
+unauthorized regardless of the V3-C result.
 
 ### Legacy SAVR terminal state
 
@@ -362,9 +369,9 @@ Not completed:
 
 ## Next authorized action
 
-V3-B is complete. The next possible action is separately authorized, bounded
-V3-C real-model correctness and latency. No V3-C GPU/model query or simulator
-outcome is authorized.
+V3-C is authorized and in progress. Complete its CPU-verified runner, then the
+bounded real-model correctness and latency gate. No simulator outcome, V3-D,
+Object state `3-9`, Goal, or final-holdout access is authorized.
 V2-D remains ineligible and V2-C may not be rerun or reinterpreted. Do not
 inspect Object state `3-9` V3 outcomes, open Goal, or access a final holdout.
 
