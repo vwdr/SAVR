@@ -41,7 +41,7 @@ At most one phase may be `IN_PROGRESS`.
 | V2-E. Independent Goal confirmation | NOT_STARTED | — | Positive independent confirmation |
 | V3-A. Batched dual-path diagnosis and protocol | COMPLETE | Immutable V2-C evidence proves scene skipping alone can save at most 1.6202% weighted wall time; pinned source loops sequentially over cameras; SA-BDP-ACR, Batched FR ablation, numerical/latency gates, budgets, and protected splits frozen with no implementation or new outcome | Explicit Phase V3-B authorization |
 | V3-B. Batched dual-path CPU implementation | COMPLETE | Separate BFR and SA-BDP-ACR adapters implement ordered two-camera batching and V2-exact reuse; 206 tests plus 9 TITAN subtests and six real-PyTorch CPU assertions pass; `reports/PHASE_V3_B_REPORT.md` | Explicit Phase V3-C authorization |
-| V3-C. Bounded correctness and latency | IN_PROGRESS | User authorized the frozen 64-query four-path gate; exact identities, counterbalance, tolerance, resources, and recovery rule are frozen before model execution | Complete CPU runner verification, then correctness before latency |
+| V3-C. Bounded correctness and latency | COMPLETE_POSITIVE | Exactly 64/64 queries; token/action correctness passed; all six latency gates passed; weighted wall ratio 0.966582 vs sequential FR, 0.997525 vs BFR, and 31.4092% visual CUDA reduction; `reports/PHASE_V3_C_REPORT.md` | Explicit Phase V3-D authorization |
 | V3-D. Fresh paired Object development | NOT_STARTED | Object states `3-9` remain unopened for V3 | V3-C passes and explicit authorization |
 | V3-E. Independent Goal confirmation | NOT_STARTED | Goal remains unopened for V3 | Positive V3-D and explicit authorization |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
@@ -52,8 +52,9 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-V3-C is the only phase in progress. Its 64-query correctness/latency gate is
-authorized and must stop before V3-D. V2-C remains stopped negative after
+No phase is currently in progress. V3-C passed its complete 64-query
+correctness/latency gate and must stop before V3-D pending explicit user
+authorization. V2-C remains stopped negative after
 exactly 48/48 queries, and V2-D remains ineligible. Object states `3-9` and Goal remain
 unopened for V3, and all final populations remain protected.
 The prior SAVR Phase 6S-D remains stopped negative, Phase 6S-E is ineligible,

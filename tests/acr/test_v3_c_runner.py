@@ -14,6 +14,13 @@ assert SPEC is not None and SPEC.loader is not None
 RUNNER = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(RUNNER)
 
+ANALYZER_SPEC = importlib.util.spec_from_file_location(
+    "analyze_acr_v3_c", ROOT / "scripts/analyze_acr_v3_c.py"
+)
+assert ANALYZER_SPEC is not None and ANALYZER_SPEC.loader is not None
+ANALYZER = importlib.util.module_from_spec(ANALYZER_SPEC)
+ANALYZER_SPEC.loader.exec_module(ANALYZER)
+
 
 def test_v3_c_exact_frozen_schedule_and_caps():
     assert RUNNER.RUN_ID == "acr-v3c-correctness-latency-v01"
@@ -167,3 +174,21 @@ def test_v3_c_exact_array_parity_rejects_one_ulp():
     changed[0, 0] = np.nextafter(changed[0, 0], np.float32(2.0))
     with pytest.raises(RuntimeError, match="exact parity failed"):
         RUNNER.exact_array(baseline, changed, np, "test")
+
+
+def test_v3_c_immutable_positive_result_reconciles():
+    result = json.loads(ANALYZER.RESULT_PATH.read_text())
+    manifest = json.loads(ANALYZER.MANIFEST_PATH.read_text())
+    summary = ANALYZER.reconcile(result, manifest)
+    assert summary["status"] == "pass"
+    assert summary["query_count"] == 64
+    assert summary["unique_action_hashes"] == 1
+    assert summary["gates"]["all_pass"] is True
+
+
+def test_v3_c_reconciliation_rejects_a_changed_timed_value():
+    result = json.loads(ANALYZER.RESULT_PATH.read_text())
+    manifest = json.loads(ANALYZER.MANIFEST_PATH.read_text())
+    result["queries"][0]["timing"]["wall_ms"] += 1.0
+    with pytest.raises(RuntimeError, match="semantic hash"):
+        ANALYZER.reconcile(result, manifest)

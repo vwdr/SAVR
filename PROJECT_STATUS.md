@@ -4,7 +4,7 @@ Last updated: 2026-08-04
 
 ## Current phase
 
-ACR Version 3 Phase V3-C — **IN PROGRESS: PREFLIGHT BEFORE GPU EXECUTION**
+ACR Version 3 Phase V3-C — **COMPLETE: POSITIVE CORRECTNESS/LATENCY GATE**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -165,6 +165,16 @@ tolerance, latency gates, resource caps, and fail-closed recovery identities
 are frozen in `configs/acr/v3_c_gate.json` and
 `docs/ACR_V3_C_PREFLIGHT.md` before any real-model execution. V3-D remains
 unauthorized regardless of the V3-C result.
+
+V3-C subsequently completed exactly 64/64 model queries on one TITAN RTX with
+zero simulator episodes. Both deterministic inputs produced token-exact BFR
+and V3-refresh outputs and bitwise-identical actions; V3 reuse was bitwise
+identical to V2 reuse and the sequential oracle. All six frozen latency gates
+passed. At the fixed reuse weight, V3 achieved a `0.966582` wall ratio versus
+sequential FR, a `0.997525` wall ratio versus BFR, and a `31.4092%` visual CUDA
+reduction. This is the first positive method result, not yet a task-success or
+paper-level result. All 216 repository tests plus 9 subtests and the independent
+result reconciliation pass. Full evidence is in `reports/PHASE_V3_C_REPORT.md`.
 
 ### Legacy SAVR terminal state
 
@@ -351,6 +361,7 @@ Completed:
 - all 172 repository tests plus 9 TITAN subtests and the static/build/bootstrap gates pass
 - separate Batched Full Refresh and SA-BDP-ACR V3 adapters are implemented
 - all 206 repository tests plus 9 TITAN subtests and six real-PyTorch CPU assertions pass
+- V3-C completed exactly 64/64 bounded real-model queries with all correctness and latency gates passing
 
 Not completed:
 
@@ -366,12 +377,13 @@ Not completed:
 - no ACR candidate is eligible for Stage 2 or independent A6 confirmation
 - no SA-DP-ACR rollout began because its completed correctness/latency gate stopped negative
 - no SA-BDP-ACR real-model query, latency measurement, or rollout has begun
+- no SA-BDP-ACR closed-loop rollout or task-success evaluation has begun
 
 ## Next authorized action
 
-V3-C is authorized and in progress. Complete its CPU-verified runner, then the
-bounded real-model correctness and latency gate. No simulator outcome, V3-D,
-Object state `3-9`, Goal, or final-holdout access is authorized.
+V3-C is complete and positive. The next possible action is separately
+authorized V3-D paired Object development. No simulator outcome, V3-D, Object
+state `3-9`, Goal, or final-holdout access is currently authorized.
 V2-D remains ineligible and V2-C may not be rerun or reinterpreted. Do not
 inspect Object state `3-9` V3 outcomes, open Goal, or access a final holdout.
 
