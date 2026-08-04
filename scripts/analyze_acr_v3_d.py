@@ -14,7 +14,8 @@ from typing import Any
 
 EXPECTED_ROOT = Path("/home/ved/SAVR")
 PRIMARY_RUN_ID = "acr-v3d-paired-object-dev03-09-v01"
-RUN_ID = "acr-v3d-paired-object-dev03-09-recovery-v01"
+RECOVERY_1_RUN_ID = "acr-v3d-paired-object-dev03-09-recovery-v01"
+RUN_ID = "acr-v3d-paired-object-dev03-09-recovery-02-v01"
 ANALYSIS_ID = "acr-v3d-analysis-v01"
 FR_RUN_ID = "acr-a4-upstream-fr-object-dev00-09-v01"
 TASK_IDS = tuple(range(10))
@@ -256,8 +257,12 @@ def main() -> int:
         raise RuntimeError("V3-D outcomes remain blind until the complete terminal matrix exists")
     if summary.get("terminal_records") != 140 or summary.get("attempts_started") != 140:
         raise RuntimeError("V3-D run did not complete exactly 140 attempts")
-    if summary.get("cumulative_attempts_started") != 141 or manifest.get("recovery") is not True:
-        raise RuntimeError("V3-D recovery did not preserve exactly one technical start")
+    if (
+        summary.get("cumulative_attempts_started") != 143
+        or manifest.get("recovery") is not True
+        or manifest.get("recovery_index") != 2
+    ):
+        raise RuntimeError("V3-D recovery 2 did not preserve exactly three prior starts")
     if summary.get("restoration_error") is not None or summary.get(
         "checkpoint_before"
     ) != summary.get("checkpoint_after"):
@@ -313,9 +318,9 @@ def main() -> int:
         "phase": "V3-D",
         "run_id": RUN_ID,
         "configuration_sha256": configuration_sha256,
-        "preserved_technical_run_id": PRIMARY_RUN_ID,
+        "preserved_prior_run_ids": [PRIMARY_RUN_ID, RECOVERY_1_RUN_ID],
         "recovery_configuration_sha256": hashlib.sha256(
-            (project_root / "configs/acr/v3_d_recovery.json").read_bytes()
+            (project_root / "configs/acr/v3_d_recovery_2.json").read_bytes()
         ).hexdigest(),
         "run_records_sha256": value_sha256(
             {"episodes": episodes, "queries": queries, "completion": completion}

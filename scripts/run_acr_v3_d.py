@@ -23,6 +23,7 @@ from typing import Any
 EXPECTED_ROOT = Path("/home/ved/SAVR")
 PRIMARY_RUN_ID = "acr-v3d-paired-object-dev03-09-v01"
 RECOVERY_RUN_ID = "acr-v3d-paired-object-dev03-09-recovery-v01"
+RECOVERY_2_RUN_ID = "acr-v3d-paired-object-dev03-09-recovery-02-v01"
 RUN_ID = PRIMARY_RUN_ID
 PHASE = "V3-D"
 SUITE = "libero_object"
@@ -32,6 +33,7 @@ POLICIES = ("batched-fr", "sa-bdp-acr-t25-h2-b30-v01")
 SEED = 0
 ATTEMPT_CAP = 140
 CUMULATIVE_RECOVERY_ATTEMPT_CAP = 141
+CUMULATIVE_RECOVERY_2_ATTEMPT_CAP = 143
 WALL_CAP_SECONDS = 43_200
 ARTIFACT_CAP_BYTES = 2 * 1024**3
 STEADY_EXCLUSIONS = frozenset({0, 1, 2})
@@ -41,6 +43,7 @@ LIBERO_REVISION = "8f1084e3132a39270c3a13ebe37270a43ece2a01"
 CHECKPOINT_RELATIVE = Path("checkpoints/openvla-7b-oft-libero-four-suite")
 CONFIG_RELATIVE = Path("configs/acr/v3_d_development.json")
 RECOVERY_CONFIG_RELATIVE = Path("configs/acr/v3_d_recovery.json")
+RECOVERY_2_CONFIG_RELATIVE = Path("configs/acr/v3_d_recovery_2.json")
 
 
 class Interrupted(RuntimeError):
@@ -281,6 +284,59 @@ def validate_recovery_config(project_root: Path, recovery: dict[str, Any]) -> No
         raise ValueError("Preserved V3-D technical attempt is not recovery-eligible")
 
 
+def validate_recovery_2_config(project_root: Path, recovery: dict[str, Any]) -> None:
+    expected = {
+        "schema_version": "acr.v3d-recovery-2.v1",
+        "phase": PHASE,
+        "source_run_id": RECOVERY_RUN_ID,
+        "recovery_run_id": RECOVERY_2_RUN_ID,
+        "cumulative_attempts_preserved": 3,
+        "official_scientific_episodes_preserved": 0,
+        "excluded_completed_bfr_episodes": 1,
+        "recovery_episode_attempts": ATTEMPT_CAP,
+        "cumulative_episode_attempt_cap": CUMULATIVE_RECOVERY_2_ATTEMPT_CAP,
+        "cumulative_wall_seconds": WALL_CAP_SECONDS,
+        "cumulative_artifact_bytes": ARTIFACT_CAP_BYTES,
+        "automatic_episode_retry": False,
+        "method_population_schedule_and_gates_changed": False,
+    }
+    for key, value in expected.items():
+        if recovery.get(key) != value:
+            raise ValueError(f"Frozen V3-D recovery 2 changed: {key}")
+    source = recovery.get("source_records", {})
+    source_root = project_root / "results" / RECOVERY_RUN_ID
+    for name, expected_hash in {
+        "manifest": "25e607947d07a97ab4c3f198826cceae552ab9a1cfe31aa67c59bba7acfb78eb",
+        "completion": "731e1508cce06f52e332af2e61d3c48d2e4fafa803c0409c63fe1e2be15f5dec",
+        "summary": "b8853c72664f0ec65e6aa30c85c9ac2d565d24cccac47c9c2d251350c23b61ce",
+    }.items():
+        path = source_root / name / "record.json"
+        if source.get(f"{name}_sha256") != expected_hash or file_sha256(path) != expected_hash:
+            raise ValueError(f"Preserved V3-D recovery-1 {name} record changed")
+    summary = json.loads((source_root / "summary/record.json").read_text(encoding="utf-8"))
+    if (
+        summary.get("status") != "failed"
+        or summary.get("attempts_started") != 2
+        or summary.get("cumulative_attempts_started") != 3
+        or summary.get("terminal_records") != 2
+        or summary.get("query_counts_per_policy", {}).get(POLICIES[0]) != 35
+        or summary.get("query_counts_per_policy", {}).get(POLICIES[1]) != 0
+        or summary.get("error_type") != "ValueError"
+        or summary.get("error") != "Controller and context configuration identities differ"
+        or summary.get("restoration_error") is not None
+        or summary.get("checkpoint_before") != summary.get("checkpoint_after")
+    ):
+        raise ValueError("Preserved V3-D recovery-1 stop is not recovery-2 eligible")
+
+
+def context_configuration_id(policy: str) -> str:
+    if policy == POLICIES[0]:
+        return "batched-full-refresh"
+    if policy == POLICIES[1]:
+        return "acr-t25-h2-b30"
+    raise ValueError("Unsupported V3-D policy context")
+
+
 def visual_cuda_ms(result: Any) -> float:
     timing = result.device_timing
     if timing is None:
@@ -428,7 +484,10 @@ def main() -> int:
     global RUN_ID
     parser = argparse.ArgumentParser()
     parser.add_argument("--recovery", action="store_true")
+    parser.add_argument("--recovery-2", action="store_true")
     arguments = parser.parse_args()
+    if arguments.recovery and arguments.recovery_2:
+        raise SystemExit("Select exactly one V3-D recovery mode")
     project_root = Path(__file__).resolve().parents[1]
     if project_root != EXPECTED_ROOT:
         raise SystemExit(f"Refusing to run outside {EXPECTED_ROOT}: {project_root}")
@@ -486,11 +545,31 @@ def main() -> int:
         prior_attempts = int(prior_summary["attempts_started"])
         prior_wall_seconds = float(prior_summary["elapsed_seconds"])
         prior_artifact_bytes = directory_size(project_root / "results" / PRIMARY_RUN_ID)
+    elif arguments.recovery_2:
+        recovery_path = project_root / RECOVERY_2_CONFIG_RELATIVE
+        recovery = json.loads(recovery_path.read_text(encoding="utf-8"))
+        validate_recovery_2_config(project_root, recovery)
+        RUN_ID = RECOVERY_2_RUN_ID
+        prior_summary = json.loads(
+            (project_root / "results" / RECOVERY_RUN_ID / "summary" / "record.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        prior_attempts = int(prior_summary["cumulative_attempts_started"])
+        prior_wall_seconds = float(prior_summary["cumulative_wall_seconds"])
+        prior_artifact_bytes = int(prior_summary["cumulative_artifact_bytes"])
     run_configuration_sha256 = value_sha256(
         {
             "config_sha256": file_sha256(config_path),
             "recovery_config_sha256": (
-                file_sha256(project_root / RECOVERY_CONFIG_RELATIVE)
+                file_sha256(
+                    project_root
+                    / (
+                        RECOVERY_2_CONFIG_RELATIVE
+                        if arguments.recovery_2
+                        else RECOVERY_CONFIG_RELATIVE
+                    )
+                )
                 if recovery is not None
                 else None
             ),
@@ -568,8 +647,15 @@ def main() -> int:
         "counterbalance": config["counterbalance"],
         "planned_attempts": [identity.value for identity in planned],
         "resource_caps": recovery if recovery is not None else config["resource_caps"],
-        "recovery": arguments.recovery,
-        "source_technical_run_id": PRIMARY_RUN_ID if arguments.recovery else None,
+        "recovery": arguments.recovery or arguments.recovery_2,
+        "recovery_index": 2 if arguments.recovery_2 else 1 if arguments.recovery else None,
+        "source_technical_run_id": (
+            RECOVERY_RUN_ID
+            if arguments.recovery_2
+            else PRIMARY_RUN_ID
+            if arguments.recovery
+            else None
+        ),
         "outcome_blind_until_complete": True,
         "revisions": {
             "savr": savr_revision,
@@ -664,9 +750,14 @@ def main() -> int:
             try:
                 for state_id in STATE_IDS:
                     for policy in policy_order(task_id, state_id):
-                        if prior_attempts + attempts_started >= (
-                            CUMULATIVE_RECOVERY_ATTEMPT_CAP if arguments.recovery else ATTEMPT_CAP
-                        ):
+                        cumulative_attempt_cap = (
+                            CUMULATIVE_RECOVERY_2_ATTEMPT_CAP
+                            if arguments.recovery_2
+                            else CUMULATIVE_RECOVERY_ATTEMPT_CAP
+                            if arguments.recovery
+                            else ATTEMPT_CAP
+                        )
+                        if prior_attempts + attempts_started >= cumulative_attempt_cap:
                             raise ResourceCap("V3-D episode-attempt cap exhausted")
                         if prior_wall_seconds + time.monotonic() - run_started >= WALL_CAP_SECONDS:
                             raise ResourceCap("V3-D wall-time cap reached before scheduling")
@@ -702,7 +793,7 @@ def main() -> int:
                             ).hexdigest(),
                             checkpoint_id=CHECKPOINT_REVISION,
                             upstream_revision=OPENVLA_REVISION,
-                            configuration_id=policy,
+                            configuration_id=context_configuration_id(policy),
                             controller_version=controller_configuration.controller_version
                             if policy == POLICIES[1]
                             else "none",

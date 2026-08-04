@@ -146,3 +146,8 @@ def test_action_finite_checker_accepts_pinned_lists_and_rejects_nonfinite() -> N
     assert RUNNER.action_is_finite([[float("inf")]], np) is False
     assert RUNNER.action_is_finite([[float("nan")]], np) is False
     assert RUNNER.action_is_finite(["not-a-number"], np) is False
+
+
+def test_policy_context_configuration_identities_are_exact() -> None:
+    assert RUNNER.context_configuration_id(RUNNER.POLICIES[0]) == "batched-full-refresh"
+    assert RUNNER.context_configuration_id(RUNNER.POLICIES[1]) == "acr-t25-h2-b30"
