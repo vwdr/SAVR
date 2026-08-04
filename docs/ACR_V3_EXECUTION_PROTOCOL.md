@@ -1,6 +1,6 @@
 # ACR Version 3 Execution Protocol
 
-Status: **FROZEN BEFORE V3 IMPLEMENTATION OR OUTCOME COLLECTION**
+Status: **FROZEN; V3-B CPU IMPLEMENTATION COMPLETE; V3-C UNAUTHORIZED**
 
 Freeze date: 2026-08-04
 
@@ -134,6 +134,10 @@ Authorized by the user on 2026-08-04 and complete when:
   occurs.
 
 ## 8. Phase V3-B — CPU-only implementation
+
+Administrative status: authorized by the user on 2026-08-04 and completed
+without changing this frozen method, gate, population, or resource design.
+Evidence is recorded in `reports/PHASE_V3_B_REPORT.md`.
 
 Requires new authorization. Implement separate BFR and SA-BDP-ACR adapters
 without changing V1, V2, or upstream files.

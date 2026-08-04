@@ -4,7 +4,7 @@ Last updated: 2026-08-04
 
 ## Current phase
 
-ACR Version 3 Phase V3-A — **COMPLETE: NEW METHOD FROZEN BEFORE IMPLEMENTATION**
+ACR Version 3 Phase V3-B — **COMPLETE: CPU IMPLEMENTATION VERIFIED**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -146,8 +146,18 @@ and no weighted regression versus Batched FR.
 V3-A used no implementation, GPU, model query, simulator episode, new outcome,
 download, protected population, or manuscript edit. Full evidence is in
 `reports/ACR_V3_DIAGNOSIS_REPORT.md` and
-`reports/runtime/acr_v3_feasibility.json`. V3-B is CPU-only implementation and
-requires separate authorization.
+`reports/runtime/acr_v3_feasibility.json`.
+
+The user authorized V3-B on 2026-08-04. Separate Batched Full Refresh and
+SA-BDP-ACR adapters now implement the frozen scene-then-wrist tower batches,
+single combined projection, owned scene cache, and established V2 wrist-only
+reuse path. The production boundary excludes audit hashing, serialization,
+file I/O, and projected-token scans; both adapters fail closed on structural,
+action, cache, nesting, concurrency, and restoration errors. All 206 repository
+tests plus 9 subtests pass in TITAN's pinned CPU environment, including 18 new
+V3-B tests and six real-PyTorch CPU assertions. No GPU, checkpoint/model query,
+simulator, download, benchmark outcome, protected population, or manuscript
+change occurred. Full evidence is in `reports/PHASE_V3_B_REPORT.md`.
 
 ### Legacy SAVR terminal state
 
@@ -332,6 +342,8 @@ Completed:
 - the SA-DP-ACR controller, dual execution paths, independent splits, gates, resources, and stop rules are frozen
 - the separate SA-DP-ACR adapter and 14-test CPU matrix are implemented without changing Version 1
 - all 172 repository tests plus 9 TITAN subtests and the static/build/bootstrap gates pass
+- separate Batched Full Refresh and SA-BDP-ACR V3 adapters are implemented
+- all 206 repository tests plus 9 TITAN subtests and six real-PyTorch CPU assertions pass
 
 Not completed:
 
@@ -346,12 +358,13 @@ Not completed:
 - no SAVR3 matched-baseline or confirmatory evaluation is eligible
 - no ACR candidate is eligible for Stage 2 or independent A6 confirmation
 - no SA-DP-ACR rollout began because its completed correctness/latency gate stopped negative
-- no SA-BDP-ACR implementation, model query, latency measurement, or rollout has begun
+- no SA-BDP-ACR real-model query, latency measurement, or rollout has begun
 
 ## Next authorized action
 
-V3-A is complete. The next possible action is separately authorized, CPU-only
-V3-B implementation. No GPU/model query or simulator outcome is authorized.
+V3-B is complete. The next possible action is separately authorized, bounded
+V3-C real-model correctness and latency. No V3-C GPU/model query or simulator
+outcome is authorized.
 V2-D remains ineligible and V2-C may not be rerun or reinterpreted. Do not
 inspect Object state `3-9` V3 outcomes, open Goal, or access a final holdout.
 

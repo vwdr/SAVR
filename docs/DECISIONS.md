@@ -752,3 +752,24 @@ Last updated: 2026-08-04
   `docs/ACR_V3_EXECUTION_PROTOCOL.md`; `configs/acr/v3_freeze.json`.
 - Approver: User authorization on 2026-08-04 and mechanical V3-A exit gate.
   Phase V3-B remains unauthorized.
+
+## D-070 — Authorize and complete ACR Version 3 Phase V3-B
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Implement separate Batched Full Refresh and SA-BDP-ACR adapters
+  under the frozen V3 method. Require exact scene-then-wrist batching, one
+  SigLIP/DINOv2/projector invocation per refresh, no controller/cache in BFR,
+  V2-equivalent wrist-only reuse, fail-closed cache/restoration/concurrency,
+  production timing without evidence hashing/serialization/file I/O/full
+  projected-token scans, immutable identities, and bounded query accounting.
+  Use CPU only and stop before V3-C.
+- Evidence: User authorization on 2026-08-04;
+  `src/savr/acr/batched_dual_path.py`;
+  `tests/acr/test_batched_dual_path.py`;
+  `reports/PHASE_V3_B_REPORT.md`.
+- Result: All 206 repository tests plus 9 TITAN subtests, 18 new V3-B tests,
+  and six real-PyTorch CPU assertions pass. No GPU, model query, simulator,
+  benchmark outcome, download, protected population, or manuscript was used.
+- Approver: User authorization and mechanical V3-B exit gate, 2026-08-04.
+  Phase V3-C remains unauthorized.

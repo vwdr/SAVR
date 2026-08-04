@@ -48,6 +48,7 @@ REQUIRED_FILES = (
     "reports/PHASE4_CORRECTNESS_REPORT.md",
     "reports/PHASE5_SMOKE_REPORT.md",
     "reports/ACR_V3_DIAGNOSIS_REPORT.md",
+    "reports/PHASE_V3_B_REPORT.md",
     "reports/runtime/acr_v3_feasibility.json",
     "reports/titan_bootstrap_diagnostics.json",
     "schemas/episode_result.schema.json",
@@ -70,6 +71,7 @@ REQUIRED_FILES = (
     "src/savr/controllers.py",
     "src/savr/integration/__init__.py",
     "src/savr/integration/openvla_oft.py",
+    "src/savr/acr/batched_dual_path.py",
     "src/savr/logging.py",
     "src/savr/signals.py",
     "src/savr/timing.py",
@@ -82,6 +84,7 @@ REQUIRED_FILES = (
     "tests/unit/test_signals.py",
     "tests/unit/test_timing.py",
     "tests/acr/test_v3_feasibility.py",
+    "tests/acr/test_batched_dual_path.py",
     "configs/acr/v3_freeze.json",
 )
 
