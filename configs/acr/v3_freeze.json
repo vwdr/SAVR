@@ -1,0 +1,108 @@
+{
+  "schema_version": "acr.v3-freeze.v1",
+  "status": "FROZEN_BEFORE_V3_IMPLEMENTATION_OR_OUTCOMES",
+  "method_id": "sa-bdp-acr-t25-h2-b30-v01",
+  "method_name": "State-Aware Batched Dual-Path Asymmetric Camera Refresh",
+  "parent_controller": {
+    "configuration_id": "acr-t25-h2-b30",
+    "controller_version": "acr-controller-v1",
+    "hard_reuse_cap": 0.3,
+    "horizon": 2,
+    "scene_threshold": 0.2476380718954248,
+    "translation_threshold": 0.5479944908411765,
+    "wrist_always_fresh": true
+  },
+  "execution": {
+    "refresh_path": "batch_ordered_scene_and_wrist_inputs_within_siglip_and_dinov2_then_restore_scene_wrist_token_order_and_project_once",
+    "reuse_path": "cached_projected_scene_block_plus_fresh_wrist_siglip_dinov2_and_projector",
+    "refresh_physical_calls": {"siglip": 1, "dinov2": 1, "projector": 1},
+    "refresh_logical_camera_work": {"scene": 1, "wrist": 1},
+    "reuse_physical_calls": {"siglip": 1, "dinov2": 1, "projector": 1},
+    "reuse_logical_camera_work": {"scene": 0, "wrist": 1},
+    "token_order": "scene-wrist",
+    "interception_lifetime": "episode_scoped_exception_safe",
+    "controller_inside_timed_boundary": true,
+    "audit_hashing_serialization_and_file_io_inside_timed_boundary": false,
+    "weights_prompts_preprocessing_proprioception_action_head_unchanged": true
+  },
+  "required_baselines": [
+    "upstream-sequential-full-refresh",
+    "batched-full-refresh",
+    "sa-bdp-acr-t25-h2-b30-v01",
+    "historical-sa-dp-acr-v2-negative"
+  ],
+  "correctness_latency_gate": {
+    "maximum_model_queries": 64,
+    "maximum_rollout_episodes": 0,
+    "correctness_queries": 8,
+    "untimed_warmups_per_path": 2,
+    "timed_repetitions_per_path": 12,
+    "timing_paths": [
+      "upstream-sequential-fr",
+      "batched-fr",
+      "v3-refresh",
+      "v3-reuse"
+    ],
+    "batched_refresh_token_equivalence": {
+      "dtype": "torch.bfloat16",
+      "rtol": 0.016,
+      "atol": 0.00001,
+      "same_shape_dtype_device_and_scene_wrist_order": true
+    },
+    "action_parity": "bitwise_exact",
+    "batched_fr_wall_ratio_vs_upstream_max": 0.98,
+    "v3_refresh_wall_ratio_vs_batched_fr_max": 1.02,
+    "v3_reuse_wall_ratio_vs_batched_fr_max": 0.98,
+    "v3_weighted_wall_ratio_vs_upstream_max": 0.98,
+    "v3_weighted_wall_ratio_vs_batched_fr_max": 1.0,
+    "v3_weighted_visual_cuda_reduction_vs_upstream_min": 0.1,
+    "fixed_reuse_weight": 0.26055045871559634,
+    "outlier_deletion": false
+  },
+  "fresh_development": {
+    "suite": "libero_object",
+    "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "initial_state_ids": [3, 4, 5, 6, 7, 8, 9],
+    "seed": 0,
+    "policies": ["batched-full-refresh", "sa-bdp-acr-t25-h2-b30-v01"],
+    "paired_policy_episodes": 140,
+    "outcome_blind_until_complete": true,
+    "success_loss_episode_max": 2,
+    "per_task_success_loss_max": 1,
+    "scene_reuse_rate_min": 0.2,
+    "visual_cuda_reduction_vs_batched_fr_min": 0.1,
+    "query_wall_ratio_vs_upstream_fr_max": 0.98,
+    "query_wall_ratio_vs_batched_fr_max": 1.0,
+    "technical_failures_max": 0
+  },
+  "independent_confirmation": {
+    "suite": "libero_goal",
+    "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "initial_state_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "seed": 0,
+    "policies": ["upstream-sequential-full-refresh", "batched-full-refresh", "sa-bdp-acr-t25-h2-b30-v01"],
+    "paired_policy_episodes": 300,
+    "success_loss_episode_max": 2,
+    "per_task_success_loss_max": 1,
+    "scene_reuse_rate_min": 0.2,
+    "visual_cuda_reduction_vs_batched_fr_min": 0.1,
+    "query_wall_ratio_vs_upstream_fr_max": 0.98,
+    "query_wall_ratio_vs_batched_fr_max": 1.0,
+    "latency_lower_confidence_bound_min": 0.0,
+    "technical_failures_max": 0
+  },
+  "resource_caps": {
+    "implementation": {"gpu_count": 0, "model_queries": 0, "rollout_episodes": 0, "artifact_bytes": 536870912},
+    "correctness_latency": {"gpu_count": 1, "model_processes": 1, "model_queries": 64, "rollout_episodes": 0, "wall_seconds": 3600, "artifact_bytes": 536870912},
+    "fresh_development": {"gpu_count": 1, "model_processes": 1, "episode_attempts": 140, "wall_seconds": 43200, "artifact_bytes": 2147483648}
+  },
+  "protected_populations": {
+    "final_state_ids": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+    "primary_seed": 7,
+    "reserve_seeds": [17, 27],
+    "all_four_suites": true
+  },
+  "v2_c_result_sha256": "9e4d8e0034c4410dbc35f4e4a2b987eda4a0645ab603c3479da05a97bd6f1ae6",
+  "v3_feasibility_semantic_sha256": "f6c2ad76f603149a5ed5e67f80315de9d661c37e3903610e260365a64cd7907b",
+  "semantic_sha256": "45ad0abbdb3561941743f6d39bf0c3c2703d53eefb091be3a1643eb1aa86d37a"
+}

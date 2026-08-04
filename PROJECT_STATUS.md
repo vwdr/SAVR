@@ -1,10 +1,10 @@
 # Project Status
 
-Last updated: 2026-08-03
+Last updated: 2026-08-04
 
 ## Current phase
 
-ACR Version 2 Phase V2-C — **STOPPED NEGATIVE: LATENCY GATES FAILED**
+ACR Version 3 Phase V3-A — **COMPLETE: NEW METHOD FROZEN BEFORE IMPLEMENTATION**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -123,6 +123,31 @@ dual refresh, dual reuse, and fixed-weight expected wall ratios were `1.40338`,
 stopped negative and V2-D is ineligible. Full evidence is in
 `reports/PHASE_V2_C_REPORT.md` and
 `reports/runtime/acr_v2_c_recovery.json`.
+
+The user then authorized V3-A as a new diagnosis/protocol phase. A deterministic
+bound from immutable V2-C evidence shows that perfect zero-overhead removal of
+all measured scene-camera visual work at the fixed 26.055% reuse weight could
+reduce weighted wall time by at most `1.6202%`, below the unchanged `2%` paper
+gate. Merely removing audit hashing cannot establish a viable new mechanism.
+
+Read-only inspection of pinned OpenVLA-OFT revision
+`e4287e94541f459edc4feabc4e181f537cd569a8` confirmed that the two-camera
+backbone loops sequentially over scene and wrist, invoking SigLIP and DINOv2
+twice. `docs/ACR_V3_EXECUTION_PROTOCOL.md` and
+`configs/acr/v3_freeze.json` therefore freeze State-Aware Batched Dual-Path
+ACR: batch the two ordered cameras within each tower on refresh, retain the
+exact conservative controller, and use the established fresh-wrist reuse
+path. Batched Full Refresh is a required ablation so generic batching gains
+cannot be attributed to camera reuse. The bounded gate requires predeclared
+bfloat16 token closeness, bitwise actions, truthful work, at least 2% weighted
+wall acceleration versus upstream FR, at least 10% weighted visual reduction,
+and no weighted regression versus Batched FR.
+
+V3-A used no implementation, GPU, model query, simulator episode, new outcome,
+download, protected population, or manuscript edit. Full evidence is in
+`reports/ACR_V3_DIAGNOSIS_REPORT.md` and
+`reports/runtime/acr_v3_feasibility.json`. V3-B is CPU-only implementation and
+requires separate authorization.
 
 ### Legacy SAVR terminal state
 
@@ -320,15 +345,15 @@ Not completed:
 - no Phase 6R-A GPU or simulator run was performed
 - no SAVR3 matched-baseline or confirmatory evaluation is eligible
 - no ACR candidate is eligible for Stage 2 or independent A6 confirmation
-- no SA-DP-ACR real-model correctness query, latency microbenchmark, or rollout has begun
+- no SA-DP-ACR rollout began because its completed correctness/latency gate stopped negative
+- no SA-BDP-ACR implementation, model query, latency measurement, or rollout has begun
 
 ## Next authorized action
 
-No further V2 execution is authorized. V2-D is ineligible. A future attempt
-would require a new predeclared implementation/protocol and explicit user
-authorization; it may not rerun or reinterpret V2-C. Do not run a simulator
-episode, inspect Object state `3-9` ACR outcomes, open Goal, or access a final
-holdout.
+V3-A is complete. The next possible action is separately authorized, CPU-only
+V3-B implementation. No GPU/model query or simulator outcome is authorized.
+V2-D remains ineligible and V2-C may not be rerun or reinterpreted. Do not
+inspect Object state `3-9` V3 outcomes, open Goal, or access a final holdout.
 
 ## Candidate initial stack
 
