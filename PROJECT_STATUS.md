@@ -4,7 +4,7 @@ Last updated: 2026-08-04
 
 ## Current phase
 
-ACR Version 3 Phase V3-C — **COMPLETE: POSITIVE CORRECTNESS/LATENCY GATE**
+ACR Version 3 Phase V3-D — **AUTHORIZED: PREFLIGHT/EXECUTION CHECKPOINT**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -175,6 +175,17 @@ sequential FR, a `0.997525` wall ratio versus BFR, and a `31.4092%` visual CUDA
 reduction. This is the first positive method result, not yet a task-success or
 paper-level result. All 216 repository tests plus 9 subtests and the independent
 result reconciliation pass. Full evidence is in `reports/PHASE_V3_C_REPORT.md`.
+
+The user authorized V3-D on 2026-08-04. The exact Object tasks `0-9`, states
+`3-9`, seed `0` population is now frozen as 70 adjacent BFR/V3 pairs and 140
+total attempts. Pair order alternates deterministically, giving each policy 35
+first positions. `configs/acr/v3_d_development.json` and
+`docs/ACR_V3_D_PREFLIGHT.md` freeze outcome-blind execution, immutable
+records, no automatic retry, the historical A4 sequential-FR latency source,
+all success/reuse/visual/wall/restoration gates, and the one-GPU, 12-hour,
+2-GiB, no-download resource boundary. The runner and independent analyzer are
+implemented and all 221 local tests pass. No V3-D simulator outcome has been
+opened; the pre-execution checkpoint must merge and synchronize before launch.
 
 ### Legacy SAVR terminal state
 
@@ -376,16 +387,16 @@ Not completed:
 - no SAVR3 matched-baseline or confirmatory evaluation is eligible
 - no ACR candidate is eligible for Stage 2 or independent A6 confirmation
 - no SA-DP-ACR rollout began because its completed correctness/latency gate stopped negative
-- no SA-BDP-ACR real-model query, latency measurement, or rollout has begun
 - no SA-BDP-ACR closed-loop rollout or task-success evaluation has begun
 
 ## Next authorized action
 
-V3-C is complete and positive. The next possible action is separately
-authorized V3-D paired Object development. No simulator outcome, V3-D, Object
-state `3-9`, Goal, or final-holdout access is currently authorized.
-V2-D remains ineligible and V2-C may not be rerun or reinterpreted. Do not
-inspect Object state `3-9` V3 outcomes, open Goal, or access a final holdout.
+Merge and synchronize the frozen V3-D pre-execution checkpoint, verify it in
+TITAN's pinned CPU environment, select one idle GPU from aggregate device
+telemetry, and execute exactly the 140-attempt outcome-blind paired Object
+matrix. Analyze success only after all terminal records exist. V3-E, Goal, and
+final-holdout access remain unauthorized. V2-D remains ineligible and V2-C may
+not be rerun or reinterpreted.
 
 ## Candidate initial stack
 

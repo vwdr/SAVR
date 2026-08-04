@@ -1,0 +1,92 @@
+{
+  "schema_version": "acr.v3d-development.v1",
+  "phase": "V3-D",
+  "run_id": "acr-v3d-paired-object-dev03-09-v01",
+  "suite": "libero_object",
+  "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+  "initial_state_ids": [3, 4, 5, 6, 7, 8, 9],
+  "seed": 0,
+  "policies": ["batched-fr", "sa-bdp-acr-t25-h2-b30-v01"],
+  "counterbalance": {
+    "unit": ["task_id", "initial_state_id", "seed"],
+    "rule": "even_pair_index_batched_fr_first_odd_pair_index_v3_first",
+    "pair_index": "task_id_times_7_plus_initial_state_id_minus_3",
+    "pairs": 70,
+    "episodes_per_policy": 70,
+    "total_episode_attempts": 140
+  },
+  "controller": {
+    "configuration_id": "acr-t25-h2-b30",
+    "controller_version": "acr-controller-v1",
+    "scene_threshold": 0.2476380718954248,
+    "translation_threshold": 0.5479944908411765,
+    "horizon": 2,
+    "hard_reuse_cap": 0.3,
+    "wrist_always_fresh": true
+  },
+  "execution": {
+    "batched_fr": "ordered_scene_wrist_batched_siglip_dinov2_and_single_projector_every_query",
+    "v3_refresh": "same_exact_batched_path_as_batched_fr_plus_owned_scene_cache_store",
+    "v3_reuse": "owned_cached_scene_tokens_plus_fresh_wrist_siglip_dinov2_and_projector",
+    "episode_scoped_installation": true,
+    "outcome_blind_until_all_terminal_records_exist": true,
+    "automatic_episode_retry": false,
+    "scientific_failure_is_terminal": true,
+    "videos": false,
+    "raw_images": false
+  },
+  "analysis": {
+    "success_pairing": ["suite", "task_id", "initial_state_id", "seed"],
+    "steady_state_exclusions_per_policy": [0, 1, 2],
+    "point_estimate": "sum_all_retained_query_measurements_divided_by_retained_query_count",
+    "sequential_fr_source_run_id": "acr-a4-upstream-fr-object-dev00-09-v01",
+    "sequential_fr_source_states": [3, 4, 5, 6, 7, 8, 9],
+    "sequential_fr_rerun": false,
+    "outlier_deletion": false
+  },
+  "gate": {
+    "terminal_episodes_per_policy": 70,
+    "technical_failures_max": 0,
+    "v3_success_loss_vs_batched_fr_max": 2,
+    "v3_per_task_success_loss_vs_batched_fr_max": 1,
+    "v3_scene_reuse_rate_min": 0.2,
+    "v3_visual_cuda_reduction_vs_batched_fr_min": 0.1,
+    "v3_query_wall_ratio_vs_sequential_fr_max": 0.98,
+    "v3_query_wall_ratio_vs_batched_fr_max": 1.0,
+    "all_work_cache_restoration_invariants": true
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "episode_attempts": 140,
+    "wall_seconds": 43200,
+    "artifact_bytes": 2147483648,
+    "downloads_allowed": false
+  },
+  "model": {
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "libero_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "num_open_loop_steps": 8,
+    "num_images_in_input": 2,
+    "use_proprio": true,
+    "use_l1_regression": true,
+    "use_diffusion": false,
+    "use_film": false,
+    "center_crop": true
+  },
+  "provenance_freeze": {
+    "v3_freeze_sha256": "c0e8957bcc79042facef6b7c152bc236692979cc52d0df1a34462cd3afda79ce",
+    "v3_c_gate_sha256": "48def66e6d5b27b0c9b74cb998ec3b92fe24eb98d431b16a9cdd705518c09f68",
+    "v3_c_result_sha256": "a419edd2fbccc0239169d3fa11a2c84e5202b0c0ca6237ddecaf4003e353682d",
+    "a4_checkpoint_sha256": "36f0c10739ce42a31caa334007738824d0d48e6ebe2d793560900e38b60a72e6",
+    "batched_adapter_sha256": "b242072800bed4d2ce5d27226bc09fafd968a77dd2b6e13a583ec38ad38ad1ba"
+  },
+  "protected": {
+    "goal_suite": true,
+    "all_four_suites_state_ids_10_through_49": true,
+    "primary_seed_7": true,
+    "reserve_seeds": [17, 27],
+    "manuscript": true
+  }
+}
