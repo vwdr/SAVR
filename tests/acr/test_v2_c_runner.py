@@ -14,6 +14,13 @@ assert SPEC is not None and SPEC.loader is not None
 RUNNER = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(RUNNER)
 
+RECOVERY_SPEC = importlib.util.spec_from_file_location(
+    "run_acr_v2_c_recovery", ROOT / "scripts/run_acr_v2_c_recovery.py"
+)
+assert RECOVERY_SPEC is not None and RECOVERY_SPEC.loader is not None
+RECOVERY = importlib.util.module_from_spec(RECOVERY_SPEC)
+RECOVERY_SPEC.loader.exec_module(RECOVERY)
+
 
 def test_v2_c_exact_frozen_schedule_and_caps():
     assert RUNNER.RUN_ID == "acr-v2c-correctness-latency-v01"
@@ -43,6 +50,33 @@ def test_v2_c_query_budget_fails_before_query_49():
     with pytest.raises(RuntimeError, match="cap exceeded"):
         budget.consume("query-48")
     assert len(budget.labels) == 48
+
+
+def test_v2_c_recovery_uses_exactly_remaining_41_queries():
+    assert RECOVERY.PARENT_QUERIES == 7
+    assert RECOVERY.RECOVERY_QUERY_CAP == 41
+    assert sum(RECOVERY.REMAINING_WARMUPS.values()) == 5
+    assert RECOVERY.TIMED_QUERIES == 36
+    assert RECOVERY.PARENT_QUERIES + RECOVERY.RECOVERY_QUERY_CAP == 48
+    budget = RECOVERY.QueryBudget()
+    for index in range(41):
+        assert budget.consume(f"recovery-{index}") == index
+    with pytest.raises(RuntimeError, match="cap exceeded"):
+        budget.consume("recovery-41")
+
+
+def test_v2_c_recovery_semantic_hash_and_corrected_counts_validate():
+    config = json.loads((ROOT / RECOVERY.RECOVERY_CONFIG).read_text())
+    RECOVERY.validate_recovery_config(config)
+    assert config["corrected_component_counts"] == {
+        "upstream-fr": {"siglip": 2, "dinov2": 2, "projector": 1},
+        "dual-path-refresh": {"siglip": 2, "dinov2": 2, "projector": 1},
+        "dual-path-reuse": {"siglip": 1, "dinov2": 1, "projector": 1},
+    }
+    changed = json.loads(json.dumps(config))
+    changed["recovery_queries"]["total"] = 40
+    with pytest.raises(RuntimeError, match="semantic hash"):
+        RECOVERY.validate_recovery_config(changed)
 
 
 def test_v2_c_counterbalance_has_twelve_of_each_path():
