@@ -4,7 +4,7 @@ Last updated: 2026-08-03
 
 ## Current phase
 
-ACR Version 2 Phase V2-B — **COMPLETE: CPU IMPLEMENTATION VERIFIED**
+ACR Version 2 Phase V2-C — **AUTHORIZED: PREFLIGHT READY**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -95,8 +95,15 @@ and always validates the returned action chunk. All 172 repository tests plus
 9 TITAN subtests pass; the 14 new V2-B tests pass locally and in TITAN's pinned
 CPU environment. Ruff, formatting, mypy, compilation, bootstrap, and package
 build checks pass. No GPU/model/simulator/download/outcome/manuscript work was
-performed. Full evidence is in `reports/PHASE_V2_B_REPORT.md`. Phase V2-C is
-not authorized.
+performed. Full evidence is in `reports/PHASE_V2_B_REPORT.md`.
+
+The user authorized Phase V2-C on 2026-08-03. The exact six-query correctness,
+six-query warm-up, and 36-query counterbalanced timing schedule is frozen in
+`configs/acr/v2_c_gate.json` and `docs/ACR_V2_C_PREFLIGHT.md`. The bounded
+runner and its CPU gate tests pass as part of 180 repository tests. No V2-C
+real-model query has yet occurred. V2-C remains limited to 48 model queries,
+one GPU/process, zero simulator resets or episodes, 3,600 seconds, 512 MiB,
+and no download or protected-population access.
 
 ### Legacy SAVR terminal state
 
@@ -298,10 +305,9 @@ Not completed:
 
 ## Next authorized action
 
-The next possible action is Phase V2-C only: run the bounded real-model
-correctness and paired-latency gate. It requires explicit user authorization.
-Do not run a simulator episode, Object state `3-9` ACR outcome, Goal
-confirmation, or final holdout during V2-C.
+The authorized next action is the single frozen Phase V2-C real-model
+correctness and paired-latency gate. Do not run a simulator episode, Object
+state `3-9` ACR outcome, Goal confirmation, or final holdout during V2-C.
 
 ## Candidate initial stack
 

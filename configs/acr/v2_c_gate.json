@@ -1,0 +1,53 @@
+{
+  "schema_version": "acr.v2-c-gate.v1",
+  "status": "FROZEN_BEFORE_REAL_MODEL_EXECUTION",
+  "run_id": "acr-v2c-correctness-latency-v01",
+  "method_id": "sa-dp-acr-t25-h2-b30-v01",
+  "correctness_queries": [
+    "upstream-refresh-oracle",
+    "dual-path-refresh",
+    "acr-v1-reuse",
+    "dual-path-reuse",
+    "dual-path-cache-mismatch-refresh",
+    "dual-path-exception-restoration"
+  ],
+  "timing": {
+    "paths": ["upstream-fr", "dual-path-refresh", "dual-path-reuse"],
+    "untimed_warmups_per_path": 2,
+    "timed_repetitions_per_path": 12,
+    "counterbalance": [
+      ["upstream-fr", "dual-path-refresh", "dual-path-reuse"],
+      ["dual-path-refresh", "dual-path-reuse", "upstream-fr"],
+      ["dual-path-reuse", "upstream-fr", "dual-path-refresh"]
+    ],
+    "reuse_weight": 0.26055045871559634,
+    "refresh_median_wall_ratio_max": 1.05,
+    "reuse_median_wall_ratio_max": 0.98,
+    "weighted_expected_wall_ratio_max": 0.98,
+    "outlier_deletion": false
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "model_queries": 48,
+    "rollout_episodes": 0,
+    "simulator_resets": 0,
+    "wall_seconds": 3600,
+    "artifact_bytes": 536870912,
+    "downloads_allowed": false
+  },
+  "input": {
+    "instruction": "move the robot safely to the target",
+    "suite_metadata_only": "libero_object",
+    "seed": 0,
+    "synthetic_images": "deterministic-acr-a3-pattern-v1",
+    "state": "midpoint-of-pinned-proprio-q01-q99"
+  },
+  "integrity": {
+    "immutable_run": true,
+    "checkpoint_restoration": true,
+    "source_tree_restoration": true,
+    "failure_stops_before_rollout": true
+  },
+  "semantic_sha256": "ea95acdfe0a80bb8714e6c0dbbbb70a92b7e71d2cb282ddc6a8bfc0f9e2ea7ad"
+}

@@ -677,3 +677,18 @@ Last updated: 2026-08-03
   cap was respected. No scientific outcome was collected.
 - Approver: User authorization and mechanical V2-B exit gate, 2026-08-03.
   Phase V2-C remains unauthorized.
+
+## D-066 — Authorize and freeze ACR Version 2 Phase V2-C
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Execute one bounded real-model correctness and paired-latency gate
+  for SA-DP-ACR. Use exactly six correctness queries, six untimed warm-ups,
+  and 36 timed queries in the frozen counterbalance, totaling 48. Use one
+  responsibly selected GPU/process, zero simulator resets or episodes, 3,600
+  seconds, 512 MiB, and no download. Require bitwise refresh/reuse parity,
+  exact return identity, camera-work truth, restoration, and all three frozen
+  median latency ratios. Any failure stops before V2-D.
+- Evidence: User approval on 2026-08-03; `configs/acr/v2_c_gate.json`;
+  `docs/ACR_V2_C_PREFLIGHT.md`; `scripts/run_acr_v2_c.py`.
+- Approver: User, 2026-08-03.
