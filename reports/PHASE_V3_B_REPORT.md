@@ -55,7 +55,7 @@ scan remains after the timed boundary as frozen.
 - Python AST/byte compilation and diff checks: pass.
 - Bootstrap validation: pass, 77 required files.
 - Package wheel build without dependency resolution or download: pass; wheel
-  SHA-256 `4b22cb52b791b129f33689c807aa7b2b0835090e3989b96101cdf80c573ad4dc`.
+  SHA-256 `2e222d45e435a80f7f0a1de3356483db6fb04736f007ea0f704801af5e8bb872`.
 - Pre-publication implementation/test SHA-256 values:
   `b242072800bed4d2ce5d27226bc09fafd968a77dd2b6e13a583ec38ad38ad1ba`
   and `4f3bb22c215981a94d624206f6dddf7eecca77659b843b98500b805c45df7a6b`.
