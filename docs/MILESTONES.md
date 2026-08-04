@@ -42,8 +42,8 @@ At most one phase may be `IN_PROGRESS`.
 | V3-A. Batched dual-path diagnosis and protocol | COMPLETE | Immutable V2-C evidence proves scene skipping alone can save at most 1.6202% weighted wall time; pinned source loops sequentially over cameras; SA-BDP-ACR, Batched FR ablation, numerical/latency gates, budgets, and protected splits frozen with no implementation or new outcome | Explicit Phase V3-B authorization |
 | V3-B. Batched dual-path CPU implementation | COMPLETE | Separate BFR and SA-BDP-ACR adapters implement ordered two-camera batching and V2-exact reuse; 206 tests plus 9 TITAN subtests and six real-PyTorch CPU assertions pass; `reports/PHASE_V3_B_REPORT.md` | Explicit Phase V3-C authorization |
 | V3-C. Bounded correctness and latency | COMPLETE_POSITIVE | Exactly 64/64 queries; token/action correctness passed; all six latency gates passed; weighted wall ratio 0.966582 vs sequential FR, 0.997525 vs BFR, and 31.4092% visual CUDA reduction; `reports/PHASE_V3_C_REPORT.md` | Explicit Phase V3-D authorization |
-| V3-D. Fresh paired Object development | IN_PROGRESS_TECHNICAL_RECOVERY_2 | Recovery 1 cleared action validation and completed 35 BFR queries, then V3 stopped before its first query on a context/controller identity mismatch; prior runs remain outcome-blind and excluded; exact context mapping and final full 140-episode recovery frozen | Merge/sync recovery-2 checkpoint, CPU verify, then execute and mechanically analyze |
-| V3-E. Independent Goal confirmation | NOT_STARTED | Goal remains unopened for V3 | Positive V3-D and explicit authorization |
+| V3-D. Fresh paired Object development | STOPPED_NEGATIVE | 140/140 terminal, zero technical failures, 67/70 success for both policies, 25.24% reuse, wall/sequential 0.9604; failed visual reduction 8.46% < 10% and wall/BFR 1.00226 > 1.00; `reports/PHASE_V3_D_REPORT.md` | New predeclared method, if any |
+| V3-E. Independent Goal confirmation | NOT_RUN_INELIGIBLE | V3-D failed two frozen efficiency gates; Goal remains unopened for V3 | New method with separately authorized confirmation protocol |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -52,12 +52,10 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-V3-D technical recovery 2 preflight is in progress. Recovery 1 cleared the
-list-action defect and completed one BFR episode, then V3 stopped before its
-first query because its context carried the method label instead of frozen
-controller identity. Both prior runs restored checkpoint/source/GPU state and
-remain outcome-blind. The exact identity correction and final full recovery
-must merge, sync, and pass CPU verification before execution.
+V3-D completed its full 140-episode recovery matrix with zero technical
+failures and perfect BFR/V3 success parity, but failed the frozen visual-CUDA
+reduction and wall-versus-BFR gates. It is stopped negative and V3-E is
+ineligible. Goal remains unopened for V3.
 V2-C remains stopped negative after exactly 48/48 queries,
 and V2-D remains ineligible. Goal remains unopened for V3, and all final
 populations remain protected.

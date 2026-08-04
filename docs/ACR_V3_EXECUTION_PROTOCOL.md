@@ -1,6 +1,6 @@
 # ACR Version 3 Execution Protocol
 
-Status: **FROZEN; V3-C COMPLETE POSITIVE; V3-D TECHNICAL RECOVERY 2 PREFLIGHT**
+Status: **FROZEN; V3-D STOPPED NEGATIVE; V3-E INELIGIBLE**
 
 Freeze date: 2026-08-04
 
@@ -252,7 +252,7 @@ power planning, and a final evaluation. All four-suite states `10-49`, primary
 seed `7`, and reserve seeds `17/27` remain protected. The manuscript remains
 unchanged until evidence supports the exact claims to be written.
 
-## 13. Current execution point
+## 13. Current stop point
 
 The user authorized V3-D on 2026-08-04. Its exact paired schedule, analysis
 semantics, and operational safeguards are frozen in
@@ -263,5 +263,6 @@ preserved one-time recovery is frozen in `configs/acr/v3_d_recovery.json` and
 `docs/ACR_V3_D_TECHNICAL_RECOVERY.md`. That recovery exposed a second
 context-identity wiring stop before any V3 query; the final full-matrix
 recovery is frozen in `configs/acr/v3_d_recovery_2.json` and
-`docs/ACR_V3_D_TECHNICAL_RECOVERY_2.md`. V3-E remains unauthorized regardless
-of the V3-D result.
+`docs/ACR_V3_D_TECHNICAL_RECOVERY_2.md`. Recovery 2 completed 140/140 episodes
+with success parity and 25.24% reuse, but failed the frozen 10% visual-CUDA and
+no-regression-versus-BFR gates. V3-D is stopped negative and V3-E is ineligible.
