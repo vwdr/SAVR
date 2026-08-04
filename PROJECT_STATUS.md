@@ -4,7 +4,7 @@ Last updated: 2026-08-03
 
 ## Current phase
 
-ACR Phase A5 — **STOPPED NEGATIVE: NO STAGE 1 CANDIDATE ADVANCED**
+ACR Version 2 Phase V2-A — **COMPLETE: DIAGNOSIS AND PROTOCOL FROZEN**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -67,6 +67,23 @@ but every candidate failed the exact success and per-task gates. The committed
 analyzer selected no advancing candidate, so Stage 2 was not run and A5
 stopped negative. A6 is ineligible and was not started. Full evidence is in
 `reports/PHASE_A5_REPORT.md`.
+
+The user then approved a new positive-paper planning route. Phase V2-A used
+only immutable A4/A5 records and primary sources. It corrected the conservative
+failure identity to Object task 6/state 0 and found that its first-reuse
+direction-reversal pattern also occurred in ten successful episodes; both more
+aggressive candidates succeeded on that same state. No single signal is
+therefore treated as causal. The stronger redesign target is measured execution
+overhead: the conservative controller reduced visual CUDA time by 11.94% but
+increased synchronized query wall time by 31.24% versus matched FR.
+
+`docs/ACR_V2_EXECUTION_PROTOCOL.md` and `configs/acr/v2_freeze.json` freeze
+State-Aware Dual-Path ACR. It retains the exact conservative controller, uses
+the original upstream two-view path on refresh and a wrist-only path on reuse,
+and requires bitwise correctness plus a paired latency gate before any rollout.
+No Version 2 implementation, model query, simulator episode, new population,
+GPU use, protected outcome, or manuscript edit occurred in V2-A. Phase V2-B
+is not yet authorized.
 
 ### Legacy SAVR terminal state
 
@@ -247,6 +264,8 @@ Completed:
 - ACR A5 Stage 1 completed all 90/90 frozen development episodes with zero technical failures
 - all three ACR candidates passed the reuse and instrumentation gates but failed the exact success and per-task gates
 - ACR Stage 2 and A6 were not run because the frozen analyzer selected no advancing candidate
+- ACR Version 2 diagnosis reproduced the A5 failure and latency evidence with a deterministic machine record
+- the SA-DP-ACR controller, dual execution paths, independent splits, gates, resources, and stop rules are frozen before Version 2 implementation
 
 Not completed:
 
@@ -260,14 +279,14 @@ Not completed:
 - no Phase 6R-A GPU or simulator run was performed
 - no SAVR3 matched-baseline or confirmatory evaluation is eligible
 - no ACR candidate is eligible for Stage 2 or independent A6 confirmation
+- no SA-DP-ACR implementation, correctness query, latency microbenchmark, or rollout has begun
 
 ## Next authorized action
 
-No further ACR experiment is authorized or eligible under Protocol V1.
-Preserve the A5 result, do not tune or rerun the frozen candidates, do not open
-Stage 2 or A6 populations, and never inspect the final holdout. A new attempt
-requires a materially different, explicitly authorized, predeclared method
-route and new independent development evidence.
+The next possible action is Phase V2-B only: implement and CPU-test the frozen
+dual-path adapter. It requires explicit user authorization. Do not run a model,
+GPU timing query, simulator episode, Object state `3-9` ACR outcome, Goal
+confirmation, or final holdout during V2-B.
 
 ## Candidate initial stack
 

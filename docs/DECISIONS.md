@@ -622,3 +622,39 @@ Last updated: 2026-08-03
   records.
 - Approver: Mechanically required by ACR Protocol V1 and the user-authorized
   frozen A5 preflight, 2026-08-03.
+
+## D-063 — Authorize ACR Version 2 diagnosis and planning
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Pursue a scientifically credible positive-paper route using A5 as
+  disclosed exploratory development evidence. Diagnose existing records,
+  repeat relevant primary-source research, and freeze a materially revised
+  execution method and new protocol. Permit no new GPU/model query, simulator
+  episode, unopened ACR outcome, protected-population access, or manuscript
+  edit during this planning phase.
+- Evidence: User approval on 2026-08-03; immutable A4/A5 records.
+- Approver: User, 2026-08-03.
+
+## D-064 — Freeze State-Aware Dual-Path ACR Version 2
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Retain the exact `acr-t25-h2-b30` controller and replace only its
+  physical execution architecture. Use the original upstream two-view path on
+  scene refresh, cache the split projected scene block, and use a wrist-only
+  path on scene reuse. Remove redundant intermediate host synchronizations in
+  production mode while preserving structural checks, terminal action-finite
+  validation, immutable accounting, and bounded full correctness checks. Add
+  no post-hoc signal veto. Require bitwise equivalence and a paired latency
+  gate before any rollout; use Object states `3-9` only after those gates.
+- Rationale: The conservative candidate achieved 29/30 success, 26.06% scene
+  reuse, and 11.94% visual CUDA reduction, but was 31.24% slower in query wall
+  time. Its task 6/state 0 failure pattern also appeared in successful
+  episodes, and both more aggressive candidates succeeded on the same state,
+  so a one-case controller patch is unsupported.
+- Evidence: `reports/ACR_V2_DIAGNOSIS_REPORT.md`;
+  `reports/runtime/acr_v2_diagnosis.json`;
+  `docs/ACR_V2_EXECUTION_PROTOCOL.md`; `configs/acr/v2_freeze.json`.
+- Approver: Mechanical V2-A freeze under the user-approved positive-paper
+  planning route, 2026-08-03. Phase V2-B remains unauthorized.

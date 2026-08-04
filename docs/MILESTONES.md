@@ -34,6 +34,11 @@ At most one phase may be `IN_PROGRESS`.
 | A7. ACR baselines, transfer, and power | NOT_STARTED | — | Positive confirmation and explicit Phase A7 authorization |
 | A8. ACR primary four-suite final evaluation | NOT_STARTED | — | Frozen final package and separate final-holdout authorization |
 | A9. ACR evidence/manuscript decision | NOT_STARTED | — | Complete final classification |
+| V2-A. Dual-path diagnosis and protocol | COMPLETE | Deterministic A4/A5 diagnosis localized the task 6/state 0 failure without false causal attribution; measured 11.94% visual CUDA reduction but 31.24% wall slowdown; dual execution paths, exact controller, fresh splits, gates, and caps frozen with no new outcome | Explicit Phase V2-B authorization |
+| V2-B. Dual-path implementation and CPU verification | NOT_STARTED | — | All CPU/static/integrity gates pass |
+| V2-C. Bounded correctness and latency | NOT_STARTED | — | Bitwise parity and paired latency gate pass |
+| V2-D. Fresh paired Object development | NOT_STARTED | — | Success, reuse, visual CUDA, and query-wall gates pass |
+| V2-E. Independent Goal confirmation | NOT_STARTED | — | Positive independent confirmation |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -42,11 +47,11 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-No phase is currently in progress. ACR Phase A5 stopped negative after all
-three frozen candidates failed the exact Stage 1 success/per-task gates.
-Object states `3-9` remain unopened for ACR, A6 is ineligible, and no
-threshold, candidate, horizon, cap, gate, or split was changed after outcome
-access.
+No phase is currently in progress. ACR Version 2 Phase V2-A is complete and
+the dual-path method is frozen before implementation. Object states `3-9`
+remain unopened for any ACR outcome, Goal remains unopened for ACR, and all
+final populations remain protected. Phase V2-B requires explicit approval and
+permits CPU implementation/testing only.
 The prior SAVR Phase 6S-D remains stopped negative, Phase 6S-E is ineligible,
 and legacy Phase 7 is unauthorized. Initial-state `10-49` / seed `7,17,27`
 outcomes remain untouched across all four supported suites.

@@ -1,0 +1,93 @@
+{
+  "schema_version": "acr.v2-freeze.v1",
+  "status": "FROZEN_BEFORE_V2_IMPLEMENTATION_OR_OUTCOMES",
+  "method_id": "sa-dp-acr-t25-h2-b30-v01",
+  "method_name": "State-Aware Dual-Path Asymmetric Camera Refresh",
+  "parent_candidate": {
+    "configuration_id": "acr-t25-h2-b30",
+    "controller_version": "acr-controller-v1",
+    "hard_reuse_cap": 0.3,
+    "horizon": 2,
+    "scene_threshold": 0.2476380718954248,
+    "translation_threshold": 0.5479944908411765,
+    "candidate_source_sha256": "8f1503e4f579df9a0a4026b178492566b4ad206830886dfba2418852574567a4"
+  },
+  "execution": {
+    "refresh_path": "original_upstream_two_view_vision_and_projector_path_then_split_projected_blocks",
+    "reuse_path": "cached_scene_projected_block_plus_fresh_wrist_only_vision_and_projector_path",
+    "interception_lifetime": "episode_scoped_exception_safe",
+    "hot_path_host_synchronizations": "one_identical_query_boundary_only",
+    "production_finite_policy": "structural_checks_online_and_terminal_action_finite_check",
+    "token_order": "scene-wrist",
+    "wrist_always_fresh": true,
+    "current_proprioception_always_fresh": true,
+    "weights_prompts_preprocessing_action_head_unchanged": true
+  },
+  "correctness_latency_gate": {
+    "maximum_model_queries": 48,
+    "maximum_rollout_episodes": 0,
+    "refresh_token_and_action_parity": "bitwise_upstream",
+    "reuse_token_and_action_parity": "bitwise_acr_v1_same_inputs_and_cache",
+    "timed_repetitions_per_path": 12,
+    "refresh_median_wall_ratio_max": 1.05,
+    "reuse_median_wall_ratio_max": 0.98,
+    "a5_weighted_expected_wall_ratio_max": 0.98
+  },
+  "fresh_development": {
+    "suite": "libero_object",
+    "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "initial_state_ids": [3, 4, 5, 6, 7, 8, 9],
+    "seed": 0,
+    "policies": ["upstream-fr", "sa-dp-acr-t25-h2-b30-v01"],
+    "paired_policy_episodes": 140,
+    "outcome_blind_until_complete": true,
+    "success_loss_episode_max": 2,
+    "per_task_success_loss_max": 1,
+    "scene_reuse_rate_min": 0.2,
+    "visual_cuda_reduction_min": 0.1,
+    "query_wall_reduction_min": 0.02,
+    "technical_failures_max": 0
+  },
+  "independent_confirmation": {
+    "suite": "libero_goal",
+    "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "initial_state_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "seed": 0,
+    "policies": ["upstream-fr", "sa-dp-acr-t25-h2-b30-v01"],
+    "paired_policy_episodes": 200,
+    "success_loss_episode_max": 2,
+    "per_task_success_loss_max": 1,
+    "scene_reuse_rate_min": 0.2,
+    "visual_cuda_reduction_min": 0.1,
+    "query_wall_reduction_min": 0.02,
+    "latency_lower_confidence_bound_min": 0.0,
+    "technical_failures_max": 0
+  },
+  "resource_caps": {
+    "implementation": {"gpu_count": 0, "artifact_bytes": 536870912},
+    "correctness_latency": {
+      "gpu_count": 1,
+      "model_processes": 1,
+      "model_queries": 48,
+      "rollout_episodes": 0,
+      "wall_seconds": 3600,
+      "artifact_bytes": 536870912
+    },
+    "fresh_development": {
+      "gpu_count": 1,
+      "model_processes": 1,
+      "episode_attempts": 140,
+      "wall_seconds": 43200,
+      "artifact_bytes": 2147483648
+    }
+  },
+  "protected_populations": {
+    "final_state_ids": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
+    "primary_seed": 7,
+    "reserve_seeds": [17, 27],
+    "all_four_suites": true
+  },
+  "diagnosis_record_sha256": "cf8ea201547030026a204a8d4848ac7d33d3d45d64246a94cdab1d47f3739deb",
+  "diagnosis_semantic_sha256": "52b7cc20b7b934c597ee43fa529ad4f3635f85fe2a87569b50df3cc5dc1f809c",
+  "semantic_sha256": "b84f5387686aa3de50ca30bb1b6a1c1fab82feacf600d948581d382266b8c9b4"
+}
