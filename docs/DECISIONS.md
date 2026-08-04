@@ -809,3 +809,22 @@ Last updated: 2026-08-04
   `3f77171fbf42015fb0f6e74c0f5d49c8f58890a64355b2de4348407cef79ab02`.
 - Approver: Mechanical V3-C gate under user authorization, 2026-08-04.
   Phase V3-D requires separate authorization.
+
+## D-073 — Authorize and freeze ACR Version 3 Phase V3-D
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Execute exactly 70 Batched Full Refresh and 70 frozen SA-BDP-ACR
+  episodes on LIBERO-Object tasks `0-9`, states `3-9`, seed `0`. Pair the two
+  policies by task/state and alternate their adjacent order, giving 35 first
+  positions each. Remain outcome-blind until all 140 terminal records exist;
+  never retry a scientific failure. Use immutable A4 sequential-FR evidence
+  only as the system-latency reference. Apply the frozen success, per-task,
+  reuse, visual-CUDA, wall-time, work, cache, and restoration gates
+  mechanically. Use one responsibly selected GPU/process, at most 140
+  attempts, 43,200 seconds, 2 GiB, and no download. Stop before V3-E regardless
+  of the result.
+- Evidence: User approval on 2026-08-04;
+  `configs/acr/v3_d_development.json`; `docs/ACR_V3_D_PREFLIGHT.md`;
+  `scripts/run_acr_v3_d.py`; `scripts/analyze_acr_v3_d.py`.
+- Approver: User, 2026-08-04.

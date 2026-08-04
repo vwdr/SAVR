@@ -1,6 +1,6 @@
 # ACR Version 3 Execution Protocol
 
-Status: **FROZEN; V3-C COMPLETE POSITIVE; V3-D UNAUTHORIZED**
+Status: **FROZEN; V3-C COMPLETE POSITIVE; V3-D AUTHORIZED/PREFLIGHT**
 
 Freeze date: 2026-08-04
 
@@ -252,7 +252,10 @@ power planning, and a final evaluation. All four-suite states `10-49`, primary
 seed `7`, and reserve seeds `17/27` remain protected. The manuscript remains
 unchanged until evidence supports the exact claims to be written.
 
-## 13. Current stop point
+## 13. Current execution point
 
-V3-C is complete with a positive correctness/latency result. Stop before V3-D
-and request separate authorization.
+The user authorized V3-D on 2026-08-04. Its exact paired schedule, analysis
+semantics, and operational safeguards are frozen in
+`configs/acr/v3_d_development.json` and `docs/ACR_V3_D_PREFLIGHT.md`. Publish
+and synchronize that checkpoint before the first simulator episode. V3-E
+remains unauthorized regardless of the V3-D result.
