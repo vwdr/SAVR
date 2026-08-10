@@ -947,3 +947,19 @@ Last updated: 2026-08-10
   `results/acr-v4a-diagnosis-v01` at the stop.
 - Approver: Mechanical fail-closed recovery under the user-authorized V4-A
   phase, 2026-08-10.
+
+## D-080 — Preserve V4-A recovery 1 and freeze recovery 2
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve recovery 1 after volatile replay/bootstrap computation
+  but before result construction, writing, or printing. Candidate values were
+  not reported and the output root remained absent. Correct only A5 integrity
+  validation by delegating to the original committed A5 analyzer and matching
+  its recomputed aggregate record hash to the published Stage-1 analysis.
+  Allow one complete CPU-only recovery 2 after merge and synchronization.
+- Evidence: `docs/ACR_V4_A_TECHNICAL_RECOVERY_2.md` and
+  `configs/acr/v4_a_recovery_2.json`; absent
+  `results/acr-v4a-diagnosis-v01` at the stop.
+- Approver: Mechanical fail-closed recovery under the user-authorized V4-A
+  phase, 2026-08-10.
