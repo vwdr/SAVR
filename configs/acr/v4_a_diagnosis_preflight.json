@@ -1,0 +1,74 @@
+{
+  "schema_version": "acr.v4a-preflight.v1",
+  "status": "FROZEN_BEFORE_V4_A_CANDIDATE_OUTPUTS",
+  "authorized_at": "2026-08-10",
+  "protocol": "docs/ACR_V4_A_PREFLIGHT.md",
+  "resource_caps": {
+    "gpu_count": 0,
+    "model_queries": 0,
+    "simulator_episodes": 0,
+    "downloads": 0,
+    "artifact_bytes": 536870912
+  },
+  "controller_family": {
+    "minimum_query_index": 2,
+    "horizon": 2,
+    "hard_reuse_cap": 0.4,
+    "scene_threshold_low": 0.2476380718954248,
+    "scene_threshold_high": 0.30046895424836606,
+    "translation_threshold_low": 0.5479944908411765,
+    "translation_threshold_high": 0.685919037527938,
+    "interpolation_fractions": [0.5, 0.75, 1.0],
+    "transition_policies": [
+      "gripper_only",
+      "gripper_or_translation_direction_reversal"
+    ],
+    "candidate_count": 6,
+    "task_or_state_identity_allowed": false
+  },
+  "bootstrap": {
+    "unit": "episode",
+    "seed": 4102026,
+    "resamples": 10000,
+    "confidence": 0.95,
+    "outlier_deletion": false
+  },
+  "controller_gates": {
+    "replay_reuse_point_min": 0.35,
+    "replay_reuse_lower_bound_min": 0.3,
+    "maximum_reuse_streak": 1,
+    "gripper_transition_reuses_max": 0,
+    "predicted_visual_cuda_reduction_point_min": 0.12,
+    "invariant_failures_max": 0
+  },
+  "selection_order": [
+    "prefer_direction_reversal_veto_if_eligible",
+    "minimum_transition_risk_exposure",
+    "minimum_threshold_interpolation_fraction",
+    "minimum_reuse_above_target"
+  ],
+  "executor_decision_tree": [
+    "complete_fixed_shape_reuse_query_static_buffer_compile_or_cuda_graph",
+    "wrist_encoder_and_projector_static_buffer_compile_or_cuda_graph",
+    "stop_before_implementation"
+  ],
+  "complete_method_gates": {
+    "predicted_visual_cuda_reduction_min": 0.12,
+    "weighted_wall_ratio_vs_bfr_target": 0.98,
+    "required_reuse_wall_ratio_feasibility_floor": 0.9
+  },
+  "development_sources": {
+    "v3_d_run_id": "acr-v3d-paired-object-dev03-09-recovery-02-v01",
+    "a4_run_id": "acr-a4-upstream-fr-object-dev00-09-v01",
+    "a5_run_ids": [
+      "acr-a5-sa-acr-object-stage1-acr-t25-h2-b30-v01",
+      "acr-a5-sa-acr-object-stage1-acr-t50-h4-b55-v01",
+      "acr-a5-sa-acr-object-stage1-acr-t70-h8-b75-v01"
+    ]
+  },
+  "protected": {
+    "goal_states_0_9_seed_0": "UNOPENED",
+    "all_suite_states_10_49_seeds_7_17_27": "UNOPENED",
+    "manuscript_changes": false
+  }
+}

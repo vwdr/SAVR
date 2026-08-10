@@ -6,7 +6,7 @@ Last updated: 2026-08-10
 
 ACR Version 3 Phase V3-D — **STOPPED NEGATIVE; V3-E INELIGIBLE**
 
-ACR Version 4 planning — **PROTOCOL FROZEN; V4-A NOT YET AUTHORIZED**
+ACR Version 4 Phase V4-A — **AUTHORIZED; PREFLIGHT FROZEN BEFORE CANDIDATE OUTPUTS**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -228,9 +228,13 @@ reuse with a numerically verified faster single-view executor. Before another
 simulator rollout, it must pass separate CPU diagnosis/implementation phases
 and a bounded real-model gate with at least 12% visual-CUDA reduction and a
 wall ratio at most 0.98 versus BFR. Controller-only and executor-only
-ablations are required. Goal and final populations remain protected. Creating
-the protocol authorizes no V4-A work, GPU/model query, simulator episode,
-download, protected outcome, or manuscript edit.
+ablations are required. Goal and final populations remain protected. The user
+authorized CPU-only V4-A on 2026-08-10. Its six-candidate screening family,
+bootstrap, selection rule, executor decision tree, resource boundary, and stop
+rule are frozen in `docs/ACR_V4_A_PREFLIGHT.md` and
+`configs/acr/v4_a_diagnosis_preflight.json` before candidate outputs are
+opened. No GPU/model/simulator/download/protected/manuscript access is
+authorized.
 
 ### Legacy SAVR terminal state
 
@@ -438,10 +442,11 @@ Not completed:
 
 Preserve the complete negative V3-D result without rerun, retiming, gate
 change, or reinterpretation. V3-E, Goal, and final-holdout access are
-ineligible under V3. The next possible action is separately authorized,
-CPU-only Phase V4-A: reconcile immutable V3-D evidence, predeclare and screen
-mechanisms, establish conservative break-even margins, and freeze exactly one
-V4 design before implementation. No V4 work has started.
+ineligible under V3. CPU-only Phase V4-A is authorized and its preflight is
+frozen. The next action is to reconcile immutable V3-D/A4/A5 evidence, execute
+the predeclared replay and break-even analyses, audit executor feasibility,
+and either freeze exactly one V4 design or stop before implementation. V4-B
+remains unauthorized.
 
 ## Candidate initial stack
 

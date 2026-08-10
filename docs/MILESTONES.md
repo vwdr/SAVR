@@ -45,7 +45,7 @@ At most one phase may be `IN_PROGRESS`.
 | V3-D. Fresh paired Object development | STOPPED_NEGATIVE | 140/140 terminal, zero technical failures, 67/70 success for both policies, 25.24% reuse, wall/sequential 0.9604; failed visual reduction 8.46% < 10% and wall/BFR 1.00226 > 1.00; `reports/PHASE_V3_D_REPORT.md` | New predeclared method, if any |
 | V3-E. Independent Goal confirmation | NOT_RUN_INELIGIBLE | V3-D failed two frozen efficiency gates; Goal remains unopened for V3 | New method with separately authorized confirmation protocol |
 | V4-P. Evidence-gated redesign protocol | COMPLETE | V3-D negative preserved; controller and executor changes, stronger promotion margins, factorial ablations, protected populations, resource caps, and fail-closed phase gates frozen in `docs/ACR_V4_REDESIGN_PROTOCOL.md` and `configs/acr/v4_redesign_freeze.json` | Explicit Phase V4-A authorization |
-| V4-A. Immutable diagnosis and mechanism selection | NOT_STARTED | — | CPU-only diagnosis predicts the frozen margins and freezes exactly one design |
+| V4-A. Immutable diagnosis and mechanism selection | IN_PROGRESS | User authorized CPU-only analysis; six controller candidates, bootstrap, deterministic selection, executor decision tree, resource limits, and stop rules frozen before candidate outputs in `docs/ACR_V4_A_PREFLIGHT.md` | Apply the frozen feasibility gate and freeze one design or stop |
 | V4-B. CPU implementation and verification | NOT_STARTED | — | Complete repository and pinned-environment verification |
 | V4-C. Bounded correctness and efficiency margin | NOT_STARTED | — | All correctness and strengthened latency gates pass |
 | V4-D. Paired Object development | NOT_STARTED | — | Positive paired development result under frozen gates |
@@ -58,9 +58,11 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-V4 planning is complete, but V4-A is not authorized or started. The frozen
-redesign protocol requires a materially changed controller and executor to
-show conservative efficiency margin before any new rollout. V3-D remains a
+V4-A is authorized and its candidate/output-blind preflight is frozen. It is
+limited to CPU analysis of already-opened evidence and source inspection; no
+GPU, model query, simulator episode, Goal access, or implementation is allowed.
+The redesign requires a materially changed controller and executor to show
+conservative efficiency margin before any new rollout. V3-D remains a
 complete negative result: it had zero technical failures and perfect BFR/V3
 success parity, but failed the frozen visual-CUDA reduction and
 wall-versus-BFR gates. V3-E is ineligible.

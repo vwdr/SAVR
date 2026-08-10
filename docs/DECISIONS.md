@@ -909,3 +909,24 @@ Last updated: 2026-08-10
 - Approver: User request to create the required protocol before trying again,
   2026-08-10. This decision authorizes no V4-A work, GPU/model query,
   simulator episode, download, protected outcome, or manuscript edit.
+
+## D-078 — Authorize V4-A and freeze its output-blind preflight
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Authorize CPU-only Phase V4-A diagnosis of already-opened V3-D,
+  A4, and A5 evidence. Before candidate outputs, freeze six controller replay
+  candidates from three threshold interpolation levels and two generic
+  transition policies, all with warm-up 2, horizon 2, and a 40% prefix reuse
+  budget. Freeze episode-cluster bootstrap uncertainty, deterministic
+  selection, source profiling, executor feasibility, and negative stop rules.
+- Executor rule: Evaluate a project-owned complete fixed-shape reuse-query
+  compile/CUDA-Graph boundary first, then a wrist-encoder/projector boundary;
+  stop if neither can plausibly support the required wall margin. This is a
+  source-feasibility decision only, not a performance claim.
+- Resources: Zero GPU, model queries, simulator episodes, downloads, new
+  outcomes, Goal/final access, production implementation, or manuscript edits;
+  at most 512 MiB of new artifacts.
+- Evidence: `docs/ACR_V4_A_PREFLIGHT.md` and
+  `configs/acr/v4_a_diagnosis_preflight.json`.
+- Approver: User, 2026-08-10. V4-B remains unauthorized.
