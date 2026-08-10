@@ -1,0 +1,159 @@
+{
+  "schema_version": "acr.v5c-cpu-executor-freeze.v1",
+  "status": "FROZEN_BEFORE_V5_C_IMPLEMENTATION",
+  "authorized_at": "2026-08-10",
+  "research_design": "docs/ACR_V5_C_EXECUTOR_RESEARCH_AND_DESIGN.md",
+  "protocol": "docs/ACR_V5_C_CPU_EXECUTOR_PROTOCOL.md",
+  "selected_method": {
+    "method_id": "v5-a100-b40",
+    "controller_version": "acr-isolated-controller-v1",
+    "policy": "sa-acr",
+    "scene_threshold": 0.30046895424836606,
+    "translation_threshold": 0.685919037527938,
+    "horizon": 1,
+    "hard_reuse_cap": 0.4,
+    "minimum_query_index": 2,
+    "post_reuse_latch": true,
+    "cache_age_consistency": true,
+    "v5_b_semantic_sha256": "8a9f15b818b58ed2868d4b1123a222a4c062507161ab7de911d8d233f3b1efec"
+  },
+  "feasibility": {
+    "v5_b_reuse_point": 0.3547659334461365,
+    "v5_b_reuse_lower_95": 0.34180622504322034,
+    "prior_refresh_wall_ratio_vs_bfr": 1.005452,
+    "future_weighted_wall_ratio_target": 0.98,
+    "required_reuse_wall_ratio_at_point": 0.933708922099,
+    "required_reuse_wall_ratio_at_lower_95": 0.930988756983,
+    "measurement_claim": false
+  },
+  "identities": {
+    "reference_executor": "acr-reuse-executor-eager-v1",
+    "static_executor": "acr-reuse-executor-static-v1",
+    "integration": "ir-sa-acr-static-executor-v1"
+  },
+  "implementation_files": [
+    "src/savr/acr/reuse_executor.py",
+    "src/savr/acr/isolated_execution_adapter.py",
+    "tests/acr/test_reuse_executor.py",
+    "tests/acr/test_isolated_execution_adapter.py"
+  ],
+  "cores": {
+    "wrist_visual_core": {
+      "fresh_each_reuse": true,
+      "scene_encoder_calls": 0,
+      "wrist_siglip_calls": 1,
+      "wrist_dinov2_calls": 1,
+      "wrist_projector_calls": 1
+    },
+    "downstream_action_core": {
+      "fresh_each_reuse": true,
+      "language_model_calls": 1,
+      "action_head_calls": 1,
+      "returns_normalized_action_tensor": true,
+      "cpu_numpy_conversion_outside_core": true
+    }
+  },
+  "compatibility_key_fields": [
+    "checkpoint_id",
+    "upstream_revision",
+    "configuration_id",
+    "controller_version",
+    "executor_version",
+    "preprocessing_id",
+    "action_head_id",
+    "instruction_sha256",
+    "prompt_input_shape",
+    "dtype",
+    "device",
+    "image_height",
+    "image_width",
+    "patch_count",
+    "projected_dimension",
+    "wrist_shape",
+    "cached_scene_shape",
+    "embedding_shape",
+    "attention_mask_shape",
+    "proprioception_shape",
+    "action_shape",
+    "model_training_state",
+    "use_film",
+    "use_diffusion"
+  ],
+  "required_flags": {
+    "model_training_state": false,
+    "use_film": false,
+    "use_diffusion": false,
+    "static_shapes": true,
+    "single_owner_thread": true,
+    "non_reentrant": true
+  },
+  "lifecycle": [
+    "UNPREPARED",
+    "PREPARED",
+    "ACTIVE",
+    "INVALIDATED"
+  ],
+  "reason_codes": {
+    "prelaunch": "executor-unavailable",
+    "postlaunch": "executor-failure"
+  },
+  "failure_policy": {
+    "prelaunch_forces_eager_refresh": true,
+    "prelaunch_observes_reuse": false,
+    "postlaunch_invalidates_executor": true,
+    "postlaunch_invalidates_scene_cache": true,
+    "postlaunch_observes_controller": false,
+    "postlaunch_retry": false,
+    "restore_patched_methods_on_exit": true
+  },
+  "acceptance": {
+    "exact_wrist_parity": true,
+    "exact_combined_token_parity": true,
+    "exact_normalized_action_parity": true,
+    "stable_owned_buffer_identity": true,
+    "changed_input_updates_output": true,
+    "all_compatibility_fields_tested": true,
+    "dynamic_or_unsupported_modes_rejected": true,
+    "nested_and_concurrent_rejected": true,
+    "failure_state_machine_tested": true,
+    "exception_safe_restoration": true,
+    "reset_clears_state": true,
+    "selected_controller_decision_parity": true,
+    "maximum_reuse_streak": 1,
+    "maximum_prefix_reuse": 0.4,
+    "hot_path_hashing_serialization_io": false,
+    "legacy_paths_unchanged": true,
+    "repository_tests_required": true,
+    "titan_cpu_verification_required": true
+  },
+  "future_gpu_waterfall": [
+    "torch_compile_fullgraph_static_reduce_overhead",
+    "raw_torch_cuda_graph_same_core_contract",
+    "stop_before_online_rollout"
+  ],
+  "excluded": {
+    "gpu_use": true,
+    "torch_compile_execution": true,
+    "cuda_graph_execution": true,
+    "model_queries": true,
+    "simulator_episodes": true,
+    "timing_or_memory_measurement": true,
+    "controller_or_threshold_changes": true,
+    "action_or_hidden_state_reuse": true,
+    "upstream_source_modification": true,
+    "downloads_or_environment_changes": true,
+    "protected_outcome_access": true,
+    "manuscript_changes": true
+  },
+  "resource_caps": {
+    "gpu_count": 0,
+    "model_queries": 0,
+    "simulator_episodes": 0,
+    "simulator_resets": 0,
+    "downloads": 0,
+    "new_task_outcomes": 0,
+    "artifact_bytes": 536870912,
+    "cpu_wall_seconds": 1800
+  },
+  "advance_only_to": "V5_D_PROTOCOL_PREPARATION"
+}

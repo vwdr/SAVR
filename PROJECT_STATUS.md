@@ -12,6 +12,8 @@ ACR Version 5 correction — **COMPLETE; ISOLATED REUSE CPU-VERIFIED**
 
 ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING; V5-C PROTOCOL NEXT**
 
+ACR Version 5 V5-C design — **FROZEN BEFORE CPU IMPLEMENTATION**
+
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
 companion `docs/evidence/negative_results_summary.csv`. A materially different
@@ -298,6 +300,18 @@ mismatches, and zero invariant failures. This is a positive offline mechanism
 screen, not task-success or measured-speed evidence. Full evidence is in
 `reports/PHASE_V5_B_REPORT.md` and `reports/runtime/acr_v5_b.json`.
 
+V5-C research found that the complete pinned `predict_action` host function is
+not a safe capture boundary because it contains CPU/NumPy transfers and dynamic
+host work. The frozen design instead separates a fixed-shape wrist visual core
+and downstream action GPU core, with controller logic, static-buffer copies,
+cache checks, CPU conversion, and unnormalization outside. Exact identities,
+compatibility key, lifecycle, failure behavior, 20-item CPU acceptance matrix,
+future compile/raw-graph waterfall, exclusions, and resources are frozen in
+`docs/ACR_V5_C_EXECUTOR_RESEARCH_AND_DESIGN.md`,
+`docs/ACR_V5_C_CPU_EXECUTOR_PROTOCOL.md`, and
+`configs/acr/v5_c_cpu_executor_freeze.json`. No executor code, GPU, model,
+simulator, timing result, or new outcome exists at this checkpoint.
+
 ### Legacy SAVR terminal state
 
 Phase 6S-D — SAVR3 fresh development validation: **STOPPED NEGATIVE
@@ -503,11 +517,12 @@ Not completed:
 ## Next authorized action
 
 Preserve the complete negative V3-D/V4-A results and the verified V5 isolated-
-reuse correction and the positive V5-B screening record. Prepare and freeze
-the V5-C CPU executor-correctness protocol before changing executor code. Keep
-Goal/final populations and success fields sealed. Do not use a GPU, model, or
-simulator, or modify the manuscript. Before selecting any GPU in a later V5-D
-phase, stop for explicit user coordination under `AGENTS.md`.
+reuse correction and the positive V5-B screening record. After merging and
+synchronizing the V5-C freeze, implement only the frozen project-owned CPU
+executor contract and acceptance matrix. Keep Goal/final populations and
+success fields sealed. Do not use a GPU, model, simulator, or modify the
+manuscript. Before selecting any GPU in a later V5-D phase, stop for explicit
+user coordination under `AGENTS.md`.
 
 ## Candidate initial stack
 

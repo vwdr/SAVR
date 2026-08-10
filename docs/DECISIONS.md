@@ -1130,3 +1130,33 @@ Last updated: 2026-08-10
   `reports/PHASE_V5_B_REPORT.md`.
 - Disposition: `ADVANCE_TO_V5_C_PROTOCOL`.
 - Approver: Mechanical frozen V5-B gate under user authorization, 2026-08-10.
+
+## D-088 — Freeze the V5-C split-core static executor
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve `v5-a100-b40` unchanged and implement a project-owned
+  static-buffer executor with two fixed-shape cores: fresh wrist visual
+  encoding/projecting and fresh downstream language-model/action-head
+  computation. Host controller/cache checks, input copies, CPU action transfer,
+  and NumPy unnormalization remain outside the cores.
+- Research basis: CUDA graph replay requires stable arguments/pointers and
+  excludes synchronous/dynamic host operations. The pinned `predict_action`
+  includes `.cpu().detach().numpy()` and NumPy processing, so whole-function
+  capture is rejected. Wrist-only optimization is retained but is unlikely by
+  itself to meet the required end-to-end margin.
+- Quantitative target: A later GPU phase needs a reuse/BFR wall ratio near
+  `0.930989` at the V5-B reuse lower bound to reach weighted/BFR `0.98`. This is
+  a feasibility target derived from prior development measurements, not a new
+  result.
+- Safety: Exact compatibility key; owned stable buffers; non-reentrant
+  lifecycle; prelaunch unavailability forces refresh; postlaunch failure
+  invalidates cache/executor, does not observe the controller, and cannot retry;
+  exception-safe restoration is mandatory.
+- Scope: CPU implementation/tests only after merge. No compile/CUDA graph/GPU,
+  model, simulator, timing, download, new outcome, upstream modification,
+  protected access, or manuscript change.
+- Evidence: `docs/ACR_V5_C_EXECUTOR_RESEARCH_AND_DESIGN.md`;
+  `docs/ACR_V5_C_CPU_EXECUTOR_PROTOCOL.md`;
+  `configs/acr/v5_c_cpu_executor_freeze.json`.
+- Approver: User, 2026-08-10; frozen before implementation.

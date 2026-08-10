@@ -208,3 +208,20 @@ theoretical logical visual-work reduction. Maximum streak was one and all
 integrity counts were zero. This is positive offline mechanism evidence only;
 success fields remained sealed and no GPU, model, simulator, download, new
 task outcome, protected population, or manuscript change was used.
+
+## 14. V5-C executor design freeze
+
+The V5-C research/design checkpoint preserves the V5-B controller and selects
+a project-owned static-buffer executor contract with separate wrist-visual and
+downstream-action GPU cores. It rejects whole-`predict_action` capture because
+the pinned host path includes CPU/NumPy transfers and dynamic logic. The freeze
+records executor identities, complete compatibility fields, lifecycle,
+prelaunch/postlaunch failure semantics, 20 CPU acceptance requirements, and a
+future compiler/raw-CUDA-graph waterfall.
+
+This checkpoint adds only
+`docs/ACR_V5_C_EXECUTOR_RESEARCH_AND_DESIGN.md`,
+`docs/ACR_V5_C_CPU_EXECUTOR_PROTOCOL.md`,
+`configs/acr/v5_c_cpu_executor_freeze.json`, freeze tests, and status/decision
+updates. It changes no controller, adapter, executor, result, model, simulator,
+environment, protected data, or manuscript.
