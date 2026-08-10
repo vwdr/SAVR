@@ -45,11 +45,11 @@ At most one phase may be `IN_PROGRESS`.
 | V3-D. Fresh paired Object development | STOPPED_NEGATIVE | 140/140 terminal, zero technical failures, 67/70 success for both policies, 25.24% reuse, wall/sequential 0.9604; failed visual reduction 8.46% < 10% and wall/BFR 1.00226 > 1.00; `reports/PHASE_V3_D_REPORT.md` | New predeclared method, if any |
 | V3-E. Independent Goal confirmation | NOT_RUN_INELIGIBLE | V3-D failed two frozen efficiency gates; Goal remains unopened for V3 | New method with separately authorized confirmation protocol |
 | V4-P. Evidence-gated redesign protocol | COMPLETE | V3-D negative preserved; controller and executor changes, stronger promotion margins, factorial ablations, protected populations, resource caps, and fail-closed phase gates frozen in `docs/ACR_V4_REDESIGN_PROTOCOL.md` and `configs/acr/v4_redesign_freeze.json` | Explicit Phase V4-A authorization |
-| V4-A. Immutable diagnosis and mechanism selection | IN_PROGRESS | User authorized CPU-only analysis; six controller candidates, bootstrap, deterministic selection, executor decision tree, resource limits, and stop rules frozen before candidate outputs in `docs/ACR_V4_A_PREFLIGHT.md` | Apply the frozen feasibility gate and freeze one design or stop |
-| V4-B. CPU implementation and verification | NOT_STARTED | — | Complete repository and pinned-environment verification |
-| V4-C. Bounded correctness and efficiency margin | NOT_STARTED | — | All correctness and strengthened latency gates pass |
-| V4-D. Paired Object development | NOT_STARTED | — | Positive paired development result under frozen gates |
-| V4-E. Independent Goal confirmation | NOT_STARTED | — | Positive independent confirmation without tuning |
+| V4-A. Immutable diagnosis and mechanism selection | STOPPED_NEGATIVE | Six predeclared candidates replayed twice identically; all failed the frozen maximum-streak-one gate, no design selected; `reports/PHASE_V4_A_REPORT.md` | New predeclared method, if any |
+| V4-B. CPU implementation and verification | NOT_RUN_INELIGIBLE | V4-A selected no controller or executor | New method with separate authorization |
+| V4-C. Bounded correctness and efficiency margin | NOT_RUN_INELIGIBLE | V4-B was ineligible | New method with separate authorization |
+| V4-D. Paired Object development | NOT_RUN_INELIGIBLE | No V4 method passed the offline mechanism gate | New method with separate authorization |
+| V4-E. Independent Goal confirmation | NOT_RUN_INELIGIBLE | No V4 method reached development; Goal remains unopened | New method with separate authorization |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -58,13 +58,14 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-V4-A is authorized and its candidate/output-blind preflight is frozen. It is
-limited to CPU analysis of already-opened evidence and source inspection; no
-GPU, model query, simulator episode, Goal access, or implementation is allowed.
-The redesign requires a materially changed controller and executor to show
-conservative efficiency margin before any new rollout. V3-D remains a
-complete negative result: it had zero technical failures and perfect BFR/V3
-success parity, but failed the frozen visual-CUDA reduction and
+V4-A is stopped negative. All six output-blind candidates were ineligible:
+the three gripper-only candidates produced maximum reuse streaks of two, while
+the three direction-reversal-veto variants also missed the frozen reuse and
+visual-reduction targets. No controller or executor was selected, so V4-B
+through V4-E are ineligible and Goal remains unopened. The phase used zero
+GPU, model query, simulator episode, download, or protected outcome.
+V3-D remains a complete negative result: it had zero technical failures and
+perfect BFR/V3 success parity, but failed the frozen visual-CUDA reduction and
 wall-versus-BFR gates. V3-E is ineligible.
 V2-C remains stopped negative after exactly 48/48 queries,
 and V2-D remains ineligible. Goal remains unopened for V3, and all final

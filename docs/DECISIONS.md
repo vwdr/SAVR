@@ -963,3 +963,25 @@ Last updated: 2026-08-10
   `results/acr-v4a-diagnosis-v01` at the stop.
 - Approver: Mechanical fail-closed recovery under the user-authorized V4-A
   phase, 2026-08-10.
+
+## D-081 — Apply the V4-A negative mechanism-selection stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept the complete V4-A recovery-2 evidence and stop Version 4
+  before V4-B. All six frozen candidates are ineligible. Preserve that the
+  strongest candidate reached 35.76% replay reuse and 12.15% predicted
+  visual-CUDA reduction but produced a maximum reuse streak of two rather than
+  the frozen maximum of one. Preserve that every direction-reversal-veto
+  candidate fell below the 35% reuse and 12% predicted visual-reduction
+  targets. Select no controller or executor.
+- Integrity rule: Do not post hoc change horizon 2 to horizon 1, relax the
+  maximum-streak gate, add or remove a candidate, reinterpret source
+  feasibility as measured speed, or advance to implementation. Any future
+  route requires a new output-blind protocol and separate authorization.
+- Resources: Zero GPU, model query, simulator episode, download, protected
+  outcome, or manuscript change.
+- Evidence: `reports/PHASE_V4_A_REPORT.md`;
+  `reports/runtime/acr_v4_a.json`; semantic SHA-256
+  `e7749e524ea39674a31654204dc879002b129fb8dfef6d89e66e89a38a22ffd8`.
+- Approver: Mechanical V4-A gate under user authorization, 2026-08-10.
