@@ -8,6 +8,8 @@ ACR Version 3 Phase V3-D — **STOPPED NEGATIVE; V3-E INELIGIBLE**
 
 ACR Version 4 Phase V4-A — **STOPPED NEGATIVE; V4-B INELIGIBLE**
 
+ACR Version 5 correction — **AUTHORIZED; RESEARCH COMPLETE; CPU DESIGN FROZEN**
+
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
 companion `docs/evidence/negative_results_summary.csv`. A materially different
@@ -245,6 +247,16 @@ and visual-reduction targets. No controller or executor was selected, and the
 mechanical disposition is `STOP_BEFORE_V4_B`. Full evidence is in
 `reports/PHASE_V4_A_REPORT.md` and `reports/runtime/acr_v4_a.json`.
 
+The user authorized a research-first correction on 2026-08-10. The primary
+source and code audit in `docs/ACR_V5_RESEARCH_AUDIT.md` identifies an explicit
+post-reuse refresh latch as the correction: a completed reuse requires the
+next completed query to refresh, while mandatory horizon 1 and cache-age/latch
+agreement provide defense in depth. The separate IR-SA-ACR contract, CPU
+acceptance matrix, exclusions, and zero-GPU/model/simulator boundary are frozen
+in `docs/ACR_V5_ISOLATED_REUSE_PROTOCOL.md` and
+`configs/acr/v5_isolated_reuse_freeze.json` before implementation. No
+threshold, replay candidate, executor, or performance claim is selected.
+
 ### Legacy SAVR terminal state
 
 Phase 6S-D — SAVR3 fresh development validation: **STOPPED NEGATIVE
@@ -450,11 +462,11 @@ Not completed:
 ## Next authorized action
 
 Preserve the complete negative V3-D and V4-A results without rerun, retiming,
-candidate addition, horizon/gate change, or reinterpretation. V3-E, V4-B,
-Goal, and final-holdout access are ineligible under these versions. No further
-experimental phase is authorized. A future route, if requested, must begin
-with a new output-blind protocol for a materially distinct method and retain
-the V4-A evidence as an immutable negative checkpoint.
+candidate addition, horizon/gate change, or reinterpretation. Implement and
+CPU-test only the separately versioned IR-SA-ACR latch frozen by V5. Do not
+select thresholds, replay outcomes, implement the executor, use a GPU/model or
+simulator, open Goal/final populations, or modify the manuscript. Any V5
+screening or efficiency phase requires a new output-blind protocol.
 
 ## Candidate initial stack
 

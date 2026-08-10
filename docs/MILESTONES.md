@@ -50,6 +50,8 @@ At most one phase may be `IN_PROGRESS`.
 | V4-C. Bounded correctness and efficiency margin | NOT_RUN_INELIGIBLE | V4-B was ineligible | New method with separate authorization |
 | V4-D. Paired Object development | NOT_RUN_INELIGIBLE | No V4 method passed the offline mechanism gate | New method with separate authorization |
 | V4-E. Independent Goal confirmation | NOT_RUN_INELIGIBLE | No V4 method reached development; Goal remains unopened | New method with separate authorization |
+| V5-R. Research and isolated-reuse design freeze | COMPLETE | Primary-source/code audit; explicit post-reuse latch, horizon 1 defense, cache-age consistency, CPU matrix, exclusions, and resources frozen in `docs/ACR_V5_RESEARCH_AUDIT.md` and `docs/ACR_V5_ISOLATED_REUSE_PROTOCOL.md` | CPU implementation only |
+| V5-A. Isolated-reuse CPU correction | IN_PROGRESS | User authorized the research-first correction; no threshold, replay, GPU, model, simulator, outcome, or manuscript work | Complete frozen CPU acceptance matrix |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -58,7 +60,15 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-V4-A is stopped negative. All six output-blind candidates were ineligible:
+V5-A is authorized for CPU implementation of the separately versioned
+IR-SA-ACR controller. Research is complete and the design was frozen before
+implementation: a successful reuse sets a controller-owned latch that forces
+the next completed query to refresh, with mandatory horizon 1 and cache-age
+agreement as defense in depth. Threshold selection, replay, executor work,
+GPU/model/simulator use, new outcomes, and manuscript changes are not
+authorized.
+
+V4-A remains stopped negative. All six output-blind candidates were ineligible:
 the three gripper-only candidates produced maximum reuse streaks of two, while
 the three direction-reversal-veto variants also missed the frozen reuse and
 visual-reduction targets. No controller or executor was selected, so V4-B

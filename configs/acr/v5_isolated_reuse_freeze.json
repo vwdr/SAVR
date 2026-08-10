@@ -1,0 +1,61 @@
+{
+  "schema_version": "acr.v5-isolated-reuse-freeze.v1",
+  "status": "FROZEN_BEFORE_V5_CPU_IMPLEMENTATION",
+  "authorized_at": "2026-08-10",
+  "research_audit": "docs/ACR_V5_RESEARCH_AUDIT.md",
+  "protocol": "docs/ACR_V5_ISOLATED_REUSE_PROTOCOL.md",
+  "controller": {
+    "name": "IR-SA-ACR",
+    "class": "IsolatedACRController",
+    "controller_version": "acr-isolated-controller-v1",
+    "required_horizon": 1,
+    "maximum_consecutive_reuses": 1,
+    "minimum_completed_refreshes_between_reuses": 1,
+    "post_reuse_latch": true,
+    "cache_age_consistency_check": true,
+    "post_reuse_reason": "post-reuse-refresh",
+    "mismatch_reason": "isolation-state-mismatch",
+    "legacy_controller_unchanged": true
+  },
+  "preserved": {
+    "warmup_queries": [0, 1],
+    "state_aware_signals": true,
+    "gripper_transition_veto": true,
+    "hard_prefix_reuse_cap": true,
+    "fresh_wrist_camera_each_query": true,
+    "fresh_proprioception_each_query": true,
+    "fresh_downstream_action_head_each_query": true,
+    "episode_scoped_context": true,
+    "fail_closed_invalid_signals": true
+  },
+  "cpu_acceptance": {
+    "maximum_reuse_streak": 1,
+    "prefix_cap_never_exceeded": true,
+    "cache_latch_mismatch_forces_refresh": true,
+    "failed_query_cannot_clear_latch": true,
+    "reset_clears_episode_state": true,
+    "legacy_semantics_preserved": true,
+    "repository_tests_required": true,
+    "titan_cpu_tests_required": true
+  },
+  "resource_caps": {
+    "gpu_count": 0,
+    "model_queries": 0,
+    "simulator_episodes": 0,
+    "downloads": 0,
+    "new_outcomes": 0,
+    "artifact_bytes": 268435456
+  },
+  "protected": {
+    "goal_states_0_9_seed_0": "UNOPENED",
+    "all_suite_states_10_49_seeds_7_17_27": "UNOPENED",
+    "manuscript_changes": false
+  },
+  "future_work": {
+    "threshold_selection_authorized": false,
+    "offline_replay_authorized": false,
+    "executor_implementation_authorized": false,
+    "gpu_gate_authorized": false,
+    "simulator_rollout_authorized": false
+  }
+}
