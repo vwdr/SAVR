@@ -14,6 +14,8 @@ REFRESH_REASON_ORDER = (
     "scene-change",
     "translation",
     "gripper-transition",
+    "post-reuse-refresh",
+    "isolation-state-mismatch",
     "horizon",
     "hard-cap",
     "policy",

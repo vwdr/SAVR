@@ -12,6 +12,11 @@ from savr.acr.batched_dual_path import (
 )
 from savr.acr.cache import SceneTokenCache
 from savr.acr.controller import ACRController
+from savr.acr.isolated_controller import (
+    ISOLATED_CONTROLLER_VERSION,
+    IsolatedACRController,
+    IsolatedACRControllerState,
+)
 from savr.acr.dual_path import (
     DualPathFailure,
     DualPathOpenVLAAdapter,
@@ -33,6 +38,9 @@ __all__ = [
     "ACRController",
     "ACRPolicy",
     "CameraWork",
+    "ISOLATED_CONTROLLER_VERSION",
+    "IsolatedACRController",
+    "IsolatedACRControllerState",
     "BatchedCameraWork",
     "BatchedDualPathOpenVLAAdapter",
     "BatchedDualPathResult",

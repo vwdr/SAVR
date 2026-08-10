@@ -8,7 +8,7 @@ ACR Version 3 Phase V3-D — **STOPPED NEGATIVE; V3-E INELIGIBLE**
 
 ACR Version 4 Phase V4-A — **STOPPED NEGATIVE; V4-B INELIGIBLE**
 
-ACR Version 5 correction — **AUTHORIZED; RESEARCH COMPLETE; CPU DESIGN FROZEN**
+ACR Version 5 correction — **COMPLETE; ISOLATED REUSE CPU-VERIFIED**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -257,6 +257,16 @@ in `docs/ACR_V5_ISOLATED_REUSE_PROTOCOL.md` and
 `configs/acr/v5_isolated_reuse_freeze.json` before implementation. No
 threshold, replay candidate, executor, or performance claim is selected.
 
+V5-A implemented the separate `IsolatedACRController` without changing legacy
+ACR behavior. A successful reuse latches a mandatory next refresh; horizon 1
+and cache-age/latch agreement provide independent checks, and forged
+consecutive reuse is rejected at observation. Adversarial, randomized, and
+batched-adapter CPU tests pass. The dependency-free verifier confirms maximum
+reuse streak one over 128 queries while preserving the legacy horizon-2 streak
+of two. Full evidence is in `reports/PHASE_V5_A_CORRECTION_REPORT.md` and
+`reports/runtime/acr_v5_cpu_verification.json`. This is software-correctness
+evidence only, not a task-success or efficiency result.
+
 ### Legacy SAVR terminal state
 
 Phase 6S-D — SAVR3 fresh development validation: **STOPPED NEGATIVE
@@ -461,10 +471,9 @@ Not completed:
 
 ## Next authorized action
 
-Preserve the complete negative V3-D and V4-A results without rerun, retiming,
-candidate addition, horizon/gate change, or reinterpretation. Implement and
-CPU-test only the separately versioned IR-SA-ACR latch frozen by V5. Do not
-select thresholds, replay outcomes, implement the executor, use a GPU/model or
+Preserve the complete negative V3-D/V4-A results and the verified V5 isolated-
+reuse correction. No further experimental phase is authorized. Do not select
+thresholds, replay outcomes, implement the executor, use a GPU/model or
 simulator, open Goal/final populations, or modify the manuscript. Any V5
 screening or efficiency phase requires a new output-blind protocol.
 
