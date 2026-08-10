@@ -255,3 +255,27 @@ V5-C used zero GPU, model query, simulator episode/reset, download, environment
 change, new outcome, protected population, or manuscript edit. It establishes
 only CPU software-contract correctness and advances only to V5-D protocol
 preparation.
+
+## 16. V5-D real-tensor protocol freeze
+
+The V5-D protocol checkpoint preserves the selected controller and V5-C
+executor interfaces and freezes the next real-model feasibility question
+before implementation or output. It adds the research/measurement design,
+normative protocol, machine-readable freeze, drift tests, protocol report, and
+status/decision updates. It changes no controller, executor, adapter, result,
+model, simulator, environment, protected data, or manuscript.
+
+The machine freeze semantic SHA-256 is
+`b7b3bc058aa800ba9409e82288f637555c8ffe242d2320631c58685d548eb39a`.
+It fixes exact real tensor shapes, seven correctness queries, two warm-ups per
+path, all 24 four-path permutations, 96 timed queries, the 111-query hard cap,
+paired-bootstrap seed/gates, compiler/raw technical waterfall, memory/resource
+limits, recovery, and the claim boundary.
+
+Preparation used zero GPU, model query, simulator episode/reset, download, new
+outcome, protected population, or manuscript edit. A reconciliation check
+caught inaccurate copied hash suffixes before publication; every affected hash
+was corrected against the authoritative repository or exact pinned TITAN file.
+The next checkpoint is backend implementation with CPU/fake-backend tests.
+GPU selection remains prohibited until that code merges and the user is
+explicitly coordinated.

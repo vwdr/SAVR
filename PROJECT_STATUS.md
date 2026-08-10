@@ -12,7 +12,20 @@ ACR Version 5 correction — **COMPLETE; ISOLATED REUSE CPU-VERIFIED**
 
 ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
-ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS; V5-D PROTOCOL NEXT**
+ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
+
+ACR Version 5 V5-D — **PROTOCOL FROZEN; IMPLEMENTATION/GPU NOT STARTED**
+
+V5-D now has a research-backed, machine-authenticated real-tensor feasibility
+protocol frozen before implementation or output. It preserves `v5-a100-b40`,
+uses an anti-shopping compiler/raw-CUDA-graph technical waterfall, seven
+correctness queries, eight warm-ups, every one of the 24 four-path
+permutations, a hard cap of 111 full queries, paired uncertainty intervals,
+and conjunctive correctness, efficiency, ordering, memory, restoration, and
+resource gates. Semantic SHA-256 is
+`b7b3bc058aa800ba9409e82288f637555c8ffe242d2320631c58685d548eb39a`.
+No GPU was inspected or selected and no model/simulator query or protected
+outcome was used. Evidence: `reports/PHASE_V5_D_PROTOCOL_REPORT.md`.
 
 V5-C implemented the frozen eager reference and owned-static-buffer executors
 plus the isolated execution adapter. Exact wrist, scene-first combined-token,
@@ -530,10 +543,11 @@ Not completed:
 
 Preserve the complete negative V3-D/V4-A results, the verified V5 isolated-
 reuse correction, positive V5-B screening, and completed V5-C CPU evidence.
-Prepare and freeze the V5-D real-tensor feasibility protocol only. Keep
-Goal/final populations and success fields sealed, and do not modify the
-manuscript. Before selecting any GPU in V5-D, stop for explicit user
-coordination under `AGENTS.md`.
+After separate authorization, implement and CPU/fake-backend verify the frozen
+V5-D backend, runner, analyzer, and independent verifier. Merge and synchronize
+that checkpoint before GPU selection. Keep Goal/final populations and success
+fields sealed and do not modify the manuscript. Before selecting any GPU,
+stop for explicit user coordination under `AGENTS.md`.
 
 ## Candidate initial stack
 
