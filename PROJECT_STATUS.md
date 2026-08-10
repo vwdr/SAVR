@@ -1,10 +1,12 @@
 # Project Status
 
-Last updated: 2026-08-04
+Last updated: 2026-08-10
 
 ## Current phase
 
 ACR Version 3 Phase V3-D — **STOPPED NEGATIVE; V3-E INELIGIBLE**
+
+ACR Version 4 planning — **PROTOCOL FROZEN; V4-A NOT YET AUTHORIZED**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -217,6 +219,19 @@ mechanical disposition is negative; V3-E and Goal are ineligible. Full evidence
 is in `reports/PHASE_V3_D_REPORT.md` and
 `reports/runtime/acr_v3_d.json`.
 
+The evidence-gated redesign protocol is now frozen in
+`docs/ACR_V4_REDESIGN_PROTOCOL.md`, with its machine-readable constraints in
+`configs/acr/v4_redesign_freeze.json`. It preserves the V3-D negative result
+and does not relax either failed gate. The provisional V4 route must combine a
+generic safety-constrained controller capable of at least 35% realized scene
+reuse with a numerically verified faster single-view executor. Before another
+simulator rollout, it must pass separate CPU diagnosis/implementation phases
+and a bounded real-model gate with at least 12% visual-CUDA reduction and a
+wall ratio at most 0.98 versus BFR. Controller-only and executor-only
+ablations are required. Goal and final populations remain protected. Creating
+the protocol authorizes no V4-A work, GPU/model query, simulator episode,
+download, protected outcome, or manuscript edit.
+
 ### Legacy SAVR terminal state
 
 Phase 6S-D — SAVR3 fresh development validation: **STOPPED NEGATIVE
@@ -423,8 +438,10 @@ Not completed:
 
 Preserve the complete negative V3-D result without rerun, retiming, gate
 change, or reinterpretation. V3-E, Goal, and final-holdout access are
-ineligible under V3. Any further positive-paper attempt requires a materially
-new predeclared method and separate authorization.
+ineligible under V3. The next possible action is separately authorized,
+CPU-only Phase V4-A: reconcile immutable V3-D evidence, predeclare and screen
+mechanisms, establish conservative break-even margins, and freeze exactly one
+V4 design before implementation. No V4 work has started.
 
 ## Candidate initial stack
 
