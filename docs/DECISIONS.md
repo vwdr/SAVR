@@ -985,3 +985,27 @@ Last updated: 2026-08-10
   `reports/runtime/acr_v4_a.json`; semantic SHA-256
   `e7749e524ea39674a31654204dc879002b129fb8dfef6d89e66e89a38a22ffd8`.
 - Approver: Mechanical V4-A gate under user authorization, 2026-08-10.
+
+## D-082 — Freeze the research-first V5 isolated-reuse correction
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve V3/V4 and implement a separately versioned
+  Isolated-Reuse State-Aware ACR controller. A completed reuse sets an internal
+  latch that forces the next completed query to refresh. Require horizon 1 and
+  external cache-age/latch agreement as independent fail-closed checks. Clear
+  the latch only after a successfully observed refresh.
+- Research basis: Primary VLA caching/adaptive-compute work supports temporal
+  redundancy, action-context gating, and fresh task-relevant perception;
+  corrective/event-triggered work motivates explicitly bounding stale
+  intervals. None establishes one-step reuse safety for this stack, so the
+  mechanism remains a project hypothesis requiring later evaluation.
+- Exclusions: No threshold/replay selection, executor implementation, GPU,
+  model query, simulator episode, download, new outcome, protected access, or
+  manuscript change. Legacy ACR behavior and all immutable evidence remain
+  unchanged.
+- Evidence: `docs/ACR_V5_RESEARCH_AUDIT.md`;
+  `docs/ACR_V5_ISOLATED_REUSE_PROTOCOL.md`;
+  `configs/acr/v5_isolated_reuse_freeze.json`.
+- Approver: User instruction to make the correction after thorough research,
+  2026-08-10.
