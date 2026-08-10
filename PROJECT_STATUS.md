@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **PROTOCOL FROZEN; IMPLEMENTATION/GPU NOT STARTED**
+ACR Version 5 V5-D — **IMPLEMENTED AND VERIFIED; GPU NOT STARTED**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -23,9 +23,14 @@ correctness queries, eight warm-ups, every one of the 24 four-path
 permutations, a hard cap of 111 full queries, paired uncertainty intervals,
 and conjunctive correctness, efficiency, ordering, memory, restoration, and
 resource gates. Semantic SHA-256 is
-`b7b3bc058aa800ba9409e82288f637555c8ffe242d2320631c58685d548eb39a`.
+`f445cf5d1a5ec6877ebea46ccc3883a11a676b38cb33a711ee4b74baf22f53f8`.
+The compiler/raw backend, exact runner, analyzer, independent verifier, and
+aggregate-only selector now pass deterministic CPU/fake-backend preflight with
+semantic SHA-256
+`db097ca8cab44d474a65e22888a72da8c4c6e2489a31188abea67c7ed55bff98`.
 No GPU was inspected or selected and no model/simulator query or protected
-outcome was used. Evidence: `reports/PHASE_V5_D_PROTOCOL_REPORT.md`.
+outcome was used. Evidence: `reports/PHASE_V5_D_PROTOCOL_REPORT.md` and
+`reports/PHASE_V5_D_IMPLEMENTATION_REPORT.md`.
 
 V5-C implemented the frozen eager reference and owned-static-buffer executors
 plus the isolated execution adapter. Exact wrist, scene-first combined-token,
@@ -543,11 +548,10 @@ Not completed:
 
 Preserve the complete negative V3-D/V4-A results, the verified V5 isolated-
 reuse correction, positive V5-B screening, and completed V5-C CPU evidence.
-After separate authorization, implement and CPU/fake-backend verify the frozen
-V5-D backend, runner, analyzer, and independent verifier. Merge and synchronize
-that checkpoint before GPU selection. Keep Goal/final populations and success
-fields sealed and do not modify the manuscript. Before selecting any GPU,
-stop for explicit user coordination under `AGENTS.md`.
+Stop for explicit user coordination before running the aggregate-only V5-D GPU
+selector. Keep Goal/final populations and success fields sealed and do not
+modify the manuscript. The later one-GPU phase may use only the merged exact
+commands in `docs/ACR_V5_D_BACKEND_IMPLEMENTATION.md`.
 
 ## Candidate initial stack
 

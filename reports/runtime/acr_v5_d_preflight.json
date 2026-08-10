@@ -1,0 +1,43 @@
+{
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_GPU_SELECTION",
+  "backend_version": "acr-v5d-static-backend-v1",
+  "checks": {
+    "cores_have_no_host_transfer": true,
+    "correctness_count_7": true,
+    "freeze_semantic_valid": true,
+    "implementation_files_present": true,
+    "launch_compile_first": true,
+    "launch_raw_only_exit_20": true,
+    "local_cache_roots": true,
+    "query_count_111": true,
+    "raw_post_output_prohibited": true,
+    "raw_pre_output_permitted": true,
+    "runner_has_zero_simulator": true,
+    "selector_aggregate_only": true,
+    "timed_count_96": true,
+    "warmup_count_8": true
+  },
+  "configuration_semantic_sha256": "f445cf5d1a5ec6877ebea46ccc3883a11a676b38cb33a711ee4b74baf22f53f8",
+  "query_labels_sha256": "eccd0e91acddf131411dbd916a1eb13bfa178b3e36c216bd4146bce1dfdf3291",
+  "resources_used": {
+    "downloads": 0,
+    "gpu_count": 0,
+    "model_queries": 0,
+    "new_task_outcomes": 0,
+    "simulator_episodes": 0,
+    "simulator_resets": 0
+  },
+  "schema_version": "acr.v5d-preflight-verification.v1",
+  "semantic_sha256": "db097ca8cab44d474a65e22888a72da8c4c6e2489a31188abea67c7ed55bff98",
+  "source_hashes": {
+    "scripts/analyze_acr_v5_d.py": "4384bb6a41e7111b8772ed77b909da8b0a1f6110c8286cd944904e6d0134e9b3",
+    "scripts/finalize_acr_v5_d.py": "38c230f38e0f46779febb08ec8cd76b890109c1775e814a477aa491c9c808218",
+    "scripts/launch_acr_v5_d.sh": "dc976ffbb6e41c89c758503f6eb92468f81725b55f467ad11c82d1e5d074dd93",
+    "scripts/run_acr_v5_d.py": "2c216b69a3d39f5b5df288ce23f73fe4e140609e7a080ce83666850a1385f975",
+    "scripts/select_acr_v5_d_gpu.py": "5af722cf140752a3be537d2191b2000f1673761c6e8cc077a96f5f6d8c50e7ad",
+    "scripts/verify_acr_v5_d.py": "6a05a563ca4f759f989703bc601c781a8383532b2497e7009701abd8ae66c0f8",
+    "src/savr/acr/v5_d_runtime.py": "2d6ba8cd1adce819077424594471363e1114be1a0c5519e83a19c8f68da55da1",
+    "src/savr/acr/v5_d_torch_backend.py": "16afc6b7ccea071706cd2052328d5e8beff43e0bb65d520d0cd578be83110a2a"
+  },
+  "status": "pass"
+}

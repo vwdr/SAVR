@@ -1202,10 +1202,35 @@ Last updated: 2026-08-10
 - Evidence: `docs/ACR_V5_D_RESEARCH_AND_MEASUREMENT_DESIGN.md`;
   `docs/ACR_V5_D_GPU_FEASIBILITY_PROTOCOL.md`;
   `configs/acr/v5_d_gpu_feasibility_freeze.json` (semantic SHA-256
-  `b7b3bc058aa800ba9409e82288f637555c8ffe242d2320631c58685d548eb39a`);
+  `f445cf5d1a5ec6877ebea46ccc3883a11a676b38cb33a711ee4b74baf22f53f8`);
   `reports/PHASE_V5_D_PROTOCOL_REPORT.md`.
 - Scope used: Zero GPU/model/simulator/download/new outcome/protected access;
   manuscript unchanged. Read-only hashes were checked only inside
   `/home/ved/SAVR`.
 - Disposition: `ADVANCE_ONLY_TO_V5_D_BACKEND_IMPLEMENTATION_AFTER_USER_AUTHORIZATION`.
 - Approver: User, 2026-08-10; frozen before implementation/output.
+
+## D-091 — Accept V5-D pre-GPU implementation
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept the separately implemented real mixed-dtype executor,
+  pinned wrist/downstream cores, compiler/raw waterfall, aggregate-only GPU
+  selector, exact 111-query runner, paired analyzer, independent verifier, and
+  deterministic preflight. Stop before GPU selection.
+- Corrections before output: Replace inaccurate copied suffixes for the six
+  deterministic input hashes using immutable V3-C truth; freeze semantic
+  SHA-256 is now
+  `f445cf5d1a5ec6877ebea46ccc3883a11a676b38cb33a711ee4b74baf22f53f8`.
+  Add V5-D-only mixed-dtype executors instead of changing validated V5-C code.
+  Record implicit capture-end graph instantiation for pinned PyTorch 2.2,
+  which lacks a public `CUDAGraph.instantiate()` method.
+- Evidence: `docs/ACR_V5_D_BACKEND_IMPLEMENTATION.md`;
+  `reports/PHASE_V5_D_IMPLEMENTATION_REPORT.md`;
+  `reports/runtime/acr_v5_d_preflight.json` (semantic SHA-256
+  `db097ca8cab44d474a65e22888a72da8c4c6e2489a31188abea67c7ed55bff98`).
+- Scope used: Zero GPU/model/simulator/new outcome/protected access and zero
+  model, dataset, or TITAN download; manuscript unchanged. TITAN inspection
+  was read-only and confined to `/home/ved/SAVR`.
+- Disposition: `STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_GPU_SELECTION`.
+- Approver: User approved implementation, 2026-08-10; GPU phase not inferred.

@@ -93,14 +93,14 @@
   },
   "inputs": {
     "instruction": "move the robot safely to the target",
-    "instruction_sha256": "6fab757e0ad2cee26e09cc2aadcc03bf8b98921b326522f570e8184f6272faac",
+    "instruction_sha256": "6fab754e000a2e058c9250fe04c47aad55e29bd0bcdc6cfdbd8e74b5c1bb7266",
     "raw_image_shape": [256, 256, 3],
     "raw_image_dtype": "uint8",
-    "pattern_a_scene_sha256": "536000a448b807601a8a2d5145c12aacba05d8a2a15af545f81062ef4b481388",
-    "pattern_a_wrist_sha256": "86b789a68f6711855ab111502019de6cc19db30ec0dfe4a546b208c58c45b5f8",
-    "pattern_b_scene_sha256": "c53220b7977e4a5b15f58d8defaf9d44722dff29e61ae7d0b742b656193908ee",
-    "pattern_b_wrist_sha256": "942833a94991907c454a9b50e7c4801cba93b4ab625bc7e18ea4aaa245a2f9db",
-    "state_midpoint_sha256": "367e53a93eb13563d5d3ce9f1833e9f6c2e137110140246058f0789222cfd63c",
+    "pattern_a_scene_sha256": "5360005e7a8c897ab65b04c1992b8290506c2273e6d374126df84f6abe170461",
+    "pattern_a_wrist_sha256": "86b789f8493d91b8ce2407370a8641c321c955ec390a0de24dd4510c39d6274e",
+    "pattern_b_scene_sha256": "c532201266288fc799c7fd27eef34eed5f772e4771b78e479660de65d0ce512b",
+    "pattern_b_wrist_sha256": "942833b2df194e2dda0ecce7d9a684dc3610a5cab9e213213f28897ef563e15d",
+    "state_midpoint_sha256": "367e53e94d3ffc357f54b0421031841904554e9db8e22df504876ff5b172ff7b",
     "simulator_required": false,
     "outcome_fields_permitted": false
   },
@@ -255,5 +255,5 @@
     "manuscript_changes": false
   },
   "advance_only_to": "V5_D_BACKEND_IMPLEMENTATION_AND_EXPLICIT_GPU_COORDINATION",
-  "semantic_sha256": "b7b3bc058aa800ba9409e82288f637555c8ffe242d2320631c58685d548eb39a"
+  "semantic_sha256": "f445cf5d1a5ec6877ebea46ccc3883a11a676b38cb33a711ee4b74baf22f53f8"
 }

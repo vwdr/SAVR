@@ -71,6 +71,17 @@ def test_local_environment_and_prior_evidence_hashes_reconcile() -> None:
         assert hashes[key] == file_sha256(path)
 
 
+def test_deterministic_input_hashes_reconcile_with_immutable_v3_c() -> None:
+    inputs = freeze()["inputs"]
+    v3 = json.loads((ROOT / "reports/runtime/acr_v3_c.json").read_text(encoding="utf-8"))["inputs"]
+    assert inputs["pattern_a_scene_sha256"] == v3["input-a"]["scene_sha256"]
+    assert inputs["pattern_a_wrist_sha256"] == v3["input-a"]["wrist_sha256"]
+    assert inputs["pattern_b_scene_sha256"] == v3["input-b"]["scene_sha256"]
+    assert inputs["pattern_b_wrist_sha256"] == v3["input-b"]["wrist_sha256"]
+    assert inputs["state_midpoint_sha256"] == v3["state_sha256"]
+    assert inputs["instruction_sha256"] == v3["instruction_sha256"]
+
+
 def test_remote_only_pinned_hashes_are_exactly_predeclared() -> None:
     config = freeze()
     assert config["checkpoint_hashes"] == {
