@@ -128,9 +128,17 @@ V5-R and V5-A used:
 - zero protected Goal/final-population access; and
 - zero manuscript modifications.
 
-Server work was limited to `/home/ved/SAVR`. Nothing outside that project path
-was modified. No system configuration, unrelated process, service, university
-file, permission, or GPU allocation was inspected or changed.
+All durable server work was limited to `/home/ved/SAVR`. No system
+configuration, unrelated process, service, university file, permission, or GPU
+allocation was inspected or changed. During the documentation-sync checkpoint,
+however, the
+verification command briefly wrote its own generated semantic JSON to
+`/tmp/savr-v5-doc-sync-verify.json`, which was outside the permitted project
+path. The deviation was detected immediately; that exact temporary file was
+removed and its absence verified. No unrelated path or content was inspected or
+changed. Future remote verification output must be written beneath
+`/home/ved/SAVR` or streamed directly without creating an external temporary
+file.
 
 ## 9. Reproduction procedure
 

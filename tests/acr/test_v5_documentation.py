@@ -38,6 +38,8 @@ def test_provenance_ledger_records_versions_negatives_and_resource_boundary() ->
         "zero GPUs",
         "/home/ved/SAVR",
         "not a positive-results paper result",
+        "/tmp/savr-v5-doc-sync-verify.json",
+        "removed and its absence verified",
     )
     assert all(item in normalized for item in required)
 
