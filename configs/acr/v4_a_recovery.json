@@ -1,0 +1,28 @@
+{
+  "schema_version": "acr.v4a-recovery.v1",
+  "status": "FROZEN_BEFORE_RECOVERY",
+  "source_revision": "ffafccf028354dbef26f9c8473c5ef2e6393268f",
+  "source_attempt_output_created": false,
+  "source_attempt_candidate_outputs_opened": false,
+  "failure_stage": "v3_d_completion_metadata_reconciliation",
+  "failure_type": "RuntimeError",
+  "failure_message": "Semantic hash mismatch: None",
+  "correction": "exclude_only_the_hashless_v3_d_completion_manifest_from_the_generic_semantic_hash_loop",
+  "unchanged": [
+    "controller_candidates",
+    "thresholds",
+    "bootstrap",
+    "selection_rule",
+    "executor_decision_tree",
+    "gates",
+    "inputs",
+    "resource_caps",
+    "output_identity"
+  ],
+  "maximum_recovery_invocations": 1,
+  "gpu_count": 0,
+  "model_queries": 0,
+  "simulator_episodes": 0,
+  "downloads": 0,
+  "protected_outcomes": 0
+}

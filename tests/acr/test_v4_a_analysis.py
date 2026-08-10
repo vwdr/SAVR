@@ -86,3 +86,9 @@ def test_required_reuse_ratio_formula_is_fail_closed() -> None:
     required = (0.98 - (1.0 - conservative_reuse) * refresh_upper) / conservative_reuse
     assert required == pytest.approx(0.91)
     assert required >= 0.90
+
+
+def test_v3_completion_manifest_is_not_required_to_have_semantic_hash() -> None:
+    source = (ROOT / "scripts/analyze_acr_v4_a.py").read_text(encoding="utf-8")
+    assert "for record in [*queries, *episodes, summary]:" in source
+    assert "for record in [*queries, *episodes, completion, summary]:" not in source

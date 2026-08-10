@@ -930,3 +930,20 @@ Last updated: 2026-08-10
 - Evidence: `docs/ACR_V4_A_PREFLIGHT.md` and
   `configs/acr/v4_a_diagnosis_preflight.json`.
 - Approver: User, 2026-08-10. V4-B remains unauthorized.
+
+## D-079 — Preserve the V4-A pre-analysis stop and freeze one recovery
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve the first V4-A analyzer invocation as a technical stop
+  during V3-D completion-metadata reconciliation, before A4 loading, candidate
+  replay, bootstrap, selection, or output creation. Correct only the generic
+  verifier's treatment of the intentionally hashless V3-D completion manifest.
+  Keep all hashed queries, episodes, and summary verification plus every
+  scientific design and gate unchanged. Allow one complete CPU-only recovery
+  after merge and synchronization.
+- Evidence: `docs/ACR_V4_A_TECHNICAL_RECOVERY.md` and
+  `configs/acr/v4_a_recovery.json`; absent
+  `results/acr-v4a-diagnosis-v01` at the stop.
+- Approver: Mechanical fail-closed recovery under the user-authorized V4-A
+  phase, 2026-08-10.

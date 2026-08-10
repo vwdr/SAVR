@@ -306,7 +306,7 @@ def load_v3_evidence(project_root: Path) -> dict[str, Any]:
         raise RuntimeError("V3-D record counts changed")
     if completion.get("status") != "completed" or summary.get("terminal_records") != 140:
         raise RuntimeError("V3-D completion changed")
-    for record in [*queries, *episodes, completion, summary]:
+    for record in [*queries, *episodes, summary]:
         verify_semantic(record)
     episode_by_attempt = {str(item["attempt_id"]): item for item in episodes}
     grouped: dict[tuple[int, int], dict[str, list[dict[str, Any]]]] = defaultdict(
