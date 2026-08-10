@@ -1077,3 +1077,30 @@ Last updated: 2026-08-10
 - Evidence: Agent command record and
   `docs/ACR_V5_IMPLEMENTATION_AND_PROVENANCE_LEDGER.md`.
 - Recorder: Codex, 2026-08-10.
+
+## D-086 — Freeze V5-B output-blind isolated-reuse screening
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Screen exactly six IR-SA-ACR candidates on the frozen,
+  outcome-free A4 Full-Refresh Object traces. Use threshold levels
+  `1.0/1.5/2.0`, hard caps `0.35/0.40`, horizon one, the controller-owned
+  post-reuse latch, and no direction-reversal veto. Require deterministic
+  replay, maximum streak one, cache/gripper integrity, reuse/work margins, and
+  select the least permissive eligible candidate.
+- Prior-evidence disclosure: The anchors originate from A4/A5 and V4 informed
+  the latch correction and exclusion of the direction-reversal primary
+  variant. V5-B is development screening, not independent confirmation.
+- Input boundary: Exactly 100 episodes and 1,773 trace records with ordered
+  path/content SHA-256
+  `3ce22a1d1de7d33ed0a6bcdb52b32f42800d732ec93aed0bfed593f1e536b34b`.
+  The loader rejects success/failure/reward/timing fields. Goal, reserve, and
+  final populations remain sealed.
+- Resources: Zero GPU, model query, simulator episode/reset, download, or new
+  task outcome; CPU wall cap 1,800 seconds and artifact cap 256 MiB.
+- Stop rule: No eligible candidate stops V5 before executor implementation.
+  One selected candidate permits only V5-C protocol preparation.
+- Evidence: `docs/ACR_V5_B_OUTPUT_BLIND_PREFLIGHT.md`;
+  `configs/acr/v5_b_output_blind_preflight.json`;
+  `scripts/analyze_acr_v5_b.py`; `scripts/verify_acr_v5_b_result.py`.
+- Approver: User, 2026-08-10; frozen before candidate output.

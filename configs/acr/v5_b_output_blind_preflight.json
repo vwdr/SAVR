@@ -1,0 +1,133 @@
+{
+  "schema_version": "acr.v5b-output-blind-preflight.v1",
+  "status": "FROZEN_BEFORE_V5_B_CANDIDATE_OUTPUTS",
+  "authorized_at": "2026-08-10",
+  "protocol": "docs/ACR_V5_B_OUTPUT_BLIND_PREFLIGHT.md",
+  "method": {
+    "name": "IR-SA-ACR",
+    "controller_version": "acr-isolated-controller-v1",
+    "policy": "sa-acr",
+    "horizon": 1,
+    "minimum_query_index": 2,
+    "post_reuse_latch": true,
+    "cache_age_consistency": true,
+    "gripper_transition_veto": true,
+    "direction_reversal_veto": false
+  },
+  "input": {
+    "run_id": "acr-a4-upstream-fr-object-dev00-09-v01",
+    "record_glob": "trace/record.json",
+    "suite": "libero_object",
+    "task_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "initial_state_ids": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "seed": 0,
+    "episodes": 100,
+    "trace_records": 1773,
+    "trace_artifact_bytes": 13415489,
+    "ordered_path_content_sha256": "3ce22a1d1de7d33ed0a6bcdb52b32f42800d732ec93aed0bfed593f1e536b34b",
+    "outcome_fields_allowed": false,
+    "exact_schema_allowlist": true
+  },
+  "threshold_family": {
+    "source": "disclosed_a4_a5_development_anchors_with_prospective_equal_range_extrapolation",
+    "scene_low": 0.2476380718954248,
+    "scene_high": 0.30046895424836606,
+    "translation_low": 0.5479944908411765,
+    "translation_high": 0.685919037527938,
+    "levels": [1.0, 1.5, 2.0],
+    "hard_reuse_caps": [0.35, 0.4],
+    "candidate_count": 6,
+    "task_or_state_identity_allowed": false
+  },
+  "candidates": [
+    {
+      "candidate_id": "v5-a100-b35",
+      "level": 1.0,
+      "scene_threshold": 0.30046895424836606,
+      "translation_threshold": 0.685919037527938,
+      "hard_reuse_cap": 0.35
+    },
+    {
+      "candidate_id": "v5-a100-b40",
+      "level": 1.0,
+      "scene_threshold": 0.30046895424836606,
+      "translation_threshold": 0.685919037527938,
+      "hard_reuse_cap": 0.4
+    },
+    {
+      "candidate_id": "v5-a150-b35",
+      "level": 1.5,
+      "scene_threshold": 0.3268843954248367,
+      "translation_threshold": 0.7548813108713188,
+      "hard_reuse_cap": 0.35
+    },
+    {
+      "candidate_id": "v5-a150-b40",
+      "level": 1.5,
+      "scene_threshold": 0.3268843954248367,
+      "translation_threshold": 0.7548813108713188,
+      "hard_reuse_cap": 0.4
+    },
+    {
+      "candidate_id": "v5-a200-b35",
+      "level": 2.0,
+      "scene_threshold": 0.3532998366013073,
+      "translation_threshold": 0.8238435842146996,
+      "hard_reuse_cap": 0.35
+    },
+    {
+      "candidate_id": "v5-a200-b40",
+      "level": 2.0,
+      "scene_threshold": 0.3532998366013073,
+      "translation_threshold": 0.8238435842146996,
+      "hard_reuse_cap": 0.4
+    }
+  ],
+  "bootstrap": {
+    "unit": "episode",
+    "seed": 5102026,
+    "resamples": 10000,
+    "confidence": 0.95,
+    "outlier_deletion": false
+  },
+  "accounting": {
+    "scene_fraction_of_logical_visual_components": 0.5,
+    "measured_cuda_claim": false,
+    "measured_wall_claim": false
+  },
+  "gates": {
+    "maximum_reuse_streak": 1,
+    "maximum_prefix_cap_violations": 0,
+    "gripper_transition_reuses_max": 0,
+    "isolation_state_mismatches_max": 0,
+    "invariant_failures_max": 0,
+    "post_reuse_refreshes_min": 1,
+    "reuse_point_min": 0.35,
+    "reuse_lower_95_min": 0.3,
+    "logical_visual_reduction_point_min": 0.175,
+    "logical_visual_reduction_lower_95_min": 0.15
+  },
+  "selection_order": [
+    "minimum_threshold_level",
+    "minimum_hard_reuse_cap",
+    "minimum_isolation_risk_exposure",
+    "minimum_reuse_at_or_above_gate"
+  ],
+  "resource_caps": {
+    "gpu_count": 0,
+    "model_queries": 0,
+    "simulator_episodes": 0,
+    "simulator_resets": 0,
+    "downloads": 0,
+    "new_task_outcomes": 0,
+    "artifact_bytes": 268435456,
+    "cpu_wall_seconds": 1800
+  },
+  "protected": {
+    "goal_states_0_9_seed_0": "UNOPENED",
+    "all_suite_states_10_49_seeds_7_17_27": "UNOPENED",
+    "success_fields": "SEALED",
+    "manuscript_changes": false
+  },
+  "advance_only_to": "V5_C_PROTOCOL_PREPARATION"
+}
