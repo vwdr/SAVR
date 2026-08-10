@@ -280,12 +280,12 @@ def make_isolated_v5():
     ops = FakeOps()
     model = FakeModel(ops)
     config = ACRConfiguration(
-        "ir-sa-acr-cpu",
+        "v5-a100-b40",
         ACRPolicy.SA_ACR,
-        scene_threshold=1.0,
-        translation_threshold=1.0,
+        scene_threshold=0.30046895424836606,
+        translation_threshold=0.685919037527938,
         horizon=1,
-        hard_reuse_cap=0.75,
+        hard_reuse_cap=0.40,
         controller_version=ISOLATED_CONTROLLER_VERSION,
     )
     adapter = BatchedDualPathOpenVLAAdapter(
@@ -427,7 +427,7 @@ def test_v3_reuse_is_exactly_the_established_v2_wrist_path():
 def test_isolated_v5_controller_runs_through_batched_adapter_without_consecutive_reuse():
     model, adapter = make_isolated_v5()
     isolated_context = context(
-        configuration_id="ir-sa-acr-cpu",
+        configuration_id="v5-a100-b40",
         controller_version=ISOLATED_CONTROLLER_VERSION,
     )
     with adapter.episode(isolated_context):
