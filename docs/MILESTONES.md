@@ -1,6 +1,6 @@
 # SAVR Milestones
 
-Last updated: 2026-08-04
+Last updated: 2026-08-10
 
 At most one phase may be `IN_PROGRESS`.
 
@@ -44,6 +44,12 @@ At most one phase may be `IN_PROGRESS`.
 | V3-C. Bounded correctness and latency | COMPLETE_POSITIVE | Exactly 64/64 queries; token/action correctness passed; all six latency gates passed; weighted wall ratio 0.966582 vs sequential FR, 0.997525 vs BFR, and 31.4092% visual CUDA reduction; `reports/PHASE_V3_C_REPORT.md` | Explicit Phase V3-D authorization |
 | V3-D. Fresh paired Object development | STOPPED_NEGATIVE | 140/140 terminal, zero technical failures, 67/70 success for both policies, 25.24% reuse, wall/sequential 0.9604; failed visual reduction 8.46% < 10% and wall/BFR 1.00226 > 1.00; `reports/PHASE_V3_D_REPORT.md` | New predeclared method, if any |
 | V3-E. Independent Goal confirmation | NOT_RUN_INELIGIBLE | V3-D failed two frozen efficiency gates; Goal remains unopened for V3 | New method with separately authorized confirmation protocol |
+| V4-P. Evidence-gated redesign protocol | COMPLETE | V3-D negative preserved; controller and executor changes, stronger promotion margins, factorial ablations, protected populations, resource caps, and fail-closed phase gates frozen in `docs/ACR_V4_REDESIGN_PROTOCOL.md` and `configs/acr/v4_redesign_freeze.json` | Explicit Phase V4-A authorization |
+| V4-A. Immutable diagnosis and mechanism selection | NOT_STARTED | — | CPU-only diagnosis predicts the frozen margins and freezes exactly one design |
+| V4-B. CPU implementation and verification | NOT_STARTED | — | Complete repository and pinned-environment verification |
+| V4-C. Bounded correctness and efficiency margin | NOT_STARTED | — | All correctness and strengthened latency gates pass |
+| V4-D. Paired Object development | NOT_STARTED | — | Positive paired development result under frozen gates |
+| V4-E. Independent Goal confirmation | NOT_STARTED | — | Positive independent confirmation without tuning |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -52,10 +58,12 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-V3-D completed its full 140-episode recovery matrix with zero technical
-failures and perfect BFR/V3 success parity, but failed the frozen visual-CUDA
-reduction and wall-versus-BFR gates. It is stopped negative and V3-E is
-ineligible. Goal remains unopened for V3.
+V4 planning is complete, but V4-A is not authorized or started. The frozen
+redesign protocol requires a materially changed controller and executor to
+show conservative efficiency margin before any new rollout. V3-D remains a
+complete negative result: it had zero technical failures and perfect BFR/V3
+success parity, but failed the frozen visual-CUDA reduction and
+wall-versus-BFR gates. V3-E is ineligible.
 V2-C remains stopped negative after exactly 48/48 queries,
 and V2-D remains ineligible. Goal remains unopened for V3, and all final
 populations remain protected.

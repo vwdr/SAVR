@@ -1,6 +1,6 @@
 # SAVR Decision Log
 
-Last updated: 2026-08-04
+Last updated: 2026-08-10
 
 ## D-001 — University-server safety boundary
 
@@ -884,3 +884,28 @@ Last updated: 2026-08-04
 - Evidence: `reports/PHASE_V3_D_REPORT.md`;
   `reports/runtime/acr_v3_d.json`; immutable TITAN recovery-2 records.
 - Approver: Mechanical V3-D gate under user authorization, 2026-08-04.
+
+## D-077 — Freeze an evidence-gated ACR Version 4 redesign protocol
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve V3-D as negative and do not relax, rerun, retime, filter,
+  or reinterpret either failed gate. Before another rollout, require a
+  materially changed V4 method with two separately attributable mechanisms:
+  a generic safety-constrained controller targeting at least 35% realized
+  scene reuse, and a numerically verified faster fixed-shape single-view
+  executor. Require controller-only, executor-only, and complete-method
+  ablations. Promote only after a bounded gate demonstrates at least 12%
+  visual-CUDA reduction, wall ratio at most 0.98 versus BFR, and wall ratio at
+  most 0.95 versus sequential FR while preserving correctness. Reserve Goal
+  for independent confirmation and keep all final populations protected.
+- Phase policy: V4-A and V4-B are CPU-only. V4-C is capped at 96 model queries
+  and zero simulator episodes. V4-D is capped at 200 paired Object-development
+  attempts. V4-E is capped at 300 Goal-confirmation attempts and is eligible
+  only after V4-D passes. Each phase stops for separate authorization.
+- Evidence: `docs/ACR_V4_REDESIGN_PROTOCOL.md`;
+  `configs/acr/v4_redesign_freeze.json`; preserved V3-D evidence in
+  `reports/PHASE_V3_D_REPORT.md` and `reports/runtime/acr_v3_d.json`.
+- Approver: User request to create the required protocol before trying again,
+  2026-08-10. This decision authorizes no V4-A work, GPU/model query,
+  simulator episode, download, protected outcome, or manuscript edit.
