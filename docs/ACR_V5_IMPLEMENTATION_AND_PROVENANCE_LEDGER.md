@@ -192,3 +192,19 @@ paper result. The formal report may describe the method and CPU invariants as
 implemented facts. It must label task success, reuse, visual-work reduction,
 and speed as open empirical questions until the gated evaluation protocol is
 completed.
+
+## 13. V5-B output-blind screening checkpoint
+
+Preflight merge `e901fae` froze six candidates and the exact outcome-free A4
+trace digest before replay. The committed analyzer executed twice per candidate
+and the independent verifier passed. Machine result
+`reports/runtime/acr_v5_b.json` has file SHA-256
+`46d2033d1ea409062bbe6cc57afc46359c1047fa68c565ed6216ca8121c88080`
+and semantic SHA-256
+`8a9f15b818b58ed2868d4b1123a222a4c062507161ab7de911d8d233f3b1efec`.
+
+The frozen rule selected `v5-a100-b40` with 35.48% reuse and 17.74%
+theoretical logical visual-work reduction. Maximum streak was one and all
+integrity counts were zero. This is positive offline mechanism evidence only;
+success fields remained sealed and no GPU, model, simulator, download, new
+task outcome, protected population, or manuscript change was used.

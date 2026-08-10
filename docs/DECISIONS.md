@@ -1104,3 +1104,29 @@ Last updated: 2026-08-10
   `configs/acr/v5_b_output_blind_preflight.json`;
   `scripts/analyze_acr_v5_b.py`; `scripts/verify_acr_v5_b_result.py`.
 - Approver: User, 2026-08-10; frozen before candidate output.
+
+## D-087 — Accept V5-B and select `v5-a100-b40`
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept the complete output-blind V5-B screening and mechanically
+  select `v5-a100-b40`, the least permissive of three eligible candidates.
+- Evidence: 629/1,773 reuses (`0.3547659334`), episode-bootstrap 95% interval
+  `[0.3418062250, 0.3654066607]`; logical visual reduction `0.1773829667`,
+  interval `[0.1709031125, 0.1827033303]`; maximum streak one; zero prefix-cap
+  violation, gripper-transition reuse, isolation mismatch, or invariant
+  failure. Both complete replays were byte-identical and the independent
+  verifier returned zero errors.
+- Selection: Eligible candidates were `v5-a100-b40`, `v5-a150-b40`, and
+  `v5-a200-b40`. The frozen rule first minimizes threshold level, selecting
+  `v5-a100-b40` without using success outcomes.
+- Claim boundary: Positive offline mechanism evidence only. It does not prove
+  online task success, measured CUDA reduction, wall-time speed, or a positive
+  paper result.
+- Resources/protection: Zero GPU/model/simulator/download/new outcome; success
+  fields, Goal, reserve, and final populations remained sealed.
+- Evidence: `reports/runtime/acr_v5_b.json` (semantic SHA-256
+  `8a9f15b818b58ed2868d4b1123a222a4c062507161ab7de911d8d233f3b1efec`);
+  `reports/PHASE_V5_B_REPORT.md`.
+- Disposition: `ADVANCE_TO_V5_C_PROTOCOL`.
+- Approver: Mechanical frozen V5-B gate under user authorization, 2026-08-10.
