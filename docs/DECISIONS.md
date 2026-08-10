@@ -1180,3 +1180,32 @@ Last updated: 2026-08-10
   manuscript unchanged.
 - Disposition: `ADVANCE_ONLY_TO_V5_D_PROTOCOL_PREPARATION`.
 - Approver: Mechanical frozen V5-C gate under user authorization, 2026-08-10.
+
+## D-090 — Freeze bounded V5-D real-tensor feasibility protocol
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve `v5-a100-b40` and the V5-C split-core contract. Freeze a
+  compiler-first, raw-CUDA-graph technical waterfall with no backend shopping,
+  seven correctness queries, eight warm-ups, all 24 balanced four-path
+  permutations, 96 timed queries, and a 111-query hard cap.
+- Statistical gates: 10,000 paired block bootstraps with seed `20260810`;
+  optimized-reuse/BFR wall median at most `0.930988756983`; weighted wall and
+  total-CUDA upper 95% at most `0.98`; optimized/eager sequential-CUDA upper
+  95% at most `0.96`; weighted visual reduction lower 95% at least `0.10`;
+  refresh/BFR upper 95% at most `1.02`; order deviation at most `0.03`.
+- Safety: Exact pinned source/checkpoint/environment hashes; no raw fallback
+  after correctness begins; one GPU/process; 23 GiB peak and 6 GiB incremental
+  reserved-memory caps; no retry, simulator, outcome, download, upstream edit,
+  or manuscript change. GPU selection is deferred until explicit user
+  coordination after implementation merges.
+- Evidence: `docs/ACR_V5_D_RESEARCH_AND_MEASUREMENT_DESIGN.md`;
+  `docs/ACR_V5_D_GPU_FEASIBILITY_PROTOCOL.md`;
+  `configs/acr/v5_d_gpu_feasibility_freeze.json` (semantic SHA-256
+  `b7b3bc058aa800ba9409e82288f637555c8ffe242d2320631c58685d548eb39a`);
+  `reports/PHASE_V5_D_PROTOCOL_REPORT.md`.
+- Scope used: Zero GPU/model/simulator/download/new outcome/protected access;
+  manuscript unchanged. Read-only hashes were checked only inside
+  `/home/ved/SAVR`.
+- Disposition: `ADVANCE_ONLY_TO_V5_D_BACKEND_IMPLEMENTATION_AFTER_USER_AUTHORIZATION`.
+- Approver: User, 2026-08-10; frozen before implementation/output.

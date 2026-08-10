@@ -137,7 +137,8 @@ eligible.
 
 ## 6. Phase V5-D — Bounded one-GPU correctness and timing margin
 
-Status: `NOT_RUN_INELIGIBLE` until V5-C passes.
+Status: `PROTOCOL_FROZEN_NOT_RUN`. V5-C passed; backend implementation and the
+mandatory user-coordinated GPU checkpoint have not started.
 
 ### Mandatory pause
 

@@ -1,0 +1,259 @@
+{
+  "schema_version": "acr.v5d-gpu-feasibility-freeze.v1",
+  "status": "FROZEN_BEFORE_BACKEND_IMPLEMENTATION_GPU_SELECTION_OR_EXECUTION",
+  "authorized_at": "2026-08-10",
+  "authorized_scope": "PROTOCOL_PREPARATION_ONLY",
+  "protocol_parent_revision": "b730754c93ccc4706b90b01c772389374a593acd",
+  "research_design": "docs/ACR_V5_D_RESEARCH_AND_MEASUREMENT_DESIGN.md",
+  "protocol": "docs/ACR_V5_D_GPU_FEASIBILITY_PROTOCOL.md",
+  "run_id": "acr-v5d-real-tensor-feasibility-v01",
+  "selected_method": {
+    "method_id": "v5-a100-b40",
+    "controller_version": "acr-isolated-controller-v1",
+    "policy": "sa-acr",
+    "scene_threshold": 0.30046895424836606,
+    "translation_threshold": 0.685919037527938,
+    "horizon": 1,
+    "hard_reuse_cap": 0.4,
+    "minimum_query_index": 2,
+    "post_reuse_latch": true,
+    "cache_age_consistency": true,
+    "v5_b_semantic_sha256": "8a9f15b818b58ed2868d4b1123a222a4c062507161ab7de911d8d233f3b1efec",
+    "v5_c_semantic_sha256": "f7a8d11d4574add57caa630c03463375421d9482984478be769f497b1c9d0b66"
+  },
+  "pinned_stack": {
+    "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "libero_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "pytorch": "2.2.0+cu118",
+    "cuda_package_family": "11.8",
+    "triton": "2.2.0",
+    "transformers_revision": "bc339d9ad707454c0c115970db43c260067c61ab",
+    "dtype": "torch.bfloat16",
+    "model_training_state": false,
+    "use_l1_regression": true,
+    "use_proprio": true,
+    "use_film": false,
+    "use_diffusion": false
+  },
+  "environment_hashes": {
+    "conda_explicit_sha256": "203914d3e5a66b5b32bd4679aa3a55c11f20db6caf7f2bd3e58b8ba5bbadddc0",
+    "pip_freeze_sha256": "0d3e3ca3e2fac46f4ce853d3e936e09abe35e5be4348caf868048881fbb98c55",
+    "phase1_environment_sha256": "ead9ab1dd3d7cacc9be2acfda03947ff7a36f60760a5724418757cb54d45b1dc",
+    "v5_c_runtime_sha256": "15c2249d59e7d196c0652b42fc713469071e95355420e401c6b2b86500d6030c",
+    "v5_c_freeze_sha256": "2117d8529bd5f76bf73b18c8b84890f1d2c4497946a0a43ca2cc3f76df2335fe",
+    "v3_c_runtime_sha256": "a419edd2fbccc0239169d3fa11a2c84e5202b0c0ca6237ddecaf4003e353682d"
+  },
+  "checkpoint_hashes": {
+    "config_json_sha256": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "configuration_prismatic_sha256": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "modeling_prismatic_sha256": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+  },
+  "upstream_source_hashes": {
+    "model_source_sha256": "b5431a074c0025a12e46dc954a5e18d1d73477babb5ae42e3a12ab4b907f33a6",
+    "openvla_utils_sha256": "eed754d7c5f9821aae2fe0531dbe01df8c11df0d5c79b4aeeb9bb4452124bdf5",
+    "action_heads_sha256": "8e42df65d6407d64d47457286d9be05466d25d8a0f094aa9dfb90de84a9aa7cc"
+  },
+  "identities": {
+    "reference_executor": "acr-reuse-executor-eager-v1",
+    "static_executor": "acr-reuse-executor-static-v1",
+    "integration": "ir-sa-acr-static-executor-v1"
+  },
+  "backend_waterfall": {
+    "order": [
+      "torch-compile",
+      "raw-cudagraph"
+    ],
+    "compiler": {
+      "backend": "inductor",
+      "fullgraph": true,
+      "dynamic": false,
+      "mode": "reduce-overhead"
+    },
+    "raw_capture": {
+      "both_cores_required": true,
+      "mixed_backends_permitted": false,
+      "side_stream_warmups_per_core": 3,
+      "dedicated_nondefault_stream": true,
+      "capture_error_mode": "global",
+      "instantiate_before_use": true,
+      "retain_buffers_for_graph_lifetime": true
+    },
+    "raw_allowed_only_before_correctness": true,
+    "raw_technical_reasons": [
+      "compiler-construction-or-first-call-error",
+      "full-graph-capture-error",
+      "static-key-recompile",
+      "verified-eager-fallback",
+      "preparation-oom"
+    ],
+    "fresh_process_on_transition": true,
+    "fallback_after_correctness_or_timing": false,
+    "backend_comparison_or_shopping": false
+  },
+  "inputs": {
+    "instruction": "move the robot safely to the target",
+    "instruction_sha256": "6fab757e0ad2cee26e09cc2aadcc03bf8b98921b326522f570e8184f6272faac",
+    "raw_image_shape": [256, 256, 3],
+    "raw_image_dtype": "uint8",
+    "pattern_a_scene_sha256": "536000a448b807601a8a2d5145c12aacba05d8a2a15af545f81062ef4b481388",
+    "pattern_a_wrist_sha256": "86b789a68f6711855ab111502019de6cc19db30ec0dfe4a546b208c58c45b5f8",
+    "pattern_b_scene_sha256": "c53220b7977e4a5b15f58d8defaf9d44722dff29e61ae7d0b742b656193908ee",
+    "pattern_b_wrist_sha256": "942833a94991907c454a9b50e7c4801cba93b4ab625bc7e18ea4aaa245a2f9db",
+    "state_midpoint_sha256": "367e53a93eb13563d5d3ce9f1833e9f6c2e137110140246058f0789222cfd63c",
+    "simulator_required": false,
+    "outcome_fields_permitted": false
+  },
+  "tensor_contract": {
+    "wrist_pixels": {"shape": [1, 6, 224, 224], "dtype": "torch.bfloat16"},
+    "cached_scene_tokens": {"shape": [1, 256, 4096], "dtype": "torch.bfloat16"},
+    "fresh_wrist_tokens": {"shape": [1, 256, 4096], "dtype": "torch.bfloat16"},
+    "combined_tokens": {"shape": [1, 512, 4096], "dtype": "torch.bfloat16", "order": "scene-first"},
+    "prepared_input_ids": {"shape": [1, 79], "dtype": "torch.int64"},
+    "prompt_embeddings": {"shape": [1, 79, 4096], "dtype": "torch.bfloat16"},
+    "attention_mask": {"shape": [1, 79], "dtype": "pinned-upstream-integer-or-bool"},
+    "proprioception": {"shape": [1, 8], "dtype": "torch.bfloat16"},
+    "normalized_actions": {"shape": [1, 8, 7], "dtype": "pinned-upstream-floating"}
+  },
+  "correctness": {
+    "labels": [
+      "a-batched-fr",
+      "b-batched-fr",
+      "a-eager-reuse",
+      "b-eager-reuse",
+      "a-optimized-reuse",
+      "b-optimized-reuse",
+      "a-optimized-repeat"
+    ],
+    "query_count": 7,
+    "tolerances": {
+      "wrist_and_combined_tokens": {"rtol": 0.016, "atol": 0.00001},
+      "normalized_actions": {"rtol": 0.001, "atol": 0.0001},
+      "unnormalized_actions": {"rtol": 0.00001, "atol": 0.000001}
+    },
+    "a_repeat_bitwise_identical": true,
+    "gripper_decisions_exact": true,
+    "all_values_finite": true,
+    "stable_owned_pointers": true,
+    "optimized_reuse_scene_calls": 0,
+    "optimized_reuse_wrist_calls": 1,
+    "optimized_reuse_downstream_calls": 1
+  },
+  "timing": {
+    "paths": [
+      "batched-fr",
+      "v5-refresh",
+      "eager-reuse",
+      "optimized-reuse"
+    ],
+    "warmups_per_path": 2,
+    "warmup_query_count": 8,
+    "permutation_order": "lexicographic",
+    "permutations": [
+      ["batched-fr", "v5-refresh", "eager-reuse", "optimized-reuse"],
+      ["batched-fr", "v5-refresh", "optimized-reuse", "eager-reuse"],
+      ["batched-fr", "eager-reuse", "v5-refresh", "optimized-reuse"],
+      ["batched-fr", "eager-reuse", "optimized-reuse", "v5-refresh"],
+      ["batched-fr", "optimized-reuse", "v5-refresh", "eager-reuse"],
+      ["batched-fr", "optimized-reuse", "eager-reuse", "v5-refresh"],
+      ["v5-refresh", "batched-fr", "eager-reuse", "optimized-reuse"],
+      ["v5-refresh", "batched-fr", "optimized-reuse", "eager-reuse"],
+      ["v5-refresh", "eager-reuse", "batched-fr", "optimized-reuse"],
+      ["v5-refresh", "eager-reuse", "optimized-reuse", "batched-fr"],
+      ["v5-refresh", "optimized-reuse", "batched-fr", "eager-reuse"],
+      ["v5-refresh", "optimized-reuse", "eager-reuse", "batched-fr"],
+      ["eager-reuse", "batched-fr", "v5-refresh", "optimized-reuse"],
+      ["eager-reuse", "batched-fr", "optimized-reuse", "v5-refresh"],
+      ["eager-reuse", "v5-refresh", "batched-fr", "optimized-reuse"],
+      ["eager-reuse", "v5-refresh", "optimized-reuse", "batched-fr"],
+      ["eager-reuse", "optimized-reuse", "batched-fr", "v5-refresh"],
+      ["eager-reuse", "optimized-reuse", "v5-refresh", "batched-fr"],
+      ["optimized-reuse", "batched-fr", "v5-refresh", "eager-reuse"],
+      ["optimized-reuse", "batched-fr", "eager-reuse", "v5-refresh"],
+      ["optimized-reuse", "v5-refresh", "batched-fr", "eager-reuse"],
+      ["optimized-reuse", "v5-refresh", "eager-reuse", "batched-fr"],
+      ["optimized-reuse", "eager-reuse", "batched-fr", "v5-refresh"],
+      ["optimized-reuse", "eager-reuse", "v5-refresh", "batched-fr"]
+    ],
+    "block_count": 24,
+    "timed_query_count": 96,
+    "inputs_alternate_by_block": true,
+    "inclusive_wall_boundary": "controller-and-preprocessing-start-through-current-cpu-numpy-unnormalized-actions",
+    "outlier_deletion": false
+  },
+  "analysis": {
+    "resampling_unit": "permutation-block",
+    "bootstrap_resamples": 10000,
+    "bootstrap_seed": 20260810,
+    "interval": "95-percent-percentile",
+    "reuse_weight": 0.34180622504322034,
+    "independent_verifier_required": true,
+    "byte_identical_repeat_required": true
+  },
+  "gates": {
+    "optimized_reuse_wall_over_batched_fr_median_max": 0.930988756983,
+    "weighted_wall_over_batched_fr_upper_95_max": 0.98,
+    "optimized_over_eager_sequential_cuda_upper_95_max": 0.96,
+    "weighted_total_cuda_over_batched_fr_upper_95_max": 0.98,
+    "weighted_visual_cuda_reduction_lower_95_min": 0.1,
+    "v5_refresh_wall_over_batched_fr_upper_95_max": 1.02,
+    "maximum_position_median_relative_deviation": 0.03,
+    "all_gates_conjunctive": true
+  },
+  "gpu_selection": {
+    "selected_during_protocol_preparation": false,
+    "requires_new_user_coordination": true,
+    "aggregate_samples": 3,
+    "seconds_between_samples": 10,
+    "maximum_utilization_percent_each_sample": 5,
+    "maximum_memory_used_mib_each_sample": 512,
+    "selection_rule": "lowest-index-eligible-device",
+    "inspect_process_identities_or_commands": false,
+    "freeze_physical_id_and_uuid_before_model_load": true,
+    "require_one_visible_logical_cuda_zero": true
+  },
+  "memory": {
+    "prior_peak_allocated_bytes": 16100537856,
+    "prior_peak_reserved_bytes": 16238247936,
+    "peak_reserved_gib_max": 23,
+    "incremental_reserved_gib_over_eager_max": 6,
+    "shared_graph_pool_without_proven_lifetime_safety": false
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes_at_once": 1,
+    "full_model_queries_if_complete": 111,
+    "full_model_query_hard_cap": 111,
+    "backend_preparation_core_launch_hard_cap": 24,
+    "simulator_episodes": 0,
+    "simulator_resets": 0,
+    "downloads": 0,
+    "new_task_outcomes": 0,
+    "wall_seconds": 7200,
+    "artifact_bytes": 1073741824
+  },
+  "recovery": {
+    "automatic_retry": false,
+    "interrupted_run_stops_for_adjudication": true,
+    "preserve_all_attempt_evidence": true,
+    "invalidate_executor_and_cache": true,
+    "do_not_observe_incomplete_controller_query": true,
+    "restore_patched_methods": true,
+    "restore_checkpoint_metadata_byte_for_byte": true,
+    "verify_source_and_checkpoint_hashes": true,
+    "release_gpu_by_normal_process_exit": true
+  },
+  "current_authorization": {
+    "backend_implementation": false,
+    "gpu_inspection": false,
+    "gpu_selection": false,
+    "model_loading": false,
+    "model_queries": false,
+    "cuda_compile_capture_or_timing": false,
+    "simulator_use": false,
+    "protected_outcome_access": false,
+    "manuscript_changes": false
+  },
+  "advance_only_to": "V5_D_BACKEND_IMPLEMENTATION_AND_EXPLICIT_GPU_COORDINATION",
+  "semantic_sha256": "b7b3bc058aa800ba9409e82288f637555c8ffe242d2320631c58685d548eb39a"
+}
