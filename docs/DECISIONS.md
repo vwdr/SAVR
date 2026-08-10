@@ -1160,3 +1160,23 @@ Last updated: 2026-08-10
   `docs/ACR_V5_C_CPU_EXECUTOR_PROTOCOL.md`;
   `configs/acr/v5_c_cpu_executor_freeze.json`.
 - Approver: User, 2026-08-10; frozen before implementation.
+
+## D-089 — Accept V5-C CPU executor correctness
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept the frozen V5-C software contract as implemented and
+  mechanically verified. Permit only V5-D protocol preparation; do not infer
+  GPU capture feasibility, latency benefit, memory fit, or task success.
+- Evidence: Exact eager/static wrist, scene-first combined-token, and
+  normalized-action parity; stable owned buffers; all compatibility/lifecycle,
+  failure, cache/controller, reset, and restoration gates; 293 local tests;
+  deterministic TITAN semantic SHA-256
+  `f7a8d11d4574add57caa630c03463375421d9482984478be769f497b1c9d0b66`.
+- Evidence files: `reports/PHASE_V5_C_REPORT.md`;
+  `reports/runtime/acr_v5_c_cpu_executor_verification.json`;
+  `scripts/verify_acr_v5_c_executor.py`.
+- Scope: Zero GPU/model/simulator/download/new outcome/protected access;
+  manuscript unchanged.
+- Disposition: `ADVANCE_ONLY_TO_V5_D_PROTOCOL_PREPARATION`.
+- Approver: Mechanical frozen V5-C gate under user authorization, 2026-08-10.

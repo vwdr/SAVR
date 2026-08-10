@@ -1,0 +1,60 @@
+{
+  "checks": {
+    "combined_scene_first_parity": true,
+    "normalized_action_parity": true,
+    "postlaunch_failure_invalidated": true,
+    "prelaunch_mismatch_rejected_before_core": true,
+    "reset_cleared_episode_state": true,
+    "stable_owned_buffer_identities": true,
+    "updated_values_not_stale": true,
+    "wrist_output_parity": true
+  },
+  "compatibility_key_sha256": "500432c7e1fc6636ede47f5bdccc4e5bd8637804594a3b841409c19bf88dc54b",
+  "completed_queries": {
+    "reference": 3,
+    "static": 3
+  },
+  "controller_trace": {
+    "maximum_prefix_reuse_fraction": 0.4,
+    "maximum_reuse_streak": 1,
+    "queries": 128,
+    "reuses": 51
+  },
+  "core_calls": {
+    "reference": {
+      "downstream": 3,
+      "scene": 0,
+      "wrist": 3
+    },
+    "static": {
+      "downstream": 3,
+      "scene": 0,
+      "wrist": 3
+    }
+  },
+  "executor_identities": {
+    "integration": "ir-sa-acr-static-executor-v1",
+    "reference": "acr-reuse-executor-eager-v1",
+    "static": "acr-reuse-executor-static-v1"
+  },
+  "legacy_separation": {
+    "isolated_maximum_reuse_streak": 1,
+    "legacy_maximum_reuse_streak": 2,
+    "verified": true
+  },
+  "resources": {
+    "downloads": 0,
+    "gpu_count": 0,
+    "model_queries": 0,
+    "new_outcomes": 0,
+    "simulator_episodes": 0
+  },
+  "schema_version": "acr.v5c-cpu-executor-verification.v1",
+  "semantic_sha256": "f7a8d11d4574add57caa630c03463375421d9482984478be769f497b1c9d0b66",
+  "source_sha256": {
+    "executor": "d2ff398a0933ba8f6c0e6bd3e1e782f928d0357f0864a6309912d9b513ec67e3",
+    "freeze": "2117d8529bd5f76bf73b18c8b84890f1d2c4497946a0a43ca2cc3f76df2335fe",
+    "integration": "50f9791cf8d5e3c128f33f7b327f4e00c878e36add217ed637225e0e1255f260"
+  },
+  "verified": true
+}

@@ -54,7 +54,7 @@ At most one phase may be `IN_PROGRESS`.
 | V5-A. Isolated-reuse CPU correction | COMPLETE | Separate controller enforces post-reuse refresh latch, horizon 1, cache-age agreement, forged-decision rejection, reset, and legacy separation; adversarial and adapter CPU verification in `reports/PHASE_V5_A_CORRECTION_REPORT.md` | New output-blind V5 screening protocol, if authorized |
 | V5-DOC. Formal method and evaluation documentation | COMPLETE | Exact equations/state machine, implementation/provenance ledger, manuscript claim guide, and gated V5-B through V5-H roadmap documented and tested | Draft/freeze V5-B output-blind protocol |
 | V5-B. Output-blind development screening | COMPLETE_ELIGIBLE | Six candidates replayed twice identically on 1,773 outcome-free queries; three passed all gates; `v5-a100-b40` selected with 35.48% reuse, 17.74% logical visual reduction, streak one, and zero integrity failures; `reports/PHASE_V5_B_REPORT.md` | Prepare/freeze V5-C CPU executor-correctness protocol |
-| V5-C. Static executor CPU correctness | DESIGN_FROZEN | Split wrist-visual/downstream-action static-buffer contract, exact compatibility key, lifecycle/failure rules, 20-item CPU matrix, and future compiler/raw-graph waterfall frozen; zero executor/GPU/model work | Implement only the frozen CPU contract after merge/sync |
+| V5-C. Static executor CPU correctness | COMPLETE | Eager/static split-core parity, stable owned buffers, complete compatibility rejection, lifecycle/failure/restoration semantics, 293 local tests, and identical pinned-TITAN semantic verification passed; `reports/PHASE_V5_C_REPORT.md` | Prepare/freeze V5-D real-tensor feasibility protocol |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -63,7 +63,7 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-V5-B is complete and eligible, and V5-C design is frozen. The separately versioned IR-SA-ACR controller
+V5-B and V5-C are complete and eligible for V5-D protocol preparation. The separately versioned IR-SA-ACR controller
 mechanically enforces one completed refresh after every reuse, cross-checks cache age,
 rejects forged consecutive reuse, resets the latch by episode, and runs through
 the existing batched adapter. CPU verification establishes maximum reuse
@@ -72,9 +72,12 @@ change provenance, manuscript claim boundary, and gated evaluation path are
 documented. Three cap-0.40 candidates passed all output-blind gates; the
 safety-first rule selected the lowest-threshold `v5-a100-b40` candidate. It
 reused 35.48% of the frozen trace and predicts 17.74% logical visual-work
-reduction with maximum streak one and no integrity failure. This authorizes
-V5-C CPU implementation of the frozen two-core static-buffer contract only.
-GPU/model/simulator use, new outcomes, and manuscript changes remain gated.
+reduction with maximum streak one and no integrity failure. V5-C then
+implemented the frozen executor contract: eager/static paths pass exact
+deterministic wrist, scene-first token, and normalized-action parity with
+stable owned buffers and fail-closed integration. This authorizes only V5-D
+protocol preparation; GPU/model/simulator use, new outcomes, and manuscript
+changes remain gated until that separate protocol is frozen and coordinated.
 
 V4-A remains stopped negative. All six output-blind candidates were ineligible:
 the three gripper-only candidates produced maximum reuse streaks of two, while
