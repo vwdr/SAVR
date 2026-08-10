@@ -500,16 +500,22 @@ def bootstrap_efficiency(
 
 
 def a5_risk_summary(project_root: Path) -> dict[str, Any]:
+    sys.path.insert(0, str(project_root / "scripts"))
+    from analyze_acr_a5 import summarize_run
+
+    published = load_json(project_root / "reports/runtime/acr_a5_stage1_analysis.json")
+    verify_semantic(published)
+    published_by_run = {str(item["run_id"]): item for item in published["results"]}
     result: dict[str, Any] = {}
-    for run_id in A5_RUN_IDS:
+    candidate_ids = ("acr-t25-h2-b30", "acr-t50-h4-b55", "acr-t70-h8-b75")
+    for run_id, old_candidate_id in zip(A5_RUN_IDS, candidate_ids):
         root = project_root / "results" / run_id
         queries = read_records(root, "query-*/record.json")
-        episodes = read_records(root, "episode/record.json")
-        if len(episodes) != 30:
-            raise RuntimeError(f"A5 population changed: {run_id}")
+        validated = summarize_run(project_root, stage="stage1", candidate_id=old_candidate_id)
+        episodes = validated.pop("episodes")
+        if validated["records_sha256"] != published_by_run[run_id]["records_sha256"]:
+            raise RuntimeError(f"A5 published record hash changed: {run_id}")
         episode_by_attempt = {str(item["attempt_id"]): item for item in episodes}
-        for record in [*queries, *episodes]:
-            verify_semantic(record)
         reuses = [item for item in queries if not item["decision"]["scene_refresh"]]
         by_attempt: dict[str, list[dict[str, Any]]] = defaultdict(list)
         for item in queries:
@@ -550,7 +556,7 @@ def a5_risk_summary(project_root: Path) -> dict[str, Any]:
             "reuses_in_failed_episodes": sum(
                 episode_by_attempt[item["attempt_id"]]["success"] is False for item in reuses
             ),
-            "records_sha256": value_sha256({"queries": queries, "episodes": episodes}),
+            "records_sha256": validated["records_sha256"],
         }
     return result
 

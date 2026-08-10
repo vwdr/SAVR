@@ -92,3 +92,9 @@ def test_v3_completion_manifest_is_not_required_to_have_semantic_hash() -> None:
     source = (ROOT / "scripts/analyze_acr_v4_a.py").read_text(encoding="utf-8")
     assert "for record in [*queries, *episodes, summary]:" in source
     assert "for record in [*queries, *episodes, completion, summary]:" not in source
+
+
+def test_a5_integrity_delegates_to_the_original_committed_analyzer() -> None:
+    source = (ROOT / "scripts/analyze_acr_v4_a.py").read_text(encoding="utf-8")
+    assert "from analyze_acr_a5 import summarize_run" in source
+    assert 'published_by_run[run_id]["records_sha256"]' in source

@@ -1,0 +1,29 @@
+{
+  "schema_version": "acr.v4a-recovery.v2",
+  "status": "FROZEN_BEFORE_RECOVERY_2",
+  "source_revision": "618a9a414b5ac0969d5315dbbb565251bbf03e4c",
+  "source_attempt_output_created": false,
+  "source_attempt_candidate_values_reported": false,
+  "failure_stage": "a5_risk_summary_integrity_validation",
+  "failure_type": "RuntimeError",
+  "failure_message": "Semantic hash mismatch on legacy A5 query record",
+  "correction": "delegate_a5_integrity_to_original_committed_analyzer_and_match_published_records_sha256",
+  "unchanged": [
+    "controller_candidates",
+    "thresholds",
+    "replay_results_in_memory",
+    "bootstrap",
+    "selection_rule",
+    "executor_decision_tree",
+    "gates",
+    "inputs",
+    "resource_caps",
+    "output_identity"
+  ],
+  "maximum_recovery_2_invocations": 1,
+  "gpu_count": 0,
+  "model_queries": 0,
+  "simulator_episodes": 0,
+  "downloads": 0,
+  "protected_outcomes": 0
+}
