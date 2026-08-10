@@ -10,9 +10,21 @@ ACR Version 4 Phase V4-A — **STOPPED NEGATIVE; V4-B INELIGIBLE**
 
 ACR Version 5 correction — **COMPLETE; ISOLATED REUSE CPU-VERIFIED**
 
-ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING; V5-C PROTOCOL NEXT**
+ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
-ACR Version 5 V5-C design — **FROZEN BEFORE CPU IMPLEMENTATION**
+ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS; V5-D PROTOCOL NEXT**
+
+V5-C implemented the frozen eager reference and owned-static-buffer executors
+plus the isolated execution adapter. Exact wrist, scene-first combined-token,
+and normalized-action parity passed; owned identities remained stable; all 24
+compatibility fields, lifecycle transitions, prelaunch refresh fallback,
+postlaunch no-retry invalidation, cache/controller behavior, and restoration
+rules passed adversarial tests. The complete local suite passes (`293` tests),
+and TITAN Python 3.10.12 reproduced semantic SHA-256
+`f7a8d11d4574add57caa630c03463375421d9482984478be769f497b1c9d0b66`
+without GPU/model/simulator use. This proves software correctness only, not
+real-model capture, speed, memory feasibility, or task performance. Evidence:
+`reports/PHASE_V5_C_REPORT.md`.
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -516,13 +528,12 @@ Not completed:
 
 ## Next authorized action
 
-Preserve the complete negative V3-D/V4-A results and the verified V5 isolated-
-reuse correction and the positive V5-B screening record. After merging and
-synchronizing the V5-C freeze, implement only the frozen project-owned CPU
-executor contract and acceptance matrix. Keep Goal/final populations and
-success fields sealed. Do not use a GPU, model, simulator, or modify the
-manuscript. Before selecting any GPU in a later V5-D phase, stop for explicit
-user coordination under `AGENTS.md`.
+Preserve the complete negative V3-D/V4-A results, the verified V5 isolated-
+reuse correction, positive V5-B screening, and completed V5-C CPU evidence.
+Prepare and freeze the V5-D real-tensor feasibility protocol only. Keep
+Goal/final populations and success fields sealed, and do not modify the
+manuscript. Before selecting any GPU in V5-D, stop for explicit user
+coordination under `AGENTS.md`.
 
 ## Candidate initial stack
 

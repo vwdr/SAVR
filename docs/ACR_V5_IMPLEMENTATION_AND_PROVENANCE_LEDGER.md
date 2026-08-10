@@ -225,3 +225,33 @@ This checkpoint adds only
 `configs/acr/v5_c_cpu_executor_freeze.json`, freeze tests, and status/decision
 updates. It changes no controller, adapter, executor, result, model, simulator,
 environment, protected data, or manuscript.
+
+## 15. V5-C static executor implementation checkpoint
+
+Implementation commit `7159f4d475e90ac2f3454be298d4bc92939e69c0`
+adds the reference executor, owned-static-buffer executor, isolated execution
+adapter, adversarial tests, deterministic verifier, and immutable machine
+record. The executor source SHA-256 is
+`d2ff398a0933ba8f6c0e6bd3e1e782f928d0357f0864a6309912d9b513ec67e3`;
+the integration source SHA-256 is
+`50f9791cf8d5e3c128f33f7b327f4e00c878e36add217ed637225e0e1255f260`.
+
+The machine record semantic SHA-256 is
+`f7a8d11d4574add57caa630c03463375421d9482984478be769f497b1c9d0b66`.
+It was reproduced exactly by local Python and TITAN system Python 3.10.12. The
+complete local suite passed 293 tests; compilation, bootstrap, package build,
+change-scoped formatting, and source/test lint passed. TITAN's system Python
+has no pytest, so no environment was changed; its dependency-free verifier,
+compilation, and bootstrap gates passed.
+
+An initial implementation attempted to add executor reasons to shared
+`src/savr/acr/types.py`. The full regression suite correctly detected that this
+would change a source digest embedded in immutable V5-A evidence. The change
+was removed before publication, prior evidence stayed untouched, and executor
+reason insertion was isolated in the new integration adapter. This is the
+required evidence-preserving resolution, not an omitted failure.
+
+V5-C used zero GPU, model query, simulator episode/reset, download, environment
+change, new outcome, protected population, or manuscript edit. It establishes
+only CPU software-contract correctness and advances only to V5-D protocol
+preparation.
