@@ -53,7 +53,7 @@ At most one phase may be `IN_PROGRESS`.
 | V5-R. Research and isolated-reuse design freeze | COMPLETE | Primary-source/code audit; explicit post-reuse latch, horizon 1 defense, cache-age consistency, CPU matrix, exclusions, and resources frozen in `docs/ACR_V5_RESEARCH_AUDIT.md` and `docs/ACR_V5_ISOLATED_REUSE_PROTOCOL.md` | CPU implementation only |
 | V5-A. Isolated-reuse CPU correction | COMPLETE | Separate controller enforces post-reuse refresh latch, horizon 1, cache-age agreement, forged-decision rejection, reset, and legacy separation; adversarial and adapter CPU verification in `reports/PHASE_V5_A_CORRECTION_REPORT.md` | New output-blind V5 screening protocol, if authorized |
 | V5-DOC. Formal method and evaluation documentation | COMPLETE | Exact equations/state machine, implementation/provenance ledger, manuscript claim guide, and gated V5-B through V5-H roadmap documented and tested | Draft/freeze V5-B output-blind protocol |
-| V5-B. Output-blind development screening | NOT_STARTED | Protocol preparation authorized; no replay output or threshold selected | Commit verified protocol/config freeze before output |
+| V5-B. Output-blind development screening | PREFLIGHT_FROZEN | Six latch-based candidates, exact outcome-free A4 trace digest, bootstrap/work gates, deterministic analyzer/verifier, selection and stop rules frozen; no candidate output read | Merge/synchronize freeze, then execute CPU analyzer |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -62,15 +62,17 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-V5 documentation is complete. The separately versioned IR-SA-ACR controller
+V5-B preflight is frozen. The separately versioned IR-SA-ACR controller
 mechanically enforces one completed refresh after every reuse, cross-checks cache age,
 rejects forged consecutive reuse, resets the latch by episode, and runs through
 the existing batched adapter. CPU verification establishes maximum reuse
 streak one without changing the legacy horizon-2 behavior. The exact method,
 change provenance, manuscript claim boundary, and gated evaluation path are
-documented. V5-B protocol preparation is authorized, but no replay output may
-be opened before its freeze. Executor work, GPU/model/simulator use, new
-outcomes, and manuscript changes remain gated.
+documented. Six candidate thresholds/caps and the exact outcome-free A4 input
+digest are frozen before replay. After merge and synchronization, the committed
+CPU analyzer may run and its complete disposition may then be reconciled.
+Executor work, GPU/model/simulator use, new outcomes, and manuscript changes
+remain gated.
 
 V4-A remains stopped negative. All six output-blind candidates were ineligible:
 the three gripper-only candidates produced maximum reuse streaks of two, while

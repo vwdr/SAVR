@@ -10,7 +10,7 @@ ACR Version 4 Phase V4-A — **STOPPED NEGATIVE; V4-B INELIGIBLE**
 
 ACR Version 5 correction — **COMPLETE; ISOLATED REUSE CPU-VERIFIED**
 
-ACR Version 5 formal documentation — **COMPLETE; V5-B PROTOCOL PREPARATION AUTHORIZED**
+ACR Version 5 V5-B preflight — **FROZEN; OUTPUT-BLIND CPU SCREENING NEXT**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -279,6 +279,15 @@ steps on 2026-08-10. This authorizes preparation of the output-blind V5-B
 protocol, not access to replay outputs before its freeze. GPU selection still
 requires user coordination under `AGENTS.md`.
 
+V5-B now has a frozen output-blind screening protocol in
+`docs/ACR_V5_B_OUTPUT_BLIND_PREFLIGHT.md` and machine configuration in
+`configs/acr/v5_b_output_blind_preflight.json`. It predeclares six IR-SA-ACR
+candidates, outcome-free A4 trace hashes, episode-bootstrap analysis, logical-
+work gates, deterministic replay, selection, no-selection, protected-data, and
+zero-GPU/model/simulator boundaries. The analyzer rejects any non-allowlisted
+or outcome-bearing trace field. No V5-B candidate output has been produced or
+read at this checkpoint.
+
 ### Legacy SAVR terminal state
 
 Phase 6S-D — SAVR3 fresh development validation: **STOPPED NEGATIVE
@@ -484,12 +493,12 @@ Not completed:
 ## Next authorized action
 
 Preserve the complete negative V3-D/V4-A results and the verified V5 isolated-
-reuse correction. Draft, validate, and commit a new output-blind V5-B screening
-protocol and machine-readable freeze before reading any candidate output. Keep
-Goal/final populations and success fields sealed. Do not start executor, GPU,
-model, simulator, or manuscript work unless its preceding frozen gate passes.
-Before selecting any GPU, stop for explicit user coordination as required by
-`AGENTS.md`.
+reuse correction. After the V5-B preflight is merged and synchronized, execute
+the committed CPU analyzer once, require its independent verifier to pass, and
+reconcile all six candidates before reading the disposition. Keep Goal/final
+populations and success fields sealed. Do not start executor, GPU, model,
+simulator, or manuscript work unless its preceding frozen gate passes. Before
+selecting any GPU, stop for explicit user coordination under `AGENTS.md`.
 
 ## Candidate initial stack
 
