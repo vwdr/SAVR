@@ -15,6 +15,10 @@ from savr.acr.batched_dual_path import (
 from savr.acr.cache import SceneCacheEntry
 from savr.acr.controller import ACRController
 from savr.acr.dual_path import DualPathOpenVLAAdapter
+from savr.acr.isolated_controller import (
+    ISOLATED_CONTROLLER_VERSION,
+    IsolatedACRController,
+)
 from savr.acr.openvla_oft import TorchTensorOperations
 from savr.acr.records import AttemptIdentity, ImmutableRecordStore, semantic_sha256
 from savr.acr.types import ACRConfiguration, ACRContext, ACRPolicy
@@ -60,11 +64,7 @@ class FakeOps:
             data = []
             for batch in range(batch_size):
                 base = batch * value.shape[1] * inner
-                data.extend(
-                    value.values[
-                        base + offset * inner : base + (offset + section) * inner
-                    ]
-                )
+                data.extend(value.values[base + offset * inner : base + (offset + section) * inner])
             outputs.append(
                 FakeTensor(
                     data,
@@ -276,6 +276,26 @@ def make_v3(*, correctness_mode=False, observer=None, action_finite_checker=None
     return model, adapter, ops
 
 
+def make_isolated_v5():
+    ops = FakeOps()
+    model = FakeModel(ops)
+    config = ACRConfiguration(
+        "ir-sa-acr-cpu",
+        ACRPolicy.SA_ACR,
+        scene_threshold=1.0,
+        translation_threshold=1.0,
+        horizon=1,
+        hard_reuse_cap=0.75,
+        controller_version=ISOLATED_CONTROLLER_VERSION,
+    )
+    adapter = BatchedDualPathOpenVLAAdapter(
+        model=model,
+        controller=IsolatedACRController(config),
+        tensor_ops=ops,
+    )
+    return model, adapter
+
+
 def run_bfr(
     model,
     adapter,
@@ -402,6 +422,25 @@ def test_v3_reuse_is_exactly_the_established_v2_wrist_path():
         assert v3_results[-1].value == v2_results[-1].value
         assert v3_results[-1].work.mode == "v3-reuse"
         v3_results[-1].work.validate()
+
+
+def test_isolated_v5_controller_runs_through_batched_adapter_without_consecutive_reuse():
+    model, adapter = make_isolated_v5()
+    isolated_context = context(
+        configuration_id="ir-sa-acr-cpu",
+        controller_version=ISOLATED_CONTROLLER_VERSION,
+    )
+    with adapter.episode(isolated_context):
+        results = [run_v3(model, adapter, wrist=float(index + 2)) for index in range(5)]
+    assert [result.decision.refresh for result in results] == [True, True, False, True, False]
+    assert [result.work.mode for result in results] == [
+        "v3-refresh",
+        "v3-refresh",
+        "v3-reuse",
+        "v3-refresh",
+        "v3-reuse",
+    ]
+    assert "post-reuse-refresh" in results[3].decision.reasons
 
 
 def test_v3_cache_mismatch_forces_batched_refresh():

@@ -1009,3 +1009,28 @@ Last updated: 2026-08-10
   `configs/acr/v5_isolated_reuse_freeze.json`.
 - Approver: User instruction to make the correction after thorough research,
   2026-08-10.
+
+## D-083 — Accept the V5 isolated-reuse CPU correction
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept the separately versioned IR-SA-ACR implementation as a
+  software-correctness checkpoint. It forces one successfully completed scene
+  refresh after each reuse, requires horizon 1, cross-checks external cache age
+  against its internal latch, rejects forged consecutive reuse, and exposes
+  auditable/resettable state. Legacy ACR behavior remains unchanged.
+- Evidence: The deterministic verifier completes 128 corrected queries with 51
+  reuses, a 0.40 maximum prefix fraction, and maximum streak one; the preserved
+  legacy trace reaches streak two. Batched-adapter and adversarial CPU tests
+  pass. Machine semantic SHA-256 is
+  `7dcde7e8b96ba7fe79f1eed0cd6a73661e0d0977678f3581062902b445f7de2b`.
+- Claim boundary: This proves controller semantics only. It does not select a
+  threshold or establish task success, reuse rate on benchmark traces, CUDA or
+  wall-time efficiency, or a positive paper result.
+- Resources: Zero GPU, model query, simulator episode, download, new outcome,
+  protected access, or manuscript change.
+- Evidence files: `reports/PHASE_V5_A_CORRECTION_REPORT.md`;
+  `reports/runtime/acr_v5_cpu_verification.json`;
+  `scripts/verify_acr_v5_isolation.py`.
+- Approver: Mechanical V5-A CPU gate under the user's research-first
+  correction authorization, 2026-08-10.
