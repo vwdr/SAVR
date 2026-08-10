@@ -6,7 +6,7 @@ Last updated: 2026-08-10
 
 ACR Version 3 Phase V3-D — **STOPPED NEGATIVE; V3-E INELIGIBLE**
 
-ACR Version 4 Phase V4-A — **AUTHORIZED; PREFLIGHT FROZEN BEFORE CANDIDATE OUTPUTS**
+ACR Version 4 Phase V4-A — **STOPPED NEGATIVE; V4-B INELIGIBLE**
 
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
@@ -236,6 +236,15 @@ rule are frozen in `docs/ACR_V4_A_PREFLIGHT.md` and
 opened. No GPU/model/simulator/download/protected/manuscript access is
 authorized.
 
+V4-A recovery 2 completed the frozen offline replay and source audit after two
+preserved fail-closed technical stops. All six candidates were ineligible.
+The strongest candidate reached 35.76% reuse and 12.15% predicted visual-CUDA
+reduction, but produced a maximum reuse streak of two rather than the frozen
+maximum of one. All direction-reversal-veto candidates fell below the reuse
+and visual-reduction targets. No controller or executor was selected, and the
+mechanical disposition is `STOP_BEFORE_V4_B`. Full evidence is in
+`reports/PHASE_V4_A_REPORT.md` and `reports/runtime/acr_v4_a.json`.
+
 ### Legacy SAVR terminal state
 
 Phase 6S-D — SAVR3 fresh development validation: **STOPPED NEGATIVE
@@ -440,13 +449,12 @@ Not completed:
 
 ## Next authorized action
 
-Preserve the complete negative V3-D result without rerun, retiming, gate
-change, or reinterpretation. V3-E, Goal, and final-holdout access are
-ineligible under V3. CPU-only Phase V4-A is authorized and its preflight is
-frozen. The next action is to reconcile immutable V3-D/A4/A5 evidence, execute
-the predeclared replay and break-even analyses, audit executor feasibility,
-and either freeze exactly one V4 design or stop before implementation. V4-B
-remains unauthorized.
+Preserve the complete negative V3-D and V4-A results without rerun, retiming,
+candidate addition, horizon/gate change, or reinterpretation. V3-E, V4-B,
+Goal, and final-holdout access are ineligible under these versions. No further
+experimental phase is authorized. A future route, if requested, must begin
+with a new output-blind protocol for a materially distinct method and retain
+the V4-A evidence as an immutable negative checkpoint.
 
 ## Candidate initial stack
 
