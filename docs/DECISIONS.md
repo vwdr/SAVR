@@ -1059,3 +1059,21 @@ Last updated: 2026-08-10
   `docs/ACR_V5_MANUSCRIPT_TRANSLATION_GUIDE.md`;
   `docs/ACR_V5_GATED_EVALUATION_ROADMAP.md`.
 - Approver: User, 2026-08-10.
+
+## D-085 — Record and correct the documentation-sync path deviation
+
+- Classification: `DEVIATION`
+- Status: CORRECTED
+- Event: During post-merge TITAN verification, the agent briefly directed its
+  own generated semantic-verifier output to
+  `/tmp/savr-v5-doc-sync-verify.json`, outside the permitted
+  `/home/ved/SAVR` boundary.
+- Correction: The exact generated file was immediately removed and its absence
+  verified. No unrelated file, directory, process, allocation, permission, or
+  configuration was inspected or changed.
+- Prevention: Future remote verification must stream output or use a path
+  beneath `/home/ved/SAVR`; shell redirection to external temporary paths is
+  prohibited.
+- Evidence: Agent command record and
+  `docs/ACR_V5_IMPLEMENTATION_AND_PROVENANCE_LEDGER.md`.
+- Recorder: Codex, 2026-08-10.
