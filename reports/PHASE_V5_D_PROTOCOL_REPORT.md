@@ -18,7 +18,7 @@ Normative artifacts:
 - `tests/acr/test_v5_d_gpu_protocol.py`.
 
 Freeze semantic SHA-256:
-`b7b3bc058aa800ba9409e82288f637555c8ffe242d2320631c58685d548eb39a`.
+`f445cf5d1a5ec6877ebea46ccc3883a11a676b38cb33a711ee4b74baf22f53f8`.
 
 ## 2. Frozen experiment
 
@@ -58,6 +58,14 @@ initially copied hash suffixes did not match the authoritative repository or
 pinned TITAN files. Before publication, each value was re-read from its exact
 source and corrected. This produced no experimental output and demonstrates
 the intended fail-closed drift control.
+
+The subsequent pre-GPU runner implementation added direct regeneration of the
+deterministic V3-C A/B images, instruction, and state midpoint. That check
+found the same copied-suffix problem in the six input hashes. Before backend
+publication or GPU output, those values were corrected against both the
+deterministic generator and immutable V3-C machine record. The protocol's
+method, schedule, tolerances, gates, and resources did not change; the machine
+freeze received the new semantic digest above.
 
 ## 4. Resources and protection
 

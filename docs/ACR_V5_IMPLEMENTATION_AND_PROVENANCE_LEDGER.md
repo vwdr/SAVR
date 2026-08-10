@@ -266,7 +266,7 @@ status/decision updates. It changes no controller, executor, adapter, result,
 model, simulator, environment, protected data, or manuscript.
 
 The machine freeze semantic SHA-256 is
-`b7b3bc058aa800ba9409e82288f637555c8ffe242d2320631c58685d548eb39a`.
+`f445cf5d1a5ec6877ebea46ccc3883a11a676b38cb33a711ee4b74baf22f53f8`.
 It fixes exact real tensor shapes, seven correctness queries, two warm-ups per
 path, all 24 four-path permutations, 96 timed queries, the 111-query hard cap,
 paired-bootstrap seed/gates, compiler/raw technical waterfall, memory/resource
@@ -279,3 +279,37 @@ was corrected against the authoritative repository or exact pinned TITAN file.
 The next checkpoint is backend implementation with CPU/fake-backend tests.
 GPU selection remains prohibited until that code merges and the user is
 explicitly coordinated.
+
+During that pre-GPU implementation, deterministic input regeneration found
+that the six frozen A/B image, instruction, and midpoint hashes also had
+incorrect copied suffixes. They were corrected against the immutable V3-C
+machine record before backend publication or output. This changed the freeze
+semantic digest but no scientific method, threshold, schedule, tolerance,
+gate, or resource boundary.
+
+## 17. V5-D pre-GPU implementation checkpoint
+
+The implementation checkpoint adds a separately versioned V5-D orchestration
+and PyTorch backend layer, aggregate GPU selector, launch wrapper, exact runner,
+paired analyzer, independent verifier/finalizer, deterministic preflight, and
+adversarial tests. Validated V5-C source and evidence remain unchanged.
+
+The implementation discovered that the fake V5-C executor's single dtype could
+not represent the real frozen bfloat16 plus int64/bool contract. Separate
+V5-D-only eager/static subclasses preserve the V5-C execution/lifecycle
+semantics while enforcing each real dtype. It also corrected the six
+deterministic input hash suffixes against immutable V3-C before GPU output and
+records pinned PyTorch 2.2's implicit capture-end graph instantiation.
+
+Preflight semantic SHA-256 is
+`db097ca8cab44d474a65e22888a72da8c4c6e2489a31188abea67c7ed55bff98`.
+It verifies all 111 query identities, compile-first/fresh-process raw rules,
+post-output fallback prohibition, hot-core host-side-effect exclusion,
+aggregate-only selector, project-local caches, and zero simulator/outcome
+paths.
+
+This checkpoint used zero GPU, model query, simulator episode/reset, model,
+dataset, or TITAN download, new outcome, protected population, or manuscript
+edit. Local package validation used an isolated temporary build environment
+without changing the repository or persistent environments. It advances only
+to explicit user coordination before aggregate GPU selection.
