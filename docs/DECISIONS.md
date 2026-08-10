@@ -1034,3 +1034,28 @@ Last updated: 2026-08-10
   `scripts/verify_acr_v5_isolation.py`.
 - Approver: Mechanical V5-A CPU gate under the user's research-first
   correction authorization, 2026-08-10.
+
+## D-084 — Formalize IR-SA-ACR and approve the gated next-step roadmap
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Treat `docs/ACR_V5_FORMAL_METHOD_SPECIFICATION.md` as the exact
+  prose/mathematical definition of the implemented method; preserve a complete
+  file-level provenance ledger; use the manuscript translation guide to prevent
+  unsupported claims; and follow the V5-B through V5-H gated roadmap.
+- Authorization: The user's instruction to fully document the method and
+  approval of logical next steps authorizes preparation of a frozen,
+  output-blind V5-B screening protocol. No replay output may be read before the
+  freeze. Passing gates, protected-data boundaries, download controls, and
+  shared-server safety are not waived.
+- Scientific boundary: V5 remains a software-correctness result. Task success,
+  benchmark reuse, visual-work reduction, GPU speed, and a positive-paper claim
+  remain unmeasured hypotheses.
+- Server boundary: Before any GPU is selected, stop for explicit user
+  coordination under `AGENTS.md`; never inspect or interfere with unrelated
+  university work.
+- Evidence: `docs/ACR_V5_FORMAL_METHOD_SPECIFICATION.md`;
+  `docs/ACR_V5_IMPLEMENTATION_AND_PROVENANCE_LEDGER.md`;
+  `docs/ACR_V5_MANUSCRIPT_TRANSLATION_GUIDE.md`;
+  `docs/ACR_V5_GATED_EVALUATION_ROADMAP.md`.
+- Approver: User, 2026-08-10.

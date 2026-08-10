@@ -10,6 +10,8 @@ ACR Version 4 Phase V4-A — **STOPPED NEGATIVE; V4-B INELIGIBLE**
 
 ACR Version 5 correction — **COMPLETE; ISOLATED REUSE CPU-VERIFIED**
 
+ACR Version 5 formal documentation — **COMPLETE; V5-B PROTOCOL PREPARATION AUTHORIZED**
+
 The original whole-prefix SAVR program remains stopped negative. Its evidence
 is preserved in `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md` and the machine-readable
 companion `docs/evidence/negative_results_summary.csv`. A materially different
@@ -267,6 +269,16 @@ of two. Full evidence is in `reports/PHASE_V5_A_CORRECTION_REPORT.md` and
 `reports/runtime/acr_v5_cpu_verification.json`. This is software-correctness
 evidence only, not a task-success or efficiency result.
 
+The exact V5 method, equations, state transitions, implementation changes,
+artifact provenance, report-writing rules, and future evaluation gates are now
+consolidated in `docs/ACR_V5_FORMAL_METHOD_SPECIFICATION.md`,
+`docs/ACR_V5_IMPLEMENTATION_AND_PROVENANCE_LEDGER.md`,
+`docs/ACR_V5_MANUSCRIPT_TRANSLATION_GUIDE.md`, and
+`docs/ACR_V5_GATED_EVALUATION_ROADMAP.md`. The user approved the logical next
+steps on 2026-08-10. This authorizes preparation of the output-blind V5-B
+protocol, not access to replay outputs before its freeze. GPU selection still
+requires user coordination under `AGENTS.md`.
+
 ### Legacy SAVR terminal state
 
 Phase 6S-D — SAVR3 fresh development validation: **STOPPED NEGATIVE
@@ -472,10 +484,12 @@ Not completed:
 ## Next authorized action
 
 Preserve the complete negative V3-D/V4-A results and the verified V5 isolated-
-reuse correction. No further experimental phase is authorized. Do not select
-thresholds, replay outcomes, implement the executor, use a GPU/model or
-simulator, open Goal/final populations, or modify the manuscript. Any V5
-screening or efficiency phase requires a new output-blind protocol.
+reuse correction. Draft, validate, and commit a new output-blind V5-B screening
+protocol and machine-readable freeze before reading any candidate output. Keep
+Goal/final populations and success fields sealed. Do not start executor, GPU,
+model, simulator, or manuscript work unless its preceding frozen gate passes.
+Before selecting any GPU, stop for explicit user coordination as required by
+`AGENTS.md`.
 
 ## Candidate initial stack
 
