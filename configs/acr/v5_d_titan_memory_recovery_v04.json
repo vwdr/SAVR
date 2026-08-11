@@ -1,0 +1,61 @@
+{
+  "schema_version": "acr.v5d-titan-memory-recovery.v4",
+  "status": "FROZEN_FOR_PRE_GPU_IMPLEMENTATION",
+  "authorized_at": "2026-08-11",
+  "authorized_scope": "V04_PRE_GPU_IMPLEMENTATION_ONLY",
+  "base_resolved_configuration_semantic_sha256": "a9447cd385b4229e54cf85ba8fc7e06e4b4d283b9ac5c655e0c5201fb5d3f297",
+  "v03_run_id": "acr-v5d-real-tensor-feasibility-v03",
+  "v03_technical_stop_semantic_sha256": "1016569f642b21266e8f0b75b5906716200055f5d37385c5501b6711f9a6bd54",
+  "run_id": "acr-v5d-real-tensor-feasibility-v04",
+  "protocol": "docs/ACR_V5_D_V04_TITAN_MEMORY_REMEDIATION_PROTOCOL.md",
+  "permitted_changes": [
+    "raw-graphs-share-one-private-pool",
+    "shared-capture-stream",
+    "fail-closed-replay-order-and-stream-enforcement",
+    "capture-stage-memory-evidence"
+  ],
+  "raw_cuda_graph": {
+    "graph_count": 2,
+    "capture_order": [
+      "wrist",
+      "downstream"
+    ],
+    "replay_order": [
+      "wrist",
+      "downstream"
+    ],
+    "shared_private_pool": true,
+    "same_capture_stream": true,
+    "same_replay_stream_within_and_across_queries": true,
+    "concurrent_replay": false,
+    "static_buffers_retained": true,
+    "capture_warmups_per_core": 3,
+    "capture_calls_per_core": 1,
+    "allocator_environment_change": false
+  },
+  "memory": {
+    "v03_peak_allocated_bytes": 24184212992,
+    "v03_peak_reserved_bytes": 24937234432,
+    "peak_reserved_bytes_max": 24696061952,
+    "minimum_reserved_reduction_bytes": 241172480,
+    "record_capture_stage_snapshots": true,
+    "raise_cap": false
+  },
+  "current_authorization": {
+    "research": true,
+    "protocol_documentation": true,
+    "pre_gpu_implementation": true,
+    "cuda_hidden_verification": true,
+    "gpu_inspection": false,
+    "gpu_selection": false,
+    "model_loading": false,
+    "model_queries": false,
+    "cuda_compile_capture_or_timing": false,
+    "simulator_use": false,
+    "protected_outcome_access": false,
+    "manuscript_changes": false
+  },
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V04_GPU_SELECTION",
+  "resolved_configuration_semantic_sha256": "f5bd1e2c1622acbade05f9b67d8e7ee6e53dee935d9d315ecd7614f5a62f22e3",
+  "semantic_sha256": "ae1a7e6acbc309007e86d819f778814695b03b7d466f8e1349a8ca7099a9f820"
+}
