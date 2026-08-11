@@ -205,7 +205,7 @@ def verify() -> dict[str, Any]:
         "implementation_files_present": all((ROOT / name).is_file() for name in files),
     }
     record = {
-        "schema_version": "acr.v5d-preflight-verification.v2",
+        "schema_version": "acr.v5d-preflight-verification.v3",
         "status": "pass" if all(checks.values()) else "fail",
         "configuration_semantic_sha256": config["semantic_sha256"],
         "backend_version": "acr-v5d-static-backend-v03-recovery",

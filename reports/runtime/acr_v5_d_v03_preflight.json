@@ -36,8 +36,8 @@
     "simulator_episodes": 0,
     "simulator_resets": 0
   },
-  "schema_version": "acr.v5d-preflight-verification.v2",
-  "semantic_sha256": "6bb2a069cbb69a8c7f53bdc1a8cb605eac74a7c96239497ef45198cba35934c5",
+  "schema_version": "acr.v5d-preflight-verification.v3",
+  "semantic_sha256": "f25d7f2dd743bf0c4fbe8a56420ba94d136c8cfc6b5baaeedf473e5a5a6ab163",
   "source_hashes": {
     "scripts/analyze_acr_v5_d.py": "8806c4fbfb45dddd936e61e55fb83e2bb1243e00664091e096f8e7093994348b",
     "scripts/finalize_acr_v5_d.py": "97472285b74073e0ed2b506ec9548e08736a70f266ccabe7df5f641400fae8c8",

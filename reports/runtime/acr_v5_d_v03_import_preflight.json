@@ -1,0 +1,39 @@
+{
+  "configuration_semantic_sha256": "a9447cd385b4229e54cf85ba8fc7e06e4b4d283b9ac5c655e0c5201fb5d3f297",
+  "cuda_initialized": false,
+  "downloads": 0,
+  "elapsed_seconds": 17.55245406087488,
+  "execution_revision": "a772c72a7e3eba693ee348875bd8c565444a0819",
+  "gpu_inspection": 0,
+  "import_attestation": {
+    "cuda_initialized_after": false,
+    "cuda_initialized_before": false,
+    "interactive_input_attempted": false,
+    "module": "experiments.robot.libero.run_libero_eval"
+  },
+  "libero_config_mapping": {
+    "assets": "/home/ved/SAVR/third_party/LIBERO/libero/libero/assets",
+    "bddl_files": "/home/ved/SAVR/third_party/LIBERO/libero/libero/bddl_files",
+    "benchmark_root": "/home/ved/SAVR/third_party/LIBERO/libero/libero",
+    "datasets": "/home/ved/SAVR/third_party/LIBERO/libero/datasets",
+    "init_states": "/home/ved/SAVR/third_party/LIBERO/libero/libero/init_files"
+  },
+  "libero_config_sha256": "013ac90a77507d64040c9c061aa21e330f500a6191270cb24c537fd695fd8447",
+  "libero_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+  "model_loaded": false,
+  "model_queries": 0,
+  "new_task_outcomes": 0,
+  "openvla_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+  "preflight_id": "acr-v5d-v03-libero-import-preflight-v01",
+  "recorded_at_utc": "2026-08-11T01:53:15.572314+00:00",
+  "schema_version": "acr.v5d-libero-import-preflight.v3",
+  "semantic_sha256": "f8b9002d0998345c7f1a423003a180cfc5a406d52f85e1f3ac2d1f60fe22cdc5",
+  "simulator_episodes": 0,
+  "simulator_instances": 0,
+  "simulator_resets": 0,
+  "status": "pass",
+  "stderr_sha256": "d442dd918fdb34eda614524d1f2f24b3e548497227088731f714919e3e8c9afc",
+  "stdin": "closed-devnull",
+  "stdout_sha256": "6bd7de678ab215dc6605810ea2716b0caad0e9bbbec80246ec539a69d019b499",
+  "subprocess_returncode": 0
+}

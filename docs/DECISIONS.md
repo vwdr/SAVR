@@ -1310,3 +1310,39 @@ Last updated: 2026-08-10
 - Disposition: `STOP_NO_RETRY_PREPARE_SEPARATELY_AUTHORIZED_V5D_V03`.
 - Approver: User authorized v02 one-GPU entry, 2026-08-10. This decision does
   not infer authorization for v03 implementation or execution.
+
+## D-095 — Accept V5-D v03 pre-GPU restoration recovery
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept the v03 immutable identity and the exact checkpoint
+  restoration helper. Preserve every v02 scientific method, schedule,
+  tolerance, statistic, resource cap, backend order, and claim boundary.
+- Correction: Permit only verified new protected-name backup files, including
+  the observed `.back.YYYYMMDD_HHMMSS` form. Require baseline content for each
+  backup, protected-byte restoration, exact final inventory, non-protected
+  drift rejection, fail-closed partial cleanup, and idempotent revalidation.
+- Evidence: Resolved semantic SHA-256
+  `a9447cd385b4229e54cf85ba8fc7e06e4b4d283b9ac5c655e0c5201fb5d3f297`;
+  deterministic preflight semantic SHA-256
+  `f25d7f2dd743bf0c4fbe8a56420ba94d136c8cfc6b5baaeedf473e5a5a6ab163`;
+  import-preflight semantic SHA-256
+  `f8b9002d0998345c7f1a423003a180cfc5a406d52f85e1f3ac2d1f60fe22cdc5`;
+  curated CPU-verification semantic SHA-256
+  `37587ccd329cfc68672ef048a7422fb8825944a2a61260d1631b8532c2efdf95`;
+  341 local tests and 341 TITAN tests plus 9 subtests.
+- Process correction: The initial TITAN pytest command used pytest's default
+  temporary location outside the project boundary. It was replaced by a full
+  passing repeat with both temporary roots confined beneath
+  `/home/ved/SAVR/results/`. No external path was inspected or manually
+  modified after detection; acceptance uses only the compliant repeat.
+- Protection: Zero GPU inspection/selection, CUDA initialization, model
+  load/query, simulator use, download, outcome access, or manuscript change.
+- Evidence files: `configs/acr/v5_d_gpu_feasibility_recovery_v03.json`;
+  `reports/runtime/acr_v5_d_v03_preflight.json`;
+  `reports/runtime/acr_v5_d_v03_import_preflight.json`;
+  `reports/runtime/acr_v5_d_v03_cpu_verification.json`;
+  `reports/PHASE_V5_D_V03_RECOVERY_IMPLEMENTATION_REPORT.md`.
+- Disposition: `STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_V03_GPU_SELECTION`.
+- Approver: User approved v03 recovery implementation, 2026-08-10; GPU
+  execution is not inferred.
