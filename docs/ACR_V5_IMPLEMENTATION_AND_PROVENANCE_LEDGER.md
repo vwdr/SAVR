@@ -375,3 +375,35 @@ This checkpoint used zero GPU inspection, model load/query, simulator
 instance/reset/episode, download, new task outcome, protected population, or
 manuscript edit. It advances only to explicit user coordination before v02
 aggregate GPU selection.
+
+## 20. V5-D v02 pre-correctness technical stop
+
+The user explicitly authorized the bounded v02 one-GPU run. Three
+aggregate-only samples found all four TITAN RTX devices eligible and selected
+physical GPU 0 by the frozen lowest-index rule. Launch-manifest semantic
+SHA-256 is
+`0c723dd5ff93c0dfe4544dd2f50b6e7ff91409fb3ba47059508701fa8081cec8`.
+
+Canonical LIBERO initialization passed and the pinned model loaded. The first
+compiler preparation call failed before correctness because Triton emitted
+BF16 PTX that requires `sm_80` or newer, while TITAN RTX is `sm_75`. The
+technical attempt semantic SHA-256 is
+`2eb417293ece405c8c161ab275926318766698c600e9d31a1ea89ad56934ec68`.
+The curated technical-stop semantic SHA-256 is
+`0a30bd847bf2e1549c376200e559a23c670b33c0b01215926c90a15704487661`.
+
+Raw fallback was not started. Although the compiler failure was technically
+eligible, the restoration guard found two loader-created
+`.back.<timestamp>` files outside its cleanup allowlist and failed closed. The
+protected files themselves had already been restored to their exact frozen
+hashes. The two duplicates were independently hash-verified and removed, after
+which the pinned checkpoint validator and all three source-tree cleanliness
+checks passed.
+
+V02 contains one compiler preparation launch but zero full model queries,
+correctness records, warm-ups, timed records, simulator operations, downloads,
+or task outcomes. No reward or success field was accessed. It is neither
+positive nor negative method evidence. V02 remains immutable. The proposed
+v03 correction is limited to exact loader-backup restoration coverage and
+requires a new reviewed implementation checkpoint plus separate GPU
+authorization.

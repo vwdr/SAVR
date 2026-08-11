@@ -1,0 +1,67 @@
+{
+  "schema_version": "acr.v5d-technical-stop.v2",
+  "run_id": "acr-v5d-real-tensor-feasibility-v02",
+  "status": "technical-stop-before-correctness",
+  "recorded_at_utc": "2026-08-11T01:24:39.031070+00:00",
+  "execution_revision": "9af249b7eb8ee2f8017f08ddf2beefe6c67f00fb",
+  "configuration_semantic_sha256": "4ae65dda537a5b6dcdf9abd34d79e0a9d7defee834a2a8cc2f7107a659f36076",
+  "launch_manifest_semantic_sha256": "0c723dd5ff93c0dfe4544dd2f50b6e7ff91409fb3ba47059508701fa8081cec8",
+  "libero_config_semantic_sha256": "40869c46d250099836a0ddf0385d421b4ff5cea9ca5c9110b301a5b5211cf14d",
+  "compiler_attempt_semantic_sha256": "2eb417293ece405c8c161ab275926318766698c600e9d31a1ea89ad56934ec68",
+  "backend_requested": "torch-compile",
+  "failure_stage": "first-compiled-core-preparation",
+  "failure_type": "TritonPTXCodegenError",
+  "technical_reason": "compiler-construction-or-first-call-error",
+  "root_cause": "The selected NVIDIA TITAN RTX has compute capability 7.5. The pinned TorchInductor/Triton backend emitted BF16 PTX instructions that ptxas requires target sm_80 or higher.",
+  "secondary_guard_stop": "The protected checkpoint bytes were restored, but two loader-created files used the suffix .back.<timestamp>. The cleanup allowlist recognized .bak or names containing backup, so it retained those files and failed the exact inventory gate.",
+  "raw_fallback_attempted": false,
+  "raw_fallback_technically_eligible_before_restoration_gate": true,
+  "raw_fallback_permitted": false,
+  "model_loaded": true,
+  "model_queries": 0,
+  "backend_preparation_core_launches": 1,
+  "preparation_labels": [
+    "compile-wrist-0"
+  ],
+  "correctness_records": 0,
+  "warmup_records": 0,
+  "timed_records": 0,
+  "simulator_episodes": 0,
+  "simulator_resets": 0,
+  "downloads": 0,
+  "new_task_outcomes": 0,
+  "success_reward_or_outcome_fields_accessed": false,
+  "compiler_attempt_wall_seconds": 81.28880628105253,
+  "peak_allocated_bytes": 15768091136,
+  "peak_reserved_bytes": 16076767232,
+  "selected_gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4",
+    "name": "NVIDIA TITAN RTX",
+    "driver_version": "570.211.01",
+    "memory_total_mib": 24576
+  },
+  "post_stop_selected_gpu_telemetry": {
+    "memory_used_mib": 6,
+    "utilization_percent": 0
+  },
+  "checkpoint_protected_hashes_after_recovery": {
+    "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+  },
+  "loader_backups_removed_after_hash_verification": [
+    "config.json.back.20260810_212317",
+    "modeling_prismatic.py.back.20260810_212317"
+  ],
+  "checkpoint_inventory_verified_after_recovery": true,
+  "source_trees_clean_after_stop": true,
+  "immutable_evidence_preserved": [
+    "launch/record.json",
+    "libero-config/record.json",
+    "backend-attempt-torch-compile/record.json"
+  ],
+  "scientific_interpretation": "No correctness, timing, simulator, reward, success, or task-outcome record exists. V02 is neither positive nor negative evidence about the V5 method.",
+  "disposition": "STOP_NO_RETRY_PREPARE_SEPARATELY_AUTHORIZED_V5D_V03",
+  "semantic_sha256": "0a30bd847bf2e1549c376200e559a23c670b33c0b01215926c90a15704487661"
+}

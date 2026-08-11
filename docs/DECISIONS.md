@@ -1284,3 +1284,29 @@ Last updated: 2026-08-10
 - Disposition: `STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_V02_GPU_SELECTION`.
 - Approver: User approved v02 correction implementation, 2026-08-10; v02 GPU
   execution is not inferred.
+
+## D-094 — Preserve V5-D v02 as a pre-correctness technical stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve `acr-v5d-real-tensor-feasibility-v02` without retry and
+  classify it as no method result. The pinned compiler failed on its first
+  preparation call because BF16 PTX requires `sm_80` or newer while the
+  selected TITAN RTX is `sm_75`. The restoration guard then blocked raw
+  fallback because loader files named `.back.<timestamp>` were outside its
+  cleanup allowlist.
+- Evidence: The model loaded, but full model queries, correctness, warm-up,
+  timing, simulator, download, and outcome counts were zero. Rewards and
+  success fields were never accessed. Peak allocated/reserved bytes were
+  `15768091136`/`16076767232`; post-stop GPU telemetry was 6 MiB and 0%.
+- Recovery: All protected checkpoint hashes already matched their frozen
+  originals. The two exact duplicate backups were hash-verified, removed, and
+  the checkpoint inventory plus SAVR/OpenVLA-OFT/LIBERO trees were verified
+  clean.
+- Evidence files: `reports/PHASE_V5_D_V02_TECHNICAL_STOP_REPORT.md`;
+  `reports/runtime/acr_v5_d_v02_technical_stop.json` (semantic SHA-256
+  `0a30bd847bf2e1549c376200e559a23c670b33c0b01215926c90a15704487661`);
+  `docs/ACR_V5_D_V03_RECOVERY_PLAN.md`.
+- Disposition: `STOP_NO_RETRY_PREPARE_SEPARATELY_AUTHORIZED_V5D_V03`.
+- Approver: User authorized v02 one-GPU entry, 2026-08-10. This decision does
+  not infer authorization for v03 implementation or execution.
