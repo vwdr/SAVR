@@ -1,6 +1,6 @@
 # Project Status
 
-Last updated: 2026-08-10
+Last updated: 2026-08-11
 
 ## Current phase
 
@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **v02 RECOVERY VERIFIED; GPU NOT STARTED**
+ACR Version 5 V5-D — **v04 TECHNICAL STOP; NO METHOD RESULT**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -545,6 +545,8 @@ Completed:
 - V5-D v03 preserved a zero-query technical stop after raw capture exceeded the 23 GiB cap by 241,172,480 bytes
 - V5-D v04 freezes an isolated same-TITAN shared CUDA-graph-pool remediation without changing the method, query schedule, gates, or memory cap
 - all 347 local tests, two GitHub validation jobs, 7 focused TITAN tests, and deterministic/CUDA-hidden V04 preflights pass
+- the authorized V04 launch stopped before raw model load because one immediate post-compiler aggregate sample reported 33% utilization; the GPU later returned to 6 MiB and 0%
+- V04 contains zero raw preparation launches, full queries, correctness/timing records, simulator operations, or outcomes and is not a method result
 
 Not completed:
 
@@ -563,11 +565,12 @@ Not completed:
 
 ## Next authorized action
 
-Preserve all negative evidence and immutable V5-D v01-v03 technical stops.
-Stop for explicit user coordination before running the aggregate-only V04 GPU
-selector on `ssh titan`. If coordinated, use at most one eligible GPU and run
-the frozen V04 attempt once. Keep simulator/final populations and success
-fields sealed and do not modify the manuscript.
+Preserve all negative evidence and immutable V5-D v01-v04 technical stops.
+Do not retry V04 automatically. Research and freeze a new transition-recovery
+identity that retains aggregate-only noninterference checks but does not decide
+raw-process eligibility from one immediate post-compiler utilization sample.
+Keep the method, backend, 111-query schedule, 23 GiB cap, simulator/final
+populations, success fields, and manuscript unchanged.
 
 ## Candidate initial stack
 

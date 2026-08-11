@@ -1,6 +1,6 @@
 # ACR V5-D v04 TITAN Memory-Remediation Protocol
 
-Status: **FROZEN FOR PRE-GPU IMPLEMENTATION; GPU EXECUTION REQUIRES SEPARATE COORDINATION**
+Status: **EXECUTED; TECHNICAL STOP BEFORE RAW MODEL LOAD; NO METHOD RESULT**
 
 Date: 2026-08-11
 
@@ -154,3 +154,18 @@ be presented as another retry of this frozen gate.
 Passing V04 establishes only real-tensor correctness and the predeclared
 latency/compute gates. It does not establish task success. V5-E remains a
 separate simulator protocol requiring another plan and approval.
+
+## 10. Execution disposition
+
+The authorized launch selected GPU 0 after three samples at 6 MiB and 0%.
+The compiler repeated the expected pre-output `sm_75` BF16 failure and passed
+exact restoration. The fresh raw process then stopped before model load because
+its single immediate revalidation sample read 33% utilization, despite memory
+having returned to 6 MiB. The same GPU later read 6 MiB and 0%.
+
+V04 has zero raw preparation launches, full queries, correctness, warm-up,
+timing, simulator, or outcome records. It therefore neither tests shared-pool
+memory feasibility nor produces a method result. V04 remains immutable and
+cannot be retried automatically. Evidence is preserved in
+`reports/PHASE_V5_D_V04_TECHNICAL_STOP_REPORT.md` and
+`reports/runtime/acr_v5_d_v04_technical_stop.json`.

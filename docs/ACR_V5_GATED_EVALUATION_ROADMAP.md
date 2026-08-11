@@ -137,13 +137,16 @@ eligible.
 
 ## 6. Phase V5-D — Bounded one-GPU correctness and timing margin
 
-Status: `V03_BACKEND_ENVIRONMENT_TECHNICAL_STOP`. V5-C passed; v01 stopped during
+Status: `V04_TRANSITION_REVALIDATION_TECHNICAL_STOP`. V5-C passed; v01 stopped during
 upstream LIBERO import, and v02 stopped before correctness when the compiler
 failed on `sm_75` and the restoration guard rejected the loader's actual
 `.back.<timestamp>` suffix. V03 fixed restoration and reached raw fallback, but
 the compiler remained incompatible with `sm_75` and raw capture OOMed before
-correctness on the 24 GB device. V5-E remains ineligible. A separately frozen
-compatible-environment amendment is required before another V5-D attempt.
+correctness on the 24 GB device. V04 froze a shared-pool remediation, but its
+fresh raw process stopped before model load when one immediate post-compiler
+sample read 33% utilization; the GPU later returned to 6 MiB and 0%. V04 has no
+method result. V5-E remains ineligible. A separately frozen transition recovery
+is required before another V5-D attempt.
 
 ### Mandatory pause
 
