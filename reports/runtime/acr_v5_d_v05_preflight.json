@@ -1,0 +1,50 @@
+{
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V05_GPU_SELECTION",
+  "checks": {
+    "immutable_run_paths_unused": true,
+    "implementation_files_present": true,
+    "launch_compile_first": true,
+    "launch_is_v05": true,
+    "memory_cap_unchanged": true,
+    "query_budget_unchanged": true,
+    "raw_requires_permit_before_sampler": true,
+    "scientific_contract_unchanged": true,
+    "shared_pool_unchanged": true,
+    "transition_fail_closed": true,
+    "transition_window_frozen": true,
+    "v04_stop_linked": true,
+    "v05_identity": true
+  },
+  "configuration_semantic_sha256": "b34c1d70bbc7163419597148906c22daa82cea3b497405aeeb82afcb4802b2cf",
+  "query_labels_sha256": "eccd0e91acddf131411dbd916a1eb13bfa178b3e36c216bd4146bce1dfdf3291",
+  "resources_used": {
+    "cuda_initialized": false,
+    "downloads": 0,
+    "gpu_count": 0,
+    "gpu_inspections": 0,
+    "model_queries": 0,
+    "new_task_outcomes": 0,
+    "simulator_episodes": 0,
+    "simulator_resets": 0
+  },
+  "schema_version": "acr.v5d-preflight-verification.v5",
+  "semantic_sha256": "4179086e25c047c25aaef02bc943e809c74a0069d37bc230302f5732e13bb40a",
+  "source_hashes": {
+    "configs/acr/v5_d_transition_recovery_v05.json": "73e892321424e07c53c2dd5e81679a5c0ee6f6137ef2f5fc18c4f1d919663f5d",
+    "docs/ACR_V5_D_V05_TRANSITION_RECOVERY_PROTOCOL.md": "63399d4587a0295157d4516b9e141c0b2384e66f4fc0401638e29becd6464255",
+    "reports/runtime/acr_v5_d_v04_technical_stop.json": "df7ccab20c1bd1c4cfb8d70d0d6f3211a649ec656948478cdadeccbef2142cf2",
+    "scripts/finalize_acr_v5_d_v05.py": "7e8fab588956e020bc8dd52f76b73a35fe844f4e4c3947e5d3069dc0cd77dc63",
+    "scripts/launch_acr_v5_d_v05.sh": "1d8275cdf9f8ccacd4a9750a48869a1d0cbaa55bc92379263246546d29c9c4bc",
+    "scripts/prepare_acr_v5_d_v05_libero_config.py": "5fe19edfc1b54f1933fef898bc3c421d5441c10a4838969a3846565d047b9001",
+    "scripts/run_acr_v5_d_v05.py": "18b942f280237cf617ac89b4779c89b4ea85690f9e2491ff46e6f395bddc9687",
+    "scripts/select_acr_v5_d_v05_gpu.py": "9e3837b72b9ef41be7709768447be1d16baf834df3cdf18aebd201c53746a1eb",
+    "scripts/verify_acr_v5_d_v05_import.py": "e5a364d93c533dbc3e8c05265287246c27db2a1e27a4f36becb3b0f302276fe5",
+    "scripts/verify_acr_v5_d_v05_preflight.py": "9decb011be30a8c37c6bdc6605af633368f8e3e71ddb170dd41956711bc9b4f6",
+    "src/savr/acr/v5_d_v05_adapter.py": "d574a25fe77c98f3091f36ce180734d73bfb2536b2c28ce2ab79c83ef513bece",
+    "src/savr/acr/v5_d_v05_runtime.py": "3818f8bcd8ed29e72fd6bee7e287175a9d78af6ad621a649de77104dbec5084f",
+    "src/savr/acr/v5_d_v05_transition.py": "fce291321d95c93750049aee5fd369f52491d615086290648d6c587189aaa84c",
+    "tests/acr/test_v5_d_v05_recovery.py": "a20858a2e974a0c8f7271d1435a66d238409be39cde4e7b7e164c104e9fb34c9"
+  },
+  "status": "pass",
+  "v04_configuration_semantic_sha256": "f5bd1e2c1622acbade05f9b67d8e7ee6e53dee935d9d315ecd7614f5a62f22e3"
+}
