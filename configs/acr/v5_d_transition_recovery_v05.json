@@ -1,0 +1,49 @@
+{
+  "schema_version": "acr.v5d-transition-recovery.v5",
+  "status": "FROZEN_FOR_PRE_GPU_IMPLEMENTATION",
+  "authorized_at": "2026-08-11",
+  "authorized_scope": "V05_PRE_GPU_IMPLEMENTATION_ONLY",
+  "base_v04_configuration_semantic_sha256": "f5bd1e2c1622acbade05f9b67d8e7ee6e53dee935d9d315ecd7614f5a62f22e3",
+  "v04_run_id": "acr-v5d-real-tensor-feasibility-v04",
+  "v04_technical_stop_semantic_sha256": "a3515180022df7938b50956851a2ca05b698819da38b387ddc23b54e59769811",
+  "run_id": "acr-v5d-real-tensor-feasibility-v05",
+  "protocol": "docs/ACR_V5_D_V05_TRANSITION_RECOVERY_PROTOCOL.md",
+  "permitted_changes": [
+    "fresh-raw-process-transition-revalidation"
+  ],
+  "transition_revalidation": {
+    "applies_to_backend": "raw-cudagraph",
+    "requires_authorized_compiler_permit": true,
+    "before_torch_import_cuda_initialization_or_model_load": true,
+    "telemetry_scope": "aggregate-selected-gpu-only",
+    "initial_discard_seconds": 2,
+    "sample_count": 3,
+    "sample_interval_seconds": 5,
+    "require_every_sample": true,
+    "maximum_memory_used_mib_each_sample": 512,
+    "maximum_utilization_percent_each_sample": 5,
+    "require_same_physical_index_and_uuid": true,
+    "process_identity_inspection": false,
+    "allocation_inspection": false,
+    "additional_sampling_windows": 0,
+    "automatic_retries": 0,
+    "gpu_switch_on_failure": false
+  },
+  "current_authorization": {
+    "research": true,
+    "protocol_documentation": true,
+    "pre_gpu_implementation": true,
+    "cuda_hidden_verification": true,
+    "gpu_inspection": false,
+    "gpu_selection": false,
+    "model_loading": false,
+    "model_queries": false,
+    "cuda_compile_capture_or_timing": false,
+    "simulator_use": false,
+    "protected_outcome_access": false,
+    "manuscript_changes": false
+  },
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V05_GPU_SELECTION",
+  "resolved_configuration_semantic_sha256": "b34c1d70bbc7163419597148906c22daa82cea3b497405aeeb82afcb4802b2cf",
+  "semantic_sha256": "41f516ff17af73dc20e68f8094ec94661c7905a4651aa2bb03ccd04417249065"
+}
