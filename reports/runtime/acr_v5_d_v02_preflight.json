@@ -1,0 +1,52 @@
+{
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V02_GPU_SELECTION",
+  "backend_version": "acr-v5d-static-backend-v02-recovery",
+  "checks": {
+    "cores_have_no_host_transfer": true,
+    "correctness_count_7": true,
+    "freeze_semantic_valid": true,
+    "implementation_files_present": true,
+    "launch_compile_first": true,
+    "launch_raw_only_exit_20": true,
+    "libero_config_is_canonical_and_gpu_free": true,
+    "libero_config_precedes_runner": true,
+    "local_cache_roots": true,
+    "pre_model_failures_are_recorded": true,
+    "query_count_111": true,
+    "raw_post_output_prohibited": true,
+    "raw_pre_output_permitted": true,
+    "runner_has_zero_simulator": true,
+    "scientific_contract_unchanged": true,
+    "selector_aggregate_only": true,
+    "timed_count_96": true,
+    "v01_evidence_linked": true,
+    "v02_run_identity": true,
+    "warmup_count_8": true
+  },
+  "configuration_semantic_sha256": "4ae65dda537a5b6dcdf9abd34d79e0a9d7defee834a2a8cc2f7107a659f36076",
+  "query_labels_sha256": "eccd0e91acddf131411dbd916a1eb13bfa178b3e36c216bd4146bce1dfdf3291",
+  "resources_used": {
+    "downloads": 0,
+    "gpu_count": 0,
+    "model_queries": 0,
+    "new_task_outcomes": 0,
+    "simulator_episodes": 0,
+    "simulator_resets": 0
+  },
+  "schema_version": "acr.v5d-preflight-verification.v2",
+  "semantic_sha256": "d7c3ed40cc9d5760a846cb15c688fa5c776cbac8f243d948376d16e64427a695",
+  "source_hashes": {
+    "scripts/analyze_acr_v5_d.py": "6c3ddc421bd2bb100de300c7706249193dafd45a2bbb49dde06ec7a5735de182",
+    "scripts/finalize_acr_v5_d.py": "41d1c7cacccf887cb4be1fb3da7de773e21e8c2ba8cf53a020371bdb7444b432",
+    "scripts/launch_acr_v5_d.sh": "8f8e7176fbd12a4a9616e7d6e7e7cf7b08cfb52c3e19abcb84cf1ea927ca5378",
+    "scripts/prepare_acr_v5_d_libero_config.py": "3c83dbd3be6ab1ed89c3edbe56cea88f86a6443674377211e727178ebac0405f",
+    "scripts/run_acr_v5_d.py": "c0258cae82be86e08ca52f5fcfe2815d06497774b897cd73e42187910de9ba9a",
+    "scripts/select_acr_v5_d_gpu.py": "5af722cf140752a3be537d2191b2000f1673761c6e8cc077a96f5f6d8c50e7ad",
+    "scripts/verify_acr_v5_d.py": "dbccc5344392e8b0a2798710299d26fb2b0c85f60d818ead85bcf4871468a64f",
+    "scripts/verify_acr_v5_d_v02_import.py": "336cb80b9a01541ca92c53b3e4d6b87de7f392bbab01760bcd13b103fc75f86e",
+    "src/savr/acr/v5_d_recovery.py": "8688c6715bce409c3db3c88f3d286cf84903e2bfc1285cc611bb4167e213de83",
+    "src/savr/acr/v5_d_runtime.py": "151112acadcec8962195d69294e3a63d05d5d317e4262dcebafcb78a3a3a8898",
+    "src/savr/acr/v5_d_torch_backend.py": "16afc6b7ccea071706cd2052328d5e8beff43e0bb65d520d0cd578be83110a2a"
+  },
+  "status": "pass"
+}

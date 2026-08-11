@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 from dataclasses import replace
 from pathlib import Path
 
@@ -20,6 +19,7 @@ from savr.acr.v5_d_runtime import (
     V5DResourceExceeded,
     V5DStaticBufferReuseExecutor,
     frozen_query_schedule,
+    load_v5_d_freeze,
     validate_v5_d_freeze,
 )
 
@@ -28,9 +28,7 @@ ROOT = Path(__file__).resolve().parents[2]
 
 
 def config() -> dict:
-    return json.loads(
-        (ROOT / "configs/acr/v5_d_gpu_feasibility_freeze.json").read_text(encoding="utf-8")
-    )
+    return load_v5_d_freeze(ROOT)
 
 
 def test_freeze_and_exact_query_ledger() -> None:

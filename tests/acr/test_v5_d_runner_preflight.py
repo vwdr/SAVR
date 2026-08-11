@@ -36,11 +36,9 @@ def test_gpu_selection_requires_every_sample_and_chooses_lowest_eligible() -> No
     selector = load_script("select_acr_v5_d_gpu")
     runtime = load_script("analyze_acr_v5_d")
     del runtime
-    import json
+    from savr.acr.v5_d_runtime import load_v5_d_freeze
 
-    config = json.loads(
-        (ROOT / "configs/acr/v5_d_gpu_feasibility_freeze.json").read_text(encoding="utf-8")
-    )
+    config = load_v5_d_freeze(ROOT)
     samples = [
         [row(0, memory=100, utilization=0), row(1, memory=200, utilization=2)],
         [row(0, memory=600, utilization=0), row(1, memory=200, utilization=2)],
@@ -99,10 +97,54 @@ def test_launch_script_uses_project_local_caches_and_only_frozen_waterfall() -> 
         "TORCH_HOME",
         "TORCHINDUCTOR_CACHE_DIR",
         "TRITON_CACHE_DIR",
+        "LIBERO_CONFIG_PATH",
     ):
         assert f"export {name}=" in launch
     assert launch.count("scripts/run_acr_v5_d.py") == 2
+    assert launch.index("scripts/prepare_acr_v5_d_libero_config.py") < launch.index(
+        "scripts/run_acr_v5_d.py"
+    )
     assert "--backend torch-compile" in launch
     assert "--backend raw-cudagraph" in launch
     assert "if [[ ${status} -eq 20 ]]" in launch
     assert "scripts/finalize_acr_v5_d.py" in launch
+
+
+def test_uncaught_pre_model_failure_records_and_returns_without_raw_fallback(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    runner = load_script("run_acr_v5_d")
+    recorded = []
+
+    def fail():
+        raise EOFError("injected closed stdin")
+
+    monkeypatch.setattr(runner, "_run_attempt", fail)
+    monkeypatch.setattr(
+        runner,
+        "record_pre_model_stop",
+        lambda root, backend, error: recorded.append((backend, type(error).__name__)),
+    )
+    monkeypatch.setattr(runner, "requested_backend", lambda: "torch-compile")
+    assert runner.main() == 4
+    assert recorded == [("torch-compile", "EOFError")]
+
+
+def test_closed_stdin_import_preflight_is_cpu_only_and_noninteractive() -> None:
+    source = (ROOT / "scripts/verify_acr_v5_d_v02_import.py").read_text(encoding="utf-8")
+    for required in (
+        "stdin=subprocess.DEVNULL",
+        '"CUDA_VISIBLE_DEVICES": ""',
+        "torch.cuda.is_initialized()",
+        "builtins.input = forbidden_input",
+    ):
+        assert required in source
+    for forbidden in (
+        "nvidia-smi",
+        "initialize_model(",
+        "get_action(",
+        "benchmark.get_task",
+        "env.reset",
+        "env.step",
+    ):
+        assert forbidden not in source

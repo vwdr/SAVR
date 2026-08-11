@@ -37,6 +37,9 @@ def verify() -> dict[str, Any]:
     from savr.acr.v5_d_torch_backend import build_openvla_core_functions
 
     config = load_v5_d_freeze(ROOT)
+    base = json.loads(
+        (ROOT / "configs/acr/v5_d_gpu_feasibility_freeze.json").read_text(encoding="utf-8")
+    )
     schedule = frozen_query_schedule(config)
     ledger = FrozenQueryLedger(config)
     for identity in schedule:
@@ -65,10 +68,33 @@ def verify() -> dict[str, Any]:
     runner_source = (ROOT / "scripts/run_acr_v5_d.py").read_text(encoding="utf-8")
     selector_source = (ROOT / "scripts/select_acr_v5_d_gpu.py").read_text(encoding="utf-8")
     launch_source = (ROOT / "scripts/launch_acr_v5_d.sh").read_text(encoding="utf-8")
+    recovery_source = (ROOT / "src/savr/acr/v5_d_recovery.py").read_text(encoding="utf-8")
+    scientific_sections = (
+        "selected_method",
+        "pinned_stack",
+        "environment_hashes",
+        "checkpoint_hashes",
+        "upstream_source_hashes",
+        "identities",
+        "backend_waterfall",
+        "inputs",
+        "tensor_contract",
+        "correctness",
+        "timing",
+        "analysis",
+        "gates",
+        "gpu_selection",
+        "memory",
+        "resource_caps",
+        "recovery",
+    )
     files = (
         "src/savr/acr/v5_d_runtime.py",
         "src/savr/acr/v5_d_torch_backend.py",
+        "src/savr/acr/v5_d_recovery.py",
         "scripts/select_acr_v5_d_gpu.py",
+        "scripts/prepare_acr_v5_d_libero_config.py",
+        "scripts/verify_acr_v5_d_v02_import.py",
         "scripts/run_acr_v5_d.py",
         "scripts/launch_acr_v5_d.sh",
         "scripts/analyze_acr_v5_d.py",
@@ -77,6 +103,12 @@ def verify() -> dict[str, Any]:
     )
     checks = {
         "freeze_semantic_valid": True,
+        "v02_run_identity": config["run_id"] == "acr-v5d-real-tensor-feasibility-v02",
+        "v01_evidence_linked": config["recovery_v02"]["v01_technical_stop_semantic_sha256"]
+        == "edf5872fa818f5806601f52143cb17cec7dd4974e03cc4e2ed43c3d042fb4412",
+        "scientific_contract_unchanged": all(
+            config[key] == base[key] for key in scientific_sections
+        ),
         "query_count_111": len(schedule) == 111,
         "correctness_count_7": sum(item.kind == "correctness" for item in schedule) == 7,
         "warmup_count_8": sum(item.kind == "warmup" for item in schedule) == 8,
@@ -101,6 +133,31 @@ def verify() -> dict[str, Any]:
         and "process_identities_inspected" in selector_source,
         "launch_compile_first": launch_source.index("--backend torch-compile")
         < launch_source.index("--backend raw-cudagraph"),
+        "libero_config_precedes_runner": launch_source.index(
+            "scripts/prepare_acr_v5_d_libero_config.py"
+        )
+        < launch_source.index("scripts/run_acr_v5_d.py"),
+        "libero_config_is_canonical_and_gpu_free": all(
+            token in recovery_source
+            for token in (
+                "canonical_libero_bytes",
+                "create_libero_config_once",
+                "validate_libero_config",
+                "os.O_EXCL",
+            )
+        )
+        and all(
+            token not in recovery_source
+            for token in ("nvidia-smi", "import torch", "env.step", "env.reset")
+        ),
+        "pre_model_failures_are_recorded": all(
+            token in runner_source
+            for token in (
+                "record_pre_model_stop",
+                "build_pre_model_stop_record",
+                "return 4",
+            )
+        ),
         "launch_raw_only_exit_20": "if [[ ${status} -eq 20 ]]" in launch_source,
         "local_cache_roots": all(
             name in launch_source
@@ -115,10 +172,10 @@ def verify() -> dict[str, Any]:
         "implementation_files_present": all((ROOT / name).is_file() for name in files),
     }
     record = {
-        "schema_version": "acr.v5d-preflight-verification.v1",
+        "schema_version": "acr.v5d-preflight-verification.v2",
         "status": "pass" if all(checks.values()) else "fail",
         "configuration_semantic_sha256": config["semantic_sha256"],
-        "backend_version": "acr-v5d-static-backend-v1",
+        "backend_version": "acr-v5d-static-backend-v02-recovery",
         "query_labels_sha256": hashlib.sha256(
             canonical_bytes([item.label for item in schedule])
         ).hexdigest(),
@@ -132,7 +189,7 @@ def verify() -> dict[str, Any]:
             "downloads": 0,
             "new_task_outcomes": 0,
         },
-        "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_GPU_SELECTION",
+        "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V02_GPU_SELECTION",
     }
     record["semantic_sha256"] = hashlib.sha256(canonical_bytes(record)).hexdigest()
     return record
