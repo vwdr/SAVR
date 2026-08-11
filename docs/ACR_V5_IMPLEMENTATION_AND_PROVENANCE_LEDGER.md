@@ -500,3 +500,29 @@ The curated CPU-verification semantic SHA-256 is
 `60a5c44647ad1d699ee32ddbe2bd64da95bcb020a33145fda6c35c04299105cd`.
 No GPU was inspected or selected; no model, simulator, download, outcome, or
 manuscript operation occurred. V04 stops for explicit GPU coordination.
+
+## 24. V5-D v04 transition-revalidation technical stop
+
+The authorized selector chose physical GPU 0 after three aggregate samples at
+6 MiB and 0% utilization. The compiler process loaded the model, repeated the
+anticipated pre-output BF16/PTX incompatibility on `sm_75`, and completed exact
+checkpoint restoration. Its immutable attempt record authorized the frozen
+fresh-process raw transition.
+
+The raw process revalidated the selected GPU immediately. Memory had returned
+to 6 MiB, but that single sample reported 33% utilization, above the frozen 5%
+limit. The process stopped before model load or CUDA-graph preparation. A later
+aggregate-only check reported 6 MiB and 0% on the same physical index and UUID.
+
+There are zero raw preparation launches, full model queries, correctness
+records, schedule warm-ups, timed records, simulator operations, downloads,
+rewards, success fields, or task outcomes. V04 therefore provides no evidence
+about shared-pool memory feasibility or method performance. The analyzer and
+finalizer were not run.
+
+Protected checkpoint hashes match exactly, no loader backup remains, and SAVR,
+OpenVLA-OFT, and LIBERO are clean. The curated technical-stop semantic SHA-256
+is `a3515180022df7938b50956851a2ca05b698819da38b387ddc23b54e59769811`.
+V04 is immutable and cannot be retried automatically. Any further work must
+use a new, separately frozen transition-recovery identity while preserving the
+scientific method, backend, 111-query schedule, 23 GiB cap, and claim boundary.

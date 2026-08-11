@@ -1413,3 +1413,30 @@ Last updated: 2026-08-10
 - Disposition: `STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_V04_GPU_SELECTION`.
 - Approver: User authorized research, logical planning, and pre-GPU work on
   2026-08-11. GPU selection remains separately coordinated by repository rule.
+
+## D-098 — Preserve V5-D v04 as a pre-raw transition technical stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve `acr-v5d-real-tensor-feasibility-v04` without automatic
+  retry and classify it as no method-performance or memory-feasibility result.
+- Compiler evidence: The model loaded; one preparation launch repeated the
+  expected BF16 PTX failure on TITAN RTX `sm_75`; exact restoration passed and
+  a fresh-process raw transition was authorized.
+- Transition evidence: The raw process stopped before model load because its
+  single immediate GPU snapshot showed 6 MiB used but 33% utilization, above
+  the frozen 5% threshold. Later aggregate-only telemetry was 6 MiB and 0% on
+  the same physical GPU and UUID.
+- Scientific boundary: Raw preparation, full queries, correctness, warm-up,
+  timings, simulator operations, downloads, and outcomes were zero. Shared-pool
+  feasibility was not tested; no positive or negative method claim follows.
+- Protection: Checkpoint hashes and inventories were exact, no loader backup
+  remained, all three source trees were clean, and no unrelated process or
+  allocation was inspected.
+- Evidence files: `reports/PHASE_V5_D_V04_TECHNICAL_STOP_REPORT.md`;
+  `reports/runtime/acr_v5_d_v04_technical_stop.json` (semantic SHA-256
+  `a3515180022df7938b50956851a2ca05b698819da38b387ddc23b54e59769811`).
+- Disposition:
+  `STOP_NO_AUTOMATIC_RETRY_PREPARE_SEPARATELY_FROZEN_TRANSITION_RECOVERY`.
+- Approver: User authorized the one-GPU V04 execution on 2026-08-11. This does
+  not permit result shopping or mutation of the immutable V04 run.

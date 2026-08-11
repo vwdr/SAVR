@@ -1,6 +1,6 @@
 # SAVR Milestones
 
-Last updated: 2026-08-10
+Last updated: 2026-08-11
 
 At most one phase may be `IN_PROGRESS`.
 
@@ -63,6 +63,7 @@ At most one phase may be `IN_PROGRESS`.
 | V5-D03I. Restoration recovery implementation | COMPLETE_VERIFIED | Exact loader-backup validation/removal, protected-byte and inventory restoration, partial-failure/idempotence tests, v03 immutable identity, 341 local tests, 341 TITAN tests plus 9 subtests, and CUDA-hidden import preflight passed; `reports/PHASE_V5_D_V03_RECOVERY_IMPLEMENTATION_REPORT.md` | Explicit user coordination before v03 aggregate GPU selection |
 | V5-D03. Third real-tensor launch | TECHNICAL_STOP_NO_RESULT | Compiler failed pre-output on TITAN RTX `sm_75`; corrected restoration authorized fresh raw fallback; raw capture then OOMed before correctness at 23.2246 GiB reserved; zero full queries/simulator/outcomes; checkpoint and trees clean; `reports/PHASE_V5_D_V03_TECHNICAL_STOP_REPORT.md` | Identify and separately authorize a compatible higher-memory v04 environment amendment |
 | V5-D04I. TITAN memory-remediation implementation | COMPLETE_VERIFIED | V03 retained byte-identically; PyTorch-supported shared graph pool isolated behind V04 adapters; fixed capture/replay order and stream enforced; 347 local tests, two CI jobs, 7 focused TITAN tests, deterministic and CUDA-hidden import/API preflights passed; `reports/PHASE_V5_D_V04_MEMORY_REMEDIATION_IMPLEMENTATION_REPORT.md` | Explicit user coordination before v04 aggregate GPU selection |
+| V5-D04. Fourth real-tensor launch | TECHNICAL_STOP_NO_RESULT | Compiler failed pre-output as expected and restored exactly; raw transition was permitted, but one immediate fresh-process sample read 33% utilization and stopped before raw model load; later telemetry was 6 MiB and 0%; zero raw preparation/full queries/simulator/outcomes; `reports/PHASE_V5_D_V04_TECHNICAL_STOP_REPORT.md` | Research and separately freeze a new transition-recovery identity; no automatic V04 retry |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -71,11 +72,14 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-V5-B and V5-C are complete. V5-D v01-v03 remain immutable technical stops with
+V5-B and V5-C are complete. V5-D v01-v04 remain immutable technical stops with
 no method-performance output. V03's raw backend exceeded the unchanged 23 GiB
 cap by 241,172,480 bytes during its second graph capture. V04 now freezes and
 verifies an isolated same-TITAN shared-pool remediation while preserving all
-scientific gates and V03 implementation hashes. The
+scientific gates and V03 implementation hashes, but its authorized execution
+stopped before raw model load on one immediate 33%-utilization transition
+sample. The GPU later returned to 6 MiB and 0%, and no raw shared-pool result
+exists. The
 separately versioned IR-SA-ACR controller
 mechanically enforces one completed refresh after every reuse, cross-checks cache age,
 rejects forged consecutive reuse, resets the latch by episode, and runs through
