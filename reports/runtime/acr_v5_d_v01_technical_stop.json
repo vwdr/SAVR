@@ -1,0 +1,48 @@
+{
+  "schema_version": "acr.v5d-technical-stop.v1",
+  "run_id": "acr-v5d-real-tensor-feasibility-v01",
+  "status": "technical-stop-before-model-load",
+  "recorded_at_utc": "2026-08-11T00:45:49.054045+00:00",
+  "execution_revision": "4eec559a32565ce2b7579e04d5b84cd5a08e69fb",
+  "configuration_semantic_sha256": "f445cf5d1a5ec6877ebea46ccc3883a11a676b38cb33a711ee4b74baf22f53f8",
+  "launch_manifest_semantic_sha256": "194b5fbae6cdf8b0d987ef153040b2d162b7c15932b7c824a916d8ce44fab165",
+  "backend_requested": "torch-compile",
+  "failure_stage": "upstream-libero-import",
+  "failure_type": "EOFError",
+  "failure_message": "EOF when reading a line",
+  "failure_prompt": "Do you want to specify a custom path for the dataset folder? (Y/N):",
+  "root_cause": "The launcher created the run-local LIBERO_CONFIG_PATH directory but did not create config.yaml. Importing LIBERO therefore entered its first-use interactive configuration branch in a non-interactive SSH launch.",
+  "raw_fallback_attempted": false,
+  "raw_fallback_permitted": false,
+  "model_loaded": false,
+  "model_queries": 0,
+  "backend_preparation_core_launches": 0,
+  "correctness_records": 0,
+  "warmup_records": 0,
+  "timed_records": 0,
+  "simulator_episodes": 0,
+  "simulator_resets": 0,
+  "downloads": 0,
+  "new_task_outcomes": 0,
+  "success_reward_or_outcome_fields_accessed": false,
+  "selected_gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4",
+    "name": "NVIDIA TITAN RTX",
+    "driver_version": "570.211.01",
+    "memory_total_mib": 24576
+  },
+  "post_failure_selected_gpu_telemetry": {
+    "memory_used_mib": 6,
+    "utilization_percent": 0
+  },
+  "source_trees_clean_after_stop": true,
+  "checkpoint_write_or_loader_backup_created": false,
+  "restoration_required": false,
+  "immutable_evidence_preserved": [
+    "launch/record.json",
+    "technical-summary/record.json"
+  ],
+  "disposition": "STOP_NO_RETRY_PREPARE_SEPARATELY_AUTHORIZED_V5D_V02",
+  "semantic_sha256": "edf5872fa818f5806601f52143cb17cec7dd4974e03cc4e2ed43c3d042fb4412"
+}

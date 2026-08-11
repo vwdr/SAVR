@@ -313,3 +313,34 @@ dataset, or TITAN download, new outcome, protected population, or manuscript
 edit. Local package validation used an isolated temporary build environment
 without changing the repository or persistent environments. It advances only
 to explicit user coordination before aggregate GPU selection.
+
+## 18. V5-D v01 zero-query technical stop
+
+The user explicitly authorized entry into the bounded one-GPU phase. The
+aggregate-only selector took the frozen three samples, found all four devices
+eligible, and selected the lowest physical index, GPU 0. Its selected samples
+were consistently 6 MiB used and 0% utilization. Launch-manifest semantic
+SHA-256 is
+`194b5fbae6cdf8b0d987ef153040b2d162b7c15932b7c824a916d8ce44fab165`.
+
+The launcher created an empty project-local `LIBERO_CONFIG_PATH` and invoked
+the compile-first runner. Before model load, importing the pinned upstream
+LIBERO evaluation module imported LIBERO itself. Because `config.yaml` did not
+exist, LIBERO entered its interactive first-use dataset-path prompt. Closed
+stdin caused `EOFError`. The process returned nonzero and correctly did not
+enter raw fallback.
+
+This exposed a preflight coverage gap: project-local cache-root placement was
+tested, but a fresh absent LIBERO config and closed-stdin import were not. v01
+is preserved and cannot be retried. It contains zero model queries,
+backend-preparation launches, correctness records, warm-ups, timed queries,
+simulator operations, downloads, or outcomes. No checkpoint write or
+restoration was required; source and checkpoint trees stayed clean. Post-stop
+selected-GPU telemetry returned 6 MiB used and 0% utilization.
+
+The curated technical-stop semantic SHA-256 is
+`edf5872fa818f5806601f52143cb17cec7dd4974e03cc4e2ed43c3d042fb4412`.
+The proposed v02 route changes only non-interactive LIBERO configuration and
+pre-import failure recording while preserving every method, backend,
+correctness, timing, statistical, resource, and claim gate. v02 requires a new
+run ID, merged pre-GPU correction, and separate execution authorization.
