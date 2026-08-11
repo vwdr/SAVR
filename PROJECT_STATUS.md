@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **v04 TECHNICAL STOP; NO METHOD RESULT**
+ACR Version 5 V5-D — **v05 PRE-GPU VERIFIED; GPU NOT STARTED**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -547,6 +547,8 @@ Completed:
 - all 347 local tests, two GitHub validation jobs, 7 focused TITAN tests, and deterministic/CUDA-hidden V04 preflights pass
 - the authorized V04 launch stopped before raw model load because one immediate post-compiler aggregate sample reported 33% utilization; the GPU later returned to 6 MiB and 0%
 - V04 contains zero raw preparation launches, full queries, correctness/timing records, simulator operations, or outcomes and is not a method result
+- V05 freezes a new transition-recovery identity: discard 2 seconds, then require 3 aggregate-only samples 5 seconds apart at the unchanged 5%/512 MiB limits
+- 353 local tests, both CI jobs for PRs #82/#83, 6 focused TITAN tests, 353 TITAN tests plus 9 subtests, and deterministic/CUDA-hidden V05 preflights pass
 
 Not completed:
 
@@ -566,11 +568,10 @@ Not completed:
 ## Next authorized action
 
 Preserve all negative evidence and immutable V5-D v01-v04 technical stops.
-Do not retry V04 automatically. Research and freeze a new transition-recovery
-identity that retains aggregate-only noninterference checks but does not decide
-raw-process eligibility from one immediate post-compiler utilization sample.
-Keep the method, backend, 111-query schedule, 23 GiB cap, simulator/final
-populations, success fields, and manuscript unchanged.
+Stop for explicit user coordination before running the aggregate-only V05 GPU
+selector on `ssh titan`. If coordinated, use at most one eligible GPU and run
+V05 once. Keep the method, shared-pool backend, 111-query schedule, 23 GiB cap,
+simulator/final populations, success fields, and manuscript unchanged.
 
 ## Candidate initial stack
 

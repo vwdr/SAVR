@@ -1440,3 +1440,38 @@ Last updated: 2026-08-10
   `STOP_NO_AUTOMATIC_RETRY_PREPARE_SEPARATELY_FROZEN_TRANSITION_RECOVERY`.
 - Approver: User authorized the one-GPU V04 execution on 2026-08-11. This does
   not permit result shopping or mutation of the immutable V04 run.
+
+## D-099 — Freeze and accept V5-D v05 transition recovery before GPU use
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Keep V04 immutable and create V05 solely to correct the raw
+  process's transition revalidation. Discard two seconds, then require exactly
+  three selected-GPU aggregate samples five seconds apart; every sample must
+  pass the unchanged 512 MiB and 5% limits and exact index/UUID checks.
+- Research basis: NVIDIA defines device utilization over a recent sample
+  period between one sixth and one second. The two-second discard excludes that
+  documented window before the sustained-idle samples begin.
+- Frozen boundary: Preserve V04's method, shared-pool backend, compiler-first
+  waterfall, checkpoint/tensors, 111-query schedule, correctness/statistical
+  gates, 23 GiB cap, and claim limits. No extra sampling window, GPU switch,
+  process/allocation inspection, threshold relaxation, or automatic retry.
+- Verification: 353 local tests; both CI jobs on PRs #82 and #83; 6 focused
+  TITAN tests; 353 TITAN tests plus 9 subtests; deterministic preflight
+  `67c641228f406b8048cacf813b52cc66ef9cc6e7249ab99c0512a7d1fc4cf101`;
+  CUDA-hidden import preflight
+  `0b71455a193e906fd68b05e89d48b72277b91a2554440ea31e0be85bd050fdb2`;
+  curated CPU verification
+  `7fad244f58140616ef7abebfb8a907b78f156bd58586e5ab096f5a46260c3dab`.
+- Corrections: Preserve and exclude the first nested-basetemp setup failure and
+  relative-`PYTHONPATH` import-preflight failure. Independent corrected repeats
+  passed without GPU visibility or scientific output.
+- Evidence files: `docs/ACR_V5_D_V05_TRANSITION_RECOVERY_PROTOCOL.md`;
+  `configs/acr/v5_d_transition_recovery_v05.json`;
+  `reports/PHASE_V5_D_V05_TRANSITION_RECOVERY_IMPLEMENTATION_REPORT.md`;
+  `reports/runtime/acr_v5_d_v05_preflight.json`;
+  `reports/runtime/acr_v5_d_v05_import_preflight.json`;
+  `reports/runtime/acr_v5_d_v05_cpu_verification.json`.
+- Disposition: `STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_V05_GPU_SELECTION`.
+- Approver: User authorized logical forward progress after V04 on 2026-08-11;
+  repository safety rules still require a separate pause before GPU selection.
