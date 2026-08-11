@@ -1,0 +1,113 @@
+{
+  "schema_version": "acr.v5d-technical-stop.v6",
+  "run_id": "acr-v5d-real-tensor-feasibility-v06",
+  "status": "technical-stop-before-correctness",
+  "recorded_at_utc": "2026-08-11T23:11:15.710539+00:00",
+  "execution_revision": "535a4a6b80be114b2cc03bfbfce49a6dbc4ccf05",
+  "configuration_semantic_sha256": "7d0976512b15c6d14486f9e83e5b14513ab7fc919bbf9b55b75c9536b90b92e6",
+  "launch_manifest_semantic_sha256": "e686d3497e5a92d75924246b3d0566bd9ac59aaab6dcc665495b32364652c699",
+  "libero_config_semantic_sha256": "3cb72e7cad7e4539969f82de6ce23d464b42c46f834aa040f1833f4dc592b56f",
+  "compiler_attempt_semantic_sha256": "0f458015aa87d9cd85a8321074b426d0b367e5a4be5be50d1c1a28d92090cc7f",
+  "raw_transition_permit_semantic_sha256": "eb9436a92a750d152f19d23a639427940fce2094aff6585b9cee5636f87fbcb4",
+  "transition_revalidation_semantic_sha256": "d21f85d98b7e6fbc036a6f24dddf438f1b83777c7646cd10c431a5ed3b0aaaa3",
+  "raw_attempt_semantic_sha256": "ab6c3407efd4d9b3b593b7878c3b65441a1ba380a1fb98dd60698bc4283235d8",
+  "transition_revalidation": {
+    "status": "pass",
+    "samples": 3,
+    "memory_used_mib_each": [
+      6,
+      6,
+      6
+    ],
+    "utilization_percent_each": [
+      0,
+      0,
+      0
+    ],
+    "identity_passed": true,
+    "thresholds_passed": true
+  },
+  "compiler_outcome": {
+    "status": "technical-failure-before-correctness",
+    "reason": "compiler-construction-or-first-call-error",
+    "root_cause": "TorchInductor emitted BF16 PTX requiring sm_80 or newer for the selected TITAN RTX sm_75 device.",
+    "preparation_launches": 1,
+    "wall_seconds": 81.30026588123292,
+    "peak_allocated_bytes": 15768091136,
+    "peak_reserved_bytes": 16076767232,
+    "checkpoint_restoration_passed": true,
+    "raw_transition_permitted": true
+  },
+  "raw_outcome": {
+    "status": "failed-before-correctness",
+    "reason": "downstream-pre-capture-warmup-out-of-memory-before-any-capture",
+    "failed_allocation_bytes": 23068672,
+    "reported_free_mib_approximate": 13.06,
+    "preparation_core_launches": 8,
+    "wall_seconds": 7.815196606330574,
+    "planned_shared_private_pool": true,
+    "shared_pool_created": false,
+    "completed_pre_capture_warmup_order": [
+      "wrist"
+    ],
+    "completed_capture_order": [],
+    "empty_cache_calls": 0,
+    "memory_trace": [
+      {
+        "stage": "wrist-after-pre-capture-warmup",
+        "allocated_bytes": 17429342720,
+        "reserved_bytes": 17983078400
+      },
+      {
+        "stage": "downstream-pre-capture-warmup-failed",
+        "allocated_bytes": 24226500096,
+        "reserved_bytes": 24939331584
+      }
+    ],
+    "peak_allocated_bytes": 24259268096,
+    "peak_reserved_bytes": 24941428736,
+    "peak_allocated_gib": 22.593204021453857,
+    "peak_reserved_gib": 23.228515625,
+    "frozen_peak_reserved_cap_bytes": 24696061952,
+    "frozen_peak_reserved_cap_exceeded_bytes": 245366784,
+    "checkpoint_restoration_passed": true
+  },
+  "model_loaded": true,
+  "model_processes_sequential": 2,
+  "model_processes_concurrent_max": 1,
+  "model_queries": 0,
+  "backend_preparation_core_launches": 9,
+  "correctness_records": 0,
+  "warmup_records": 0,
+  "timed_records": 0,
+  "final_record_created": false,
+  "analyzer_executed": false,
+  "simulator_instances": 0,
+  "simulator_episodes": 0,
+  "simulator_resets": 0,
+  "downloads": 0,
+  "new_task_outcomes": 0,
+  "success_reward_or_outcome_fields_accessed": false,
+  "selected_gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4",
+    "name": "NVIDIA TITAN RTX",
+    "driver_version": "570.211.01",
+    "memory_total_mib": 24576,
+    "compute_capability": "7.5"
+  },
+  "post_stop_selected_gpu_telemetry": {
+    "memory_used_mib": 6,
+    "utilization_percent": 0
+  },
+  "checkpoint_protected_hashes_after_stop": {
+    "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+  },
+  "checkpoint_loader_backups_remaining": 0,
+  "source_trees_clean_after_stop": true,
+  "scientific_interpretation": "No correctness, timing, simulator, reward, success, or task-outcome record exists. V06 is not a method-performance result. It establishes that completing wrist warm-up before any capture does not make the unchanged downstream eager warm-up fit under the 23 GiB reservation cap on TITAN RTX; the run failed before either graph capture.",
+  "disposition": "STOP_NO_RETRY_V06_MEMORY_INFEASIBLE_ON_TITAN_RTX_USE_COMPATIBLE_HIGHER_MEMORY_HARDWARE_OR_SEPARATELY_RESEARCHED_SYSTEM_CHANGE",
+  "semantic_sha256": "0588f628a118a2f467215c2337bc23452f3b8e98d0b5865c37be0d2892a18edb"
+}
