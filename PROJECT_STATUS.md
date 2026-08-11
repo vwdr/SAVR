@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **v06 PRE-GPU ACCEPTED; GPU NOT SELECTED**
+ACR Version 5 V5-D — **v06 MEMORY TECHNICAL STOP; NO METHOD RESULT**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -553,7 +553,9 @@ Completed:
 - V05 peaked at 23.2266 GiB reserved, 243,269,632 bytes above the 23 GiB cap, with zero correctness/timing/simulator/outcome records
 - V06 freezes the separately identified PyTorch-documented lifecycle: warm wrist and downstream before retaining either graph, then capture both on one stream with one shared pool
 - all 361 local tests, both PR #86 validation jobs, 8 focused TITAN tests, 361 TITAN tests plus 9 subtests, and deterministic/CUDA-hidden V06 preflights pass
-- V06 used zero GPU inspection/selection, CUDA initialization, model queries, simulator operations, downloads, outcomes, or manuscript changes
+- the authorized V06 selector chose GPU 0 at 6 MiB/0%; compiler fallback and sustained transition gates passed exactly as frozen
+- V06 downstream pre-capture warm-up then OOMed before either graph capture, peaking at 23.2285 GiB reserved, 245,366,784 bytes above the 23 GiB cap
+- V06 produced zero correctness/timing/simulator/outcome records, restored the checkpoint exactly, and is not a method-performance result
 
 Not completed:
 
@@ -572,12 +574,12 @@ Not completed:
 
 ## Next authorized action
 
-Preserve all negative evidence and immutable V5-D v01-v05 technical stops. Do
-not retry V05. V06's separately frozen pre-capture warm-up implementation has
-passed every pre-GPU gate and is stopped before GPU selection. If separately
-coordinated, perform only its unchanged aggregate-only one-GPU selection next.
-Keep simulator/final populations and success fields sealed and do not modify
-the manuscript.
+Preserve all evidence and immutable V5-D v01-v06 technical stops. Do not retry
+V05 or V06. V06 establishes that the unchanged exact method's downstream eager
+preparation still cannot fit the 23 GiB cap on TITAN RTX even before graph
+capture. Use compatible higher-memory hardware or first research and freeze a
+materially justified new system change. Keep simulator/final populations and
+success fields sealed and do not modify the manuscript.
 
 ## Candidate initial stack
 
