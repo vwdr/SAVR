@@ -1,8 +1,14 @@
 # ACR V5-D v04 Compatible-Environment Amendment Plan
 
-Status: **PROPOSED; IMPLEMENTATION AND EXECUTION NOT AUTHORIZED**
+Status: **SUPERSEDED AFTER USER CLARIFICATION; RETAINED FOR PROVENANCE**
 
 Date: 2026-08-11
+
+The user clarified that the available GPU cluster is the existing `ssh titan`
+host, not a second compatible-hardware cluster. This plan is therefore not the
+active V04 route. It is preserved to show why a higher-memory environment was
+considered after V03. The active route is
+`docs/ACR_V5_D_V04_TITAN_MEMORY_REMEDIATION_PROTOCOL.md`.
 
 ## 1. Purpose
 
