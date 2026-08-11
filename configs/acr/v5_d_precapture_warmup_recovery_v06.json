@@ -1,0 +1,68 @@
+{
+  "schema_version": "acr.v5d-precapture-warmup-recovery.v6",
+  "status": "FROZEN_FOR_PRE_GPU_IMPLEMENTATION",
+  "authorized_at": "2026-08-11",
+  "authorized_scope": "V06_PRE_GPU_IMPLEMENTATION_ONLY",
+  "base_v05_configuration_semantic_sha256": "b34c1d70bbc7163419597148906c22daa82cea3b497405aeeb82afcb4802b2cf",
+  "v05_run_id": "acr-v5d-real-tensor-feasibility-v05",
+  "v05_technical_stop_semantic_sha256": "cb6d9120fc2e6ee69aaa83d677598d21741be8eaf5a3456bc21461d30eb3cc3f",
+  "run_id": "acr-v5d-real-tensor-feasibility-v06",
+  "protocol": "docs/ACR_V5_D_V06_PRECAPTURE_WARMUP_PROTOCOL.md",
+  "permitted_changes": [
+    "all-core-warmups-before-any-graph-capture",
+    "no-inter-capture-eager-warmup",
+    "precapture-stage-memory-evidence"
+  ],
+  "pre_capture_warmup": {
+    "stream": "same-explicit-stream-used-for-both-captures",
+    "order": [
+      "wrist",
+      "downstream"
+    ],
+    "iterations_per_core": 3,
+    "all_warmups_before_any_capture": true,
+    "inter_capture_warmups": 0,
+    "capture_order": [
+      "wrist",
+      "downstream"
+    ],
+    "shared_private_pool": true,
+    "replay_order": [
+      "wrist",
+      "downstream"
+    ],
+    "concurrent_replay": false,
+    "empty_cache_calls": 0,
+    "allocator_environment_change": false,
+    "record_stage_memory": true
+  },
+  "v05_measured_memory": {
+    "wrist_after_warmup_allocated_bytes": 17429342720,
+    "wrist_after_warmup_reserved_bytes": 17983078400,
+    "wrist_after_capture_allocated_bytes": 18077560320,
+    "wrist_after_capture_reserved_bytes": 18417188864,
+    "wrist_capture_allocated_increment_bytes": 648217600,
+    "wrist_capture_reserved_increment_bytes": 434110464,
+    "raw_peak_allocated_bytes": 24226396160,
+    "raw_peak_reserved_bytes": 24939331584,
+    "cap_exceeded_bytes": 243269632,
+    "failed_allocation_bytes": 14680064
+  },
+  "current_authorization": {
+    "research": true,
+    "protocol_documentation": true,
+    "pre_gpu_implementation": true,
+    "cuda_hidden_verification": true,
+    "gpu_inspection": false,
+    "gpu_selection": false,
+    "model_loading": false,
+    "model_queries": false,
+    "cuda_compile_capture_or_timing": false,
+    "simulator_use": false,
+    "protected_outcome_access": false,
+    "manuscript_changes": false
+  },
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V06_GPU_SELECTION",
+  "resolved_configuration_semantic_sha256": "7d0976512b15c6d14486f9e83e5b14513ab7fc919bbf9b55b75c9536b90b92e6",
+  "semantic_sha256": "7f05a5766e40ca1c61b41a6dd9a19eb134cfa817f7e037761e3b595a90eced33"
+}
