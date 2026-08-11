@@ -2,7 +2,7 @@
 set -euo pipefail
 
 project_root="/home/ved/SAVR"
-run_id="acr-v5d-real-tensor-feasibility-v02"
+run_id="acr-v5d-real-tensor-feasibility-v03"
 run_root="${project_root}/results/${run_id}"
 python_bin="${project_root}/envs/openvla-oft/bin/python"
 manifest="${run_root}/launch/record.json"

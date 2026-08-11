@@ -1,0 +1,49 @@
+{
+  "schema_version": "acr.v5d-gpu-feasibility-recovery.v3",
+  "status": "FROZEN_FOR_PRE_GPU_RECOVERY_IMPLEMENTATION",
+  "authorized_at": "2026-08-10",
+  "authorized_scope": "V03_PRE_GPU_IMPLEMENTATION_ONLY",
+  "base_recovery": "configs/acr/v5_d_gpu_feasibility_recovery_v02.json",
+  "base_recovery_semantic_sha256": "5c92f49601c1c04a87670ccd4f0cfd5a3057dcd7b5825d5defeb2e32a9437aaf",
+  "base_resolved_configuration_semantic_sha256": "4ae65dda537a5b6dcdf9abd34d79e0a9d7defee834a2a8cc2f7107a659f36076",
+  "v02_run_id": "acr-v5d-real-tensor-feasibility-v02",
+  "v02_technical_stop_semantic_sha256": "0a30bd847bf2e1549c376200e559a23c670b33c0b01215926c90a15704487661",
+  "run_id": "acr-v5d-real-tensor-feasibility-v03",
+  "recovery_plan": "docs/ACR_V5_D_V03_RECOVERY_PLAN.md",
+  "permitted_changes": [
+    "exact-checkpoint-loader-backup-restoration",
+    "checkpoint-restoration-preflight-coverage"
+  ],
+  "checkpoint_restoration": {
+    "protected_names": [
+      "config.json",
+      "configuration_prismatic.py",
+      "modeling_prismatic.py"
+    ],
+    "allowed_new_file_patterns": [
+      "<protected>.back.YYYYMMDD_HHMMSS",
+      "<protected>.bak",
+      "<protected>.backup",
+      "<protected>.backup.YYYYMMDD_HHMMSS"
+    ],
+    "regular_non_symlink_files_only": true,
+    "backup_content_must_equal_protected_baseline": true,
+    "preexisting_nonprotected_drift_permitted": false,
+    "exact_final_inventory_required": true,
+    "idempotent_validation_required": true
+  },
+  "current_authorization": {
+    "recovery_implementation": true,
+    "gpu_inspection": false,
+    "gpu_selection": false,
+    "model_loading": false,
+    "model_queries": false,
+    "cuda_compile_capture_or_timing": false,
+    "simulator_use": false,
+    "protected_outcome_access": false,
+    "manuscript_changes": false
+  },
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V03_GPU_SELECTION",
+  "resolved_configuration_semantic_sha256": "a9447cd385b4229e54cf85ba8fc7e06e4b4d283b9ac5c655e0c5201fb5d3f297",
+  "semantic_sha256": "a1b30fdd7337558281882438c28c917de52b90805a670a8eb8ec791dc30f146a"
+}

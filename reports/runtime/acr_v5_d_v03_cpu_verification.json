@@ -1,0 +1,33 @@
+{
+  "schema_version": "acr.v5d-v03-cpu-verification.v1",
+  "status": "pass-with-documented-process-correction",
+  "execution_revision": "a772c72a7e3eba693ee348875bd8c565444a0819",
+  "configuration_semantic_sha256": "a9447cd385b4229e54cf85ba8fc7e06e4b4d283b9ac5c655e0c5201fb5d3f297",
+  "overlay_semantic_sha256": "a1b30fdd7337558281882438c28c917de52b90805a670a8eb8ec791dc30f146a",
+  "local_tests_passed": 341,
+  "titan_scope_compliant_tests_passed": 341,
+  "titan_scope_compliant_subtests_passed": 9,
+  "titan_scope_compliant_elapsed_seconds": 38.24,
+  "titan_pytest_basetemp": "/home/ved/SAVR/results/acr-v5d-v03-cpu-test-preflight-v02/pytest-temp",
+  "cuda_visible_devices": "",
+  "gpu_inspection": 0,
+  "cuda_initialized": false,
+  "model_loaded": false,
+  "model_queries": 0,
+  "simulator_instances": 0,
+  "simulator_episodes": 0,
+  "simulator_resets": 0,
+  "downloads": 0,
+  "new_task_outcomes": 0,
+  "deterministic_preflight_semantic_sha256": "f25d7f2dd743bf0c4fbe8a56420ba94d136c8cfc6b5baaeedf473e5a5a6ab163",
+  "import_preflight_semantic_sha256": "f8b9002d0998345c7f1a423003a180cfc5a406d52f85e1f3ac2d1f60fe22cdc5",
+  "process_correction": {
+    "initial_issue": "The first TITAN pytest invocation used pytest's default temporary directory outside /home/ved/SAVR.",
+    "scientific_effect": "none",
+    "external_path_inspected_or_manually_modified_after_detection": false,
+    "corrective_action": "The complete suite was repeated with TMPDIR and --basetemp explicitly confined beneath /home/ved/SAVR/results/.",
+    "acceptance_evidence_uses_scope_compliant_repeat": true
+  },
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V03_GPU_SELECTION",
+  "semantic_sha256": "37587ccd329cfc68672ef048a7422fb8825944a2a61260d1631b8532c2efdf95"
+}

@@ -36,7 +36,7 @@ def main() -> int:
 
     config = load_v5_d_freeze(root)
     run = json.loads(
-        (root / "results/acr-v5d-real-tensor-feasibility-v02/final/record.json").read_text(
+        (root / "results/acr-v5d-real-tensor-feasibility-v03/final/record.json").read_text(
             encoding="utf-8"
         )
     )
@@ -48,7 +48,7 @@ def main() -> int:
     if errors:
         raise RuntimeError(f"V5-D independent verification failed: {errors}")
     store = ImmutableRecordStore(root / "results")
-    store.write_once("acr-v5d-analysis-v02", first)
+    store.write_once("acr-v5d-analysis-v03", first)
     verification = {
         "schema_version": "acr.v5d-verification.v1",
         "run_id": config["run_id"],
@@ -62,7 +62,7 @@ def main() -> int:
         "disposition": first["disposition"],
     }
     verification["semantic_sha256"] = semantic_sha256(verification)
-    store.write_once("acr-v5d-verification-v02", verification)
+    store.write_once("acr-v5d-verification-v03", verification)
     print(json.dumps(verification, indent=2, sort_keys=True))
     return 0 if first["passed"] else 2
 

@@ -235,10 +235,10 @@ def main() -> int:
     parser.add_argument(
         "--run",
         type=Path,
-        default=Path("results/acr-v5d-real-tensor-feasibility-v02/final/record.json"),
+        default=Path("results/acr-v5d-real-tensor-feasibility-v03/final/record.json"),
     )
     parser.add_argument(
-        "--analysis", type=Path, default=Path("results/acr-v5d-analysis-v02/record.json")
+        "--analysis", type=Path, default=Path("results/acr-v5d-analysis-v03/record.json")
     )
     args = parser.parse_args()
     root = args.root.resolve()

@@ -407,3 +407,35 @@ positive nor negative method evidence. V02 remains immutable. The proposed
 v03 correction is limited to exact loader-backup restoration coverage and
 requires a new reviewed implementation checkpoint plus separate GPU
 authorization.
+
+## 21. V5-D v03 pre-GPU restoration recovery
+
+Implementation commit `a772c72a7e3eba693ee348875bd8c565444a0819`
+introduces the v03 immutable run ID and exact restoration helper. The overlay
+links the curated v02 technical stop and preserves every scientific section
+byte-structurally. Its resolved semantic SHA-256 is
+`a9447cd385b4229e54cf85ba8fc7e06e4b4d283b9ac5c655e0c5201fb5d3f297`.
+
+Before model initialization, the runner captures protected bytes/hashes and
+the top-level checkpoint baseline. Restoration accepts only new regular,
+non-symlink files matching the frozen protected-name suffixes, requires backup
+content to match its original, rejects pre-existing drift, restores protected
+bytes, removes only verified artifacts, and requires exact final inventory.
+The attempt record distinguishes byte restoration from backup cleanup. Any
+failure clears raw-transition permission.
+
+All 341 local tests passed. The boundary-compliant TITAN repeat passed 341
+tests and 9 subtests with its temporary root under `/home/ved/SAVR/results/`.
+The initial TITAN pytest invocation had used pytest's default external
+temporary directory; after detection, no external path was inspected or
+manually changed, and that invocation is excluded from acceptance evidence.
+
+The deterministic preflight semantic SHA-256 is
+`f25d7f2dd743bf0c4fbe8a56420ba94d136c8cfc6b5baaeedf473e5a5a6ab163`.
+The closed-stdin pinned import semantic SHA-256 is
+`f8b9002d0998345c7f1a423003a180cfc5a406d52f85e1f3ac2d1f60fe22cdc5`;
+the curated CPU-verification semantic SHA-256 is
+`37587ccd329cfc68672ef048a7422fb8825944a2a61260d1631b8532c2efdf95`.
+CUDA remained uninitialized. This checkpoint used zero GPU inspection, model
+load/query, simulator operation, download, outcome access, or manuscript edit.
+It advances only to explicit user coordination before v03 GPU selection.

@@ -1,6 +1,6 @@
 # ACR V5-D v03 Recovery Plan
 
-Status: **PROPOSED; IMPLEMENTATION AND GPU EXECUTION NOT AUTHORIZED**
+Status: **IMPLEMENTED AND VERIFIED; GPU EXECUTION NOT AUTHORIZED**
 
 Date: 2026-08-10
 
@@ -98,3 +98,15 @@ memory/resource breach, restoration uncertainty, or source/checkpoint drift
 stops V5-D. Only a complete independently verified V5-D pass may advance to
 planning V5-E. Even that pass would establish bounded real-tensor feasibility,
 not task success or a positive paper result.
+
+## 7. Implementation checkpoint
+
+The v03 restoration correction and pre-GPU verification are complete. The
+resolved configuration semantic SHA-256 is
+`a9447cd385b4229e54cf85ba8fc7e06e4b4d283b9ac5c655e0c5201fb5d3f297`.
+All 341 local tests passed. On TITAN, the complete suite passed with its
+temporary root confined beneath `/home/ved/SAVR`, and the closed-stdin import
+preflight confirmed CUDA remained uninitialized. Full evidence is in
+`reports/PHASE_V5_D_V03_RECOVERY_IMPLEMENTATION_REPORT.md`.
+
+The mandatory pause before v03 GPU selection remains active.

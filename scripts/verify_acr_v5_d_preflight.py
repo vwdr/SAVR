@@ -33,6 +33,7 @@ def verify() -> dict[str, Any]:
         V5DProtocolViolation,
         frozen_query_schedule,
         load_v5_d_freeze,
+        resolve_v5_d_recovery,
     )
     from savr.acr.v5_d_torch_backend import build_openvla_core_functions
 
@@ -40,6 +41,12 @@ def verify() -> dict[str, Any]:
     base = json.loads(
         (ROOT / "configs/acr/v5_d_gpu_feasibility_freeze.json").read_text(encoding="utf-8")
     )
+    recovery_v02 = json.loads(
+        (ROOT / "configs/acr/v5_d_gpu_feasibility_recovery_v02.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    resolved_v02 = resolve_v5_d_recovery(base, recovery_v02)
     schedule = frozen_query_schedule(config)
     ledger = FrozenQueryLedger(config)
     for identity in schedule:
@@ -94,7 +101,7 @@ def verify() -> dict[str, Any]:
         "src/savr/acr/v5_d_recovery.py",
         "scripts/select_acr_v5_d_gpu.py",
         "scripts/prepare_acr_v5_d_libero_config.py",
-        "scripts/verify_acr_v5_d_v02_import.py",
+        "scripts/verify_acr_v5_d_v03_import.py",
         "scripts/run_acr_v5_d.py",
         "scripts/launch_acr_v5_d.sh",
         "scripts/analyze_acr_v5_d.py",
@@ -103,11 +110,18 @@ def verify() -> dict[str, Any]:
     )
     checks = {
         "freeze_semantic_valid": True,
-        "v02_run_identity": config["run_id"] == "acr-v5d-real-tensor-feasibility-v02",
+        "v03_run_identity": config["run_id"] == "acr-v5d-real-tensor-feasibility-v03",
         "v01_evidence_linked": config["recovery_v02"]["v01_technical_stop_semantic_sha256"]
         == "edf5872fa818f5806601f52143cb17cec7dd4974e03cc4e2ed43c3d042fb4412",
+        "v02_evidence_linked": config["recovery_v03"][
+            "v02_technical_stop_semantic_sha256"
+        ]
+        == "0a30bd847bf2e1549c376200e559a23c670b33c0b01215926c90a15704487661",
         "scientific_contract_unchanged": all(
             config[key] == base[key] for key in scientific_sections
+        ),
+        "scientific_contract_equals_v02": all(
+            config[key] == resolved_v02[key] for key in scientific_sections
         ),
         "query_count_111": len(schedule) == 111,
         "correctness_count_7": sum(item.kind == "correctness" for item in schedule) == 7,
@@ -158,6 +172,25 @@ def verify() -> dict[str, Any]:
                 "return 4",
             )
         ),
+        "exact_checkpoint_restoration_integrated": all(
+            token in recovery_source
+            for token in (
+                "capture_checkpoint_baseline",
+                "restore_checkpoint_exact",
+                "_LOADER_BACKUP_PATTERN",
+                "nonprotected_signatures",
+                "backup content changed",
+                "idempotent_ready",
+            )
+        )
+        and all(
+            token in runner_source
+            for token in (
+                "capture_checkpoint_baseline",
+                "restore_checkpoint_exact",
+                "selected_gpu_compute_capability",
+            )
+        ),
         "launch_raw_only_exit_20": "if [[ ${status} -eq 20 ]]" in launch_source,
         "local_cache_roots": all(
             name in launch_source
@@ -172,10 +205,10 @@ def verify() -> dict[str, Any]:
         "implementation_files_present": all((ROOT / name).is_file() for name in files),
     }
     record = {
-        "schema_version": "acr.v5d-preflight-verification.v2",
+        "schema_version": "acr.v5d-preflight-verification.v3",
         "status": "pass" if all(checks.values()) else "fail",
         "configuration_semantic_sha256": config["semantic_sha256"],
-        "backend_version": "acr-v5d-static-backend-v02-recovery",
+        "backend_version": "acr-v5d-static-backend-v03-recovery",
         "query_labels_sha256": hashlib.sha256(
             canonical_bytes([item.label for item in schedule])
         ).hexdigest(),
@@ -189,7 +222,7 @@ def verify() -> dict[str, Any]:
             "downloads": 0,
             "new_task_outcomes": 0,
         },
-        "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V02_GPU_SELECTION",
+        "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V03_GPU_SELECTION",
     }
     record["semantic_sha256"] = hashlib.sha256(canonical_bytes(record)).hexdigest()
     return record
