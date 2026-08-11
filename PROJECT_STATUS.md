@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **v01 TECHNICAL STOP BEFORE MODEL LOAD; NO METHOD RESULT**
+ACR Version 5 V5-D — **v02 RECOVERY VERIFIED; GPU NOT STARTED**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -35,6 +35,16 @@ model queries, backend launches, correctness/timing records, simulator calls,
 or outcomes. This is no method result. Evidence:
 `reports/PHASE_V5_D_V01_TECHNICAL_STOP_REPORT.md` and
 `reports/runtime/acr_v5_d_v01_technical_stop.json`.
+
+The v02 correction now creates and authenticates a canonical, create-once
+run-local LIBERO config before import and records all uncaught pre-model
+failures as zero-query stops that cannot trigger raw fallback. All 329 local
+tests pass. TITAN's closed-stdin import-only preflight passed with CUDA
+uninitialized and zero GPU inspection/model/simulator/outcome use. Resolved
+experiment semantic SHA-256 is
+`4ae65dda537a5b6dcdf9abd34d79e0a9d7defee834a2a8cc2f7107a659f36076`;
+import-preflight semantic SHA-256 is
+`a3ffc574631e8e250ab8021c0f8b99e0bf329a1e82d085499fb8e19747dd3490`.
 
 V5-C implemented the frozen eager reference and owned-static-buffer executors
 plus the isolated execution adapter. Exact wrist, scene-first combined-token,
@@ -552,12 +562,10 @@ Not completed:
 
 Preserve the complete negative V3-D/V4-A results, the verified V5 isolated-
 reuse correction, positive V5-B screening, and completed V5-C CPU evidence.
-Preserve immutable V5-D v01 as a zero-query technical stop. If authorized,
-implement the non-interactive, run-local LIBERO configuration and pre-import
-failure-recording gates in `docs/ACR_V5_D_V02_RECOVERY_PLAN.md`. Merge and
-synchronize that correction, then stop again for separate authorization before
-any v02 GPU selection. Keep Goal/final populations and success fields sealed
-and do not modify the manuscript.
+Preserve immutable V5-D v01 as a zero-query technical stop. Stop for explicit
+user coordination before running the aggregate-only v02 GPU selector. Keep
+Goal/final populations and success fields sealed and do not modify the
+manuscript.
 
 ## Candidate initial stack
 

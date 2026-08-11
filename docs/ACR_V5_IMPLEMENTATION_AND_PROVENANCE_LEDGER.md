@@ -344,3 +344,34 @@ The proposed v02 route changes only non-interactive LIBERO configuration and
 pre-import failure recording while preserving every method, backend,
 correctness, timing, statistical, resource, and claim gate. v02 requires a new
 run ID, merged pre-GPU correction, and separate execution authorization.
+
+## 19. V5-D v02 pre-GPU recovery implementation
+
+Recovery implementation commit `9f187122dfa8441c8156a9083c8e507e5cb1bedd`
+adds a compact machine overlay rather than modifying the v01 freeze. Resolution
+changes the run ID to `acr-v5d-real-tensor-feasibility-v02`, links the immutable
+v01 stop digest, and permits only canonical LIBERO configuration plus an outer
+pre-model stop envelope. The selected method, pinned stack, source/checkpoint
+hashes, backend waterfall, inputs, tensors, correctness schedule/tolerances,
+timing permutations, bootstrap/gates, GPU selection rule, memory/resources,
+recovery, and claim boundary remain byte-structurally equal to v01.
+
+The config helper emits deterministic JSON-valid-YAML with exactly five pinned
+LIBERO paths. It refuses path escape, symlinks, changed keys/bytes, overwrite,
+or a second create. The launch wrapper invokes it before either backend, and
+the runner verifies its independent attestation before upstream import. An
+uncaught pre-model failure now writes a zero-query immutable record and exits
+4; only exact exit 20 can activate the frozen raw transition.
+
+All 329 local tests passed. The deterministic v02 preflight semantic SHA-256 is
+`d7c3ed40cc9d5760a846cb15c688fa5c776cbac8f243d948376d16e64427a695`.
+On TITAN, the pinned upstream evaluation module imported with stdin closed,
+interactive input forbidden, and `CUDA_VISIBLE_DEVICES` empty.
+`torch.cuda.is_initialized()` remained false before and after. Import-preflight
+semantic SHA-256 is
+`a3ffc574631e8e250ab8021c0f8b99e0bf329a1e82d085499fb8e19747dd3490`.
+
+This checkpoint used zero GPU inspection, model load/query, simulator
+instance/reset/episode, download, new task outcome, protected population, or
+manuscript edit. It advances only to explicit user coordination before v02
+aggregate GPU selection.

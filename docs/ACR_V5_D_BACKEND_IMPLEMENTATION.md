@@ -1,16 +1,19 @@
 # V5-D Backend Implementation and Execution Guide
 
-Status: **IMPLEMENTED AND CPU/FAKE-BACKEND VERIFIED; GPU NOT SELECTED**
+Status: **V02 RECOVERY IMPLEMENTED AND VERIFIED; GPU NOT SELECTED**
 
 Date: 2026-08-10
 
 Normative protocol: `docs/ACR_V5_D_GPU_FEASIBILITY_PROTOCOL.md`
 
-Machine freeze semantic SHA-256:
+Base v01 machine freeze semantic SHA-256:
 `f445cf5d1a5ec6877ebea46ccc3883a11a676b38cb33a711ee4b74baf22f53f8`
 
-Preflight semantic SHA-256:
-`db097ca8cab44d474a65e22888a72da8c4c6e2489a31188abea67c7ed55bff98`
+Resolved v02 experiment semantic SHA-256:
+`4ae65dda537a5b6dcdf9abd34d79e0a9d7defee834a2a8cc2f7107a659f36076`
+
+V02 preflight semantic SHA-256:
+`d7c3ed40cc9d5760a846cb15c688fa5c776cbac8f243d948376d16e64427a695`
 
 ## 1. Purpose and authorization boundary
 
@@ -19,7 +22,10 @@ GPU, loading the model, compiling/capturing CUDA code, or producing timing
 output. It prepares the exact code that a later user-coordinated one-GPU phase
 may execute.
 
-The implementation does not authorize the one-GPU phase. In particular, the
+V01 stopped before model load because LIBERO's first-use configuration prompt
+was not initialized for non-interactive execution. V02 corrects that defect
+with a canonical create-once run-local config and an outer pre-model technical
+stop envelope. The implementation does not authorize the one-GPU phase. The
 GPU-selection script contains an explicit coordination environment guard and
 the project still requires the user to approve entry before that variable may
 be set.
@@ -29,14 +35,17 @@ be set.
 | Artifact | Responsibility |
 |---|---|
 | `src/savr/acr/v5_d_runtime.py` | Frozen query ledger, compiler/raw waterfall, cumulative resource envelope, restoration guard, and real mixed-dtype eager/static executors |
+| `src/savr/acr/v5_d_recovery.py` | V02 overlay validation, canonical LIBERO config, path/symlink checks, create-once writes, and pre-model stop records |
 | `src/savr/acr/v5_d_torch_backend.py` | Exact pinned wrist/downstream cores, `torch.compile` pair, and raw `CUDAGraph` pair |
 | `scripts/select_acr_v5_d_gpu.py` | Three aggregate-only samples, frozen eligibility thresholds, lowest-index selection, immutable launch manifest |
+| `scripts/prepare_acr_v5_d_libero_config.py` | Create and attest the v02 run-local config before upstream import |
 | `scripts/run_acr_v5_d.py` | Pinned-source/hash checks, model setup, backend preparation, seven correctness queries, eight warm-ups, 96 balanced timed queries, restoration, and immutable evidence |
 | `scripts/launch_acr_v5_d.sh` | Project-local offline caches, one visible GPU, compile-first process, permitted fresh-process raw transition, finalization |
 | `scripts/analyze_acr_v5_d.py` | Deterministic 10,000-block paired bootstrap, ordering-bias analysis, and conjunctive gates |
 | `scripts/verify_acr_v5_d.py` | Independent recomputation from raw records without trusting analyzer booleans |
 | `scripts/finalize_acr_v5_d.py` | Two byte-identical analyzer executions and immutable independent verification |
 | `scripts/verify_acr_v5_d_preflight.py` | Dependency-free deterministic pre-GPU implementation verification |
+| `scripts/verify_acr_v5_d_v02_import.py` | Closed-stdin, CUDA-hidden pinned upstream import verification |
 
 No V5-C controller, executor, integration, or evidence file was changed.
 

@@ -58,6 +58,7 @@ At most one phase may be `IN_PROGRESS`.
 | V5-DP. Real-tensor feasibility protocol | COMPLETE_FROZEN | Pinned real tensors, compiler/raw technical waterfall, exact 111-query balanced schedule, parity/statistical/memory/resource gates, deferred GPU selection, and fail-closed recovery frozen; `reports/PHASE_V5_D_PROTOCOL_REPORT.md` | Separate authorization for backend implementation and CPU/fake-backend gate |
 | V5-DI. Pre-GPU backend implementation | COMPLETE_VERIFIED | Mixed-dtype real executor, exact OpenVLA cores, compiler/raw waterfall, aggregate selector, runner, paired analyzer, independent verifier, and deterministic preflight implemented; `reports/PHASE_V5_D_IMPLEMENTATION_REPORT.md` | Explicit user coordination before aggregate GPU selection |
 | V5-D01. First real-tensor launch | TECHNICAL_STOP_NO_RESULT | GPU 0 selected under three aggregate samples; missing run-local LIBERO config triggered a non-interactive import `EOFError` before model load; zero model/backend/query/simulator/outcome work; `reports/PHASE_V5_D_V01_TECHNICAL_STOP_REPORT.md` | Separately authorize and implement the v02 recovery checkpoint |
+| V5-D02I. Recovery implementation | COMPLETE_VERIFIED | New v02 identity; canonical create-once LIBERO config; outer pre-model zero-query stop; 329 tests; closed-stdin TITAN import passed with CUDA uninitialized and zero GPU/model/simulator/outcome use; `reports/PHASE_V5_D_V02_RECOVERY_IMPLEMENTATION_REPORT.md` | Explicit user coordination before v02 aggregate GPU selection |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -67,8 +68,9 @@ At most one phase may be `IN_PROGRESS`.
 ## Active milestone
 
 V5-B and V5-C are complete. V5-D v01 stopped before model load because the
-run-local LIBERO config was not initialized non-interactively. The separately
-versioned IR-SA-ACR controller
+run-local LIBERO config was not initialized non-interactively. V02 now fixes
+that launch defect and passes CPU plus closed-stdin import verification. The
+separately versioned IR-SA-ACR controller
 mechanically enforces one completed refresh after every reuse, cross-checks cache age,
 rejects forged consecutive reuse, resets the latch by episode, and runs through
 the existing batched adapter. CPU verification establishes maximum reuse
@@ -85,8 +87,8 @@ real-tensor paths, backend waterfall, 111-query schedule, parity/statistical
 gates, resources, and recovery. Its backend, runner, analyzer, verifier, and
 aggregate selector passed CPU/fake-backend preflight, but that preflight missed
 LIBERO's fresh-config prompt. v01 contains no method output and cannot be
-retried. A separately authorized v02 correction must pass new import-only and
-technical-summary gates before another user-coordinated GPU phase;
+retried. V02's canonical config and technical-summary gates now pass; another
+user-coordinated GPU phase remains separately gated;
 model/simulator use, new outcomes, and manuscript changes remain gated.
 
 V4-A remains stopped negative. All six output-blind candidates were ineligible:
