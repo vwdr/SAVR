@@ -1,0 +1,51 @@
+{
+  "schema_version": "acr.v5d-gpu-feasibility-recovery.v2",
+  "status": "FROZEN_FOR_PRE_GPU_RECOVERY_IMPLEMENTATION",
+  "authorized_at": "2026-08-10",
+  "authorized_scope": "V02_PRE_GPU_IMPLEMENTATION_ONLY",
+  "base_freeze": "configs/acr/v5_d_gpu_feasibility_freeze.json",
+  "base_freeze_semantic_sha256": "f445cf5d1a5ec6877ebea46ccc3883a11a676b38cb33a711ee4b74baf22f53f8",
+  "v01_run_id": "acr-v5d-real-tensor-feasibility-v01",
+  "v01_technical_stop_semantic_sha256": "edf5872fa818f5806601f52143cb17cec7dd4974e03cc4e2ed43c3d042fb4412",
+  "run_id": "acr-v5d-real-tensor-feasibility-v02",
+  "recovery_plan": "docs/ACR_V5_D_V02_RECOVERY_PLAN.md",
+  "permitted_changes": [
+    "canonical-run-local-libero-config-before-upstream-import",
+    "pre-model-technical-stop-envelope"
+  ],
+  "libero_config": {
+    "config_relative_to_run": "cache/libero/config.yaml",
+    "keys": [
+      "assets",
+      "bddl_files",
+      "benchmark_root",
+      "datasets",
+      "init_states"
+    ],
+    "paths_relative_to_project": {
+      "assets": "third_party/LIBERO/libero/libero/assets",
+      "bddl_files": "third_party/LIBERO/libero/libero/bddl_files",
+      "benchmark_root": "third_party/LIBERO/libero/libero",
+      "datasets": "third_party/LIBERO/libero/datasets",
+      "init_states": "third_party/LIBERO/libero/libero/init_files"
+    },
+    "format": "canonical-json-valid-yaml",
+    "create_once": true,
+    "overwrite": false,
+    "symlinks_permitted": false
+  },
+  "current_authorization": {
+    "recovery_implementation": true,
+    "gpu_inspection": false,
+    "gpu_selection": false,
+    "model_loading": false,
+    "model_queries": false,
+    "cuda_compile_capture_or_timing": false,
+    "simulator_use": false,
+    "protected_outcome_access": false,
+    "manuscript_changes": false
+  },
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V02_GPU_SELECTION",
+  "resolved_configuration_semantic_sha256": "4ae65dda537a5b6dcdf9abd34d79e0a9d7defee834a2a8cc2f7107a659f36076",
+  "semantic_sha256": "5c92f49601c1c04a87670ccd4f0cfd5a3057dcd7b5825d5defeb2e32a9437aaf"
+}

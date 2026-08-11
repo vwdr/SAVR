@@ -137,10 +137,10 @@ eligible.
 
 ## 6. Phase V5-D — Bounded one-GPU correctness and timing margin
 
-Status: `V01_TECHNICAL_STOP_NO_METHOD_RESULT`. V5-C passed and the backend/
-runner/analysis checkpoint was complete, but v01 stopped during upstream
-LIBERO import before model load because its run-local config file was absent.
-Recovery v02 is not yet implemented or authorized.
+Status: `V02_RECOVERY_VERIFIED_NOT_RUN`. V5-C passed; v01 stopped during
+upstream LIBERO import before model load because its run-local config file was
+absent. V02 now passes canonical-config, pre-model-stop, complete regression,
+and TITAN closed-stdin import gates. GPU execution remains unauthorized.
 
 ### Mandatory pause
 

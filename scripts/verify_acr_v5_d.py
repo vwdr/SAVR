@@ -10,6 +10,7 @@ import json
 import math
 import random
 import statistics
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -234,18 +235,19 @@ def main() -> int:
     parser.add_argument(
         "--run",
         type=Path,
-        default=Path("results/acr-v5d-real-tensor-feasibility-v01/final/record.json"),
+        default=Path("results/acr-v5d-real-tensor-feasibility-v02/final/record.json"),
     )
     parser.add_argument(
-        "--analysis", type=Path, default=Path("results/acr-v5d-analysis-v01/record.json")
+        "--analysis", type=Path, default=Path("results/acr-v5d-analysis-v02/record.json")
     )
     args = parser.parse_args()
     root = args.root.resolve()
     if root != EXPECTED_ROOT:
         raise SystemExit(f"Refusing to verify outside {EXPECTED_ROOT}: {root}")
-    config = json.loads(
-        (root / "configs/acr/v5_d_gpu_feasibility_freeze.json").read_text(encoding="utf-8")
-    )
+    sys.path.insert(0, str(root / "src"))
+    from savr.acr.v5_d_runtime import load_v5_d_freeze
+
+    config = load_v5_d_freeze(root)
     run_path = args.run if args.run.is_absolute() else root / args.run
     analysis_path = args.analysis if args.analysis.is_absolute() else root / args.analysis
     errors = verify(

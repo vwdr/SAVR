@@ -2,7 +2,7 @@
 set -euo pipefail
 
 project_root="/home/ved/SAVR"
-run_id="acr-v5d-real-tensor-feasibility-v01"
+run_id="acr-v5d-real-tensor-feasibility-v02"
 run_root="${project_root}/results/${run_id}"
 python_bin="${project_root}/envs/openvla-oft/bin/python"
 manifest="${run_root}/launch/record.json"
@@ -36,6 +36,8 @@ export TOKENIZERS_PARALLELISM=false
 
 mkdir -p "${HF_HOME}" "${HF_HUB_CACHE}" "${TORCH_HOME}" \
   "${TORCHINDUCTOR_CACHE_DIR}" "${TRITON_CACHE_DIR}" "${LIBERO_CONFIG_PATH}"
+
+"${python_bin}" scripts/prepare_acr_v5_d_libero_config.py
 
 set +e
 "${python_bin}" scripts/run_acr_v5_d.py --backend torch-compile

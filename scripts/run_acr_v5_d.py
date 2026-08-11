@@ -30,6 +30,7 @@ LIBERO_REVISION = "8f1084e3132a39270c3a13ebe37270a43ece2a01"
 CHECKPOINT_REVISION = "638918f3d1c2e43a39a8a20772bdb8b91835e4b7"
 INSTRUCTION = "move the robot safely to the target"
 TECHNICAL_FALLBACK_EXIT = 20
+V02_RUN_ID = "acr-v5d-real-tensor-feasibility-v02"
 
 
 def utc_now() -> str:
@@ -196,7 +197,62 @@ def counter_delta(after: dict[str, int], before: dict[str, int], suffix: str) ->
     return sum(value - before.get(key, 0) for key, value in after.items() if key.endswith(suffix))
 
 
-def main() -> int:
+def requested_backend() -> str:
+    try:
+        index = sys.argv.index("--backend")
+        return sys.argv[index + 1]
+    except (ValueError, IndexError):
+        return "unknown"
+
+
+def record_pre_model_stop(root: Path, backend: str, error: BaseException) -> None:
+    """Best-effort immutable evidence for failures outside the model envelope."""
+
+    if root != EXPECTED_ROOT:
+        return
+    sys.path.insert(0, str(root / "src"))
+    from savr.acr.v5_d_recovery import build_pre_model_stop_record, write_json_once
+    from savr.acr.v5_d_runtime import load_v5_d_freeze
+
+    config = None
+    launch = None
+    revision = None
+    selected_after = None
+    try:
+        config = load_v5_d_freeze(root)
+    except Exception:
+        pass
+    run_id = V02_RUN_ID if config is None else str(config["run_id"])
+    run_root = root / "results" / run_id
+    launch_path = run_root / "launch" / "record.json"
+    try:
+        launch = json.loads(launch_path.read_text(encoding="utf-8"))
+    except Exception:
+        pass
+    try:
+        revision = git_output(root, "rev-parse", "HEAD")
+    except Exception:
+        pass
+    physical_id = os.environ.get("SAVR_PHYSICAL_GPU_ID")
+    if physical_id:
+        try:
+            selected_after = selected_gpu_snapshot(physical_id)
+        except Exception:
+            pass
+    record = build_pre_model_stop_record(
+        run_id=run_id,
+        backend=backend,
+        execution_revision=revision,
+        configuration_semantic_sha256=None if config is None else config.get("semantic_sha256"),
+        launch_manifest_semantic_sha256=None if launch is None else launch.get("semantic_sha256"),
+        error=error,
+        recorded_at_utc=utc_now(),
+        selected_gpu_after=selected_after,
+    )
+    write_json_once(run_root / f"pre-model-technical-stop-{backend}" / "record.json", record)
+
+
+def _run_attempt() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--backend", choices=("torch-compile", "raw-cudagraph"), required=True)
     args = parser.parse_args()
@@ -212,6 +268,7 @@ def main() -> int:
         "TORCH_HOME",
         "TORCHINDUCTOR_CACHE_DIR",
         "TRITON_CACHE_DIR",
+        "LIBERO_CONFIG_PATH",
     )
     if any(not os.environ.get(name) for name in required_environment):
         raise SystemExit("V5-D launch environment is incomplete")
@@ -219,15 +276,14 @@ def main() -> int:
     if os.environ["CUDA_VISIBLE_DEVICES"] != physical_id:
         raise SystemExit("V5-D physical GPU ID must equal CUDA_VISIBLE_DEVICES")
     if any(
-        not Path(os.environ[name])
-        .resolve()
-        .is_relative_to(root / "results" / "acr-v5d-real-tensor-feasibility-v01")
+        not Path(os.environ[name]).resolve().is_relative_to(root / "results" / V02_RUN_ID)
         for name in (
             "HF_HOME",
             "HF_HUB_CACHE",
             "TORCH_HOME",
             "TORCHINDUCTOR_CACHE_DIR",
             "TRITON_CACHE_DIR",
+            "LIBERO_CONFIG_PATH",
         )
     ):
         raise SystemExit("V5-D caches must stay beneath the immutable run directory")
@@ -235,6 +291,8 @@ def main() -> int:
     sys.path.insert(0, str(root / "src"))
     sys.path.insert(0, str(root / "scripts"))
     from savr.acr.records import ImmutableRecordStore
+    from savr.acr.v5_d_recovery import semantic_sha256 as recovery_semantic_sha256
+    from savr.acr.v5_d_recovery import validate_libero_config
     from savr.acr.v5_d_runtime import (
         BackendKind,
         BackendWaterfall,
@@ -249,6 +307,8 @@ def main() -> int:
 
     config = load_v5_d_freeze(root)
     run_id = config["run_id"]
+    if run_id != V02_RUN_ID:
+        raise SystemExit("V5-D v02 resolved run identity changed")
     run_root = root / "results" / run_id
     store = ImmutableRecordStore(root / "results")
     launch_path = run_root / "launch" / "record.json"
@@ -257,6 +317,22 @@ def main() -> int:
     launch = json.loads(launch_path.read_text(encoding="utf-8"))
     if launch.get("semantic_sha256") != semantic_sha256(launch):
         raise SystemExit("V5-D launch-manifest semantic hash mismatch")
+    libero_attestation = validate_libero_config(root, run_root, config["recovery_v02"])
+    if (
+        Path(os.environ["LIBERO_CONFIG_PATH"]).resolve()
+        != Path(libero_attestation["path"]).parent.resolve()
+    ):
+        raise SystemExit("V5-D v02 LIBERO_CONFIG_PATH differs from the attested config")
+    libero_record_path = run_root / "libero-config" / "record.json"
+    if not libero_record_path.is_file():
+        raise SystemExit("V5-D v02 LIBERO config attestation is missing")
+    libero_record = json.loads(libero_record_path.read_text(encoding="utf-8"))
+    if (
+        libero_record.get("semantic_sha256") != recovery_semantic_sha256(libero_record)
+        or libero_record.get("config_sha256") != libero_attestation["sha256"]
+        or libero_record.get("launch_manifest_semantic_sha256") != launch["semantic_sha256"]
+    ):
+        raise SystemExit("V5-D v02 LIBERO config attestation changed")
     source_revision = require_clean_revision(root)
     if source_revision != launch["execution_revision"]:
         raise SystemExit("V5-D execution revision differs from the launch manifest")
@@ -1215,6 +1291,26 @@ def main() -> int:
             print(
                 f"V5-D stopped: {type(terminal_error).__name__}: {terminal_error}", file=sys.stderr
             )
+
+
+def main() -> int:
+    try:
+        return _run_attempt()
+    except BaseException as error:
+        backend = requested_backend()
+        root = Path(__file__).resolve().parents[1]
+        try:
+            record_pre_model_stop(root, backend, error)
+        except BaseException as record_error:
+            print(
+                f"V5-D v02 pre-model evidence write failed: {type(record_error).__name__}: "
+                f"{record_error}",
+                file=sys.stderr,
+            )
+        print(
+            f"V5-D v02 stopped before model load: {type(error).__name__}: {error}", file=sys.stderr
+        )
+        return 4
 
 
 if __name__ == "__main__":

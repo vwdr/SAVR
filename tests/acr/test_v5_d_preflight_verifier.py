@@ -25,10 +25,10 @@ def test_preflight_verifier_is_deterministic_complete_and_published() -> None:
     assert first["status"] == "pass"
     assert all(first["checks"].values())
     assert all(value == 0 for value in first["resources_used"].values())
-    assert first["advance_only_to"] == "EXPLICIT_USER_COORDINATION_BEFORE_GPU_SELECTION"
-    assert len(first["source_hashes"]) == 8
+    assert first["advance_only_to"] == "EXPLICIT_USER_COORDINATION_BEFORE_V02_GPU_SELECTION"
+    assert len(first["source_hashes"]) == 11
     assert len(first["semantic_sha256"]) == 64
     published = json.loads(
-        (ROOT / "reports/runtime/acr_v5_d_preflight.json").read_text(encoding="utf-8")
+        (ROOT / "reports/runtime/acr_v5_d_v02_preflight.json").read_text(encoding="utf-8")
     )
     assert published == first

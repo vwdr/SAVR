@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import importlib.util
-import json
 from pathlib import Path
+
+from savr.acr.v5_d_runtime import load_v5_d_freeze
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -18,9 +19,7 @@ def load(name: str):
 
 
 def config() -> dict:
-    return json.loads(
-        (ROOT / "configs/acr/v5_d_gpu_feasibility_freeze.json").read_text(encoding="utf-8")
-    )
+    return load_v5_d_freeze(ROOT)
 
 
 def synthetic_run(freeze: dict, *, optimized_wall=79.5) -> dict:

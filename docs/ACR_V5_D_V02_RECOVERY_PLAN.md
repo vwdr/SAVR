@@ -1,6 +1,6 @@
 # ACR V5-D v02 Recovery Plan
 
-Status: **PROPOSED AFTER v01 TECHNICAL STOP; NOT AUTHORIZED FOR EXECUTION**
+Status: **IMPLEMENTED AND VERIFIED; v02 GPU EXECUTION NOT AUTHORIZED**
 
 Date: 2026-08-10
 
@@ -76,4 +76,5 @@ imputed.
 3. Stop and obtain explicit user authorization for v02 GPU selection.
 4. Run v02 exactly once under its new immutable ID.
 
-This plan does not itself authorize implementation or execution.
+Implementation and the CPU/import-only preflight are complete. This document
+still does not authorize GPU selection or execution.

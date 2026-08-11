@@ -13,6 +13,7 @@ import itertools
 import json
 import threading
 import time
+from copy import deepcopy
 from collections.abc import Callable, Mapping, Sequence
 from contextlib import AbstractContextManager
 from dataclasses import dataclass
@@ -31,9 +32,13 @@ from savr.acr.reuse_executor import (
 )
 
 
-V5_D_RUN_ID = "acr-v5d-real-tensor-feasibility-v01"
+V5_D_V01_RUN_ID = "acr-v5d-real-tensor-feasibility-v01"
+V5_D_RUN_ID = "acr-v5d-real-tensor-feasibility-v02"
 V5_D_FREEZE_SCHEMA = "acr.v5d-gpu-feasibility-freeze.v1"
+V5_D_RESOLVED_SCHEMA = "acr.v5d-gpu-feasibility-resolved.v2"
+V5_D_RECOVERY_SCHEMA = "acr.v5d-gpu-feasibility-recovery.v2"
 V5_D_FREEZE_RELATIVE = Path("configs/acr/v5_d_gpu_feasibility_freeze.json")
+V5_D_RECOVERY_RELATIVE = Path("configs/acr/v5_d_gpu_feasibility_recovery_v02.json")
 V5_D_BACKEND_VERSION = "acr-v5d-static-backend-v1"
 V5_D_COMPILE_BACKEND = "torch-compile"
 V5_D_RAW_BACKEND = "raw-cudagraph"
@@ -52,12 +57,22 @@ def semantic_sha256(value: Mapping[str, Any], *, field: str = "semantic_sha256")
 def validate_v5_d_freeze(config: Mapping[str, Any]) -> None:
     """Reject any drift from the pre-output V5-D machine contract."""
 
-    if config.get("schema_version") != V5_D_FREEZE_SCHEMA:
+    schema = config.get("schema_version")
+    if schema not in (V5_D_FREEZE_SCHEMA, V5_D_RESOLVED_SCHEMA):
         raise ValueError("V5-D freeze schema changed")
     if config.get("semantic_sha256") != semantic_sha256(config):
         raise ValueError("V5-D freeze semantic hash mismatch")
-    if config.get("run_id") != V5_D_RUN_ID:
+    expected_run_id = V5_D_V01_RUN_ID if schema == V5_D_FREEZE_SCHEMA else V5_D_RUN_ID
+    if config.get("run_id") != expected_run_id:
         raise ValueError("V5-D run identity changed")
+    if schema == V5_D_RESOLVED_SCHEMA:
+        recovery = config.get("recovery_v02", {})
+        if recovery.get("base_freeze_semantic_sha256") != (
+            "f445cf5d1a5ec6877ebea46ccc3883a11a676b38cb33a711ee4b74baf22f53f8"
+        ) or recovery.get("v01_technical_stop_semantic_sha256") != (
+            "edf5872fa818f5806601f52143cb17cec7dd4974e03cc4e2ed43c3d042fb4412"
+        ):
+            raise ValueError("V5-D v02 recovery provenance changed")
     waterfall = config["backend_waterfall"]
     if waterfall["order"] != [V5_D_COMPILE_BACKEND, V5_D_RAW_BACKEND]:
         raise ValueError("V5-D backend waterfall changed")
@@ -93,10 +108,91 @@ def validate_v5_d_freeze(config: Mapping[str, Any]) -> None:
         raise ValueError("V5-D protected resource boundary changed")
 
 
+def validate_v5_d_recovery_overlay(recovery: Mapping[str, Any], base: Mapping[str, Any]) -> None:
+    if recovery.get("schema_version") != V5_D_RECOVERY_SCHEMA:
+        raise ValueError("V5-D v02 recovery schema changed")
+    if recovery.get("semantic_sha256") != semantic_sha256(recovery):
+        raise ValueError("V5-D v02 recovery semantic hash mismatch")
+    if recovery.get("base_freeze") != V5_D_FREEZE_RELATIVE.as_posix():
+        raise ValueError("V5-D v02 base-freeze path changed")
+    if recovery.get("base_freeze_semantic_sha256") != base.get("semantic_sha256"):
+        raise ValueError("V5-D v02 base-freeze identity changed")
+    if recovery.get("v01_run_id") != V5_D_V01_RUN_ID or recovery.get("run_id") != V5_D_RUN_ID:
+        raise ValueError("V5-D v02 run provenance changed")
+    if recovery.get("v01_technical_stop_semantic_sha256") != (
+        "edf5872fa818f5806601f52143cb17cec7dd4974e03cc4e2ed43c3d042fb4412"
+    ):
+        raise ValueError("V5-D v01 technical-stop identity changed")
+    if recovery.get("permitted_changes") != [
+        "canonical-run-local-libero-config-before-upstream-import",
+        "pre-model-technical-stop-envelope",
+    ]:
+        raise ValueError("V5-D v02 recovery scope changed")
+    libero = recovery.get("libero_config", {})
+    if libero.get("keys") != [
+        "assets",
+        "bddl_files",
+        "benchmark_root",
+        "datasets",
+        "init_states",
+    ] or libero.get("paths_relative_to_project") != {
+        "assets": "third_party/LIBERO/libero/libero/assets",
+        "bddl_files": "third_party/LIBERO/libero/libero/bddl_files",
+        "benchmark_root": "third_party/LIBERO/libero/libero",
+        "datasets": "third_party/LIBERO/libero/datasets",
+        "init_states": "third_party/LIBERO/libero/libero/init_files",
+    }:
+        raise ValueError("V5-D v02 LIBERO mapping changed")
+    if libero.get("config_relative_to_run") != "cache/libero/config.yaml":
+        raise ValueError("V5-D v02 LIBERO config location changed")
+    if recovery.get("current_authorization") != {
+        "recovery_implementation": True,
+        "gpu_inspection": False,
+        "gpu_selection": False,
+        "model_loading": False,
+        "model_queries": False,
+        "cuda_compile_capture_or_timing": False,
+        "simulator_use": False,
+        "protected_outcome_access": False,
+        "manuscript_changes": False,
+    }:
+        raise ValueError("V5-D v02 authorization boundary changed")
+
+
+def resolve_v5_d_recovery(base: Mapping[str, Any], recovery: Mapping[str, Any]) -> dict[str, Any]:
+    validate_v5_d_freeze(base)
+    validate_v5_d_recovery_overlay(recovery, base)
+    resolved = deepcopy(dict(base))
+    resolved.update(
+        {
+            "schema_version": V5_D_RESOLVED_SCHEMA,
+            "status": recovery["status"],
+            "authorized_at": recovery["authorized_at"],
+            "authorized_scope": recovery["authorized_scope"],
+            "protocol": recovery["recovery_plan"],
+            "run_id": recovery["run_id"],
+            "recovery_v02": {
+                "base_freeze_semantic_sha256": recovery["base_freeze_semantic_sha256"],
+                "v01_run_id": recovery["v01_run_id"],
+                "v01_technical_stop_semantic_sha256": recovery[
+                    "v01_technical_stop_semantic_sha256"
+                ],
+                "permitted_changes": recovery["permitted_changes"],
+                "libero_config": recovery["libero_config"],
+            },
+            "current_authorization": recovery["current_authorization"],
+            "advance_only_to": recovery["advance_only_to"],
+            "semantic_sha256": recovery["resolved_configuration_semantic_sha256"],
+        }
+    )
+    validate_v5_d_freeze(resolved)
+    return resolved
+
+
 def load_v5_d_freeze(project_root: Path) -> dict[str, Any]:
-    config = json.loads((project_root / V5_D_FREEZE_RELATIVE).read_text(encoding="utf-8"))
-    validate_v5_d_freeze(config)
-    return config
+    base = json.loads((project_root / V5_D_FREEZE_RELATIVE).read_text(encoding="utf-8"))
+    recovery = json.loads((project_root / V5_D_RECOVERY_RELATIVE).read_text(encoding="utf-8"))
+    return resolve_v5_d_recovery(base, recovery)
 
 
 class BackendKind(str, Enum):

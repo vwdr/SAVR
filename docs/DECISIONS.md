@@ -1257,3 +1257,30 @@ Last updated: 2026-08-10
 - Disposition: `STOP_NO_RETRY_PREPARE_SEPARATELY_AUTHORIZED_V5D_V02`.
 - Approver: User authorized v01 one-GPU entry, 2026-08-10. This decision does
   not infer authorization for v02 implementation or execution.
+
+## D-093 — Accept V5-D v02 pre-GPU recovery implementation
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Accept the new v02 run identity, compact recovery overlay,
+  canonical create-once LIBERO configuration, config attestation, and outer
+  pre-model zero-query technical-stop envelope. Preserve every v01 scientific
+  method, schedule, tolerance, statistical, memory, resource, and claim field.
+- Evidence: Resolved experiment semantic SHA-256
+  `4ae65dda537a5b6dcdf9abd34d79e0a9d7defee834a2a8cc2f7107a659f36076`;
+  deterministic preflight semantic SHA-256
+  `d7c3ed40cc9d5760a846cb15c688fa5c776cbac8f243d948376d16e64427a695`;
+  closed-stdin TITAN import semantic SHA-256
+  `a3ffc574631e8e250ab8021c0f8b99e0bf329a1e82d085499fb8e19747dd3490`;
+  329 local tests.
+- Protection: TITAN import preflight used closed stdin and an empty
+  `CUDA_VISIBLE_DEVICES`; CUDA stayed uninitialized. GPU inspections, model
+  loads/queries, simulator instances/resets/episodes, downloads, and outcomes
+  were zero. No manuscript change.
+- Evidence files: `configs/acr/v5_d_gpu_feasibility_recovery_v02.json`;
+  `reports/runtime/acr_v5_d_v02_preflight.json`;
+  `reports/runtime/acr_v5_d_v02_import_preflight.json`;
+  `reports/PHASE_V5_D_V02_RECOVERY_IMPLEMENTATION_REPORT.md`.
+- Disposition: `STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_V02_GPU_SELECTION`.
+- Approver: User approved v02 correction implementation, 2026-08-10; v02 GPU
+  execution is not inferred.
