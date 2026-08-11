@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **v05 PRE-GPU VERIFIED; GPU NOT STARTED**
+ACR Version 5 V5-D — **v05 MEMORY TECHNICAL STOP; NO METHOD RESULT**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -549,6 +549,8 @@ Completed:
 - V04 contains zero raw preparation launches, full queries, correctness/timing records, simulator operations, or outcomes and is not a method result
 - V05 freezes a new transition-recovery identity: discard 2 seconds, then require 3 aggregate-only samples 5 seconds apart at the unchanged 5%/512 MiB limits
 - 353 local tests, both CI jobs for PRs #82/#83, 6 focused TITAN tests, 353 TITAN tests plus 9 subtests, and deterministic/CUDA-hidden V05 preflights pass
+- the authorized V05 transition gate passed all three samples at 6 MiB/0%; the raw backend then OOMed during downstream warm-up after wrist capture
+- V05 peaked at 23.2266 GiB reserved, 243,269,632 bytes above the 23 GiB cap, with zero correctness/timing/simulator/outcome records
 
 Not completed:
 
@@ -567,11 +569,11 @@ Not completed:
 
 ## Next authorized action
 
-Preserve all negative evidence and immutable V5-D v01-v04 technical stops.
-Stop for explicit user coordination before running the aggregate-only V05 GPU
-selector on `ssh titan`. If coordinated, use at most one eligible GPU and run
-V05 once. Keep the method, shared-pool backend, 111-query schedule, 23 GiB cap,
-simulator/final populations, success fields, and manuscript unchanged.
+Preserve all negative evidence and immutable V5-D v01-v05 technical stops. Do
+not retry V05. Research a separately frozen pre-capture warm-up schedule on the
+same hardware, or move the unchanged gate to compatible higher-memory hardware.
+Keep simulator/final populations and success fields sealed and do not modify
+the manuscript.
 
 ## Candidate initial stack
 

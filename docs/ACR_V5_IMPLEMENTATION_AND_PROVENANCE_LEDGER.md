@@ -557,3 +557,33 @@ The first TITAN full-suite invocation had a nested temporary-root lifecycle
 error and the first import preflight had a relative-`PYTHONPATH` error. Both are
 preserved and excluded; separate top-level/v02 repeats passed. Neither accessed
 a GPU or scientific output. V05 stops for explicit GPU coordination.
+
+## 26. V5-D v05 shared-pool memory technical stop
+
+The authorized selector chose physical GPU 0 after three samples at 6 MiB and
+0%. The compiler repeated the expected `sm_75` BF16/PTX failure, restored all
+protected bytes, removed its verified backups, and emitted raw permit
+`999dbb3e04976e589802a5d04f3a0d8dc6b979e53308413e3a0ad4a026aae7c0`.
+
+The V05 transition rule passed exactly three samples, each at 6 MiB and 0%,
+with stable index/UUID. The raw process loaded the model, completed wrist
+warm-up and capture, and then OOMed during downstream warm-up before downstream
+capture. Peak allocation/reservation was 24,226,396,160/24,939,331,584 bytes;
+reservation exceeded the frozen 23 GiB cap by 243,269,632 bytes.
+
+The memory trace proves the shared-pool API was active but did not become
+available to the second graph: capture order contains only `wrist`, and no
+downstream-after-warmup snapshot exists. Thus the retained wrist graph plus
+downstream warm-up exhausted the device before pool-sharing could govern the
+second capture.
+
+V05 has zero full queries, correctness records, schedule warm-ups, timings,
+simulator operations, downloads, rewards, success fields, or outcomes. It is
+not method-performance evidence. Both attempts restored exactly, no backup
+remains, all source trees are clean, and the GPU returned to 6 MiB/0%.
+
+Curated technical-stop semantic SHA-256 is
+`cb6d9120fc2e6ee69aaa83d677598d21741be8eaf5a3456bc21461d30eb3cc3f`.
+V05 is immutable and cannot be retried. A same-hardware continuation requires
+a separately researched pre-capture warm-up schedule; compatible higher-memory
+hardware remains an alternative.
