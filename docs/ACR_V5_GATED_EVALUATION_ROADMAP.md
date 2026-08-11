@@ -137,7 +137,7 @@ eligible.
 
 ## 6. Phase V5-D — Bounded one-GPU correctness and timing margin
 
-Status: `V05_PRE_GPU_VERIFIED`. V5-C passed; v01 stopped during
+Status: `V05_SHARED_POOL_MEMORY_TECHNICAL_STOP`. V5-C passed; v01 stopped during
 upstream LIBERO import, and v02 stopped before correctness when the compiler
 failed on `sm_75` and the restoration guard rejected the loader's actual
 `.back.<timestamp>` suffix. V03 fixed restoration and reached raw fallback, but
@@ -148,8 +148,9 @@ sample read 33% utilization; the GPU later returned to 6 MiB and 0%. V04 has no
 method result. V5-E remains ineligible. A separately frozen transition recovery
 was required before another V5-D attempt. V05 now freezes and verifies that
 recovery: after a two-second discard it requires three aggregate-only idle
-samples five seconds apart at the unchanged thresholds. GPU execution has not
-started and still requires explicit coordination.
+samples five seconds apart at the unchanged thresholds. The transition passed,
+but raw preparation OOMed during downstream warm-up after wrist capture at
+23.2266 GiB reserved. V05 has no method result and V5-E remains ineligible.
 
 ### Mandatory pause
 

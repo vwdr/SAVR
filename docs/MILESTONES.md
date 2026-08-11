@@ -65,6 +65,7 @@ At most one phase may be `IN_PROGRESS`.
 | V5-D04I. TITAN memory-remediation implementation | COMPLETE_VERIFIED | V03 retained byte-identically; PyTorch-supported shared graph pool isolated behind V04 adapters; fixed capture/replay order and stream enforced; 347 local tests, two CI jobs, 7 focused TITAN tests, deterministic and CUDA-hidden import/API preflights passed; `reports/PHASE_V5_D_V04_MEMORY_REMEDIATION_IMPLEMENTATION_REPORT.md` | Explicit user coordination before v04 aggregate GPU selection |
 | V5-D04. Fourth real-tensor launch | TECHNICAL_STOP_NO_RESULT | Compiler failed pre-output as expected and restored exactly; raw transition was permitted, but one immediate fresh-process sample read 33% utilization and stopped before raw model load; later telemetry was 6 MiB and 0%; zero raw preparation/full queries/simulator/outcomes; `reports/PHASE_V5_D_V04_TECHNICAL_STOP_REPORT.md` | Research and separately freeze a new transition-recovery identity; no automatic V04 retry |
 | V5-D05I. Transition-recovery implementation | COMPLETE_VERIFIED | New V05 identity; NVIDIA-window-based 2-second discard plus three 5-second-spaced aggregate samples at unchanged limits; 353 local tests, two CI jobs per implementation/fix PR, 6 focused TITAN tests, 353 TITAN tests plus 9 subtests, and CUDA-hidden import/API preflight passed; `reports/PHASE_V5_D_V05_TRANSITION_RECOVERY_IMPLEMENTATION_REPORT.md` | Explicit user coordination before V05 aggregate GPU selection |
+| V5-D05. Fifth real-tensor launch | TECHNICAL_STOP_NO_RESULT | Transition gate passed 3/3 at 6 MiB/0%; compiler failed/restored as expected; shared-pool raw backend captured wrist then OOMed during downstream warm-up at 23.2266 GiB reserved, 243,269,632 bytes over cap; zero correctness/timing/simulator/outcomes; `reports/PHASE_V5_D_V05_TECHNICAL_STOP_REPORT.md` | Separately research pre-capture warm-up scheduling or compatible higher-memory hardware; no V05 retry |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -81,7 +82,9 @@ scientific gates and V03 implementation hashes, but its authorized execution
 stopped before raw model load on one immediate 33%-utilization transition
 sample. The GPU later returned to 6 MiB and 0%, and no raw shared-pool result
 exists. V05 now freezes and verifies a sustained-idle transition rule without
-changing thresholds or any scientific gate; GPU execution has not started. The
+changing thresholds or any scientific gate. Its transition passed, but raw
+preparation OOMed during downstream warm-up after wrist capture, so V05 is also
+an immutable no-result technical stop. The
 separately versioned IR-SA-ACR controller
 mechanically enforces one completed refresh after every reuse, cross-checks cache age,
 rejects forged consecutive reuse, resets the latch by episode, and runs through

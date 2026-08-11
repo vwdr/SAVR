@@ -1475,3 +1475,35 @@ Last updated: 2026-08-10
 - Disposition: `STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_V05_GPU_SELECTION`.
 - Approver: User authorized logical forward progress after V04 on 2026-08-11;
   repository safety rules still require a separate pause before GPU selection.
+
+## D-100 — Preserve V5-D v05 as a shared-pool memory technical stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve `acr-v5d-real-tensor-feasibility-v05` without retry and
+  classify it as no method-performance result.
+- Transition evidence: The new gate passed all three fixed samples at 6 MiB and
+  0% with stable index/UUID, establishing that V04's transition rejection was
+  corrected without threshold relaxation.
+- Compiler evidence: One preparation launch repeated the expected BF16/PTX
+  incompatibility on TITAN RTX `sm_75`; exact restoration passed and raw
+  transition was authorized.
+- Raw evidence: Wrist warm-up/capture completed. Downstream warm-up then OOMed
+  on a 14 MiB request before downstream capture. Peak reserved memory was
+  24,939,331,584 bytes (23.2266 GiB), 243,269,632 bytes above the 23 GiB cap.
+- Mechanistic boundary: The completed capture order contains only `wrist`.
+  Shared-pool reuse could not govern downstream capture because downstream
+  warm-up exhausted memory first.
+- Scientific boundary: Full queries, correctness, schedule warm-ups, timing,
+  simulator operations, downloads, and outcomes were zero. No positive or
+  negative method claim follows.
+- Protection: Both attempts restored exact checkpoint state; no loader backup
+  remains; all source trees are clean; post-stop GPU telemetry was 6 MiB/0%; no
+  unrelated process or allocation was inspected.
+- Evidence files: `reports/PHASE_V5_D_V05_TECHNICAL_STOP_REPORT.md`;
+  `reports/runtime/acr_v5_d_v05_technical_stop.json` (semantic SHA-256
+  `cb6d9120fc2e6ee69aaa83d677598d21741be8eaf5a3456bc21461d30eb3cc3f`).
+- Disposition:
+  `STOP_NO_RETRY_RESEARCH_SEPARATELY_FROZEN_PRECAPTURE_WARMUP_OR_COMPATIBLE_HARDWARE`.
+- Approver: User explicitly authorized the single V05 GPU attempt on
+  2026-08-11. This does not authorize a V05 retry or a new V06 system change.

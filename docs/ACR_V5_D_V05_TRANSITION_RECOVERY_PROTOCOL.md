@@ -1,6 +1,6 @@
 # ACR V5-D v05 Transition-Revalidation Recovery Protocol
 
-Status: **FROZEN FOR PRE-GPU IMPLEMENTATION; GPU EXECUTION REQUIRES SEPARATE COORDINATION**
+Status: **EXECUTED; SHARED-POOL MEMORY TECHNICAL STOP; NO METHOD RESULT**
 
 Date: 2026-08-11
 
@@ -126,3 +126,16 @@ sealed and unreported.
 Passing V05 establishes only the frozen real-tensor correctness and efficiency
 gates. It does not establish task success. V5-E remains separately planned and
 requires new approval. No manuscript change is authorized by this protocol.
+
+## 9. Execution disposition
+
+The authorized run passed the new transition window with three samples at
+6 MiB and 0%. The compiler failed as anticipated and restored exactly. The raw
+backend completed wrist warm-up and wrist capture, then OOMed during downstream
+warm-up before downstream capture or correctness. Peak reservation was
+23.2266 GiB, 243,269,632 bytes above the frozen 23 GiB cap.
+
+V05 has zero correctness, schedule warm-up, timing, simulator, or outcome
+records and is not a method result. It remains immutable and cannot be retried.
+Evidence is preserved in `reports/PHASE_V5_D_V05_TECHNICAL_STOP_REPORT.md`
+and `reports/runtime/acr_v5_d_v05_technical_stop.json`.
