@@ -1,21 +1,44 @@
-"""Fail-closed V5-D v02 recovery helpers with no GPU or simulator dependency."""
+"""Fail-closed V5-D recovery helpers with no GPU or simulator dependency."""
 
 from __future__ import annotations
 
 import hashlib
 import json
 import os
+import re
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping
 
 
 EXPECTED_PROJECT_ROOT = Path("/home/ved/SAVR")
 V02_RUN_ID = "acr-v5d-real-tensor-feasibility-v02"
+V03_RUN_ID = "acr-v5d-real-tensor-feasibility-v03"
 CONFIG_KEYS = ("assets", "bddl_files", "benchmark_root", "datasets", "init_states")
+PROTECTED_CHECKPOINT_NAMES = (
+    "config.json",
+    "configuration_prismatic.py",
+    "modeling_prismatic.py",
+)
+_LOADER_BACKUP_PATTERN = re.compile(
+    r"^(?P<protected>config\.json|configuration_prismatic\.py|modeling_prismatic\.py)"
+    r"(?:\.bak|\.backup(?:\.\d{8}_\d{6})?|\.back\.\d{8}_\d{6})$"
+)
 
 
 class V5DRecoveryViolation(RuntimeError):
-    """The proposed recovery operation does not match the frozen v02 scope."""
+    """The proposed recovery operation does not match the frozen scope."""
+
+
+@dataclass(frozen=True)
+class CheckpointBaseline:
+    """In-memory pre-load checkpoint state required for exact restoration."""
+
+    checkpoint: Path
+    names: tuple[str, ...]
+    protected_bytes: Mapping[str, bytes]
+    protected_hashes: Mapping[str, str]
+    nonprotected_signatures: Mapping[str, tuple[str, int, int]]
 
 
 def canonical_json_bytes(value: Any) -> bytes:
@@ -26,6 +49,131 @@ def semantic_sha256(value: Mapping[str, Any]) -> str:
     payload = dict(value)
     payload.pop("semantic_sha256", None)
     return hashlib.sha256(canonical_json_bytes(payload)).hexdigest()
+
+
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def _safe_checkpoint_entry_signature(path: Path) -> tuple[str, int, int]:
+    if path.is_symlink():
+        raise V5DRecoveryViolation(f"Checkpoint symlink is prohibited: {path.name}")
+    stat = path.stat()
+    if path.is_file():
+        return ("file", stat.st_size, stat.st_mtime_ns)
+    if path.is_dir():
+        return ("directory", 0, 0)
+    raise V5DRecoveryViolation(f"Unsupported checkpoint entry: {path.name}")
+
+
+def capture_checkpoint_baseline(
+    checkpoint: Path,
+    protected_names: tuple[str, ...] = PROTECTED_CHECKPOINT_NAMES,
+) -> CheckpointBaseline:
+    """Capture the exact pre-load inventory without reading model-weight contents."""
+
+    if checkpoint.is_symlink() or not checkpoint.is_dir():
+        raise V5DRecoveryViolation("Checkpoint root is absent or unsafe")
+    checkpoint = checkpoint.resolve()
+    entries = {item.name: item for item in checkpoint.iterdir()}
+    protected = tuple(protected_names)
+    if len(set(protected)) != len(protected) or any(name not in entries for name in protected):
+        raise V5DRecoveryViolation("Protected checkpoint inventory is incomplete")
+    protected_bytes: dict[str, bytes] = {}
+    protected_hashes: dict[str, str] = {}
+    nonprotected: dict[str, tuple[str, int, int]] = {}
+    for name, path in entries.items():
+        signature = _safe_checkpoint_entry_signature(path)
+        if name in protected:
+            if signature[0] != "file":
+                raise V5DRecoveryViolation(f"Protected checkpoint entry is not a file: {name}")
+            payload = path.read_bytes()
+            protected_bytes[name] = payload
+            protected_hashes[name] = hashlib.sha256(payload).hexdigest()
+        else:
+            nonprotected[name] = signature
+    return CheckpointBaseline(
+        checkpoint=checkpoint,
+        names=tuple(sorted(entries)),
+        protected_bytes=protected_bytes,
+        protected_hashes=protected_hashes,
+        nonprotected_signatures=nonprotected,
+    )
+
+
+def restore_checkpoint_exact(
+    checkpoint: Path,
+    baseline: CheckpointBaseline,
+) -> dict[str, Any]:
+    """Restore protected bytes and remove only verified loader-created backups."""
+
+    if checkpoint.is_symlink() or not checkpoint.is_dir():
+        raise V5DRecoveryViolation("Checkpoint root is absent or unsafe during restoration")
+    checkpoint = checkpoint.resolve()
+    if checkpoint != baseline.checkpoint:
+        raise V5DRecoveryViolation("Checkpoint restoration target changed")
+    entries = {item.name: item for item in checkpoint.iterdir()}
+    baseline_names = set(baseline.names)
+    missing = sorted(baseline_names - set(entries))
+    if missing:
+        raise V5DRecoveryViolation(f"Checkpoint baseline entries disappeared: {missing}")
+
+    for name, expected in baseline.nonprotected_signatures.items():
+        if _safe_checkpoint_entry_signature(entries[name]) != expected:
+            raise V5DRecoveryViolation(f"Pre-existing checkpoint entry changed: {name}")
+    for name in baseline.protected_bytes:
+        if _safe_checkpoint_entry_signature(entries[name])[0] != "file":
+            raise V5DRecoveryViolation(f"Protected checkpoint entry became unsafe: {name}")
+
+    new_names = sorted(set(entries) - baseline_names)
+    verified_backups: list[tuple[Path, str]] = []
+    for name in new_names:
+        path = entries[name]
+        if _safe_checkpoint_entry_signature(path)[0] != "file":
+            raise V5DRecoveryViolation(f"Unexpected non-file checkpoint artifact: {name}")
+        match = _LOADER_BACKUP_PATTERN.fullmatch(name)
+        if match is None:
+            raise V5DRecoveryViolation(f"Unexpected checkpoint loader artifact: {name}")
+        protected_name = match.group("protected")
+        if file_sha256(path) != baseline.protected_hashes[protected_name]:
+            raise V5DRecoveryViolation(f"Checkpoint loader backup content changed: {name}")
+        verified_backups.append((path, name))
+
+    for name, payload in baseline.protected_bytes.items():
+        (checkpoint / name).write_bytes(payload)
+
+    removed: list[str] = []
+    for path, name in verified_backups:
+        try:
+            path.unlink()
+        except OSError as error:
+            raise V5DRecoveryViolation(f"Checkpoint loader backup cleanup failed: {name}") from error
+        removed.append(name)
+
+    final_entries = {item.name: item for item in checkpoint.iterdir()}
+    if set(final_entries) != baseline_names:
+        raise V5DRecoveryViolation("Checkpoint inventory was not restored exactly")
+    for name, expected in baseline.nonprotected_signatures.items():
+        if _safe_checkpoint_entry_signature(final_entries[name]) != expected:
+            raise V5DRecoveryViolation(f"Checkpoint baseline drift remained: {name}")
+    protected_hashes = {
+        name: file_sha256(checkpoint / name) for name in baseline.protected_bytes
+    }
+    if protected_hashes != dict(baseline.protected_hashes):
+        raise V5DRecoveryViolation("Protected checkpoint hashes were not restored")
+    return {
+        "schema_version": "acr.v5d-checkpoint-restoration.v3",
+        "protected_bytes_restored": True,
+        "protected_hashes": protected_hashes,
+        "removed_loader_backups": removed,
+        "backup_cleanup_complete": True,
+        "inventory_equal": True,
+        "idempotent_ready": True,
+    }
 
 
 def expected_libero_mapping(project_root: Path, recovery: Mapping[str, Any]) -> dict[str, str]:

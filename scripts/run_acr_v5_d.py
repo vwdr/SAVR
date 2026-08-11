@@ -30,7 +30,7 @@ LIBERO_REVISION = "8f1084e3132a39270c3a13ebe37270a43ece2a01"
 CHECKPOINT_REVISION = "638918f3d1c2e43a39a8a20772bdb8b91835e4b7"
 INSTRUCTION = "move the robot safely to the target"
 TECHNICAL_FALLBACK_EXIT = 20
-V02_RUN_ID = "acr-v5d-real-tensor-feasibility-v02"
+V03_RUN_ID = "acr-v5d-real-tensor-feasibility-v03"
 
 
 def utc_now() -> str:
@@ -222,7 +222,7 @@ def record_pre_model_stop(root: Path, backend: str, error: BaseException) -> Non
         config = load_v5_d_freeze(root)
     except Exception:
         pass
-    run_id = V02_RUN_ID if config is None else str(config["run_id"])
+    run_id = V03_RUN_ID if config is None else str(config["run_id"])
     run_root = root / "results" / run_id
     launch_path = run_root / "launch" / "record.json"
     try:
@@ -276,7 +276,7 @@ def _run_attempt() -> int:
     if os.environ["CUDA_VISIBLE_DEVICES"] != physical_id:
         raise SystemExit("V5-D physical GPU ID must equal CUDA_VISIBLE_DEVICES")
     if any(
-        not Path(os.environ[name]).resolve().is_relative_to(root / "results" / V02_RUN_ID)
+        not Path(os.environ[name]).resolve().is_relative_to(root / "results" / V03_RUN_ID)
         for name in (
             "HF_HOME",
             "HF_HUB_CACHE",
@@ -291,8 +291,12 @@ def _run_attempt() -> int:
     sys.path.insert(0, str(root / "src"))
     sys.path.insert(0, str(root / "scripts"))
     from savr.acr.records import ImmutableRecordStore
-    from savr.acr.v5_d_recovery import semantic_sha256 as recovery_semantic_sha256
-    from savr.acr.v5_d_recovery import validate_libero_config
+    from savr.acr.v5_d_recovery import (
+        capture_checkpoint_baseline,
+        restore_checkpoint_exact,
+        semantic_sha256 as recovery_semantic_sha256,
+        validate_libero_config,
+    )
     from savr.acr.v5_d_runtime import (
         BackendKind,
         BackendWaterfall,
@@ -307,8 +311,8 @@ def _run_attempt() -> int:
 
     config = load_v5_d_freeze(root)
     run_id = config["run_id"]
-    if run_id != V02_RUN_ID:
-        raise SystemExit("V5-D v02 resolved run identity changed")
+    if run_id != V03_RUN_ID:
+        raise SystemExit("V5-D v03 resolved run identity changed")
     run_root = root / "results" / run_id
     store = ImmutableRecordStore(root / "results")
     launch_path = run_root / "launch" / "record.json"
@@ -322,17 +326,17 @@ def _run_attempt() -> int:
         Path(os.environ["LIBERO_CONFIG_PATH"]).resolve()
         != Path(libero_attestation["path"]).parent.resolve()
     ):
-        raise SystemExit("V5-D v02 LIBERO_CONFIG_PATH differs from the attested config")
+        raise SystemExit("V5-D v03 LIBERO_CONFIG_PATH differs from the attested config")
     libero_record_path = run_root / "libero-config" / "record.json"
     if not libero_record_path.is_file():
-        raise SystemExit("V5-D v02 LIBERO config attestation is missing")
+        raise SystemExit("V5-D v03 LIBERO config attestation is missing")
     libero_record = json.loads(libero_record_path.read_text(encoding="utf-8"))
     if (
         libero_record.get("semantic_sha256") != recovery_semantic_sha256(libero_record)
         or libero_record.get("config_sha256") != libero_attestation["sha256"]
         or libero_record.get("launch_manifest_semantic_sha256") != launch["semantic_sha256"]
     ):
-        raise SystemExit("V5-D v02 LIBERO config attestation changed")
+        raise SystemExit("V5-D v03 LIBERO config attestation changed")
     source_revision = require_clean_revision(root)
     if source_revision != launch["execution_revision"]:
         raise SystemExit("V5-D execution revision differs from the launch manifest")
@@ -408,33 +412,17 @@ def _run_attempt() -> int:
 
     if not torch.cuda.is_available() or torch.cuda.device_count() != 1:
         raise RuntimeError("V5-D requires exactly one visible logical CUDA device")
+    selected_gpu_compute_capability = ".".join(
+        str(value) for value in torch.cuda.get_device_capability(0)
+    )
     checkpoint_before = validate_checkpoint(root, checkpoint)
-    protected_names = ("config.json", "configuration_prismatic.py", "modeling_prismatic.py")
-    protected_bytes = {name: (checkpoint / name).read_bytes() for name in protected_names}
-    checkpoint_names = {item.name for item in checkpoint.iterdir()}
+    protected_names = tuple(
+        config["recovery_v03"]["checkpoint_restoration"]["protected_names"]
+    )
+    checkpoint_baseline = capture_checkpoint_baseline(checkpoint, protected_names)
 
     def restore_checkpoint() -> dict[str, Any]:
-        for name, payload in protected_bytes.items():
-            (checkpoint / name).write_bytes(payload)
-        removed = []
-        for item in checkpoint.iterdir():
-            if item.name not in checkpoint_names and (
-                item.name.endswith(".bak") or "backup" in item.name.lower()
-            ):
-                if not item.is_file():
-                    raise RuntimeError("Unexpected non-file checkpoint loader artifact")
-                item.unlink()
-                removed.append(item.name)
-        hashes = {name: file_sha256(checkpoint / name) for name in protected_names}
-        expected = {
-            name: hashlib.sha256(payload).hexdigest() for name, payload in protected_bytes.items()
-        }
-        unexpected = sorted(
-            item.name for item in checkpoint.iterdir() if item.name not in checkpoint_names
-        )
-        if hashes != expected or unexpected:
-            raise RuntimeError("V5-D checkpoint restoration failed")
-        return {"hashes": hashes, "removed_loader_backups": sorted(removed)}
+        return restore_checkpoint_exact(checkpoint, checkpoint_baseline)
 
     process_token = f"{os.getpid()}-{uuid.uuid4().hex}"
     waterfall = BackendWaterfall(config)
@@ -1190,6 +1178,7 @@ def _run_attempt() -> int:
             "execution_revision": source_revision,
             "launch_manifest_semantic_sha256": launch["semantic_sha256"],
             "selected_gpu": launch["selected_gpu"],
+            "selected_gpu_compute_capability": selected_gpu_compute_capability,
             "selected_gpu_after": final_gpu,
             "preparation_labels": preparation_labels,
             "compiler_counters": compiler_counters,
@@ -1260,6 +1249,7 @@ def _run_attempt() -> int:
             "wall_seconds": time.monotonic() - started,
             "peak_allocated_bytes": int(torch.cuda.max_memory_allocated()),
             "peak_reserved_bytes": int(torch.cuda.max_memory_reserved()),
+            "selected_gpu_compute_capability": selected_gpu_compute_capability,
             "raw_transition_permitted": permitted,
             "restoration": restoration,
             "restoration_error": restoration_error,
@@ -1303,12 +1293,12 @@ def main() -> int:
             record_pre_model_stop(root, backend, error)
         except BaseException as record_error:
             print(
-                f"V5-D v02 pre-model evidence write failed: {type(record_error).__name__}: "
+                f"V5-D v03 pre-model evidence write failed: {type(record_error).__name__}: "
                 f"{record_error}",
                 file=sys.stderr,
             )
         print(
-            f"V5-D v02 stopped before model load: {type(error).__name__}: {error}", file=sys.stderr
+            f"V5-D v03 stopped before model load: {type(error).__name__}: {error}", file=sys.stderr
         )
         return 4
 

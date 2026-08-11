@@ -131,7 +131,7 @@ def test_uncaught_pre_model_failure_records_and_returns_without_raw_fallback(
 
 
 def test_closed_stdin_import_preflight_is_cpu_only_and_noninteractive() -> None:
-    source = (ROOT / "scripts/verify_acr_v5_d_v02_import.py").read_text(encoding="utf-8")
+    source = (ROOT / "scripts/verify_acr_v5_d_v03_import.py").read_text(encoding="utf-8")
     for required in (
         "stdin=subprocess.DEVNULL",
         '"CUDA_VISIBLE_DEVICES": ""',
