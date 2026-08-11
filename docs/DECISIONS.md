@@ -1234,3 +1234,26 @@ Last updated: 2026-08-10
   was read-only and confined to `/home/ved/SAVR`.
 - Disposition: `STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_GPU_SELECTION`.
 - Approver: User approved implementation, 2026-08-10; GPU phase not inferred.
+
+## D-092 — Preserve V5-D v01 as a zero-query technical stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve `acr-v5d-real-tensor-feasibility-v01` without retry.
+  Classify its non-interactive LIBERO import `EOFError` as a launcher/preflight
+  defect before model load, not positive or negative method evidence.
+- Evidence: Three aggregate samples selected physical GPU 0 with 6 MiB used
+  and 0% utilization. The launch then stopped because the run-local
+  `LIBERO_CONFIG_PATH` lacked `config.yaml`, causing LIBERO's first-use prompt.
+  Model queries, backend-preparation launches, correctness/warm-up/timed
+  records, simulator calls, downloads, and outcomes were all zero.
+- Evidence files: `reports/PHASE_V5_D_V01_TECHNICAL_STOP_REPORT.md`;
+  `reports/runtime/acr_v5_d_v01_technical_stop.json` (semantic SHA-256
+  `edf5872fa818f5806601f52143cb17cec7dd4974e03cc4e2ed43c3d042fb4412`);
+  `docs/ACR_V5_D_V02_RECOVERY_PLAN.md`.
+- Protection: Source and checkpoint trees remained clean; post-stop selected
+  GPU telemetry was 6 MiB used and 0% utilization. No task outcome or
+  manuscript content was accessed.
+- Disposition: `STOP_NO_RETRY_PREPARE_SEPARATELY_AUTHORIZED_V5D_V02`.
+- Approver: User authorized v01 one-GPU entry, 2026-08-10. This decision does
+  not infer authorization for v02 implementation or execution.

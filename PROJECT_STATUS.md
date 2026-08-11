@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **IMPLEMENTED AND VERIFIED; GPU NOT STARTED**
+ACR Version 5 V5-D — **v01 TECHNICAL STOP BEFORE MODEL LOAD; NO METHOD RESULT**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -28,9 +28,13 @@ The compiler/raw backend, exact runner, analyzer, independent verifier, and
 aggregate-only selector now pass deterministic CPU/fake-backend preflight with
 semantic SHA-256
 `db097ca8cab44d474a65e22888a72da8c4c6e2489a31188abea67c7ed55bff98`.
-No GPU was inspected or selected and no model/simulator query or protected
-outcome was used. Evidence: `reports/PHASE_V5_D_PROTOCOL_REPORT.md` and
-`reports/PHASE_V5_D_IMPLEMENTATION_REPORT.md`.
+The authorized v01 aggregate selector sealed GPU 0, but the launch stopped
+before model load because an absent run-local LIBERO `config.yaml` triggered
+an interactive first-use prompt under non-interactive SSH. There were zero
+model queries, backend launches, correctness/timing records, simulator calls,
+or outcomes. This is no method result. Evidence:
+`reports/PHASE_V5_D_V01_TECHNICAL_STOP_REPORT.md` and
+`reports/runtime/acr_v5_d_v01_technical_stop.json`.
 
 V5-C implemented the frozen eager reference and owned-static-buffer executors
 plus the isolated execution adapter. Exact wrist, scene-first combined-token,
@@ -548,10 +552,12 @@ Not completed:
 
 Preserve the complete negative V3-D/V4-A results, the verified V5 isolated-
 reuse correction, positive V5-B screening, and completed V5-C CPU evidence.
-Stop for explicit user coordination before running the aggregate-only V5-D GPU
-selector. Keep Goal/final populations and success fields sealed and do not
-modify the manuscript. The later one-GPU phase may use only the merged exact
-commands in `docs/ACR_V5_D_BACKEND_IMPLEMENTATION.md`.
+Preserve immutable V5-D v01 as a zero-query technical stop. If authorized,
+implement the non-interactive, run-local LIBERO configuration and pre-import
+failure-recording gates in `docs/ACR_V5_D_V02_RECOVERY_PLAN.md`. Merge and
+synchronize that correction, then stop again for separate authorization before
+any v02 GPU selection. Keep Goal/final populations and success fields sealed
+and do not modify the manuscript.
 
 ## Candidate initial stack
 

@@ -137,9 +137,10 @@ eligible.
 
 ## 6. Phase V5-D — Bounded one-GPU correctness and timing margin
 
-Status: `IMPLEMENTATION_VERIFIED_NOT_RUN`. V5-C passed and the backend/runner/
-analysis checkpoint is complete; the mandatory user-coordinated GPU checkpoint
-has not started.
+Status: `V01_TECHNICAL_STOP_NO_METHOD_RESULT`. V5-C passed and the backend/
+runner/analysis checkpoint was complete, but v01 stopped during upstream
+LIBERO import before model load because its run-local config file was absent.
+Recovery v02 is not yet implemented or authorized.
 
 ### Mandatory pause
 
