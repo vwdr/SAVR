@@ -109,4 +109,9 @@ temporary root confined beneath `/home/ved/SAVR`, and the closed-stdin import
 preflight confirmed CUDA remained uninitialized. Full evidence is in
 `reports/PHASE_V5_D_V03_RECOVERY_IMPLEMENTATION_REPORT.md`.
 
-The mandatory pause before v03 GPU selection remains active.
+The mandatory pause was released by explicit user authorization. V03 then
+executed the complete backend waterfall and stopped before correctness: the
+compiler was incompatible with `sm_75`, and raw capture exhausted the 24 GB
+device after the corrected restoration/transition passed. See
+`reports/PHASE_V5_D_V03_TECHNICAL_STOP_REPORT.md`. V03 is immutable and cannot
+advance to V5-E.

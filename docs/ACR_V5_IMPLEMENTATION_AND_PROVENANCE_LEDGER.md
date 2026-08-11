@@ -439,3 +439,30 @@ the curated CPU-verification semantic SHA-256 is
 CUDA remained uninitialized. This checkpoint used zero GPU inspection, model
 load/query, simulator operation, download, outcome access, or manuscript edit.
 It advances only to explicit user coordination before v03 GPU selection.
+
+## 22. V5-D v03 backend-environment technical stop
+
+The user authorized one-GPU v03 execution. Three aggregate samples selected
+physical GPU 0 at 6 MiB and 0% utilization. The launch semantic SHA-256 is
+`9182c0ae93b5fbedf972bb4959fee6070edeb712a08b8c0169267710a45c48b7`.
+
+TorchInductor repeated the expected pre-output BF16/PTX failure on `sm_75`.
+Unlike v02, the v03 restoration helper restored all protected bytes, removed
+the exact timestamped backups, verified the inventory, and emitted raw permit
+`647eba1d4ebb3d25f94ec2d94681d20a471d2e686631337cc0c9f1d452643d1b`.
+The fresh raw process then completed eight preparation launches and OOMed
+before correctness at 22.5233 GiB allocated and 23.2246 GiB reserved.
+The curated technical-stop semantic SHA-256 is
+`1016569f642b21266e8f0b75b5906716200055f5d37385c5501b6711f9a6bd54`.
+
+Both attempts ended with exact checkpoint hashes and no backup files. The GPU
+returned to 6 MiB and 0%; source trees remained clean. V03 has zero full model
+queries, correctness, schedule warm-ups, timing, simulator operations,
+downloads, or outcomes. It is not method-performance evidence. It establishes
+only that the current TITAN RTX environment cannot execute either frozen
+backend.
+
+V03 remains immutable. The proposed v04 route changes only to a preselected
+`sm_80`-or-newer, at-least-32-GiB environment while preserving the entire
+scientific contract. That route requires exact cluster access details, a new
+reviewed freeze, and separate execution authorization.
