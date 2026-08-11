@@ -137,12 +137,13 @@ eligible.
 
 ## 6. Phase V5-D — Bounded one-GPU correctness and timing margin
 
-Status: `V03_RECOVERY_VERIFIED_NOT_RUN`. V5-C passed; v01 stopped during
+Status: `V03_BACKEND_ENVIRONMENT_TECHNICAL_STOP`. V5-C passed; v01 stopped during
 upstream LIBERO import, and v02 stopped before correctness when the compiler
 failed on `sm_75` and the restoration guard rejected the loader's actual
-`.back.<timestamp>` suffix. V03 now passes exact restoration, complete
-regression, deterministic preflight, and TITAN closed-stdin import gates. GPU
-execution remains unauthorized.
+`.back.<timestamp>` suffix. V03 fixed restoration and reached raw fallback, but
+the compiler remained incompatible with `sm_75` and raw capture OOMed before
+correctness on the 24 GB device. V5-E remains ineligible. A separately frozen
+compatible-environment amendment is required before another V5-D attempt.
 
 ### Mandatory pause
 

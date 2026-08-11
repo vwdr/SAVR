@@ -1346,3 +1346,31 @@ Last updated: 2026-08-10
 - Disposition: `STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_V03_GPU_SELECTION`.
 - Approver: User approved v03 recovery implementation, 2026-08-10; GPU
   execution is not inferred.
+
+## D-096 — Preserve V5-D v03 as a backend-environment technical stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve `acr-v5d-real-tensor-feasibility-v03` without retry.
+  Classify it as no method-performance result and as decisive evidence that the
+  frozen backends are infeasible on the current TITAN RTX environment.
+- Compiler evidence: One preparation launch failed before correctness because
+  BF16 PTX requires `sm_80` or newer and TITAN RTX is `sm_75`. Exact checkpoint
+  restoration passed and raw transition was correctly authorized.
+- Raw evidence: Eight preparation launches then OOMed before correctness at
+  `24184212992` allocated and `24937234432` reserved bytes, exceeding the frozen
+  23 GiB reservation cap by `241172480` bytes.
+- Scientific boundary: Full queries, correctness, schedule warm-ups, timings,
+  simulator operations, downloads, and outcomes were zero. The analyzer and
+  finalizer were not run. No method claim follows.
+- Protection: Both attempts restored the checkpoint exactly; no loader backup
+  remains; all three source trees are clean; post-stop GPU telemetry was 6 MiB
+  and 0% utilization.
+- Evidence files: `reports/PHASE_V5_D_V03_TECHNICAL_STOP_REPORT.md`;
+  `reports/runtime/acr_v5_d_v03_technical_stop.json` (semantic SHA-256
+  `1016569f642b21266e8f0b75b5906716200055f5d37385c5501b6711f9a6bd54`);
+  `docs/ACR_V5_D_V04_ENVIRONMENT_AMENDMENT_PLAN.md`.
+- Disposition:
+  `STOP_NO_RETRY_PREPARE_SEPARATELY_AUTHORIZED_V5D_V04_ENVIRONMENT_AMENDMENT`.
+- Approver: User authorized v03 one-GPU execution, 2026-08-11. This decision
+  does not authorize another cluster, environment amendment, or v04 run.
