@@ -1,0 +1,51 @@
+{
+  "schema_version": "acr.v5d-cpu-verification.v6",
+  "status": "pass",
+  "recorded_at_utc": "2026-08-11T22:51:58.872842+00:00",
+  "execution_revision": "025b15d56439ec6d3b427f838da9778ca1c28fa7",
+  "configuration_semantic_sha256": "7d0976512b15c6d14486f9e83e5b14513ab7fc919bbf9b55b75c9536b90b92e6",
+  "deterministic_preflight_semantic_sha256": "98b5fbec85f9f96c6de092fac201acb15c2ad97b34d3d124311a0d08f3770ec3",
+  "import_preflight_semantic_sha256": "bfed2ce1b56b826d8187360b3b6c5db7c3f31a8b502cee899dbb5586acd39112",
+  "local_repository_tests_passed": 361,
+  "local_v06_tests_passed": 8,
+  "titan_focused_tests_passed": 8,
+  "titan_repository_tests_passed": 361,
+  "titan_subtests_passed": 9,
+  "titan_compliant_focused_basetemp": "/home/ved/SAVR/.pytest-v06-focused",
+  "titan_compliant_full_basetemp": "/home/ved/SAVR/.pytest-v06-full-final",
+  "excluded_invocations": [
+    {
+      "stage": "full-pytest-continuation-01",
+      "reason": "The desktop shell wrapper discarded the continuation identifier after the focused suite passed, so the following full-suite transport returned only partial progress and no exit status.",
+      "scientific_output": false,
+      "gpu_visible": false
+    },
+    {
+      "stage": "full-pytest-continuation-02",
+      "reason": "A second full-suite transport again discarded its continuation identifier and returned partial progress without an exit status.",
+      "scientific_output": false,
+      "gpu_visible": false
+    },
+    {
+      "stage": "full-pytest-continuation-03",
+      "reason": "A confined-log repeat reached partial progress, but its continuation identifier was again unavailable; all temporary pytest artifacts from the excluded invocations were removed before the independently monitored final pass.",
+      "scientific_output": false,
+      "gpu_visible": false
+    }
+  ],
+  "cuda_visible_devices": "",
+  "cuda_initialized": false,
+  "gpu_inspections": 0,
+  "gpu_selections": 0,
+  "model_loaded": false,
+  "model_queries": 0,
+  "simulator_instances": 0,
+  "simulator_episodes": 0,
+  "simulator_resets": 0,
+  "downloads": 0,
+  "new_task_outcomes": 0,
+  "protected_outcome_access": false,
+  "manuscript_changes": 0,
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V06_GPU_SELECTION",
+  "semantic_sha256": "0075b4d598a91b66298f733fedffe572730f854453d7d7381ea934ae2f048793"
+}
