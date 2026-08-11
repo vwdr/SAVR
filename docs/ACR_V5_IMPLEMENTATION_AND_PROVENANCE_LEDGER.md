@@ -526,3 +526,34 @@ is `a3515180022df7938b50956851a2ca05b698819da38b387ddc23b54e59769811`.
 V04 is immutable and cannot be retried automatically. Any further work must
 use a new, separately frozen transition-recovery identity while preserving the
 scientific method, backend, 111-query schedule, 23 GiB cap, and claim boundary.
+
+## 25. V5-D v05 transition recovery
+
+NVIDIA's NVML reference defines GPU utilization over a recent sample period of
+one sixth to one second. V05 therefore creates a new run identity, discards two
+seconds after the raw process begins, and collects exactly three aggregate-only
+samples five seconds apart. Every sample must retain the selected physical
+index/UUID and remain at or below the unchanged 512 MiB and 5% limits. Any
+failure stops before PyTorch import, CUDA initialization, or model load, with no
+additional window, GPU switch, threshold change, process inspection, or retry.
+
+The V04 shared-pool backend and all scientific sections remain unchanged. V05
+retains the compiler-first waterfall, 7 correctness queries, 8 warm-ups, 96
+timed queries, paired analysis, every advancement gate, and the 23 GiB cap.
+Resolved configuration semantic SHA-256 is
+`b34c1d70bbc7163419597148906c22daa82cea3b497405aeeb82afcb4802b2cf`.
+
+All 353 local tests passed. PR #82 and import-path correction PR #83 each
+passed both GitHub validation jobs. TITAN's boundary-compliant verification
+passed 6 focused tests, 353 full tests, and 9 subtests with CUDA hidden. The
+closed-stdin import/API attestation confirmed PyTorch `2.2.0+cu118`, graph-pool
+APIs, the transition sampler, zero visible devices, and uninitialized CUDA.
+Its semantic SHA-256 is
+`0b71455a193e906fd68b05e89d48b72277b91a2554440ea31e0be85bd050fdb2`;
+curated CPU-verification SHA-256 is
+`7fad244f58140616ef7abebfb8a907b78f156bd58586e5ab096f5a46260c3dab`.
+
+The first TITAN full-suite invocation had a nested temporary-root lifecycle
+error and the first import preflight had a relative-`PYTHONPATH` error. Both are
+preserved and excluded; separate top-level/v02 repeats passed. Neither accessed
+a GPU or scientific output. V05 stops for explicit GPU coordination.

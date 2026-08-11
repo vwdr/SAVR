@@ -1,6 +1,6 @@
 # Phase V5-D v05 Transition-Recovery Implementation Report
 
-Status: **PRE-GPU IMPLEMENTATION VERIFIED; GPU NOT INSPECTED OR SELECTED**
+Status: **PRE-GPU ACCEPTED; GPU NOT INSPECTED OR SELECTED**
 
 Date: 2026-08-11
 
@@ -52,6 +52,23 @@ queries, statistics, gates, and 23 GiB cap are unchanged.
   `67c641228f406b8048cacf813b52cc66ef9cc6e7249ab99c0512a7d1fc4cf101`.
 - Query identities remain exactly 7 correctness, 8 warm-up, and 96 timed.
 - V05 run, analysis, and verification paths are absent.
+- PR #82 and the import-path correction PR #83 each passed both GitHub
+  validation jobs.
+- TITAN's compliant focused repeat passed 6 tests; the complete repeat passed
+  353 tests and 9 subtests with CUDA hidden.
+- The corrected closed-stdin TITAN import/API preflight passed with semantic
+  SHA-256
+  `0b71455a193e906fd68b05e89d48b72277b91a2554440ea31e0be85bd050fdb2`.
+- Curated CPU-verification semantic SHA-256:
+  `7fad244f58140616ef7abebfb8a907b78f156bd58586e5ab096f5a46260c3dab`.
+
+The first TITAN full-suite command used two basetemps nested under one parent;
+pytest removed that parent between invocations, causing 22 setup-only errors.
+The independent top-level repeat passed fully. The first import preflight then
+exposed a relative `PYTHONPATH` after changing directories. That v01 directory
+is preserved; a separately identified v02 repeat used the absolute project
+source path and passed. Neither excluded invocation exposed a GPU or produced
+scientific output.
 
 ## 4. Safety and scientific boundary
 
@@ -60,9 +77,8 @@ model load/query, simulator operation, download, reward/success access, or task
 outcome access. It did not modify the manuscript. No positive or negative
 method result was created.
 
-## 5. Remaining acceptance work
+## 5. Advancement boundary
 
-Before GPU coordination, CI must pass and TITAN must repeat the focused tests,
-deterministic preflight, and closed-stdin CUDA-hidden import/API attestation.
-Only then may the synchronized repository stop for explicit V05 GPU selection
-coordination.
+All pre-GPU gates pass. The repository must now stop for explicit V05 GPU
+selection coordination. No selector, model, compiler, raw capture, query, or
+simulator work is authorized by this checkpoint.

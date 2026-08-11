@@ -1,0 +1,44 @@
+{
+  "schema_version": "acr.v5d-cpu-verification.v5",
+  "status": "pass",
+  "recorded_at_utc": "2026-08-11T21:50:42.785382+00:00",
+  "execution_revision": "6e1311dd1e9d610c368a9be9d57ee0df320680f9",
+  "configuration_semantic_sha256": "b34c1d70bbc7163419597148906c22daa82cea3b497405aeeb82afcb4802b2cf",
+  "deterministic_preflight_semantic_sha256": "67c641228f406b8048cacf813b52cc66ef9cc6e7249ab99c0512a7d1fc4cf101",
+  "import_preflight_semantic_sha256": "0b71455a193e906fd68b05e89d48b72277b91a2554440ea31e0be85bd050fdb2",
+  "local_repository_tests_passed": 353,
+  "titan_focused_tests_passed": 6,
+  "titan_repository_tests_passed": 353,
+  "titan_subtests_passed": 9,
+  "titan_compliant_focused_basetemp": "/home/ved/SAVR/results/acr-v5d-v05-focused-02",
+  "titan_compliant_full_basetemp": "/home/ved/SAVR/results/acr-v5d-v05-full-02",
+  "excluded_invocations": [
+    {
+      "stage": "full-pytest-temporary-layout",
+      "reason": "The first full-suite basetemp was nested beneath a parent removed after the preceding focused pytest invocation, causing 22 fixture setup FileNotFoundError instances. The independent top-level repeat passed all 353 tests and 9 subtests.",
+      "scientific_output": false,
+      "gpu_visible": false
+    },
+    {
+      "stage": "cuda-hidden-import-preflight-v01",
+      "reason": "The subprocess changed into the OpenVLA-OFT checkout while inheriting relative PYTHONPATH=src, so importing savr failed. The v01 preflight directory is preserved; the separately identified v02 repeat used an absolute project source path and passed.",
+      "scientific_output": false,
+      "gpu_visible": false
+    }
+  ],
+  "cuda_visible_devices": "",
+  "cuda_initialized": false,
+  "gpu_inspections": 0,
+  "gpu_selections": 0,
+  "model_loaded": false,
+  "model_queries": 0,
+  "simulator_instances": 0,
+  "simulator_episodes": 0,
+  "simulator_resets": 0,
+  "downloads": 0,
+  "new_task_outcomes": 0,
+  "protected_outcome_access": false,
+  "manuscript_changes": 0,
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V05_GPU_SELECTION",
+  "semantic_sha256": "7fad244f58140616ef7abebfb8a907b78f156bd58586e5ab096f5a46260c3dab"
+}
