@@ -1374,3 +1374,42 @@ Last updated: 2026-08-10
   `STOP_NO_RETRY_PREPARE_SEPARATELY_AUTHORIZED_V5D_V04_ENVIRONMENT_AMENDMENT`.
 - Approver: User authorized v03 one-GPU execution, 2026-08-11. This decision
   does not authorize another cluster, environment amendment, or v04 run.
+
+## D-097 — Freeze an isolated same-TITAN V04 graph-pool remediation
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Keep V03 immutable and evaluate one narrow V04 remediation on the
+  existing `ssh titan` host: share one PyTorch private pool across the wrist
+  and downstream raw CUDA graphs.
+- Research basis: PyTorch 2.2 documents pool sharing as safe only when graphs
+  replay in capture order and never concurrently. The optimized SAVR executor
+  is structurally wrist-then-downstream. V04 also enforces one capture stream,
+  one replay stream, exact ordering, pointer identity, nonconcurrency, and
+  fail-closed invalidation.
+- Frozen boundary: Preserve the compiler-first waterfall, checkpoint, method,
+  tensors, 111-query schedule, correctness/timing/statistical gates, and 23 GiB
+  cap. No allocator tuning, cap increase, reduced warm-ups, multi-GPU use,
+  quantization, offload, threshold change, or backend shopping.
+- Isolation correction: A first implementation changed hashed V03 files and
+  was rejected by the immutable V03 verifier. V04 was moved to separate
+  overlay, backend, adapter, runner, and test modules; V03 files were restored
+  byte-for-byte.
+- Verification: 347 local tests; two passing GitHub validation jobs; 7 focused
+  TITAN tests; deterministic CUDA-free preflight
+  `30899e753a50f0d8e293f81f435de56a4f51dccf41511b50316a4051c2719dda`;
+  CUDA-hidden pinned import/API preflight
+  `b467a4783d8dc67b5a6e445a6099cc12109f222ca3184f0240bec61ef22df019`;
+  curated CPU verification
+  `60a5c44647ad1d699ee32ddbe2bd64da95bcb020a33145fda6c35c04299105cd`.
+- Evidence files: `docs/ACR_V5_D_V04_TITAN_MEMORY_REMEDIATION_PROTOCOL.md`;
+  `configs/acr/v5_d_titan_memory_recovery_v04.json`;
+  `reports/PHASE_V5_D_V04_MEMORY_REMEDIATION_IMPLEMENTATION_REPORT.md`;
+  `reports/runtime/acr_v5_d_v04_preflight.json`;
+  `reports/runtime/acr_v5_d_v04_import_preflight.json`;
+  `reports/runtime/acr_v5_d_v04_cpu_verification.json`.
+- Protection: Zero GPU inspection, CUDA initialization, model query, simulator,
+  download, task outcome, or manuscript change.
+- Disposition: `STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_V04_GPU_SELECTION`.
+- Approver: User authorized research, logical planning, and pre-GPU work on
+  2026-08-11. GPU selection remains separately coordinated by repository rule.

@@ -1,0 +1,47 @@
+{
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V04_GPU_SELECTION",
+  "checks": {
+    "backend_fail_closed": true,
+    "immutable_run_paths_unused": true,
+    "implementation_files_present": true,
+    "launch_compile_first": true,
+    "launch_is_v04": true,
+    "memory_cap_unchanged": true,
+    "query_budget_unchanged": true,
+    "runner_activates_only_frozen_pool": true,
+    "scientific_contract_unchanged": true,
+    "shared_pool_contract": true,
+    "v03_stop_linked": true,
+    "v04_identity": true
+  },
+  "configuration_semantic_sha256": "f5bd1e2c1622acbade05f9b67d8e7ee6e53dee935d9d315ecd7614f5a62f22e3",
+  "query_labels_sha256": "eccd0e91acddf131411dbd916a1eb13bfa178b3e36c216bd4146bce1dfdf3291",
+  "resources_used": {
+    "downloads": 0,
+    "gpu_count": 0,
+    "model_queries": 0,
+    "new_task_outcomes": 0,
+    "simulator_episodes": 0,
+    "simulator_resets": 0
+  },
+  "schema_version": "acr.v5d-preflight-verification.v4",
+  "semantic_sha256": "30899e753a50f0d8e293f81f435de56a4f51dccf41511b50316a4051c2719dda",
+  "source_hashes": {
+    "configs/acr/v5_d_titan_memory_recovery_v04.json": "1c1f406c340d60ceda00f49bab41484d107e8394f4ced555bcc5d6b91f89a116",
+    "docs/ACR_V5_D_V04_TITAN_MEMORY_REMEDIATION_PROTOCOL.md": "a0de059608428a95c78e4e972947e708e375d37829e98dee5139db37c20c2645",
+    "scripts/finalize_acr_v5_d_v04.py": "2ed470c22a670cf170ccfcff7eb0be7f3859f6f5e98a1ee736b9106d8394dd77",
+    "scripts/launch_acr_v5_d_v04.sh": "0069afa4398fde0b27c3d43cc13b10a79fd54151ac577f408fcfe7ea75bdefd8",
+    "scripts/prepare_acr_v5_d_v04_libero_config.py": "6c14557d60c884afed0118d89908fe062d58a60d84c0d6402a7e68cc126c4baa",
+    "scripts/run_acr_v5_d_v04.py": "5ce1e4cd8cff717f0bb2b1c72489f017de758d9567c78cc4b11ec90c91c26588",
+    "scripts/select_acr_v5_d_v04_gpu.py": "aa7ba2db5b0dda1b0901f67cbc10bd7bcbe5492b6ed839b3bc26beab2b16ec44",
+    "scripts/verify_acr_v5_d_v04_import.py": "a32fc17433b98e36c71a9dd2e39100ab0b7680d830f77a64d71bf772d04b9c8a",
+    "scripts/verify_acr_v5_d_v04_preflight.py": "0d47fda3ac8ec9a7db4b38c9a9f06b03e6df5de2e8dad0d051362a55ed7e0ff8",
+    "src/savr/acr/v5_d_runtime.py": "56212a67054aa69b55ffb0b140afd9f1afe56fe19ac2479315cfe0c2ddd80f7e",
+    "src/savr/acr/v5_d_torch_backend.py": "16afc6b7ccea071706cd2052328d5e8beff43e0bb65d520d0cd578be83110a2a",
+    "src/savr/acr/v5_d_v04_adapter.py": "3c6236f9ab05f09948044c2b54d157d30f75c72339ebfba41955ca526501d8a5",
+    "src/savr/acr/v5_d_v04_runtime.py": "7d972778e902c80b2fbed81303861ca6cc994a3be65ffe50cd398bdc78d8c1f9",
+    "src/savr/acr/v5_d_v04_torch_backend.py": "747cb972d8c797c96cc69684d26b7ef4d55dc9e073ba5c63412a78770a87c0f7"
+  },
+  "status": "pass",
+  "v03_configuration_semantic_sha256": "a9447cd385b4229e54cf85ba8fc7e06e4b4d283b9ac5c655e0c5201fb5d3f297"
+}

@@ -462,7 +462,41 @@ downloads, or outcomes. It is not method-performance evidence. It establishes
 only that the current TITAN RTX environment cannot execute either frozen
 backend.
 
-V03 remains immutable. The proposed v04 route changes only to a preselected
-`sm_80`-or-newer, at-least-32-GiB environment while preserving the entire
-scientific contract. That route requires exact cluster access details, a new
-reviewed freeze, and separate execution authorization.
+V03 remains immutable. A higher-memory environment was initially proposed,
+but the user clarified that the available cluster is the existing TITAN host.
+That proposal is preserved but superseded by the isolated V04 same-TITAN
+memory-remediation protocol.
+
+## 23. V5-D v04 isolated shared-pool remediation
+
+Primary-source research established that pinned PyTorch 2.2 permits sequential
+CUDA graphs to share a private memory pool only if they always replay in
+capture order and never concurrently. V04 targets the measured 241,172,480-byte
+gap without changing the 23 GiB cap: wrist captures first, downstream captures
+second using `wrist_graph.pool()`, and both use one explicit capture stream.
+
+The backend mechanically rejects downstream-first, wrist-twice, cross-stream,
+concurrent, pointer-drift, unprepared, and post-failure use. It retains both
+graph objects and all static buffers and records allocated/reserved bytes after
+each warm-up/capture stage or at capture failure.
+
+V03's source hashes are part of immutable preflight evidence. When a first
+implementation modified shared V03 modules, the full test suite rejected it.
+All V03 files were restored byte-identically and V04 was isolated in separate
+runtime, backend, adapter, runner, selector, launch, finalizer, and tests.
+
+Local verification passed 347 tests, focused Ruff, and focused mypy. PR #79's
+two GitHub validation jobs passed and merged at
+`34de55fbf6012705d0254231a3c15120e71f9412`. TITAN passed the focused 7-test
+matrix and the chained full-suite/preflight command with CUDA hidden. The
+pinned import record confirms PyTorch `2.2.0+cu118`, both `pool` parameters,
+`CUDAGraph.pool()`, zero visible devices, and CUDA uninitialized.
+
+The deterministic preflight semantic SHA-256 is
+`30899e753a50f0d8e293f81f435de56a4f51dccf41511b50316a4051c2719dda`;
+the pinned import/API semantic SHA-256 is
+`b467a4783d8dc67b5a6e445a6099cc12109f222ca3184f0240bec61ef22df019`.
+The curated CPU-verification semantic SHA-256 is
+`60a5c44647ad1d699ee32ddbe2bd64da95bcb020a33145fda6c35c04299105cd`.
+No GPU was inspected or selected; no model, simulator, download, outcome, or
+manuscript operation occurred. V04 stops for explicit GPU coordination.

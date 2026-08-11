@@ -542,6 +542,9 @@ Completed:
 - separate Batched Full Refresh and SA-BDP-ACR V3 adapters are implemented
 - all 206 repository tests plus 9 TITAN subtests and six real-PyTorch CPU assertions pass
 - V3-C completed exactly 64/64 bounded real-model queries with all correctness and latency gates passing
+- V5-D v03 preserved a zero-query technical stop after raw capture exceeded the 23 GiB cap by 241,172,480 bytes
+- V5-D v04 freezes an isolated same-TITAN shared CUDA-graph-pool remediation without changing the method, query schedule, gates, or memory cap
+- all 347 local tests, two GitHub validation jobs, 7 focused TITAN tests, and deterministic/CUDA-hidden V04 preflights pass
 
 Not completed:
 
@@ -560,12 +563,11 @@ Not completed:
 
 ## Next authorized action
 
-Preserve the complete negative V3-D/V4-A results, the verified V5 isolated-
-reuse correction, positive V5-B screening, and completed V5-C CPU evidence.
-Preserve immutable V5-D v01 as a zero-query technical stop. Stop for explicit
-user coordination before running the aggregate-only v02 GPU selector. Keep
-Goal/final populations and success fields sealed and do not modify the
-manuscript.
+Preserve all negative evidence and immutable V5-D v01-v03 technical stops.
+Stop for explicit user coordination before running the aggregate-only V04 GPU
+selector on `ssh titan`. If coordinated, use at most one eligible GPU and run
+the frozen V04 attempt once. Keep simulator/final populations and success
+fields sealed and do not modify the manuscript.
 
 ## Candidate initial stack
 
