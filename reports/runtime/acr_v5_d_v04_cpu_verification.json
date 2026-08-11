@@ -1,0 +1,63 @@
+{
+  "schema_version": "acr.v5d-v04-cpu-verification.v1",
+  "status": "pass",
+  "execution_revision": "34de55fbf6012705d0254231a3c15120e71f9412",
+  "configuration_semantic_sha256": "f5bd1e2c1622acbade05f9b67d8e7ee6e53dee935d9d315ecd7614f5a62f22e3",
+  "local": {
+    "full_tests_passed": 347,
+    "focused_ruff": "pass",
+    "focused_mypy": "pass"
+  },
+  "github": {
+    "pull_request": 79,
+    "validation_jobs_passed": 2,
+    "merge_commit": "34de55fbf6012705d0254231a3c15120e71f9412"
+  },
+  "titan": {
+    "initial_collection_attempt": {
+      "status": "excluded-setup-error",
+      "reason": "PYTHONPATH omitted",
+      "collection_errors": 17,
+      "tests_executed": 0,
+      "cuda_visible_devices": "empty"
+    },
+    "corrected_full_suite": {
+      "status": "pass",
+      "tests_passed": 347,
+      "cuda_visible_devices": "empty",
+      "temporary_root": "/home/ved/SAVR/results/acr-v5d-v04-pytest-repeat-01"
+    },
+    "focused_suite": {
+      "status": "pass",
+      "tests_passed": 7,
+      "cuda_visible_devices": "empty",
+      "temporary_root": "/home/ved/SAVR/results/acr-v5d-v04-focused-pytest-v01"
+    },
+    "deterministic_preflight_semantic_sha256": "30899e753a50f0d8e293f81f435de56a4f51dccf41511b50316a4051c2719dda",
+    "import_preflight_semantic_sha256": "b467a4783d8dc67b5a6e445a6099cc12109f222ca3184f0240bec61ef22df019",
+    "torch_version": "2.2.0+cu118",
+    "pool_api_present": true,
+    "cuda_initialized": false
+  },
+  "resources_used": {
+    "gpu_inspections": 0,
+    "gpu_selections": 0,
+    "cuda_initializations": 0,
+    "model_loads": 0,
+    "model_queries": 0,
+    "simulator_instances": 0,
+    "simulator_resets": 0,
+    "simulator_episodes": 0,
+    "downloads": 0,
+    "new_task_outcomes": 0,
+    "manuscript_changes": 0
+  },
+  "server_boundary": {
+    "writable_root": "/home/ved/SAVR",
+    "writes_outside_root": 0,
+    "unrelated_processes_or_allocations_inspected": false,
+    "server_configuration_changed": false
+  },
+  "advance_only_to": "EXPLICIT_USER_COORDINATION_BEFORE_V04_GPU_SELECTION",
+  "semantic_sha256": "60a5c44647ad1d699ee32ddbe2bd64da95bcb020a33145fda6c35c04299105cd"
+}
