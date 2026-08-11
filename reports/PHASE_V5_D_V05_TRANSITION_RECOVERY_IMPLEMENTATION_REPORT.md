@@ -49,7 +49,7 @@ queries, statistics, gates, and 23 GiB cap are unchanged.
   reached the repository's pre-existing `batched_dual_path.py` override error,
   unrelated to V05.
 - Deterministic CUDA-free preflight passed with semantic SHA-256
-  `4179086e25c047c25aaef02bc943e809c74a0069d37bc230302f5732e13bb40a`.
+  `67c641228f406b8048cacf813b52cc66ef9cc6e7249ab99c0512a7d1fc4cf101`.
 - Query identities remain exactly 7 correctness, 8 warm-up, and 96 timed.
 - V05 run, analysis, and verification paths are absent.
 

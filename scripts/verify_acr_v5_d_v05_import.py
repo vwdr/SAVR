@@ -16,7 +16,7 @@ from pathlib import Path
 EXPECTED_ROOT = Path("/home/ved/SAVR")
 OPENVLA_REVISION = "e4287e94541f459edc4feabc4e181f537cd569a8"
 LIBERO_REVISION = "8f1084e3132a39270c3a13ebe37270a43ece2a01"
-PREFLIGHT_ID = "acr-v5d-v05-transition-import-preflight-v01"
+PREFLIGHT_ID = "acr-v5d-v05-transition-import-preflight-v02"
 
 
 def utc_now() -> str:
@@ -59,6 +59,7 @@ def main() -> int:
             "HF_HUB_OFFLINE": "1",
             "TRANSFORMERS_OFFLINE": "1",
             "PYTHONNOUSERSITE": "1",
+            "PYTHONPATH": str(root / "src"),
             "WANDB_MODE": "disabled",
             "TOKENIZERS_PARALLELISM": "false",
         }

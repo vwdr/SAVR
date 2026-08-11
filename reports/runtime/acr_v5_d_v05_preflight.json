@@ -28,7 +28,7 @@
     "simulator_resets": 0
   },
   "schema_version": "acr.v5d-preflight-verification.v5",
-  "semantic_sha256": "4179086e25c047c25aaef02bc943e809c74a0069d37bc230302f5732e13bb40a",
+  "semantic_sha256": "67c641228f406b8048cacf813b52cc66ef9cc6e7249ab99c0512a7d1fc4cf101",
   "source_hashes": {
     "configs/acr/v5_d_transition_recovery_v05.json": "73e892321424e07c53c2dd5e81679a5c0ee6f6137ef2f5fc18c4f1d919663f5d",
     "docs/ACR_V5_D_V05_TRANSITION_RECOVERY_PROTOCOL.md": "63399d4587a0295157d4516b9e141c0b2384e66f4fc0401638e29becd6464255",
@@ -38,7 +38,7 @@
     "scripts/prepare_acr_v5_d_v05_libero_config.py": "5fe19edfc1b54f1933fef898bc3c421d5441c10a4838969a3846565d047b9001",
     "scripts/run_acr_v5_d_v05.py": "18b942f280237cf617ac89b4779c89b4ea85690f9e2491ff46e6f395bddc9687",
     "scripts/select_acr_v5_d_v05_gpu.py": "9e3837b72b9ef41be7709768447be1d16baf834df3cdf18aebd201c53746a1eb",
-    "scripts/verify_acr_v5_d_v05_import.py": "e5a364d93c533dbc3e8c05265287246c27db2a1e27a4f36becb3b0f302276fe5",
+    "scripts/verify_acr_v5_d_v05_import.py": "046b2655e8f56fe7dec7b03ce0238e3551dd16e42cbe1159a31e2420bf9653b8",
     "scripts/verify_acr_v5_d_v05_preflight.py": "9decb011be30a8c37c6bdc6605af633368f8e3e71ddb170dd41956711bc9b4f6",
     "src/savr/acr/v5_d_v05_adapter.py": "d574a25fe77c98f3091f36ce180734d73bfb2536b2c28ce2ab79c83ef513bece",
     "src/savr/acr/v5_d_v05_runtime.py": "3818f8bcd8ed29e72fd6bee7e287175a9d78af6ad621a649de77104dbec5084f",
