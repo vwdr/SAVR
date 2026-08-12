@@ -1507,3 +1507,47 @@ Last updated: 2026-08-10
   `STOP_NO_RETRY_RESEARCH_SEPARATELY_FROZEN_PRECAPTURE_WARMUP_OR_COMPATIBLE_HARDWARE`.
 - Approver: User explicitly authorized the single V05 GPU attempt on
   2026-08-11. This does not authorize a V05 retry or a new V06 system change.
+
+## D-101 — Preserve V5-D v06 as a pre-capture memory technical stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve `acr-v5d-real-tensor-feasibility-v06` without retry and
+  classify it as no method-performance result.
+- Raw evidence: All wrist pre-capture warm-ups completed. Downstream warm-up
+  then OOMed before either capture, peaking at 24,941,428,736 reserved bytes,
+  245,366,784 bytes above the unchanged 23 GiB cap.
+- Scientific boundary: Full queries, correctness, schedule warm-ups, timings,
+  simulator operations, downloads, and outcomes were zero.
+- Evidence files: `reports/PHASE_V5_D_V06_TECHNICAL_STOP_REPORT.md` and
+  `reports/runtime/acr_v5_d_v06_technical_stop.json` (semantic SHA-256
+  `0588f628a118a2f467215c2337bc23452f3b8e98d0b5865c37be0d2892a18edb`).
+- Disposition:
+  `STOP_NO_RETRY_V06_MEMORY_INFEASIBLE_ON_TITAN_RTX_USE_COMPATIBLE_HIGHER_MEMORY_HARDWARE_OR_SEPARATELY_RESEARCHED_SYSTEM_CHANGE`.
+- Approver: User authorized the single V06 GPU attempt on 2026-08-11.
+
+## D-102 — Preserve V5-D v07 as an allocator-recovery technical stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve `acr-v5d-real-tensor-feasibility-v07` without retry and
+  classify it as no method-performance result.
+- Mechanism evidence: The exact `expandable_segments:True` setting was active.
+  Peak reserved-minus-allocated memory fell by 457,361,408 bytes versus V06,
+  but peak reservation fell by only 4,194,304 bytes because active allocated
+  memory increased.
+- Raw evidence: Downstream pre-capture warm-up OOMed on a 22 MiB request before
+  either capture. Peak reservation was 24,937,234,432 bytes, 241,172,480 bytes
+  above the unchanged 23 GiB cap.
+- Scientific boundary: Full queries, correctness, schedule warm-ups, timings,
+  simulator operations, downloads, success fields, and outcomes were zero.
+  This is environment-feasibility evidence only.
+- Protection: Both processes restored exact checkpoint state, no loader backup
+  remains, the repository is clean, and post-stop GPU telemetry was 6 MiB/0%.
+- Evidence files: `reports/PHASE_V5_D_V07_TECHNICAL_STOP_REPORT.md` and
+  `reports/runtime/acr_v5_d_v07_technical_stop.json` (semantic SHA-256
+  `17c6c68ed075f6848768d81eb158ae1d522b2b670df37d0c1db3ab54439bc8c1`).
+- Disposition:
+  `STOP_NO_RETRY_V07_ALLOCATOR_IMPROVED_FRAGMENTATION_BUT_MEMORY_INFEASIBLE_ON_TITAN_RTX`.
+- Approver: User authorized the single V07 GPU attempt on 2026-08-11. V5-E
+  remains unauthorized.
