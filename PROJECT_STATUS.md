@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **V09 DEFAULT-ALLOCATOR RECOVERY LOCAL-VERIFIED**
+ACR Version 5 V5-D — **V09 PRE-GPU VERIFIED; GPU NOT AUTHORIZED**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -569,7 +569,8 @@ Completed:
 - V08 produced zero correctness/timing/simulator/outcome records, restored checkpoint and inference state exactly, released GPU 0 to 6 MiB/0%, and is not a method-performance result
 - V09 freezes the narrow allocator-reversion hypothesis: preserve V08 exactly but remove the now-unnecessary experimental `expandable_segments` override before both processes
 - V09 requires absent allocator configuration plus observed PyTorch `native` backend provenance; it preserves inference mode, both graph bodies, shared pool, schedule, gates, and cap
-- all 378 local tests, six focused V09 tests, Ruff, and deterministic V09 preflight pass; TITAN CUDA-hidden replay remains pending and no GPU selection is authorized
+- all 378 local tests, both PR #95 validation jobs, six focused TITAN tests, 378 TITAN tests plus nine subtests, and deterministic V09 preflight pass
+- TITAN's pinned PyTorch reported no allocator override, backend `native`, zero visible GPUs, and uninitialized CUDA; no V09 GPU inspection or selection is authorized
 
 Not completed:
 
@@ -588,11 +589,11 @@ Not completed:
 
 ## Next authorized action
 
-Preserve all evidence and do not retry V05-V08. Publish V09, require both CI
-gates, synchronize the exact main revision to TITAN, and replay its focused,
-full, and deterministic preflight checks with CUDA hidden. Stop before GPU
-inspection or selection. Keep simulator/final populations and success fields
-sealed, do not advance to V5-E, and do not modify the manuscript.
+Preserve all evidence and do not retry V05-V08. V09 is fully implemented and
+pre-GPU verified. Stop for explicit user coordination before sealing one
+aggregate-only GPU selection and single fail-closed V09 attempt. Keep
+simulator/final populations and success fields sealed, do not advance to V5-E,
+and do not modify the manuscript.
 
 ## Candidate initial stack
 
