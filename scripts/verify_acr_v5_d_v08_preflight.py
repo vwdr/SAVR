@@ -93,8 +93,12 @@ def verify() -> dict[str, Any]:
         "memory_and_backend_unchanged": v08["memory"] == v07["memory"]
         and v08["raw_cuda_graph"] == v07["raw_cuda_graph"]
         and v08["pre_capture_warmup"] == v07["pre_capture_warmup"],
-        "pre_gpu_stop": v08["current_authorization"]["gpu_selection"] is False
-        and v08["current_authorization"]["model_queries_max"] == 0,
+        "one_gpu_attempt_authorized": v08["current_authorization"]["gpu_selection"] is True
+        and v08["current_authorization"]["model_queries_max"] == 111
+        and v08["current_authorization"]["automatic_retry"] is False
+        and v08["current_authorization"]["simulator_use"] is False
+        and v08["current_authorization"]["protected_outcome_access"] is False
+        and v08["current_authorization"]["manuscript_changes"] is False,
         "immutable_paths_unused": not (
             ROOT / "results/acr-v5d-real-tensor-feasibility-v08"
         ).exists(),
@@ -119,7 +123,7 @@ def verify() -> dict[str, Any]:
             "downloads": 0,
             "new_task_outcomes": 0,
         },
-        "advance_only_to": "V08_PRE_GPU_CHECKPOINT",
+        "advance_only_to": "ONE_FROZEN_V08_GPU_ATTEMPT",
     }
     record["semantic_sha256"] = hashlib.sha256(canonical_bytes(record)).hexdigest()
     return record

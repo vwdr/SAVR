@@ -1580,3 +1580,22 @@ Last updated: 2026-08-10
 - Disposition: `STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_V08_GPU_SELECTION`.
 - Approver: User approved research and logical forward progress on 2026-08-11;
   GPU selection remains separately coordinated under repository safety rules.
+
+## D-104 — Authorize one frozen V5-D V08 GPU attempt
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Seal the user's explicit 2026-08-11 approval for one V08
+  aggregate-only GPU selection and one fail-closed execution with at most 111
+  frozen model queries.
+- Unchanged boundary: Preserve the V08 method, inference-semantics correction,
+  allocator, model/checkpoint, tensors, warm-up/capture lifecycle, schedule,
+  gates, 23 GiB cap, and claim limits exactly.
+- Exclusions: No automatic retry, simulator, protected outcome, final
+  population, manuscript edit, V5-E advance, process-identity inspection, or
+  unrelated server interference is authorized.
+- Required disposition: Preserve and reconcile the single attempt whether it
+  completes or stops technically. Any new attempt requires a separately frozen
+  protocol and new authorization.
+- Approver: User explicitly replied `approve` after being asked to authorize
+  V08 GPU selection and its single fail-closed execution.

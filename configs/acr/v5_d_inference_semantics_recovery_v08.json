@@ -1,8 +1,8 @@
 {
   "schema_version": "acr.v5d-inference-semantics-recovery.v8",
-  "status": "frozen-pre-gpu",
+  "status": "authorized-one-gpu-execution",
   "authorized_at": "2026-08-11",
-  "authorized_scope": "one-v08-pre-gpu-implementation-and-verification",
+  "authorized_scope": "one-v08-aggregate-selection-and-single-fail-closed-gpu-attempt",
   "protocol": "docs/ACR_V5_D_V08_INFERENCE_SEMANTICS_PROTOCOL.md",
   "base_v07_configuration_semantic_sha256": "fa9a5785eb2cb885bd98f05355db61251b840b4c6e5ce19760cff088880b88d5",
   "v07_run_id": "acr-v5d-real-tensor-feasibility-v07",
@@ -40,14 +40,14 @@
     "completed_capture_count": 0
   },
   "current_authorization": {
-    "gpu_selection": false,
-    "model_queries_max": 0,
+    "gpu_selection": true,
+    "model_queries_max": 111,
     "automatic_retry": false,
     "simulator_use": false,
     "protected_outcome_access": false,
     "manuscript_changes": false
   },
-  "advance_only_to": "V08_PRE_GPU_CHECKPOINT",
-  "resolved_configuration_semantic_sha256": "20d51bb3429270665f77bd3a05d5986defdbffbce8d3f9044861870832e3eaa3",
-  "semantic_sha256": "75e969160dff273f1587a9f443e5efbfbbd25797a18d699abd236137f82f9956"
+  "advance_only_to": "ONE_FROZEN_V08_GPU_ATTEMPT",
+  "resolved_configuration_semantic_sha256": "70db1b6b4b2259d326a6eb45de52c12b5372157f62d739e47e0ec27b5230ce21",
+  "semantic_sha256": "35333f723e0f1006f01c974a0a3d385fdedce3b5a23a5d6d4ce79b2d56ad4b03"
 }
