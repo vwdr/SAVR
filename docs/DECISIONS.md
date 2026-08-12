@@ -1599,3 +1599,28 @@ Last updated: 2026-08-10
   protocol and new authorization.
 - Approver: User explicitly replied `approve` after being asked to authorize
   V08 GPU selection and its single fail-closed execution.
+
+## D-105 — Preserve V5-D V08 as memory recovery plus capture technical stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve V08 without retry. Its exact inference state reduced peak
+  reservation from V07's 23.2246 GiB to 15.2773 GiB, confirming that the prior
+  preparation-memory blocker was caused by missing inference semantics.
+- Technical stop: Both frozen pre-capture warm-up stages and the wrist graph
+  capture completed. The downstream graph capture then reported an operation
+  failure caused by a previous CUDA capture error. The immutable record does
+  not isolate the originating kernel or operation.
+- Scientific boundary: Zero full queries, correctness records, scheduled
+  warm-ups, timings, simulator operations, success fields, or outcomes exist.
+  V08 is mechanism evidence, not a method-performance result.
+- Protection: Checkpoint bytes and inference thread state were restored, no
+  loader backup remains, the repository is clean, and selected GPU 0 returned
+  to 6 MiB/0% aggregate telemetry.
+- Evidence: `reports/PHASE_V5_D_V08_TECHNICAL_STOP_REPORT.md` and
+  `reports/runtime/acr_v5_d_v08_technical_stop.json` (semantic SHA-256
+  `3572abf107ad1b0ef10557e27c66b3d5ad1d967a5f82b633c572bef907d16d98`).
+- Disposition:
+  `STOP_NO_RETRY_V08_MEMORY_RECOVERED_SECOND_GRAPH_CAPTURE_TECHNICAL_FAILURE`.
+  A new attempt requires separately researched and frozen capture correction;
+  V5-E remains unauthorized.

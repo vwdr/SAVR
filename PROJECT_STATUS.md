@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **V08 SINGLE GPU ATTEMPT AUTHORIZED**
+ACR Version 5 V5-D — **V08 MEMORY RECOVERED; CAPTURE TECHNICAL STOP**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -564,7 +564,9 @@ Completed:
 - V08 preserves V07's allocator, method, tensors, 111-query schedule, gates, and 23 GiB cap while adding one fail-closed whole-raw-attempt inference context
 - pinned PyTorch CPU evidence reproduced growing retained `CopyBackwards` graphs under default mode and zero backward graph under inference mode
 - all 372 local tests, both PR #91 validation jobs, six focused TITAN tests, 372 TITAN tests plus nine subtests, and deterministic/CUDA-hidden V08 preflight pass
-- V08 is authorized for one aggregate-selected, fail-closed GPU attempt with at most 111 model queries; no retry, simulator, protected outcome, V5-E, or manuscript change is authorized
+- the single V08 attempt confirmed the inference-semantics memory mechanism: peak reservation fell from 23.2246 GiB in V07 to 15.2773 GiB, 7.7227 GiB below the unchanged cap
+- V08 completed both pre-capture warm-up stages and the wrist capture, then stopped fail-closed when the downstream graph capture reported a prior CUDA capture error
+- V08 produced zero correctness/timing/simulator/outcome records, restored checkpoint and inference state exactly, released GPU 0 to 6 MiB/0%, and is not a method-performance result
 
 Not completed:
 
@@ -584,11 +586,12 @@ Not completed:
 ## Next authorized action
 
 Preserve all evidence and immutable V5-D v01-v07 technical stops. Do not retry
-V05, V06, or V07. V08's official inference-semantics correction is fully
-implemented and pre-GPU verified. Execute its one authorized aggregate-only
-GPU selection and single fail-closed attempt, then preserve and reconcile all
-technical evidence without retry. Keep simulator/final populations and success
-fields sealed, do not advance to V5-E, and do not modify the manuscript.
+V05, V06, V07, or V08. Preserve V08's confirmed memory-mechanism evidence and
+its distinct second-graph-capture technical stop. Before any new GPU attempt,
+research the capture failure separately, define one narrow falsifiable system
+correction under a new immutable identity, and pass all pre-GPU verification.
+Keep simulator/final populations and success fields sealed, do not advance to
+V5-E, and do not modify the manuscript.
 
 ## Candidate initial stack
 
