@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **v06 MEMORY TECHNICAL STOP; NO METHOD RESULT**
+ACR Version 5 V5-D — **v07 ALLOCATOR-RECOVERY MEMORY TECHNICAL STOP; NO METHOD RESULT**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -556,6 +556,10 @@ Completed:
 - the authorized V06 selector chose GPU 0 at 6 MiB/0%; compiler fallback and sustained transition gates passed exactly as frozen
 - V06 downstream pre-capture warm-up then OOMed before either graph capture, peaking at 23.2285 GiB reserved, 245,366,784 bytes above the 23 GiB cap
 - V06 produced zero correctness/timing/simulator/outcome records, restored the checkpoint exactly, and is not a method-performance result
+- V07 froze and tested only PyTorch's documented `expandable_segments:True` native-allocator setting in the fresh raw process
+- the V07 allocator attestation and sustained transition gate passed, but downstream pre-capture warm-up OOMed before either graph capture
+- V07 reduced the peak reserved-minus-allocated indicator by 457,361,408 bytes versus V06, while peak reservation improved by only 4 MiB and still exceeded the 23 GiB cap by 241,172,480 bytes
+- V07 produced zero correctness/timing/simulator/outcome records, restored the checkpoint exactly, and is not a method-performance result
 
 Not completed:
 
@@ -574,12 +578,14 @@ Not completed:
 
 ## Next authorized action
 
-Preserve all evidence and immutable V5-D v01-v06 technical stops. Do not retry
-V05 or V06. V06 establishes that the unchanged exact method's downstream eager
-preparation still cannot fit the 23 GiB cap on TITAN RTX even before graph
-capture. Use compatible higher-memory hardware or first research and freeze a
-materially justified new system change. Keep simulator/final populations and
-success fields sealed and do not modify the manuscript.
+Preserve all evidence and immutable V5-D v01-v07 technical stops. Do not retry
+V05, V06, or V07. V07 establishes that reducing allocator fragmentation with
+expandable segments does not make the unchanged downstream eager preparation
+fit the 23 GiB cap on TITAN RTX. Because higher-memory hardware is unavailable,
+research and freeze a materially justified same-hardware system change that
+reduces active preparation memory while preserving correctness and timing
+validity. Keep simulator/final populations and success fields sealed and do
+not modify the manuscript.
 
 ## Candidate initial stack
 
