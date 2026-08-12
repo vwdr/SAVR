@@ -1,0 +1,53 @@
+{
+  "schema_version": "acr.v5d-expandable-segments-recovery.v7",
+  "status": "FROZEN_FOR_ONE_GPU_EXECUTION",
+  "authorized_at": "2026-08-11",
+  "authorized_scope": "ONE_V07_GPU_ATTEMPT_THROUGH_RESULT_RECONCILIATION",
+  "base_v06_configuration_semantic_sha256": "7d0976512b15c6d14486f9e83e5b14513ab7fc919bbf9b55b75c9536b90b92e6",
+  "v06_run_id": "acr-v5d-real-tensor-feasibility-v06",
+  "v06_technical_stop_semantic_sha256": "0588f628a118a2f467215c2337bc23452f3b8e98d0b5865c37be0d2892a18edb",
+  "run_id": "acr-v5d-real-tensor-feasibility-v07",
+  "protocol": "docs/ACR_V5_D_V07_EXPANDABLE_SEGMENTS_PROTOCOL.md",
+  "permitted_changes": [
+    "raw-process-pytorch-cuda-alloc-conf-expandable-segments-true",
+    "allocator-configuration-provenance"
+  ],
+  "allocator": {
+    "applies_to_backend": "raw-cudagraph",
+    "environment_variable": "PYTORCH_CUDA_ALLOC_CONF",
+    "exact_value": "expandable_segments:True",
+    "set_before_torch_import": true,
+    "backend": "native",
+    "experimental": true,
+    "compiler_process_unchanged": true,
+    "empty_cache_calls": 0,
+    "other_allocator_options": 0,
+    "automatic_retries": 0
+  },
+  "v06_measured_memory": {
+    "raw_peak_allocated_bytes": 24259268096,
+    "raw_peak_reserved_bytes": 24941428736,
+    "reported_reserved_unallocated_mib": 648.56,
+    "cap_exceeded_bytes": 245366784,
+    "failed_allocation_bytes": 23068672,
+    "completed_capture_count": 0
+  },
+  "current_authorization": {
+    "research": true,
+    "protocol_documentation": true,
+    "implementation": true,
+    "cuda_hidden_verification": true,
+    "gpu_inspection": true,
+    "gpu_selection": true,
+    "model_loading": true,
+    "model_queries_max": 111,
+    "cuda_compile_capture_or_timing": true,
+    "simulator_use": false,
+    "protected_outcome_access": false,
+    "manuscript_changes": false,
+    "automatic_retry": false
+  },
+  "advance_only_to": "V07_RESULT_RECONCILIATION_AND_STOP_BEFORE_V5_E",
+  "resolved_configuration_semantic_sha256": "fa9a5785eb2cb885bd98f05355db61251b840b4c6e5ce19760cff088880b88d5",
+  "semantic_sha256": "5088f08c98a53bd15d891081ebabfccfc94c5f3684fdbcc9700529e72597698d"
+}
