@@ -1,0 +1,53 @@
+{
+  "schema_version": "acr.v5d-inference-semantics-recovery.v8",
+  "status": "frozen-pre-gpu",
+  "authorized_at": "2026-08-11",
+  "authorized_scope": "one-v08-pre-gpu-implementation-and-verification",
+  "protocol": "docs/ACR_V5_D_V08_INFERENCE_SEMANTICS_PROTOCOL.md",
+  "base_v07_configuration_semantic_sha256": "fa9a5785eb2cb885bd98f05355db61251b840b4c6e5ce19760cff088880b88d5",
+  "v07_run_id": "acr-v5d-real-tensor-feasibility-v07",
+  "v07_technical_stop_semantic_sha256": "17c6c68ed075f6848768d81eb158ae1d522b2b670df37d0c1db3ab54439bc8c1",
+  "run_id": "acr-v5d-real-tensor-feasibility-v08",
+  "permitted_changes": [
+    "raw-process-whole-attempt-torch-inference-mode",
+    "inference-lifecycle-provenance"
+  ],
+  "inference_semantics": {
+    "applies_to_backend": "raw-cudagraph",
+    "mode": "torch.inference_mode",
+    "entry_after_transition_revalidation": true,
+    "entry_before_model_initialization": true,
+    "covers_input-preparation": true,
+    "covers_static-buffer-population": true,
+    "covers_eager-warmup": true,
+    "covers_graph-capture": true,
+    "covers-correctness-and-timing": true,
+    "require_grad_enabled_false": true,
+    "require_inference_mode_enabled_true": true,
+    "restore_prior_thread_state_on_exit": true,
+    "compiler_process_unchanged": true,
+    "direct-decoder-pruning": false,
+    "kv-cache-change": false,
+    "hidden-state-output-change": false,
+    "automatic_retries": 0
+  },
+  "v07_measured_memory": {
+    "raw_peak_allocated_bytes": 24712435200,
+    "raw_peak_reserved_bytes": 24937234432,
+    "peak_reserved_cap_exceeded_bytes": 241172480,
+    "reported_reserved_unallocated_mib": 203.64,
+    "failed_allocation_bytes": 23068672,
+    "completed_capture_count": 0
+  },
+  "current_authorization": {
+    "gpu_selection": false,
+    "model_queries_max": 0,
+    "automatic_retry": false,
+    "simulator_use": false,
+    "protected_outcome_access": false,
+    "manuscript_changes": false
+  },
+  "advance_only_to": "V08_PRE_GPU_CHECKPOINT",
+  "resolved_configuration_semantic_sha256": "20d51bb3429270665f77bd3a05d5986defdbffbce8d3f9044861870832e3eaa3",
+  "semantic_sha256": "75e969160dff273f1587a9f443e5efbfbbd25797a18d699abd236137f82f9956"
+}
