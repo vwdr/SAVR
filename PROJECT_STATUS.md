@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **V08 MEMORY RECOVERED; CAPTURE TECHNICAL STOP**
+ACR Version 5 V5-D — **V09 DEFAULT-ALLOCATOR RECOVERY LOCAL-VERIFIED**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -567,6 +567,9 @@ Completed:
 - the single V08 attempt confirmed the inference-semantics memory mechanism: peak reservation fell from 23.2246 GiB in V07 to 15.2773 GiB, 7.7227 GiB below the unchanged cap
 - V08 completed both pre-capture warm-up stages and the wrist capture, then stopped fail-closed when the downstream graph capture reported a prior CUDA capture error
 - V08 produced zero correctness/timing/simulator/outcome records, restored checkpoint and inference state exactly, released GPU 0 to 6 MiB/0%, and is not a method-performance result
+- V09 freezes the narrow allocator-reversion hypothesis: preserve V08 exactly but remove the now-unnecessary experimental `expandable_segments` override before both processes
+- V09 requires absent allocator configuration plus observed PyTorch `native` backend provenance; it preserves inference mode, both graph bodies, shared pool, schedule, gates, and cap
+- all 378 local tests, six focused V09 tests, Ruff, and deterministic V09 preflight pass; TITAN CUDA-hidden replay remains pending and no GPU selection is authorized
 
 Not completed:
 
@@ -585,13 +588,11 @@ Not completed:
 
 ## Next authorized action
 
-Preserve all evidence and immutable V5-D v01-v07 technical stops. Do not retry
-V05, V06, V07, or V08. Preserve V08's confirmed memory-mechanism evidence and
-its distinct second-graph-capture technical stop. Before any new GPU attempt,
-research the capture failure separately, define one narrow falsifiable system
-correction under a new immutable identity, and pass all pre-GPU verification.
-Keep simulator/final populations and success fields sealed, do not advance to
-V5-E, and do not modify the manuscript.
+Preserve all evidence and do not retry V05-V08. Publish V09, require both CI
+gates, synchronize the exact main revision to TITAN, and replay its focused,
+full, and deterministic preflight checks with CUDA hidden. Stop before GPU
+inspection or selection. Keep simulator/final populations and success fields
+sealed, do not advance to V5-E, and do not modify the manuscript.
 
 ## Candidate initial stack
 
