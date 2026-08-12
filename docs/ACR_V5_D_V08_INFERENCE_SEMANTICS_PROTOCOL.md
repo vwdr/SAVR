@@ -1,8 +1,14 @@
 # ACR V5-D V08 Inference-Semantics Recovery Protocol
 
-Status: **FROZEN FOR PRE-GPU VERIFICATION; GPU SELECTION NOT YET AUTHORIZED**
+Status: **AUTHORIZED FOR ONE AGGREGATE-SELECTED, FAIL-CLOSED GPU ATTEMPT**
 
 Date: 2026-08-11
+
+Authorization checkpoint: On 2026-08-11, the user explicitly approved V08
+GPU selection and execution. The authorization is limited to one aggregate-only
+selection and one frozen attempt with at most 111 model queries. It does not
+authorize an automatic retry, simulator use, protected-outcome access,
+manuscript changes, or V5-E.
 
 ## 1. Decision
 

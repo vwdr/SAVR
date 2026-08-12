@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **V08 INFERENCE-SEMANTICS RECOVERY PRE-GPU VERIFIED**
+ACR Version 5 V5-D — **V08 SINGLE GPU ATTEMPT AUTHORIZED**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -564,7 +564,7 @@ Completed:
 - V08 preserves V07's allocator, method, tensors, 111-query schedule, gates, and 23 GiB cap while adding one fail-closed whole-raw-attempt inference context
 - pinned PyTorch CPU evidence reproduced growing retained `CopyBackwards` graphs under default mode and zero backward graph under inference mode
 - all 372 local tests, both PR #91 validation jobs, six focused TITAN tests, 372 TITAN tests plus nine subtests, and deterministic/CUDA-hidden V08 preflight pass
-- V08 remains stopped before GPU selection and has produced no model, simulator, timing, correctness, or outcome record
+- V08 is authorized for one aggregate-selected, fail-closed GPU attempt with at most 111 model queries; no retry, simulator, protected outcome, V5-E, or manuscript change is authorized
 
 Not completed:
 
@@ -585,9 +585,10 @@ Not completed:
 
 Preserve all evidence and immutable V5-D v01-v07 technical stops. Do not retry
 V05, V06, or V07. V08's official inference-semantics correction is fully
-implemented and pre-GPU verified. Stop for explicit coordination before its
-single aggregate-only GPU selection and attempt. Keep simulator/final
-populations and success fields sealed and do not modify the manuscript.
+implemented and pre-GPU verified. Execute its one authorized aggregate-only
+GPU selection and single fail-closed attempt, then preserve and reconcile all
+technical evidence without retry. Keep simulator/final populations and success
+fields sealed, do not advance to V5-E, and do not modify the manuscript.
 
 ## Candidate initial stack
 

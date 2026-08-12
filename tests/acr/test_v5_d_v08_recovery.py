@@ -117,10 +117,10 @@ def test_v08_configuration_and_v07_stop_are_authentic() -> None:
     assert config["recovery_v08"]["v07_technical_stop_semantic_sha256"] == stop["semantic_sha256"]
 
 
-def test_v08_stops_at_pre_gpu_checkpoint() -> None:
+def test_v08_authorizes_exactly_one_frozen_gpu_attempt() -> None:
     authorization = load_v08(ROOT)["current_authorization"]
-    assert authorization["gpu_selection"] is False
-    assert authorization["model_queries_max"] == 0
+    assert authorization["gpu_selection"] is True
+    assert authorization["model_queries_max"] == 111
     assert authorization["automatic_retry"] is False
     assert authorization["simulator_use"] is False
     assert authorization["protected_outcome_access"] is False
