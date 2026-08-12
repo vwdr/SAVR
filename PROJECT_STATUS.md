@@ -1,6 +1,6 @@
 # Project Status
 
-Last updated: 2026-08-11
+Last updated: 2026-08-12
 
 ## Current phase
 
@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **V09 SINGLE GPU ATTEMPT AUTHORIZED**
+ACR Version 5 V5-D — **V09 STOPPED TECHNICALLY; V5-E INELIGIBLE**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -571,6 +571,9 @@ Completed:
 - V09 requires absent allocator configuration plus observed PyTorch `native` backend provenance; it preserves inference mode, both graph bodies, shared pool, schedule, gates, and cap
 - all 378 local tests, both PR #95 validation jobs, six focused TITAN tests, 378 TITAN tests plus nine subtests, and deterministic V09 preflight pass
 - TITAN's pinned PyTorch reported no allocator override, backend `native`, zero visible GPUs, and uninitialized CUDA; no V09 GPU inspection or selection is authorized
+- the authorized V09 attempt authenticated the default native allocator, both pre-capture warm-ups, and the wrist graph capture, but failed at the same downstream capture boundary as V08
+- V09 peak reservation was 15.3848 GiB, 7.6152 GiB below the unchanged cap and 0.1074 GiB above V08; allocator reversion therefore did not resolve the capture failure
+- V09 produced zero correctness/timing/simulator/outcome records, restored checkpoint and inference state exactly, released GPU 0 to 6 MiB/0%, and rejects only its allocator-recovery hypothesis
 
 Not completed:
 
@@ -589,11 +592,11 @@ Not completed:
 
 ## Next authorized action
 
-Preserve all evidence and do not retry V05-V08. V09 is fully implemented,
-pre-GPU verified, and authorized for one aggregate-only GPU selection and one
-single fail-closed attempt. Reconcile and preserve its evidence without retry.
+Preserve all evidence and do not retry V05-V09. V09 rejected default-allocator
+reversion as the correction for the repeated downstream graph-capture failure.
 Keep simulator/final populations and success fields sealed, do not advance to
-V5-E, and do not modify the manuscript.
+V5-E, and do not modify the manuscript. Any further route requires separate
+research, a frozen capture-architecture correction, and new authorization.
 
 ## Candidate initial stack
 
