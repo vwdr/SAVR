@@ -1674,3 +1674,28 @@ Last updated: 2026-08-10
   completes or stops technically. A new attempt requires a separate identity
   and authorization.
 - Approver: User explicitly replied `approve` at the V09 pre-GPU checkpoint.
+
+## D-108 — Preserve V5-D V09 as rejected allocator hypothesis and technical stop
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve V09 without retry. The raw process authenticated an absent
+  allocator override and PyTorch's default `native` backend, but failed at the
+  same downstream second-graph capture boundary as V08.
+- Hypothesis result: Default-allocator reversion did not correct the failure.
+  Peak reservation was 15.3848 GiB, 0.1074 GiB above V08 and 7.6152 GiB below
+  the unchanged cap. Memory capacity remains solved; allocator choice is ruled
+  out as the proposed correction on this pinned stack.
+- Scientific boundary: Zero full queries, correctness records, scheduled
+  warm-ups, timings, simulator operations, success fields, or outcomes exist.
+  V09 is a technical hypothesis result, not a method-performance result.
+- Protection: Checkpoint bytes and inference thread state were restored, no
+  loader backup remains, the repository is clean, and selected GPU 0 returned
+  to 6 MiB/0% aggregate telemetry.
+- Evidence: `reports/PHASE_V5_D_V09_TECHNICAL_STOP_REPORT.md` and
+  `reports/runtime/acr_v5_d_v09_technical_stop.json` (semantic SHA-256
+  `2113acaad46550b26da8bbfcfe25de4e78312e55e7047974d5b555dd88316209`).
+- Disposition:
+  `STOP_NO_RETRY_V09_DEFAULT_ALLOCATOR_HYPOTHESIS_REJECTED_SECOND_GRAPH_CAPTURE_TECHNICAL_FAILURE`.
+  Any further attempt requires a separately researched and frozen
+  capture-architecture correction; V5-E remains unauthorized.

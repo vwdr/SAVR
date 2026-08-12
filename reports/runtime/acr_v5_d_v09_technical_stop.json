@@ -1,0 +1,134 @@
+{
+  "schema_version": "acr.v5d-technical-stop.v9",
+  "run_id": "acr-v5d-real-tensor-feasibility-v09",
+  "status": "technical-stop-before-correctness",
+  "recorded_at_utc": "2026-08-12T15:37:45Z",
+  "execution_revision": "ffc8146e58301b6bc5c6688c42fdec9f85b0e517",
+  "configuration_semantic_sha256": "e10abef2b2b78472ec7257ed08cd9f9723d20df8335b7ffc1702867464493408",
+  "launch_manifest_semantic_sha256": "e64b73fe9620f189327deeff597c882bdb29667da872351b475d5ab45c19cb6c",
+  "libero_config_semantic_sha256": "c96a9412a165aaf444e0e6aaa5e50907916563df0917923bc4ff618acaf4d27d",
+  "compiler_attempt_semantic_sha256": "b71099f70c9f38a50ed80d573f237018d45e4130a9a882745d74e6389dfa157b",
+  "raw_transition_permit_semantic_sha256": "147b46abdd67e5a1bb4f502aa401f56d1f1cd488c5434d69fa81ff021a7a931d",
+  "transition_revalidation_semantic_sha256": "eb63a74f017f5ff2fb07b8c0f0339179078d82a24fa6c38ea57f659b70aa7949",
+  "raw_attempt_semantic_sha256": "e2d5058732ed93fc9a4c10b327279af14de5e8c62dcda003f3bb48d9ba01214a",
+  "inference_lifecycle_semantic_sha256": "7f3127be2cf818aec659996e291c73e45d9d1e1cd25eaf818fa0cc17570a25cf",
+  "transition_revalidation": {
+    "status": "pass",
+    "samples": 3,
+    "memory_used_mib_each": [6, 6, 6],
+    "utilization_percent_each": [0, 0, 0],
+    "identity_passed": true,
+    "thresholds_passed": true
+  },
+  "compiler_outcome": {
+    "status": "technical-failure-before-correctness",
+    "reason": "compiler-construction-or-first-call-error",
+    "root_cause": "TorchInductor emitted BF16 PTX requiring sm_80 or newer for the selected TITAN RTX sm_75 device.",
+    "preparation_launches": 1,
+    "wall_seconds": 80.20460188295692,
+    "peak_allocated_bytes": 15768091136,
+    "peak_reserved_bytes": 16076767232,
+    "checkpoint_restoration_passed": true,
+    "raw_transition_permitted": true
+  },
+  "raw_outcome": {
+    "status": "failed-before-correctness",
+    "reason": "downstream-second-graph-capture-failed-after-wrist-capture",
+    "error_classification": "CUDA reported an operation failure caused by a previous error during capture; the immutable record does not isolate the originating kernel or operation.",
+    "cuda_allocator_environment": null,
+    "observed_allocator_backend": "native",
+    "default_native_allocator_attestation_passed": true,
+    "inference_mode_attestation_passed": true,
+    "preparation_core_launches": 8,
+    "wall_seconds": 9.754235098138452,
+    "planned_shared_private_pool": true,
+    "shared_pool_created": true,
+    "completed_pre_capture_warmup_order": ["wrist", "downstream"],
+    "completed_capture_order": ["wrist"],
+    "empty_cache_calls": 0,
+    "memory_trace": [
+      {
+        "stage": "wrist-after-pre-capture-warmup",
+        "allocated_bytes": 15486937600,
+        "reserved_bytes": 15841886208
+      },
+      {
+        "stage": "downstream-after-pre-capture-warmup",
+        "allocated_bytes": 15486937600,
+        "reserved_bytes": 16519266304
+      },
+      {
+        "stage": "wrist-after-capture",
+        "allocated_bytes": 15486938624,
+        "reserved_bytes": 15562964992
+      },
+      {
+        "stage": "downstream-capture-failed",
+        "allocated_bytes": 15496649216,
+        "reserved_bytes": 15562964992
+      }
+    ],
+    "peak_allocated_bytes": 16079902208,
+    "peak_reserved_bytes": 16519266304,
+    "peak_allocated_gib": 14.975575923919678,
+    "peak_reserved_gib": 15.384765625,
+    "frozen_peak_reserved_cap_bytes": 24696061952,
+    "frozen_peak_reserved_cap_margin_bytes": 8176795648,
+    "checkpoint_restoration_passed": true
+  },
+  "allocator_hypothesis_outcome": {
+    "v08_allocator_environment": "expandable_segments:True",
+    "v09_allocator_environment": null,
+    "v09_observed_allocator_backend": "native",
+    "v08_peak_allocated_bytes": 16062644736,
+    "v08_peak_reserved_bytes": 16403922944,
+    "v09_minus_v08_peak_allocated_bytes": 17257472,
+    "v09_minus_v08_peak_reserved_bytes": 115343360,
+    "same_capture_boundary_reproduced": true,
+    "interpretation": "Reverting to the default native allocator did not resolve the second-graph capture failure and slightly increased peak allocation and reservation. The V09 allocator hypothesis is rejected on this stack; no method-performance inference follows."
+  },
+  "inference_semantics_outcome": {
+    "entered": true,
+    "grad_enabled_during_raw_attempt": false,
+    "inference_mode_enabled_during_raw_attempt": true,
+    "prior_thread_state_restored": true
+  },
+  "model_loaded": true,
+  "model_processes_sequential": 2,
+  "model_processes_concurrent_max": 1,
+  "model_queries": 0,
+  "backend_preparation_core_launches": 9,
+  "correctness_records": 0,
+  "warmup_records": 0,
+  "timed_records": 0,
+  "final_record_created": false,
+  "analyzer_executed": false,
+  "simulator_instances": 0,
+  "simulator_episodes": 0,
+  "simulator_resets": 0,
+  "downloads": 0,
+  "new_task_outcomes": 0,
+  "success_reward_or_outcome_fields_accessed": false,
+  "selected_gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4",
+    "name": "NVIDIA TITAN RTX",
+    "driver_version": "570.211.01",
+    "memory_total_mib": 24576,
+    "compute_capability": "7.5"
+  },
+  "post_stop_selected_gpu_telemetry": {
+    "memory_used_mib": 6,
+    "utilization_percent": 0
+  },
+  "checkpoint_protected_hashes_after_stop": {
+    "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+  },
+  "checkpoint_loader_backups_remaining": 0,
+  "source_trees_clean_after_stop": true,
+  "scientific_interpretation": "V09 falsifies the default-allocator recovery hypothesis under the frozen V5-D setup. It contains no correctness, timing, simulator, reward, success, or task-outcome result and is not a result about ACR performance. The unresolved blocker is multi-graph CUDA capture compatibility on the pinned sm_75/PyTorch stack.",
+  "disposition": "STOP_NO_RETRY_V09_DEFAULT_ALLOCATOR_HYPOTHESIS_REJECTED_SECOND_GRAPH_CAPTURE_TECHNICAL_FAILURE",
+  "semantic_sha256": "2113acaad46550b26da8bbfcfe25de4e78312e55e7047974d5b555dd88316209"
+}
