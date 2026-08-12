@@ -1,6 +1,6 @@
 # Phase V5-D V09 Default-Allocator Implementation Report
 
-Status: **LOCAL PRE-GPU VERIFICATION PASSED; TITAN CUDA-HIDDEN REPLAY PENDING**
+Status: **PRE-GPU VERIFICATION COMPLETE; GPU SELECTION NOT AUTHORIZED**
 
 Date: 2026-08-11
 
@@ -56,7 +56,15 @@ Resolved configuration semantic SHA-256:
 
 ## 5. Current checkpoint
 
-Publish the implementation, require both CI gates, synchronize the exact main
-revision to TITAN, and replay focused/full tests plus deterministic preflight
-with CUDA hidden. Stop before GPU inspection or selection. A GPU attempt needs
-separate explicit coordination and a newly sealed execution authorization.
+PR #95 passed both validation jobs and merged at revision
+`65b2d22997350c620223accabad20811f6177890`. TITAN reproduced six focused
+tests, all 378 tests plus nine subtests, and deterministic preflight with CUDA
+hidden. Pinned PyTorch `2.2.0+cu118` reported no allocator environment,
+allocator backend `native`, zero visible GPUs, and uninitialized CUDA.
+
+Curated pre-GPU verification is stored at
+`reports/runtime/acr_v5_d_v09_pre_gpu_verification.json` with semantic SHA-256
+`92123fdc19a0ac5de703e82340edd15ac0c859e6b607549fa28d8cee6e48d4ec`.
+
+Stop before GPU inspection or selection. A GPU attempt needs separate explicit
+coordination and a newly sealed execution authorization.

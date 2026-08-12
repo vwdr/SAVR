@@ -1644,10 +1644,15 @@ Last updated: 2026-08-10
 - Rejected confounds: No relaxed capture mode, cache/hidden-output change,
   combined graph, quantization, offload, sharding, reduced warm-up, cap change,
   simulator, outcome access, or manuscript edit.
-- Verification: Six focused and 378 full local tests, Ruff, and deterministic
-  preflight semantic SHA-256
+- Verification: Six focused and 378 full local tests, both PR #95 validation
+  jobs, six focused TITAN tests, 378 TITAN tests plus nine subtests, Ruff, and
+  deterministic preflight semantic SHA-256
   `fa9596664fb831b46c75a6738e312277a0bf4a13bc38279e072abee3479750b2`
-  pass. TITAN CUDA-hidden replay remains required.
+  pass. TITAN attested PyTorch `2.2.0+cu118`, absent allocator override,
+  backend `native`, zero visible GPUs, and uninitialized CUDA.
+- Evidence: `reports/runtime/acr_v5_d_v09_pre_gpu_verification.json` (semantic
+  SHA-256
+  `92123fdc19a0ac5de703e82340edd15ac0c859e6b607549fa28d8cee6e48d4ec`).
 - Disposition: `STOP_BEFORE_V09_GPU_INSPECTION_OR_SELECTION`.
 - Approver: User explicitly approved the logical next step after V08 evidence
   reconciliation. This approval does not authorize a V09 GPU attempt.

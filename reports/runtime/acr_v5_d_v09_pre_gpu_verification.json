@@ -1,0 +1,47 @@
+{
+  "schema_version": "acr.v5d-pre-gpu-verification.v9",
+  "run_id": "acr-v5d-real-tensor-feasibility-v09",
+  "status": "pass",
+  "recorded_at_utc": "2026-08-12T03:44:09Z",
+  "execution_revision": "65b2d22997350c620223accabad20811f6177890",
+  "configuration_semantic_sha256": "893012bebd2ed157ecaf0be71b48fd582b65ed85607ef0a73e781ddd9f918e98",
+  "deterministic_preflight_semantic_sha256": "fa9596664fb831b46c75a6738e312277a0bf4a13bc38279e072abee3479750b2",
+  "local_verification": {
+    "focused_tests_passed": 6,
+    "full_tests_passed": 378,
+    "ruff_passed": true,
+    "diff_check_passed": true,
+    "deterministic_preflight_passed": true
+  },
+  "github_verification": {
+    "pull_request": 95,
+    "validation_jobs_passed": 2,
+    "merged": true
+  },
+  "titan_cuda_hidden_verification": {
+    "focused_tests_passed": 6,
+    "full_tests_passed": 378,
+    "subtests_passed": 9,
+    "deterministic_preflight_passed": true,
+    "pytorch_version": "2.2.0+cu118",
+    "pytorch_cuda_alloc_conf": null,
+    "allocator_backend": "native",
+    "cuda_visible_device_count": 0,
+    "cuda_initialized": false,
+    "repository_clean": true,
+    "revision_matched": true
+  },
+  "resources_used": {
+    "gpu_inspections": 0,
+    "gpu_selections": 0,
+    "cuda_initializations": 0,
+    "model_queries": 0,
+    "simulator_episodes": 0,
+    "downloads": 0,
+    "new_task_outcomes": 0,
+    "protected_outcome_access": false,
+    "manuscript_changes": 0
+  },
+  "advance_only_to": "STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_V09_GPU_SELECTION",
+  "semantic_sha256": "92123fdc19a0ac5de703e82340edd15ac0c859e6b607549fa28d8cee6e48d4ec"
+}
