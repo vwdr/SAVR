@@ -102,8 +102,12 @@ def verify() -> dict[str, Any]:
         and v09["pre_capture_warmup"] == v08["pre_capture_warmup"]
         and v09["inference_semantics"] == v08["inference_semantics"]
         and v09["memory"] == v08["memory"],
-        "pre_gpu_stop": v09["current_authorization"]["gpu_selection"] is False
-        and v09["current_authorization"]["model_queries_max"] == 0,
+        "one_gpu_attempt_authorized": v09["current_authorization"]["gpu_selection"] is True
+        and v09["current_authorization"]["model_queries_max"] == 111
+        and v09["current_authorization"]["automatic_retry"] is False
+        and v09["current_authorization"]["simulator_use"] is False
+        and v09["current_authorization"]["protected_outcome_access"] is False
+        and v09["current_authorization"]["manuscript_changes"] is False,
         "immutable_paths_unused": not (
             ROOT / "results/acr-v5d-real-tensor-feasibility-v09"
         ).exists(),
@@ -128,7 +132,7 @@ def verify() -> dict[str, Any]:
             "downloads": 0,
             "new_task_outcomes": 0,
         },
-        "advance_only_to": "V09_PRE_GPU_CHECKPOINT",
+        "advance_only_to": "ONE_FROZEN_V09_GPU_ATTEMPT",
     }
     record["semantic_sha256"] = hashlib.sha256(canonical_bytes(record)).hexdigest()
     return record

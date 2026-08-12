@@ -1,8 +1,8 @@
 {
   "schema_version": "acr.v5d-default-allocator-recovery.v9",
-  "status": "frozen-pre-gpu",
-  "authorized_at": "2026-08-11",
-  "authorized_scope": "one-v09-pre-gpu-research-implementation-and-verification",
+  "status": "authorized-one-gpu-execution",
+  "authorized_at": "2026-08-12",
+  "authorized_scope": "one-v09-aggregate-selection-and-single-fail-closed-gpu-attempt",
   "protocol": "docs/ACR_V5_D_V09_DEFAULT_ALLOCATOR_PROTOCOL.md",
   "base_v08_configuration_semantic_sha256": "70db1b6b4b2259d326a6eb45de52c12b5372157f62d739e47e0ec27b5230ce21",
   "v08_run_id": "acr-v5d-real-tensor-feasibility-v08",
@@ -39,14 +39,14 @@
     "model_queries": 0
   },
   "current_authorization": {
-    "gpu_selection": false,
-    "model_queries_max": 0,
+    "gpu_selection": true,
+    "model_queries_max": 111,
     "automatic_retry": false,
     "simulator_use": false,
     "protected_outcome_access": false,
     "manuscript_changes": false
   },
-  "advance_only_to": "V09_PRE_GPU_CHECKPOINT",
-  "resolved_configuration_semantic_sha256": "893012bebd2ed157ecaf0be71b48fd582b65ed85607ef0a73e781ddd9f918e98",
-  "semantic_sha256": "403e26a27c5d68d48c89831ae7580575955e57226031a0d378bc39fb9b820475"
+  "advance_only_to": "ONE_FROZEN_V09_GPU_ATTEMPT",
+  "resolved_configuration_semantic_sha256": "e10abef2b2b78472ec7257ed08cd9f9723d20df8335b7ffc1702867464493408",
+  "semantic_sha256": "a39e597483093eeb5c610395c6e83c8c3b0e6f2925b0cf6ec5bec5e6c0cde8a0"
 }
