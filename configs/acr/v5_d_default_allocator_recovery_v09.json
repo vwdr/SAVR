@@ -1,0 +1,52 @@
+{
+  "schema_version": "acr.v5d-default-allocator-recovery.v9",
+  "status": "frozen-pre-gpu",
+  "authorized_at": "2026-08-11",
+  "authorized_scope": "one-v09-pre-gpu-research-implementation-and-verification",
+  "protocol": "docs/ACR_V5_D_V09_DEFAULT_ALLOCATOR_PROTOCOL.md",
+  "base_v08_configuration_semantic_sha256": "70db1b6b4b2259d326a6eb45de52c12b5372157f62d739e47e0ec27b5230ce21",
+  "v08_run_id": "acr-v5d-real-tensor-feasibility-v08",
+  "v08_technical_stop_semantic_sha256": "3572abf107ad1b0ef10557e27c66b3d5ad1d967a5f82b633c572bef907d16d98",
+  "run_id": "acr-v5d-real-tensor-feasibility-v09",
+  "permitted_changes": [
+    "raw-process-remove-expandable-segments-override",
+    "default-native-allocator-provenance"
+  ],
+  "allocator": {
+    "applies_to_backend": "raw-cudagraph",
+    "environment_variable": "PYTORCH_CUDA_ALLOC_CONF",
+    "exact_value": null,
+    "must_be_unset_before_torch_import": true,
+    "backend": "native-default",
+    "experimental": false,
+    "compiler_process_unchanged": true,
+    "empty_cache_calls": 0,
+    "other_allocator_options": 0,
+    "automatic_retries": 0
+  },
+  "v08_measured_evidence": {
+    "raw_peak_allocated_bytes": 16062644736,
+    "raw_peak_reserved_bytes": 16403922944,
+    "peak_reserved_cap_margin_bytes": 8292139008,
+    "completed_pre_capture_warmup_order": [
+      "wrist",
+      "downstream"
+    ],
+    "completed_capture_order": [
+      "wrist"
+    ],
+    "downstream_capture_failed": true,
+    "model_queries": 0
+  },
+  "current_authorization": {
+    "gpu_selection": false,
+    "model_queries_max": 0,
+    "automatic_retry": false,
+    "simulator_use": false,
+    "protected_outcome_access": false,
+    "manuscript_changes": false
+  },
+  "advance_only_to": "V09_PRE_GPU_CHECKPOINT",
+  "resolved_configuration_semantic_sha256": "893012bebd2ed157ecaf0be71b48fd582b65ed85607ef0a73e781ddd9f918e98",
+  "semantic_sha256": "403e26a27c5d68d48c89831ae7580575955e57226031a0d378bc39fb9b820475"
+}

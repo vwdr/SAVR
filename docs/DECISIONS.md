@@ -1624,3 +1624,30 @@ Last updated: 2026-08-10
   `STOP_NO_RETRY_V08_MEMORY_RECOVERED_SECOND_GRAPH_CAPTURE_TECHNICAL_FAILURE`.
   A new attempt requires separately researched and frozen capture correction;
   V5-E remains unauthorized.
+
+## D-106 — Freeze V5-D V09 default-allocator recovery
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve V08 and create V09 with one raw-process correction:
+  remove `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` and require the
+  default native allocator. Record both environment absence and PyTorch's
+  observed allocator backend.
+- Rationale: V08's inference correction left 7.7227 GiB below the unchanged
+  cap, so V07's experimental memory workaround is no longer necessary. The
+  remaining failure occurred at the second shared-pool capture, and PyTorch's
+  primary documentation/issues support testing allocator reversion before any
+  broader model or graph-body modification.
+- Frozen boundary: Preserve V08's inference lifecycle, model/checkpoint,
+  tensors, warm-ups, graph bodies, stream/shared pool/order, 111 queries,
+  gates, cap, restoration, and exclusions.
+- Rejected confounds: No relaxed capture mode, cache/hidden-output change,
+  combined graph, quantization, offload, sharding, reduced warm-up, cap change,
+  simulator, outcome access, or manuscript edit.
+- Verification: Six focused and 378 full local tests, Ruff, and deterministic
+  preflight semantic SHA-256
+  `fa9596664fb831b46c75a6738e312277a0bf4a13bc38279e072abee3479750b2`
+  pass. TITAN CUDA-hidden replay remains required.
+- Disposition: `STOP_BEFORE_V09_GPU_INSPECTION_OR_SELECTION`.
+- Approver: User explicitly approved the logical next step after V08 evidence
+  reconciliation. This approval does not authorize a V09 GPU attempt.
