@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **V09 PRE-GPU VERIFIED; GPU NOT AUTHORIZED**
+ACR Version 5 V5-D — **V09 SINGLE GPU ATTEMPT AUTHORIZED**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -589,11 +589,11 @@ Not completed:
 
 ## Next authorized action
 
-Preserve all evidence and do not retry V05-V08. V09 is fully implemented and
-pre-GPU verified. Stop for explicit user coordination before sealing one
-aggregate-only GPU selection and single fail-closed V09 attempt. Keep
-simulator/final populations and success fields sealed, do not advance to V5-E,
-and do not modify the manuscript.
+Preserve all evidence and do not retry V05-V08. V09 is fully implemented,
+pre-GPU verified, and authorized for one aggregate-only GPU selection and one
+single fail-closed attempt. Reconcile and preserve its evidence without retry.
+Keep simulator/final populations and success fields sealed, do not advance to
+V5-E, and do not modify the manuscript.
 
 ## Candidate initial stack
 

@@ -1,8 +1,13 @@
 # ACR V5-D V09 Default-Allocator Recovery Protocol
 
-Status: **FROZEN FOR PRE-GPU IMPLEMENTATION; GPU SELECTION NOT AUTHORIZED**
+Status: **AUTHORIZED FOR ONE AGGREGATE-SELECTED, FAIL-CLOSED GPU ATTEMPT**
 
 Date: 2026-08-11
+
+Authorization checkpoint: On 2026-08-12, the user explicitly approved one V09
+GPU attempt. Authorization is limited to one aggregate-only selection and one
+frozen execution with at most 111 model queries. It excludes automatic retry,
+simulator use, protected-outcome access, manuscript changes, and V5-E.
 
 ## 1. Decision
 

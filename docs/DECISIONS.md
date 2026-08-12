@@ -1656,3 +1656,21 @@ Last updated: 2026-08-10
 - Disposition: `STOP_BEFORE_V09_GPU_INSPECTION_OR_SELECTION`.
 - Approver: User explicitly approved the logical next step after V08 evidence
   reconciliation. This approval does not authorize a V09 GPU attempt.
+
+## D-107 — Authorize one frozen V5-D V09 GPU attempt
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Seal the user's explicit 2026-08-12 approval for one V09
+  aggregate-only GPU selection and one fail-closed execution with at most 111
+  frozen model queries.
+- Unchanged boundary: Preserve the V09 default-allocator correction, V08
+  inference semantics, model/checkpoint, tensors, warm-up/capture lifecycle,
+  graph bodies, schedule, gates, 23 GiB cap, and claim limits exactly.
+- Exclusions: No automatic retry, simulator, protected outcome, final
+  population, manuscript edit, V5-E advance, process-identity inspection, or
+  unrelated server interference is authorized.
+- Required disposition: Preserve and reconcile the single attempt whether it
+  completes or stops technically. A new attempt requires a separate identity
+  and authorization.
+- Approver: User explicitly replied `approve` at the V09 pre-GPU checkpoint.
