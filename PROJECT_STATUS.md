@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **v07 ALLOCATOR-RECOVERY MEMORY TECHNICAL STOP; NO METHOD RESULT**
+ACR Version 5 V5-D — **V08 INFERENCE-SEMANTICS RECOVERY PRE-GPU VERIFIED**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -560,6 +560,11 @@ Completed:
 - the V07 allocator attestation and sustained transition gate passed, but downstream pre-capture warm-up OOMed before either graph capture
 - V07 reduced the peak reserved-minus-allocated indicator by 457,361,408 bytes versus V06, while peak reservation improved by only 4 MiB and still exceeded the 23 GiB cap by 241,172,480 bytes
 - V07 produced zero correctness/timing/simulator/outcome records, restored the checkpoint exactly, and is not a method-performance result
+- V08 identifies and corrects a mismatch with the official OpenVLA evaluator: the custom V5-D path lacked inference mode even though `model.eval()` does not disable gradient tracking
+- V08 preserves V07's allocator, method, tensors, 111-query schedule, gates, and 23 GiB cap while adding one fail-closed whole-raw-attempt inference context
+- pinned PyTorch CPU evidence reproduced growing retained `CopyBackwards` graphs under default mode and zero backward graph under inference mode
+- all 372 local tests, both PR #91 validation jobs, six focused TITAN tests, 372 TITAN tests plus nine subtests, and deterministic/CUDA-hidden V08 preflight pass
+- V08 remains stopped before GPU selection and has produced no model, simulator, timing, correctness, or outcome record
 
 Not completed:
 
@@ -579,13 +584,10 @@ Not completed:
 ## Next authorized action
 
 Preserve all evidence and immutable V5-D v01-v07 technical stops. Do not retry
-V05, V06, or V07. V07 establishes that reducing allocator fragmentation with
-expandable segments does not make the unchanged downstream eager preparation
-fit the 23 GiB cap on TITAN RTX. Because higher-memory hardware is unavailable,
-research and freeze a materially justified same-hardware system change that
-reduces active preparation memory while preserving correctness and timing
-validity. Keep simulator/final populations and success fields sealed and do
-not modify the manuscript.
+V05, V06, or V07. V08's official inference-semantics correction is fully
+implemented and pre-GPU verified. Stop for explicit coordination before its
+single aggregate-only GPU selection and attempt. Keep simulator/final
+populations and success fields sealed and do not modify the manuscript.
 
 ## Candidate initial stack
 

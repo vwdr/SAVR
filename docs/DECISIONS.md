@@ -1551,3 +1551,32 @@ Last updated: 2026-08-10
   `STOP_NO_RETRY_V07_ALLOCATOR_IMPROVED_FRAGMENTATION_BUT_MEMORY_INFEASIBLE_ON_TITAN_RTX`.
 - Approver: User authorized the single V07 GPU attempt on 2026-08-11. V5-E
   remains unauthorized.
+
+## D-103 — Freeze V5-D V08 official inference-semantics recovery
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve V07 and create V08 with one raw-process change: enter
+  `torch.inference_mode()` after transition revalidation and before model
+  initialization, retain it through preparation/capture/correctness/timing,
+  and restore the prior thread state in `finally`.
+- Root cause: The official pinned OpenVLA evaluator uses inference mode. The
+  custom V5-D path used `model.eval()` without disabling gradient tracking.
+  Pinned CPU evidence showed repeated static copies retained a growing
+  `CopyBackwards` graph (`10 -> 16 -> 22` nodes); inference mode retained none.
+- Frozen boundary: Preserve V07's allocator, model/checkpoint, tensors, raw
+  backend, lifecycle, 111-query schedule, gates, 23 GiB cap, and claim limits.
+  No decoder pruning, cache/output change, quantization, offload, sharding,
+  reduced warm-up, cap increase, simulator, or outcome access.
+- Verification: 372 local tests; both PR #91 checks; six focused TITAN tests;
+  372 TITAN tests plus nine subtests; deterministic preflight semantic SHA-256
+  `6c4c6dbfaf01549c2fb58ba330feb952dfc402064ea4d7e2fca81d4ea1782503`;
+  CPU mechanism semantic SHA-256
+  `154cc8cf8005f90ee3df7669c823f53048d9b3c2f95662538a2810e6faf7eff5`.
+- Protection: Zero GPU inspection/selection, CUDA initialization, model query,
+  simulator, download, task outcome, protected population, or manuscript edit.
+- Evidence: `docs/ACR_V5_D_V08_INFERENCE_SEMANTICS_PROTOCOL.md` and
+  `reports/PHASE_V5_D_V08_INFERENCE_RECOVERY_IMPLEMENTATION_REPORT.md`.
+- Disposition: `STOP_FOR_EXPLICIT_USER_COORDINATION_BEFORE_V08_GPU_SELECTION`.
+- Approver: User approved research and logical forward progress on 2026-08-11;
+  GPU selection remains separately coordinated under repository safety rules.

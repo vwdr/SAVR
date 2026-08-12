@@ -1,0 +1,53 @@
+{
+  "schema_version": "acr.v5d-inference-cpu-verification.v8",
+  "status": "pass",
+  "execution_revision": "e55229866dcbf3f5f98f1572db7e5add1a56b10d",
+  "torch_version": "2.2.0+cu118",
+  "default_grad_mode": [
+    {
+      "repetition": 1,
+      "requires_grad": true,
+      "grad_fn": "CopyBackwards",
+      "reachable_backward_nodes": 10
+    },
+    {
+      "repetition": 2,
+      "requires_grad": true,
+      "grad_fn": "CopyBackwards",
+      "reachable_backward_nodes": 16
+    },
+    {
+      "repetition": 3,
+      "requires_grad": true,
+      "grad_fn": "CopyBackwards",
+      "reachable_backward_nodes": 22
+    }
+  ],
+  "inference_mode": [
+    {
+      "repetition": 1,
+      "requires_grad": false,
+      "grad_fn": null,
+      "reachable_backward_nodes": 0
+    },
+    {
+      "repetition": 2,
+      "requires_grad": false,
+      "grad_fn": null,
+      "reachable_backward_nodes": 0
+    },
+    {
+      "repetition": 3,
+      "requires_grad": false,
+      "grad_fn": null,
+      "reachable_backward_nodes": 0
+    }
+  ],
+  "cuda_initialized": false,
+  "gpu_inspections": 0,
+  "model_queries": 0,
+  "simulator_episodes": 0,
+  "downloads": 0,
+  "new_task_outcomes": 0,
+  "semantic_sha256": "154cc8cf8005f90ee3df7669c823f53048d9b3c2f95662538a2810e6faf7eff5"
+}
