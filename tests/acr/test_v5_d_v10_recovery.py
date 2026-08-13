@@ -77,11 +77,12 @@ def test_v10_configuration_and_v09_evidence_are_authentic() -> None:
     )
 
 
-def test_v10_implementation_authorization_stops_before_gpu() -> None:
+def test_v10_authorizes_exactly_one_frozen_gpu_attempt() -> None:
     authorization = load_v10(ROOT)["current_authorization"]
     assert authorization["pre_gpu_implementation"] is True
-    assert authorization["gpu_inspection_or_selection"] is False
-    assert authorization["model_queries"] == 0
+    assert authorization["gpu_inspection_or_selection"] is True
+    assert authorization["model_queries_max"] == 111
+    assert authorization["automatic_retry"] is False
     assert authorization["simulator_use"] is False
     assert authorization["protected_outcome_access"] is False
     assert authorization["manuscript_changes"] is False
@@ -139,7 +140,7 @@ def test_v10_independent_architecture_verifier_is_fail_closed() -> None:
     assert verify_v10_architecture({}) == ["missing V10 hybrid architecture provenance"]
 
 
-def test_v10_execution_wrappers_are_gated_before_gpu() -> None:
+def test_v10_execution_wrappers_require_authenticated_authorization() -> None:
     runner = (ROOT / "scripts/run_acr_v5_d_v10.py").read_text(encoding="utf-8")
     selector = (ROOT / "scripts/select_acr_v5_d_v10_gpu.py").read_text(encoding="utf-8")
     launcher = (ROOT / "scripts/launch_acr_v5_d_v10.sh").read_text(encoding="utf-8")

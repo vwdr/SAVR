@@ -127,14 +127,16 @@ def verify() -> dict[str, Any]:
         and "expandable_segments:True" not in launcher
         and "PYTORCH_CUDA_ALLOC_CONF=" not in launcher
         and "Refusing inherited allocator configuration" in launcher,
-        "execution_remains_gated": "V10 GPU execution is not authorized" in runner
+        "execution_requires_exact_authorization": "V10 GPU execution is not authorized" in runner
+        and "V10 GPU execution lacks the exact query authorization" in runner
         and "V10 GPU inspection or selection is not authorized" in selector,
-        "implementation_only_authorized": v10["current_authorization"]
+        "single_gpu_attempt_authorized": v10["current_authorization"]
         == {
             "protocol_documentation": True,
             "pre_gpu_implementation": True,
-            "gpu_inspection_or_selection": False,
-            "model_queries": 0,
+            "gpu_inspection_or_selection": True,
+            "model_queries_max": 111,
+            "automatic_retry": False,
             "simulator_use": False,
             "protected_outcome_access": False,
             "manuscript_changes": False,
@@ -166,7 +168,7 @@ def verify() -> dict[str, Any]:
             "downloads": 0,
             "new_task_outcomes": 0,
         },
-        "advance_only_to": "STOP_BEFORE_V10_GPU_INSPECTION_OR_SELECTION",
+        "advance_only_to": "ONE_FROZEN_V10_GPU_ATTEMPT",
     }
     record["semantic_sha256"] = hashlib.sha256(canonical_bytes(record)).hexdigest()
     return record

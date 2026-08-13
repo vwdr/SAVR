@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **V10 PRE-GPU CHECKPOINT PASSED; GPU NOT AUTHORIZED**
+ACR Version 5 V5-D — **V10 SINGLE GPU ATTEMPT AUTHORIZED**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol and V10 implementation frozen before GPU execution or output. It preserves `v5-a100-b40`,
@@ -577,10 +577,11 @@ Completed:
 - V10 freezes the evidence-driven hybrid correction: eager wrist visual core plus one downstream-only CUDA graph, eliminating the repeated second-capture transition without changing ACR computation
 - prior real-model V3-C evidence attributes 93.43% of reuse CUDA time to the downstream portion, giving the hybrid a meaningful efficiency target while preserving separate wrist/downstream timing
 - V10 retains the default native allocator, inference mode, exact graph body, correctness tolerances, 111-query schedule, statistical gates, memory cap, and protected-data boundaries
-- the user authorized V10 implementation through local/CI and CUDA-hidden TITAN verification; GPU inspection/selection, model query, simulator use, task outcome, V5-E, and manuscript edits remain unauthorized
+- the user first authorized V10 implementation through local/CI and CUDA-hidden TITAN verification, which completed without GPU or model access
 - V10 implements eager wrist execution plus exactly one downstream CUDA graph with authenticated warm-up, capture, memory-stage, pointer, stream, order, and preparation-label provenance
 - 13 focused tests, all 391 tests, both PR #100 CI jobs, and all 15 deterministic preflight checks pass locally and on TITAN at merged revision `f587d13b4f439fd075dc53e890641115b6abce1e`
 - TITAN pinned PyTorch `2.2.0+cu118` confirmed CUDA remained uninitialized with no visible GPU; V10 used zero model queries, simulator episodes, task outcomes, or protected-field access
+- the user then explicitly authorized one aggregate-only GPU selection and one fail-closed V10 attempt capped at 111 model queries; automatic retry, simulator use, protected outcomes, V5-E, and manuscript edits remain unauthorized
 
 Not completed:
 
@@ -599,9 +600,9 @@ Not completed:
 
 ## Next authorized action
 
-Preserve all evidence and do not retry V05-V09. V10 is stopped at its passed
-pre-GPU checkpoint. GPU inspection, selection, and a single frozen V10 attempt
-require separate explicit approval. Keep simulator/final
+Preserve all evidence and do not retry V05-V09. V10 is authorized for one
+aggregate-only GPU selection and one single fail-closed attempt with at most
+111 frozen model queries. Reconcile and preserve the evidence without retry. Keep simulator/final
 populations and success fields sealed, do not advance to V5-E, and do not
 modify the manuscript.
 
