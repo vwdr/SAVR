@@ -1,524 +1,422 @@
 \documentclass[11pt]{article}
 
-% =========================
-% Packages
-% =========================
-\usepackage[margin=1in]{geometry}
-\usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage{tabularx}
+\usepackage[margin=0.88in]{geometry}
+\usepackage{amsmath,amssymb}
 \usepackage{array}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage[dvipsnames]{xcolor}
-\usepackage{tikz}
-\usepackage{ragged2e}
-\usepackage{microtype}
-\usepackage{cite}
+\usepackage{booktabs}
 \usepackage{caption}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage{longtable}
+\usepackage{microtype}
+\usepackage{ragged2e}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{url}
 \usetikzlibrary{arrows.meta,positioning,fit}
 
-% =========================
-% Formatting
-% =========================
-\setlength{\parindent}{0.25in}
-\setlength{\parskip}{0.35em}
-\setlength{\fboxrule}{0.45pt}
-\setlength{\fboxsep}{6pt}
+\hypersetup{colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue}
+\setlength{\parindent}{0.22in}
+\setlength{\parskip}{0.28em}
+\setlength{\tabcolsep}{5pt}
 \sloppy
 
-% Bold citations and references
-\newcommand{\bcite}[1]{\textbf{\cite{#1}}}
-\newcommand{\bfigref}[1]{\textbf{Fig.~\ref{#1}}}
-\newcommand{\btabref}[1]{\textbf{Table~\ref{#1}}}
-\newcommand{\beqref}[1]{\textbf{Eq.~\ref{#1}}}
-\renewcommand{\refname}{\textbf{References}}
+\newcommand{\FR}{\textsc{FR}}
+\newcommand{\SAVR}{\textsc{SAVR}}
+\newcommand{\pp}{\,pp}
+\newcommand{\code}[1]{\texttt{#1}}
 
 \begin{document}
 \justifying
 
-% =========================
-% Title Block
-% =========================
 \begin{center}
-{\Large \textbf{State-Aware Visual Refresh for Efficient Vision Language Action Inference}}\\[1em]
+{\Large\bfseries When Visual Reuse Changes the Trajectory:\\[0.15em]
+Negative Results for Training-Free Whole-Prefix Caching in a Vision-Language-Action Model}\\[1em]
 
-Ved Dwivedi$^{1}$, Cheng Yang$^{2}$, and Bo Yuan$^{2}$\\[0.5em]
-
+Ved Dwivedi$^{1}$, Cheng Yang$^{2}$, and Bo Yuan$^{2}$\\[0.45em]
 $^{1}$John P. Stevens High School, Edison, New Jersey\\
 $^{2}$Department of Electrical and Computer Engineering, Rutgers University--New Brunswick, Piscataway, New Jersey
 \end{center}
 
-\vspace{1em}
-
-% =========================
-% Abstract
-% =========================
+\vspace{0.6em}
 
 \begin{abstract}
-\justifying
-Vision language action models (VLAs) have improved language-conditioned robot manipulation, but their use in closed-loop control remains computationally expensive. Each control step can require a new visual encoding, even when consecutive observations differ only marginally. We propose State-Aware Visual Refresh (SAVR), a training-free inference controller that decides whether to refresh or reuse visual features using image change, robot state change and recent action change. The method is intentionally lightweight: it wraps around an existing VLA without changing the policy weights or action head. The experimental design compares SAVR with Full Refresh (FR), Periodic Refresh (PR) and Visual-Only Refresh (VOR), testing whether embodied state and action signals provide a more reliable basis for visual reuse than visual similarity alone.
+Vision-language-action (VLA) policies repeatedly encode similar observations during closed-loop manipulation, suggesting that visual features could be cached between policy queries. We study this idea through State-Aware Visual Refresh (SAVR), a training-free controller that reuses the complete projected visual prefix from a third-person and wrist camera while retaining current proprioception and the unchanged action head. The study uses a pinned OpenVLA-OFT checkpoint on LIBERO-Spatial and preserves 1,160 terminal episodes across a dense Full Refresh reference and three staged SAVR designs. Full Refresh succeeded on 100/100 calibration episodes. Nine initial SAVR settings achieved 0--52/100 success at 34.69--83.68\% skipped visual refreshes; the least-degrading setting still lost 48 percentage points. Offline replay underestimated online reuse for every setting. For the least-degrading setting, 374 of 783 reuse queries concealed a per-camera threshold exceedance behind the two-camera mean, including 372 wrist-camera exceedances, and the first comparable reuse changed the action hash in all 87 analyzable episodes. Safety-constrained redesigns recovered success only by suppressing reuse: one configuration achieved 30/30 with zero reuse, while configurations at 6.72\% and 10.57\% skip achieved 29/30 and 27/30. A final post-hoc safety redesign achieved 69/70 at only 0.95\% skip. No tested operating point satisfied its predeclared success-efficiency gate. These bounded negative results expose a closed-loop safety-efficiency frontier for whole-prefix caching and motivate sensor-granular or task-aware reuse rather than treating a multi-camera visual prefix as indivisible.
 \end{abstract}
 
-% =========================
-% Keywords
-% =========================
-
 \section*{Keywords}
-
-robotic manipulation; visual refresh; inference efficiency; vision language action models; temporal redundancy; closed-loop control
-
-% =========================
-% Notation
-% =========================
-
-\section*{Notation}
-
-\small
-\begin{longtable}{
->{\raggedright\arraybackslash}p{0.22\linewidth}
->{\raggedright\arraybackslash}p{0.70\linewidth}}
-\caption*{Key notation used throughout the manuscript.}\\
-\toprule
-\textbf{Symbol} & \textbf{Meaning} \\
-\midrule
-\endfirsthead
-
-\toprule
-\textbf{Symbol} & \textbf{Meaning} \\
-\midrule
-\endhead
-
-$\hat{a}_t$ & Predicted robot action at control step $t$ \\
-$C(g)$ & Deployment cost under refresh controller $g$ \\
-$\Delta_t^{\mathrm{act}}$ & Recent action-change score \\
-$\Delta_t^{\mathrm{img}}$ & Image-change score relative to the most recent refreshed observation \\
-$\Delta_t^{\mathrm{state}}$ & Robot-state-change score \\
-$E_{\phi}$ & Visual encoder with parameters $\phi$ \\
-$\epsilon$ & Maximum acceptable task-success drop relative to FR \\
-$g$ & Refresh controller \\
-$g_t$ & Causal refresh decision rule at control step $t$ \\
-$\gamma_{\mathrm{act}}$ & Action-change refresh threshold \\
-$\gamma_{\mathrm{img}}$ & Image-change refresh threshold \\
-$\gamma_{\mathrm{state}}$ & State-change refresh threshold \\
-$H_{\max}$ & Maximum reuse horizon before forced refresh \\
-$h_t$ & Number of control steps since the most recent refresh \\
-$\mathbb{I}[\cdot]$ & Indicator function \\
-$j$ & Image patch or region index \\
-$k$ & Fixed refresh interval for PR \\
-$M$ & Number of image patches or downsampled image regions \\
-$o_t$ & Camera observation at control step $t$ \\
-$o_{\tau_t}$ & Camera observation at the most recent refreshed step $\tau_t$ \\
-$\pi_{\theta}$ & Base VLA policy with parameters $\theta$ \\
-$r_t$ & Binary visual refresh decision at control step $t$ \\
-$s_t$ & Robot state at control step $t$ \\
-$S(g)$ & Task success under refresh controller $g$ \\
-$t$ & Control step index \\
-$T$ & Episode length \\
-$W_a$ & Action normalization matrix \\
-$W_s$ & State normalization matrix \\
-$x$ & Language instruction \\
-$z_t$ & Visual representation used at control step $t$ \\
-$z_{\tau_t}$ & Cached visual representation from the most recent refreshed step \\
-$\tau_t$ & Most recent refreshed control step at or before $t$ \\
-\bottomrule
-\end{longtable}
-\normalsize
-
-% =========================
-% 1. Introduction
-% =========================
+vision-language-action models; robot manipulation; negative results; visual caching; adaptive computation; closed-loop control; inference efficiency
 
 \section{Introduction}
 
-Vision language action models (VLAs) have made language-conditioned robot manipulation substantially more flexible. The RT-1 model showed that transformer-based robot policies can scale with broad robot datasets, while the RT-2 model connected vision language pretraining with action generation. The OpenVLA model later made this line of work more accessible by releasing an open 7B-parameter VLA trained on large-scale robot demonstrations using a Llama~2 backbone with DINOv2 and SigLIP visual features~\bcite{rt1,rt2,openvla}.
+Vision-language-action (VLA) models map language, images, and robot state directly to actions. RT-1 and RT-2 established scalable language-conditioned robot policies, and OpenVLA released a 7B-parameter open model built from a Llama~2 language backbone and fused DINOv2/SigLIP visual features~\cite{rt1,rt2,openvla}. OpenVLA-OFT subsequently combined continuous actions, parallel decoding, and eight-action chunks to improve both success and action-generation throughput~\cite{openvlaoft}. These advances make repeated visual processing an increasingly visible part of closed-loop inference.
 
-The cost of inference remains a practical obstacle. Closed-loop manipulation requires repeated policy calls, often at a frequency where small inefficiencies accumulate over an episode. Recent work has reduced this burden through compact policy design, faster fine-tuning, parallel action decoding, action tokenization and system-level pipelining~\bcite{tinyvla,openvlaoft,fast,actionflow}. These methods make the point that VLA capability alone is insufficient if inference is too slow for deployment.
+Temporal redundancy offers an intuitive optimization opportunity. Adjacent robot observations often appear similar, and VLA-Cache has shown that selectively reusing minimally changed visual-token computation can accelerate VLA inference~\cite{vlacache}. The difficult question is not whether redundancy exists, but whether a low-cost controller can identify when reuse is safe after its own actions begin changing the future trajectory.
 
-This paper asks when visual information should be recomputed during closed-loop control. Consecutive observations in manipulation are frequently redundant because the instruction is fixed and the scene often changes gradually, yet global visual similarity can be misleading. Near contact, during grasping or around gripper closure, small changes in robot state may carry more control significance than the apparent change in the image. A visual-only refresh rule may therefore reuse cached information at precisely the steps where the policy needs updated perception.
+We investigate the most direct version of this question: cache the complete projected prefix from both cameras and decide at each policy query whether to recompute it. State-Aware Visual Refresh (SAVR) combines image, robot-state, recent-action, and cache-age signals without changing policy weights. Our original hypothesis was that embodied signals would make whole-prefix reuse safer than visual similarity alone. The experiments did not support a useful operating point.
 
-We propose State-Aware Visual Refresh (SAVR), a training-free inference controller for deciding whether to refresh or reuse visual features at each control step. The SAVR controller combines visual change with changes in robot state and recent policy output. Rather than modifying the VLA, SAVR tests whether embodied state and action dynamics can make visual reuse safer than fixed-rate or visual-only refresh policies.
+This paper reports the negative evidence rather than relaxing the gates or hiding failed variants. Across the tested OpenVLA-OFT/LIBERO-Spatial setting, permissive controllers changed actions and sharply reduced success, while conservative redesigns restored success by becoming nearly identical to dense inference. The study contributes:
 
-% =========================
-% 2. Related Work
-% =========================
+\begin{enumerate}
+    \item a controlled, stage-gated evaluation of whole-prefix visual reuse spanning 1,160 preserved terminal episodes;
+    \item evidence that offline replay of dense trajectories underestimated the online reuse rate after cached actions changed the closed-loop trajectory;
+    \item a camera-specific diagnosis showing that averaging the scene and wrist views concealed 374 threshold exceedances in 783 reuse queries;
+    \item action-prefix evidence showing that the first comparable reuse changed the predicted action in 87/87 analyzable episodes; and
+    \item a documented safety-efficiency frontier: increasingly conservative controllers recovered success but reduced reuse to zero or less than one percent.
+\end{enumerate}
+
+Our conclusion is deliberately bounded. We do not claim that visual caching is universally unsafe, that every reuse caused a failure, or that sensor-granular caching cannot work. We show that no tested \emph{whole-prefix} controller met its predeclared gate on one pinned model, suite, and seed, and we identify concrete mechanisms that future caching systems should avoid.
 
 \section{Related Work}
 
-\subsection{Foundation robot policies and VLA models}
+\subsection{Vision-language-action policies}
 
-The RT-1 model demonstrated that transformer-based robot policies can scale with large robot datasets, and the RT-2 model extended this trajectory by transferring vision language knowledge into robot action generation~\bcite{rt1,rt2}. The OpenVLA model then provided an open VLA trained on large-scale robot demonstrations~\bcite{openvla}. These systems define the setting studied here: a language-conditioned policy repeatedly maps visual observations and robot state into actions during closed-loop execution.
+RT-1 demonstrated transformer-based control at scale, while RT-2 connected web-scale vision-language knowledge to robot actions~\cite{rt1,rt2}. OpenVLA made a 7B-parameter VLA and its training stack openly available~\cite{openvla}. OpenVLA-OFT adapted this model to continuous, chunked action prediction and reported strong LIBERO results~\cite{openvlaoft}. We use the released OpenVLA-OFT stack and a pinned four-suite checkpoint as the fixed policy under study.
 
-\subsection{Action-side and system-side efficiency}
+\subsection{Efficient VLA inference and visual caching}
 
-A substantial portion of VLA efficiency work reduces the cost of action generation or deployment. The TinyVLA model pursues efficiency through a compact multimodal policy design~\bcite{tinyvla}. The OpenVLA-OFT method improves OpenVLA adaptation through parallel decoding, action chunking, continuous action prediction and an L1 regression objective~\bcite{openvlaoft}. The FAST method changes the action representation through frequency-space action sequence tokenization~\bcite{fast}. The ActionFlow system targets deployment through pipelined execution for faster on-device action generation~\bcite{actionflow}. These methods are important, but they leave open a separate source of cost: repeated visual recomputation across nearby control steps.
+VLA efficiency can be improved through smaller models, better action representations, parallel decoding, or systems optimizations. Our study targets a separate cost: recomputing visual features at every policy query. VLA-Cache is the closest prior work; it compares adjacent visual inputs and reuses computation for selected minimally changed tokens through a cache~\cite{vlacache}. SAVR differs in both granularity and objective. It caches the entire two-camera projected visual prefix and uses a hand-designed causal controller to protect task success. This coarse granularity makes the negative result informative: global similarity and whole-prefix decisions can obscure localized dynamics even when finer-grained caching remains viable.
 
-\subsection{Visual redundancy and caching}
+\subsection{Closed-loop distribution shift}
 
-Visual-side efficiency methods more directly address redundancy in visual observations or visual tokens. The VLA-Cache method is the closest prior work to SAVR because it identifies minimally changed visual tokens across adjacent frames and reuses their computation through KV-cache reuse~\bcite{vlacache}. The VLA-IAP method also reduces inference cost by pruning visual tokens according to interaction alignment~\bcite{vlaiap}. These approaches support the premise that visual computation in manipulation is often redundant. In this paper, we explore when that redundancy is safe to exploit.
+An offline replay assumes the observations and actions recorded under a reference policy remain representative after the controller changes. In closed-loop control, however, a changed action affects later observations, which affect later refresh signals and decisions. Our experiments directly measure the resulting gap between replay-calibrated and online reuse. This is not a general causal analysis, but it demonstrates why a cache controller should not treat dense-policy trajectories as a guaranteed online safety oracle.
 
-\subsection{Adaptive computation}
+\section{Whole-Prefix Visual Reuse}
 
-The AC$^2$-VLA method studies adaptive computation using action context, observation context and selective execution~\bcite{ac2vla}. It suggests that action context can carry information about computational need. The SAVR controller adopts this insight in a narrower form by testing whether robot state and recent action change improve the specific decision of refreshing visual features.
+\subsection{Policy and cache boundary}
 
-The literature most relevant to SAVR is summarized in \btabref{tab:related_work}.
-
-\begin{table}[t]
-\centering
-\small
-\caption{Relevant VLA efficiency literature and its relationship to SAVR.}
-\label{tab:related_work}
-\begin{tabularx}{\linewidth}{
->{\raggedright\arraybackslash}p{2.5cm}
->{\raggedright\arraybackslash}p{3.0cm}
->{\raggedright\arraybackslash}X
->{\raggedright\arraybackslash}p{3.2cm}}
-\toprule
-\textbf{Direction} & \textbf{Representative work} & \textbf{Main idea} & \textbf{Relevance to SAVR} \\
-\midrule
-Foundation robot policies and VLA models & RT-1, RT-2, OpenVLA~\bcite{rt1,rt2,openvla}
-& Build robot policies that condition on language, images and robot observations
-& Establishes the closed-loop setting studied here \\
-\addlinespace
-Action-side efficiency & OpenVLA-OFT, FAST~\bcite{openvlaoft,fast}
-& Accelerate action prediction through decoding changes, action chunking or improved tokenization
-& Shows that inference latency is a core bottleneck \\
-\addlinespace
-Compact and system-side efficiency & TinyVLA, ActionFlow~\bcite{tinyvla,actionflow}
-& Reduce model size or improve deployment scheduling
-& Motivates practical inference efficiency on real hardware \\
-\addlinespace
-Visual redundancy & VLA-Cache, VLA-IAP~\bcite{vlacache,vlaiap}
-& Reuse or prune visual computation when observations contain redundancy
-& Provides the closest evidence that visual computation does not always need to be repeated densely \\
-\addlinespace
-Adaptive computation & AC$^2$-VLA~\bcite{ac2vla}
-& Use context, including action context, to adapt computation during inference
-& Motivates adding robot state and action signals to the refresh rule \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-% =========================
-% 3. Problem Formulation
-% =========================
-
-\section{Problem Formulation}
-
-Consider a language-conditioned manipulation episode of length $T$. Let $x$ denote the fixed language instruction, $o_t$ the camera observation at control step $t$, $s_t$ the robot state and $\pi_{\theta}$ the base VLA policy. The robot state may include end-effector pose, gripper state, joint positions or other proprioceptive variables available to the policy. At each step, the policy produces an action $\hat{a}_t$.
-
-The visual refresh problem asks whether the current visual representation should be recomputed or whether a cached representation from an earlier step is sufficient. The binary refresh decision is defined as
+At policy query $t$, the pinned OpenVLA-OFT model receives a fixed language instruction $x$, a third-person image $o_t^{\mathrm{scene}}$, a wrist image $o_t^{\mathrm{wrist}}$, and the current eight-dimensional robot state $s_t$. The visual towers and projector produce an ordered projected prefix
 \begin{equation}
-r_t =
+z_t = \left[z_t^{\mathrm{scene}};z_t^{\mathrm{wrist}}\right].
+\label{eq:prefix}
+\end{equation}
+The unchanged downstream model and continuous action head predict an $8\times 7$ action chunk,
+\begin{equation}
+\hat{A}_t = \pi_\theta(x,z_t,s_t).
+\label{eq:policy}
+\end{equation}
+
+Full Refresh (\FR) recomputes both camera blocks at every query. Whole-prefix reuse instead supplies the last successfully refreshed prefix $z_{\tau_t}$ while still supplying current proprioception:
+\begin{equation}
+\tilde z_t =
 \begin{cases}
-1, & \text{refresh visual features at step } t, \\
-0, & \text{reuse cached visual features at step } t.
+z_t, & r_t=1,\\
+z_{\tau_t}, & r_t=0,
 \end{cases}
-\label{eq:refresh_decision}
+\qquad
+\hat{A}_t=\pi_\theta(x,\tilde z_t,s_t),
+\label{eq:reuse}
 \end{equation}
-
-In \beqref{eq:refresh_decision}, $r_t$ is the refresh decision at control step $t$. A value of $r_t=1$ triggers visual recomputation, while $r_t=0$ reuses cached visual features.
-
-This definition places dense inference, fixed-rate refresh and adaptive refresh under the same decision framework. The paper can then compare policies by asking how often they choose to refresh, how much latency they save and whether the saved computation harms task success.
-
-Let $\tau_t$ be the most recent step at or before $t$ where $r_{\tau_t}=1$. A refresh controller is a causal decision rule:
-\begin{equation}
-g_t : (o_t, o_{\tau_t}, s_t, s_{t-1}, \hat{a}_{t-1}, \hat{a}_{t-2}) \mapsto r_t .
-\label{eq:gate_definition}
-\end{equation}
-
-In \beqref{eq:gate_definition}, $g_t$ denotes the controller at step $t$, $o_t$ is the current camera observation, $o_{\tau_t}$ is the observation from the most recent refreshed step, $s_t$ and $s_{t-1}$ are the current and previous robot states, $\hat{a}_{t-1}$ and $\hat{a}_{t-2}$ are the two most recent predicted actions and $r_t$ is the output refresh decision.
-
-The value of \beqref{eq:gate_definition} is that it makes the refresh decision explicitly causal. The controller uses only present and past information, which matches the constraints of closed-loop execution. This also clarifies the intended contribution of SAVR: the decision is not based on future failure labels or retraining, but on signals already available during inference.
-
-The objective is to reduce inference cost while maintaining task success relative to FR:
-\begin{equation}
-\min_{g} \ \mathbb{E}[C(g)]
-\quad
-\text{subject to}
-\quad
-\mathbb{E}[S(g)] \geq \mathbb{E}[S(\mathrm{FR})] - \epsilon .
-\label{eq:optimization_objective}
-\end{equation}
-
-In \beqref{eq:optimization_objective}, $g$ is a refresh controller, $C(g)$ is deployment cost under $g$, $S(g)$ is task success under $g$, $\mathbb{E}[\cdot]$ denotes expectation over tasks, episodes or random seeds, $S(\mathrm{FR})$ is the task success of the FR baseline and $\epsilon$ is the maximum acceptable success decrease relative to FR.
-
-This objective formalizes the central trade-off of the paper. Lower latency is not useful if it simply degrades manipulation success, and high success is less deployable if it requires full visual recomputation at every step. The constraint therefore treats FR as the performance reference and asks whether adaptive refresh can reduce cost while remaining within an acceptable success margin.
-
-% =========================
-% 4. Method
-% =========================
-
-\section{Method}
-
-\subsection{Overview}
-
-The SAVR controller is inserted before the visual processing stage of an existing VLA. At each control step, the controller computes image change, robot state change and recent action change. These signals determine whether the current observation is encoded or whether the cached representation is reused. The workflow in \bfigref{fig:savr_pipeline} shows how this decision controls the visual input passed to the base VLA.
+where $r_t=1$ denotes refresh and $r_t=0$ denotes reuse. Figure~\ref{fig:boundary} shows the tested boundary. Reuse skips both visual towers and the projector; the language-model and action-head path remains unchanged.
 
 \begin{figure}[t]
 \centering
-\fcolorbox{black}{white}{
-\begin{minipage}{0.96\linewidth}
-\centering
-\resizebox{0.98\linewidth}{!}{
+\resizebox{\linewidth}{!}{%
 \begin{tikzpicture}[
-    box/.style={draw, rounded corners, thick, minimum height=8mm, align=center, inner sep=4pt},
-    smallbox/.style={draw, rounded corners, thick, minimum height=6mm, align=center, inner sep=3pt},
-    arr/.style={-{Stealth[length=3mm,width=2mm]}, line width=0.85pt}
+node distance=7mm and 8mm,
+box/.style={draw,rounded corners,align=center,minimum height=8mm,inner sep=4pt},
+arr/.style={-{Stealth[length=2.4mm]},thick}
 ]
-
-\node[box, fill=SkyBlue!18] (obs) at (0,0) {$o_t$\\current image};
-\node[box, fill=Green!16] (state) at (0,-1.5) {$s_t,s_{t-1}$\\robot state};
-\node[box, fill=Orange!18] (actions) at (0,-3.0) {$\hat{a}_{t-1},\hat{a}_{t-2}$\\recent actions};
-
-\node[box, fill=SkyBlue!18] (imgdelta) at (3.3,0) {$\Delta_t^{\mathrm{img}}$\\image change};
-\node[box, fill=Green!16] (statedelta) at (3.3,-1.5) {$\Delta_t^{\mathrm{state}}$\\state change};
-\node[box, fill=Orange!18] (actdelta) at (3.3,-3.0) {$\Delta_t^{\mathrm{act}}$\\action change};
-
-\node[box, fill=Red!14] (gate) at (6.6,-1.5) {SAVR gate\\$r_t \in \{0,1\}$};
-
-\node[smallbox, fill=Red!8] (refreshpath) at (8.95,-0.55) {$r_t=1$};
-\node[smallbox, fill=Gray!14] (reusepath) at (8.95,-2.45) {$r_t=0$};
-
-\node[box, fill=SkyBlue!18] (encoder) at (11.45,-0.55) {visual encoder\\$E_{\phi}(o_t)$};
-\node[box, fill=Gray!18] (cache) at (11.45,-2.45) {cached visual\\$z_{\tau_t}$};
-
-\node[box, fill=Purple!14] (merge) at (14.35,-1.5) {visual input\\$z_t$};
-\node[box, fill=Purple!14] (policy) at (17.05,-1.5) {base VLA\\$\pi_{\theta}(x,z_t,s_t)$};
-\node[box, fill=Green!16] (action) at (19.55,-1.5) {$\hat{a}_t$};
-
-\draw[arr] (obs.east) -- (imgdelta.west);
-\draw[arr] (state.east) -- (statedelta.west);
-\draw[arr] (actions.east) -- (actdelta.west);
-
-\draw[arr] (imgdelta.east) -- (gate.north west);
-\draw[arr] (statedelta.east) -- (gate.west);
-\draw[arr] (actdelta.east) -- (gate.south west);
-
-\draw[arr] (gate.east) -- (refreshpath.west);
-\draw[arr] (gate.east) -- (reusepath.west);
-
-\draw[arr] (refreshpath.east) -- (encoder.west);
-\draw[arr] (reusepath.east) -- (cache.west);
-
-\draw[arr] (encoder.east) -- ++(0.35,0) |- (merge.north west);
-\draw[arr] (cache.east) -- ++(0.35,0) |- (merge.south west);
-
-\draw[arr] (merge.east) -- (policy.west);
+\node[box,fill=SkyBlue!15] (scene) {scene image};
+\node[box,fill=SkyBlue!15,below=of scene] (wrist) {wrist image};
+\node[box,fill=Green!15,below=of wrist] (state) {current state $s_t$};
+\node[box,fill=Orange!18,right=of wrist] (gate) {refresh controller\\$r_t\in\{0,1\}$};
+\node[box,fill=SkyBlue!15,right=of gate,yshift=7mm] (vision) {two visual towers\\and projector};
+\node[box,fill=Gray!15,right=of gate,yshift=-9mm] (cache) {cached complete\\two-camera prefix};
+\node[box,fill=Purple!14,right=13mm of vision,yshift=-8mm] (policy) {unchanged downstream VLA\\and action head};
+\node[box,fill=Green!15,right=of policy] (action) {$8\times 7$ action chunk};
+\draw[arr] (scene.east) -- (gate.north west);
+\draw[arr] (wrist.east) -- (gate.west);
+\draw[arr] (gate.east) -- node[above,sloped,font=\scriptsize]{refresh} (vision.west);
+\draw[arr] (gate.east) -- node[below,sloped,font=\scriptsize]{reuse} (cache.west);
+\draw[arr] (vision.east) -- (policy.north west);
+\draw[arr] (cache.east) -- (policy.south west);
+\draw[arr] (state.east) -| (policy.south);
 \draw[arr] (policy.east) -- (action.west);
-
-\node[
-draw=Black,
-dashed,
-rounded corners,
-inner sep=6pt,
-fit=(imgdelta)(statedelta)(actdelta)(gate),
-label=above:{\small low-cost refresh controller}
-] {};
-
 \end{tikzpicture}
-}
-\end{minipage}
-}
-\caption{SAVR inference pathway. The controller computes image, state and action-change signals, uses them to decide whether to refresh or reuse the visual representation, and then passes the selected visual input to the unchanged base VLA.}
-\label{fig:savr_pipeline}
+}%
+\caption{Tested whole-prefix cache boundary. A reuse skips both camera encoders and the visual projector but retains current proprioception and the complete downstream policy.}
+\label{fig:boundary}
 \end{figure}
 
-The pathway in \bfigref{fig:savr_pipeline} separates the refresh decision from the base VLA. This separation matters. It allows SAVR to target redundant visual computation without retraining the policy or altering the action head. The figure also makes explicit that the refresh gate does not replace the policy. It only determines whether the visual input to the policy comes from a newly encoded observation or from the cached representation.
+\subsection{SAVR 1.0 controller}
 
-\subsection{Refresh Signals}
-
-The image-change signal compares the current observation with the most recent observation that was actually encoded:
+Images were deterministically downsampled to $32\times32$ and normalized. SAVR 1.0 computed a mean absolute change for each camera relative to the last refreshed observation and then averaged the two camera scores:
 \begin{equation}
-\Delta_t^{\mathrm{img}}
-=
-\frac{1}{M}
-\sum_{j=1}^{M}
-\left\|
-\operatorname{down}(o_t)^{(j)}
--
-\operatorname{down}(o_{\tau_t})^{(j)}
-\right\|_1 .
-\label{eq:image_change}
+d_t^{\mathrm{img}}=\frac{1}{2}\sum_{c\in\{\mathrm{scene},\mathrm{wrist}\}}
+\frac{1}{N}\left\|D(o_t^c)-D(o_{\tau_t}^c)\right\|_1.
+\label{eq:image}
 \end{equation}
-
-In \beqref{eq:image_change}, $\Delta_t^{\mathrm{img}}$ is the image-change score at control step $t$, $\operatorname{down}(\cdot)$ is a fixed downsampling operation, $o_t$ is the current camera observation, $o_{\tau_t}$ is the observation from the most recent refreshed step, $j$ indexes a downsampled image patch or region, $M$ is the number of patches or regions and $\|\cdot\|_1$ is the L1 distance.
-
-The equation is included because visual reuse is only defensible when the cached visual representation remains close enough to the current scene. Comparing $o_t$ with $o_{\tau_t}$, rather than only $o_{t-1}$, is important because small frame-to-frame changes can accumulate over several reuse steps. The score therefore measures visual drift from the last representation that the VLA actually encoded.
-
-The state-change signal measures how much the robot has moved since the previous control step:
+Robot-state and action-chunk dimensions were normalized using calibration $q_{0.01}$ and $q_{0.99}$ bounds. The controller computed normalized root-mean-square changes $d_t^{\mathrm{state}}$ and $d_t^{\mathrm{act}}$. It refreshed when the cache was empty, a signal was invalid, action history was incomplete, a score exceeded its threshold, or cache age reached horizon $H$:
 \begin{equation}
-\Delta_t^{\mathrm{state}}
-=
-\left\|
-W_s(s_t - s_{t-1})
-\right\|_2 .
-\label{eq:state_change}
+r_t=\mathbb{I}\left[
+d_t^{\mathrm{img}}>\gamma_{\mathrm{img}}\ \vee\
+d_t^{\mathrm{state}}>\gamma_{\mathrm{state}}\ \vee\
+d_t^{\mathrm{act}}>\gamma_{\mathrm{act}}\ \vee\
+h_t\ge H\right].
+\label{eq:savr1}
 \end{equation}
+For each target skip rate in $\{25,50,75\}\%$ and horizon in $\{2,4,8\}$, a fixed $0.001$ quantile grid over Full Refresh traces selected thresholds whose replayed skip rate was closest to target, with conservative tie breaking. All thresholds were frozen before online execution.
 
-In \beqref{eq:state_change}, $\Delta_t^{\mathrm{state}}$ is the robot-state-change score at control step $t$, $s_t$ is the current robot state, $s_{t-1}$ is the previous robot state, $W_s$ is a diagonal normalization matrix for state dimensions and $\|\cdot\|_2$ is the Euclidean norm.
+\subsection{Safety-constrained redesigns}
 
-The equation captures a limitation of image-only refresh rules. A robot may enter a more visually sensitive part of the task even when the camera frame changes little. End-effector displacement, joint motion or gripper-related changes can make the cached visual representation less reliable for action selection, so the state score acts as an embodied warning signal.
-
-The action-change signal measures short-term variation in the policy output:
+Forensic analysis motivated SAVR 2.0. It replaced the two-camera average with independent per-camera local-change gates. Each $32\times32$ image was partitioned into an $8\times8$ grid, and the mean of the four largest patch changes formed each camera score. State was split into translation, orientation, and gripper groups; action was split into translation, rotation, and gripper groups. The controller added gripper-transition vetoes, five-query warm-up, two stable fresh queries before reuse, at most one consecutive reuse, and a hard episode-prefix reuse budget $b\in\{0.05,0.10,0.15\}$. A prospective reuse was rejected when it would make
 \begin{equation}
-\Delta_t^{\mathrm{act}}
-=
-\left\|
-W_a(\hat{a}_{t-1} - \hat{a}_{t-2})
-\right\|_2 .
-\label{eq:action_change}
+\frac{R_t+1}{t+1}>b,
+\label{eq:prefixcap}
 \end{equation}
+where $R_t$ is the number of completed reuses before query $t$.
 
-In \beqref{eq:action_change}, $\Delta_t^{\mathrm{act}}$ is the recent action-change score at control step $t$, $\hat{a}_{t-1}$ is the action predicted at the previous control step, $\hat{a}_{t-2}$ is the action predicted two control steps earlier, $W_a$ is a diagonal normalization matrix for action dimensions and $\|\cdot\|_2$ is the Euclidean norm.
+SAVR 3.0 was a transparently post-hoc localized redesign. Starting from the $b=0.15$ SAVR 2.0 controller, it added a translation-direction-reversal veto and changed only the wrist-image threshold to $0.375$. It was evaluated once on states not used in the SAVR 2.0 screen.
 
-The equation treats the policy output as a weak signal of task phase. Abrupt action changes may reflect grasp initiation, corrective motion, directional reversal or instability caused by stale perception. The action score is not assumed to be sufficient on its own; its role is to add a behavioral signal that may be missed by visual comparison alone.
+\section{Experimental Design}
 
-\subsection{Refresh Rule}
+\subsection{Pinned system}
 
-Let $h_t=t-\tau_t$ be the number of steps since the last visual refresh. The SAVR controller refreshes the visual representation if any signal exceeds its threshold or if the cached representation has reached a maximum reuse horizon:
-\begin{equation}
-r_t =
-\mathbb{I}
-\left[
-\Delta_t^{\mathrm{img}} > \gamma_{\mathrm{img}}
-\ \vee\
-\Delta_t^{\mathrm{state}} > \gamma_{\mathrm{state}}
-\ \vee\
-\Delta_t^{\mathrm{act}} > \gamma_{\mathrm{act}}
-\ \vee\
-h_t \geq H_{\max}
-\right] .
-\label{eq:savr_rule}
-\end{equation}
-
-In \beqref{eq:savr_rule}, $r_t$ is the binary refresh decision, $\mathbb{I}[\cdot]$ is the indicator function, $\Delta_t^{\mathrm{img}}$, $\Delta_t^{\mathrm{state}}$ and $\Delta_t^{\mathrm{act}}$ are the image, state and action change scores, $\gamma_{\mathrm{img}}$, $\gamma_{\mathrm{state}}$ and $\gamma_{\mathrm{act}}$ are their corresponding thresholds, $h_t$ is the number of control steps since the most recent refresh, $H_{\max}$ is the maximum allowed reuse horizon and $\vee$ denotes logical OR.
-
-The rule is intentionally interpretable. Image change captures scene drift, state change captures embodied motion and action change captures policy-level instability. The horizon term prevents indefinite reuse even when the three change scores remain below threshold. This design is conservative: it favors refresh when any signal indicates that cached visual features may no longer be reliable.
-
-If the refresh decision is positive, the current observation is encoded:
-\begin{equation}
-z_t = E_{\phi}(o_t).
-\label{eq:refresh_features}
-\end{equation}
-
-In \beqref{eq:refresh_features}, $z_t$ is the visual representation used at control step $t$, $E_{\phi}$ is the visual encoder with parameters $\phi$ and $o_t$ is the current camera observation.
-
-The equation defines the refresh branch of SAVR. When $r_t=1$, the controller pays the visual computation cost to obtain a representation aligned with the current observation. This branch preserves the behavior of dense VLA inference for steps judged to be visually or behaviorally important.
-
-If the refresh decision is negative, the SAVR controller reuses the most recent cached representation:
-\begin{equation}
-z_t = z_{\tau_t}.
-\label{eq:reuse_features}
-\end{equation}
-
-In \beqref{eq:reuse_features}, $z_t$ is the visual representation used at control step $t$ and $z_{\tau_t}$ is the cached visual representation from the most recent refreshed step $\tau_t$.
-
-The equation defines the reuse branch. When $r_t=0$, the controller avoids visual recomputation and forwards the cached representation to the base VLA. The benefit is lower inference cost; the risk is that stale visual features may no longer support the correct action.
-
-The base VLA then predicts the next action:
-\begin{equation}
-\hat{a}_t = \pi_{\theta}(x,z_t,s_t).
-\label{eq:policy_output}
-\end{equation}
-
-In \beqref{eq:policy_output}, $\hat{a}_t$ is the predicted action at control step $t$, $\pi_{\theta}$ is the base VLA policy with parameters $\theta$, $x$ is the language instruction, $z_t$ is the visual representation selected by the refresh controller and $s_t$ is the robot state.
-
-The equation shows that SAVR does not alter the base policy. Both refresh and reuse produce a visual representation $z_t$, which is then passed to the same VLA with the same language instruction and robot state. The method therefore isolates the effect of visual refresh scheduling rather than confounding it with model retraining or action-head changes.
-
-\subsection{Comparison Policies}
-
-The evaluation compares SAVR against three refresh policies. The FR baseline recomputes visual features at every step and serves as the dense reference. The PR baseline recomputes visual features every $k$ steps and tests whether a clock-based rule is sufficient. The VOR baseline uses only $\Delta_t^{\mathrm{img}}$ and removes the robot state and action terms. These baselines isolate the contribution of embodied signals to the refresh decision.
+Table~\ref{tab:system} summarizes the fixed evaluation system. The base policy, checkpoint, prompt, preprocessing, action head, and simulator settings were not changed across refresh policies.
 
 \begin{table}[t]
 \centering
 \small
-\caption{Refresh policies used to evaluate the contribution of robot state and action signals.}
-\label{tab:refresh_policies}
-\begin{tabularx}{\linewidth}{
->{\raggedright\arraybackslash}p{2.4cm}
->{\raggedright\arraybackslash}X
->{\raggedright\arraybackslash}p{3.5cm}}
+\caption{Pinned evaluation system.}
+\label{tab:system}
+\begin{tabularx}{0.94\linewidth}{>{\bfseries\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}X}
 \toprule
-\textbf{Policy} & \textbf{Refresh rule} & \textbf{Purpose} \\
-\midrule
-FR & Refresh at every step
-& Measures full-computation reference performance \\
-\addlinespace
-PR & Refresh every $k$ steps
-& Tests whether fixed-rate reuse is sufficient \\
-\addlinespace
-VOR & Refresh when $\Delta_t^{\mathrm{img}} > \gamma_{\mathrm{img}}$ or $h_t \geq H_{\max}$
-& Tests visual similarity without embodied signals \\
-\addlinespace
-SAVR & Refresh using \beqref{eq:savr_rule}
-& Tests whether robot state and recent actions improve the refresh decision \\
+Base policy & OpenVLA-OFT, continuous L1 action head, eight-action chunks \\
+Checkpoint & \nolinkurl{openvla-7b-oft-libero-four-suite}\par Revision: \nolinkurl{638918f3d1c2e43a39a8a20772bdb8b91835e4b7} \\
+OpenVLA-OFT revision & \nolinkurl{e4287e94541f459edc4feabc4e181f537cd569a8} \\
+LIBERO revision & \nolinkurl{8f1084e3132a39270c3a13ebe37270a43ece2a01} \\
+Benchmark & LIBERO-Spatial tasks 0--9~\cite{libero} \\
+Observations & Third-person image, wrist image, current 8-D proprioception \\
+Hardware & One NVIDIA TITAN RTX (24 GiB) per run \\
+Primary metric & Official terminal task success \\
+Efficiency proxy & Fraction of policy queries that skipped both visual towers and projector \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-The comparison policies in \btabref{tab:refresh_policies} separate four effects: dense inference, fixed temporal reuse, visual-only adaptive reuse and state-aware adaptive reuse. This structure is necessary because a favorable result for SAVR would be meaningful only if the state and action terms improve over both PR and VOR.
+\subsection{Populations and stage gates}
 
-\subsection{Implementation Scope}
+The study followed immutable stage gates rather than repeatedly tuning on the same result.
 
-The SAVR controller is intended as a wrapper around an existing VLA when intermediate visual features or projected visual prefixes can be cached. For a single-step policy, the gate is evaluated before each action prediction. For a chunked policy, the gate is evaluated whenever the policy would normally construct a new visual prefix for the next action window. This design keeps the method compatible with OpenVLA-style autoregressive policies and OpenVLA-OFT-style chunked policies~\bcite{openvlaoft}. The implementation should log refresh decisions, latency, task success, skipped refresh percentage and failure cases.
+\begin{itemize}
+    \item \textbf{SAVR 1.0 calibration:} 100 paired episodes per setting, covering tasks 0--9, initial states 0--9, and seed 0. Full Refresh used the same 100 task/state pairs. A setting was eligible only if all records reconciled, no technical failure occurred, no task collapsed to zero success when FR succeeded, and its paired success difference from FR was at least $-2\pp$.
+    \item \textbf{SAVR 2.0 Stage 1:} three predeclared candidates, each on tasks 0--9 and states 0--2 (30 episodes). Advancement required exactly 30/30 success, at least 2\% online skip, zero technical failures, and complete cache/counter invariants.
+    \item \textbf{SAVR 3.0 validation:} one frozen post-hoc controller on tasks 0--9 and states 3--9 (70 episodes). The gate required 70/70 overall, 7/7 per task, at least 5\% skip, and zero technical or accounting failures.
+\end{itemize}
 
-% =========================
-% References
-% =========================
+The final holdout (states 10--49 and seeds 7, 17, 27) was never executed or inspected because no configuration passed its preceding gate. Matched-budget Periodic Refresh and Visual-Only Refresh baselines were also not run: the frozen protocol permitted them only after an eligible SAVR 1.0 configuration existed. Consequently, this paper reports a bounded method-rejection study, not final non-inferiority or superiority.
 
-\begin{thebibliography}{10}
+\subsection{Correctness and integrity safeguards}
+
+Wrapped Full Refresh produced bitwise-identical actions to the unmodified OpenVLA-OFT path. Real reuse invoked zero vision-backbone and projector calls, executed the language-model and action-head path once, and used current proprioception. Every reported rollout terminated without infrastructure failure. Scientific failures were retained rather than rerun or relabeled. Run manifests recorded configuration and source revisions, and protected checkpoint files were restored to their original hashes. Large raw records remain indexed by authenticated summaries.
+
+\subsection{Measured optimization opportunity}
+
+Before testing reuse, a 50-episode Full Refresh pilot measured 662 steady-state queries after three predeclared warm-ups. Table~\ref{tab:timing} shows that the visual backbone and projector accounted for 15.874\% of query CUDA time. Even perfect visual elimination therefore had a measured ceiling of approximately 15.87\% query-latency reduction before cache/controller overhead.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Steady-state Full Refresh component timing on 662 policy queries.}
+\label{tab:timing}
+\begin{tabular}{lrrr}
+\toprule
+Component & Mean (ms) & Median (ms) & P95 (ms) \\
+\midrule
+Policy-query CUDA & 1267.44 & 1266.44 & 1287.80 \\
+Vision backbone & 191.12 & 193.95 & 199.84 \\
+Visual projector & 10.08 & 9.48 & 11.97 \\
+Backbone + projector & 201.19 & 203.20 & 211.62 \\
+Residual downstream & 1061.21 & 1058.79 & 1072.55 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Results}
+
+\subsection{SAVR 1.0 failed throughout the tested operating region}
+
+Full Refresh succeeded on all 100 paired calibration episodes and produced 1,309 signal traces. Table~\ref{tab:savr1} reports the complete nine-setting grid. Every SAVR 1.0 setting missed the frozen $-2\pp$ gate by a wide margin. The least-degrading setting, \code{savr-s25-h2}, achieved 52/100 success at 34.69\% online skip, a paired difference of $-48\pp$. Increasing target reuse or horizon did not reveal a safe region; two settings achieved zero successes.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Complete SAVR 1.0 online grid. Each row contains the same 100 paired task/state episodes as Full Refresh (100/100).}
+\label{tab:savr1}
+\begin{tabular}{lrrrrr}
+\toprule
+Configuration & Target skip & $H$ & Success & Online skip & Difference \\
+\midrule
+\code{s25-h2} & 25\% & 2 & 52/100 & 34.69\% & $-48\pp$ \\
+\code{s25-h4} & 25\% & 4 & 21/100 & 43.29\% & $-79\pp$ \\
+\code{s25-h8} & 25\% & 8 & 23/100 & 47.28\% & $-77\pp$ \\
+\code{s50-h2} & 50\% & 2 & 12/100 & 56.62\% & $-88\pp$ \\
+\code{s50-h4} & 50\% & 4 & 4/100 & 63.26\% & $-96\pp$ \\
+\code{s50-h8} & 50\% & 8 & 0/100 & 65.21\% & $-100\pp$ \\
+\code{s75-h2} & 75\% & 2 & 3/100 & 64.14\% & $-97\pp$ \\
+\code{s75-h4} & 75\% & 4 & 1/100 & 75.00\% & $-99\pp$ \\
+\code{s75-h8} & 75\% & 8 & 0/100 & 83.68\% & $-100\pp$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Figure~\ref{fig:frontier} places every staged operating point on a descriptive success-skip plane. Populations differ across stages, so the plot is not a randomized head-to-head comparison. Its purpose is to show the observed progression: high reuse accompanied low success, while high success required almost dense refresh.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=0.115cm,y=0.050cm]
+\draw[->,thick] (0,0) -- (90,0) node[right,font=\small]{online visual skip (\%)};
+\draw[->,thick] (0,0) -- (0,105) node[above,font=\small]{success (\%)};
+\foreach \x in {0,10,...,80}{\draw (\x,0) -- (\x,-2) node[below,font=\scriptsize]{\x};}
+\foreach \y in {0,20,...,100}{\draw (0,\y) -- (-1.5,\y) node[left,font=\scriptsize]{\y};}
+\draw[dashed,gray] (0,98) -- (90,98) node[right,font=\scriptsize]{SAVR1 $-2\pp$ gate};
+\foreach \x/\y in {34.69/52,43.29/21,47.28/23,56.62/12,63.26/4,65.21/0,64.14/3,75/1,83.68/0}{
+  \fill[BrickRed] (\x,\y) circle (2.0pt);
+}
+\fill[MidnightBlue] (0,100) rectangle +(1.4,2.8);
+\fill[ForestGreen] (0,100) circle (2.4pt);
+\fill[ForestGreen] (6.72,96.67) circle (2.4pt);
+\fill[ForestGreen] (10.57,90) circle (2.4pt);
+\fill[RoyalPurple] (0.9534,98.57) circle (2.8pt);
+\node[anchor=south west,font=\scriptsize] at (35,52) {SAVR1};
+\node[anchor=north west,font=\scriptsize] at (11,90) {SAVR2};
+\node[anchor=north west,font=\scriptsize] at (2.8,98.5) {SAVR3};
+\node[anchor=south west,font=\scriptsize] at (2.8,101.5) {FR / zero-reuse};
+\end{tikzpicture}
+\caption{Observed success-efficiency frontier. SAVR1 used 100 episodes per point, SAVR2 used 30 per point, and SAVR3 used 70; the plot is descriptive because the staged populations differ.}
+\label{fig:frontier}
+\end{figure}
+
+\subsection{Offline replay underestimated online reuse}
+
+All nine settings skipped more often online than predicted by replaying Full Refresh traces. For the 25\% target family, replay predicted 24.98\% skip, while online skip reached 34.69\%, 43.29\%, and 47.28\% for horizons 2, 4, and 8, overshoots of 9.71, 18.31, and 22.30 percentage points. Once a reused prefix changed an action, later observations and controller inputs followed a different trajectory from the dense trace. The replay remained useful for screening thresholds, but it was not an online budget or safety oracle.
+
+\subsection{Camera averaging concealed wrist dynamics}
+
+For \code{savr-s25-h2}, 374 of 783 reuse queries (47.77\%) had at least one camera above the shared image threshold while the two-camera average remained below it. Of these concealed exceedances, 372 came from the wrist view and only two from the third-person view. This directly invalidates cross-camera averaging as a conservative gate in this setting. It does not prove that every wrist exceedance caused an episode failure.
+
+\subsection{The first reuse changed the predicted action}
+
+Eighty-seven \code{savr-s25-h2} episodes had comparable Full Refresh and SAVR action hashes through their first reuse. In all 87, the first mismatch occurred exactly at the first reuse query. Ten task-4 episodes already differed at query 0 and were excluded from this comparison; three episodes never reused. The result proves immediate policy-output divergence, but action hashes do not measure magnitude and cannot alone establish that the divergence caused terminal failure.
+
+Reuse timing and streaks were also associated with outcome. Episodes whose first reuse occurred by query 2 succeeded 7/23 (30.4\%); first reuse at queries 3--4 succeeded 18/42 (42.9\%); first reuse at query 5 or later succeeded 24/32 (75.0\%); and the three no-reuse episodes all succeeded. Every failed \code{savr-s25-h2} episode reached two consecutive reuse queries, permitting up to two eight-action chunks from stale visual features. These are exploratory associations rather than randomized causal effects.
+
+\subsection{Safety constraints collapsed toward Full Refresh}
+
+Table~\ref{tab:redesign} reports the predeclared SAVR 2.0 screen and SAVR 3.0 validation. SAVR 2.0's most conservative candidate achieved 30/30 only by making no reuse decision. Candidates with useful skip rates missed the exact success gate. SAVR 3.0 recovered 69/70 success, but skipped only nine of 944 visual refreshes (0.9534\%) and missed both its success and 5\% minimum-skip gates.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Safety-constrained redesign results. These were staged on different initial-state populations and are not pooled for inference.}
+\label{tab:redesign}
+\begin{tabularx}{\linewidth}{lrrrrX}
+\toprule
+Method & Episodes & Success & Queries & Reuses / skip & Frozen gate result \\
+\midrule
+SAVR2-$b05$ & 30 & 30/30 & 388 & 0 / 0.00\% & Failed minimum 2\% skip \\
+SAVR2-$b10$ & 30 & 29/30 & 461 & 31 / 6.72\% & Failed exact success \\
+SAVR2-$b15$ & 30 & 27/30 & 473 & 50 / 10.57\% & Failed exact success \\
+SAVR3 & 70 & 69/70 & 944 & 9 / 0.9534\% & Failed exact success and 5\% skip \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The SAVR3 trigger audit explains the low reuse rate. Across 944 queries, wrist-image change triggered 279 times, while full-image change triggered only eight times. The two-stable-fresh requirement triggered 899 times, the prefix-budget rule 424 times, and translation reversal 412 times. Triggers can co-occur, so these counts are not additive. The controller did not fail technically; it conservatively refreshed on nearly every query.
+
+\section{Discussion}
+
+\subsection{A closed-loop safety-efficiency frontier}
+
+The experiments reveal a consistent frontier in the tested region. Permissive whole-prefix reuse reduced visual calls but allowed stale representations to affect many future actions. Conservative rules prevented most risky reuse but also removed the intended efficiency benefit. This is not simply a threshold-selection failure: three redesign stages changed camera aggregation, local scoring, semantic grouping, temporal constraints, gripper vetoes, direction reversals, and hard budgets, yet no stage satisfied its own frozen gate.
+
+\subsection{Why offline calibration drifted}
+
+Dense-policy replay asks what the controller \emph{would} have done on Full Refresh observations. Online reuse asks what the controller does after its previous cached action has already changed the robot state and observation stream. The 9.71--22.30\pp{} overshoot in the 25\% family is direct evidence that these distributions differed. Future cache controllers should calibrate with bounded online data, model uncertainty under intervention, or enforce budgets that remain valid under trajectory shift.
+
+\subsection{Multi-camera prefixes should not be treated as indivisible}
+
+The scene camera was often stable while the wrist camera changed near the manipulated object. Averaging the two made a localized wrist change appear globally safe; independently gating both views then made whole-prefix reuse nearly vanish. This tension suggests a different abstraction: cache or refresh sensor blocks independently, or reuse tokens according to task relevance, rather than forcing both cameras to share one binary decision. Our study motivates this direction but does not experimentally validate it.
+
+\subsection{Skipped visual calls are not equivalent to end-to-end speedup}
+
+The component pilot limits the upside of any visual-only method on this stack. Visual backbone and projector work accounted for 15.874\% of query CUDA time. SAVR3 skipped 0.9534\% of those calls, corresponding to only about 0.15\% of query CUDA time under a linear zero-overhead approximation. We do not report this approximation as a measured speedup: matched end-to-end timing was not eligible after the success gate failed, and controller/cache overhead would reduce the benefit further.
+
+\section{Limitations}
+
+This study has several important limitations.
+
+\begin{enumerate}
+    \item It evaluates one OpenVLA-OFT checkpoint on LIBERO-Spatial, one hardware class, and seed 0. Results may not transfer to other policies, camera geometries, tasks, or real robots.
+    \item The final holdout was intentionally untouched because no method passed the development gate. The results reject tested operating points but do not provide confirmatory population-level non-inferiority inference.
+    \item SAVR 1.0, SAVR 2.0, and SAVR 3.0 used different staged populations. Cross-version comparisons are descriptive, not randomized paired comparisons.
+    \item Matched-budget Periodic Refresh and Visual-Only Refresh were not run because the predeclared protocol required an eligible SAVR configuration first. We therefore cannot claim superiority or inferiority relative to those baselines.
+    \item SAVR3 was motivated by post-hoc failure analysis. Its one-time states 3--9 evaluation was protected from further tuning, but it is not independent confirmation of a prespecified original method.
+    \item Action hashes identify divergence but not action magnitude or causal responsibility for task failure. Raw SAVR 1.0 videos and contact-phase annotations were unavailable for a definitive failure taxonomy.
+    \item We tested complete-prefix caching. The findings do not rule out camera-block, token-level, learned, uncertainty-aware, or model-native caching.
+\end{enumerate}
+
+\section{Reproducibility and Evidence Integrity}
+
+The accompanying repository contains the controller, cache adapter, frozen configurations, schemas, analysis scripts, tests, decision ledger, and claim-indexed reports. Table~\ref{tab:evidence} lists the principal evidence records. Large immutable run directories remain project-local and are indexed by their manifests and summary hashes.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{Primary evidence index. SHA-256 values authenticate the summarized artifacts.}
+\label{tab:evidence}
+\begin{tabularx}{\linewidth}{p{2.3cm}Xp{4.6cm}}
+\toprule
+Evidence & Repository location & Integrity identifier \\
+\midrule
+SAVR1 calibration & \code{reports/PHASE6\_CALIBRATION\_REPORT.md} & FR trace input \code{c1724072...9804} \\
+Forensic diagnosis & \code{reports/PHASE6R\_A\_DIAGNOSIS\_REPORT.md} & \code{9416014d...2ccf} \\
+SAVR2 Stage 1 & \code{reports/PHASE6R\_D\_STAGE1\_REPORT.md} & summary \code{61a0c9dd...a9ebe} \\
+SAVR3 validation & \code{reports/PHASE6S\_D\_VALIDATION\_REPORT.md} & summary \code{bb54eef3...d046} \\
+Machine summary & \code{docs/evidence/negative\_results\_summary.csv} & tracked with source revision \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+All terminal task failures were retained. No threshold, success margin, or population was relaxed after observation. Technical failures were separated from scientific outcomes. Protected checkpoint files were restored, and no final-holdout outcome was inspected. These safeguards are central to the contribution: the negative result is useful only if unsuccessful trials and stopping decisions remain visible.
+
+\section{Conclusion}
+
+Training-free whole-prefix visual caching did not provide a safe and useful operating point for the tested OpenVLA-OFT/LIBERO-Spatial system. Aggressive reuse changed actions and sharply reduced success; progressively stronger safeguards recovered success only by collapsing toward Full Refresh. Offline dense-trajectory replay underestimated online reuse, and a two-camera average concealed frequent wrist-camera changes. These findings do not invalidate visual caching broadly. They show that closed-loop trajectory shift, sensor-specific dynamics, and cache granularity must be treated as first-class design constraints. Reporting this frontier prevents a failed coarse-grained design from being mistaken for evidence that visual redundancy is automatically safe to exploit.
+
+\begin{thebibliography}{8}
 
 \bibitem{rt1}
 A.~Brohan et al.
 \newblock RT-1: Robotics Transformer for Real-World Control at Scale.
-\newblock \emph{arXiv preprint arXiv:2212.06817}, 2022.
+\newblock \emph{Robotics: Science and Systems}, 2023.
 
 \bibitem{rt2}
 A.~Brohan et al.
 \newblock RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control.
-\newblock \emph{arXiv preprint arXiv:2307.15818}, 2023.
+\newblock \emph{Proceedings of The 7th Conference on Robot Learning}, 2023.
 
 \bibitem{openvla}
 M.~J.~Kim et al.
 \newblock OpenVLA: An Open-Source Vision-Language-Action Model.
 \newblock \emph{arXiv preprint arXiv:2406.09246}, 2024.
 
-\bibitem{tinyvla}
-J.~Wen et al.
-\newblock TinyVLA: Towards Fast, Data-Efficient Vision-Language-Action Models for Robotic Manipulation.
-\newblock \emph{arXiv preprint arXiv:2409.12514}, 2024.
-
 \bibitem{openvlaoft}
-M.~J.~Kim, C.~Finn and P.~Liang.
+M.~J.~Kim, C.~Finn, and P.~Liang.
 \newblock Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success.
-\newblock \emph{arXiv preprint arXiv:2502.19645}, 2025.
-
-\bibitem{fast}
-K.~Pertsch et al.
-\newblock FAST: Efficient Action Tokenization for Vision-Language-Action Models.
-\newblock \emph{arXiv preprint arXiv:2501.09747}, 2025.
-
-\bibitem{actionflow}
-Y.~Dai et al.
-\newblock ActionFlow: A Pipelined Action Acceleration for Vision Language Models on Edge.
-\newblock \emph{arXiv preprint arXiv:2512.20276}, 2025.
+\newblock \emph{Robotics: Science and Systems}, 2025.
 
 \bibitem{vlacache}
-S.~Xu et al.
+S.~Xu, Y.~Wang, C.~Xia, D.~Zhu, T.~Huang, and C.~Xu.
 \newblock VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation.
 \newblock \emph{arXiv preprint arXiv:2502.02175}, 2025.
 
-\bibitem{vlaiap}
-J.~Cheng et al.
-\newblock VLA-IAP: Training-Free Visual Token Pruning via Interaction Alignment for Vision-Language-Action Models.
-\newblock \emph{arXiv preprint arXiv:2603.22991}, 2026.
-
-\bibitem{ac2vla}
-W.~Yu et al.
-\newblock AC$^2$-VLA: Action-Context-Aware Adaptive Computation in Vision-Language-Action Models for Efficient Robotic Manipulation.
-\newblock \emph{arXiv preprint arXiv:2601.19634}, 2026.
+\bibitem{libero}
+B.~Liu, Y.~Zhu, C.~Gao, Y.~Feng, Q.~Liu, Y.~Zhu, and P.~Stone.
+\newblock LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning.
+\newblock \emph{Advances in Neural Information Processing Systems}, 36, 2023.
 
 \end{thebibliography}
 

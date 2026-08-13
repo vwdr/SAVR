@@ -1,11 +1,11 @@
 # SAVR Manuscript
 
-The original manuscript is preserved unchanged as:
+The user-authorized negative-results manuscript is stored as:
 
 - `State-Aware Visual Refresh for Efficient VLA Inference.tex`
 
-Source SHA-256:
+Current source SHA-256 (2026-08-13):
 
-`4a0fe130f1cbc5557f77a518dcb65a703a647b1c4b8091499d8bfd8e10ab6e4f`
+`58edf9a3761eff270d8e28e0401f4ea5be382d937be2a43fec24729f855b1515`
 
-Do not edit the manuscript unless the user explicitly requests manuscript changes. Before implementation, reconcile its formal notation and method definition with `PROJECT_STATUS.md`, `docs/EXPERIMENT_PLAN.md`, and the selected base VLA's actual feature boundary.
+The original concept draft remains recoverable from Git history with source SHA-256 `4a0fe130f1cbc5557f77a518dcb65a703a647b1c4b8091499d8bfd8e10ab6e4f`. Do not edit the manuscript unless the user explicitly requests manuscript changes. Any revision must remain consistent with `docs/SAVR_NEGATIVE_PAPER_CLAIM_AUDIT.md` and the cited phase reports.
