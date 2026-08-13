@@ -1726,8 +1726,9 @@ Last updated: 2026-08-10
   efficiency/integrity gate.
 - Evidence: `docs/ACR_V5_D_V10_DOWNSTREAM_ONLY_GRAPH_PROTOCOL.md` and
   `configs/acr/v5_d_downstream_only_graph_recovery_v10.json` (semantic SHA-256
-  `457042abd36f9dcd8134f9592f5baed22ec47590dbffc425bddd8955e48aef4e`).
-- Authorization: Protocol documentation only. Implementation, GPU inspection
-  or selection, model queries, simulator access, V5-E, protected outcomes, and
-  manuscript changes are not authorized.
-- Disposition: `STOP_FOR_EXPLICIT_APPROVAL_BEFORE_V10_IMPLEMENTATION`.
+  `38f7ae4e65f2881c6331db6bed4614f1eafd73a23b073e297e4570b5683b2904`).
+- Authorization: On 2026-08-13, the user explicitly approved implementation,
+  local/CI testing, and CUDA-hidden TITAN verification. GPU inspection or
+  selection, CUDA initialization, model loading/querying, simulator access,
+  V5-E, protected outcomes, and manuscript changes remain unauthorized.
+- Disposition: `STOP_BEFORE_V10_GPU_INSPECTION_OR_SELECTION`.
