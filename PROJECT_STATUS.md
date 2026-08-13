@@ -14,10 +14,10 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **V10 PRE-GPU IMPLEMENTATION AUTHORIZED**
+ACR Version 5 V5-D — **V10 PRE-GPU CHECKPOINT PASSED; GPU NOT AUTHORIZED**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
-protocol frozen before implementation or output. It preserves `v5-a100-b40`,
+protocol and V10 implementation frozen before GPU execution or output. It preserves `v5-a100-b40`,
 uses an anti-shopping compiler/raw-CUDA-graph technical waterfall, seven
 correctness queries, eight warm-ups, every one of the 24 four-path
 permutations, a hard cap of 111 full queries, paired uncertainty intervals,
@@ -578,6 +578,9 @@ Completed:
 - prior real-model V3-C evidence attributes 93.43% of reuse CUDA time to the downstream portion, giving the hybrid a meaningful efficiency target while preserving separate wrist/downstream timing
 - V10 retains the default native allocator, inference mode, exact graph body, correctness tolerances, 111-query schedule, statistical gates, memory cap, and protected-data boundaries
 - the user authorized V10 implementation through local/CI and CUDA-hidden TITAN verification; GPU inspection/selection, model query, simulator use, task outcome, V5-E, and manuscript edits remain unauthorized
+- V10 implements eager wrist execution plus exactly one downstream CUDA graph with authenticated warm-up, capture, memory-stage, pointer, stream, order, and preparation-label provenance
+- 13 focused tests, all 391 tests, both PR #100 CI jobs, and all 15 deterministic preflight checks pass locally and on TITAN at merged revision `f587d13b4f439fd075dc53e890641115b6abce1e`
+- TITAN pinned PyTorch `2.2.0+cu118` confirmed CUDA remained uninitialized with no visible GPU; V10 used zero model queries, simulator episodes, task outcomes, or protected-field access
 
 Not completed:
 
@@ -596,9 +599,9 @@ Not completed:
 
 ## Next authorized action
 
-Preserve all evidence and do not retry V05-V09. Implement the frozen V10
-downstream-only graph protocol and stop at CUDA-hidden pre-GPU verification.
-Keep simulator/final
+Preserve all evidence and do not retry V05-V09. V10 is stopped at its passed
+pre-GPU checkpoint. GPU inspection, selection, and a single frozen V10 attempt
+require separate explicit approval. Keep simulator/final
 populations and success fields sealed, do not advance to V5-E, and do not
 modify the manuscript.
 
