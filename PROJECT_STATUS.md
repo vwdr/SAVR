@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **V10 SINGLE GPU ATTEMPT AUTHORIZED**
+ACR Version 5 V5-D — **V10 STOPPED NEGATIVE TECHNICAL; V5-E INELIGIBLE**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol and V10 implementation frozen before GPU execution or output. It preserves `v5-a100-b40`,
@@ -582,6 +582,9 @@ Completed:
 - 13 focused tests, all 391 tests, both PR #100 CI jobs, and all 15 deterministic preflight checks pass locally and on TITAN at merged revision `f587d13b4f439fd075dc53e890641115b6abce1e`
 - TITAN pinned PyTorch `2.2.0+cu118` confirmed CUDA remained uninitialized with no visible GPU; V10 used zero model queries, simulator episodes, task outcomes, or protected-field access
 - the user then explicitly authorized one aggregate-only GPU selection and one fail-closed V10 attempt capped at 111 model queries; automatic retry, simulator use, protected outcomes, V5-E, and manuscript edits remain unauthorized
+- the single V10 attempt completed both eager warm-up stages but its downstream first-and-only CUDA graph capture failed before any graph was retained
+- V10 therefore rejects the two-capture-lifecycle hypothesis; peak reservation remained 7.6152 GiB below the cap, so memory was not the stop condition
+- V10 produced zero model queries, correctness/timing/simulator/outcome records, restored checkpoint and inference state exactly, and is not a method-performance result
 
 Not completed:
 
@@ -600,9 +603,10 @@ Not completed:
 
 ## Next authorized action
 
-Preserve all evidence and do not retry V05-V09. V10 is authorized for one
-aggregate-only GPU selection and one single fail-closed attempt with at most
-111 frozen model queries. Reconcile and preserve the evidence without retry. Keep simulator/final
+Preserve all evidence and do not retry V05-V10. V10 rejected its frozen
+two-capture-lifecycle hypothesis before correctness, so V5-E remains
+ineligible. Any future route requires separate research, protocol, and
+authorization. Keep simulator/final
 populations and success fields sealed, do not advance to V5-E, and do not
 modify the manuscript.
 

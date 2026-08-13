@@ -1772,3 +1772,27 @@ Last updated: 2026-08-10
   completes or stops technically. Any further attempt requires a new identity
   and authorization.
 - Approver: User explicitly wrote `Approve the single frozen V10 GPU attempt`.
+
+## D-112 — Preserve V5-D V10 as rejected capture-architecture hypothesis
+
+- Date: 2026-08-13
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve V10 without retry. The downstream core invalidated its
+  first and only CUDA graph capture after both eager warm-up stages; no wrist
+  graph, retained prior graph, second capture, or shared pool existed.
+- Hypothesis result: Removing the two-capture lifecycle did not resolve the
+  failure. V10 therefore rejects that recovery hypothesis and leaves a
+  downstream-body or broader pinned-runtime capture incompatibility.
+- Scientific boundary: Zero full model queries, correctness records,
+  scheduled warm-ups, timings, simulator operations, success fields, or task
+  outcomes exist. This is not an ACR performance result.
+- Integrity: Peak reservation was 15.3848 GiB, 7.6152 GiB below the frozen
+  cap; checkpoint bytes and inference state were restored; loader backups were
+  removed; GPU 0 returned to 6 MiB/0%; and the source tree remained clean.
+- Evidence: `reports/PHASE_V5_D_V10_TECHNICAL_STOP_REPORT.md` and
+  `reports/runtime/acr_v5_d_v10_technical_stop.json` (semantic SHA-256
+  `fd72f7bed0869820e885d707264a12e4bbf3a4d97e89b8de2c3eed0a84a856d0`).
+- Disposition:
+  `STOP_NO_RETRY_V10_TWO_CAPTURE_HYPOTHESIS_REJECTED_DOWNSTREAM_ONLY_CAPTURE_TECHNICAL_FAILURE`.
+  V5-E remains ineligible.
