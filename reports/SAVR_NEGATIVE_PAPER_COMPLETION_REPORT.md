@@ -13,16 +13,16 @@
 
 ## Integrity
 
-- LaTeX SHA-256: `58edf9a3761eff270d8e28e0401f4ea5be382d937be2a43fec24729f855b1515`
-- PDF SHA-256: `8ada27ddb4eb6dceb936a28da123fa2b6eeb8b17d8e0d93f86483b9b28a8f839`
-- PDF size: 231,142 bytes
+- LaTeX SHA-256: `6fffdbf42a19ba81f1644582a03e685cb0bf3aa9a3dd0ad3cab2cf22785bfb20`
+- PDF SHA-256: `23f975a1b27b3705a8a6bba1dc159867b00b7083b984dd4ea9b56998b22e4843`
+- PDF size: 232,884 bytes
 - PDF pages: 10, US Letter
 
 ## Verification
 
 - Compiled twice to stable references with `latexmk`/pdfLaTeX on TITAN inside `/home/ved/SAVR/tmp/pdfs/savr-negative-paper`.
 - Final build had no undefined citation or cross-reference warnings and no overfull boxes.
-- All ten rendered pages were visually inspected; figures, equations, tables, references, and page boundaries were legible and contained.
+- All ten rendered pages were visually inspected; Figure 2 was subsequently redesigned with a zoomed high-success panel and its final page was re-rendered and inspected for label separation, legibility, and containment.
 - `git diff --check` passed.
 - Repository tests passed after using the repository source path: 391 passed.
 

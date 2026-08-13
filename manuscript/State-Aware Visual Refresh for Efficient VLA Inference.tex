@@ -14,7 +14,7 @@
 \usepackage{tabularx}
 \usepackage{tikz}
 \usepackage{url}
-\usetikzlibrary{arrows.meta,positioning,fit}
+\usetikzlibrary{arrows.meta,positioning,fit,shapes.geometric}
 
 \hypersetup{colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue}
 \setlength{\parindent}{0.22in}
@@ -266,26 +266,52 @@ Figure~\ref{fig:frontier} places every staged operating point on a descriptive s
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[x=0.115cm,y=0.050cm]
-\draw[->,thick] (0,0) -- (90,0) node[right,font=\small]{online visual skip (\%)};
-\draw[->,thick] (0,0) -- (0,105) node[above,font=\small]{success (\%)};
-\foreach \x in {0,10,...,80}{\draw (\x,0) -- (\x,-2) node[below,font=\scriptsize]{\x};}
-\foreach \y in {0,20,...,100}{\draw (0,\y) -- (-1.5,\y) node[left,font=\scriptsize]{\y};}
-\draw[dashed,gray] (0,98) -- (90,98) node[right,font=\scriptsize]{SAVR1 $-2\pp$ gate};
+\begin{tikzpicture}[font=\scriptsize]
+% Full operating region.
+\begin{scope}[x=0.075cm,y=0.040cm]
+\draw[->,thick] (0,0) -- (90,0);
+\draw[->,thick] (0,0) -- (0,105);
+\foreach \x in {0,20,...,80}{\draw (\x,0) -- (\x,-2.2) node[below]{\x};}
+\foreach \y in {0,20,...,100}{\draw (0,\y) -- (-2,\y) node[left]{\y};}
+\node[anchor=south] at (45,-21) {online visual skip (\%)};
+\node[rotate=90,anchor=south] at (-12,52.5) {success (\%)};
+\draw[dashed,gray] (0,98) -- (90,98);
+\node[anchor=south east,text=gray] at (89,98) {SAVR1 $-2\pp$ gate};
 \foreach \x/\y in {34.69/52,43.29/21,47.28/23,56.62/12,63.26/4,65.21/0,64.14/3,75/1,83.68/0}{
-  \fill[BrickRed] (\x,\y) circle (2.0pt);
+  \fill[BrickRed] (\x,\y) circle (2.1pt);
 }
-\fill[MidnightBlue] (0,100) rectangle +(1.4,2.8);
-\fill[ForestGreen] (0,100) circle (2.4pt);
-\fill[ForestGreen] (6.72,96.67) circle (2.4pt);
-\fill[ForestGreen] (10.57,90) circle (2.4pt);
-\fill[RoyalPurple] (0.9534,98.57) circle (2.8pt);
-\node[anchor=south west,font=\scriptsize] at (35,52) {SAVR1};
-\node[anchor=north west,font=\scriptsize] at (11,90) {SAVR2};
-\node[anchor=north west,font=\scriptsize] at (2.8,98.5) {SAVR3};
-\node[anchor=south west,font=\scriptsize] at (2.8,101.5) {FR / zero-reuse};
+\node[anchor=south west,text=BrickRed] at (35.5,53) {SAVR1};
+\node[draw=MidnightBlue,fill=MidnightBlue,rectangle,minimum size=4.5pt,inner sep=0pt] at (0,100) {};
+\node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=5.5pt,inner sep=0pt] at (0,100) {};
+\node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=5.5pt,inner sep=0pt] at (6.72,96.67) {};
+\node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=5.5pt,inner sep=0pt] at (10.57,90) {};
+\node[draw=RoyalPurple,fill=RoyalPurple,diamond,minimum size=5pt,inner sep=0pt] at (0.9534,98.57) {};
+\draw[->,thin,gray] (15,82) -- (4,95);
+\node[anchor=west,text=gray] at (15,82) {zoomed at right};
+\end{scope}
+
+% Zoom of the high-success cluster (same exact coordinates, expanded axes).
+\begin{scope}[shift={(8.6cm,0cm)},x=0.34cm,y=0.30cm]
+\draw[->,thick] (0,0) -- (13,0);
+\draw[->,thick] (0,0) -- (0,14);
+\foreach \x in {0,3,6,9,12}{\draw (\x,0) -- (\x,-0.28) node[below]{\x};}
+\foreach \y/\lab in {0/88,4/92,8/96,12/100}{\draw (0,\y) -- (-0.22,\y) node[left]{\lab};}
+\node[anchor=south] at (6.5,-3.0) {online visual skip (\%)};
+\node[rotate=90,anchor=south] at (-1.25,7) {success (\%)};
+\node[font=\small\bfseries,anchor=south west] at (0,14.3) {High-success region};
+\draw[dashed,gray] (0,10) -- (12.5,10);
+\node[draw=MidnightBlue,fill=MidnightBlue,rectangle,minimum size=5pt,inner sep=0pt] at (0,12) {};
+\node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=6pt,inner sep=0pt] at (0,12) {};
+\node[draw=RoyalPurple,fill=RoyalPurple,diamond,minimum size=5.5pt,inner sep=0pt] at (0.9534,10.57) {};
+\node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=6pt,inner sep=0pt] at (6.72,8.67) {};
+\node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=6pt,inner sep=0pt] at (10.57,2) {};
+\node[anchor=west] at (0.7,13.1) {FR + SAVR2-$b05$};
+\node[anchor=west,text=RoyalPurple] at (1.5,10.6) {SAVR3};
+\node[anchor=north,text=ForestGreen] at (6.72,8.05) {SAVR2-$b10$};
+\node[anchor=east,text=ForestGreen] at (10.2,2) {SAVR2-$b15$};
+\end{scope}
 \end{tikzpicture}
-\caption{Observed success-efficiency frontier. SAVR1 used 100 episodes per point, SAVR2 used 30 per point, and SAVR3 used 70; the plot is descriptive because the staged populations differ.}
+\caption{Observed success-efficiency frontier with the crowded high-success region expanded at right. The coincident FR and zero-reuse SAVR2-$b05$ results share one coordinate. SAVR1 used 100 episodes per point, SAVR2 used 30 per point, and SAVR3 used 70; the plot is descriptive because the staged populations differ.}
 \label{fig:frontier}
 \end{figure}
 
