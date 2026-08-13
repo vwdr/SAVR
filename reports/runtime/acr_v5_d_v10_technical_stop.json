@@ -1,0 +1,140 @@
+{
+  "schema_version": "acr.v5d-technical-stop.v10",
+  "run_id": "acr-v5d-real-tensor-feasibility-v10",
+  "status": "technical-stop-before-correctness",
+  "recorded_at_utc": "2026-08-13T22:56:56Z",
+  "execution_revision": "bd926130bd7a34001f8c5ab0808c212562dda898",
+  "configuration_semantic_sha256": "c5a59260858004dd86c8f71d399bde116a1e10ddc585bc0cea79f59fef042911",
+  "recovery_semantic_sha256": "ba68b4dc0c46390b9be37dfdb2e759ea3c6598356b3fd7e30bb203d86ef7799f",
+  "authorization_preflight_semantic_sha256": "d9d0b5f73e822e276a667d5d0bb5b8e776f277ebce5ece0d88319b1680727014",
+  "launch_manifest_semantic_sha256": "0db68b839368670e8f87ddf0700adfdbba9a43b33b951a450db48881c8dfde4f",
+  "libero_config_semantic_sha256": "23bf3b639f103a52d429342571aa44ae0f77bc90a4cd2eb9081919cad197b83d",
+  "compiler_attempt_semantic_sha256": "a9d8fd1581ca97f50ecc072b9304f8aad2aad102f8152c096db0c76f306c40d1",
+  "raw_transition_permit_semantic_sha256": "b46af765d14a9ed77da0069e5be90c45c4fc8ebe46dc82a42948f87fa8687c41",
+  "transition_revalidation_semantic_sha256": "5e3e3329df070ecf81e321582b79bd6d9973a609bd6a09ab42e5350b2adf2402",
+  "raw_attempt_semantic_sha256": "318a0621e4072dbabbd938cc4bfc1f7d1d97cc2ef6b151b4983582f027ad7f84",
+  "inference_lifecycle_semantic_sha256": "ad00224ad6c71ba00c2a9a0f5aa919de16b64fe3c02744a3749688c9900ca703",
+  "transition_revalidation": {
+    "status": "pass",
+    "samples": 3,
+    "memory_used_mib_each": [6, 6, 6],
+    "utilization_percent_each": [0, 0, 0],
+    "identity_passed": true,
+    "thresholds_passed": true
+  },
+  "compiler_outcome": {
+    "status": "technical-failure-before-correctness",
+    "reason": "compiler-construction-or-first-call-error",
+    "root_cause": "TorchInductor emitted BF16 PTX requiring sm_80 or newer for the selected TITAN RTX sm_75 device.",
+    "preparation_launches": 1,
+    "wall_seconds": 79.96361672505736,
+    "peak_allocated_bytes": 15768091136,
+    "peak_reserved_bytes": 16076767232,
+    "checkpoint_restoration_passed": true,
+    "raw_transition_permitted": true
+  },
+  "raw_outcome": {
+    "status": "failed-before-correctness",
+    "reason": "downstream-first-and-only-graph-capture-failed",
+    "error_classification": "CUDA reported an operation failure caused by a previous error during capture; the immutable record does not isolate the originating kernel or operation.",
+    "cuda_allocator_environment": null,
+    "observed_allocator_backend": "native",
+    "default_native_allocator_attestation_passed": true,
+    "inference_mode_attestation_passed": true,
+    "preparation_core_launches": 7,
+    "wall_seconds": 9.542228792794049,
+    "wrist_backend": "eager-static-buffer",
+    "downstream_backend": "raw-cudagraph",
+    "completed_pre_capture_warmup_order": ["wrist", "downstream"],
+    "completed_capture_order": [],
+    "capture_attempt_order": ["downstream"],
+    "graph_objects_created": 1,
+    "graph_objects_retained": 0,
+    "wrist_capture_count": 0,
+    "shared_pool_api_calls": 0,
+    "supplied_pool_token": false,
+    "empty_cache_calls": 0,
+    "memory_trace": [
+      {
+        "stage": "wrist-after-pre-capture-warmup",
+        "allocated_bytes": 15486937600,
+        "reserved_bytes": 15841886208
+      },
+      {
+        "stage": "downstream-after-pre-capture-warmup",
+        "allocated_bytes": 15486937600,
+        "reserved_bytes": 16519266304
+      },
+      {
+        "stage": "downstream-capture-failed",
+        "allocated_bytes": 15496648192,
+        "reserved_bytes": 15558770688
+      }
+    ],
+    "peak_allocated_bytes": 16079902208,
+    "peak_reserved_bytes": 16519266304,
+    "peak_allocated_gib": 14.975575923919678,
+    "peak_reserved_gib": 15.384765625,
+    "frozen_peak_reserved_cap_bytes": 24696061952,
+    "frozen_peak_reserved_cap_margin_bytes": 8176795648,
+    "checkpoint_restoration_passed": true
+  },
+  "capture_architecture_hypothesis_outcome": {
+    "v09_raw_attempt_semantic_sha256": "e2d5058732ed93fc9a4c10b327279af14de5e8c62dcda003f3bb48d9ba01214a",
+    "v09_planned_graphs": 2,
+    "v09_completed_capture_order": ["wrist"],
+    "v09_failure_boundary": "downstream-second-graph-capture",
+    "v10_planned_graphs": 1,
+    "v10_completed_capture_order": [],
+    "v10_failure_boundary": "downstream-first-and-only-graph-capture",
+    "v09_peak_reserved_bytes": 16519266304,
+    "v10_peak_reserved_bytes": 16519266304,
+    "v10_minus_v09_peak_reserved_bytes": 0,
+    "two_capture_transition_required_for_failure": false,
+    "interpretation": "Removing the retained wrist graph and repeated-capture transition did not make the unchanged downstream body capturable. The V10 two-capture-lifecycle hypothesis is rejected on this stack. The surviving class is downstream-body or broader process/runtime CUDA-graph incompatibility; no narrower kernel cause is claimed and no method-performance inference follows."
+  },
+  "inference_semantics_outcome": {
+    "entered": true,
+    "grad_enabled_during_raw_attempt": false,
+    "inference_mode_enabled_during_raw_attempt": true,
+    "prior_thread_state_restored": true
+  },
+  "model_loaded": true,
+  "model_processes_sequential": 2,
+  "model_processes_concurrent_max": 1,
+  "model_queries": 0,
+  "backend_preparation_core_launches": 8,
+  "correctness_records": 0,
+  "warmup_records": 0,
+  "timed_records": 0,
+  "final_record_created": false,
+  "analyzer_executed": false,
+  "simulator_instances": 0,
+  "simulator_episodes": 0,
+  "simulator_resets": 0,
+  "downloads": 0,
+  "new_task_outcomes": 0,
+  "success_reward_or_outcome_fields_accessed": false,
+  "selected_gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4",
+    "name": "NVIDIA TITAN RTX",
+    "driver_version": "570.211.01",
+    "memory_total_mib": 24576,
+    "compute_capability": "7.5"
+  },
+  "post_stop_selected_gpu_telemetry": {
+    "memory_used_mib": 6,
+    "utilization_percent": 0
+  },
+  "checkpoint_protected_hashes_after_stop": {
+    "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+  },
+  "checkpoint_loader_backups_remaining": 0,
+  "source_trees_clean_after_stop": true,
+  "scientific_interpretation": "V10 falsifies the two-capture-lifecycle recovery hypothesis under the frozen V5-D setup. It contains no correctness, timing, simulator, reward, success, or task-outcome result and is not a result about ACR performance. The downstream body or pinned runtime remains incompatible with CUDA graph capture under the tested unchanged computation.",
+  "disposition": "STOP_NO_RETRY_V10_TWO_CAPTURE_HYPOTHESIS_REJECTED_DOWNSTREAM_ONLY_CAPTURE_TECHNICAL_FAILURE",
+  "semantic_sha256": "fd72f7bed0869820e885d707264a12e4bbf3a4d97e89b8de2c3eed0a84a856d0"
+}
