@@ -1,8 +1,14 @@
 # ACR V5-D V10 Downstream-Only CUDA Graph Protocol
 
-Status: **FROZEN FOR PRE-GPU IMPLEMENTATION; GPU EXECUTION REQUIRES SEPARATE APPROVAL**
+Status: **PRE-GPU IMPLEMENTATION AUTHORIZED; GPU EXECUTION REQUIRES SEPARATE APPROVAL**
 
 Date: 2026-08-13
+
+Authorization checkpoint: On 2026-08-13, the user explicitly approved V10.
+This authorizes implementation, local/CI testing, and CUDA-hidden TITAN
+verification through the pre-GPU checkpoint. It does not authorize GPU
+inspection or selection, CUDA initialization, model loading/querying,
+simulator use, protected outcomes, V5-E, or manuscript changes.
 
 ## 1. Decision
 
@@ -19,9 +25,9 @@ checkpoint, input tensors, precision, inference mode, output computation,
 correctness tolerances, 111-query schedule, statistical gates, 23 GiB memory
 cap, resource rules, and scientific claim boundary remain unchanged.
 
-V10 is a capture-architecture correction, not a new ACR method. It does not
-authorize a GPU attempt, simulator run, task-outcome access, V5-E, or a
-manuscript change.
+V10 is a capture-architecture correction, not a new ACR method. Its current
+authorization stops before a GPU attempt, simulator run, task-outcome access,
+V5-E, or a manuscript change.
 
 ## 2. Evidence requiring an architecture change
 
