@@ -8,21 +8,23 @@
 - LaTeX source: `manuscript/State-Aware Visual Refresh for Efficient VLA Inference.tex`
 - Reviewed PDF: `output/pdf/SAVR_Negative_Results_Paper.pdf`
 - Claim audit: `docs/SAVR_NEGATIVE_PAPER_CLAIM_AUDIT.md`
+- Full manuscript audit: `docs/SAVR_NEGATIVE_PAPER_FULL_AUDIT.md`
 - Evidence archive: `docs/NEGATIVE_RESULTS_PAPER_ARCHIVE.md`
 - Machine-readable result summary: `docs/evidence/negative_results_summary.csv`
 
 ## Integrity
 
-- LaTeX SHA-256: `6fffdbf42a19ba81f1644582a03e685cb0bf3aa9a3dd0ad3cab2cf22785bfb20`
-- PDF SHA-256: `23f975a1b27b3705a8a6bba1dc159867b00b7083b984dd4ea9b56998b22e4843`
-- PDF size: 232,884 bytes
-- PDF pages: 10, US Letter
+- LaTeX SHA-256: `5110060fb9581bace1a9d73031860b739d17b63eba1c97f297a2bcd30a84ce5b`
+- PDF SHA-256: `48024cd1b9caab0fe9d5ace1b2ef1369176fed6eb98e0e53076c5682ae16130d`
+- PDF size: 239,006 bytes
+- PDF pages: 11, US Letter
 
 ## Verification
 
 - Compiled twice to stable references with `latexmk`/pdfLaTeX on TITAN inside `/home/ved/SAVR/tmp/pdfs/savr-negative-paper`.
 - Final build had no undefined citation or cross-reference warnings and no overfull boxes.
-- All ten rendered pages were visually inspected; Figure 2 was subsequently redesigned with a zoomed high-success panel and its final page was re-rendered and inspected for label separation, legibility, and containment.
+- All eleven final pages were rendered and visually inspected. Figure 2 now uses an explicitly marked expansion region, a shared legend, exact high-success labels, and a caption that discloses point overlap and the different staged populations.
+- All 18 citation keys resolve to 18 used bibliography entries; the bibliography covers the VLA lineage, efficient VLA architectures, general visual-token efficiency, directly related VLA caching, and LIBERO.
 - `git diff --check` passed.
 - Repository tests passed after using the repository source path: 391 passed.
 

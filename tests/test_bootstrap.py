@@ -29,9 +29,9 @@ class BootstrapTests(unittest.TestCase):
         digest = hashlib.sha256(manuscript.read_bytes()).hexdigest()
         self.assertEqual(
             digest,
-            "6fffdbf42a19ba81f1644582a03e685cb0bf3aa9a3dd0ad3cab2cf22785bfb20",
+            "5110060fb9581bace1a9d73031860b739d17b63eba1c97f297a2bcd30a84ce5b",
         )
-        self.assertIn("6fffdbf42a19ba81f1644582a03e685cb0bf3aa9a3dd0ad3cab2cf22785bfb20", text)
+        self.assertIn("5110060fb9581bace1a9d73031860b739d17b63eba1c97f297a2bcd30a84ce5b", text)
         self.assertIn("Do not edit the manuscript", text)
 
     def test_project_status_does_not_claim_results(self) -> None:

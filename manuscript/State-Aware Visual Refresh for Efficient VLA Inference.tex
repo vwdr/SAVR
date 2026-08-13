@@ -16,7 +16,14 @@
 \usepackage{url}
 \usetikzlibrary{arrows.meta,positioning,fit,shapes.geometric}
 
-\hypersetup{colorlinks=true,linkcolor=MidnightBlue,citecolor=MidnightBlue,urlcolor=MidnightBlue}
+\hypersetup{
+colorlinks=true,
+linkcolor=MidnightBlue,
+citecolor=MidnightBlue,
+urlcolor=MidnightBlue,
+pdftitle={Safety-Efficiency Limits of Training-Free Whole-Prefix Visual Caching for Vision-Language-Action Inference},
+pdfauthor={Ved Dwivedi, Cheng Yang, and Bo Yuan}
+}
 \setlength{\parindent}{0.22in}
 \setlength{\parskip}{0.28em}
 \setlength{\tabcolsep}{5pt}
@@ -31,8 +38,8 @@
 \justifying
 
 \begin{center}
-{\Large\bfseries When Visual Reuse Changes the Trajectory:\\[0.15em]
-Negative Results for Training-Free Whole-Prefix Caching in a Vision-Language-Action Model}\\[1em]
+{\Large\bfseries Safety-Efficiency Limits of Training-Free Whole-Prefix\\[0.15em]
+Visual Caching for Vision-Language-Action Inference}\\[1em]
 
 Ved Dwivedi$^{1}$, Cheng Yang$^{2}$, and Bo Yuan$^{2}$\\[0.45em]
 $^{1}$John P. Stevens High School, Edison, New Jersey\\
@@ -50,9 +57,9 @@ vision-language-action models; robot manipulation; negative results; visual cach
 
 \section{Introduction}
 
-Vision-language-action (VLA) models map language, images, and robot state directly to actions. RT-1 and RT-2 established scalable language-conditioned robot policies, and OpenVLA released a 7B-parameter open model built from a Llama~2 language backbone and fused DINOv2/SigLIP visual features~\cite{rt1,rt2,openvla}. OpenVLA-OFT subsequently combined continuous actions, parallel decoding, and eight-action chunks to improve both success and action-generation throughput~\cite{openvlaoft}. These advances make repeated visual processing an increasingly visible part of closed-loop inference.
+Vision-language-action (VLA) models map language, images, and robot state directly to actions. RT-1 and RT-2 established scalable language-conditioned robot policies, while RT-X, Octo, and $\pi_0$ broadened cross-task and cross-embodiment policy learning~\cite{rt1,rt2,openx,octo,pi0}. OpenVLA released a 7B-parameter open model built from a Llama~2 language backbone and fused DINOv2/SigLIP visual features, and OpenVLA-OFT combined continuous actions, parallel decoding, and eight-action chunks to improve success and action-generation throughput~\cite{openvla,openvlaoft}. These advances make repeated visual processing an increasingly visible part of closed-loop inference.
 
-Temporal redundancy offers an intuitive optimization opportunity. Adjacent robot observations often appear similar, and VLA-Cache has shown that selectively reusing minimally changed visual-token computation can accelerate VLA inference~\cite{vlacache}. The difficult question is not whether redundancy exists, but whether a low-cost controller can identify when reuse is safe after its own actions begin changing the future trajectory.
+Temporal redundancy offers an intuitive optimization opportunity. Adjacent robot observations often appear similar, and VLA-Cache has shown that selectively reusing minimally changed visual-token computation can accelerate VLA inference~\cite{vlacache}. Subsequent methods have explored depth-guided compression, learned cache selection, model-confidence gating, and caching within iterative action generation~\cite{depthcache,learnedcache,gatedcache,actioncache}. The difficult question is not whether redundancy exists, but whether a low-cost controller can identify when complete visual-prefix reuse is safe after its own actions begin changing the future trajectory.
 
 We investigate the most direct version of this question: cache the complete projected prefix from both cameras and decide at each policy query whether to recompute it. State-Aware Visual Refresh (SAVR) combines image, robot-state, recent-action, and cache-age signals without changing policy weights. Our original hypothesis was that embodied signals would make whole-prefix reuse safer than visual similarity alone. The experiments did not support a useful operating point.
 
@@ -72,11 +79,13 @@ Our conclusion is deliberately bounded. We do not claim that visual caching is u
 
 \subsection{Vision-language-action policies}
 
-RT-1 demonstrated transformer-based control at scale, while RT-2 connected web-scale vision-language knowledge to robot actions~\cite{rt1,rt2}. OpenVLA made a 7B-parameter VLA and its training stack openly available~\cite{openvla}. OpenVLA-OFT adapted this model to continuous, chunked action prediction and reported strong LIBERO results~\cite{openvlaoft}. We use the released OpenVLA-OFT stack and a pinned four-suite checkpoint as the fixed policy under study.
+RT-1 demonstrated transformer-based control at scale, while RT-2 connected web-scale vision-language knowledge to robot actions~\cite{rt1,rt2}. Open X-Embodiment pooled heterogeneous robot data and introduced RT-X models, and Octo used this data to train a flexible open generalist policy with multimodal, chunked action prediction~\cite{openx,octo}. $\pi_0$ paired a pretrained vision-language backbone with a flow-matching action expert for general robot control~\cite{pi0}. OpenVLA made a 7B-parameter VLA and its training stack openly available~\cite{openvla}. OpenVLA-OFT adapted this model to continuous, chunked action prediction and reported strong LIBERO results~\cite{openvlaoft}. We use the released OpenVLA-OFT stack and a pinned four-suite checkpoint as the fixed policy under study.
 
 \subsection{Efficient VLA inference and visual caching}
 
-VLA efficiency can be improved through smaller models, better action representations, parallel decoding, or systems optimizations. Our study targets a separate cost: recomputing visual features at every policy query. VLA-Cache is the closest prior work; it compares adjacent visual inputs and reuses computation for selected minimally changed tokens through a cache~\cite{vlacache}. SAVR differs in both granularity and objective. It caches the entire two-camera projected visual prefix and uses a hand-designed causal controller to protect task success. This coarse granularity makes the negative result informative: global similarity and whole-prefix decisions can obscure localized dynamics even when finer-grained caching remains viable.
+VLA efficiency can be improved at several levels. TinyVLA and SmolVLA reduce model size and target deployment efficiency, while OpenVLA-OFT improves the action representation and decoder path~\cite{tinyvla,smolvla,openvlaoft}. EfficientVLA combines language-layer pruning, task-aware visual-token selection, and action-head feature caching~\cite{efficientvla}. These approaches complement general vision-transformer techniques such as dynamic token sparsification and token merging~\cite{dynamicvit,tome}.
+
+Our study targets a narrower cost: recomputing visual features at every policy query. VLA-Cache is the closest published point of comparison; it compares adjacent visual inputs and reuses computation for selected minimally changed tokens~\cite{vlacache}. DepthCache adds depth structure and motion-adaptive auxiliary-view compression, while a learned adaptive approach jointly selects cached tokens and predicts a reuse ratio~\cite{depthcache,learnedcache}. A recent preprint augments VLA-Cache with action-token confidence, and ActionCache instead reuses intermediate states in flow-based action generation~\cite{gatedcache,actioncache}. SAVR differs in granularity: it reuses the entire projected prefix of two cameras and employs hand-designed image, state, action, and horizon gates. This coarse boundary makes the negative result informative without contradicting successful sensor-, token-, or action-level reuse.
 
 \subsection{Closed-loop distribution shift}
 
@@ -267,7 +276,7 @@ Figure~\ref{fig:frontier} places every staged operating point on a descriptive s
 \begin{figure}[t]
 \centering
 \begin{tikzpicture}[font=\scriptsize]
-% Full operating region.
+% Panel (a): full operating region.
 \begin{scope}[x=0.075cm,y=0.040cm]
 \draw[->,thick] (0,0) -- (90,0);
 \draw[->,thick] (0,0) -- (0,105);
@@ -275,22 +284,21 @@ Figure~\ref{fig:frontier} places every staged operating point on a descriptive s
 \foreach \y in {0,20,...,100}{\draw (0,\y) -- (-2,\y) node[left]{\y};}
 \node[anchor=south] at (45,-21) {online visual skip (\%)};
 \node[rotate=90,anchor=south] at (-12,52.5) {success (\%)};
-\draw[dashed,gray] (0,98) -- (90,98);
-\node[anchor=south east,text=gray] at (89,98) {SAVR1 $-2\pp$ gate};
+\node[font=\small\bfseries,anchor=south west] at (0,108) {(a) Full operating region};
 \foreach \x/\y in {34.69/52,43.29/21,47.28/23,56.62/12,63.26/4,65.21/0,64.14/3,75/1,83.68/0}{
   \fill[BrickRed] (\x,\y) circle (2.1pt);
 }
-\node[anchor=south west,text=BrickRed] at (35.5,53) {SAVR1};
+\node[anchor=south west,text=BrickRed] at (35.5,53) {SAVR1 grid};
 \node[draw=MidnightBlue,fill=MidnightBlue,rectangle,minimum size=4.5pt,inner sep=0pt] at (0,100) {};
-\node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=5.5pt,inner sep=0pt] at (0,100) {};
+\node[draw=ForestGreen,line width=0.7pt,regular polygon,regular polygon sides=3,minimum size=7pt,inner sep=0pt] at (0,100) {};
 \node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=5.5pt,inner sep=0pt] at (6.72,96.67) {};
 \node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=5.5pt,inner sep=0pt] at (10.57,90) {};
 \node[draw=RoyalPurple,fill=RoyalPurple,diamond,minimum size=5pt,inner sep=0pt] at (0.9534,98.57) {};
-\draw[->,thin,gray] (15,82) -- (4,95);
-\node[anchor=west,text=gray] at (15,82) {zoomed at right};
+\draw[densely dashed,gray] (-1,87) rectangle (13,103);
+\node[anchor=west,text=gray] at (14,91) {expanded in (b)};
 \end{scope}
 
-% Zoom of the high-success cluster (same exact coordinates, expanded axes).
+% Panel (b): exact-coordinate expansion of the high-success cluster.
 \begin{scope}[shift={(8.6cm,0cm)},x=0.34cm,y=0.30cm]
 \draw[->,thick] (0,0) -- (13,0);
 \draw[->,thick] (0,0) -- (0,14);
@@ -298,20 +306,31 @@ Figure~\ref{fig:frontier} places every staged operating point on a descriptive s
 \foreach \y/\lab in {0/88,4/92,8/96,12/100}{\draw (0,\y) -- (-0.22,\y) node[left]{\lab};}
 \node[anchor=south] at (6.5,-3.0) {online visual skip (\%)};
 \node[rotate=90,anchor=south] at (-1.25,7) {success (\%)};
-\node[font=\small\bfseries,anchor=south west] at (0,14.3) {High-success region};
-\draw[dashed,gray] (0,10) -- (12.5,10);
+\node[font=\small\bfseries,anchor=south west] at (0,14.3) {(b) High-success detail};
 \node[draw=MidnightBlue,fill=MidnightBlue,rectangle,minimum size=5pt,inner sep=0pt] at (0,12) {};
-\node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=6pt,inner sep=0pt] at (0,12) {};
+\node[draw=ForestGreen,line width=0.8pt,regular polygon,regular polygon sides=3,minimum size=8pt,inner sep=0pt] at (0,12) {};
 \node[draw=RoyalPurple,fill=RoyalPurple,diamond,minimum size=5.5pt,inner sep=0pt] at (0.9534,10.57) {};
 \node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=6pt,inner sep=0pt] at (6.72,8.67) {};
 \node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=6pt,inner sep=0pt] at (10.57,2) {};
-\node[anchor=west] at (0.7,13.1) {FR + SAVR2-$b05$};
-\node[anchor=west,text=RoyalPurple] at (1.5,10.6) {SAVR3};
-\node[anchor=north,text=ForestGreen] at (6.72,8.05) {SAVR2-$b10$};
-\node[anchor=east,text=ForestGreen] at (10.2,2) {SAVR2-$b15$};
+\node[anchor=west,align=left] at (0.8,13.1) {FR: 100/100\\SAVR2 5\% cap: 30/30, no reuse};
+\node[anchor=west,text=RoyalPurple] at (1.55,10.55) {SAVR3: 69/70};
+\node[anchor=north,text=ForestGreen] at (6.72,8.05) {SAVR2 10\% cap: 29/30};
+\node[anchor=east,text=ForestGreen] at (10.2,2) {SAVR2 15\% cap: 27/30};
+\end{scope}
+
+% Shared legend, positioned in physical units below both panels.
+\begin{scope}[shift={(0.5cm,-1.05cm)}]
+\node[draw=MidnightBlue,fill=MidnightBlue,rectangle,minimum size=5pt,inner sep=0pt] at (0,0) {};
+\node[anchor=west] at (0.25,0) {Full Refresh};
+\fill[BrickRed] (3.0,0) circle (2.1pt);
+\node[anchor=west] at (3.2,0) {SAVR1 grid};
+\node[draw=ForestGreen,fill=ForestGreen,regular polygon,regular polygon sides=3,minimum size=6pt,inner sep=0pt] at (6.3,0) {};
+\node[anchor=west] at (6.55,0) {SAVR2 screen};
+\node[draw=RoyalPurple,fill=RoyalPurple,diamond,minimum size=5.5pt,inner sep=0pt] at (10.1,0) {};
+\node[anchor=west] at (10.35,0) {SAVR3 validation};
 \end{scope}
 \end{tikzpicture}
-\caption{Observed success-efficiency frontier with the crowded high-success region expanded at right. The coincident FR and zero-reuse SAVR2-$b05$ results share one coordinate. SAVR1 used 100 episodes per point, SAVR2 used 30 per point, and SAVR3 used 70; the plot is descriptive because the staged populations differ.}
+\caption{Observed success-efficiency frontier. Panel (b) expands the dashed region in panel (a) without moving any point. Full Refresh and the SAVR2 5\% cap coincide at 0\% skip and 100\% success; the latter made no reuse decision. SAVR1 used 100 episodes per setting, SAVR2 used 30 per setting, and SAVR3 used 70. Because the stages used different populations and gates, the cross-stage frontier is descriptive rather than a randomized comparison.}
 \label{fig:frontier}
 \end{figure}
 
@@ -393,15 +412,15 @@ The accompanying repository contains the controller, cache adapter, frozen confi
 \scriptsize
 \caption{Primary evidence index. SHA-256 values authenticate the summarized artifacts.}
 \label{tab:evidence}
-\begin{tabularx}{\linewidth}{p{2.3cm}Xp{4.6cm}}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{1.55cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{3.75cm}}
 \toprule
 Evidence & Repository location & Integrity identifier \\
 \midrule
-SAVR1 calibration & \code{reports/PHASE6\_CALIBRATION\_REPORT.md} & FR trace input \code{c1724072...9804} \\
-Forensic diagnosis & \code{reports/PHASE6R\_A\_DIAGNOSIS\_REPORT.md} & \code{9416014d...2ccf} \\
-SAVR2 Stage 1 & \code{reports/PHASE6R\_D\_STAGE1\_REPORT.md} & summary \code{61a0c9dd...a9ebe} \\
-SAVR3 validation & \code{reports/PHASE6S\_D\_VALIDATION\_REPORT.md} & summary \code{bb54eef3...d046} \\
-Machine summary & \code{docs/evidence/negative\_results\_summary.csv} & tracked with source revision \\
+SAVR1 & \code{reports/PHASE6\_CALIBRATION\_REPORT.md} & FR trace input \code{c1724072...9804} \\
+Diagnosis & \code{reports/PHASE6R\_A\_DIAGNOSIS\_REPORT.md} & \code{9416014d...2ccf} \\
+SAVR2 & \code{reports/PHASE6R\_D\_STAGE1\_REPORT.md} & summary \code{61a0c9dd...a9ebe} \\
+SAVR3 & \code{reports/PHASE6S\_D\_VALIDATION\_REPORT.md} & summary \code{bb54eef3...d046} \\
+Summary & \code{docs/evidence/negative\_results\_summary.csv} & tracked with source revision \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -412,7 +431,7 @@ All terminal task failures were retained. No threshold, success margin, or popul
 
 Training-free whole-prefix visual caching did not provide a safe and useful operating point for the tested OpenVLA-OFT/LIBERO-Spatial system. Aggressive reuse changed actions and sharply reduced success; progressively stronger safeguards recovered success only by collapsing toward Full Refresh. Offline dense-trajectory replay underestimated online reuse, and a two-camera average concealed frequent wrist-camera changes. These findings do not invalidate visual caching broadly. They show that closed-loop trajectory shift, sensor-specific dynamics, and cache granularity must be treated as first-class design constraints. Reporting this frontier prevents a failed coarse-grained design from being mistaken for evidence that visual redundancy is automatically safe to exploit.
 
-\begin{thebibliography}{8}
+\begin{thebibliography}{18}
 
 \bibitem{rt1}
 A.~Brohan et al.
@@ -420,24 +439,84 @@ A.~Brohan et al.
 \newblock \emph{Robotics: Science and Systems}, 2023.
 
 \bibitem{rt2}
-A.~Brohan et al.
+B.~Zitkovich et al.
 \newblock RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control.
 \newblock \emph{Proceedings of The 7th Conference on Robot Learning}, 2023.
+
+\bibitem{openx}
+Open X-Embodiment Collaboration et al.
+\newblock Open X-Embodiment: Robotic Learning Datasets and RT-X Models.
+\newblock \emph{arXiv preprint arXiv:2310.08864}, 2023.
+
+\bibitem{octo}
+D.~Ghosh et al.
+\newblock Octo: An Open-Source Generalist Robot Policy.
+\newblock \emph{Robotics: Science and Systems}, 2024.
+
+\bibitem{pi0}
+K.~Black et al.
+\newblock $\pi_0$: A Vision-Language-Action Flow Model for General Robot Control.
+\newblock \emph{Robotics: Science and Systems}, 2025.
 
 \bibitem{openvla}
 M.~J.~Kim et al.
 \newblock OpenVLA: An Open-Source Vision-Language-Action Model.
-\newblock \emph{arXiv preprint arXiv:2406.09246}, 2024.
+\newblock \emph{Proceedings of The 8th Conference on Robot Learning}, 2025.
 
 \bibitem{openvlaoft}
 M.~J.~Kim, C.~Finn, and P.~Liang.
 \newblock Fine-Tuning Vision-Language-Action Models: Optimizing Speed and Success.
 \newblock \emph{Robotics: Science and Systems}, 2025.
 
+\bibitem{tinyvla}
+J.~Wen et al.
+\newblock TinyVLA: Towards Fast, Data-Efficient Vision-Language-Action Models for Robotic Manipulation.
+\newblock \emph{arXiv preprint arXiv:2409.12514}, 2024.
+
+\bibitem{smolvla}
+M.~Shukor et al.
+\newblock SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics.
+\newblock \emph{arXiv preprint arXiv:2506.01844}, 2025.
+
+\bibitem{dynamicvit}
+Y.~Rao, W.~Zhao, B.~Liu, J.~Lu, J.~Zhou, and C.-J.~Hsieh.
+\newblock DynamicViT: Efficient Vision Transformers with Dynamic Token Sparsification.
+\newblock \emph{Advances in Neural Information Processing Systems}, 34, 2021.
+
+\bibitem{tome}
+D.~Bolya, C.-Y.~Fu, X.~Dai, P.~Zhang, C.~Feichtenhofer, and J.~Hoffman.
+\newblock Token Merging: Your ViT But Faster.
+\newblock \emph{International Conference on Learning Representations}, 2023.
+
+\bibitem{efficientvla}
+Y.~Yang, Y.~Wang, Z.~Wen, Z.~Luo, C.~Zou, Z.~Zhang, C.~Wen, and L.~Zhang.
+\newblock EfficientVLA: Training-Free Acceleration and Compression for Vision-Language-Action Models.
+\newblock \emph{Advances in Neural Information Processing Systems}, 2025.
+
 \bibitem{vlacache}
 S.~Xu, Y.~Wang, C.~Xia, D.~Zhu, T.~Huang, and C.~Xu.
-\newblock VLA-Cache: Towards Efficient Vision-Language-Action Model via Adaptive Token Caching in Robotic Manipulation.
-\newblock \emph{arXiv preprint arXiv:2502.02175}, 2025.
+\newblock VLA-Cache: Efficient Vision-Language-Action Manipulation via Adaptive Token Caching.
+\newblock \emph{Advances in Neural Information Processing Systems}, 2025.
+
+\bibitem{depthcache}
+Y.~Li, L.~Ma, H.~Ding, and L.~Zhu.
+\newblock DepthCache: Depth-Guided Training-Free Visual Token Merging for Vision-Language-Action Model Inference.
+\newblock \emph{arXiv preprint arXiv:2603.10469}, 2026.
+
+\bibitem{learnedcache}
+Y.~Wei, J.~Fan, J.~Guo, R.~Zhen, R.~Shao, X.~Su, Z.~Xie, and S.~Yang.
+\newblock Learning to Accelerate Vision-Language-Action Models through Adaptive Visual Token Caching.
+\newblock \emph{arXiv preprint arXiv:2602.00686}, 2026.
+
+\bibitem{gatedcache}
+Z.~Wu, K.~Kawaharazuka, and K.~Okada.
+\newblock Neural Introspection Gating for Adaptive KV-Cache Reuse in Vision-Language-Action Models.
+\newblock \emph{arXiv preprint arXiv:2608.10824}, 2026.
+
+\bibitem{actioncache}
+R.~Oi, H.~Otsuka, K.~Matsushima, Y.~Ichikawa, M.~Motomura, T.~Kaneko, and D.~Fujiki.
+\newblock Training-Free Acceleration for Vision-Language-Action Models with Action Caching and Refinement.
+\newblock \emph{arXiv preprint arXiv:2607.06370}, 2026.
 
 \bibitem{libero}
 B.~Liu, Y.~Zhu, C.~Gao, Y.~Feng, Q.~Liu, Y.~Zhu, and P.~Stone.
