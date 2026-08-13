@@ -1699,3 +1699,35 @@ Last updated: 2026-08-10
   `STOP_NO_RETRY_V09_DEFAULT_ALLOCATOR_HYPOTHESIS_REJECTED_SECOND_GRAPH_CAPTURE_TECHNICAL_FAILURE`.
   Any further attempt requires a separately researched and frozen
   capture-architecture correction; V5-E remains unauthorized.
+
+## D-109 — Freeze V5-D V10 downstream-only graph recovery protocol
+
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Replace the failed two-graph raw backend with a hybrid executor:
+  run the unchanged wrist core eagerly into owned static buffers, materialize
+  scene-first combined tokens eagerly, and capture/replay only the unchanged
+  downstream action core as one CUDA graph.
+- Causal basis: V08 and V09 both completed wrist capture and failed at the
+  downstream second-capture boundary despite different allocators and more
+  than 7.6 GiB of cap headroom. Downstream as the first and only capture
+  distinguishes a two-capture lifecycle defect from a downstream-body defect.
+- Efficiency basis: Twelve V3-C timed reuse queries place the median derived
+  downstream CUDA portion at 1076.0382 ms of 1151.7416 ms total, or 93.43%.
+  The hybrid therefore targets the dominant work while preserving measurable
+  eager wrist and graphed downstream components.
+- Frozen boundary: Preserve `v5-a100-b40`, scene-cache semantics, model,
+  checkpoint, tensors, default native allocator, inference mode, downstream
+  graph body, correctness tolerances, 111-query schedule, all statistical
+  gates, 23 GiB cap, restoration, and protected-data exclusions.
+- Fail-closed distinction: A downstream-only capture failure rejects V10 and
+  stops without graph-body edits, relaxed mode, allocator changes, or retry.
+  Capture success must still pass exact correctness and every unchanged
+  efficiency/integrity gate.
+- Evidence: `docs/ACR_V5_D_V10_DOWNSTREAM_ONLY_GRAPH_PROTOCOL.md` and
+  `configs/acr/v5_d_downstream_only_graph_recovery_v10.json` (semantic SHA-256
+  `457042abd36f9dcd8134f9592f5baed22ec47590dbffc425bddd8955e48aef4e`).
+- Authorization: Protocol documentation only. Implementation, GPU inspection
+  or selection, model queries, simulator access, V5-E, protected outcomes, and
+  manuscript changes are not authorized.
+- Disposition: `STOP_FOR_EXPLICIT_APPROVAL_BEFORE_V10_IMPLEMENTATION`.

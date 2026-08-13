@@ -1,6 +1,6 @@
 # Project Status
 
-Last updated: 2026-08-12
+Last updated: 2026-08-13
 
 ## Current phase
 
@@ -14,7 +14,7 @@ ACR Version 5 V5-B — **COMPLETE POSITIVE SCREENING**
 
 ACR Version 5 V5-C — **COMPLETE CPU CORRECTNESS**
 
-ACR Version 5 V5-D — **V09 STOPPED TECHNICALLY; V5-E INELIGIBLE**
+ACR Version 5 V5-D — **V10 PROTOCOL FROZEN; IMPLEMENTATION NOT AUTHORIZED**
 
 V5-D now has a research-backed, machine-authenticated real-tensor feasibility
 protocol frozen before implementation or output. It preserves `v5-a100-b40`,
@@ -574,6 +574,10 @@ Completed:
 - the authorized V09 attempt authenticated the default native allocator, both pre-capture warm-ups, and the wrist graph capture, but failed at the same downstream capture boundary as V08
 - V09 peak reservation was 15.3848 GiB, 7.6152 GiB below the unchanged cap and 0.1074 GiB above V08; allocator reversion therefore did not resolve the capture failure
 - V09 produced zero correctness/timing/simulator/outcome records, restored checkpoint and inference state exactly, released GPU 0 to 6 MiB/0%, and rejects only its allocator-recovery hypothesis
+- V10 freezes the evidence-driven hybrid correction: eager wrist visual core plus one downstream-only CUDA graph, eliminating the repeated second-capture transition without changing ACR computation
+- prior real-model V3-C evidence attributes 93.43% of reuse CUDA time to the downstream portion, giving the hybrid a meaningful efficiency target while preserving separate wrist/downstream timing
+- V10 retains the default native allocator, inference mode, exact graph body, correctness tolerances, 111-query schedule, statistical gates, memory cap, and protected-data boundaries
+- V10 protocol creation authorizes no implementation, GPU inspection/selection, model query, simulator use, task outcome, V5-E, or manuscript edit
 
 Not completed:
 
@@ -592,11 +596,11 @@ Not completed:
 
 ## Next authorized action
 
-Preserve all evidence and do not retry V05-V09. V09 rejected default-allocator
-reversion as the correction for the repeated downstream graph-capture failure.
-Keep simulator/final populations and success fields sealed, do not advance to
-V5-E, and do not modify the manuscript. Any further route requires separate
-research, a frozen capture-architecture correction, and new authorization.
+Preserve all evidence and do not retry V05-V09. Review the frozen V10
+downstream-only graph protocol. Its implementation requires explicit approval
+and must stop at CUDA-hidden pre-GPU verification. Keep simulator/final
+populations and success fields sealed, do not advance to V5-E, and do not
+modify the manuscript.
 
 ## Candidate initial stack
 
