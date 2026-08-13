@@ -1732,3 +1732,20 @@ Last updated: 2026-08-10
   selection, CUDA initialization, model loading/querying, simulator access,
   V5-E, protected outcomes, and manuscript changes remain unauthorized.
 - Disposition: `STOP_BEFORE_V10_GPU_INSPECTION_OR_SELECTION`.
+
+## D-110 — Accept V5-D V10 pre-GPU implementation
+
+- Date: 2026-08-13
+- Decision: Accept the isolated V10 eager-wrist plus single downstream CUDA
+  graph implementation at the pre-GPU checkpoint.
+- Verification: 13 focused tests, all 391 repository tests, Ruff/diff checks,
+  two byte-identical 15-gate preflights, both PR #100 validation jobs, and
+  TITAN CUDA-hidden reproduction at merged revision
+  `f587d13b4f439fd075dc53e890641115b6abce1e` passed.
+- Resource attestation: zero GPU inspection/selection, CUDA initialization,
+  model query, simulator episode, download, task outcome, protected-outcome
+  access, or manuscript change.
+- Evidence: `reports/PHASE_V5_D_V10_DOWNSTREAM_ONLY_IMPLEMENTATION_REPORT.md`
+  and `reports/runtime/acr_v5_d_v10_pre_gpu_verification.json`.
+- Authorization: No V10 GPU attempt is authorized by this acceptance.
+- Disposition: `STOP_BEFORE_V10_GPU_INSPECTION_OR_SELECTION`.
