@@ -106,8 +106,9 @@ def validate_v10_recovery(recovery: Mapping[str, Any], v09: Mapping[str, Any]) -
     if authorization != {
         "protocol_documentation": True,
         "pre_gpu_implementation": True,
-        "gpu_inspection_or_selection": False,
-        "model_queries": 0,
+        "gpu_inspection_or_selection": True,
+        "model_queries_max": 111,
+        "automatic_retry": False,
         "simulator_use": False,
         "protected_outcome_access": False,
         "manuscript_changes": False,

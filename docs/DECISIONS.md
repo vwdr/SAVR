@@ -1749,3 +1749,26 @@ Last updated: 2026-08-10
   and `reports/runtime/acr_v5_d_v10_pre_gpu_verification.json`.
 - Authorization: No V10 GPU attempt is authorized by this acceptance.
 - Disposition: `STOP_BEFORE_V10_GPU_INSPECTION_OR_SELECTION`.
+
+## D-111 — Authorize one frozen V5-D V10 GPU attempt
+
+- Date: 2026-08-13
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Seal the user's explicit approval for one V10 aggregate-only GPU
+  selection and one fail-closed execution with at most 111 frozen model
+  queries.
+- Configuration: Resolved semantic SHA-256
+  `c5a59260858004dd86c8f71d399bde116a1e10ddc585bc0cea79f59fef042911`;
+  recovery semantic SHA-256
+  `ba68b4dc0c46390b9be37dfdb2e759ea3c6598356b3fd7e30bb203d86ef7799f`.
+- Unchanged boundary: Preserve the eager-wrist plus single downstream graph,
+  V09 inference semantics and default allocator, model/checkpoint, tensors,
+  schedule, gates, 23 GiB cap, and claim limits exactly.
+- Exclusions: No automatic retry, simulator, protected outcome, final
+  population, manuscript edit, V5-E advance, process-identity inspection, or
+  unrelated server interference is authorized.
+- Required disposition: Preserve and reconcile the single attempt whether it
+  completes or stops technically. Any further attempt requires a new identity
+  and authorization.
+- Approver: User explicitly wrote `Approve the single frozen V10 GPU attempt`.

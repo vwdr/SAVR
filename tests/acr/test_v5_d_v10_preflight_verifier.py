@@ -31,6 +31,6 @@ def test_v10_preflight_is_deterministic_complete_and_stops_before_gpu() -> None:
     )
     assert first["resources_used"]["cuda_visible_devices"] == ""
     assert first["resources_used"]["cuda_initialized"] is False
-    assert first["advance_only_to"] == "STOP_BEFORE_V10_GPU_INSPECTION_OR_SELECTION"
+    assert first["advance_only_to"] == "ONE_FROZEN_V10_GPU_ATTEMPT"
     assert len(first["source_hashes"]) == 15
     assert len(first["semantic_sha256"]) == 64

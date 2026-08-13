@@ -1,9 +1,9 @@
 {
   "schema_version": "acr.v5d-downstream-only-graph-recovery.v10",
-  "status": "pre-gpu-implementation-authorized",
+  "status": "authorized-one-gpu-execution",
   "frozen_at": "2026-08-13",
   "authorized_at": "2026-08-13",
-  "authorized_scope": "implementation-local-ci-and-cuda-hidden-titan-verification-only",
+  "authorized_scope": "one-v10-aggregate-selection-and-single-fail-closed-gpu-attempt",
   "protocol": "docs/ACR_V5_D_V10_DOWNSTREAM_ONLY_GRAPH_PROTOCOL.md",
   "base_v09_resolved_configuration_semantic_sha256": "e10abef2b2b78472ec7257ed08cd9f9723d20df8335b7ffc1702867464493408",
   "v09_run_id": "acr-v5d-real-tensor-feasibility-v09",
@@ -82,13 +82,14 @@
   "current_authorization": {
     "protocol_documentation": true,
     "pre_gpu_implementation": true,
-    "gpu_inspection_or_selection": false,
-    "model_queries": 0,
+    "gpu_inspection_or_selection": true,
+    "model_queries_max": 111,
+    "automatic_retry": false,
     "simulator_use": false,
     "protected_outcome_access": false,
     "manuscript_changes": false
   },
-  "advance_only_to": "STOP_BEFORE_V10_GPU_INSPECTION_OR_SELECTION",
-  "resolved_configuration_semantic_sha256": "b078b57dff6f8a9548a75e5b611375ce71e9066eccd950c4f1ea22e6abbac083",
-  "semantic_sha256": "38f7ae4e65f2881c6331db6bed4614f1eafd73a23b073e297e4570b5683b2904"
+  "advance_only_to": "ONE_FROZEN_V10_GPU_ATTEMPT",
+  "resolved_configuration_semantic_sha256": "c5a59260858004dd86c8f71d399bde116a1e10ddc585bc0cea79f59fef042911",
+  "semantic_sha256": "ba68b4dc0c46390b9be37dfdb2e759ea3c6598356b3fd7e30bb203d86ef7799f"
 }
