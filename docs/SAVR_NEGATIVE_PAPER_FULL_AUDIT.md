@@ -20,6 +20,10 @@
 | Build | Stable 12-page US Letter PDF with clean text extraction and no undefined references/citations or overfull boxes; tagged/PDF-UA output remains submission work |
 | Reproducibility | Exact controller thresholds, source/PDF hashes, repository status, DOI status, and artifact-release work are stated |
 
+## Final correction pass
+
+The final reread corrected the missing action-head row in the component-timing table, disclosed the timing pilot's 49/50 feasibility outcome, qualified the binomial intervals for the fixed heterogeneous grids, corrected the SAVR3 configuration path, softened two causal interpretations, completed official venue metadata for EfficientVLA, VLA-Cache, and LIBERO, and added PDF subject/keyword metadata. All twelve rebuilt pages were inspected again; no clipping, overlap, or illegible content was found.
+
 ## Reference coverage
 
 The bibliography follows a claim-level relevance rule, not a target count. The 13 retained entries support four necessary areas: the evaluated VLA lineage, directly related VLA efficiency/caching methods, closed-loop distribution shift, and the benchmark/statistical method. Open X-Embodiment, Octo, $\pi_0$, TinyVLA, SmolVLA, DynamicViT, and Token Merging were removed because no necessary manuscript claim depended on them. The full mapping is recorded in `docs/SAVR_CITATION_RELEVANCE_AUDIT.md`.
@@ -46,5 +50,5 @@ No additional experiment is required for the bounded negative result already rep
 
 ## Final integrity identifiers
 
-- LaTeX SHA-256: `3e2364621b4d3e9f183fe8645a52cd67157fbb718243bc4262947174a7292a8b`
-- PDF SHA-256: `c0a3a342bb87b65e812e28f862d9e2e2957368fe83cdd29d71d75e423c5babcb`
+- LaTeX SHA-256: `1723d4c345d6f2df91046b7675e4a7cfd6a264cd128ff69eef3fa2c065862a00`
+- PDF SHA-256: `438794647dc7d5ba379e125dd2370d27551b43a57e05bc7e54100a926d99d709`
