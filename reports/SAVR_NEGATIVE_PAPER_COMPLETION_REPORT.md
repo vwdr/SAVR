@@ -15,17 +15,19 @@
 
 ## Integrity
 
-- LaTeX SHA-256: `1723d4c345d6f2df91046b7675e4a7cfd6a264cd128ff69eef3fa2c065862a00`
-- PDF SHA-256: `438794647dc7d5ba379e125dd2370d27551b43a57e05bc7e54100a926d99d709`
-- PDF size: 270,540 bytes
-- PDF pages: 12, US Letter
+- LaTeX SHA-256: `ee33d4b28d7678f572381ec8f13a621004e5f18754be8240375687b9c3342915`
+- PDF SHA-256: `02ec3bf125621d562b830abda7aa6b87f24cedc371defeca7925c3c70af75b7a`
+- PDF size: 275,921 bytes
+- PDF pages: 13, US Letter
 
 ## Verification
 
 - Compiled through three stable pdfLaTeX passes on TITAN inside `/home/ved/SAVR/tmp/pdfs`.
 - Final build had no undefined citation or cross-reference warnings or overfull/underfull boxes. TITAN's older accessibility package produced malformed marked-content warnings, so it was removed rather than used to make a false tagging claim; a tagged/PDF-UA venue build remains submission work.
-- All twelve final pages were rendered and visually inspected. Figure 2 uses an explicitly marked expansion region, a shared legend, exact high-success labels, and a caption that discloses point overlap and the different staged populations. Tables remain in narrative order, and the widest threshold table is split into readable panels.
+- All thirteen final pages were rendered and visually inspected. Figure 2 uses an explicitly marked expansion region, a shared legend, exact high-success labels, and a caption that discloses point overlap and the different staged populations. Tables remain in narrative order, and the widest threshold table is split into readable panels.
 - The component-timing table now includes the measured 5.03 ms action-head row, the timing pilot's 49/50 feasibility outcome is disclosed, and the confidence intervals are explicitly labeled as descriptive under an exchangeable Bernoulli approximation for fixed heterogeneous grids.
+- The paper now gives the deterministic SAVR2/SAVR3 normalization, grouped-score, gripper-transition, temporal, fail-closed, threshold-derivation, and direction-reversal rules needed to reconstruct the controller. It also preserves and explains the differing pilot/calibration outcome for the overlapping task-7/state-2 tuple without assigning an unsupported cause.
+- Remaining interpretations use associative rather than causal wording wherever the design cannot establish causality.
 - The SAVR3 configuration path, PDF subject/keyword metadata, repository-link presentation, and official venue metadata for EfficientVLA, VLA-Cache, and LIBERO were corrected.
 - All 13 citation keys resolve to 13 used bibliography entries. Every retained source has a documented claim-level role; seven broad or tangential sources were removed rather than kept for reference count.
 - Tables 3 and 4 report two-sided 95% exact Clopper--Pearson intervals for every terminal-success count.

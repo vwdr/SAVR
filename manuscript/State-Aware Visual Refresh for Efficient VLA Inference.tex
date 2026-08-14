@@ -56,7 +56,7 @@ $^{2}$Department of Electrical and Computer Engineering, Rutgers University--New
 \vspace{0.6em}
 
 \begin{abstract}
-Vision-language-action (VLA) policies repeatedly encode similar observations during closed-loop manipulation, suggesting that visual features could be cached between policy queries. We study this idea through State-Aware Visual Refresh (SAVR), a training-free controller that reuses the complete projected visual prefix from third-person and wrist cameras while retaining current proprioception and the unchanged action head. The primary evaluation preserves 1,160 terminal episodes across a dense Full Refresh reference and three staged SAVR designs on one pinned OpenVLA-OFT/LIBERO-Spatial system; a separate 50-episode Full Refresh pilot measures component timing. Full Refresh succeeded on 100/100 calibration episodes. Nine initial SAVR settings achieved 0--52/100 success at 34.69--83.68\% skipped visual refreshes; the least-degrading setting still lost 48 percentage points. Offline replay underestimated online reuse for every setting. For the least-degrading setting, 374 of 783 reuse queries concealed a per-camera threshold exceedance behind the two-camera mean, including 372 wrist-camera exceedances, and the first comparable reuse changed the action hash in all 87 analyzable episodes. Reliability-constrained redesigns recovered success only by suppressing reuse: one configuration achieved 30/30 with zero reuse, while configurations at 6.72\% and 10.57\% skip achieved 29/30 and 27/30. A final post-hoc redesign achieved 69/70 at only 0.95\% skip. No tested SAVR operating point satisfied its predeclared success-efficiency gate. These bounded negative results describe a closed-loop reliability-efficiency trade-off for whole-prefix caching and motivate sensor-granular or task-aware reuse rather than treating a multi-camera visual prefix as indivisible.
+Vision-language-action (VLA) policies repeatedly encode similar observations during closed-loop manipulation, suggesting that visual features could be cached between policy queries. We study this idea through State-Aware Visual Refresh (SAVR), a training-free controller that reuses the complete projected visual prefix from third-person and wrist cameras while retaining current proprioception and the unchanged action head. The primary evaluation preserves 1,160 terminal episodes across a dense Full Refresh reference and three staged SAVR designs on one pinned OpenVLA-OFT/LIBERO-Spatial system; a separate 50-episode Full Refresh pilot measures component timing. Full Refresh succeeded on 100/100 calibration episodes. Nine initial SAVR settings achieved 0--52/100 success at 34.69--83.68\% skipped visual refreshes; the least-degrading setting was still 48 percentage points below Full Refresh. Offline replay underestimated online reuse for every setting. For the least-degrading setting, 374 of 783 reuse queries concealed a per-camera threshold exceedance behind the two-camera mean, including 372 wrist-camera exceedances, and the first comparable reuse changed the action hash in all 87 analyzable episodes. Reliability-constrained redesigns were associated with higher success only as reuse was suppressed: one configuration achieved 30/30 with zero reuse, while configurations at 6.72\% and 10.57\% skip achieved 29/30 and 27/30. A final post-hoc redesign achieved 69/70 at only 0.95\% skip. No tested SAVR operating point satisfied its predeclared success-efficiency gate. These bounded negative results describe a closed-loop reliability-efficiency trade-off for whole-prefix caching and motivate sensor-granular or task-aware reuse rather than treating a multi-camera visual prefix as indivisible.
 \end{abstract}
 
 \section*{Keywords}
@@ -70,14 +70,14 @@ Temporal redundancy offers an intuitive optimization opportunity. Adjacent robot
 
 We investigate the most direct version of this question: cache the complete projected prefix from both cameras and decide at each policy query whether to recompute it. State-Aware Visual Refresh (SAVR) combines image, robot-state, recent-action, and cache-age signals without changing policy weights. Our original hypothesis was that embodied signals would make whole-prefix reuse more reliable than visual similarity alone. The experiments did not support a useful operating point.
 
-This paper reports the negative evidence rather than relaxing the gates or hiding failed variants. Across the tested OpenVLA-OFT/LIBERO-Spatial setting, permissive controllers changed actions and sharply reduced success, while conservative redesigns restored success by becoming nearly identical to dense inference. The study contributes:
+This paper reports the negative evidence rather than relaxing the gates or hiding failed variants. Across the tested OpenVLA-OFT/LIBERO-Spatial setting, permissive controllers coincided with immediate action divergence and sharply lower success, while higher-success conservative redesigns became nearly identical to dense inference. The study contributes:
 
 \begin{enumerate}
     \item a controlled, stage-gated primary evaluation of whole-prefix visual reuse spanning 1,160 preserved terminal episodes, plus a separate 50-episode Full Refresh timing pilot;
     \item evidence that offline replay of dense trajectories underestimated the online reuse rate after cached actions changed the closed-loop trajectory;
     \item a camera-specific diagnosis showing that averaging the scene and wrist views concealed 374 threshold exceedances in 783 reuse queries;
     \item action-prefix evidence showing that the first comparable reuse changed the predicted action in 87/87 analyzable episodes; and
-    \item a documented reliability-efficiency trade-off: increasingly conservative controllers recovered success but reduced reuse to zero or less than one percent.
+    \item a documented reliability-efficiency trade-off: higher success under increasingly conservative controllers coincided with reuse falling to zero or less than one percent.
 \end{enumerate}
 
 Our conclusion is deliberately bounded. We do not claim that visual caching is universally unreliable, that every reuse caused a failure, or that sensor-granular caching cannot work. We show that no tested \emph{whole-prefix} controller met its predeclared gate on one pinned model, suite, and seed, and we identify concrete mechanisms that future caching systems should avoid.
@@ -178,14 +178,32 @@ For each target skip rate in $\{25,50,75\}\%$ and horizon in $\{2,4,8\}$, a fixe
 
 \subsection{Reliability-constrained redesigns}
 
-Forensic analysis motivated SAVR 2.0. It replaced the two-camera average with independent per-camera local-change gates. Each $32\times32$ image was partitioned into an $8\times8$ grid, and the mean of the four largest patch changes formed each camera score. State was split into translation, orientation, and gripper groups; action was split into translation, rotation, and gripper groups. The controller added gripper-transition vetoes, five-query warm-up, two stable fresh queries before reuse, at most one consecutive reuse, and a hard episode-prefix reuse budget $b\in\{0.05,0.10,0.15\}$. A prospective reuse was rejected when it would make
+Forensic analysis motivated SAVR 2.0. It replaced the two-camera average with independent per-camera local-change gates. Nearest-neighbor sampling mapped each camera to $32\times32$, and pixel values were scaled to $[0,1]$. The representation was divided into an $8\times8$ grid of non-overlapping $4\times4$ spatial patches. For camera $c$, the patch score was the mean absolute pixel-channel difference from the image stored at the last refresh; the camera score $I_t^c$ was the mean of the four largest among the 64 patch scores. Either $I_t^c>\gamma_c$ forced refresh, so camera scores were never averaged to approve reuse.
+
+State and action coordinates were normalized with the pinned checkpoint's $q_{0.01}$ and $q_{0.99}$ statistics:
+\begin{equation}
+\nu_j(x)=\operatorname{clip}\!\left(2\frac{x_j-q_{0.01,j}}{q_{0.99,j}-q_{0.01,j}+10^{-8}}-1,-1,1\right).
+\label{eq:normalization}
+\end{equation}
+For any semantic group $G$, change was the normalized RMS
+\begin{equation}
+D_G(x,y)=\sqrt{\frac{1}{|G|}\sum_{j\in G}\left(\nu_j(x)-\nu_j(y)\right)^2}.
+\label{eq:groupchange}
+\end{equation}
+State compared the current and previous query in translation indices 0--2, orientation 3--5, and gripper 6--7. Action compared the two latest completed $8\times7$ chunks in translation dimensions 0--2, rotation 3--5, and gripper 6, with $G$ spanning all eight rows. Any group above its own threshold forced refresh.
+
+All remaining rules failed toward refresh. Reuse required a valid compatible cache, zero-based query index at least five, every image/state/action score valid and at or below threshold, two preceding stable fresh queries, and no immediately preceding reuse. A fresh query counted as stable only when every signal gate passed; any reuse reset the stable-fresh counter. The newest action chunk's gripper commands were binarized at $0.5$: a chunk containing both binary states or a final binary command different from the preceding chunk forced refresh. Missing or incompatible inputs, incomplete history, and a changed episode/task/checkpoint/configuration identity cleared or invalidated the relevant history and forced refresh.
+
+The controller also imposed a hard episode-prefix reuse budget $b\in\{0.05,0.10,0.15\}$. A prospective reuse was rejected when it would make
 \begin{equation}
 \frac{R_t+1}{t+1}>b,
 \label{eq:prefixcap}
 \end{equation}
 where $R_t$ is the number of completed reuses before query $t$.
 
-SAVR 3.0 was a transparently post-hoc localized redesign. Starting from the $b=0.15$ SAVR 2.0 controller, it added a translation-direction-reversal veto and changed only the wrist-image threshold to $0.375$. It was evaluated once on states not used in the SAVR 2.0 screen.
+SAVR 2.0 thresholds were derived only from adjacent-query Full Refresh scores. On the shared grid $q\in\{0,0.001,\ldots,1\}$, every score-family threshold was $0.90$ times its linear empirical $q$-quantile. For each budget, replaying the complete controller selected the skip rate closest to but never above the cap; ties preferred lower skip and then lower $q$. The exact selected thresholds appear in Tables~\ref{tab:savr1thresholds} and~\ref{tab:redesignthresholds}.
+
+SAVR 3.0 was a transparently post-hoc localized redesign. Starting from the $b=0.15$ SAVR 2.0 controller, it changed only the wrist-image threshold to $0.375$ and added a translation-direction-reversal veto. For each translation axis, reversal meant that the mean commands of the two latest completed action chunks had a strictly negative product; a zero mean was not a reversal. Any axis reversal forced refresh. SAVR 3.0 was evaluated once on states not used in the SAVR 2.0 screen.
 
 \section{Experimental Design}
 
@@ -233,7 +251,7 @@ Wrapped Full Refresh produced bitwise-identical actions to the unmodified OpenVL
 
 \subsection{Measured optimization opportunity}
 
-Before testing reuse, a 50-episode Full Refresh pilot measured 662 steady-state queries after three predeclared warm-ups. The pilot completed without technical failure and succeeded on 49/50 episodes; that success count was retained as feasibility context and was not used as a performance estimate. Table~\ref{tab:timing} shows that the visual backbone and projector accounted for 15.874\% of query CUDA time. Even perfect visual elimination therefore had a measured ceiling of approximately 15.87\% query-latency reduction before cache/controller overhead.
+Before testing reuse, a 50-episode Full Refresh pilot measured 662 steady-state queries after three predeclared warm-ups. The pilot completed without technical failure and succeeded on 49/50 episodes; that success count was retained as feasibility context and was not used as a performance estimate. The pilot's task-7/state-2 rollout failed, whereas the same nominal task/state/seed tuple succeeded in the later 100-episode Full Refresh calibration. Thus the tuple and seed did not guarantee the same terminal outcome across separately executed stages; both outcomes are preserved and treated as stage-specific observations. Table~\ref{tab:timing} shows that the visual backbone and projector accounted for 15.874\% of query CUDA time. Even perfect visual elimination therefore had a measured ceiling of approximately 15.87\% query-latency reduction before cache/controller overhead.
 
 \begin{table}[H]
 \centering
@@ -363,7 +381,7 @@ Reuse timing and streaks were also associated with outcome. Episodes whose first
 
 \subsection{Reliability constraints collapsed toward Full Refresh}
 
-Table~\ref{tab:redesign} reports the predeclared SAVR 2.0 screen and SAVR 3.0 validation. SAVR 2.0's most conservative candidate achieved 30/30 only by making no reuse decision. Candidates with useful skip rates missed the exact success gate. SAVR 3.0 recovered 69/70 success, but skipped only nine of 944 visual refreshes (0.9534\%) and missed both its success and 5\% minimum-skip gates.
+Table~\ref{tab:redesign} reports the predeclared SAVR 2.0 screen and SAVR 3.0 validation. SAVR 2.0's most conservative candidate achieved 30/30 only by making no reuse decision. Candidates with useful skip rates missed the exact success gate. SAVR 3.0 achieved 69/70, but skipped only nine of 944 visual refreshes (0.9534\%) and missed both its success and 5\% minimum-skip gates.
 
 \begin{table}[H]
 \centering
@@ -388,7 +406,7 @@ The SAVR3 trigger audit explains the low reuse rate. Across 944 queries, wrist-i
 
 \subsection{A closed-loop reliability-efficiency trade-off}
 
-The experiments reveal a consistent trade-off in the tested region. Permissive whole-prefix reuse reduced visual calls but allowed stale representations to affect many future actions. Conservative rules prevented most success-degrading reuse but also removed the intended efficiency benefit. The problem was not resolved by the tested thresholds or controller redesigns: across three design stages, we changed camera aggregation, local scoring, semantic grouping, temporal constraints, gripper vetoes, direction reversals, and hard budgets, yet no stage satisfied its own frozen gate.
+The experiments reveal a consistent trade-off in the tested region. Permissive whole-prefix reuse reduced visual calls and was associated with immediate action divergence and lower terminal success. Under conservative rules, higher success appeared only as reuse and the intended efficiency benefit nearly disappeared. The problem was not resolved by the tested thresholds or controller redesigns: across three design stages, we changed camera aggregation, local scoring, semantic grouping, temporal constraints, gripper vetoes, direction reversals, and hard budgets, yet no stage satisfied its own frozen gate.
 
 \subsection{Why offline calibration drifted}
 
@@ -407,7 +425,7 @@ The component pilot limits the upside of any visual-only method on this stack. V
 This study has several important limitations.
 
 \begin{enumerate}
-    \item It evaluates one OpenVLA-OFT checkpoint on LIBERO-Spatial, one hardware class, and seed 0. Results may not transfer to other policies, camera geometries, tasks, or real robots.
+    \item It evaluates one OpenVLA-OFT checkpoint on LIBERO-Spatial, one hardware class, and seed 0. The pilot/calibration task-7/state-2 discrepancy also shows that a nominal task/state/seed tuple did not guarantee the same terminal outcome across separate stages. Results may not transfer to other policies, camera geometries, tasks, or real robots.
     \item The final holdout was intentionally untouched because no method passed the development gate. The results reject tested operating points but do not provide confirmatory population-level non-inferiority inference.
     \item SAVR 1.0, SAVR 2.0, and SAVR 3.0 used different staged populations. Cross-version comparisons are descriptive, not randomized paired comparisons.
     \item Matched-budget Periodic Refresh and Visual-Only Refresh were not run because the predeclared protocol required an eligible SAVR configuration first. We therefore cannot claim superiority or inferiority relative to those baselines.
@@ -502,7 +520,7 @@ The source, controller, frozen configurations, tests, and evidence audits are ma
 
 \section{Conclusion}
 
-Training-free whole-prefix visual caching did not provide a success-preserving and useful operating point for the tested OpenVLA-OFT/LIBERO-Spatial system. Aggressive reuse changed actions and sharply reduced success; progressively stronger safeguards recovered success only by collapsing toward Full Refresh. Offline dense-trajectory replay underestimated online reuse, and a two-camera average concealed frequent wrist-camera changes. These findings do not invalidate visual caching broadly. They show that closed-loop trajectory shift, sensor-specific dynamics, and cache granularity must be treated as first-class design constraints. Reporting this trade-off prevents a failed coarse-grained design from being mistaken for evidence that visual redundancy is automatically reliable to exploit.
+Training-free whole-prefix visual caching did not provide a success-preserving and useful operating point for the tested OpenVLA-OFT/LIBERO-Spatial system. Aggressive reuse was associated with immediate action divergence and sharply lower success; higher success under progressively stronger safeguards coincided with behavior collapsing toward Full Refresh. Offline dense-trajectory replay underestimated online reuse, and a two-camera average concealed frequent wrist-camera changes. These findings do not invalidate visual caching broadly. They show that closed-loop trajectory shift, sensor-specific dynamics, and cache granularity must be treated as first-class design constraints. Reporting this trade-off prevents a failed coarse-grained design from being mistaken for evidence that visual redundancy is automatically reliable to exploit.
 
 \begin{thebibliography}{13}
 

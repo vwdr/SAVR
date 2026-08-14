@@ -17,12 +17,12 @@
 | Efficiency | Reports measured visual-component share and skipped calls; does not misstate either as measured end-to-end speedup |
 | References | 13 claim-relevant works; all 13 are cited, none is unresolved, and seven tangential entries were removed |
 | Figures and tables | Every final page inspected; Figure 2, confidence-interval tables, evidence index, and threshold tables were checked for clarity |
-| Build | Stable 12-page US Letter PDF with clean text extraction and no undefined references/citations or overfull boxes; tagged/PDF-UA output remains submission work |
+| Build | Stable 13-page US Letter PDF with clean text extraction and no undefined references/citations or overfull boxes; tagged/PDF-UA output remains submission work |
 | Reproducibility | Exact controller thresholds, source/PDF hashes, repository status, DOI status, and artifact-release work are stated |
 
 ## Final correction pass
 
-The final reread corrected the missing action-head row in the component-timing table, disclosed the timing pilot's 49/50 feasibility outcome, qualified the binomial intervals for the fixed heterogeneous grids, corrected the SAVR3 configuration path, softened two causal interpretations, completed official venue metadata for EfficientVLA, VLA-Cache, and LIBERO, and added PDF subject/keyword metadata. All twelve rebuilt pages were inspected again; no clipping, overlap, or illegible content was found.
+The final reread corrected the missing action-head row in the component-timing table, disclosed the timing pilot's 49/50 feasibility outcome, qualified the binomial intervals for the fixed heterogeneous grids, corrected the SAVR3 configuration path, softened two causal interpretations, completed official venue metadata for EfficientVLA, VLA-Cache, and LIBERO, and added PDF subject/keyword metadata. A subsequent correction pass removed the remaining causal overstatements, formally specified SAVR2/SAVR3 normalization, grouped scores, transition vetoes, state-machine rules, threshold derivation, and direction reversal, and disclosed that the overlapping pilot/calibration task-7/state-2 outcome was not repeatable across separate stages. All thirteen rebuilt pages were inspected; no clipping, overlap, or illegible content was found.
 
 ## Reference coverage
 
@@ -50,5 +50,5 @@ No additional experiment is required for the bounded negative result already rep
 
 ## Final integrity identifiers
 
-- LaTeX SHA-256: `1723d4c345d6f2df91046b7675e4a7cfd6a264cd128ff69eef3fa2c065862a00`
-- PDF SHA-256: `438794647dc7d5ba379e125dd2370d27551b43a57e05bc7e54100a926d99d709`
+- LaTeX SHA-256: `ee33d4b28d7678f572381ec8f13a621004e5f18754be8240375687b9c3342915`
+- PDF SHA-256: `02ec3bf125621d562b830abda7aa6b87f24cedc371defeca7925c3c70af75b7a`
