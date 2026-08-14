@@ -116,7 +116,7 @@ AC2-VLA, DeeR-VLA, token pruning, early exit, and other efficiency methods are r
 
 Use official or primary sources:
 
-- SAVR manuscript: `manuscript/State-Aware Visual Refresh for Efficient VLA Inference.tex`
+- Reviewed paper artifact: `output/pdf/SAVR_Negative_Results_Paper.pdf` (editable source retained in the authors' external archive)
 - OpenVLA-OFT code: https://github.com/moojink/openvla-oft
 - OpenVLA-OFT paper: https://arxiv.org/abs/2502.19645
 - LIBERO: https://github.com/Lifelong-Robot-Learning/LIBERO

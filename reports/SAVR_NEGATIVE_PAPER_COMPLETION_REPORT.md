@@ -5,8 +5,8 @@
 
 ## Deliverables
 
-- LaTeX source: `manuscript/State-Aware Visual Refresh for Efficient VLA Inference.tex`
 - Reviewed PDF: `output/pdf/SAVR_Negative_Results_Paper.pdf`
+- Editable LaTeX source: retained in the authors' external paper archive rather than the software repository
 - Claim audit: `docs/SAVR_NEGATIVE_PAPER_CLAIM_AUDIT.md`
 - Full manuscript audit: `docs/SAVR_NEGATIVE_PAPER_FULL_AUDIT.md`
 - Citation relevance audit: `docs/SAVR_CITATION_RELEVANCE_AUDIT.md`

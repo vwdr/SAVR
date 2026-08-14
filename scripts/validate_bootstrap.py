@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the documentation-only SAVR bootstrap without third-party packages."""
+"""Validate the tracked SAVR research artifact without third-party packages."""
 
 from __future__ import annotations
 
@@ -12,6 +12,7 @@ REQUIRED_FILES = (
     ".github/workflows/ci.yml",
     ".gitignore",
     "AGENTS.md",
+    "CITATION.cff",
     "PROJECT_STATUS.md",
     "README.md",
     "docs/CODEX_HANDOFF_IMPLEMENTATION.md",
@@ -36,10 +37,8 @@ REQUIRED_FILES = (
     "environment/locks/conda-linux-64-explicit.txt",
     "environment/locks/pip-freeze.txt",
     "environment/phase1-conda.yml",
-    "manuscript/README.md",
-    "manuscript/State-Aware Visual Refresh for Efficient VLA Inference.tex",
+    "output/pdf/SAVR_Negative_Results_Paper.pdf",
     "pyproject.toml",
-    "references/efficiency_papers.txt",
     "reports/BOOTSTRAP_REPORT.md",
     "reports/PHASE1_REPORT.md",
     "reports/PHASE2A_CHECKPOINT_REPORT.md",

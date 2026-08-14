@@ -2,7 +2,7 @@
 
 **Status:** Complete  
 **Audit date:** 2026-08-13  
-**Manuscript:** `manuscript/State-Aware Visual Refresh for Efficient VLA Inference.tex`
+**Reviewed paper:** `output/pdf/SAVR_Negative_Results_Paper.pdf`
 
 ## Scope decision
 

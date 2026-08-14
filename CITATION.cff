@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software or evidence artifact, please cite the accompanying paper."
+title: "SAVR: State-Aware Visual Refresh for VLA Inference"
+type: software
+authors:
+  - family-names: Dwivedi
+    given-names: Ved
+  - family-names: Yang
+    given-names: Cheng
+  - family-names: Yuan
+    given-names: Bo
+version: 0.1.0
+date-released: "2026-08-13"
+repository-code: "https://github.com/vwdr/SAVR"
+preferred-citation:
+  type: article
+  title: "A Negative Result for Training-Free Whole-Prefix Visual Caching in VLA Inference"
+  authors:
+    - family-names: Dwivedi
+      given-names: Ved
+    - family-names: Yang
+      given-names: Cheng
+    - family-names: Yuan
+      given-names: Bo
+  year: 2026

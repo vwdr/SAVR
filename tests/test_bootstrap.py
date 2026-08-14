@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import hashlib
 import json
 import unittest
 from pathlib import Path
@@ -20,19 +19,13 @@ class BootstrapTests(unittest.TestCase):
             self.assertEqual(data["type"], "object")
             self.assertTrue(data["required"])
 
-    def test_manuscript_source_is_recorded(self) -> None:
-        text = (ROOT / "manuscript" / "README.md").read_text(encoding="utf-8")
-        manuscript = ROOT / "manuscript" / (
-            "State-Aware Visual Refresh for Efficient VLA Inference.tex"
-        )
-        self.assertTrue(manuscript.is_file())
-        digest = hashlib.sha256(manuscript.read_bytes()).hexdigest()
-        self.assertEqual(
-            digest,
-            "ee33d4b28d7678f572381ec8f13a621004e5f18754be8240375687b9c3342915",
-        )
-        self.assertIn("ee33d4b28d7678f572381ec8f13a621004e5f18754be8240375687b9c3342915", text)
-        self.assertIn("Do not edit the manuscript", text)
+    def test_public_artifact_excludes_private_source_material(self) -> None:
+        self.assertFalse((ROOT / "manuscript").is_dir())
+        self.assertFalse((ROOT / "references").is_dir())
+        self.assertTrue((ROOT / "output" / "pdf" / "SAVR_Negative_Results_Paper.pdf").is_file())
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("bounded negative result", readme)
+        self.assertIn("1,160 terminal evaluation episodes", readme)
 
     def test_project_status_does_not_claim_results(self) -> None:
         text = (ROOT / "PROJECT_STATUS.md").read_text(encoding="utf-8")
