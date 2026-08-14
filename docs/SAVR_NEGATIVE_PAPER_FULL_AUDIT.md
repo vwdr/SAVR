@@ -17,7 +17,7 @@
 | Efficiency | Reports measured visual-component share and skipped calls; does not misstate either as measured end-to-end speedup |
 | References | 13 claim-relevant works; all 13 are cited, none is unresolved, and seven tangential entries were removed |
 | Figures and tables | Every final page inspected; Figure 2, confidence-interval tables, evidence index, and threshold tables were checked for clarity |
-| Build | Stable 12-page tagged US Letter PDF; no undefined references/citations or overfull boxes; one non-fatal accessibility-package destination warning remains |
+| Build | Stable 12-page US Letter PDF with clean text extraction and no undefined references/citations or overfull boxes; tagged/PDF-UA output remains submission work |
 | Reproducibility | Exact controller thresholds, source/PDF hashes, repository status, DOI status, and artifact-release work are stated |
 
 ## Reference coverage
@@ -46,5 +46,5 @@ No additional experiment is required for the bounded negative result already rep
 
 ## Final integrity identifiers
 
-- LaTeX SHA-256: `b3ff0704add279411293b1a8acef79d0a91b18c8ed2a923119b4ece2480fd8e9`
-- PDF SHA-256: `bb191bcf472183aebbe3eb1041710bc22cb3b1a06a873edad3c86ff05d13659c`
+- LaTeX SHA-256: `3e2364621b4d3e9f183fe8645a52cd67157fbb718243bc4262947174a7292a8b`
+- PDF SHA-256: `c0a3a342bb87b65e812e28f862d9e2e2957368fe83cdd29d71d75e423c5babcb`

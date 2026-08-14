@@ -15,15 +15,15 @@
 
 ## Integrity
 
-- LaTeX SHA-256: `b3ff0704add279411293b1a8acef79d0a91b18c8ed2a923119b4ece2480fd8e9`
-- PDF SHA-256: `bb191bcf472183aebbe3eb1041710bc22cb3b1a06a873edad3c86ff05d13659c`
-- PDF size: 605,594 bytes
+- LaTeX SHA-256: `3e2364621b4d3e9f183fe8645a52cd67157fbb718243bc4262947174a7292a8b`
+- PDF SHA-256: `c0a3a342bb87b65e812e28f862d9e2e2957368fe83cdd29d71d75e423c5babcb`
+- PDF size: 269,865 bytes
 - PDF pages: 12, US Letter
 
 ## Verification
 
 - Compiled through three stable pdfLaTeX passes on TITAN inside `/home/ved/SAVR/tmp/pdfs`.
-- Final build had no undefined citation or cross-reference warnings and no overfull boxes. The older accessibility package emits one non-fatal destination warning while still producing a readable 12-page PDF that reports `Tagged: yes`; formal PDF/UA conformance is not claimed.
+- Final build had no undefined citation or cross-reference warnings, overfull boxes, or PDF text-extraction syntax warnings. TITAN's older accessibility package produced malformed marked-content warnings, so it was removed rather than used to make a false tagging claim; a tagged/PDF-UA venue build remains submission work.
 - All twelve final pages were rendered and visually inspected. Figure 2 uses an explicitly marked expansion region, a shared legend, exact high-success labels, and a caption that discloses point overlap and the different staged populations. Tables remain in narrative order, and the widest threshold table is split into readable panels.
 - All 13 citation keys resolve to 13 used bibliography entries. Every retained source has a documented claim-level role; seven broad or tangential sources were removed rather than kept for reference count.
 - Tables 3 and 4 report two-sided 95% exact Clopper--Pearson intervals for every terminal-success count.
