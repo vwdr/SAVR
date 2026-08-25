@@ -18,7 +18,13 @@ from savr.brace.b3 import (
     summarize_timings,
     validate_config,
 )
-from savr.brace.b3_openvla import SourceTracker, action_record, compare_actions, deterministic_inputs
+from savr.brace.b3_openvla import (
+    SourceTracker,
+    action_record,
+    compare_actions,
+    deterministic_inputs,
+    midpoint_proprio_state,
+)
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -136,6 +142,18 @@ def test_deterministic_real_model_inputs_and_action_parity_helpers():
         atol=1e-6,
         exact_gripper=True,
     )["passed"]
+
+    class FakeModel:
+        norm_stats = {
+            "libero_object_no_noops": {
+                "proprio": {"q01": [-1.0] * 8, "q99": [1.0] * 8}
+            }
+        }
+
+    class FakeConfig:
+        unnorm_key = "libero_object_no_noops"
+
+    assert np.array_equal(midpoint_proprio_state(FakeModel(), FakeConfig(), np), np.zeros(8))
 
 
 def test_source_tracker_enforces_mixed_source_ages_and_nested_updates():

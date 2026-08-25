@@ -96,14 +96,10 @@ def base_config(
     return constructor(**values)
 
 
-def common_model_inputs(model: Any, np: Any) -> tuple[Any, dict[str, tuple[Any, Any]]]:
-    from savr.brace.b3_openvla import deterministic_inputs
+def common_model_inputs(model: Any, cfg: Any, np: Any) -> tuple[Any, dict[str, tuple[Any, Any]]]:
+    from savr.brace.b3_openvla import deterministic_inputs, midpoint_proprio_state
 
-    stats = model.norm_stats["libero_object"]["proprio"]
-    state = (np.asarray(stats["q01"], dtype=np.float64) + np.asarray(stats["q99"], dtype=np.float64)) / 2
-    if state.shape != (8,):
-        raise RuntimeError("B3 pinned proprioception shape changed")
-    return state, deterministic_inputs(np)
+    return midpoint_proprio_state(model, cfg, np), deterministic_inputs(np)
 
 
 def observation(inputs: dict[str, tuple[Any, Any]], state: Any, label: str) -> dict[str, Any]:
@@ -130,7 +126,7 @@ def run_core_fr(config: dict[str, Any], run_root: Path) -> dict[str, Any]:
     set_seed_everywhere(0)
     model, action_head, proprio_projector, noisy_projector, processor = evaluation.initialize_model(cfg)
     model.eval()
-    state, inputs = common_model_inputs(model, np)
+    state, inputs = common_model_inputs(model, cfg, np)
     instruction = config["model"]["instruction"]
     records = []
     references: dict[str, Any] = {}
@@ -217,7 +213,7 @@ def run_cache_suite(config: dict[str, Any], run_root: Path) -> dict[str, Any]:
     set_seed_everywhere(0)
     model, action_head, proprio_projector, noisy_projector, processor = evaluation.initialize_model(cfg)
     model.eval()
-    state, inputs = common_model_inputs(model, np)
+    state, inputs = common_model_inputs(model, cfg, np)
     instruction = config["model"]["instruction"]
     sidecar_layers = tuple(config["model"]["sidecar_layers"])
     parity = config["parity"]
@@ -638,7 +634,7 @@ def run_official_comparator(
         allocation = int(config["measurement"]["vla_pruner_queries"])
         validity = "official_temporal_semantic_action_timing"
     model.eval()
-    state, inputs = common_model_inputs(model, np)
+    state, inputs = common_model_inputs(model, cfg, np)
     instruction = config["model"]["instruction"]
     records = []
     actions = {}

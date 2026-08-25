@@ -2152,3 +2152,25 @@ Last updated: 2026-08-25
 - Authorization boundary: One v02 attempt, no automatic retry, and stop before
   B4 in every case.
 - Evidence freeze: `docs/BRACE_B3_V02_RECOVERY_FREEZE.md`.
+
+## D-126 — Preserve BRACE-B3 v02 pre-query technical stop
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: COMPLETE_TECHNICAL_STOP_NO_RESULT
+- Decision: Preserve v02 and do not analyze or retry it. The model loaded, but
+  the deterministic input fixture indexed normalization metadata with
+  `libero_object` instead of the official evaluator-resolved
+  `libero_object_no_noops` key.
+- Resource reconciliation: Zero completed model queries or methods; the full
+  22-query core-FR allocation is conservatively charged. Peak aggregate GPU
+  memory was 15,275 MiB during loading. Simulator outcomes and protected
+  outcome access were zero.
+- Restoration: The three protected checkpoint files exactly match their frozen
+  SHA-256 values and no loader backup remains.
+- Correction: Read and validate `cfg.unnorm_key` after official model
+  initialization. A synthetic regression covers the exact suffix alias.
+- Scientific boundary: This is no result for or against BRACE. V03 recovery is
+  not authorized, and B4 remains unauthorized.
+- Evidence: `reports/BRACE_B3_V02_TECHNICAL_STOP_REPORT.md` and
+  `reports/runtime/brace_b3_v02_technical_stop.json`.

@@ -1,0 +1,39 @@
+{
+  "schema_version": "brace.b3-technical-stop-summary.v1",
+  "run_id": "brace-b3-physical-v02",
+  "status": "pre_query_technical_stop",
+  "date": "2026-08-25",
+  "resolved_configuration_semantic_sha256": "45dbf458e014bbd6314e12de92256859f57c716a03c25e9091a2286c09f8e925",
+  "source_revision": "7a2abdbc7480642135041b090b4fba1ff0e64ffb",
+  "launch_file_sha256": "9360d012f6779b691d2a16d763bb705ae3dca68c8c0d7b01592da0f236e51285",
+  "server_technical_stop_semantic_sha256": "2968dd426d95e1162393138097337283e2fb6f420074158773e1acfb6bdb0080",
+  "server_technical_stop_file_sha256": "26175d9411ae118ef785e9a10f3bfe5231d82ee28832032aded1290aa1cc3ebd",
+  "core_fr_log_sha256": "86cc95bf0ce637b58caaf6eb0ecf3d4b9a057075f68779201dee06fae36464e8",
+  "reason": "normalization_key_alias_not_used_by_worker_input_fixture",
+  "observed_checkpoint_keys": [
+    "libero_10_no_noops",
+    "libero_goal_no_noops",
+    "libero_object_no_noops",
+    "libero_spatial_no_noops"
+  ],
+  "required_resolved_key": "libero_object_no_noops",
+  "model_loaded": true,
+  "completed_model_queries": 0,
+  "conservative_query_charge": 22,
+  "completed_methods": [],
+  "peak_aggregate_gpu_memory_used_mib": 15275,
+  "wall_seconds": 25.083726089447737,
+  "simulator_outcomes": 0,
+  "protected_outcome_access": false,
+  "scientific_result": false,
+  "automatic_retry": false,
+  "v03_recovery_authorized": false,
+  "checkpoint_restored_exactly": true,
+  "checkpoint_hashes_after_stop": {
+    "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+  },
+  "correction": "Use the evaluator-resolved cfg.unnorm_key for deterministic proprioception metadata.",
+  "semantic_sha256": "5fabfdbf7ab9269799bdf4c2dee9d1b0cad6fb67fad0fec095f98d598077e43d"
+}

@@ -8,7 +8,7 @@ BRACE-B1 — **COMPLETE ACCEPTED**
 
 BRACE-B2 — **COMPLETE; ACCEPTED WITH COMPARATOR DISPOSITIONS**
 
-BRACE-B3 — **V02 NARROW RECOVERY AUTHORIZED; IN PROGRESS**
+BRACE-B3 — **V02 PRE-QUERY TECHNICAL STOP; NO RESULT**
 
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
@@ -21,9 +21,13 @@ passes the complete local suite (417 passed, 1 skipped). The v01 selector
 sealed GPU 0, but the runner stopped before any worker or model load because
 Git quoted preserved `tmp/` paths containing spaces and the guard expected raw
 paths. Model queries and outcomes were zero, so v01 is no scientific result.
-The user authorized one narrow v02 recovery. NUL-delimited path parsing is the
-only operational correction; the method, profiles, gates, resource limits, and
-zero-outcome boundary remain unchanged. B4 remains unauthorized.
+V02 passed the corrected guard and loaded the checkpoint, then stopped before
+the query loop because its deterministic fixture used `libero_object` rather
+than the official evaluator-resolved `libero_object_no_noops` normalization
+key. Actual completed queries and outcomes were zero; 22 queries are
+conservatively charged. The checkpoint was restored exactly. The alias
+correction and regression test are implemented without changing the method or
+gates, but v03 is not authorized. B4 remains unauthorized.
 
 ## Current phase
 

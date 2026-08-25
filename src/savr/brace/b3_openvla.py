@@ -35,6 +35,18 @@ def deterministic_inputs(np: Any, size: int = 256) -> dict[str, tuple[Any, Any]]
     }
 
 
+def midpoint_proprio_state(model: Any, cfg: Any, np: Any) -> Any:
+    """Resolve the evaluator-selected normalization key and return a safe midpoint."""
+
+    if not hasattr(cfg, "unnorm_key") or cfg.unnorm_key not in model.norm_stats:
+        raise B3ProtocolError("B3 evaluator did not resolve the checkpoint normalization key")
+    stats = model.norm_stats[cfg.unnorm_key]["proprio"]
+    state = (np.asarray(stats["q01"], dtype=np.float64) + np.asarray(stats["q99"], dtype=np.float64)) / 2
+    if state.shape != (8,) or not np.isfinite(state).all():
+        raise B3ProtocolError("B3 pinned proprioception statistics changed")
+    return state
+
+
 def array_sha256(value: Any, np: Any) -> str:
     return hashlib.sha256(np.asarray(value).tobytes()).hexdigest()
 
