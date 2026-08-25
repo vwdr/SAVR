@@ -1,0 +1,28 @@
+{
+  "schema_version": "brace.b3-technical-stop.v1",
+  "run_id": "brace-b3-physical-v01",
+  "status": "pre_model_technical_stop",
+  "date": "2026-08-25",
+  "configuration_semantic_sha256": "30825fd30eb2c0566b30564740a212c51e09dc60f7e9c4bc7315b24b369dea11",
+  "source_revision": "3759a770f002d4583a2c69e8322ec388d66961d8",
+  "launch_semantic_sha256": "8bed2d233e1defcfdde16cedd35c6faef82e945105c2e6ca0e2cc4e75c4877d0",
+  "launch_file_sha256": "1a22635430e04d497c28a78f414d9b745d4a562224250259619673d090f334c2",
+  "selected_gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4",
+    "memory_used_mib_at_selection": 6,
+    "utilization_percent_at_selection": 0
+  },
+  "reason": "git_status_guard_did_not_accept_git_quoted_tmp_paths",
+  "diagnosis": "The guard parsed human-quoted porcelain paths. Preserved tmp paths containing spaces therefore did not match the raw tmp/ allowlist.",
+  "model_workers_started": 0,
+  "model_loads": 0,
+  "model_queries": 0,
+  "simulator_outcomes": 0,
+  "protected_outcome_access": false,
+  "scientific_result": false,
+  "automatic_retry": false,
+  "recovery_authorized": false,
+  "correction": "Parse NUL-delimited porcelain-v1 records so paths are unquoted before exact allowlist evaluation.",
+  "semantic_sha256": "f73c26bf597090ed95d05c9a1225b3e8e05a62a83457c01bc297e596ae7bc3c9"
+}

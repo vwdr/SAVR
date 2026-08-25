@@ -8,7 +8,7 @@ BRACE-B1 — **COMPLETE ACCEPTED**
 
 BRACE-B2 — **COMPLETE; ACCEPTED WITH COMPARATOR DISPOSITIONS**
 
-BRACE-B3 — **AUTHORIZED; FROZEN PHYSICAL ATTEMPT IN PROGRESS**
+BRACE-B3 — **V01 PRE-MODEL TECHNICAL STOP; NO RESULT**
 
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
@@ -17,9 +17,12 @@ forks passed clone, restoration, and absolute-position update checks; the
 server adversarial suite passed 23 tests. B3 is now separately authorized and
 frozen at 388 planned model queries under a hard cap of 420, one aggregate-idle
 GPU, zero simulator outcomes, and no automatic retry. Its implementation
-passes the complete local suite (417 passed, 1 skipped). B4 remains
-unauthorized. No B3 scientific result exists until the single physical attempt
-and independent gate reconciliation finish.
+passes the complete local suite (417 passed, 1 skipped). The v01 selector
+sealed GPU 0, but the runner stopped before any worker or model load because
+Git quoted preserved `tmp/` paths containing spaces and the guard expected raw
+paths. Model queries and outcomes were zero, so v01 is no scientific result.
+The NUL-delimited parsing correction is implemented, but a v02 recovery is not
+authorized. B4 remains unauthorized.
 
 ## Current phase
 

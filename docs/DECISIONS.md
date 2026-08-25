@@ -2115,3 +2115,22 @@ Last updated: 2026-08-25
 - Configuration: `configs/brace/b3_physical_v1.json`, semantic SHA-256
   `30825fd30eb2c0566b30564740a212c51e09dc60f7e9c4bc7315b24b369dea11`.
 - Evidence freeze: `docs/BRACE_B3_EXECUTION_FREEZE.md`.
+
+## D-124 — Preserve BRACE-B3 v01 pre-model technical stop
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: COMPLETE_TECHNICAL_STOP_NO_RESULT
+- Decision: Preserve the sealed v01 launch and stop before any corrected
+  attempt. The runner's source-tree guard rejected Git's quoted display form
+  for preserved `tmp/` paths containing spaces.
+- Resource reconciliation: The aggregate-only selector recorded three idle
+  samples and selected GPU 0. No worker started; model loads, model queries,
+  simulator outcomes, protected outcome access, and downloads were all zero.
+- Correction: Parse NUL-delimited porcelain-v1 records so paths remain raw for
+  exact allowlist evaluation. No method, profile, gate, comparator, or resource
+  boundary changed.
+- Authorization boundary: This is not a scientific result. Automatic retry is
+  prohibited, v02 recovery is not authorized, and B4 remains unauthorized.
+- Evidence: `reports/BRACE_B3_V01_TECHNICAL_STOP_REPORT.md` and
+  `reports/runtime/brace_b3_v01_technical_stop.json`.

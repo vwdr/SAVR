@@ -104,7 +104,10 @@ def main() -> int:
             raise SystemExit(f"Pinned B3 repository changed: {key}")
     if any((RUN / name).exists() for name in ("run_summary.json", "technical_stop.json")):
         raise SystemExit("B3 attempt already has a terminal record")
-    status = subprocess.check_output(["git", "status", "--porcelain", "--untracked-files=all"], text=True).splitlines()
+    raw_status = subprocess.check_output(
+        ["git", "status", "--porcelain=v1", "-z", "--untracked-files=all"]
+    )
+    status = [entry.decode("utf-8") for entry in raw_status.split(b"\0") if entry]
     allowed = [
         line
         for line in status
