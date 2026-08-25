@@ -4,13 +4,14 @@ Last updated: 2026-08-25
 
 ## Active research direction
 
-BRACE-B1 — **IN PROGRESS; CPU/SIMULATOR REPLAY VALIDATION ONLY**
+BRACE-B1 — **COMPLETE ACCEPTED; BRACE-B2 NOT STARTED**
 
-Protocol V2.1 and the formal method specification are frozen. B1 implements a
-bounded replay-equivalence harness for complete simulator-prefix restoration,
-with modified-prefix and direct-state-only rejection controls. Its single
-TITAN CPU/OSMesa attempt is pending. No BRACE model, cache, GPU, policy query,
-or task-outcome evaluation is authorized, and B2 remains prohibited.
+Protocol V2.1 and the formal method specification remain frozen. The single
+TITAN CPU/OSMesa B1 attempt passed every gate: 18/18 prefix reconstructions and
+9/9 next-step probes matched, while all modified-prefix and direct-state-only
+controls were rejected. This validates only the branch-replay infrastructure;
+it is not a positive method result. No BRACE model, cache, GPU, policy query,
+or policy evaluation occurred. B2 is eligible but requires separate approval.
 
 ## Current phase
 

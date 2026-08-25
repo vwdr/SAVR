@@ -1982,3 +1982,24 @@ Last updated: 2026-08-25
   loading, GPU work, learned routing, cache installation, or policy outcomes.
 - Evidence: `configs/brace/b1_replay_v1.json`, `scripts/run_brace_b1.py`,
   `src/savr/brace/b1.py`, and `tests/brace/test_b1.py`.
+
+## D-119 — Accept BRACE-B1 and stop before BRACE-B2
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: COMPLETE_ACCEPTED
+- Decision: Accept the single frozen `brace-b1-replay-v01` attempt. All gates
+  passed: 3/3 transcripts validated, 18/18 fresh prefix replays and 9/9 probe
+  transitions matched, and all 3 modified-prefix plus all 3 direct-state-only
+  controls were rejected.
+- Resource reconciliation: 27 environment instances, 198 simulator steps,
+  284.40 seconds, and 701,560 artifact bytes remained within their frozen
+  caps. CUDA was hidden; there were no model or policy queries, downloads, GPU
+  inspections, or writes outside `/home/ved/SAVR`.
+- Scientific interpretation: B1 establishes only the replay infrastructure
+  hypothesis H1. It is not evidence of cache correctness, speed, learned risk
+  prediction, closed-loop reliability, or a positive paper result.
+- Authorization boundary: Stop before B2. B2 is protocol-eligible but still
+  requires a separate user decision.
+- Evidence: `reports/BRACE_B1_REPORT.md` and
+  `reports/runtime/brace_b1_replay_v01.json`.

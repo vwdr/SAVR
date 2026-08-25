@@ -73,7 +73,7 @@ At most one phase may be `IN_PROGRESS`.
 | BRACE-B0R. Protocol V2 redesign and independent review | COMPLETE_SUPERSEDED | V2 corrected the initial treatment/provenance/observability issues, but its review missed baseline-fidelity, exact-stack-comparator, statistical, sampling, and control defects; no implementation/GPU/model/outcome | Replaced before implementation by BRACE-B0R2 and Protocol V2.1 |
 | BRACE-B0R2. Protocol V2.1 exhaustive red-team freeze | COMPLETE | Faithfully corrected VLA-Cache, VLA-ADP/VLA-Pruner/SpecPrune-VLA preflights, bounded profile grid, assignment/inclusion propensities, zero-discordance controls, grouped empirical risk, power/cost rules, independent analysis verification, and revised 15--25% positive-paper assessment documented in `docs/BRACE_EXECUTION_PROTOCOL_V2_1.md` and `docs/BRACE_PROTOCOL_V2_1_RED_TEAM_REVIEW.md`; no implementation/GPU/model/outcome | Prepare BRACE-B1 under Protocol V2.1 only |
 | BRACE-B0F. Formal method specification and architecture audit | COMPLETE | Exact cache equations, nested reuse mechanics, complete multimodal source provenance, runtime sequence maps, bidirectional-context risk, sidecar attention parity, fixed-horizon abort estimand, 4,825-parameter router, propensity-aware loss, joint routing calibration, algorithms, module contracts, and adversarial review documented in `docs/BRACE_FORMAL_METHOD_SPECIFICATION_V1.md` and `docs/BRACE_FORMAL_METHOD_AUDIT_V1.md`; no implementation/GPU/model/outcome | BRACE-B1 remains the only eligible task |
-| BRACE-B1. Replay-verified branch harness | IN_PROGRESS | Frozen CPU/OSMesa harness, immutable transcript validation, replay comparison, modified-prefix rejection, and direct-state rejection implemented; local unit/static/bootstrap checks pass; config semantic SHA-256 `37952f345bcaecceffe4695fecea8d48c2b67ed19d19222d64fd29eeda1dc04c` | Execute the single frozen TITAN B1 attempt and reconcile every gate |
+| BRACE-B1. Replay-verified branch harness | COMPLETE_ACCEPTED | All gates passed in `brace-b1-replay-v01`: 3 valid transcripts, 18/18 prefix replays, 9/9 probe checks, 3/3 modified-prefix rejections, 3/3 direct-state rejections, 27 environments, 198 steps, independent reconciliation passed; `reports/BRACE_B1_REPORT.md` | Separate user authorization for CPU/synthetic-only BRACE-B2 |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -87,10 +87,11 @@ none was implemented. BRACE Protocol V2.1 is the active method plan. It retains
 bounded 1/2/4-query clean-provenance cache contracts and adds the corrected
 baseline, current exact-stack competitors, explicit sampling/analysis rules,
 stricter feasibility gates, and the formal V1 method definition.
-BRACE-B1 is the active milestone and is CPU/simulator-only. It must prove
-branch equivalence and reject incomplete state restoration before any cache
-installation, model load, GPU operation, or outcome collection. The legacy V5-D
-capture path remains stopped and is not a BRACE dependency.
+BRACE-B1 is complete and accepted. Exact scripted-prefix reconstruction passed
+all positive, next-transition, transcript-integrity, and negative-control
+gates. B2 is the next protocol-eligible milestone, but remains separately
+gated and has not started. The legacy V5-D capture path remains stopped and is
+not a BRACE dependency.
 
 The historical text below is retained as legacy execution context; where it
 describes a V5-D retry as the next checkpoint, it is superseded by decision

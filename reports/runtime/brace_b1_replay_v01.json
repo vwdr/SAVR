@@ -1,0 +1,26 @@
+{
+  "all_gates_passed": true,
+  "artifact_bytes": 701560,
+  "completed_at_utc": "2026-08-25T04:37:37.341384+00:00",
+  "configuration_semantic_sha256": "37952f345bcaecceffe4695fecea8d48c2b67ed19d19222d64fd29eeda1dc04c",
+  "direct_state_rejections": 3,
+  "elapsed_seconds": 284.39574882760644,
+  "environment_instances": 27,
+  "identical_probe_checks": 9,
+  "independent_reconciliation": "passed",
+  "libero_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+  "modified_prefix_rejections": 3,
+  "positive_prefix_replays": 18,
+  "run_id": "brace-b1-replay-v01",
+  "scenario_evidence": {
+    "contact_signature_present": true,
+    "free_motion_eef_displacement": 0.025686685434395545,
+    "gripper_joint_position_span": 0.06050428857309313
+  },
+  "simulator_steps": 198,
+  "source_revision": "e441af06fb9e8004978255b0db793ef179dd77b7",
+  "status": "accepted",
+  "summary_semantic_sha256": "daf140fd5cbba93dc6cfa5fed2ecf2612f8c0c1b5d39203237a596848b3f8341",
+  "summary_sha256": "8428b19cd117388d523b83e77187b937a824844b8f47526e1bc9fa4418a625bc",
+  "transcript_count": 3
+}
