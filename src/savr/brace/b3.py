@@ -96,6 +96,7 @@ def validate_config(config: Mapping[str, Any]) -> None:
         "brace-b3-physical-v02",
         "brace-b3-physical-v03",
         "brace-b3-physical-v04",
+        "brace-b3-physical-v05",
     }:
         raise B3ProtocolError("B3 run identity changed")
     authorization = config["authorization"]

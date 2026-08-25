@@ -8,7 +8,7 @@ BRACE-B1 — **COMPLETE ACCEPTED**
 
 BRACE-B2 — **COMPLETE; ACCEPTED WITH COMPARATOR DISPOSITIONS**
 
-BRACE-B3 — **PRE-V05 AUDIT ACCEPTED; NO COMPLETE PHYSICAL RESULT**
+BRACE-B3 — **V05 AUTHORIZED AND FROZEN; PHYSICAL ATTEMPT PENDING**
 
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
@@ -42,8 +42,10 @@ real-PyTorch SDPA, profile, horizon, source-provenance, patch-score, query-
 accounting, full synthetic analyzer, pinned-interface, backend, and repository-
 integrity checks. CUDA remained uninitialized and model loads, model queries,
 simulator outcomes, and protected-outcome access were all zero. The evidence is
-semantically authenticated. This is not a v05 attempt or scientific result;
-v05 and B4 remain unauthorized.
+semantically authenticated. This audit is not a scientific result. The user
+subsequently authorized one v05 physical attempt. V05 changes only the audited
+tensor API/device integration path; every scientific and resource gate remains
+frozen. It permits no automatic retry and does not authorize B4.
 
 ## Current phase
 

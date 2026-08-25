@@ -96,6 +96,20 @@ def test_v04_recovery_overlay_changes_only_identity_and_inference_record():
             assert recovered[key] == base[key]
 
 
+def test_v05_recovery_overlay_changes_only_identity_and_tensor_path_record():
+    base = load_config()
+    recovered = load_config_file(ROOT, Path("configs/brace/b3_physical_v5_recovery.json"))
+    assert recovered["run_id"] == "brace-b3-physical-v05"
+    assert recovered["recovery"] == {
+        "attempt": 5,
+        "prior_run_id": "brace-b3-physical-v04",
+        "correction": "binary_patch_range_and_live_tensor_device_inheritance_only",
+    }
+    for key in base:
+        if key not in {"run_id", "semantic_sha256"}:
+            assert recovered[key] == base[key]
+
+
 def test_profile_grid_is_nested_asymmetric_and_query_accounted():
     config = load_config()
     profiles = {profile["profile_id"]: profile for profile in config["profiles"]}

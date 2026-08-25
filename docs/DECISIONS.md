@@ -2275,3 +2275,19 @@ Last updated: 2026-08-25
   queries, simulator outcomes, and protected-outcome access were zero.
 - Evidence: `reports/BRACE_B3_PRE_V05_AUDIT_REPORT.md` and
   `reports/runtime/brace_b3_pre_v05_audit.json`.
+
+## D-132 — Authorize one BRACE-B3 v05 audited tensor-path recovery
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: IN_PROGRESS
+- Decision: The user explicitly authorized the next physical attempt after the
+  accepted exhaustive pre-v05 audit.
+- Sole correction: Use valid two-operand tensor min/max calls and inherit live
+  tensor devices for sidecar indices and ordered profile positions.
+- Frozen invariants: No scientific method, profile, threshold, horizon, timing,
+  parity, comparator, query, resource, outcome, or acceptance-gate change.
+- Resolved configuration semantic SHA-256:
+  `f3c21dd00ca314c17d0c6044536ff242ce5099336edc4550d136a167c60882ff`.
+- Authorization boundary: One v05 attempt, no automatic retry, stop before B4.
+- Evidence freeze: `docs/BRACE_B3_V05_RECOVERY_FREEZE.md`.
