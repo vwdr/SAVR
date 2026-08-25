@@ -8,7 +8,7 @@ BRACE-B1 — **COMPLETE ACCEPTED**
 
 BRACE-B2 — **COMPLETE; ACCEPTED WITH COMPARATOR DISPOSITIONS**
 
-BRACE-B3 — **PRE-V05 CPU-ONLY AUDIT IN PROGRESS; NO COMPLETE RESULT**
+BRACE-B3 — **PRE-V05 AUDIT ACCEPTED; NO COMPLETE PHYSICAL RESULT**
 
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
@@ -17,7 +17,9 @@ forks passed clone, restoration, and absolute-position update checks; the
 server adversarial suite passed 23 tests. B3 is now separately authorized and
 frozen at 388 planned model queries under a hard cap of 420, one aggregate-idle
 GPU, zero simulator outcomes, and no automatic retry. Its implementation
-passes the complete local suite (417 passed, 1 skipped). The v01 selector
+passes the current complete local suite (423 passed, 8 skipped). The skips are
+PyTorch-dependent checks absent from the lightweight local environment and all
+pass in the pinned TITAN environment. The v01 selector
 sealed GPU 0, but the runner stopped before any worker or model load because
 Git quoted preserved `tmp/` paths containing spaces and the guard expected raw
 paths. Model queries and outcomes were zero, so v01 is no scientific result.
@@ -35,11 +37,13 @@ V04 confirmed inference-mode memory feasibility at 18,419 MiB and completed 22
 core plus 43 cache queries, then stopped on a one-argument `torch.maximum`
 API typo in the first profile gate. The corrected two-operand score has a real-
 tensor regression test. V05 is not authorized, and B4 remains unauthorized.
-The user authorized an exhaustive CUDA-hidden audit of every remaining B3 path
-that can be tested without loading the model. It adds real-PyTorch SDPA,
-profile, horizon, source-provenance, patch-score, query-accounting, pinned-
-interface, and repository-integrity checks. This audit is not a v05 attempt and
-cannot produce a scientific result.
+The exhaustive CUDA-hidden audit passed all 43 BRACE tests on TITAN, including
+real-PyTorch SDPA, profile, horizon, source-provenance, patch-score, query-
+accounting, full synthetic analyzer, pinned-interface, backend, and repository-
+integrity checks. CUDA remained uninitialized and model loads, model queries,
+simulator outcomes, and protected-outcome access were all zero. The evidence is
+semantically authenticated. This is not a v05 attempt or scientific result;
+v05 and B4 remain unauthorized.
 
 ## Current phase
 

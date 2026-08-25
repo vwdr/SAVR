@@ -2257,7 +2257,7 @@ Last updated: 2026-08-25
 
 - Date: 2026-08-25
 - Classification: `DECISION`
-- Status: IN_PROGRESS
+- Status: COMPLETE_ACCEPTED
 - Decision: Before considering another physical attempt, systematically audit
   every remaining B3 path that can be exercised without a model load or GPU.
 - Scope: Real-PyTorch patch scoring and SDPA-sidecar tests; all profiles,
@@ -2269,3 +2269,9 @@ Last updated: 2026-08-25
   `/home/ved/SAVR` on TITAN.
 - Authorization boundary: This decision does not authorize B3-v05 or B4.
 - Evidence protocol: `docs/BRACE_B3_PRE_V05_AUDIT_PROTOCOL.md`.
+- Result: The immutable CUDA-hidden TITAN audit passed 43 BRACE tests. Every
+  worker, runner/analyzer, backend, pinned-interface, repository, and semantic-
+  authentication gate passed. CUDA remained uninitialized; model loads, model
+  queries, simulator outcomes, and protected-outcome access were zero.
+- Evidence: `reports/BRACE_B3_PRE_V05_AUDIT_REPORT.md` and
+  `reports/runtime/brace_b3_pre_v05_audit.json`.

@@ -1,7 +1,7 @@
 # BRACE-B3 Pre-v05 Exhaustive Technical Audit
 
 Date: 2026-08-25  
-Status: AUTHORIZED; CPU-ONLY AUDIT IN PROGRESS
+Status: COMPLETE; ACCEPTED
 
 ## Purpose
 
@@ -61,3 +61,12 @@ It only removes all currently testable integration failures. Residual risks
 include real checkpoint tensor shapes, live cache mutation semantics, GPU
 memory, and timing behavior. A separately reviewed and explicitly authorized
 v05 would still be required to test those risks.
+
+## Completion record
+
+The immutable audit passed 43 BRACE tests on TITAN with CUDA hidden and
+uninitialized. All structural, backend, private-interface, repository, and
+authentication gates passed with zero model loads, model queries, simulator
+outcomes, or protected-outcome access. Evidence is recorded in
+`reports/BRACE_B3_PRE_V05_AUDIT_REPORT.md` and
+`reports/runtime/brace_b3_pre_v05_audit.json`. V05 and B4 remain unauthorized.
