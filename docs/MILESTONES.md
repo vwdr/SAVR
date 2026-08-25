@@ -70,8 +70,9 @@ At most one phase may be `IN_PROGRESS`.
 | OPCCR-R1. CPU/local integration audit | CANCELLED_SUPERSEDED | Adversarial review found that the proposed immediate action-disagreement label is contradicted by newer silent-failure evidence; no implementation began | Replaced by BRACE-B0 |
 | OPCCR-R2. Bounded GPU feasibility | CANCELLED_SUPERSEDED | No implementation or GPU operation occurred | Replaced by the BRACE protocol; never execute OPCCR-R2 |
 | BRACE-B0. Branch-rollout research and feasibility audit | COMPLETE_SUPERSEDED | Initial replay-prefix terminal-outcome design documented without implementation/GPU/model/outcome; adversarial re-audit found cumulative-treatment, gate-provenance, router-observability, and baseline defects in V1 | Replaced by BRACE-B0R and Protocol V2 |
-| BRACE-B0R. Protocol V2 redesign and independent review | COMPLETE | Bounded clean-provenance cache contracts, 1/2/4-query interventions, token-source ledger, intent-to-treat analysis, actuation-slack comparison, revised sample/cost gates, and independent 25--40% positive-result assessment documented in `docs/BRACE_EXECUTION_PROTOCOL_V2.md` and `docs/BRACE_PROTOCOL_V2_REVIEW.md`; no implementation/GPU/model/outcome | Prepare BRACE-B1 under Protocol V2 only |
-| BRACE-B1. Replay-verified branch harness | NOT_STARTED | — | Protocol V2 exact replay-equivalence and corrupted-prefix rejection gates |
+| BRACE-B0R. Protocol V2 redesign and independent review | COMPLETE_SUPERSEDED | V2 corrected the initial treatment/provenance/observability issues, but its review missed baseline-fidelity, exact-stack-comparator, statistical, sampling, and control defects; no implementation/GPU/model/outcome | Replaced before implementation by BRACE-B0R2 and Protocol V2.1 |
+| BRACE-B0R2. Protocol V2.1 exhaustive red-team freeze | COMPLETE | Faithfully corrected VLA-Cache, VLA-ADP/VLA-Pruner/SpecPrune-VLA preflights, bounded profile grid, assignment/inclusion propensities, zero-discordance controls, grouped empirical risk, power/cost rules, independent analysis verification, and revised 15--25% positive-paper assessment documented in `docs/BRACE_EXECUTION_PROTOCOL_V2_1.md` and `docs/BRACE_PROTOCOL_V2_1_RED_TEAM_REVIEW.md`; no implementation/GPU/model/outcome | Prepare BRACE-B1 under Protocol V2.1 only |
+| BRACE-B1. Replay-verified branch harness | NOT_STARTED | — | Protocol V2.1 exact replay-equivalence and corrupted-prefix rejection gates |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -80,10 +81,11 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-OPCCR and BRACE Protocol V1 are preserved as superseded research records; none
-was implemented. BRACE Protocol V2 is the active method plan. It replaces the
-single-query intervention with bounded 1/2/4-query clean-provenance cache
-contracts and adds token-source observability plus an actuation-slack baseline.
+OPCCR and BRACE Protocols V1/V2 are preserved as superseded research records;
+none was implemented. BRACE Protocol V2.1 is the active method plan. It retains
+bounded 1/2/4-query clean-provenance cache contracts and adds the corrected
+baseline, current exact-stack competitors, explicit sampling/analysis rules,
+and stricter feasibility gates.
 BRACE-B1 is the next eligible milestone and is CPU/simulator-only. It must prove
 branch equivalence and reject incomplete state restoration before any cache
 installation, model load, GPU operation, or outcome collection. The legacy V5-D
@@ -91,7 +93,7 @@ capture path remains stopped and is not a BRACE dependency.
 
 The historical text below is retained as legacy execution context; where it
 describes a V5-D retry as the next checkpoint, it is superseded by decision
-D-114 and BRACE-B1 above.
+D-116, Protocol V2.1, and BRACE-B1 above.
 
 V5-B and V5-C are complete. V5-D v01-v04 remain immutable technical stops with
 no method-performance output. V03's raw backend exceeded the unchanged 23 GiB

@@ -4,10 +4,10 @@
 **Working title:** *Branch Before You Cache: Interventional Rollout Supervision for Reliable VLA Acceleration*  
 **Date:** 2026-08-24  
 **Status:** **Historical V1 feasibility audit, superseded by
-`docs/BRACE_EXECUTION_PROTOCOL_V2.md` and
-`docs/BRACE_PROTOCOL_V2_REVIEW.md`.** No implementation, model run, or BRACE
-result exists. Probability ranges below record the V1 judgment and are not the
-active assessment.
+`docs/BRACE_EXECUTION_PROTOCOL_V2_1.md` and
+`docs/BRACE_PROTOCOL_V2_1_RED_TEAM_REVIEW.md`.** No implementation, model run,
+or BRACE result exists. Probability ranges below record the V1 judgment and are
+not the active assessment.
 
 ## 1. Verdict
 

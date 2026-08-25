@@ -6,7 +6,9 @@
 
 **Date frozen:** 2026-08-24
 
-**Status:** Research protocol prepared; no BRACE implementation or result exists
+**Status:** **SUPERSEDED before implementation by
+`docs/BRACE_EXECUTION_PROTOCOL_V2_1.md`. Do not execute V2.** No V2
+implementation, model run, GPU operation, or BRACE outcome occurred.
 
 **Supersedes:** `docs/BRACE_EXECUTION_PROTOCOL_V1.md` before implementation
 

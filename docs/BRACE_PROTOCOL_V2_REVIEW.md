@@ -10,6 +10,10 @@ positive-result audit
 **Evidence boundary:** No BRACE implementation, model run, GPU operation, or
 outcome exists
 
+**Status:** Historical V2 review, superseded by
+`docs/BRACE_PROTOCOL_V2_1_RED_TEAM_REVIEW.md`. Its probability ranges are not
+the active assessment.
+
 ## 1. Verdict
 
 Protocol V2 is internally coherent enough to begin the CPU-only B1 replay

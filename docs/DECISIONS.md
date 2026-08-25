@@ -1864,7 +1864,7 @@ Last updated: 2026-08-24
 
 - Date: 2026-08-24
 - Classification: `DECISION`
-- Status: ACTIVE
+- Status: SUPERSEDED_BY_D-116
 - Decision: Preserve BRACE as the selected research direction, but supersede
   Protocol V1 before implementation. Re-audit found four material defects in
   V1: a single-query treatment that omitted cumulative reuse, dependence on a
@@ -1891,3 +1891,38 @@ Last updated: 2026-08-24
   model/GPU/outcome phases require separate authorization.
 - Evidence: `docs/BRACE_EXECUTION_PROTOCOL_V2.md` and
   `docs/BRACE_PROTOCOL_V2_REVIEW.md`.
+
+## D-116 — Freeze BRACE Protocol V2.1 after exhaustive red-team review
+
+- Date: 2026-08-24
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Supersede Protocol V2 before implementation and adopt V2.1 as the
+  only executable BRACE plan. The additional audit found an invalid released
+  VLA-Cache evaluation path, omitted exact-stack competitors, an unsupported
+  pointwise-risk interpretation, incomplete multi-contract overlap and
+  sampling rules, brittle profile selection, insufficient control semantics,
+  and incomplete power, cost, and sealed-analysis verification.
+- Redesign: Require a pinned faithfully corrected VLA-Cache reproduction;
+  same-stack VLA-ADP, VLA-Pruner, and SpecPrune-VLA preflights; a bounded
+  outcome-blind profile grid; known assignment and inclusion probabilities;
+  zero unexplained duplicate-arm terminal discordance; episode-grouped
+  empirical risk control; sequential label/cost gates; and independently
+  verified sealed analysis.
+- Novelty boundary: The provisional contribution is the combined use of
+  replay-verified paired terminal intervention effects to select bounded,
+  clean-provenance VLA cache contracts on cache-induced trajectories. Caching,
+  action-aware pruning/routing, adaptive refresh, selective classification,
+  and counterfactual simulation are not claimed individually.
+- Feasibility boundary: Competitive positive-paper plausibility is judged at
+  15--25% before gates and approximately 40--55% conditional on B1--B5 all
+  passing. These are calibrated research judgments, not statistical estimates
+  or results. The method is worth stop-fast feasibility testing, not reliance
+  on a promised positive outcome.
+- Evidence boundary: No BRACE implementation, download, model load, GPU
+  operation, policy outcome, or protected evaluation was produced by V2.1 or
+  its review.
+- Authorization: BRACE-B1 is the only next eligible phase and is
+  CPU/simulator-only. Every later phase remains separately gated by V2.1.
+- Evidence: `docs/BRACE_EXECUTION_PROTOCOL_V2_1.md` and
+  `docs/BRACE_PROTOCOL_V2_1_RED_TEAM_REVIEW.md`.
