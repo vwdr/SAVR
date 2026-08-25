@@ -2,7 +2,7 @@
 
 Date: 2026-08-25
 
-Status: Frozen v02 recovery after an immutable no-result v01 technical stop
+Status: V02 recovery executed and accepted; freeze retained as-run
 
 Governing protocol: `docs/BRACE_EXECUTION_PROTOCOL_V2_1.md`
 

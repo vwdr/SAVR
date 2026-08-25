@@ -1,0 +1,24 @@
+{
+  "all_gates_passed": true,
+  "comparator_dispositions": {
+    "gated_vla_cache": "paper_only_no_official_code_matched_reproduction_required",
+    "specprune_vla": "blocked_missing_upstream_license",
+    "vla_adp": "source_preflight_passed_core_stack_overlay_required",
+    "vla_pruner": "source_preflight_passed_isolated_stack_required"
+  },
+  "configuration_semantic_sha256": "04370384312f4474fd5488fa3b4dad1559d3d7916564501c802fdec8214906bd",
+  "cuda_initialized": false,
+  "elapsed_seconds": 5.148759027943015,
+  "gate_count": 13,
+  "manifest_sha256": "8668e1d273fa10ca66f199bb75f7b4d73e2333868854ab5508e27d556c6c6e7c",
+  "model_queries": 0,
+  "policy_outcomes": 0,
+  "run_id": "brace-b2-correctness-v02",
+  "server_tests": "23 passed in 1.40s",
+  "simulator_steps": 0,
+  "source_code_bytes": 132931536,
+  "source_revision": "b06ab06c98e8f958ee58aa254c92a7c9d25618ce",
+  "status": "accepted_with_comparator_dispositions",
+  "summary_semantic_sha256": "368a86377cbe1507445f0d06cd2ed48395e34c8e770d0f51c0dc9adaca95b2a9",
+  "summary_sha256": "10f08e83aec504205064849142142a5c6c47079e6be4ba0e674d67c9829e4eb0"
+}

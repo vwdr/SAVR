@@ -6,16 +6,16 @@ Last updated: 2026-08-25
 
 BRACE-B1 — **COMPLETE ACCEPTED**
 
-BRACE-B2 — **IN PROGRESS; CPU/SYNTHETIC CORRECTNESS ONLY**
+BRACE-B2 — **COMPLETE; ACCEPTED WITH COMPARATOR DISPOSITIONS**
 
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
-provenance implementation is frozen for TITAN CPU verification. The immutable
-v01 attempt ended as a no-result technical stop because of two checker-oracle
-errors. A narrow v02 recovery corrects those comparisons without changing any
-scientific gate; both real DynamicCache forks remain to be verified in v02.
-No BRACE model, GPU, simulator, policy query, or policy evaluation is allowed,
-and B3 remains separately gated.
+provenance implementation passed all 13 v02 gates. Both real DynamicCache
+forks passed clone, restoration, and absolute-position update checks; the
+server adversarial suite passed 23 tests. The immutable v01 no-result stop and
+its two checker-oracle corrections remain documented. No model, GPU,
+simulator, policy query, or policy evaluation occurred. This is substrate
+correctness, not a positive-paper result. B3 remains separately gated.
 
 ## Current phase
 

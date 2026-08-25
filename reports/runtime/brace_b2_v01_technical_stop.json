@@ -1,0 +1,11 @@
+{
+  "configuration_semantic_sha256": "220c0b6b15253e0ecbea34010258d580cecb90f459d2d55da8bb10c01760285a",
+  "manifest_sha256": "793e733cafbef8b79db3f2a802119c573d7f822b5345a532f5050ca1c1b6b402",
+  "model_queries": 0,
+  "policy_outcomes": 0,
+  "run_id": "brace-b2-correctness-v01",
+  "simulator_steps": 0,
+  "status": "technical_stop_no_result",
+  "technical_stop_semantic_sha256": "1d8d6ff69a63d77774d885f598cf7b0b9c43587d99ed36d79115598bcff20a53",
+  "technical_stop_sha256": "34b0072184225361617ac7189e2f18aea0835f72f9a24cbd5d3388939bcc2cdb"
+}

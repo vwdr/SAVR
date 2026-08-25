@@ -1961,7 +1961,7 @@ Last updated: 2026-08-25
 
 - Date: 2026-08-25
 - Classification: `DECISION`
-- Status: ACTIVE_EXECUTION
+- Status: COMPLETE_EXECUTED
 - Decision: The user authorized BRACE-B1. Freeze one CPU/OSMesa attempt with
   three scripted LIBERO Spatial scenarios (free motion, contact, and gripper
   transition), twelve actions per scenario, and replay prefixes at actions 3,
@@ -2008,7 +2008,7 @@ Last updated: 2026-08-25
 
 - Date: 2026-08-25
 - Classification: `DECISION`
-- Status: ACTIVE_EXECUTION
+- Status: COMPLETE_EXECUTED
 - Decision: The user authorized B2. Freeze one CPU/synthetic verification of
   the isolated baseline correction, both pinned DynamicCache stacks, runtime
   sequence maps, complete provenance, profile/contract semantics, synthetic
@@ -2032,7 +2032,7 @@ Last updated: 2026-08-25
 
 - Date: 2026-08-25
 - Classification: `DECISION`
-- Status: ACTIVE_EXECUTION
+- Status: COMPLETE_EXECUTED
 - Decision: Preserve `brace-b2-correctness-v01` as an immutable no-result
   technical stop and permit one distinct CPU-only v02 recovery under the
   existing B2 authorization.
@@ -2052,3 +2052,32 @@ Last updated: 2026-08-25
   `04370384312f4474fd5488fa3b4dad1559d3d7916564501c802fdec8214906bd`.
 - Authorization boundary: One v02 CPU/synthetic attempt only. B3 remains
   unauthorized.
+
+## D-122 — Accept BRACE-B2 with comparator dispositions and stop before B3
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: COMPLETE_ACCEPTED_WITH_DISPOSITIONS
+- Decision: Accept `brace-b2-correctness-v02`. Independent reconciliation
+  confirmed all 13 gates, the authenticated summary, and 23 passing server
+  tests across both pinned DynamicCache stacks.
+- Correctness result: Independent clone, failure-safe restoration,
+  absolute-position update, corrected evaluator, runtime mapping, synthetic
+  sidecar, provenance, contract/profile, immutable-intent, isolation, and
+  resource checks passed.
+- Comparator dispositions: VLA-ADP requires a core-stack overlay; VLA-Pruner
+  requires its isolated customized stack; SpecPrune-VLA remains blocked by its
+  missing advertised top-level license; Gated VLA-Cache remains paper-only
+  without discoverable official code.
+- Resource reconciliation: 132,931,536 source bytes and 5.15 seconds; CUDA was
+  hidden and uninitialized; zero model queries, policy observations, and
+  simulator steps.
+- Scientific interpretation: This accepts software substrate correctness
+  only. It is not evidence of real-model parity, speed, reliability, or a
+  positive-paper result.
+- Authorization boundary: Stop before B3. The bounded B3 proposal remains at
+  most 480 balanced real-model queries, one separately authorized GPU, zero
+  simulator outcomes, and 23 GiB peak memory.
+- Evidence: `reports/BRACE_B2_REPORT.md`,
+  `reports/runtime/brace_b2_v01_technical_stop.json`, and
+  `reports/runtime/brace_b2_v02.json`.
