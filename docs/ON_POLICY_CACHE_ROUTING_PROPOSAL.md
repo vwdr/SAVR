@@ -2,7 +2,11 @@
 
 **Working acronym:** OPCCR  
 **Working paper title:** *Learning When to Reuse: On-Policy Cache Routing for Reliable VLA Inference*  
-**Status:** Method proposal and gated research plan; no implementation or OPCCR outcome exists yet  
+**Status:** **SUPERSEDED on 2026-08-24; do not implement.** The proposed
+single-step action-disagreement label is contradicted by newer evidence that
+cache-collapse failures can remain invisible to tested action-level detectors.
+The replacement is BRACE in `docs/BRACE_RESEARCH_AND_FEASIBILITY_AUDIT.md` and
+`docs/BRACE_EXECUTION_PROTOCOL_V1.md`. No OPCCR implementation or outcome exists.
 **Base stack:** Pinned OpenVLA-OFT + LIBERO + VLA-Cache-compatible decoder KV reuse
 
 ## 1. Research question

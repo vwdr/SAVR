@@ -1,6 +1,6 @@
 # SAVR Decision Log
 
-Last updated: 2026-08-10
+Last updated: 2026-08-24
 
 ## D-001 — University-server safety boundary
 
@@ -1801,7 +1801,7 @@ Last updated: 2026-08-10
 
 - Date: 2026-08-24
 - Classification: `DECISION`
-- Status: ACTIVE
+- Status: SUPERSEDED_BY_D-114
 - Decision: Select On-Policy Counterfactual Cache Routing (OPCCR) as the next
   research direction after auditing the completed SAVR/ACR evidence, the pinned
   OpenVLA-OFT architecture, VLA-Cache, and the closest 2025--2026 efficiency
@@ -1824,3 +1824,38 @@ Last updated: 2026-08-10
   microbenchmark.
 - Evidence: `docs/POSITIVE_RESULTS_DIRECTION_AUDIT.md` and
   `docs/ON_POLICY_CACHE_ROUTING_PROPOSAL.md`.
+
+## D-114 — Supersede OPCCR and select BRACE for gated feasibility research
+
+- Date: 2026-08-24
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Supersede OPCCR before implementation. Its immediate paired-action
+  disagreement label is not sufficiently defensible after newer evidence showed
+  silent cache-collapse failure and near-chance early action-level detectors.
+- Replacement: Select Branch-Rollout Adaptive Cache Execution (BRACE) for
+  feasibility research. BRACE reconstructs cache-induced states by resetting to
+  the same published initial state and replaying the exact action prefix, then
+  applies randomized FR/cache treatments and labels their paired closed-loop
+  outcome effect.
+- Simulator correction: A flattened MuJoCo state is not a complete branch
+  snapshot because controller goals, observable clocks/caches, episode counters,
+  wrapper state, action queues, and VLA cache provenance live outside it. Direct
+  mid-episode `set_state()` alone is prohibited as evidence.
+- Novelty boundary: The provisional contribution is outcome-supervised
+  pre-inference selection among frozen VLA cache profiles using replay-verified
+  paired interventions on cache-induced trajectories. Do not claim novelty for
+  caching, counterfactual simulation, DAgger, failure detection, or adaptive
+  compute separately.
+- Feasibility boundary: Competitive positive-paper plausibility is judged at
+  30--45% before gates and approximately 55--65% conditional on passing physical
+  acceleration, replay determinism, label prevalence, and held-out
+  predictability gates. These are judgment ranges, not statistical estimates;
+  they were reduced after AC2-VLA was added as a close action-aware adaptive-
+  computation baseline.
+- Evidence boundary: No BRACE implementation, model load, GPU operation,
+  simulator outcome, or protected population was produced.
+- Next gate: BRACE-B1 CPU/simulator transcript and replay-equivalence harness
+  only.
+- Evidence: `docs/BRACE_RESEARCH_AND_FEASIBILITY_AUDIT.md` and
+  `docs/BRACE_EXECUTION_PROTOCOL_V1.md`.

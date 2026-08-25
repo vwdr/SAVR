@@ -1,7 +1,9 @@
 # Positive-Results Direction Audit
 
 **Date:** 2026-08-24  
-**Status:** Research decision; implementation has not begun  
+**Status:** **SUPERSEDED on 2026-08-24 after adversarial feasibility review.**
+The OPCCR action-disagreement label is not sufficiently defensible. See the
+replacement BRACE audit and protocol. Implementation did not begin.
 **Scope:** Select the most plausible novel continuation of SAVR while preserving the completed negative result.
 
 ## 1. Decision
@@ -14,7 +16,10 @@ This is the strongest candidate found under the project's three requirements:
 2. **Positive-result plausibility:** it combines a proven downstream accelerator with a fail-closed router, so efficiency and reliability can be traded continuously rather than depending on one brittle threshold.
 3. **Relevance and impact:** it directly addresses the failure discovered by SAVR: a cache decision changes the robot action, which changes future observations and invalidates an offline or exogenous refresh rule.
 
-Positive results cannot be guaranteed before evaluation. OPCCR is the highest-plausibility direction found after auditing the evidence and nearest work; it is not a promise of a favorable result.
+At the time of this historical audit, OPCCR was the highest-plausibility
+candidate found. The later adversarial review superseded that judgment before
+implementation because the proposed action-disagreement label was not
+sufficiently defensible. The active candidate is BRACE.
 
 ## 2. What the completed experiments establish
 

@@ -66,9 +66,11 @@ At most one phase may be `IN_PROGRESS`.
 | V5-D04. Fourth real-tensor launch | TECHNICAL_STOP_NO_RESULT | Compiler failed pre-output as expected and restored exactly; raw transition was permitted, but one immediate fresh-process sample read 33% utilization and stopped before raw model load; later telemetry was 6 MiB and 0%; zero raw preparation/full queries/simulator/outcomes; `reports/PHASE_V5_D_V04_TECHNICAL_STOP_REPORT.md` | Research and separately freeze a new transition-recovery identity; no automatic V04 retry |
 | V5-D05I. Transition-recovery implementation | COMPLETE_VERIFIED | New V05 identity; NVIDIA-window-based 2-second discard plus three 5-second-spaced aggregate samples at unchanged limits; 353 local tests, two CI jobs per implementation/fix PR, 6 focused TITAN tests, 353 TITAN tests plus 9 subtests, and CUDA-hidden import/API preflight passed; `reports/PHASE_V5_D_V05_TRANSITION_RECOVERY_IMPLEMENTATION_REPORT.md` | Explicit user coordination before V05 aggregate GPU selection |
 | V5-D05. Fifth real-tensor launch | TECHNICAL_STOP_NO_RESULT | Transition gate passed 3/3 at 6 MiB/0%; compiler failed/restored as expected; shared-pool raw backend captured wrist then OOMed during downstream warm-up at 23.2266 GiB reserved, 243,269,632 bytes over cap; zero correctness/timing/simulator/outcomes; `reports/PHASE_V5_D_V05_TECHNICAL_STOP_REPORT.md` | Separately research pre-capture warm-up scheduling or compatible higher-memory hardware; no V05 retry |
-| OPCCR-R0. Positive-direction research and method selection | COMPLETE | Internal SAVR/ACR evidence, pinned architecture, and current nearest work audited; on-policy counterfactual cache routing selected and documented in `docs/POSITIVE_RESULTS_DIRECTION_AUDIT.md` and `docs/ON_POLICY_CACHE_ROUTING_PROPOSAL.md`; no implementation, GPU use, or new outcome | Begin CPU/local R1 integration audit only |
-| OPCCR-R1. CPU/local integration audit | NOT_STARTED | — | Pinned cache layout, synthetic correctness tests, and exact R2 resource estimate |
-| OPCCR-R2. Bounded GPU feasibility | NOT_STARTED_UNAUTHORIZED | — | R1 acceptance and explicit authorization for one frozen GPU microbenchmark |
+| OPCCR-R0. Positive-direction research and method selection | COMPLETE_SUPERSEDED | Internal SAVR/ACR evidence, pinned architecture, and current nearest work audited; on-policy counterfactual cache routing selected and documented in `docs/POSITIVE_RESULTS_DIRECTION_AUDIT.md` and `docs/ON_POLICY_CACHE_ROUTING_PROPOSAL.md`; no implementation, GPU use, or new outcome | Historical record only; superseded by BRACE-B0 |
+| OPCCR-R1. CPU/local integration audit | CANCELLED_SUPERSEDED | Adversarial review found that the proposed immediate action-disagreement label is contradicted by newer silent-failure evidence; no implementation began | Replaced by BRACE-B0 |
+| OPCCR-R2. Bounded GPU feasibility | CANCELLED_SUPERSEDED | No implementation or GPU operation occurred | Replaced by the BRACE protocol; never execute OPCCR-R2 |
+| BRACE-B0. Branch-rollout research and feasibility audit | COMPLETE | Simulator-state, cache-state, current-literature, novelty, resource, statistical, and failure-mode audits completed; replay-prefix outcome supervision and stop-fast protocol documented in `docs/BRACE_RESEARCH_AND_FEASIBILITY_AUDIT.md` and `docs/BRACE_EXECUTION_PROTOCOL_V1.md`; no implementation/GPU/model/outcome | Prepare BRACE-B1 CPU/simulator replay harness only |
+| BRACE-B1. Replay-verified branch harness | NOT_STARTED | — | Exact replay-equivalence and corrupted-prefix rejection gates |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -77,18 +79,18 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-OPCCR-R0 is complete. The selected research direction is on-policy
-counterfactual cache routing over a VLA-Cache-compatible decoder-KV reuse path,
-with wrist information kept fresh and full refresh used as teacher and
-fail-closed fallback. OPCCR-R1 is the next eligible milestone and is limited to
-CPU/local architecture integration, synthetic correctness tests, and a resource
-estimate. No OPCCR implementation, GPU run, simulator episode, model download,
-or result exists yet. The legacy V5-D capture path remains stopped and is not a
-dependency of OPCCR.
+OPCCR-R0 is preserved as a superseded research decision and OPCCR-R1 is
+cancelled before implementation. New silent-failure evidence undermined its
+immediate action-disagreement supervision. BRACE-B0 replaces it with paired
+terminal rollout interventions reconstructed by exact action-prefix replay.
+BRACE-B1 is the next eligible milestone and is CPU/simulator-only. It must prove
+branch equivalence and reject incomplete state restoration before any cache
+installation, model load, GPU operation, or outcome collection. The legacy V5-D
+capture path remains stopped and is not a BRACE dependency.
 
 The historical text below is retained as legacy execution context; where it
-describes a V5-D retry as the next checkpoint, it is superseded by the OPCCR-R0
-decision above.
+describes a V5-D retry as the next checkpoint, it is superseded by decision
+D-114 and BRACE-B1 above.
 
 V5-B and V5-C are complete. V5-D v01-v04 remain immutable technical stops with
 no method-performance output. V03's raw backend exceeded the unchanged 23 GiB
