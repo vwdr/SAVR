@@ -74,6 +74,7 @@ At most one phase may be `IN_PROGRESS`.
 | BRACE-B0R2. Protocol V2.1 exhaustive red-team freeze | COMPLETE | Faithfully corrected VLA-Cache, VLA-ADP/VLA-Pruner/SpecPrune-VLA preflights, bounded profile grid, assignment/inclusion propensities, zero-discordance controls, grouped empirical risk, power/cost rules, independent analysis verification, and revised 15--25% positive-paper assessment documented in `docs/BRACE_EXECUTION_PROTOCOL_V2_1.md` and `docs/BRACE_PROTOCOL_V2_1_RED_TEAM_REVIEW.md`; no implementation/GPU/model/outcome | Prepare BRACE-B1 under Protocol V2.1 only |
 | BRACE-B0F. Formal method specification and architecture audit | COMPLETE | Exact cache equations, nested reuse mechanics, complete multimodal source provenance, runtime sequence maps, bidirectional-context risk, sidecar attention parity, fixed-horizon abort estimand, 4,825-parameter router, propensity-aware loss, joint routing calibration, algorithms, module contracts, and adversarial review documented in `docs/BRACE_FORMAL_METHOD_SPECIFICATION_V1.md` and `docs/BRACE_FORMAL_METHOD_AUDIT_V1.md`; no implementation/GPU/model/outcome | BRACE-B1 remains the only eligible task |
 | BRACE-B1. Replay-verified branch harness | COMPLETE_ACCEPTED | All gates passed in `brace-b1-replay-v01`: 3 valid transcripts, 18/18 prefix replays, 9/9 probe checks, 3/3 modified-prefix rejections, 3/3 direct-state rejections, 27 environments, 198 steps, independent reconciliation passed; `reports/BRACE_B1_REPORT.md` | Separate user authorization for CPU/synthetic-only BRACE-B2 |
+| BRACE-B2. Baseline, cache, and provenance correctness | IN_PROGRESS | Frozen isolated implementation covers both DynamicCache stacks, corrected evaluator, runtime sequence maps, sidecar attention, source ledger/ring, exact-source envelopes, P0--P4 semantics, bounded profiles, ITT records, and comparator preflights; 410 local tests pass with the torch-only test deferred to TITAN; config SHA-256 `220c0b6b15253e0ecbea34010258d580cecb90f459d2d55da8bb10c01760285a` | Execute the single CPU-only TITAN B2 verification and reconcile every disposition |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -87,11 +88,11 @@ none was implemented. BRACE Protocol V2.1 is the active method plan. It retains
 bounded 1/2/4-query clean-provenance cache contracts and adds the corrected
 baseline, current exact-stack competitors, explicit sampling/analysis rules,
 stricter feasibility gates, and the formal V1 method definition.
-BRACE-B1 is complete and accepted. Exact scripted-prefix reconstruction passed
-all positive, next-transition, transcript-integrity, and negative-control
-gates. B2 is the next protocol-eligible milestone, but remains separately
-gated and has not started. The legacy V5-D capture path remains stopped and is
-not a BRACE dependency.
+BRACE-B1 is complete and accepted. BRACE-B2 is the active CPU/synthetic-only
+milestone under the user authorization recorded in D-120. Its implementation
+and comparator dispositions are frozen before the single TITAN verification.
+B3 remains separately gated and has not started. The legacy V5-D capture path
+remains stopped and is not a BRACE dependency.
 
 The historical text below is retained as legacy execution context; where it
 describes a V5-D retry as the next checkpoint, it is superseded by decision

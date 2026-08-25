@@ -4,14 +4,16 @@ Last updated: 2026-08-25
 
 ## Active research direction
 
-BRACE-B1 — **COMPLETE ACCEPTED; BRACE-B2 NOT STARTED**
+BRACE-B1 — **COMPLETE ACCEPTED**
 
-Protocol V2.1 and the formal method specification remain frozen. The single
-TITAN CPU/OSMesa B1 attempt passed every gate: 18/18 prefix reconstructions and
-9/9 next-step probes matched, while all modified-prefix and direct-state-only
-controls were rejected. This validates only the branch-replay infrastructure;
-it is not a positive method result. No BRACE model, cache, GPU, policy query,
-or policy evaluation occurred. B2 is eligible but requires separate approval.
+BRACE-B2 — **IN PROGRESS; CPU/SYNTHETIC CORRECTNESS ONLY**
+
+Protocol V2.1 and the formal method specification remain frozen. B1 passed
+every replay gate. B2 is now authorized and its isolated baseline/cache/
+provenance implementation is frozen for one TITAN CPU verification. Local
+tests pass; the two real DynamicCache forks remain to be verified on TITAN.
+No BRACE model, GPU, simulator, policy query, or policy evaluation is allowed,
+and B3 remains separately gated.
 
 ## Current phase
 

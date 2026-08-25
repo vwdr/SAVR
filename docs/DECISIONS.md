@@ -2003,3 +2003,27 @@ Last updated: 2026-08-25
   requires a separate user decision.
 - Evidence: `reports/BRACE_B1_REPORT.md` and
   `reports/runtime/brace_b1_replay_v01.json`.
+
+## D-120 — Authorize and freeze BRACE-B2 correctness verification
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: ACTIVE_EXECUTION
+- Decision: The user authorized B2. Freeze one CPU/synthetic verification of
+  the isolated baseline correction, both pinned DynamicCache stacks, runtime
+  sequence maps, complete provenance, profile/contract semantics, synthetic
+  sidecar attention, immutable intent records, and current comparator sources.
+- Source boundary: Pinned public method source may be cloned only below
+  `/home/ved/SAVR/third_party`. No model, checkpoint, dataset, external package,
+  or unbounded asset download is authorized.
+- Comparator boundary: Preserve VLA-ADP's overlay requirement, VLA-Pruner's
+  isolated 4.47.0 stack, SpecPrune-VLA's missing top-level license, and Gated
+  VLA-Cache's lack of discoverable official code as explicit dispositions.
+  Do not call a matched reproduction official.
+- Resource boundary: CUDA hidden; zero model queries, policy outcomes, or
+  simulator steps; at most 1 GiB of source, 16 MiB of evidence, and 1,800
+  seconds. B3 remains unauthorized.
+- Configuration: `configs/brace/b2_correctness_v1.json`, semantic SHA-256
+  `220c0b6b15253e0ecbea34010258d580cecb90f459d2d55da8bb10c01760285a`.
+- Evidence: `docs/BRACE_B2_IMPLEMENTATION_FREEZE.md` and the B2 implementation
+  and tests in `src/savr/brace/` and `tests/brace/`.
