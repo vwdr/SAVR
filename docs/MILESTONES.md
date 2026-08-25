@@ -69,8 +69,9 @@ At most one phase may be `IN_PROGRESS`.
 | OPCCR-R0. Positive-direction research and method selection | COMPLETE_SUPERSEDED | Internal SAVR/ACR evidence, pinned architecture, and current nearest work audited; on-policy counterfactual cache routing selected and documented in `docs/POSITIVE_RESULTS_DIRECTION_AUDIT.md` and `docs/ON_POLICY_CACHE_ROUTING_PROPOSAL.md`; no implementation, GPU use, or new outcome | Historical record only; superseded by BRACE-B0 |
 | OPCCR-R1. CPU/local integration audit | CANCELLED_SUPERSEDED | Adversarial review found that the proposed immediate action-disagreement label is contradicted by newer silent-failure evidence; no implementation began | Replaced by BRACE-B0 |
 | OPCCR-R2. Bounded GPU feasibility | CANCELLED_SUPERSEDED | No implementation or GPU operation occurred | Replaced by the BRACE protocol; never execute OPCCR-R2 |
-| BRACE-B0. Branch-rollout research and feasibility audit | COMPLETE | Simulator-state, cache-state, current-literature, novelty, resource, statistical, and failure-mode audits completed; replay-prefix outcome supervision and stop-fast protocol documented in `docs/BRACE_RESEARCH_AND_FEASIBILITY_AUDIT.md` and `docs/BRACE_EXECUTION_PROTOCOL_V1.md`; no implementation/GPU/model/outcome | Prepare BRACE-B1 CPU/simulator replay harness only |
-| BRACE-B1. Replay-verified branch harness | NOT_STARTED | — | Exact replay-equivalence and corrupted-prefix rejection gates |
+| BRACE-B0. Branch-rollout research and feasibility audit | COMPLETE_SUPERSEDED | Initial replay-prefix terminal-outcome design documented without implementation/GPU/model/outcome; adversarial re-audit found cumulative-treatment, gate-provenance, router-observability, and baseline defects in V1 | Replaced by BRACE-B0R and Protocol V2 |
+| BRACE-B0R. Protocol V2 redesign and independent review | COMPLETE | Bounded clean-provenance cache contracts, 1/2/4-query interventions, token-source ledger, intent-to-treat analysis, actuation-slack comparison, revised sample/cost gates, and independent 25--40% positive-result assessment documented in `docs/BRACE_EXECUTION_PROTOCOL_V2.md` and `docs/BRACE_PROTOCOL_V2_REVIEW.md`; no implementation/GPU/model/outcome | Prepare BRACE-B1 under Protocol V2 only |
+| BRACE-B1. Replay-verified branch harness | NOT_STARTED | — | Protocol V2 exact replay-equivalence and corrupted-prefix rejection gates |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
 | 9. Ablations and sensitivity | NOT_STARTED | — | Required confirmatory ablations complete |
@@ -79,10 +80,10 @@ At most one phase may be `IN_PROGRESS`.
 
 ## Active milestone
 
-OPCCR-R0 is preserved as a superseded research decision and OPCCR-R1 is
-cancelled before implementation. New silent-failure evidence undermined its
-immediate action-disagreement supervision. BRACE-B0 replaces it with paired
-terminal rollout interventions reconstructed by exact action-prefix replay.
+OPCCR and BRACE Protocol V1 are preserved as superseded research records; none
+was implemented. BRACE Protocol V2 is the active method plan. It replaces the
+single-query intervention with bounded 1/2/4-query clean-provenance cache
+contracts and adds token-source observability plus an actuation-slack baseline.
 BRACE-B1 is the next eligible milestone and is CPU/simulator-only. It must prove
 branch equivalence and reject incomplete state restoration before any cache
 installation, model load, GPU operation, or outcome collection. The legacy V5-D

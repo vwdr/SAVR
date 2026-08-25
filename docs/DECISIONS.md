@@ -1829,7 +1829,7 @@ Last updated: 2026-08-24
 
 - Date: 2026-08-24
 - Classification: `DECISION`
-- Status: ACTIVE
+- Status: SUPERSEDED_IN_PART_BY_D-115
 - Decision: Supersede OPCCR before implementation. Its immediate paired-action
   disagreement label is not sufficiently defensible after newer evidence showed
   silent cache-collapse failure and near-chance early action-level detectors.
@@ -1859,3 +1859,35 @@ Last updated: 2026-08-24
   only.
 - Evidence: `docs/BRACE_RESEARCH_AND_FEASIBILITY_AUDIT.md` and
   `docs/BRACE_EXECUTION_PROTOCOL_V1.md`.
+
+## D-115 — Adopt BRACE Protocol V2 after adversarial re-audit
+
+- Date: 2026-08-24
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Preserve BRACE as the selected research direction, but supersede
+  Protocol V1 before implementation. Re-audit found four material defects in
+  V1: a single-query treatment that omitted cumulative reuse, dependence on a
+  self-harvested accelerated attention gate, router inputs that did not expose
+  mixed token-source ages, and omission of an actuation-slack refresh baseline.
+- Redesign: Protocol V2 evaluates bounded clean-provenance cache contracts over
+  one, two, and four accelerated queries after a full-refresh anchor. Every
+  reused token records its actual source query and age; treatment effects use
+  intent-to-treat assignment; and actuation-slack refresh is a mandatory
+  executable comparator.
+- Novelty boundary: The proposed contribution is outcome-supervised selection
+  among bounded, clean-provenance VLA cache contracts using replay-verified
+  closed-loop interventions. Do not claim novelty for cache reuse, adaptive
+  refresh, confidence gates, counterfactual rollouts, or token-age tracking in
+  isolation.
+- Feasibility boundary: Positive-paper plausibility is judged at 25--40%
+  before gates and approximately 50--60% conditional on passing B1--B5. These
+  are calibrated judgment ranges, not statistical estimates or results.
+- Evidence boundary: No BRACE implementation, model load, GPU operation,
+  simulator outcome, or protected evaluation was produced by the redesign or
+  review.
+- Authorization: BRACE-B1 is the only next eligible phase and is
+  CPU/simulator-only. B2 is conditional on B1 acceptance. B3 and all later
+  model/GPU/outcome phases require separate authorization.
+- Evidence: `docs/BRACE_EXECUTION_PROTOCOL_V2.md` and
+  `docs/BRACE_PROTOCOL_V2_REVIEW.md`.

@@ -3,7 +3,11 @@
 **Method:** Branch-Rollout Adaptive Cache Execution (BRACE)  
 **Working title:** *Branch Before You Cache: Interventional Rollout Supervision for Reliable VLA Acceleration*  
 **Date:** 2026-08-24  
-**Status:** Research specification only; no implementation, model run, or BRACE result exists
+**Status:** **Historical V1 feasibility audit, superseded by
+`docs/BRACE_EXECUTION_PROTOCOL_V2.md` and
+`docs/BRACE_PROTOCOL_V2_REVIEW.md`.** No implementation, model run, or BRACE
+result exists. Probability ranges below record the V1 judgment and are not the
+active assessment.
 
 ## 1. Verdict
 
@@ -413,7 +417,6 @@ Recent preprints must be revalidated before any manuscript submission.
 
 ## 14. Recommendation
 
-Proceed only through the stop-fast protocol in
-`docs/BRACE_EXECUTION_PROTOCOL_V1.md`. The first two phases test replay
-validity and physical acceleration before collecting any branch outcome. If
-either fails, stop BRACE without router training.
+This V1 recommendation is superseded. Proceed only through the corrected
+stop-fast protocol in `docs/BRACE_EXECUTION_PROTOCOL_V2.md`; its independent
+assessment is `docs/BRACE_PROTOCOL_V2_REVIEW.md`.

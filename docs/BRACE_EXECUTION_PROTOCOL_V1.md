@@ -2,7 +2,9 @@
 
 **Method:** Branch-Rollout Adaptive Cache Execution  
 **Date frozen:** 2026-08-24  
-**Status:** Research protocol prepared; B1 is not yet implemented  
+**Status:** **SUPERSEDED before implementation by
+`docs/BRACE_EXECUTION_PROTOCOL_V2.md`. Do not execute V1.** No V1 implementation,
+model run, GPU operation, or BRACE outcome occurred.
 **Authority:** No GPU/model/simulator campaign is authorized merely by this document
 
 ## 1. Objective
