@@ -570,6 +570,23 @@ def run_official_comparator(
         source = ROOT / "third_party/vla-adp"
     else:
         source = ROOT / "third_party/vla-pruner/src/openvla-oft"
+        required = source / "experiments/robot/vla_cache_utils.py"
+        if not required.is_file():
+            return {
+                "method": method,
+                "status": "reviewed_technical_exclusion",
+                "timing_validity": "excluded_upstream_release_missing_imported_vla_cache_utils",
+                "queries": 0,
+                "timings": [],
+                "action_references": {},
+                "peak_allocated_bytes": 0,
+                "peak_reserved_bytes": 0,
+                "transformers": None,
+                "evidence": {
+                    "missing_relative_path": "experiments/robot/vla_cache_utils.py",
+                    "importing_relative_path": "experiments/robot/openvla_utils.py",
+                },
+            }
     os.chdir(source)
     sys.path.insert(0, str(source))
     import numpy as np
@@ -711,7 +728,11 @@ def main() -> int:
         )
         result["semantic_sha256"] = semantic_sha256(result)
         write_once(args.output, result)
-        print(json.dumps({"method": args.method, "status": "completed", "queries": result["queries"]}))
+        print(
+            json.dumps(
+                {"method": args.method, "status": result["status"], "queries": result["queries"]}
+            )
+        )
         return 0
     finally:
         restoration = restore_checkpoint_exact(checkpoint, baseline)

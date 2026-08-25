@@ -153,6 +153,7 @@ def main() -> int:
     ]
     telemetry = []
     completed = []
+    used_queries: dict[str, int] = {}
     started = time.monotonic()
     try:
         for method, python, pythonpath in specifications:
@@ -187,6 +188,10 @@ def main() -> int:
                     time.sleep(1)
                 if process.returncode != 0 or not output_path.is_file():
                     raise RuntimeError(f"{method} worker stopped with status {process.returncode}")
+                worker = json.loads(output_path.read_text())
+                used_queries[method] = int(worker["queries"])
+                if used_queries[method] > ALLOCATIONS[method]:
+                    raise RuntimeError(f"{method} exceeded its frozen query allocation")
             completed.append(method)
         summary = {
             "schema_version": "brace.b3-run.v1",
@@ -195,7 +200,10 @@ def main() -> int:
             "configuration_semantic_sha256": config["semantic_sha256"],
             "source_revision": revision,
             "completed_methods": completed,
-            "queries": sum(ALLOCATIONS[name] for name in completed),
+            "planned_queries": sum(ALLOCATIONS.values()),
+            "queries": sum(used_queries.values()),
+            "used_queries_by_method": used_queries,
+            "unused_queries_not_reassigned": sum(ALLOCATIONS.values()) - sum(used_queries.values()),
             "peak_aggregate_gpu_memory_used_mib": max(item["memory_used_mib"] for item in telemetry),
             "telemetry_samples": telemetry,
             "artifact_bytes": tree_bytes(RUN),

@@ -60,6 +60,11 @@ model process may exist at once.
 - Faithfully corrected VLA-Cache must receive real timing.
 - VLA-ADP and VLA-Pruner must receive real official-code timing or an
   individually evidenced technical exclusion.
+- CUDA-hidden import preflight found that pinned VLA-Pruner's
+  `experiments/robot/openvla_utils.py` imports an absent
+  `experiments/robot/vla_cache_utils.py`. Its official evaluator is therefore
+  technically excluded; its 32-query allocation remains unused and cannot be
+  reassigned.
 - SpecPrune-VLA is excluded from execution because its pinned repository lacks
   the advertised top-level method-specific license. Its source is not treated
   as licensed merely because the vendored OpenVLA-OFT subtree is MIT.

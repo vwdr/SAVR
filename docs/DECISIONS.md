@@ -2101,9 +2101,11 @@ Last updated: 2026-08-25
   23 GiB peak memory; zero downloads, protected outcomes, or automatic retry;
   three hours and 1 GiB of project-local artifacts.
 - Comparator boundary: Corrected VLA-Cache receives required timing.
-  VLA-ADP's episode-coupled dynamic controller receives a reviewed component-
-  timing exclusion; VLA-Pruner receives isolated official temporal timing.
-  SpecPrune-VLA remains license-blocked. Gated VLA-Cache remains excluded
+  VLA-ADP's episode-coupled dynamic controller receives reviewed component
+  timing. A CUDA-hidden import preflight found that pinned VLA-Pruner imports
+  an absent `experiments/robot/vla_cache_utils.py`; it receives the protocol-
+  permitted reviewed technical exclusion, and its unused 32-query allocation
+  cannot be reassigned. SpecPrune-VLA remains license-blocked. Gated VLA-Cache remains excluded
   because no official code was found and its discrete-token confidence gate
   is not defined for the pinned continuous L1 head.
 - Advance rule: All parity, provenance, memory, disposition, and accounting

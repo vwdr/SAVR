@@ -76,7 +76,7 @@ def main() -> int:
         for method in ("core_fr", "cache_suite", "vla_adp", "vla_pruner")
     }
     identities = all(
-        worker["status"] == "completed"
+        worker["status"] in {"completed", "reviewed_technical_exclusion"}
         and worker["configuration_semantic_sha256"] == config["semantic_sha256"]
         and worker["source_revision"] == run["source_revision"]
         for worker in workers.values()
@@ -145,7 +145,11 @@ def main() -> int:
         corrected_cache
         and workers["vla_adp"]["timing_validity"]
         == "component_timing_only_episode_coupled_dynamic_controller_excluded"
-        and workers["vla_pruner"]["timing_validity"] == "official_temporal_semantic_action_timing"
+        and workers["vla_pruner"]["timing_validity"]
+        in {
+            "official_temporal_semantic_action_timing",
+            "excluded_upstream_release_missing_imported_vla_cache_utils",
+        }
     )
     p0_summary = summarize_timings(p0_values)
     p4 = {
@@ -157,7 +161,10 @@ def main() -> int:
         "measured_disposition": True,
     }
     gates = {
-        "identity_and_query_accounting": identities and int(run["queries"]) == 388,
+        "identity_and_query_accounting": identities
+        and int(run["planned_queries"]) == 388
+        and int(run["queries"]) == sum(int(worker["queries"]) for worker in workers.values())
+        and int(run["queries"]) <= 388,
         "p0_matches_optimized_fr": p0_matches_fr,
         "dense_sidecar_parity": sidecar,
         "all_profile_action_parity": warm_parity and all_timed_parity,
@@ -188,7 +195,11 @@ def main() -> int:
         },
         "comparator_dispositions": comparator_dispositions,
         "comparator_wall": {
-            method: summarize_timings([record["wall_ms"] for record in workers[method]["timings"]])
+            method: (
+                summarize_timings([record["wall_ms"] for record in workers[method]["timings"]])
+                if workers[method]["timings"]
+                else None
+            )
             for method in ("vla_adp", "vla_pruner")
         },
         "corrected_vla_cache": cache["corrected_vla_cache"],
