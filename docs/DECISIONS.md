@@ -1956,3 +1956,29 @@ Last updated: 2026-08-25
   does not authorize B2 or later work.
 - Evidence: `docs/BRACE_FORMAL_METHOD_SPECIFICATION_V1.md` and
   `docs/BRACE_FORMAL_METHOD_AUDIT_V1.md`.
+
+## D-118 — Authorize and freeze the BRACE-B1 replay-equivalence attempt
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: ACTIVE_EXECUTION
+- Decision: The user authorized BRACE-B1. Freeze one CPU/OSMesa attempt with
+  three scripted LIBERO Spatial scenarios (free motion, contact, and gripper
+  transition), twelve actions per scenario, and replay prefixes at actions 3,
+  6, and 10.
+- Acceptance boundary: Each prefix must reconstruct twice in a fresh
+  environment and match the recorded complete snapshot plus the next-step
+  probe. Modified-prefix and direct-simulator-state-only negative controls must
+  be rejected. The transcript hash chain, configuration hash, pinned LIBERO
+  revision, repository revision, and resource accounting must reconcile.
+- Resource boundary: CUDA is hidden; model and policy queries, downloads, and
+  GPU inspection are prohibited. The attempt is capped at 30 environment
+  instances, 240 simulator steps, 1,800 seconds, and 256 MiB of artifacts.
+- Implementation evidence: The side-effect-free transcript validator, frozen
+  runner, and adversarial tests pass local unit, static, compilation, and
+  bootstrap checks. Configuration semantic SHA-256 is
+  `37952f345bcaecceffe4695fecea8d48c2b67ed19d19222d64fd29eeda1dc04c`.
+- Authorization boundary: B1 authorization does not authorize B2, model
+  loading, GPU work, learned routing, cache installation, or policy outcomes.
+- Evidence: `configs/brace/b1_replay_v1.json`, `scripts/run_brace_b1.py`,
+  `src/savr/brace/b1.py`, and `tests/brace/test_b1.py`.
