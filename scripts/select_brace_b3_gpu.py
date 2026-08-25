@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import io
@@ -17,8 +18,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_ROOT = Path("/home/ved/SAVR")
-CONFIG = Path("configs/brace/b3_physical_v1.json")
-RUN = Path("results/brace-b3-physical-v01")
+DEFAULT_CONFIG = Path("configs/brace/b3_physical_v1.json")
 
 
 def canonical_bytes(value: Any) -> bytes:
@@ -55,12 +55,18 @@ def sample() -> list[dict[str, Any]]:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    args = parser.parse_args()
     if ROOT != EXPECTED_ROOT or Path.cwd().resolve() != EXPECTED_ROOT:
         raise SystemExit(f"B3 GPU selection is restricted to {EXPECTED_ROOT}")
-    config = json.loads((ROOT / CONFIG).read_text())
-    if config["semantic_sha256"] != "30825fd30eb2c0566b30564740a212c51e09dc60f7e9c4bc7315b24b369dea11":
-        raise SystemExit("B3 frozen configuration changed")
-    launch_path = ROOT / RUN / "launch.json"
+    import sys
+
+    sys.path.insert(0, str(ROOT / "src"))
+    from savr.brace.b3 import load_config_file
+
+    config = load_config_file(ROOT, args.config)
+    launch_path = ROOT / "results" / config["run_id"] / "launch.json"
     if launch_path.exists():
         raise SystemExit("Immutable B3 launch record already exists")
     snapshots = []

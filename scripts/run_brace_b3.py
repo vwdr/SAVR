@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import io
@@ -17,8 +18,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_ROOT = Path("/home/ved/SAVR")
-RUN = ROOT / "results/brace-b3-physical-v01"
-CONFIG = ROOT / "configs/brace/b3_physical_v1.json"
+DEFAULT_CONFIG = Path("configs/brace/b3_physical_v1.json")
 ALLOCATIONS = {"core_fr": 22, "cache_suite": 302, "vla_adp": 32, "vla_pruner": 32}
 
 
@@ -78,10 +78,19 @@ def environment(run: Path, gpu: int, pythonpath: str) -> dict[str, str]:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    args = parser.parse_args()
     if ROOT != EXPECTED_ROOT or Path.cwd().resolve() != EXPECTED_ROOT:
         raise SystemExit(f"B3 runner is restricted to {EXPECTED_ROOT}")
-    launch = json.loads((RUN / "launch.json").read_text())
-    config = json.loads(CONFIG.read_text())
+    import sys
+
+    sys.path.insert(0, str(ROOT / "src"))
+    from savr.brace.b3 import allowed_project_status, load_config_file
+
+    config = load_config_file(ROOT, args.config)
+    run_path = ROOT / "results" / config["run_id"]
+    launch = json.loads((run_path / "launch.json").read_text())
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
     if launch["source_revision"] != revision or launch["configuration_semantic_sha256"] != config["semantic_sha256"]:
         raise SystemExit("B3 launch identity changed")
@@ -102,43 +111,37 @@ def main() -> int:
         ).strip()
         if observed != config["provenance"][key] or dirt:
             raise SystemExit(f"Pinned B3 repository changed: {key}")
-    if any((RUN / name).exists() for name in ("run_summary.json", "technical_stop.json")):
+    if any((run_path / name).exists() for name in ("run_summary.json", "technical_stop.json")):
         raise SystemExit("B3 attempt already has a terminal record")
     raw_status = subprocess.check_output(
         ["git", "status", "--porcelain=v1", "-z", "--untracked-files=all"]
     )
-    status = [entry.decode("utf-8") for entry in raw_status.split(b"\0") if entry]
-    allowed = [
-        line
-        for line in status
-        if line[3:] == "tmp"
-        or line[3:].startswith("tmp/")
-        or line[3:] == "results/brace-b3-physical-v01/launch.json"
-    ]
-    if status != allowed:
+    if not allowed_project_status(raw_status, config["run_id"]):
         raise SystemExit("B3 source tree is not clean apart from preserved tmp/")
     gpu = int(launch["selected_gpu"]["index"])
     snapshot = gpu_snapshot(gpu)
     if snapshot["memory_used_mib"] > 512 or snapshot["utilization_percent"] > 5:
         raise SystemExit("Selected GPU ceased to meet the frozen idle rule; no model was loaded")
     for directory in (
-        RUN / "workers",
-        RUN / "logs",
-        RUN / "cache/huggingface/hub",
-        RUN / "cache/torch",
-        RUN / "cache/torchinductor",
-        RUN / "cache/triton",
-        RUN / "cache/libero",
+        run_path / "workers",
+        run_path / "logs",
+        run_path / "cache/huggingface/hub",
+        run_path / "cache/torch",
+        run_path / "cache/torchinductor",
+        run_path / "cache/triton",
+        run_path / "cache/libero",
     ):
         directory.mkdir(parents=True, exist_ok=True)
     libero = {
         "assets": str(ROOT / "third_party/LIBERO/libero/libero/assets"),
         "bddl_files": str(ROOT / "third_party/LIBERO/libero/libero/bddl_files"),
         "benchmark_root": str(ROOT / "third_party/LIBERO/libero/libero"),
-        "datasets": str(RUN / "cache/libero/datasets"),
+        "datasets": str(run_path / "cache/libero/datasets"),
         "init_states": str(ROOT / "third_party/LIBERO/libero/libero/init_files"),
     }
-    (RUN / "cache/libero/config.yaml").write_text(json.dumps(libero, indent=2, sort_keys=True) + "\n")
+    (run_path / "cache/libero/config.yaml").write_text(
+        json.dumps(libero, indent=2, sort_keys=True) + "\n"
+    )
     specifications = [
         ("core_fr", ROOT / "envs/openvla-oft/bin/python", f"{ROOT / 'src'}"),
         (
@@ -160,13 +163,22 @@ def main() -> int:
     started = time.monotonic()
     try:
         for method, python, pythonpath in specifications:
-            log_path = RUN / "logs" / f"{method}.log"
-            output_path = RUN / "workers" / f"{method}.json"
+            log_path = run_path / "logs" / f"{method}.log"
+            output_path = run_path / "workers" / f"{method}.json"
             with log_path.open("xb") as log:
                 process = subprocess.Popen(
-                    [str(python), "scripts/run_brace_b3_worker.py", "--method", method, "--output", str(output_path)],
+                    [
+                        str(python),
+                        "scripts/run_brace_b3_worker.py",
+                        "--method",
+                        method,
+                        "--output",
+                        str(output_path),
+                        "--config",
+                        str(args.config),
+                    ],
                     cwd=ROOT,
-                    env=environment(RUN, gpu, pythonpath),
+                    env=environment(run_path, gpu, pythonpath),
                     stdout=log,
                     stderr=subprocess.STDOUT,
                 )
@@ -182,7 +194,7 @@ def main() -> int:
                         process.terminate()
                         process.wait(timeout=30)
                         raise RuntimeError("B3 wall-time cap reached")
-                    if len(telemetry) % 10 == 0 and tree_bytes(RUN) > int(
+                    if len(telemetry) % 10 == 0 and tree_bytes(run_path) > int(
                         config["resource_caps"]["artifact_bytes"]
                     ):
                         process.terminate()
@@ -209,12 +221,12 @@ def main() -> int:
             "unused_queries_not_reassigned": sum(ALLOCATIONS.values()) - sum(used_queries.values()),
             "peak_aggregate_gpu_memory_used_mib": max(item["memory_used_mib"] for item in telemetry),
             "telemetry_samples": telemetry,
-            "artifact_bytes": tree_bytes(RUN),
+            "artifact_bytes": tree_bytes(run_path),
             "wall_seconds": time.monotonic() - started,
             "completed_at_utc": datetime.now(timezone.utc).isoformat(),
         }
         summary["semantic_sha256"] = hashlib.sha256(canonical_bytes(summary)).hexdigest()
-        write_once(RUN / "run_summary.json", summary)
+        write_once(run_path / "run_summary.json", summary)
         return 0
     except Exception as error:
         stop = {
@@ -231,7 +243,7 @@ def main() -> int:
             "stopped_at_utc": datetime.now(timezone.utc).isoformat(),
         }
         stop["semantic_sha256"] = hashlib.sha256(canonical_bytes(stop)).hexdigest()
-        write_once(RUN / "technical_stop.json", stop)
+        write_once(run_path / "technical_stop.json", stop)
         return 2
 
 

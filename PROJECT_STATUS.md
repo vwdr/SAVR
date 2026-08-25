@@ -8,7 +8,7 @@ BRACE-B1 — **COMPLETE ACCEPTED**
 
 BRACE-B2 — **COMPLETE; ACCEPTED WITH COMPARATOR DISPOSITIONS**
 
-BRACE-B3 — **V01 PRE-MODEL TECHNICAL STOP; NO RESULT**
+BRACE-B3 — **V02 NARROW RECOVERY AUTHORIZED; IN PROGRESS**
 
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
@@ -21,8 +21,9 @@ passes the complete local suite (417 passed, 1 skipped). The v01 selector
 sealed GPU 0, but the runner stopped before any worker or model load because
 Git quoted preserved `tmp/` paths containing spaces and the guard expected raw
 paths. Model queries and outcomes were zero, so v01 is no scientific result.
-The NUL-delimited parsing correction is implemented, but a v02 recovery is not
-authorized. B4 remains unauthorized.
+The user authorized one narrow v02 recovery. NUL-delimited path parsing is the
+only operational correction; the method, profiles, gates, resource limits, and
+zero-outcome boundary remain unchanged. B4 remains unauthorized.
 
 ## Current phase
 

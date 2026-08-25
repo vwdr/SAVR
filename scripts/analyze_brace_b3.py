@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import math
@@ -15,8 +16,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_ROOT = Path("/home/ved/SAVR")
-RUN = ROOT / "results/brace-b3-physical-v01"
-CONFIG = ROOT / "configs/brace/b3_physical_v1.json"
+DEFAULT_CONFIG = Path("configs/brace/b3_physical_v1.json")
 
 
 def canonical_bytes(value: Any) -> bytes:
@@ -55,24 +55,28 @@ def action_close(left: dict[str, Any], right: dict[str, Any], config: dict[str, 
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    args = parser.parse_args()
     if ROOT != EXPECTED_ROOT or Path.cwd().resolve() != EXPECTED_ROOT:
         raise SystemExit(f"B3 analysis is restricted to {EXPECTED_ROOT}")
     sys.path.insert(0, str(ROOT / "src"))
-    from savr.brace.b3 import profile_speed_gate, summarize_timings, validate_config
+    from savr.brace.b3 import load_config_file, profile_speed_gate, summarize_timings
 
-    if (RUN / "analysis.json").exists():
+    config = load_config_file(ROOT, args.config)
+    run_path = ROOT / "results" / config["run_id"]
+
+    if (run_path / "analysis.json").exists():
         raise SystemExit("Immutable B3 analysis already exists")
-    if (RUN / "technical_stop.json").exists():
+    if (run_path / "technical_stop.json").exists():
         raise SystemExit("B3 ended technically; scientific analysis is prohibited")
-    run = json.loads((RUN / "run_summary.json").read_text())
-    config = json.loads(CONFIG.read_text())
-    validate_config(config)
+    run = json.loads((run_path / "run_summary.json").read_text())
     run_hash = dict(run)
     recorded_run_hash = run_hash.pop("semantic_sha256")
     if hashlib.sha256(canonical_bytes(run_hash)).hexdigest() != recorded_run_hash:
         raise RuntimeError("B3 run-summary semantic hash mismatch")
     workers = {
-        method: json.loads((RUN / "workers" / f"{method}.json").read_text())
+        method: json.loads((run_path / "workers" / f"{method}.json").read_text())
         for method in ("core_fr", "cache_suite", "vla_adp", "vla_pruner")
     }
     identities = all(
@@ -212,7 +216,7 @@ def main() -> int:
     analysis["semantic_sha256"] = hashlib.sha256(canonical_bytes(analysis)).hexdigest()
     if not math.isfinite(float(p0_summary["p50"])):
         raise RuntimeError("B3 analysis produced nonfinite timing")
-    write_once(RUN / "analysis.json", analysis)
+    write_once(run_path / "analysis.json", analysis)
     print(json.dumps({"status": analysis["status"], "passing_profiles": passing_profiles, "gates": gates}))
     return 0 if accepted else 3
 

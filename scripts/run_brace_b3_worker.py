@@ -17,7 +17,7 @@ from typing import Any, Callable
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_ROOT = Path("/home/ved/SAVR")
-CONFIG = Path("configs/brace/b3_physical_v1.json")
+DEFAULT_CONFIG = Path("configs/brace/b3_physical_v1.json")
 CHECKPOINT = Path("checkpoints/openvla-7b-oft-libero-four-suite")
 
 
@@ -692,6 +692,7 @@ def main() -> int:
         "--method", choices=("core_fr", "cache_suite", "vla_adp", "vla_pruner"), required=True
     )
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
     args = parser.parse_args()
     if ROOT != EXPECTED_ROOT:
         raise SystemExit(f"B3 worker refuses to run outside {EXPECTED_ROOT}")
@@ -699,10 +700,9 @@ def main() -> int:
         raise SystemExit("B3 worker requires one explicitly selected visible GPU")
     sys.path.insert(0, str(ROOT / "src"))
     from savr.acr.v5_d_recovery import capture_checkpoint_baseline, restore_checkpoint_exact
-    from savr.brace.b3 import validate_config
+    from savr.brace.b3 import load_config_file
 
-    config = json.loads((ROOT / CONFIG).read_text())
-    validate_config(config)
+    config = load_config_file(ROOT, args.config)
     if args.output.exists():
         raise SystemExit(f"Immutable B3 worker output exists: {args.output}")
     protected = ("config.json", "configuration_prismatic.py", "modeling_prismatic.py")

@@ -7,6 +7,7 @@ import json
 import math
 import random
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 
@@ -22,6 +23,51 @@ def semantic_sha256(value: Mapping[str, Any]) -> str:
     payload = dict(value)
     payload.pop("semantic_sha256", None)
     return hashlib.sha256(canonical_bytes(payload)).hexdigest()
+
+
+def load_config_file(root: Path, relative: Path) -> dict[str, Any]:
+    """Load a frozen B3 config or its narrow pre-model recovery overlay."""
+
+    path = root / relative
+    value = json.loads(path.read_text())
+    if value.get("schema_version") != "brace.b3-recovery.v1":
+        validate_config(value)
+        return value
+    if value.get("semantic_sha256") != semantic_sha256(value):
+        raise B3ProtocolError("B3 recovery-record semantic hash mismatch")
+    base_relative = Path(value["base_configuration_relative"])
+    if base_relative.is_absolute() or ".." in base_relative.parts:
+        raise B3ProtocolError("B3 recovery base path is unsafe")
+    base = json.loads((root / base_relative).read_text())
+    validate_config(base)
+    if base["semantic_sha256"] != value["base_configuration_semantic_sha256"]:
+        raise B3ProtocolError("B3 recovery base identity changed")
+    resolved = dict(base)
+    resolved["run_id"] = value["run_id"]
+    resolved["recovery"] = {
+        "attempt": 2,
+        "prior_run_id": value["prior_run_id"],
+        "correction": value["correction"],
+    }
+    resolved["semantic_sha256"] = value["resolved_configuration_semantic_sha256"]
+    validate_config(resolved)
+    return resolved
+
+
+def allowed_project_status(raw: bytes, run_id: str) -> bool:
+    """Accept only raw NUL-delimited tmp evidence and this run's launch record."""
+
+    entries = [entry.decode("utf-8") for entry in raw.split(b"\0") if entry]
+    for entry in entries:
+        if len(entry) < 4 or entry[:3] != "?? ":
+            return False
+        path = entry[3:]
+        if path == "tmp" or path.startswith("tmp/"):
+            continue
+        if path == f"results/{run_id}/launch.json":
+            continue
+        return False
+    return True
 
 
 def planned_query_count(config: Mapping[str, Any]) -> int:
@@ -45,7 +91,7 @@ def validate_config(config: Mapping[str, Any]) -> None:
         raise B3ProtocolError("B3 schema changed")
     if config.get("semantic_sha256") != semantic_sha256(config):
         raise B3ProtocolError("B3 semantic hash mismatch")
-    if config.get("run_id") != "brace-b3-physical-v01":
+    if config.get("run_id") not in {"brace-b3-physical-v01", "brace-b3-physical-v02"}:
         raise B3ProtocolError("B3 run identity changed")
     authorization = config["authorization"]
     if authorization != {

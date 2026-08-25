@@ -2134,3 +2134,21 @@ Last updated: 2026-08-25
   prohibited, v02 recovery is not authorized, and B4 remains unauthorized.
 - Evidence: `reports/BRACE_B3_V01_TECHNICAL_STOP_REPORT.md` and
   `reports/runtime/brace_b3_v01_technical_stop.json`.
+
+## D-125 — Authorize narrow BRACE-B3 v02 recovery
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: IN_PROGRESS
+- Decision: The user explicitly authorized one v02 recovery after reviewing
+  the zero-query v01 diagnosis.
+- Sole correction: Replace human-quoted Git porcelain parsing with
+  NUL-delimited porcelain-v1 parsing and use a distinct immutable run identity.
+- Frozen invariants: Method logic, profiles, thresholds, timing design, parity,
+  comparator dispositions, query allocations/caps, memory limit, outcome
+  boundary, and acceptance gates are unchanged from v01.
+- Resolved configuration semantic SHA-256:
+  `45dbf458e014bbd6314e12de92256859f57c716a03c25e9091a2286c09f8e925`.
+- Authorization boundary: One v02 attempt, no automatic retry, and stop before
+  B4 in every case.
+- Evidence freeze: `docs/BRACE_B3_V02_RECOVERY_FREEZE.md`.

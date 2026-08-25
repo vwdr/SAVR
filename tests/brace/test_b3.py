@@ -10,6 +10,8 @@ from savr.brace.b3 import (
     QueryLedger,
     cycle_schedule,
     empirical_quantile,
+    allowed_project_status,
+    load_config_file,
     planned_query_count,
     profile_speed_gate,
     semantic_sha256,
@@ -38,6 +40,19 @@ def test_frozen_b3_configuration_and_resource_boundary():
     changed["resource_caps"]["model_query_hard_cap"] = 481
     with pytest.raises(B3ProtocolError, match="semantic hash"):
         validate_config(changed)
+
+
+def test_v02_recovery_overlay_changes_only_identity_and_guard_record():
+    base = load_config()
+    recovered = load_config_file(ROOT, Path("configs/brace/b3_physical_v2_recovery.json"))
+    assert recovered["run_id"] == "brace-b3-physical-v02"
+    assert recovered["recovery"]["prior_run_id"] == base["run_id"]
+    for key in base:
+        if key not in {"run_id", "semantic_sha256"}:
+            assert recovered[key] == base[key]
+    raw = b"?? tmp/a file.pdf\0?? results/brace-b3-physical-v02/launch.json\0"
+    assert allowed_project_status(raw, recovered["run_id"])
+    assert not allowed_project_status(raw + b"?? manuscript/paper.tex\0", recovered["run_id"])
 
 
 def test_profile_grid_is_nested_asymmetric_and_query_accounted():
