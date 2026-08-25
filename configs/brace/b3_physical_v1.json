@@ -1,0 +1,163 @@
+{
+  "schema_version": "brace.b3-config.v1",
+  "run_id": "brace-b3-physical-v01",
+  "date": "2026-08-25",
+  "semantic_sha256": "30825fd30eb2c0566b30564740a212c51e09dc60f7e9c4bc7315b24b369dea11",
+  "authorization": {
+    "user_authorized_b3": true,
+    "separate_gpu_authorization": true,
+    "b4_authorized": false
+  },
+  "provenance": {
+    "protocol": "docs/BRACE_EXECUTION_PROTOCOL_V2_1.md",
+    "b2_summary_semantic_sha256": "368a86377cbe1507445f0d06cd2ed48395e34c8e770d0f51c0dc9adaca95b2a9",
+    "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "libero_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "vla_cache_revision": "a4909880573868dee2769343d52e793c0341678b",
+    "vla_adp_revision": "d7094b09a4996847772c1fa975f09d863e1b759a",
+    "vla_pruner_revision": "84d4b7192c77abf1585610e2f12393319b7ebff9",
+    "specprune_vla_revision": "8091adc4b574ce9008d49a1dc9a210f4eec314c1"
+  },
+  "model": {
+    "checkpoint_relative": "checkpoints/openvla-7b-oft-libero-four-suite",
+    "instruction": "move the robot safely to the target",
+    "dtype": "torch.bfloat16",
+    "action_chunk": 8,
+    "action_dimension": 7,
+    "proprio_dimension": 8,
+    "scene_tokens": 256,
+    "wrist_tokens": 256,
+    "decoder_layers": 32,
+    "pruning_layers": [2, 6, 9, 11],
+    "sidecar_layers": [6, 15, 24]
+  },
+  "profiles": [
+    {
+      "profile_id": "P1-S25",
+      "family": "P1",
+      "scene_budgets": [16, 32, 48, 64],
+      "wrist_budgets": [0, 0, 0, 0],
+      "scene_change_limit": 0.02,
+      "wrist_change_limit": 0.0,
+      "scene_max_age": 4,
+      "wrist_max_age": 0,
+      "protected_scene_tokens": 64,
+      "protected_wrist_tokens": 256
+    },
+    {
+      "profile_id": "P1-S50",
+      "family": "P1",
+      "scene_budgets": [32, 64, 96, 128],
+      "wrist_budgets": [0, 0, 0, 0],
+      "scene_change_limit": 0.05,
+      "wrist_change_limit": 0.0,
+      "scene_max_age": 4,
+      "wrist_max_age": 0,
+      "protected_scene_tokens": 64,
+      "protected_wrist_tokens": 256
+    },
+    {
+      "profile_id": "P2-D25",
+      "family": "P2",
+      "scene_budgets": [16, 32, 48, 64],
+      "wrist_budgets": [8, 16, 24, 32],
+      "scene_change_limit": 0.02,
+      "wrist_change_limit": 0.01,
+      "scene_max_age": 4,
+      "wrist_max_age": 2,
+      "protected_scene_tokens": 64,
+      "protected_wrist_tokens": 64
+    },
+    {
+      "profile_id": "P2-D50",
+      "family": "P2",
+      "scene_budgets": [32, 64, 96, 128],
+      "wrist_budgets": [16, 32, 48, 64],
+      "scene_change_limit": 0.05,
+      "wrist_change_limit": 0.025,
+      "scene_max_age": 4,
+      "wrist_max_age": 2,
+      "protected_scene_tokens": 64,
+      "protected_wrist_tokens": 64
+    }
+  ],
+  "eligibility": {
+    "patch_change_weights": [0.5, 0.5],
+    "cosine_epsilon": 1e-08,
+    "normalized_proprio_source_linf_max": 0.05,
+    "normalized_proprio_step_linf_max": 0.05,
+    "previous_action_summary_linf_max": 0.1,
+    "current_motion_linf_max": 1.0,
+    "unexpected_gripper_transition_veto": true,
+    "missing_or_nonfinite_veto": true
+  },
+  "measurement": {
+    "seed": 20260825,
+    "horizons": [1, 2, 4],
+    "profile_warmup_horizon": 4,
+    "profile_warmup_cycles_each": 1,
+    "timed_cycles_per_profile_horizon": 6,
+    "core_fr_queries": 22,
+    "cache_p0_queries": 20,
+    "attention_parity_queries": 2,
+    "corrected_vla_cache_queries": 20,
+    "clean_profile_queries": 260,
+    "vla_adp_queries": 32,
+    "vla_pruner_queries": 32,
+    "planned_model_queries": 388,
+    "quantiles": [0.5, 0.95, 0.99],
+    "outlier_deletion": false,
+    "randomized_interleaving": true,
+    "synchronize_every_measurement": true
+  },
+  "parity": {
+    "normalized_action_rtol": 0.001,
+    "normalized_action_atol": 0.0001,
+    "unnormalized_action_rtol": 1e-05,
+    "unnormalized_action_atol": 1e-06,
+    "gripper_decisions_exact": true,
+    "dense_sidecar_action_bitwise_preferred": true,
+    "p0_projected_inputs_exact": true
+  },
+  "comparators": {
+    "corrected_vla_cache": "required_timing",
+    "vla_adp": "required_timing_or_reviewed_technical_exclusion",
+    "vla_pruner": "required_timing_or_reviewed_technical_exclusion",
+    "specprune_vla": "reviewed_exclusion_missing_method_specific_license",
+    "gated_vla_cache": "reviewed_exclusion_no_official_code_and_discrete_logit_gate_not_defined_for_pinned_continuous_l1_head"
+  },
+  "p4": {
+    "action_steps": 8,
+    "libero_control_hz": 20,
+    "measured_window_seconds": 0.4,
+    "artificial_sleep_permitted": false,
+    "disposition_from_synchronized_dense_completion": true
+  },
+  "gates": {
+    "minimum_accelerated_query_reduction": 0.1,
+    "minimum_amortized_cycle_reduction": 0.08,
+    "peak_reserved_bytes_strictly_below": 24696061952,
+    "all_cache_provenance_reset_invariants": true,
+    "p0_matches_fr": true,
+    "mandatory_comparator_dispositions": true,
+    "p4_measured_disposition": true
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes_at_once": 1,
+    "model_query_hard_cap": 420,
+    "simulator_outcomes": 0,
+    "protected_outcome_access": false,
+    "downloads": 0,
+    "wall_seconds": 10800,
+    "artifact_bytes": 1073741824,
+    "writes_outside_project": 0,
+    "automatic_retry": false
+  },
+  "advance": {
+    "next_phase": "B4",
+    "requires_separate_authorization": true,
+    "stop_before_next_phase": true
+  }
+}

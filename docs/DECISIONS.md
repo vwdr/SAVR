@@ -2081,3 +2081,35 @@ Last updated: 2026-08-25
 - Evidence: `reports/BRACE_B2_REPORT.md`,
   `reports/runtime/brace_b2_v01_technical_stop.json`, and
   `reports/runtime/brace_b2_v02.json`.
+
+## D-123 — Authorize and freeze one bounded BRACE-B3 physical attempt
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: IN_PROGRESS
+- Decision: The user authorized B3. Freeze one fail-closed real-model attempt
+  comprising optimized core FR, synchronized cache-stack P0, corrected
+  VLA-Cache, four clean P1/P2 profiles, the official VLA-ADP component, and
+  official VLA-Pruner timing.
+- Scientific boundary: B3 tests physical action parity, complete-cycle timing,
+  cache/provenance invariants, memory, mandatory comparator dispositions, and
+  real control-window slack. It uses deterministic model inputs and zero
+  simulator outcomes; it cannot establish task reliability or a positive
+  paper result.
+- Resource boundary: 388 planned model queries under a hard cap of 420; one
+  aggregate-idle GPU and one model process at a time; strictly less than
+  23 GiB peak memory; zero downloads, protected outcomes, or automatic retry;
+  three hours and 1 GiB of project-local artifacts.
+- Comparator boundary: Corrected VLA-Cache receives required timing.
+  VLA-ADP's episode-coupled dynamic controller receives a reviewed component-
+  timing exclusion; VLA-Pruner receives isolated official temporal timing.
+  SpecPrune-VLA remains license-blocked. Gated VLA-Cache remains excluded
+  because no official code was found and its discrete-token confidence gate
+  is not defined for the pinned continuous L1 head.
+- Advance rule: All parity, provenance, memory, disposition, and accounting
+  gates must pass, and at least one clean profile must reduce accelerated-query
+  wall time by 10% and amortized complete-cycle wall time by 8%. Stop before
+  B4 in every case; B4 is not authorized.
+- Configuration: `configs/brace/b3_physical_v1.json`, semantic SHA-256
+  `30825fd30eb2c0566b30564740a212c51e09dc60f7e9c4bc7315b24b369dea11`.
+- Evidence freeze: `docs/BRACE_B3_EXECUTION_FREEZE.md`.

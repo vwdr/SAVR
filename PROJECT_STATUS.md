@@ -8,14 +8,18 @@ BRACE-B1 — **COMPLETE ACCEPTED**
 
 BRACE-B2 — **COMPLETE; ACCEPTED WITH COMPARATOR DISPOSITIONS**
 
+BRACE-B3 — **AUTHORIZED; FROZEN PHYSICAL ATTEMPT IN PROGRESS**
+
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
 provenance implementation passed all 13 v02 gates. Both real DynamicCache
 forks passed clone, restoration, and absolute-position update checks; the
-server adversarial suite passed 23 tests. The immutable v01 no-result stop and
-its two checker-oracle corrections remain documented. No model, GPU,
-simulator, policy query, or policy evaluation occurred. This is substrate
-correctness, not a positive-paper result. B3 remains separately gated.
+server adversarial suite passed 23 tests. B3 is now separately authorized and
+frozen at 388 planned model queries under a hard cap of 420, one aggregate-idle
+GPU, zero simulator outcomes, and no automatic retry. Its implementation
+passes the complete local suite (417 passed, 1 skipped). B4 remains
+unauthorized. No B3 scientific result exists until the single physical attempt
+and independent gate reconciliation finish.
 
 ## Current phase
 
