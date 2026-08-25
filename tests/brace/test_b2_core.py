@@ -370,18 +370,27 @@ def test_intent_records_require_overlap_exclude_outcomes_and_lock_fr_after_abort
 def test_frozen_b2_configuration_and_runner_preserve_phase_boundary():
     from savr.brace.b1 import semantic_sha256
 
-    config = json.loads((REPOSITORY_ROOT / "configs/brace/b2_correctness_v1.json").read_text())
-    supplied = config.pop("semantic_sha256")
-    assert semantic_sha256(config) == supplied
-    assert config["contracts"]["horizons"] == [1, 2, 4]
-    assert config["contracts"]["maximum_base_profiles"] == 6
-    assert config["b3_proposal"]["maximum_balanced_real_model_queries"] == 480
-    assert config["b3_proposal"]["requires_separate_authorization"] is True
-    caps = config["resource_caps"]
-    assert caps["cuda_visible"] is False
-    assert caps["model_queries"] == caps["policy_outcomes"] == caps["simulator_steps"] == 0
-    assert caps["model_checkpoint_dataset_downloads_allowed"] is False
+    configs = []
+    for name in ("b2_correctness_v1.json", "b2_correctness_v2.json"):
+        config = json.loads((REPOSITORY_ROOT / f"configs/brace/{name}").read_text())
+        supplied = config.pop("semantic_sha256")
+        assert semantic_sha256(config) == supplied
+        configs.append(config)
+        assert config["contracts"]["horizons"] == [1, 2, 4]
+        assert config["contracts"]["maximum_base_profiles"] == 6
+        assert config["b3_proposal"]["maximum_balanced_real_model_queries"] == 480
+        assert config["b3_proposal"]["requires_separate_authorization"] is True
+        caps = config["resource_caps"]
+        assert caps["cuda_visible"] is False
+        assert caps["model_queries"] == caps["policy_outcomes"] == caps["simulator_steps"] == 0
+        assert caps["model_checkpoint_dataset_downloads_allowed"] is False
+    v1, v2 = configs
+    for key in ("stacks", "comparators", "contracts", "b3_proposal", "resource_caps"):
+        assert v2[key] == v1[key]
+    assert v2["recovery"]["supersedes_run_id"] == "brace-b2-correctness-v01"
+    assert v2["recovery"]["scientific_gates_changed"] is False
     runner = (REPOSITORY_ROOT / "scripts/run_brace_b2.py").read_text()
+    assert 'CONFIG_RELATIVE = Path("configs/brace/b2_correctness_v2.json")' in runner
     assert '"CUDA_VISIBLE_DEVICES": ""' in runner
     assert "initialize_model" not in runner
     assert "nvidia-smi" not in runner

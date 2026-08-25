@@ -1,0 +1,74 @@
+{
+  "schema_version": "brace.b2-config.v2",
+  "run_id": "brace-b2-correctness-v02",
+  "date": "2026-08-25",
+  "semantic_sha256": "04370384312f4474fd5488fa3b4dad1559d3d7916564501c802fdec8214906bd",
+  "recovery": {
+    "supersedes_run_id": "brace-b2-correctness-v01",
+    "changes": [
+      "compare transaction restoration against an immutable pre-mutation tensor copy",
+      "test BRACE position-preserving index updates on both stacks instead of requiring the core 4.40.1 DynamicCache to contain the VLA-Cache 4.47.0 customization"
+    ],
+    "scientific_gates_changed": false
+  },
+  "stacks": {
+    "core": {
+      "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+      "transformers_revision": "bc339d9ad707454c0c115970db43c260067c61ab",
+      "transformers_version": "4.40.1"
+    },
+    "vla_cache": {
+      "repository_revision": "a4909880573868dee2769343d52e793c0341678b",
+      "transformers_revision": "9a90a37acacf453433168db8d7769b7ea3c40c06",
+      "transformers_version": "4.47.0"
+    }
+  },
+  "comparators": {
+    "vla_adp": {
+      "url": "https://github.com/chen7086/VLA-ADP.git",
+      "revision": "d7094b09a4996847772c1fa975f09d863e1b759a",
+      "stack_mode": "core-4.40.1"
+    },
+    "vla_pruner": {
+      "url": "https://github.com/MINT-SJTU/VLA-Pruner.git",
+      "revision": "84d4b7192c77abf1585610e2f12393319b7ebff9",
+      "stack_mode": "vendored-4.47.0"
+    },
+    "specprune_vla": {
+      "url": "https://github.com/alexwhz-sjtu/SpecPrune-VLA.git",
+      "revision": "8091adc4b574ce9008d49a1dc9a210f4eec314c1",
+      "stack_mode": "core-4.40.1"
+    },
+    "gated_vla_cache": {
+      "paper": "arXiv:2608.10824",
+      "official_code": null,
+      "stack_mode": "paper-only"
+    }
+  },
+  "contracts": {
+    "selectable_families": ["P1", "P2"],
+    "nonselectable_families": ["P0", "P3", "P4"],
+    "horizons": [1, 2, 4],
+    "maximum_base_profiles": 6,
+    "maximum_scene_only_profiles": 3,
+    "maximum_dual_view_profiles": 3
+  },
+  "b3_proposal": {
+    "maximum_balanced_real_model_queries": 480,
+    "maximum_visible_gpus": 1,
+    "simulator_outcomes": 0,
+    "memory_cap_gib": 23,
+    "requires_separate_authorization": true
+  },
+  "resource_caps": {
+    "cuda_visible": false,
+    "model_queries": 0,
+    "policy_outcomes": 0,
+    "simulator_steps": 0,
+    "wall_seconds": 1800,
+    "artifact_bytes": 16777216,
+    "source_code_bytes": 1073741824,
+    "source_code_downloads_allowed": true,
+    "model_checkpoint_dataset_downloads_allowed": false
+  }
+}

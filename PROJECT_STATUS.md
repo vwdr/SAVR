@@ -10,8 +10,10 @@ BRACE-B2 — **IN PROGRESS; CPU/SYNTHETIC CORRECTNESS ONLY**
 
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
-provenance implementation is frozen for one TITAN CPU verification. Local
-tests pass; the two real DynamicCache forks remain to be verified on TITAN.
+provenance implementation is frozen for TITAN CPU verification. The immutable
+v01 attempt ended as a no-result technical stop because of two checker-oracle
+errors. A narrow v02 recovery corrects those comparisons without changing any
+scientific gate; both real DynamicCache forks remain to be verified in v02.
 No BRACE model, GPU, simulator, policy query, or policy evaluation is allowed,
 and B3 remains separately gated.
 

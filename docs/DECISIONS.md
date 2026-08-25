@@ -2027,3 +2027,28 @@ Last updated: 2026-08-25
   `220c0b6b15253e0ecbea34010258d580cecb90f459d2d55da8bb10c01760285a`.
 - Evidence: `docs/BRACE_B2_IMPLEMENTATION_FREEZE.md` and the B2 implementation
   and tests in `src/savr/brace/` and `tests/brace/`.
+
+## D-121 — Preserve B2 v01 technical stop and freeze narrow v02 recovery
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: ACTIVE_EXECUTION
+- Decision: Preserve `brace-b2-correctness-v01` as an immutable no-result
+  technical stop and permit one distinct CPU-only v02 recovery under the
+  existing B2 authorization.
+- Diagnosis: The v01 checker compared restored cache state with a tensor that
+  the cache retained by reference and later mutated. It also required the core
+  Transformers 4.40.1 cache source to contain the separate VLA-Cache 4.47.0
+  position-update customization. Direct tests showed independent cloning on
+  both stacks; the defects were in these two checker oracles.
+- Correction: Compare restoration with an immutable pre-mutation clone; test
+  BRACE's position-preserving update on both stacks; identify fork-specific
+  source behavior separately.
+- Scientific boundary: No BRACE algorithm, contract/profile grid, comparator,
+  resource cap, B3 proposal, or acceptance gate changed. V01 made zero model
+  queries, policy observations, simulator steps, or GPU operations and is not
+  a method result.
+- Configuration: `configs/brace/b2_correctness_v2.json`, semantic SHA-256
+  `04370384312f4474fd5488fa3b4dad1559d3d7916564501c802fdec8214906bd`.
+- Authorization boundary: One v02 CPU/synthetic attempt only. B3 remains
+  unauthorized.

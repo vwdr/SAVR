@@ -16,7 +16,7 @@ from typing import Any, Mapping
 
 
 EXPECTED_ROOT = Path("/home/ved/SAVR")
-CONFIG_RELATIVE = Path("configs/brace/b2_correctness_v1.json")
+CONFIG_RELATIVE = Path("configs/brace/b2_correctness_v2.json")
 
 
 def utc_now() -> str:
@@ -54,8 +54,13 @@ def validate_config(config: Mapping[str, Any]) -> None:
     payload.pop("semantic_sha256", None)
     if semantic_sha256(payload) != supplied:
         raise RuntimeError("B2 configuration semantic hash mismatch")
-    if config.get("schema_version") != "brace.b2-config.v1":
+    if config.get("schema_version") != "brace.b2-config.v2":
         raise RuntimeError("B2 configuration schema changed")
+    recovery = config.get("recovery")
+    if not isinstance(recovery, dict) or recovery.get("supersedes_run_id") != "brace-b2-correctness-v01":
+        raise RuntimeError("B2 recovery identity changed")
+    if recovery.get("scientific_gates_changed") is not False:
+        raise RuntimeError("B2 recovery changed scientific gates")
     contracts = config["contracts"]
     if contracts != {
         "selectable_families": ["P1", "P2"],
@@ -109,11 +114,12 @@ import json
 from types import SimpleNamespace
 import torch, transformers
 from transformers import DynamicCache
-from savr.brace.cache_adapter import clone_dynamic_cache, transactional_cache_configuration
+from savr.brace.cache_adapter import clone_dynamic_cache, position_preserving_index_update, transactional_cache_configuration
 cache = DynamicCache()
 keys = torch.arange(24, dtype=torch.float32).reshape(1, 2, 4, 3)
 values = keys + 100
 cache.update(keys, values, 0, {"cache_position": torch.arange(4)})
+before = cache.key_cache[0].clone()
 clone = clone_dynamic_cache(cache)
 clone.key_cache[0].add_(1)
 independent = torch.equal(cache.key_cache[0], keys) and not torch.equal(clone.key_cache[0], keys)
@@ -125,9 +131,16 @@ try:
         raise RuntimeError("synthetic")
 except RuntimeError:
     pass
-restored = torch.equal(cache.key_cache[0], keys) and config.mode == "dense" and not hasattr(config, "temporary")
-import inspect
-update_source = inspect.getsource(DynamicCache.update)
+restored = torch.equal(cache.key_cache[0], before) and config.mode == "dense" and not hasattr(config, "temporary")
+cached = torch.arange(24, dtype=torch.float32).reshape(1, 2, 4, 3)
+current = torch.full((1, 2, 2, 3), 999.0)
+updated = position_preserving_index_update(cached, current, [1, 3])
+position_preserving = (
+    torch.equal(updated[:, :, 0], cached[:, :, 0])
+    and torch.equal(updated[:, :, 2], cached[:, :, 2])
+    and torch.equal(updated[:, :, 1], current[:, :, 0])
+    and torch.equal(updated[:, :, 3], current[:, :, 1])
+)
 print(json.dumps({
     "python": __import__("sys").version.split()[0],
     "torch": torch.__version__,
@@ -135,7 +148,7 @@ print(json.dumps({
     "cuda_initialized": torch.cuda.is_initialized(),
     "clone_independent": independent,
     "transaction_restored": restored,
-    "position_preserving_update_present": "cache_position" in update_source and "index_copy" in update_source,
+    "position_preserving_update_present": position_preserving,
 }))
 '''
 

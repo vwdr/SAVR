@@ -60,10 +60,12 @@ def test_real_tensor_index_copy_preserves_absolute_sequence_positions():
     assert torch.equal(cached, torch.arange(24, dtype=torch.float32).reshape(1, 2, 4, 3))
 
 
-def test_expected_transformers_stack_and_custom_position_update_are_present():
+def test_expected_transformers_stack_and_fork_specific_update_are_identified():
     assert transformers.__version__ in {"4.40.1", "4.47.0"}
     import inspect
 
     source = inspect.getsource(DynamicCache.update)
-    assert "cache_position" in source
-    assert "index_copy" in source
+    if transformers.__version__ == "4.47.0":
+        assert "cache_position" in source and "index_copy" in source
+    else:
+        assert "cache_position" not in source and "index_copy" not in source

@@ -2,12 +2,34 @@
 
 Date: 2026-08-25
 
-Status: Frozen before TITAN B2 execution
+Status: Frozen v02 recovery after an immutable no-result v01 technical stop
 
 Governing protocol: `docs/BRACE_EXECUTION_PROTOCOL_V2_1.md`
 
 Configuration semantic SHA-256:
 `220c0b6b15253e0ecbea34010258d580cecb90f459d2d55da8bb10c01760285a`
+
+Recovery v02 semantic SHA-256:
+`04370384312f4474fd5488fa3b4dad1559d3d7916564501c802fdec8214906bd`
+
+## Immutable v01 technical stop and v02 correction
+
+The first TITAN attempt, `brace-b2-correctness-v01`, stopped before producing
+a summary. It made zero model queries, policy observations, simulator steps,
+or GPU operations and is retained as immutable technical evidence. The stop
+was caused by two checker-oracle errors rather than a failed cache primitive:
+
+1. transaction restoration was compared with an input tensor that
+   `DynamicCache.update` had retained by reference and the test later mutated;
+   v02 compares with an immutable pre-mutation clone; and
+2. the checker required the core Transformers 4.40.1 `DynamicCache` source to
+   contain a position-update customization from the separate 4.47.0
+   VLA-Cache fork; v02 instead tests BRACE's own position-preserving update on
+   both isolated stacks and separately identifies the fork-specific source.
+
+No method rule, profile, comparator, resource cap, B3 proposal, or scientific
+acceptance gate changed. V02 is a distinct create-once run and does not replace
+or rewrite v01 evidence.
 
 ## Scope
 
