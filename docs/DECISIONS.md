@@ -2232,3 +2232,23 @@ Last updated: 2026-08-25
   `21b44336aac5db0f62131449a0f1eb2eaf2ce1c19bde118b4af577c390d9fc86`.
 - Authorization boundary: One v04 attempt, no automatic retry, stop before B4.
 - Evidence freeze: `docs/BRACE_B3_V04_RECOVERY_FREEZE.md`.
+
+## D-130 — Preserve BRACE-B3 v04 profile-gate technical stop
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: COMPLETE_TECHNICAL_STOP_NO_RESULT
+- Decision: Preserve v04 without scientific analysis. The cache stack remained
+  below the memory gate and progressed through 43 queries, then the first
+  profile gate called binary `torch.maximum` with one stacked operand.
+- Accounting: 22 core-FR plus 43 reconstructed cache completions; 324 queries
+  conservatively charged. Peak aggregate memory was 18,419 MiB. No simulator
+  outcomes or protected fields were used.
+- Interpretation: V04 confirms the inference-mode memory correction but is not
+  a complete BRACE timing/parity result because the cache worker has no terminal
+  artifact and no profile reuse query completed.
+- Correction: Use two tensor operands and add a real-tensor patch-score test.
+- Restoration: Protected checkpoint hashes match the frozen baseline exactly.
+- Authorization boundary: No automatic retry; v05 and B4 are unauthorized.
+- Evidence: `reports/BRACE_B3_V04_TECHNICAL_STOP_REPORT.md` and
+  `reports/runtime/brace_b3_v04_technical_stop.json`.

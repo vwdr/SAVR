@@ -24,6 +24,7 @@ from savr.brace.b3_openvla import (
     compare_actions,
     deterministic_inputs,
     midpoint_proprio_state,
+    patch_change_scores,
 )
 
 
@@ -212,3 +213,28 @@ def test_source_tracker_enforces_mixed_source_ages_and_nested_updates():
             profile=profile,
             pruning_layers=(2, 6, 9, 11),
         )
+
+
+def test_patch_change_score_runs_on_real_torch_tensors_and_is_finite():
+    torch = pytest.importorskip("torch")
+    source = torch.zeros((1, 3, 224, 224), dtype=torch.float32)
+    current = source.clone()
+    unchanged = patch_change_scores(
+        current,
+        source,
+        torch_module=torch,
+        epsilon=1e-8,
+        weights=(0.5, 0.5),
+    )
+    assert tuple(unchanged.shape) == (256,)
+    assert torch.isfinite(unchanged).all() and torch.count_nonzero(unchanged) == 0
+    current[:, :, :14, :14] = 1
+    changed = patch_change_scores(
+        current,
+        source,
+        torch_module=torch,
+        epsilon=1e-8,
+        weights=(0.5, 0.5),
+    )
+    assert torch.isfinite(changed).all()
+    assert changed[0] > 0 and torch.count_nonzero(changed) == 1

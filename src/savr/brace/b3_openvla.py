@@ -346,9 +346,7 @@ def patch_change_scores(
     old = old.unfold(2, 14, 14).unfold(3, 14, 14).permute(0, 2, 3, 1, 4, 5)
     camera = camera.reshape(256, -1)
     old = old.reshape(256, -1)
-    span = torch.maximum(torch.stack([camera.max(), old.max()])) - torch.minimum(
-        torch.stack([camera.min(), old.min()])
-    )
+    span = torch.maximum(camera.max(), old.max()) - torch.minimum(camera.min(), old.min())
     denominator = torch.clamp(span * camera.shape[1], min=epsilon)
     l1 = torch.clamp((camera - old).abs().sum(dim=1) / denominator, 0, 1)
     current_norm = torch.linalg.vector_norm(camera, dim=1)

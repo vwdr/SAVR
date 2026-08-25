@@ -8,7 +8,7 @@ BRACE-B1 — **COMPLETE ACCEPTED**
 
 BRACE-B2 — **COMPLETE; ACCEPTED WITH COMPARATOR DISPOSITIONS**
 
-BRACE-B3 — **V04 INFERENCE-MODE RECOVERY AUTHORIZED; IN PROGRESS**
+BRACE-B3 — **V04 PROFILE-GATE TECHNICAL STOP; NO COMPLETE RESULT**
 
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
@@ -31,9 +31,10 @@ gates. The user authorized one v03 recovery after an expanded pinned-interface
 audit. V03 completed 22 core-FR queries, then its first custom cache query
 retained an unintended autograd graph and crossed the 23 GiB stop boundary.
 That memory is not a valid inference measurement, and no cache query completed.
-The full custom path now enforces inference mode. The user authorized one v04
-recovery after the SDPA backend and memory-lifecycle audit. B4 remains
-unauthorized.
+V04 confirmed inference-mode memory feasibility at 18,419 MiB and completed 22
+core plus 43 cache queries, then stopped on a one-argument `torch.maximum`
+API typo in the first profile gate. The corrected two-operand score has a real-
+tensor regression test. V05 is not authorized, and B4 remains unauthorized.
 
 ## Current phase
 
