@@ -1796,3 +1796,31 @@ Last updated: 2026-08-10
 - Disposition:
   `STOP_NO_RETRY_V10_TWO_CAPTURE_HYPOTHESIS_REJECTED_DOWNSTREAM_ONLY_CAPTURE_TECHNICAL_FAILURE`.
   V5-E remains ineligible.
+
+## D-113 — Select on-policy counterfactual cache routing for positive-direction research
+
+- Date: 2026-08-24
+- Classification: `DECISION`
+- Status: ACTIVE
+- Decision: Select On-Policy Counterfactual Cache Routing (OPCCR) as the next
+  research direction after auditing the completed SAVR/ACR evidence, the pinned
+  OpenVLA-OFT architecture, VLA-Cache, and the closest 2025--2026 efficiency
+  methods.
+- Scientific rationale: The original experiments exposed cache-induced
+  closed-loop distribution shift, while the timing pilot located 83.7% of query
+  CUDA time downstream of the visual encoder. OPCCR therefore trains a
+  reject-capable router on cache-induced trajectories using paired current-state
+  full-refresh/cached outputs, and applies it to downstream visual-KV reuse.
+- Novelty boundary: Do not claim novelty for KV caching, camera asymmetry,
+  DAgger, confidence gating, or rejection individually. The provisional
+  contribution is their specific use in on-policy counterfactual supervision
+  for a fail-closed VLA cache intervention.
+- Evidence boundary: This is a research decision, not a positive result. No
+  OPCCR implementation, GPU operation, simulator episode, model download, or
+  outcome was produced.
+- Execution boundary: Proceed only through the stop-fast R1--R6 gates in
+  `docs/ON_POLICY_CACHE_ROUTING_PROPOSAL.md`. R1 is CPU/local only; R2 requires
+  an accepted resource estimate and explicit authorization for one frozen GPU
+  microbenchmark.
+- Evidence: `docs/POSITIVE_RESULTS_DIRECTION_AUDIT.md` and
+  `docs/ON_POLICY_CACHE_ROUTING_PROPOSAL.md`.
