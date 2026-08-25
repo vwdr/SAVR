@@ -8,7 +8,7 @@ BRACE-B1 — **COMPLETE ACCEPTED**
 
 BRACE-B2 — **COMPLETE; ACCEPTED WITH COMPARATOR DISPOSITIONS**
 
-BRACE-B3 — **V04 PROFILE-GATE TECHNICAL STOP; NO COMPLETE RESULT**
+BRACE-B3 — **PRE-V05 CPU-ONLY AUDIT IN PROGRESS; NO COMPLETE RESULT**
 
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
@@ -35,6 +35,11 @@ V04 confirmed inference-mode memory feasibility at 18,419 MiB and completed 22
 core plus 43 cache queries, then stopped on a one-argument `torch.maximum`
 API typo in the first profile gate. The corrected two-operand score has a real-
 tensor regression test. V05 is not authorized, and B4 remains unauthorized.
+The user authorized an exhaustive CUDA-hidden audit of every remaining B3 path
+that can be tested without loading the model. It adds real-PyTorch SDPA,
+profile, horizon, source-provenance, patch-score, query-accounting, pinned-
+interface, and repository-integrity checks. This audit is not a v05 attempt and
+cannot produce a scientific result.
 
 ## Current phase
 

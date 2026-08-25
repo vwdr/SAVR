@@ -2252,3 +2252,20 @@ Last updated: 2026-08-25
 - Authorization boundary: No automatic retry; v05 and B4 are unauthorized.
 - Evidence: `reports/BRACE_B3_V04_TECHNICAL_STOP_REPORT.md` and
   `reports/runtime/brace_b3_v04_technical_stop.json`.
+
+## D-131 — Authorize an exhaustive CPU-only pre-v05 technical audit
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: IN_PROGRESS
+- Decision: Before considering another physical attempt, systematically audit
+  every remaining B3 path that can be exercised without a model load or GPU.
+- Scope: Real-PyTorch patch scoring and SDPA-sidecar tests; all profiles,
+  horizons, source-provenance paths, and frozen query allocations; worker and
+  analyzer contracts; pinned private signatures/backends/revisions; immutable
+  evidence and repository-state guards.
+- Resource boundary: CUDA hidden and uninitialized; zero model loads, model
+  queries, simulator outcomes, or protected-outcome access. Work only inside
+  `/home/ved/SAVR` on TITAN.
+- Authorization boundary: This decision does not authorize B3-v05 or B4.
+- Evidence protocol: `docs/BRACE_B3_PRE_V05_AUDIT_PROTOCOL.md`.

@@ -137,10 +137,12 @@ class SDPASidecarTap(AbstractContextManager["SDPASidecarTap"]):
     ) -> Any:
         torch = self.torch
         families = []
+        first_query = next(iter(self.captured.values()))[0]
+        device = first_query.device
         for positions in (instruction_positions, action_positions):
             per_layer = []
-            index = torch.as_tensor(tuple(positions), device="cuda:0", dtype=torch.long)
-            visual = torch.as_tensor(tuple(visual_positions), device="cuda:0", dtype=torch.long)
+            index = torch.as_tensor(tuple(positions), device=device, dtype=torch.long)
+            visual = torch.as_tensor(tuple(visual_positions), device=device, dtype=torch.long)
             for query, key, mask, scale in self.captured.values():
                 selected_query = query.index_select(2, index)
                 logits = torch.matmul(selected_query.float(), key.float().transpose(-1, -2)) * scale
@@ -417,7 +419,7 @@ def ordered_profile_positions(
         proportions.append((scene_budget + wrist_budget) / final_total)
     if len(ordered) != len(set(ordered)) or len(ordered) != final_total:
         raise B3ProtocolError("B3 ordered profile positions are not unique and complete")
-    return torch.as_tensor(ordered, device="cuda:0", dtype=torch.long), proportions
+    return torch.as_tensor(ordered, device=scene_change.device, dtype=torch.long), proportions
 
 
 class SourceTracker:
