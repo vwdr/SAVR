@@ -2174,3 +2174,22 @@ Last updated: 2026-08-25
   not authorized, and B4 remains unauthorized.
 - Evidence: `reports/BRACE_B3_V02_TECHNICAL_STOP_REPORT.md` and
   `reports/runtime/brace_b3_v02_technical_stop.json`.
+
+## D-127 — Authorize narrow BRACE-B3 v03 recovery
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: IN_PROGRESS
+- Decision: The user authorized continuation after reviewing the exact v02
+  diagnosis and the limits of the correction guarantee.
+- Sole correction: The deterministic proprioception fixture uses the official
+  evaluator-resolved normalization key rather than a hardcoded unsuffixed key.
+- Additional verification: Reconcile every private cache-worker model helper,
+  tensor layout, action slice, DynamicCache return, and official cache tuple
+  against pinned sources before launch.
+- Frozen invariants: No method, profile, threshold, timing, parity, comparator,
+  resource, outcome, or acceptance-gate change.
+- Resolved configuration semantic SHA-256:
+  `8d6922e797432fcfd079a1c61fa1071ec19b6338dbe8a21178a1b9b6bb701ef9`.
+- Authorization boundary: One v03 attempt, no automatic retry, stop before B4.
+- Evidence freeze: `docs/BRACE_B3_V03_RECOVERY_FREEZE.md`.

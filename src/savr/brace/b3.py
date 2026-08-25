@@ -45,7 +45,7 @@ def load_config_file(root: Path, relative: Path) -> dict[str, Any]:
     resolved = dict(base)
     resolved["run_id"] = value["run_id"]
     resolved["recovery"] = {
-        "attempt": 2,
+        "attempt": int(value.get("attempt", 2)),
         "prior_run_id": value["prior_run_id"],
         "correction": value["correction"],
     }
@@ -91,7 +91,11 @@ def validate_config(config: Mapping[str, Any]) -> None:
         raise B3ProtocolError("B3 schema changed")
     if config.get("semantic_sha256") != semantic_sha256(config):
         raise B3ProtocolError("B3 semantic hash mismatch")
-    if config.get("run_id") not in {"brace-b3-physical-v01", "brace-b3-physical-v02"}:
+    if config.get("run_id") not in {
+        "brace-b3-physical-v01",
+        "brace-b3-physical-v02",
+        "brace-b3-physical-v03",
+    }:
         raise B3ProtocolError("B3 run identity changed")
     authorization = config["authorization"]
     if authorization != {

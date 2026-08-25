@@ -1,0 +1,15 @@
+{
+  "schema_version": "brace.b3-recovery.v1",
+  "run_id": "brace-b3-physical-v03",
+  "attempt": 3,
+  "prior_run_id": "brace-b3-physical-v02",
+  "base_configuration_relative": "configs/brace/b3_physical_v1.json",
+  "base_configuration_semantic_sha256": "30825fd30eb2c0566b30564740a212c51e09dc60f7e9c4bc7315b24b369dea11",
+  "resolved_configuration_semantic_sha256": "8d6922e797432fcfd079a1c61fa1071ec19b6338dbe8a21178a1b9b6bb701ef9",
+  "correction": "evaluator_resolved_unnorm_key_for_proprio_fixture_only",
+  "authorization": {
+    "user_authorized_b3_v03_recovery": true,
+    "b4_authorized": false
+  },
+  "semantic_sha256": "088feb4b8944b1662f9262485e1bfd87117fb63a0f056a1c5129b8c213f439cb"
+}

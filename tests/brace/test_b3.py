@@ -61,6 +61,20 @@ def test_v02_recovery_overlay_changes_only_identity_and_guard_record():
     assert not allowed_project_status(raw + b"?? manuscript/paper.tex\0", recovered["run_id"])
 
 
+def test_v03_recovery_overlay_changes_only_identity_and_normalization_record():
+    base = load_config()
+    recovered = load_config_file(ROOT, Path("configs/brace/b3_physical_v3_recovery.json"))
+    assert recovered["run_id"] == "brace-b3-physical-v03"
+    assert recovered["recovery"] == {
+        "attempt": 3,
+        "prior_run_id": "brace-b3-physical-v02",
+        "correction": "evaluator_resolved_unnorm_key_for_proprio_fixture_only",
+    }
+    for key in base:
+        if key not in {"run_id", "semantic_sha256"}:
+            assert recovered[key] == base[key]
+
+
 def test_profile_grid_is_nested_asymmetric_and_query_accounted():
     config = load_config()
     profiles = {profile["profile_id"]: profile for profile in config["profiles"]}

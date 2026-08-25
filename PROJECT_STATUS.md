@@ -8,7 +8,7 @@ BRACE-B1 — **COMPLETE ACCEPTED**
 
 BRACE-B2 — **COMPLETE; ACCEPTED WITH COMPARATOR DISPOSITIONS**
 
-BRACE-B3 — **V02 PRE-QUERY TECHNICAL STOP; NO RESULT**
+BRACE-B3 — **V03 NARROW RECOVERY AUTHORIZED; IN PROGRESS**
 
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
@@ -27,7 +27,8 @@ than the official evaluator-resolved `libero_object_no_noops` normalization
 key. Actual completed queries and outcomes were zero; 22 queries are
 conservatively charged. The checkpoint was restored exactly. The alias
 correction and regression test are implemented without changing the method or
-gates, but v03 is not authorized. B4 remains unauthorized.
+gates. The user authorized one v03 recovery after an expanded pinned-interface
+audit. B4 remains unauthorized.
 
 ## Current phase
 
