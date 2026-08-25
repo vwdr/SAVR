@@ -238,6 +238,7 @@ def run_cache_suite(config: dict[str, Any], run_root: Path) -> dict[str, Any]:
             instruction=instruction,
         )
 
+    @torch.inference_mode()
     def direct(
         label: str,
         *,
@@ -249,6 +250,8 @@ def run_cache_suite(config: dict[str, Any], run_root: Path) -> dict[str, Any]:
         wrist_offset: int = 0,
     ) -> dict[str, Any]:
         nonlocal query_count
+        if torch.is_grad_enabled():
+            raise RuntimeError("B3 custom inference path unexpectedly enabled gradients")
         outer_start = time.perf_counter()
         outer_cuda_start = torch.cuda.Event(enable_timing=True)
         outer_cuda_end = torch.cuda.Event(enable_timing=True)

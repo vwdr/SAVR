@@ -8,7 +8,7 @@ BRACE-B1 — **COMPLETE ACCEPTED**
 
 BRACE-B2 — **COMPLETE; ACCEPTED WITH COMPARATOR DISPOSITIONS**
 
-BRACE-B3 — **V03 NARROW RECOVERY AUTHORIZED; IN PROGRESS**
+BRACE-B3 — **V03 AUTOGRAD-MEMORY TECHNICAL STOP; NO RESULT**
 
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
@@ -28,7 +28,11 @@ key. Actual completed queries and outcomes were zero; 22 queries are
 conservatively charged. The checkpoint was restored exactly. The alias
 correction and regression test are implemented without changing the method or
 gates. The user authorized one v03 recovery after an expanded pinned-interface
-audit. B4 remains unauthorized.
+audit. V03 completed 22 core-FR queries, then its first custom cache query
+retained an unintended autograd graph and crossed the 23 GiB stop boundary.
+That memory is not a valid inference measurement, and no cache query completed.
+The full custom path now enforces inference mode, but v04 is not authorized.
+B4 remains unauthorized.
 
 ## Current phase
 

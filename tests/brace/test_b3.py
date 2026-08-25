@@ -75,6 +75,12 @@ def test_v03_recovery_overlay_changes_only_identity_and_normalization_record():
             assert recovered[key] == base[key]
 
 
+def test_custom_cache_path_is_structurally_inference_only():
+    source = (ROOT / "scripts/run_brace_b3_worker.py").read_text()
+    assert "    @torch.inference_mode()\n    def direct(" in source
+    assert 'if torch.is_grad_enabled():\n            raise RuntimeError(' in source
+
+
 def test_profile_grid_is_nested_asymmetric_and_query_accounted():
     config = load_config()
     profiles = {profile["profile_id"]: profile for profile in config["profiles"]}

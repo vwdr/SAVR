@@ -2193,3 +2193,24 @@ Last updated: 2026-08-25
   `8d6922e797432fcfd079a1c61fa1071ec19b6338dbe8a21178a1b9b6bb701ef9`.
 - Authorization boundary: One v03 attempt, no automatic retry, stop before B4.
 - Evidence freeze: `docs/BRACE_B3_V03_RECOVERY_FREEZE.md`.
+
+## D-128 — Preserve BRACE-B3 v03 autograd-memory technical stop
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: COMPLETE_TECHNICAL_STOP_NO_RESULT
+- Decision: Preserve v03 without scientific analysis. Core FR completed 22
+  queries, but the first custom cache query retained an autograd graph because
+  it lacked official inference's no-gradient context. Aggregate GPU memory
+  reached 24,017 MiB and the 23 GiB guard terminated the worker.
+- Accounting: 22 completed queries, zero completed cache queries, one partial
+  cache attempt, and 324 queries conservatively charged. No simulator outcome
+  or protected outcome access occurred.
+- Interpretation: The observed memory includes training activations and is not
+  a valid cache/BRACE feasibility result.
+- Correction: Run the complete custom preparation and inference path under
+  `torch.inference_mode()` and assert gradients are disabled.
+- Restoration: Protected checkpoint hashes match the frozen baseline exactly.
+- Authorization boundary: No automatic retry; v04 and B4 are unauthorized.
+- Evidence: `reports/BRACE_B3_V03_TECHNICAL_STOP_REPORT.md` and
+  `reports/runtime/brace_b3_v03_technical_stop.json`.
