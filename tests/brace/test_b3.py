@@ -81,6 +81,20 @@ def test_custom_cache_path_is_structurally_inference_only():
     assert 'if torch.is_grad_enabled():\n            raise RuntimeError(' in source
 
 
+def test_v04_recovery_overlay_changes_only_identity_and_inference_record():
+    base = load_config()
+    recovered = load_config_file(ROOT, Path("configs/brace/b3_physical_v4_recovery.json"))
+    assert recovered["run_id"] == "brace-b3-physical-v04"
+    assert recovered["recovery"] == {
+        "attempt": 4,
+        "prior_run_id": "brace-b3-physical-v03",
+        "correction": "full_custom_cache_path_torch_inference_mode_only",
+    }
+    for key in base:
+        if key not in {"run_id", "semantic_sha256"}:
+            assert recovered[key] == base[key]
+
+
 def test_profile_grid_is_nested_asymmetric_and_query_accounted():
     config = load_config()
     profiles = {profile["profile_id"]: profile for profile in config["profiles"]}

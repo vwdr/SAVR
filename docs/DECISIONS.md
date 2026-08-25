@@ -2214,3 +2214,21 @@ Last updated: 2026-08-25
 - Authorization boundary: No automatic retry; v04 and B4 are unauthorized.
 - Evidence: `reports/BRACE_B3_V03_TECHNICAL_STOP_REPORT.md` and
   `reports/runtime/brace_b3_v03_technical_stop.json`.
+
+## D-129 — Authorize BRACE-B3 v04 inference-mode recovery
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: IN_PROGRESS
+- Decision: The user authorized continuation after the exact v03 diagnosis.
+- Sole correction: Decorate the entire custom cache path with
+  `torch.inference_mode()` and reject enabled gradients at runtime.
+- Backend verification: The pinned cache model uses `LlamaSdpaAttention` and
+  the exact SDPA primitive captured by the frozen sidecar.
+- Frozen invariants: Every method, profile, threshold, timing, parity,
+  comparator, resource, outcome, and scientific acceptance setting is
+  unchanged.
+- Resolved configuration semantic SHA-256:
+  `21b44336aac5db0f62131449a0f1eb2eaf2ce1c19bde118b4af577c390d9fc86`.
+- Authorization boundary: One v04 attempt, no automatic retry, stop before B4.
+- Evidence freeze: `docs/BRACE_B3_V04_RECOVERY_FREEZE.md`.
