@@ -2,7 +2,7 @@
 
 Date: 2026-08-25
 
-Status: Authorized; frozen before GPU selection
+Status: Completed; stopped negative
 
 ## Sole correction
 
@@ -36,3 +36,11 @@ outcome access, and conjunctive acceptance gates.
 
 This authorizes one v05 attempt only. There is no automatic retry. B4 remains
 unauthorized, including if v05 is accepted.
+
+## Completion
+
+The single attempt completed 356 queries without a technical stop. P2-D50
+passed both speed thresholds but failed action parity; no profile passed the
+joint gate. The analyzer disposition is `stopped_negative`. Evidence is in
+`reports/BRACE_B3_V05_REPORT.md` and `results/brace-b3-physical-v05/`. No retry
+or B4 work is authorized.

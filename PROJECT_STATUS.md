@@ -8,7 +8,7 @@ BRACE-B1 — **COMPLETE ACCEPTED**
 
 BRACE-B2 — **COMPLETE; ACCEPTED WITH COMPARATOR DISPOSITIONS**
 
-BRACE-B3 — **V05 AUTHORIZED AND FROZEN; PHYSICAL ATTEMPT PENDING**
+BRACE-B3 — **V05 COMPLETE; STOPPED NEGATIVE; B4 INELIGIBLE**
 
 Protocol V2.1 and the formal method specification remain frozen. B1 passed
 every replay gate. B2 is now authorized and its isolated baseline/cache/
@@ -46,6 +46,12 @@ semantically authenticated. This audit is not a scientific result. The user
 subsequently authorized one v05 physical attempt. V05 changes only the audited
 tensor API/device integration path; every scientific and resource gate remains
 frozen. It permits no automatic retry and does not authorize B4.
+V05 then completed 356 physical model queries without a technical stop. The
+P2-D50 profile passed both speed thresholds (18.71% accelerated-query and
+12.23% complete-cycle reduction), but it and every other profile failed action
+parity. Optimized core-FR versus dense cache-stack P0 parity and corrected
+VLA-Cache parity also failed. The frozen analyzer therefore returned
+`stopped_negative`; BRACE cannot advance to B4 and v05 cannot be retried.
 
 ## Current phase
 

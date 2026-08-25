@@ -2280,7 +2280,7 @@ Last updated: 2026-08-25
 
 - Date: 2026-08-25
 - Classification: `DECISION`
-- Status: IN_PROGRESS
+- Status: COMPLETE_STOPPED_NEGATIVE
 - Decision: The user explicitly authorized the next physical attempt after the
   accepted exhaustive pre-v05 audit.
 - Sole correction: Use valid two-operand tensor min/max calls and inherit live
@@ -2291,3 +2291,12 @@ Last updated: 2026-08-25
   `f3c21dd00ca314c17d0c6044536ff242ce5099336edc4550d136a167c60882ff`.
 - Authorization boundary: One v05 attempt, no automatic retry, stop before B4.
 - Evidence freeze: `docs/BRACE_B3_V05_RECOVERY_FREEZE.md`.
+- Result: V05 completed 356 queries without a technical stop. P2-D50 passed
+  both physical speed gates (18.71% accelerated-query and 12.23% complete-cycle
+  reduction), but every profile failed action parity. Dense P0 also failed
+  parity against optimized core-FR, and corrected VLA-Cache failed all 10
+  paired parity checks. The frozen conjunctive analyzer returned
+  `stopped_negative` with no passing profile.
+- Disposition: Stop BRACE before B4. No automatic retry or post-hoc gate change.
+- Evidence: `reports/BRACE_B3_V05_REPORT.md` and
+  `results/brace-b3-physical-v05/`.
