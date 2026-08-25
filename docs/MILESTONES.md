@@ -1,6 +1,6 @@
 # SAVR Milestones
 
-Last updated: 2026-08-24
+Last updated: 2026-08-25
 
 At most one phase may be `IN_PROGRESS`.
 
@@ -72,6 +72,7 @@ At most one phase may be `IN_PROGRESS`.
 | BRACE-B0. Branch-rollout research and feasibility audit | COMPLETE_SUPERSEDED | Initial replay-prefix terminal-outcome design documented without implementation/GPU/model/outcome; adversarial re-audit found cumulative-treatment, gate-provenance, router-observability, and baseline defects in V1 | Replaced by BRACE-B0R and Protocol V2 |
 | BRACE-B0R. Protocol V2 redesign and independent review | COMPLETE_SUPERSEDED | V2 corrected the initial treatment/provenance/observability issues, but its review missed baseline-fidelity, exact-stack-comparator, statistical, sampling, and control defects; no implementation/GPU/model/outcome | Replaced before implementation by BRACE-B0R2 and Protocol V2.1 |
 | BRACE-B0R2. Protocol V2.1 exhaustive red-team freeze | COMPLETE | Faithfully corrected VLA-Cache, VLA-ADP/VLA-Pruner/SpecPrune-VLA preflights, bounded profile grid, assignment/inclusion propensities, zero-discordance controls, grouped empirical risk, power/cost rules, independent analysis verification, and revised 15--25% positive-paper assessment documented in `docs/BRACE_EXECUTION_PROTOCOL_V2_1.md` and `docs/BRACE_PROTOCOL_V2_1_RED_TEAM_REVIEW.md`; no implementation/GPU/model/outcome | Prepare BRACE-B1 under Protocol V2.1 only |
+| BRACE-B0F. Formal method specification and architecture audit | COMPLETE | Exact cache equations, nested reuse mechanics, complete multimodal source provenance, runtime sequence maps, bidirectional-context risk, sidecar attention parity, fixed-horizon abort estimand, 4,825-parameter router, propensity-aware loss, joint routing calibration, algorithms, module contracts, and adversarial review documented in `docs/BRACE_FORMAL_METHOD_SPECIFICATION_V1.md` and `docs/BRACE_FORMAL_METHOD_AUDIT_V1.md`; no implementation/GPU/model/outcome | BRACE-B1 remains the only eligible task |
 | BRACE-B1. Replay-verified branch harness | NOT_STARTED | — | Protocol V2.1 exact replay-equivalence and corrupted-prefix rejection gates |
 | 7. Freeze final protocol | NOT_STARTED | — | User approval of `PROTOCOL_V1.md` |
 | 8. Final evaluation | NOT_STARTED | — | Complete reconciled final-run registry |
@@ -85,7 +86,7 @@ OPCCR and BRACE Protocols V1/V2 are preserved as superseded research records;
 none was implemented. BRACE Protocol V2.1 is the active method plan. It retains
 bounded 1/2/4-query clean-provenance cache contracts and adds the corrected
 baseline, current exact-stack competitors, explicit sampling/analysis rules,
-and stricter feasibility gates.
+stricter feasibility gates, and the formal V1 method definition.
 BRACE-B1 is the next eligible milestone and is CPU/simulator-only. It must prove
 branch equivalence and reject incomplete state restoration before any cache
 installation, model load, GPU operation, or outcome collection. The legacy V5-D

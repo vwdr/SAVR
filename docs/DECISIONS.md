@@ -1,6 +1,6 @@
 # SAVR Decision Log
 
-Last updated: 2026-08-24
+Last updated: 2026-08-25
 
 ## D-001 — University-server safety boundary
 
@@ -1926,3 +1926,33 @@ Last updated: 2026-08-24
   CPU/simulator-only. Every later phase remains separately gated by V2.1.
 - Evidence: `docs/BRACE_EXECUTION_PROTOCOL_V2_1.md` and
   `docs/BRACE_PROTOCOL_V2_1_RED_TEAM_REVIEW.md`.
+
+## D-117 — Adopt the BRACE Formal Method Specification V1
+
+- Date: 2026-08-25
+- Classification: `DECISION`
+- Status: ACTIVE_METHOD_SPECIFICATION
+- Decision: Adopt `docs/BRACE_FORMAL_METHOD_SPECIFICATION_V1.md` as the
+  implementation definition subordinate to Protocol V2.1. It formalizes the
+  cache operator, profile state, paired estimand, router, training objective,
+  joint calibration, timing, algorithms, and module/test contracts.
+- Formal-audit corrections: Require nested layerwise reuse sets; runtime-derived
+  multimodal token spans; parity-verified sidecar anchor attention; exact
+  historical-anchor reconstruction; outcome-blind robot/action drift envelopes
+  because OpenVLA-OFT attention is bidirectional; a <=10k-parameter router; and
+  calibration of the complete fastest-accepted-contract policy.
+- Additional audit corrections: Complete multimodal source records replace
+  image-only provenance; exact-source context envelopes cover mixed K/V; and
+  an aborted experimental assignment uses FR for its remaining fixed horizon
+  so its causal treatment does not silently change.
+- Scientific boundary: Static pixels do not imply context-invariant visual K/V,
+  and terminal-effect supervision is not assumed predictable. These are B2--B5
+  hypotheses and stop conditions. No architecture-level argument changes the
+  15--25% pre-gate positive-paper assessment.
+- Evidence boundary: Documentation and read-only source/literature inspection
+  only; no implementation, model, GPU, simulator outcome, protected data, or
+  server operation occurred.
+- Authorization: B1 remains the only eligible task. The formal specification
+  does not authorize B2 or later work.
+- Evidence: `docs/BRACE_FORMAL_METHOD_SPECIFICATION_V1.md` and
+  `docs/BRACE_FORMAL_METHOD_AUDIT_V1.md`.

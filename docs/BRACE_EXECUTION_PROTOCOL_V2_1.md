@@ -6,9 +6,15 @@
 
 **Date frozen:** 2026-08-24
 
-**Status:** Red-team research protocol prepared; no BRACE implementation or result exists
+**Formal-method amendment:** 2026-08-25
+
+**Status:** Red-team protocol and formal method specification prepared; no
+BRACE implementation or result exists
 
 **Supersedes:** `docs/BRACE_EXECUTION_PROTOCOL_V2.md` before implementation
+
+**Formal implementation definition:**
+`docs/BRACE_FORMAL_METHOD_SPECIFICATION_V1.md`
 
 **Authority:** This document authorizes no download, model/checkpoint load, GPU
 operation, policy outcome, protected-population access, or server change. B1 is
@@ -68,6 +74,22 @@ V2.1 corrects every identified V1/V2 defect:
     pipeline and includes spillover blocking plus total GPU work;
 16. development outcomes may select among the predeclared profile grid, but no
     confirmation population may tune profiles, thresholds, or claims.
+17. layerwise reuse sets are nested because removed hidden states cannot be
+    reintroduced at deeper decoder layers;
+18. all visual/text/proprio/action spans are derived from the runtime sequence
+    map rather than fixed token indices;
+19. dense semantic attention uses a parity-verified sidecar path, never an
+    unaccounted SDPA-to-eager fallback;
+20. outcome-blind proprio/action drift envelopes address the fact that
+    bidirectional OpenVLA-OFT visual K/V can change while pixels remain static;
+21. calibration covers the complete fastest-accepted-contract router, not
+    independent contract thresholds alone; and
+22. paired reconstruction recreates and executes the historical anchor before
+    branching at the following query;
+23. every reused K/V points to its complete immutable multimodal source record,
+    not image provenance alone; and
+24. an experimental contract abort fills the remainder of its assigned horizon
+    with FR rather than silently re-routing to a different treatment.
 
 ## 3. Claim and novelty boundary
 
@@ -124,6 +146,12 @@ Only a dense anchor may define the semantic mask or layer schedule of a
 deployable contract. Accelerated forwards may update recomputed K/V entries and
 their source identities, but never replace the dense semantic gate.
 
+The pinned OpenVLA-OFT decoder uses bidirectional multimodal attention, so
+deeper visual K/V may depend on current proprio/action context even for
+unchanged pixels. Anchor semantic attention must be captured without changing
+the accepted dense backend or action; otherwise the affected profile is
+removed before outcomes.
+
 ### 5.2 Contract
 
 A contract is `c = (p, h)`, where `p` is a predeclared clean-provenance profile
@@ -142,8 +170,10 @@ Force FR on:
 - task, episode, initial-state, seed, prompt, camera, model, or checkpoint
   identity change;
 - missing or inconsistent K/V, gate, layer, source, or contract metadata;
-- age, horizon, source-image ring-buffer, or profile-envelope violation;
+- age, horizon, or source-image ring-buffer violation;
 - absent or invalid current proprioception or image input;
+- outcome-blind profile-envelope violation in proprioceptive drift, previous
+  action motion, or gripper transition;
 - nonfinite router output, empirical-risk ineligibility, or explicit reject;
 - unauthorized profile switch;
 - exception, timeout, memory-cap breach, or failed invariant.
@@ -166,6 +196,12 @@ analysis.
 
 P1/P2 may refresh selected entries, but every entry retains its actual source
 query. P3 is not BRACE-selectable. P4 is not a BRACE contract.
+
+For P1/P2, reused-token sets must be nested across decoder depth and reuse
+budgets nondecreasing after reuse begins. Once an implementation removes a
+token's current hidden state, no deeper layer may reintroduce it. Sequence
+positions and camera/text/proprio/action spans come from a validated runtime
+map; fixed prompt-length slices are prohibited.
 
 ### 6.2 Grid construction and selection
 
@@ -197,6 +233,11 @@ For every layer and visual token, record:
 - K/V position, dtype, shape, and digest;
 - semantic-gate identity and dense provenance;
 - contract/profile/horizon, remaining queries, and abort history.
+
+Each source query also records normalized proprioception, both preprocessed
+camera inputs, prompt/instruction and sequence-map digests, previously
+executed-action summary, RNG/configuration identity, and counters. Mixed-source
+context drift is measured against every live source, not the anchor alone.
 
 Retain a bounded source-image ring buffer covering the maximum contract horizon
 so current-to-actual-source differences are reproducible. A single scalar cache
@@ -239,7 +280,9 @@ state distribution.
 
 Direct MuJoCo `set_state()` alone is prohibited because it omits controller,
 observable, wrapper, timing, queue, and cache state. Recreate and validate the
-dense anchor separately for each arm before applying treatment.
+dense anchor separately for each arm, execute its identical action chunk, and
+branch at the following policy query. Re-running an anchor at the treatment
+observation changes the cache source and is invalid.
 
 ### 8.2 Assignment and overlap
 
@@ -254,6 +297,11 @@ Log contract-assignment and arm-order probabilities. Every contract intended
 for learned selection must have adequate overlap across its eligible feature
 region; deterministic assignment by task, phase, or apparent difficulty is
 prohibited.
+
+If the contract arm aborts, execute FR for that query and every remaining query
+in the assigned `h`-query window. Do not re-route inside the experimental
+window. Normal deployment may make a new decision after the abort-created
+anchor; B6/B7 evaluate that repeated-decision policy.
 
 After `h`, both arms use the same versioned continuation policy. Round 0 uses
 FR. The single allowed aggregation round uses frozen BRACE-v0. Treatment is the
@@ -302,16 +350,20 @@ baselines use identical grouped splits:
 - BRACE without token provenance;
 - BRACE trained only on FR-continuation states.
 
-On a calibration split, construct a finite grid of score thresholds and service
-coverages. Select only operating points whose one-sided, episode-grouped upper
-confidence bound on representative-stratum residual harmful-assignment risk
-passes the frozen limit, with family-wise correction across claimed contracts.
-This is an empirical population-level guarantee, not a per-state or physical
-safety guarantee.
+On model-selection validation, construct at most 20 complete joint policies
+from a finite grid of score thresholds and service coverages, apply simultaneous
+diagnostics, and freeze exactly one. A disjoint prospective calibration split
+can only accept or reject that frozen policy using the exact one-sided local-harm
+rule in B5. This is an empirical local population statement, not a per-state,
+episode-level, or physical-safety guarantee.
 
 At deployment, choose the lowest-latency eligible contract whose frozen
 threshold accepts; otherwise choose FR. Any extrapolation outside calibration
 support rejects to FR. Report risk, coverage, abort rate, and latency together.
+
+Calibrate this complete joint fastest-accepted-contract rule on representative
+groups. Separately valid contract thresholds do not by themselves validate the
+argmin selection performed during deployment.
 
 The action-disagreement comparator uses paired FR/cache action disagreement
 only to create its development labels. Its deployed predictor receives the
@@ -420,8 +472,14 @@ Freeze the isolated integration plan for the project's customized Transformers
 - faithful algorithm/configuration parity;
 - exact DynamicCache clone/restore and transactional model configuration;
 - per-layer/per-token source ledger and source-image ring buffer;
+- complete immutable multimodal source records and exact-source drift checks;
 - dense-gate identity and age;
+- runtime-derived multimodal sequence spans with no fixed prompt indices;
+- sidecar semantic-attention implementation and synthetic invariants; real
+  dense backend/action parity is deferred to B3;
 - P0--P4 state/reset semantics and the six-profile maximum grid;
+- nested layerwise reuse sets, nondecreasing budgets, and nonvisual-drift
+  envelope aborts;
 - 1/2/4-query expiry, every abort, and randomized order;
 - candidate/arm propensities and immutable intent-to-treat records;
 - adversarial camera/token/layer permutations;
@@ -505,13 +563,31 @@ campaign:
 | B5-20 | 20 | 40 | Sanity learning curve and leakage audit |
 | B5-40 | 40 | 80 | Baseline separation and calibration feasibility |
 | B5-80 | 80 | 160 | Held-out risk--coverage stability |
-| B5-final | 100 train, 30 validation, 60 held-out | power-selected | Contract-specific evidence |
+| B5-final | 100 train, 30 model-selection validation, 60 held-out; calibration is not harm-enriched | power-selected | Contract-specific evidence plus prospective calibration |
 
 At each checkpoint use episode-grouped splits, untouched rows, and frozen
 metrics. Stop if AUPRC/AUROC, calibration, and risk--coverage remain
 indistinguishable from metadata/image/action baselines; if confidence intervals
 exclude useful service coverage; or if the next checkpoint exceeds the
 40-GPU-hour cap.
+
+After the B4 screen, retain at most three contracts for learned deployment.
+Evaluate at most 20 joint fastest-accepted-contract candidates on model-selection
+validation, freeze exactly one, then calibrate only that policy prospectively.
+Training, model-selection validation, calibration, and held-out episode groups
+are disjoint; if the calibration population breaks the 40-GPU-hour cap, stop
+rather than reuse model-selection or held-out outcomes.
+
+The 1% representative branch-harm bound is a local development filter, not an
+allocation of the final 2-point episode-success margin. Before labels, power
+the calibration population so its exact one-sided bound can resolve 1%. Use one
+preselected query boundary per independent episode group, directly execute the
+frozen joint policy's selected contract against FR, and accept only if the 95%
+Clopper--Pearson upper harm limit is at most 1%. Even zero observed harm requires
+299 groups. Its exact coverage lower limit must also exceed the outcome-blind
+B3 coverage needed to project 12% net speed. Calibration can only pass or reject;
+it cannot choose another validation policy. B7/B8 remain the only episode-level
+non-inferiority test.
 
 Report by task, contract, horizon, camera motion, cache age, representative
 versus enriched stratum, and abort status. Each deployed contract requires its
@@ -650,6 +726,11 @@ collect policy outcomes without a separate checkpoint decision.
 15. VLA-Pruner: <https://arxiv.org/abs/2511.16449>
 16. SpecPrune-VLA: <https://arxiv.org/abs/2509.05614>
 17. BFA++: <https://arxiv.org/abs/2602.20566>
+18. OpenVLA-OFT: <https://www.roboticsproceedings.org/rss21/p017.html>
+19. Selective classification: <https://papers.neurips.cc/paper_files/paper/2017/hash/4a8423d5e91fda00bb7e46540e2b0cf1-Abstract.html>
+20. Off-policy evaluation: <https://proceedings.mlr.press/v70/wang17a.html>
+21. High-confidence off-policy evaluation:
+    <https://ojs.aaai.org/index.php/AAAI/article/view/9541>
 
 Revalidate recent papers, released code, revisions, licenses, and publication
 status before B2, before B7, and immediately before submission.

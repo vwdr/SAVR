@@ -1,6 +1,6 @@
 # Red-Team Review of BRACE Execution Protocol V2.1
 
-**Date:** 2026-08-24
+**Date:** 2026-08-25
 
 **Reviewed artifact:** `docs/BRACE_EXECUTION_PROTOCOL_V2_1.md`
 
@@ -11,6 +11,8 @@ reviewer objections
 
 **Evidence boundary:** No BRACE implementation, model run, GPU operation,
 policy outcome, or new simulator population was produced
+
+**Formal-method audit:** `docs/BRACE_FORMAL_METHOD_AUDIT_V1.md`
 
 ## 1. Final verdict
 
@@ -49,12 +51,19 @@ previous 25--40% paper estimate is superseded.
 | Treatment | Single cached query did not match cumulative deployment | Contracts test complete 1/2/4-query bursts | Resolved |
 | Gate provenance | Accelerated attention could recursively define the gate | Deployable gates come only from dense anchors | Resolved, but anchor staleness remains empirical |
 | Cache state | Scalar age hid mixed token sources | Per-layer/per-token source ledger and source-image ring buffer | Resolved technically; B2 must prove mapping |
+| Decoder mechanics | Arbitrary per-layer masks ignored that removed hidden states cannot return | Nested reuse sets and nondecreasing layer budgets | Resolved in formal design; B2 unproven |
+| Token layout | Fixed prompt/text spans could silently target wrong positions | Runtime-derived and digested sequence map | Resolved in formal design |
+| Context dependence | Static pixels were implicitly treated as representation-static despite bidirectional attention | Pre-outcome proprio/action envelopes, context perturbation tests, terminal supervision | Mitigated; central empirical risk remains |
+| Source identity | Image/source age omitted the nonvisual context that produced a cached K/V | Immutable multimodal source records and exact-source drift checks | Resolved formally; B2 unproven |
+| Anchor attention | Requesting attention may force SDPA to eager execution | Detached sidecar Q/K map requires dense action/backend/timing parity | Resolved as a gate |
 | VLA-Cache fidelity | Released evaluator aliases current/previous frames and suppresses errors | Minimal pinned correction, explicit naming, source/hash/parity audit | Resolved in protocol; implementation unproven |
 | Comparator | V2 omitted released exact-stack VLA-ADP, VLA-Pruner, and SpecPrune-VLA | Mandatory executable baselines | Resolved |
 | Comparator rule | “And” versus “or” created an inconsistent success criterion | One explicit Pareto/non-domination hierarchy | Resolved |
 | Profile search | One speed-only profile risked missing the viable frontier | At most six outcome-blind profiles; development-only elimination | Resolved with bounded multiplicity/cost |
 | Risk claim | Per-state upper probability bound was not supportable | Empirical grouped selective-risk control only | Resolved |
 | Multi-arm identification | Profile assignment overlap/propensity was absent | Known nonzero assignment and arm-order probabilities | Resolved |
+| Joint selection | Separately calibrated contracts do not calibrate fastest-accepted selection | Calibrate and evaluate the full deployed router | Resolved statistically; sample size remains empirical |
+| Abort estimand | Immediate re-routing after an experimental abort changes the assigned treatment | FR fills the remaining fixed horizon; repeated routing is tested on policy | Resolved |
 | Enrichment | Enriched harmful samples could bias natural risk | Separate representative stratum and design-consistent weighting | Resolved |
 | Controls | “Negligible” duplicate discordance was undefined | Any unexplained terminal discordance stops collection | Resolved |
 | Distribution shift | FR-continuation labels may drift under BRACE | One versioned aggregation round and explicit drift gate | Mitigated, not eliminated |
@@ -83,6 +92,11 @@ prefix replay establishes the same published initial condition and behavioral
 history without pretending that MuJoCo coordinates are a full system snapshot.
 Running both treatment arms from reconstructed dense anchors exposes both
 potential outcomes in the deterministic simulator.
+
+The formal reconstruction requires replay to the historical anchor, a valid
+anchor cache and action, execution of that common anchor chunk, and branching
+at the following query. Creating a new anchor at the treatment observation
+would test a different intervention.
 
 The contract, not one query, is the treatment. Known contract assignment and
 arm-order probabilities prevent profile selection from being confounded with
