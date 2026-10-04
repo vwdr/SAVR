@@ -1,0 +1,41 @@
+{
+  "schema_version": "pair-p2-semantic-manifest-v1",
+  "phase": "P2",
+  "decision": "PASS",
+  "project_revision": "0a274b6ea0c0748adabe386ffa0d61670c4ece7a",
+  "protocol_sha256": "145668e8757ab7a6e9ab88f51d0d1d4903de41fb7db14a5653e3e13c198d47c8",
+  "p0_freeze_sha256": "dad74fb3a6a46d43fc023739422dc132d95801f73b3df4701c80e2e300dfbe7e",
+  "p2_config_sha256": "678def47f438b24cb05da59beba6f4c8275c8adaa6f79aae0d231ca3c0d7ba17",
+  "implementation_manifest_file_sha256": "9c131d05d403a0f8ffa4483f9922c2a2f9b092af7236328468b22a08afa7d555",
+  "implementation_manifest_semantic_sha256": "9cd16e29f0df1cd173187fdbda36ca0043ff279de2d975d5dcef22aae2e7229d",
+  "technical_record_file_sha256": "abf0b1db54a2c1fdf8fa178178ed87d38935c5a2d1821f5b2faefd99facdd386",
+  "run_summary_file_sha256": "6e89f22466e0526a5296d31bfe6aa25f5d723eebcc93f312d5d34a7421e33d44",
+  "technical_schema_sha256": "5a73de160f17c555a62381b9ee3c1d94343adb50f7d1f58a875778dc7852d2a8",
+  "tests": {
+    "titan_pair_passed": 25,
+    "titan_brace_passed": 44,
+    "titan_focused_total_passed": 69,
+    "local_focused_passed": 56,
+    "local_focused_skipped": 9,
+    "local_full_passed": 447,
+    "local_full_skipped": 9
+  },
+  "resources": {
+    "gpu_count": 0,
+    "cuda_visible": false,
+    "cuda_initialized": false,
+    "model_accessed": false,
+    "checkpoint_accessed": false,
+    "demonstration_accessed": false,
+    "simulator_accessed": false,
+    "outcome_accessed": false,
+    "network_accessed": false,
+    "artifact_bytes": 86516
+  },
+  "advance": {
+    "next_phase": "P3",
+    "authorized": false,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "864ac23f869f30e9e60861032bab6d186fb645d8c677d3dcbdbc654a377a213e"
+}

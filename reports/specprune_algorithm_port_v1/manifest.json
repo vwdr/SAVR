@@ -1,0 +1,25 @@
+{
+  "files_sha256": {
+    "PROJECT_STATUS.md": "fba0bda6e96f203cb2f2820f3f49b55381cb58112fc69ad08c5bd1b32ff10b0b",
+    "docs/DECISIONS.md": "10506ba598f79725d551f30cc1a516bdafe5dbdcd7375b12a20715b5c2661597",
+    "docs/SPECPRUNE_COMPARATOR_QUALIFICATION_V1.md": "51cc674890b2753956bfa7c7320031830385d00e6b160ac0d7b2cd94774ef5a7",
+    "reports/SPECPRUNE_ALGORITHM_PORT_CPU_V1.md": "44bab3f7fb1243f12422a9ebd6ac44a08962dd39faef015732779b62e6782c86",
+    "reports/specprune_algorithm_port_v1/cpu_tests.log": "ca65ae1704a0755ade045f733db5ea3a59650301ed19c6d97c1e0631de704571",
+    "reports/specprune_algorithm_port_v1/upstream/spec_prune_vla.py": "e39e762b4d5a2676209043c9d2f7e1fbeb047a082af9afd871f60a22c88c0c3f",
+    "src/savr/openvla/specprune.py": "edf4d8886915237fe5cc8c7a636e41d08bfcb81e450ae5f96a1d9ac508f63c17",
+    "src/savr/openvla/specprune_APACHE_LICENSE.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "src/savr/openvla/specprune_LICENSE.txt": "99327560087babb7d064e2b7d3c32efd26bcfe5d056e1605dc63149bd171501b",
+    "tests/openvla/test_specprune_port.py": "50e76653a93befef12fe3fa6de8cd0589a528bd397a0a1df6148451969fe4bef"
+  },
+  "gpu_runs": 0,
+  "layers_per_equivalence_case": 32,
+  "local_remote_sha256_match": true,
+  "new_tests": 13,
+  "positive_method_result": false,
+  "pretrained_model_loads": 0,
+  "source_equivalence_cases": 6,
+  "stage": "specprune_algorithm_port_cpu_v1",
+  "tests_passed": 44,
+  "tests_skipped": 0,
+  "training": false
+}

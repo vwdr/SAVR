@@ -1,0 +1,18 @@
+{
+ "n_near": 144,
+ "near_visual_improve_rate": 0.4652777777777778,
+ "near_action_only_improve_rate": 0.4861111111111111,
+ "near_visual_beat_action_only": 0.4861111111111111,
+ "near_mean_rel_gain_visual": -0.025248243259461775,
+ "near_mean_rel_gain_action_only": -0.007925185257359866,
+ "near_mean_gain_visual": -0.00026701967645850446,
+ "near_mean_gain_action_only": -4.0792779246759084e-05,
+ "wide_mean_gain_visual": 0.002301729235957127,
+ "wide_mean_gain_action_only": 0.001926669770022627,
+ "wide_visual_improve_rate": 0.7210365853658537,
+ "wide_action_only_improve_rate": 0.7042682926829268,
+ "absolute_gains_small": {
+  "near_visual_max": 0.00799298845231533,
+  "near_action_only_max": 0.006798025220632553
+ }
+}

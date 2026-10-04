@@ -1,0 +1,29 @@
+{
+  "schema_version": "specprune-episode-qualification-v1",
+  "caps": {"queries": 512, "episodes": 2, "seconds": 1800, "memory_mib": 23552, "artifact_bytes": 268435456},
+  "tolerance": 0.000001,
+  "output_root": "results/specprune-episode-qualification-v01",
+  "offline_calls": 56,
+  "frame_indices": [0, 1],
+  "episode_modes": ["dense", "compressed"],
+  "condition_id": "d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9",
+  "initial_state_sha256": "4e3eaf7a315bc3bafb6db4837c8eef0e5f8aea717782a2a3ea33139392d966ed",
+  "automatic_retry": false,
+  "gpu": {"index": 0, "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"},
+  "observation_ids": [
+    "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+    "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+    "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+    "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+    "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+    "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+    "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+    "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae"
+  ],
+  "authenticated_files": {
+    "scripts/run_specprune_episode_qualification.py": "3e32d8c98d965841b817933f404094fa21f609be0cef4dd5717758f576e62a51",
+    "src/savr/openvla/specprune_episode.py": "17d8b3dffcd2e480445b20d257a6785e3670997135d77fbd0bc29632ce137985",
+    "tests/openvla/test_specprune_episode.py": "cd80947fdb5a89c68f58737e770794fb0ddcb237ec769c746a703c34c8314199",
+    "tests/openvla/test_specprune_episode_qualification.py": "ba185dd7f6b744c9d4652758484c9ae69dd238940f89d412689049db733a3b0d"
+  }
+}

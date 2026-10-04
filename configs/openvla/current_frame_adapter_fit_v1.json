@@ -1,0 +1,57 @@
+{
+  "schema_version": "current-frame-adapter-fit-v1",
+  "budget": 384,
+  "automatic_retry": false,
+  "output_root": "results/current-frame-adapter-fit-v01",
+  "optimizer": {
+    "name": "AdamW",
+    "lr": 0.0001,
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-8,
+    "weight_decay": 0,
+    "batch_size": 16,
+    "epochs": 10,
+    "steps_per_arm": 2000,
+    "seed": 7,
+    "gradient_clip_norm": 1,
+    "scheduler": "none",
+    "checkpoint": "final_only"
+  },
+  "caps": {
+    "seconds": 28800,
+    "memory_mib": 23552,
+    "own_allocated_mib": 4096,
+    "artifact_bytes": 2147483648,
+    "minimum_free_bytes": 10737418240,
+    "optimizer_steps": 6000,
+    "model_calls": 0,
+    "episodes": 0
+  },
+  "arms": [
+    "action_only",
+    "visual",
+    "visual_shuffled"
+  ],
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+  },
+  "input_sha256": "2fd13ced3e5a9a2b810eb299a5c1667f8c1de3ee2c5487a4a0683e61847d9ae8",
+  "collection_sha256": {
+    "worker_summary.json": "7bde8cd59846d5f5b54c7b9a8302b30ebe74ef13606eb92aeb754465d5b1a8c3",
+    "analysis.json": "ae9ba225dce1d14318b8b7d6c5493657eec307a6142cab2df6f48e27e7eb2273"
+  },
+  "authenticated_files": {
+    "scripts/fit_current_frame_adapters.py": "dbf33b59cba1f8c5f527953c96fdf9ff7bb0503764c00bce540c41a119b493f3",
+    "scripts/verify_current_frame_collection_copy.py": "e7bf7786af620528a109cdbf490ff5b4b0f1466d4f52b4056c290d88f64f9929",
+    "scripts/run_openvla_original_baseline.py": "813ccc08224a4e6751c115e6dde1627d686cb24b7c838ac5372460c28b55b373",
+    "src/savr/openvla/current_frame_training_plan.py": "e17d5e3612715b5f3d496f5aa40e179a773c1912d4162a9c311ec5d8cb342020",
+    "src/savr/openvla/current_frame_corrector.py": "c17017eb13c0cd04468e109c0586b6e07458760a6a328508e59ea28db95206cc",
+    "src/savr/openvla/current_frame_records.py": "c1d1d7f986c92278894da04c95e9da211dd1a2bab352526320c986e3b5368486",
+    "tests/openvla/test_current_frame_training.py": "42cbef39d4bef12085f5d0c7b7915fd812480287ad6530ffa1c50f0b4a003073",
+    "docs/CURRENT_FRAME_ADAPTER_FIT_V1.md": "1beb9a47f725c552006ccf8be2392af943d54c035ab41e2d2d92b449f684ffa5"
+  }
+}

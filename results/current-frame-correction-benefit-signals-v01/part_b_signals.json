@@ -1,0 +1,57 @@
+{
+ "n_train": 519,
+ "n_test": 281,
+ "n_train_trajs": 181,
+ "n_test_trajs": 90,
+ "heldout_auc": 0.5990343853038154,
+ "heldout_auc_ci95": [
+  0.5258187969757598,
+  0.6772310866330866
+ ],
+ "univariate_auc": {
+  "base_mean_abs": 0.39702072538860106,
+  "base_max_abs": 0.4497762600094206,
+  "base_std": 0.4020254357041922,
+  "instr_norm": 0.45931464908148845,
+  "state_l1": 0.4355864342910975,
+  "state_l2": 0.4368817710786623,
+  "state_max": 0.4696773433820066,
+  "vis_mean_abs": 0.4869288742345737,
+  "vis_max_abs": 0.503827131417805,
+  "vis_token_std_mean": 0.4743287800282619,
+  "actfeat_mean_abs": 0.47391662741403673,
+  "actfeat_max_abs": 0.5668276024493641,
+  "actfeat_std": 0.527555346208196,
+  "residual_mean_abs": 0.5611163447951013,
+  "cross_head_agree": 0.5354451248233631,
+  "ood_scene_k1": 0.4761540273198304
+ },
+ "spearman_with_gain": {
+  "base_mean_abs": -0.1320052136853833,
+  "base_max_abs": -0.0899863708639358,
+  "base_std": -0.13098843686789474,
+  "instr_norm": -0.04722982401107638,
+  "state_l1": -0.09053099546777142,
+  "state_l2": -0.09338229726660105,
+  "state_max": -0.02615604279116053,
+  "vis_mean_abs": -0.0633722376661727,
+  "vis_max_abs": 0.032593646226568164,
+  "vis_token_std_mean": -0.029343746281733713,
+  "actfeat_mean_abs": 0.035994981016560484,
+  "actfeat_max_abs": 0.06741068048329349,
+  "actfeat_std": 0.0014023948339084251,
+  "residual_mean_abs": 0.2693290354682041,
+  "cross_head_agree": 0.1852594403400794,
+  "ood_scene_k1": -0.05515202976776385
+ },
+ "gated_vs_always": {
+  "always_apply_mean_l1": 0.03470648801636972,
+  "never_apply_mean_l1": 0.03640026589557263,
+  "gated_mean_l1": 0.03480628893124039,
+  "gated_mean_gain": 0.0018508575494932242,
+  "always_mean_gain": 0.0016937778792029173,
+  "fraction_apply": 0.8612099644128114,
+  "gated_benefit_rate": 0.6983471074380165,
+  "heldout_benefit_rate": 0.6868327402135231
+ }
+}

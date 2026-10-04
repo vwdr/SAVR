@@ -1,0 +1,21 @@
+{
+  "status": "unaccepted_reference_reconciliation_stop",
+  "run_root": "results/specprune-episode-qualification-v01",
+  "owned_pid": 1069815,
+  "model_calls": 101,
+  "offline_calls": 56,
+  "episodes_executed": 2,
+  "elapsed_seconds": 178.92140855267644,
+  "peak_aggregate_gpu_memory_mib": 16206,
+  "cause": "unresolved exact dense-reference discrepancy",
+  "automatic_retry": false,
+  "outcomes_inspected": false,
+  "artifacts_sha256": {
+    "launch.json": "ab5171f4d41e26b325a451250aa794d4085620931017d696de9f3211351110ab",
+    "loaded_runtime.json": "a59956fa931e46396ff08f1b7caa89ae3ceda8ecd86d93e489b63dc9e3bee38b",
+    "progress.jsonl": "8f10b8673267b19faa763934156fd3cac3309c2d18f49409c256e804f296659e",
+    "records.json": "fe47fbd39c0263138dc6ce87f9aad98b50fde54367ccdc5740bbbac99b044963",
+    "technical_stop.json": "48f34183e3e04eee3f3103d9e2a76641124fde515a7d88e9de35ebe54515527d",
+    "technical_traceback.log": "a91588530ea7f6f06d32227ba0a79564fa43fecfa57dab4c76e154e42caa2276"
+  }
+}

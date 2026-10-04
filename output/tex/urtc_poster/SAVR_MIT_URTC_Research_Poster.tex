@@ -1,0 +1,216 @@
+\documentclass{article}
+\usepackage[paperwidth=24in,paperheight=36in,margin=0in]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{helvet}
+\usepackage{fix-cm}
+\usepackage{amssymb}
+\renewcommand{\familydefault}{\sfdefault}
+\pagestyle{empty}
+\pgfplotsset{compat=1.18}
+\setlength{\parindent}{0pt}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+\definecolor{rutgers}{HTML}{CC0033}
+\definecolor{navy}{HTML}{18344A}
+\definecolor{ink}{HTML}{17212B}
+\definecolor{teal}{HTML}{147D73}
+\definecolor{slate}{HTML}{526575}
+\definecolor{muted}{HTML}{667581}
+\definecolor{pale}{HTML}{F2F5F7}
+\definecolor{rose}{HTML}{F9EEF1}
+\definecolor{mint}{HTML}{EAF5F2}
+\definecolor{line}{HTML}{C9D2D9}
+
+\newcommand{\TitleFont}{\fontsize{72}{76}\selectfont}
+\newcommand{\SubtitleFont}{\fontsize{32}{38}\selectfont}
+\newcommand{\SectionFont}{\fontsize{36}{42}\selectfont}
+\newcommand{\BodyFont}{\fontsize{28}{34}\selectfont}
+\newcommand{\SmallFont}{\fontsize{26}{31}\selectfont}
+\newcommand{\MetricFont}{\fontsize{44}{48}\selectfont}
+
+\begin{document}
+\begin{tikzpicture}[remember picture,overlay]
+\begin{scope}[shift={(current page.north west)}]
+\begin{scope}[x=1in,y=-1in]
+
+% Header
+\fill[rutgers] (0,0) rectangle (24,0.26);
+\node[anchor=north west,inner sep=0pt,text width=18.0in,font=\TitleFont\bfseries,text=ink]
+  at (0.72,0.62) {WHEN VISUAL REUSE FAILS\\IN ROBOT CONTROL};
+\node[anchor=north west,inner sep=0pt,text width=18.2in,font=\SubtitleFont\bfseries,text=rutgers]
+  at (0.76,2.82) {Five training-free designs tested in OpenVLA-OFT};
+\node[anchor=north west,inner sep=0pt,text width=18.5in,font=\SmallFont\bfseries,text=navy]
+  at (0.76,3.48) {Ved Dwivedi \quad | \quad Cheng Yang \quad | \quad Bo Yuan};
+\node[anchor=north west,inner sep=0pt,text width=18.5in,font=\SmallFont,text=muted]
+  at (0.76,4.02) {John P. Stevens High School \quad | \quad Rutgers University, ECE};
+\node[anchor=north,inner sep=0pt] at (21.72,0.58)
+  {\includegraphics[width=1.65in,trim=420 1215 1460 170,clip]{assets/rutgers-signature-samples.png}};
+\node[anchor=north,align=center,inner sep=0pt,font=\SmallFont\bfseries,text=ink]
+  at (21.72,2.08) {RUTGERS\\UNIVERSITY};
+\draw[navy,line width=2pt] (0.75,4.65) -- (23.25,4.65);
+
+% Real rollout strip
+\node[anchor=north west,inner sep=0pt,font=\SectionFont\bfseries,text=navy]
+  at (0.76,4.95) {ONE CONTROL LOOP};
+\node[anchor=north east,inner sep=0pt,text width=15.5in,align=right,font=\BodyFont,text=ink]
+  at (23.22,5.02) {Each action changes the next image, so reuse errors feed into later queries.};
+
+\foreach \i/\x/\lab in {1/0.82/{observe},2/6.45/{move},3/12.08/{grasp},4/17.71/{place}} {
+  \fill[pale,rounded corners=0.10in] (\x,5.82) rectangle ++(4.65,3.55);
+  \node[anchor=north west,inner sep=0pt] at (\x+0.12,5.94)
+    {\includegraphics[width=4.41in,height=2.78in]{assets/rollout/rollout_\i.png}};
+  \node[anchor=center,font=\SmallFont\bfseries,text=navy] at (\x+2.325,9.05) {\lab};
+}
+\foreach \x in {5.60,11.23,16.86} {
+  \draw[-{Latex[length=0.22in,width=0.16in]},rutgers,line width=4pt] (\x,7.30) -- ++(0.62,0);
+}
+
+% Research question and answer
+\fill[navy,rounded corners=0.12in] (0.76,9.83) rectangle (23.24,12.12);
+\node[anchor=north west,inner sep=0pt,text width=14.6in,font=\SectionFont\bfseries,text=white]
+  at (1.22,10.20) {Can vision be reused across control queries\\without reducing task success?};
+\fill[rutgers,rounded corners=0.10in] (16.25,10.18) rectangle (22.72,11.77);
+\node[anchor=center,align=center,text width=5.8in,font=\SubtitleFont\bfseries,text=white]
+  at (19.48,10.97) {NOT RELIABLY\\under the tested designs};
+
+% Five-stage study map
+\node[anchor=north west,inner sep=0pt,font=\SectionFont\bfseries,text=navy]
+  at (0.76,12.55) {FIVE ATTEMPTS, EACH TARGETING THE PREVIOUS FAILURE};
+\tikzset{stage/.style={draw=line,line width=2pt,rounded corners=0.10in,fill=white,
+  minimum width=4.05in,minimum height=1.85in,align=center,inner sep=0.08in,text=ink}}
+\node[stage] (savr) at (2.85,14.46) {\fontsize{34}{38}\selectfont\bfseries SAVR\\[0.14in]\SmallFont reuse both cameras};
+\node[stage] (acr) at (7.45,14.46) {\fontsize{34}{38}\selectfont\bfseries ACR\\[0.14in]\SmallFont keep wrist current};
+\node[stage] (brace) at (12.05,14.46) {\fontsize{34}{38}\selectfont\bfseries BRACE\\[0.14in]\SmallFont select K/V groups};
+\node[stage] (pair) at (16.65,14.46) {\fontsize{34}{38}\selectfont\bfseries PAIR\\[0.14in]\SmallFont predict unsafe reuse};
+\node[stage,draw=rutgers,line width=3pt,fill=rose] (cac) at (21.15,14.46) {\fontsize{34}{38}\selectfont\bfseries\color{rutgers} CAC\\[0.14in]\SmallFont correct cached actions};
+\foreach \a/\b in {savr/acr,acr/brace,brace/pair,pair/cac}
+  \draw[-{Latex[length=0.18in,width=0.13in]},slate,line width=3pt] (\a.east) -- (\b.west);
+
+% Results banner
+\fill[rutgers] (0.76,15.78) rectangle (23.24,16.78);
+\node[anchor=center,text width=21.8in,align=center,font=\SectionFont\bfseries,text=white]
+  at (12,16.28) {RESULT: NO DESIGN ACHIEVED BOTH RELIABILITY AND SPEED};
+
+% Left result block: scatter
+\node[anchor=north west,inner sep=0pt,text width=11.3in,font=\SubtitleFont\bfseries,text=navy]
+  at (0.88,17.18) {1 \quad Reuse rose as success fell};
+\node[anchor=north west,inner sep=0pt,text width=11.0in,font=\SmallFont,text=ink]
+  at (1.05,24.53) {Best high-success redesign: \textbf{69/70 successes}, but only \textbf{0.95\% reuse}.};
+
+% Right result block: ACR
+\node[anchor=north west,inner sep=0pt,text width=10.4in,font=\SubtitleFont\bfseries,text=navy]
+  at (12.55,17.18) {2 \quad ACR kept success, not speed};
+\fill[pale,rounded corners=0.10in] (12.58,17.95) rectangle (23.15,21.05);
+\node[anchor=center,align=center,text width=3.0in,font=\MetricFont\bfseries,text=slate]
+  at (14.45,19.15) {1240\\\SmallFont ms/query};
+\draw[-{Latex[length=0.20in,width=0.14in]},slate,line width=4pt] (16.10,19.15) -- (17.08,19.15);
+\node[anchor=center,align=center,text width=3.0in,font=\MetricFont\bfseries,text=teal]
+  at (18.55,19.15) {1188\\\SmallFont batched fresh};
+\draw[-{Latex[length=0.20in,width=0.14in]},slate,line width=4pt] (20.15,19.15) -- (21.03,19.15);
+\node[anchor=center,align=center,text width=2.5in,font=\MetricFont\bfseries,text=rutgers]
+  at (22.05,19.15) {1191\\\SmallFont ACR};
+\node[anchor=center,align=center,text width=9.8in,font=\BodyFont\bfseries,text=ink]
+  at (17.86,20.58) {67/70 success = 67/70 fresh \quad | \quad 0.23\% slower};
+
+% Right result block: CAC
+\node[anchor=north west,inner sep=0pt,text width=10.4in,font=\SubtitleFont\bfseries,text=navy]
+  at (12.55,21.38) {3 \quad CAC saved compute, lost control};
+\fill[mint,rounded corners=0.10in] (12.58,22.15) rectangle (17.50,24.95);
+\node[anchor=center,align=center,font=\MetricFont\bfseries,text=teal] at (15.04,23.05) {22.6\%};
+\node[anchor=center,align=center,text width=4.35in,font=\SmallFont\bfseries,text=ink]
+  at (15.04,24.18) {gross timing\\headroom};
+\fill[rose,rounded corners=0.10in] (17.80,22.15) rectangle (23.15,24.95);
+\node[anchor=center,align=center,font=\MetricFont\bfseries,text=rutgers] at (20.48,23.05) {0/120};
+\node[anchor=center,align=center,text width=4.7in,font=\SmallFont\bfseries,text=ink]
+  at (20.48,24.18) {cached closed-loop\\successes};
+
+% Central takeaway
+\fill[navy,rounded corners=0.12in] (0.76,25.40) rectangle (23.24,27.18);
+\node[anchor=center,align=center,text width=21.7in,font=\SubtitleFont\bfseries,text=white]
+  at (12,26.28) {COMPUTE SAVINGS WERE REAL.\\RELIABLE CLOSED-LOOP CONTROL WAS THE UNSOLVED PART.};
+
+% Mechanism visual
+\node[anchor=north west,inner sep=0pt,font=\SectionFont\bfseries,text=navy]
+  at (0.76,27.58) {WHY RECURSIVE REUSE FAILED};
+\tikzset{mechanism/.style={draw=line,line width=2pt,rounded corners=0.08in,fill=pale,
+  minimum width=3.60in,minimum height=1.45in,align=center,inner sep=0.06in,
+  font=\SmallFont\bfseries,text=navy}}
+\node[mechanism] (m1) at (2.72,29.40) {current\\image};
+\node[mechanism,fill=rose,draw=rutgers,text=rutgers] (m2) at (7.30,29.40) {mixed-age\\K/V state};
+\node[mechanism] (m3) at (11.88,29.40) {action\\deviation};
+\node[mechanism] (m4) at (16.46,29.40) {changed next\\observation};
+\node[mechanism,fill=mint,draw=teal] (m5) at (21.04,29.40) {error enters\\next query};
+\foreach \a/\b in {m1/m2,m2/m3,m3/m4,m4/m5}
+  \draw[-{Latex[length=0.20in,width=0.14in]},rutgers,line width=4pt] (\a.east) -- (\b.west);
+\draw[-{Latex[length=0.20in,width=0.14in]},rutgers,line width=4pt]
+  (m5.south) .. controls (21.0,31.25) and (7.0,31.25) .. (m2.south);
+\node[anchor=center,font=\SmallFont\bfseries\itshape,text=rutgers] at (14.0,31.18) {feedback compounds across control queries};
+
+% Conclusions and next direction
+\fill[pale,rounded corners=0.12in] (0.76,31.70) rectangle (14.70,34.72);
+\node[anchor=north west,inner sep=0pt,font=\SubtitleFont\bfseries,text=navy]
+  at (1.15,32.05) {WHAT THE STUDY ESTABLISHES};
+\node[anchor=north west,inner sep=0pt,text width=12.9in,font=\SmallFont\bfseries,text=ink]
+  at (1.18,32.78) {1. Optimize the fresh baseline before claiming speedup.\\[0.24in]
+  2. Validate token semantics independently.\\[0.24in]
+  3. Test closed-loop behavior early.};
+
+\fill[rose,rounded corners=0.12in] (15.05,31.70) rectangle (23.24,34.72);
+\node[anchor=north west,inner sep=0pt,font=\SubtitleFont\bfseries,text=rutgers]
+  at (15.43,32.05) {NEXT SOLUTION};
+\node[anchor=north west,inner sep=0pt,text width=7.3in,font=\BodyFont\bfseries,text=ink]
+  at (15.43,32.80) {Preserve current task-critical information, or train the policy to remain stable under reuse.};
+
+% Footer - still at or above the required minimum size
+\draw[navy,line width=2pt] (0.76,35.08) -- (23.24,35.08);
+\node[anchor=north west,inner sep=0pt,text width=18.0in,font=\SmallFont,text=muted]
+  at (0.78,35.28) {OpenVLA-OFT on LIBERO \quad | \quad one checkpoint \quad | \quad one benchmark family};
+\node[anchor=north east,inner sep=0pt] at (20.95,35.17)
+  {\includegraphics[width=0.88in]{assets/savr-qr.png}};
+\node[anchor=north west,inner sep=0pt,text width=2.0in,font=\SmallFont\bfseries,text=navy]
+  at (21.20,35.27) {CODE};
+
+\end{scope}
+\end{scope}
+
+% Vector scatter plot: positioned from the page bottom so text is upright.
+\begin{scope}[shift={(current page.south west)}]
+\begin{scope}[x=1in,y=1in]
+\begin{axis}[
+  at={(1.00in,18.32in)},anchor=north west,
+  width=11.0in,height=6.25in,
+  xmin=0,xmax=90,ymin=0,ymax=105,
+  xlabel={visual or scene reuse (\%)},
+  ylabel={terminal success (\%)},
+  label style={font=\fontsize{27}{31}\selectfont\bfseries,text=ink},
+  tick label style={font=\fontsize{26}{30}\selectfont,text=muted},
+  grid=major,grid style={draw=line,line width=1.0pt},
+  axis line style={draw=slate,line width=1.6pt},
+  clip=false,
+]
+  \addplot[only marks,mark=*,mark size=7pt,rutgers] coordinates
+    {(34.69,52)(43.29,21)(47.28,23)(56.62,12)(63.26,4)(65.21,0)(64.14,3)(75,1)(83.68,0)};
+  \addplot[only marks,mark=square*,mark size=7pt,teal] coordinates
+    {(0,100)(6.72,96.67)(10.57,90)(0.9534,98.57)};
+  \addplot[only marks,mark=triangle*,mark size=8pt,navy] coordinates
+    {(26.06,96.67)(47.40,80)(49.44,76.67)(25.2434,95.714)};
+  \addplot[slate,dashed,line width=2pt,domain=0:90] {98};
+  \node[anchor=north east,font=\fontsize{26}{30}\selectfont\bfseries,text=muted]
+    at (axis description cs:0.97,0.95) {98\% success reference};
+  \node[anchor=south west,font=\fontsize{26}{30}\selectfont\bfseries,text=rutgers]
+    at (axis description cs:0.03,0.05) {$\bullet$ SAVR1};
+  \node[anchor=south west,font=\fontsize{26}{30}\selectfont\bfseries,text=teal]
+    at (axis description cs:0.31,0.05) {$\blacksquare$ SAVR2/3};
+  \node[anchor=south west,font=\fontsize{26}{30}\selectfont\bfseries,text=navy]
+    at (axis description cs:0.67,0.05) {$\blacktriangle$ ACR};
+\end{axis}
+\end{scope}
+\end{scope}
+
+\end{tikzpicture}
+\end{document}

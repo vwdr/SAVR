@@ -1,0 +1,15 @@
+Recorded terminal summary, 2026-09-11T18:11:28.370589+00:00.
+The full per-test output is retained in the task tool transcript.
+Original qualification source/checkpoint verification: PASS.
+CUDA hidden; original project Python runtime; bytecode writes disabled.
+
+Test groups: episode bridge 13; algorithm port 13; source audit 6;
+qualification accounting 8; compaction 14; original attention/episode 11.
+
+----------------------------------------------------------------------
+Ran 65 tests in 2.063s
+
+OK
+
+Failures: 0. Errors: 0. Skips: 0.
+No GPU experiment, simulator evaluation or training launched.

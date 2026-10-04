@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/savr/cac/feature-record-v1",
+  "title": "CAC feature-record sidecar",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "role",
+    "suite",
+    "task_id",
+    "trajectory_id",
+    "anchor_query_id",
+    "endpoint_query_id",
+    "horizon",
+    "record_index",
+    "numeric_record_sha256",
+    "semantic_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "cac-feature-sidecar-v1"},
+    "contract_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "role": {
+      "enum": [
+        "adapter_fit",
+        "architecture_selection",
+        "checkpoint_validation",
+        "development_calibration",
+        "locked_test"
+      ]
+    },
+    "suite": {"enum": ["libero_10", "libero_goal", "libero_object", "libero_spatial"]},
+    "task_id": {"type": "string", "minLength": 1},
+    "trajectory_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "anchor_query_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "endpoint_query_id": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "horizon": {"enum": [1, 2, 4]},
+    "record_index": {"type": "integer", "minimum": 0},
+    "numeric_record_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "semantic_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "x-cac-numeric-layout": {
+    "byte_order": "little",
+    "alignment_bytes": 4096,
+    "fixed_payload_bytes": 1378328,
+    "aligned_record_bytes": 1380352,
+    "fields": [
+      {"name": "current_tiles", "dtype": "float16", "shape": [32, 4096], "bytes": 262144},
+      {"name": "source_deltas", "dtype": "float16", "shape": [128, 4096], "bytes": 1048576},
+      {"name": "z_cache", "dtype": "float16", "shape": [8, 4096], "bytes": 65536},
+      {"name": "base_action", "dtype": "float32", "shape": [8, 7], "bytes": 224},
+      {"name": "target_delta", "dtype": "float32", "shape": [8, 7], "bytes": 224, "deployment_input": false},
+      {"name": "proprio", "dtype": "float32", "shape": [8], "bytes": 32},
+      {"name": "provenance", "dtype": "uint8", "shape": [128, 12], "bytes": 1536},
+      {"name": "validity_mask", "dtype": "uint8", "shape": [8, 7], "bytes": 56}
+    ],
+    "instruction_embedding": {
+      "dtype": "float16",
+      "shape": [4096],
+      "storage": "one authenticated side-table row per task"
+    },
+    "sidecar_bytes_per_record_max": 512
+  }
+}

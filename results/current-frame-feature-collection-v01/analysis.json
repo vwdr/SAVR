@@ -1,0 +1,12 @@
+{
+  "collection_passed": true,
+  "complete": true,
+  "episodes": 0,
+  "fit": 3200,
+  "model_queries": 8000,
+  "optimizer_steps": 0,
+  "positive_method_result": false,
+  "records": 4000,
+  "summary_sha256": "7bde8cd59846d5f5b54c7b9a8302b30ebe74ef13606eb92aeb754465d5b1a8c3",
+  "validation": 800
+}

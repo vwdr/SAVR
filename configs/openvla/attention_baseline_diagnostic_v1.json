@@ -1,0 +1,187 @@
+{
+  "schema_version": "openvla-attention-diagnostic-v1",
+  "created_date": "2026-09-09",
+  "authorization": "User instructed continuation and delegated single-GPU selection; no training or method implementation.",
+  "output_root": "results/openvla-attention-baseline-diagnostic-20260909-v01",
+  "checkpoint": "checkpoints/openvla-7b-oft-libero-four-suite",
+  "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+  "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+  "libero_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+  },
+  "suites": [
+    "libero_spatial",
+    "libero_object",
+    "libero_goal",
+    "libero_10"
+  ],
+  "offline_queries": 32,
+  "caps": {
+    "queries": 696,
+    "episodes": 16,
+    "seconds": 5400,
+    "memory_mib": 23552,
+    "artifact_bytes": 536870912
+  },
+  "episode_conditions": [
+    {
+      "condition_id": "d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "2b5c2c65251463d30f89250b4dc11dcc922b8b876702843f1f82b5e36202dd58",
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+      "task_index": 30,
+      "arm_order": [
+        "original",
+        "causal_control"
+      ]
+    },
+    {
+      "condition_id": "2ddf6fb6aea4c18c415794fccf600c6920e7568c6a1c03447248e103d215a027",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "8223ba3a8e4474ea34e8d0b0a816e4c63dddf093524135ab5f66d668db6a1459",
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate",
+      "task_index": 31,
+      "arm_order": [
+        "causal_control",
+        "original"
+      ]
+    },
+    {
+      "condition_id": "48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "231ab30ce94ce2416840d85d425e4c8af0933ec7369aca14eb0e9d99b81f9580",
+      "suite": "libero_object",
+      "task_id": "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+      "task_index": 20,
+      "arm_order": [
+        "original",
+        "causal_control"
+      ]
+    },
+    {
+      "condition_id": "0c95a86eafb6915d2699eb89113ad212afa1dc243ddd91ab718a282181e1c9cb",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "31c937aae96382c0bcdedebffcdc8ac74a9c340fb0d7df26586a8080daa1e32d",
+      "suite": "libero_object",
+      "task_id": "pick_up_the_bbq_sauce_and_place_it_in_the_basket",
+      "task_index": 21,
+      "arm_order": [
+        "causal_control",
+        "original"
+      ]
+    },
+    {
+      "condition_id": "f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "71c77822ba283ff9b8f790b5a1080dec42147766d1c9a55a255ac472211c6715",
+      "suite": "libero_goal",
+      "task_id": "open_the_middle_drawer_of_the_cabinet",
+      "task_index": 10,
+      "arm_order": [
+        "original",
+        "causal_control"
+      ]
+    },
+    {
+      "condition_id": "7fb637b98e47c76f8e20704f1012be67e0eeed0e4be9dcb29e2560748d2643e8",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "f825fc4dfbedf47ed380e8d7022227a9a64781d0a74bbb682e966a5d7e60660f",
+      "suite": "libero_goal",
+      "task_id": "open_the_top_drawer_and_put_the_bowl_inside",
+      "task_index": 11,
+      "arm_order": [
+        "causal_control",
+        "original"
+      ]
+    },
+    {
+      "condition_id": "6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "856f1695860a601295fdb23946aa367d3f985d0dac824f239cc78e7ba7a8a3a8",
+      "suite": "libero_10",
+      "task_id": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it",
+      "task_index": 0,
+      "arm_order": [
+        "original",
+        "causal_control"
+      ]
+    },
+    {
+      "condition_id": "7fc0e5f21097ab9564715057c39df3e4e80e64654165312018c18f7484348efb",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "733e829bc895363f1ee74c8e9b7d644f402d46a0f3f556f06ad6ed44cbf31845",
+      "suite": "libero_10",
+      "task_id": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it",
+      "task_index": 1,
+      "arm_order": [
+        "causal_control",
+        "original"
+      ]
+    }
+  ],
+  "authenticated_files": {
+    "scripts/run_openvla_attention_diagnostic.py": "47919853fb235b8f0ea2fea9702b4e69b91ca82444495a4ad1f1487c73a6bfe4",
+    "src/savr/openvla/attention_diagnostic.py": "5f1610f909b4fc05a8a39ab9c5297c956343b29e0d677c0b8a49c901e3a542e3",
+    "tests/openvla/test_attention_diagnostic.py": "2c3ad7216a9f553f2263ce500ebc3cdcd67af370210c5e41a2d00cee851dcbaa",
+    "src/savr/openvla/official_semantics.py": "ffcf1b779086a5602e7670cf5e406af02797039c5b9d4910f5364bdfcac61445",
+    "src/savr/cac/c1.py": "ca228d3a0fa0f636d4df841b634fcf23549da0adfffb20ce599199579aa9d579",
+    "configs/pair/p3_inputs_v1.json": "e3b4064eba73cdfe0f82e4b9c282052e81f19f65b5a4e13d41674fdf45c42262",
+    "reports/cac_c0_recovery01/simulator_populations_v1.jsonl": "f31fd5a0e2f6e7f2abc7fe5c6906f6f646d3927f5768e43ee0005ee9d3a02e41",
+    "docs/OPENVLA_ATTENTION_BASELINE_DIAGNOSTIC_V1.md": "4a62c1054d185d61cb0c0069602e5fc7cd8e2fed87c5cea81238f246c2dc7782",
+    "checkpoints/openvla-7b-oft-libero-four-suite/config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "checkpoints/openvla-7b-oft-libero-four-suite/configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "checkpoints/openvla-7b-oft-libero-four-suite/modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa",
+    "checkpoints/openvla-7b-oft-libero-four-suite/processing_prismatic.py": "06563586bbc73d36501a14a231a3174904ede830d33174d0c625ece8e931ef1e",
+    "checkpoints/openvla-7b-oft-libero-four-suite/processor_config.json": "167e026d8121f6cb0bf5c18310b97ba8139152f970822bb3824213bd37dc7a76",
+    "checkpoints/openvla-7b-oft-libero-four-suite/preprocessor_config.json": "bd024783fb785cbdfe35b710b621c5e8678d4c157a9ba625675e67d40d1757da",
+    "checkpoints/openvla-7b-oft-libero-four-suite/dataset_statistics.json": "6ec6ef68d0d5bae4cb5f9fc9acb715a22b9f4545e9e9b300d0d88695cd7afec3",
+    "checkpoints/openvla-7b-oft-libero-four-suite/tokenizer.json": "8f5e2869e1807b8bb3c7717a294539c37e9de5d728ad60e31ef57e83cc5ea527",
+    "checkpoints/openvla-7b-oft-libero-four-suite/tokenizer_config.json": "f5f1d3ed015ebb71cf11686ff00bc8e0c25957bbf3952f95312cecc9b168fbea",
+    "checkpoints/openvla-7b-oft-libero-four-suite/tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+    "checkpoints/openvla-7b-oft-libero-four-suite/special_tokens_map.json": "cb90ee5cf5793aa444039af9795b00db59d3fef8942e7eca9cf1990bab370d61",
+    "checkpoints/openvla-7b-oft-libero-four-suite/added_tokens.json": "ab43123267b190cb7990bc9f2ae4ad32dcb7ed029fb0fccb1b4e062c6f54a2a1",
+    "checkpoints/openvla-7b-oft-libero-four-suite/action_head--300000_checkpoint.pt": "f9647226ca9a1ee64ff8ed1ec380c89110afc6fc2bf6d0ae463cc4023165b4dc",
+    "checkpoints/openvla-7b-oft-libero-four-suite/proprio_projector--300000_checkpoint.pt": "1792c6e19381d3c7c814e2d49836a855d3a38b0693919416f52b3c5af39505c8",
+    "checkpoints/openvla-7b-oft-libero-four-suite/model-00001-of-00004.safetensors": "8b30a7951e68703e1731957190d9f1d6e1eaa82f05b53909608eb0510875b11d",
+    "checkpoints/openvla-7b-oft-libero-four-suite/model-00002-of-00004.safetensors": "af4773166950ddda1da6b3c5367796a52e7d5e7216f97041d9ad0721a25e53fe",
+    "checkpoints/openvla-7b-oft-libero-four-suite/model-00003-of-00004.safetensors": "5a62791dd46ec4a85b353920aa07eff3582ceb5e9b6b853ad0f38de36fcab75d",
+    "checkpoints/openvla-7b-oft-libero-four-suite/model-00004-of-00004.safetensors": "a877e3fece1feafb80f59f91585ce04379ee39e2bf9a25cb7b4acf237e896e60",
+    "checkpoints/openvla-7b-oft-libero-four-suite/model.safetensors.index.json": "ca8b53fed8133ee2afcd2fc483de8febf7f5bb0f6bcb09f91189772e59e8f659",
+    "third_party/openvla-oft/experiments/robot/libero/run_libero_eval.py": "701a20b6ca2942aa36e0e7d567b25647268b936a23af79c5893534f10bec7802",
+    "third_party/openvla-oft/experiments/robot/libero/libero_utils.py": "489c16dc8220845b2936ddb81aafd7469061d2009b0edddb2f85703bc51a204f",
+    "third_party/openvla-oft/experiments/robot/openvla_utils.py": "eed754d7c5f9821aae2fe0531dbe01df8c11df0d5c79b4aeeb9bb4452124bdf5",
+    "third_party/openvla-oft/experiments/robot/robot_utils.py": "93541b01edd4de49fcc9a1d9249e11fea008b9502fd755096503aaec93773da0",
+    "third_party/openvla-oft/prismatic/models/action_heads.py": "8e42df65d6407d64d47457286d9be05466d25d8a0f094aa9dfb90de84a9aa7cc",
+    "third_party/openvla-oft/prismatic/vla/constants.py": "5b53c3a07cf1ed27bf94a88da9929e82818792d6fdc32343d133afea1a0acf3d",
+    "third_party/openvla-oft/prismatic/models/projectors.py": "3ac1ef82215b30792bdaf9c980cf8b93046dec1b220597cfc0f536bfe5ebdf42",
+    "envs/openvla-oft/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py": "3aac24cec583a6ef5f60b6ec634a8bd3c8377784c5c63c8cc14cb6790554c52e"
+  }
+}

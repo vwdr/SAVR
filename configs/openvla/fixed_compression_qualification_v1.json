@@ -1,0 +1,48 @@
+{
+  "analyzer_sha256": "75e1e9fdaad5800cd450685b2e8c4400fa5eecf8fbf57e69ffc1680b06e70672",
+  "authenticated_files": {
+    "docs/CURRENT_FRAME_COMPRESSION_SCREEN_V1.md": "4ce794dae871345d3019f4c297a6f449c3e531d4bd30bd808d9ace7d8fa9474c",
+    "scripts/analyze_fixed_compression_qualification.py": "75e1e9fdaad5800cd450685b2e8c4400fa5eecf8fbf57e69ffc1680b06e70672",
+    "scripts/run_contemporary_reference_recovery01.py": "99e784f05d71820c285c4bb0481baa88b83aca61b30c57841dc871ca70f95d94",
+    "scripts/run_fixed_compression_qualification.py": "41f8c6ff97655187f748b691efad11f90ed1d16829b2a1158e933c2b119ce19c",
+    "src/savr/openvla/fixed_compression.py": "5f685ab74c18890b0556a233ea398933e920869272f079f46e68298f29f9881a",
+    "src/savr/openvla/spatial_selection.py": "038962d019bb5fe6c799f7e68df3a9168b310c4085e6d7c32fdb42284540cedc",
+    "src/savr/openvla/visual_compaction.py": "13d576a0959031703b53440fa18490ab5fe65c3b30baf9fe4d10b841a0012c74",
+    "tests/openvla/test_fixed_compression.py": "c2782ab3c4b88f4a764fcb5a130ad2d51b3c8af752839590499037dc5c2fa101",
+    "tests/openvla/test_fixed_compression_qualification.py": "e32b4cc3f608967019173af3a1243a4f0df96aeadcbd04b5b43698864dcec00e"
+  },
+  "automatic_retry": false,
+  "budgets": [
+    512,
+    384,
+    256
+  ],
+  "caps": {
+    "aggregate_memory_mib": 23552,
+    "artifact_bytes": 268435456,
+    "episodes": 0,
+    "model_calls": 112,
+    "seconds": 1800
+  },
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+  },
+  "launch_ready": true,
+  "observation_ids": [
+    "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+    "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+    "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+    "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+    "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+    "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+    "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+    "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae"
+  ],
+  "output_root": "results/fixed-compression-qualification-v01",
+  "reference_summary": "results/contemporary-reference-v02/worker_summary.json",
+  "reference_summary_sha256": "6c8fc825f55ba2154a48df3ae3171f674e47ebd363e620efa5f929082148326b",
+  "schema_version": "fixed-compression-qualification-v1",
+  "tolerance": 1e-06,
+  "worker_sha256": "41f8c6ff97655187f748b691efad11f90ed1d16829b2a1158e933c2b119ce19c"
+}

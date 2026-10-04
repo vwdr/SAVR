@@ -1,0 +1,62 @@
+{
+  "schema_version": "pair-p3r-semantic-manifest-v1",
+  "run_id": "pair-p3r-vectorized-v02-recovery01",
+  "status": "passed",
+  "configuration_semantic_sha256": "49b22736e4679420eac376168ba61e8b3af7a0b6f93618ad6ad9caa9c7ea622a",
+  "artifacts": {
+    "configuration": {
+      "path": "configs/pair/p3r_vectorized_v02_recovery01.json",
+      "sha256": "072fae8843f9d98ac711daea91d284a202c90eda0cf9c029fd1bba7775ae0c25"
+    },
+    "protocol": {
+      "path": "docs/PAIR_P3R_TECHNICAL_RECOVERY_01_PROTOCOL.md",
+      "sha256": "9a8b7e39533ba67eabd8a6296b6df66f4c35c5ff254297b7c50f5fff1f61b356"
+    },
+    "preflight": {
+      "path": "reports/pair_p3r/preflight_v02_recovery01.json",
+      "sha256": "4e8986c6393fc1af396f81e88c28d0819ad95373b742e84541b6c517e3a14a0f"
+    },
+    "worker_source": {
+      "path": "scripts/run_pair_p3r_worker.py",
+      "sha256": "422f831616d532d8e348832907c834fabcf8a4e3109ec294f7261e5d623e9a75"
+    },
+    "analyzer_source": {
+      "path": "scripts/analyze_pair_p3r.py",
+      "sha256": "34ff077e0fd291865c6de93fbf5c6773e1ad04b3e4e56525253e41b5462cb359"
+    },
+    "vectorized_helper_source": {
+      "path": "src/savr/pair/p3_openvla.py",
+      "sha256": "c651abb125a13082049c20a16ea39f235371ae0ee9fe98a5ba146859b33a1e20"
+    },
+    "analysis": {
+      "path": "results/pair-p3r-vectorized-v02-recovery01/analysis.json",
+      "sha256": "6f1bad7752403884a880438a24ea77af6702bac48bb75a74c99ceb105907ebda"
+    },
+    "worker_summary": {
+      "path": "results/pair-p3r-vectorized-v02-recovery01/worker_summary.json",
+      "sha256": "af5ccea78b3d6393784132e194df396586b39efed367f13040e1b53e6df8a072"
+    },
+    "blocks": {
+      "path": "results/pair-p3r-vectorized-v02-recovery01/blocks.jsonl",
+      "sha256": "d024d3ee1a817be7d1fb675b036eaf989b782752409f095387ff0e541548a836"
+    },
+    "report": {
+      "path": "reports/PAIR_P3R_REPORT.md",
+      "sha256": "96d283cd2675822162ac40a520c0c9c45c9aea82e2ab5f1127ccbe9ae2675207"
+    }
+  },
+  "protection": {
+    "expert_actions_accessed": false,
+    "action_comparisons_performed": false,
+    "terminal_outcomes_accessed": false,
+    "simulator_used": false,
+    "downloads": 0,
+    "automatic_retry": false
+  },
+  "advance": {
+    "next_phase": "P4",
+    "authorized": false,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "8354f42f8032259e222f59bbe37bd2c970ec61cef5b22619c65d147517dca6d4"
+}

@@ -1,0 +1,13 @@
+{
+  "adapter_dtype": "float32",
+  "attention": "math",
+  "backbone_loaded": false,
+  "deterministic_algorithms": true,
+  "device": "NVIDIA TITAN RTX",
+  "initial_state_sha256": {
+    "False": "e015f8b121e9217a27eb48dbe4431699bb6c3c4f689b32d8d2bc9508287a842d",
+    "True": "f03e16a1afd62055ab264d856a59e3c1138d5813a050913c052d2bf3bf94cd1a"
+  },
+  "tf32": false,
+  "torch": "2.2.0+cu118"
+}

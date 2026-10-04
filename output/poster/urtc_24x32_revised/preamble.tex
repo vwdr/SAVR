@@ -1,0 +1,37 @@
+\usepackage[paperwidth=24in,paperheight=32in,margin=0in]{geometry}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\setsansfont{TeX Gyre Heros}
+\renewcommand{\familydefault}{\sfdefault}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+\definecolor{RutgersRed}{HTML}{A6192E}
+\definecolor{DarkRed}{HTML}{6D001A}
+\definecolor{Black}{HTML}{111111}
+\definecolor{Gray}{HTML}{5F6872}
+\definecolor{LightGray}{HTML}{E9ECEF}
+
+\newcommand{\Body}{\fontsize{24}{29}\selectfont}
+\newcommand{\SmallBody}{\fontsize{20}{24}\selectfont}
+\newcommand{\SectionText}{\fontsize{34}{37}\selectfont\bfseries}
+
+\newcommand{\SectionBar}[4]{%
+  \fill[DarkRed]
+    ($(current page.north west)+(#1in,-#2in)$) rectangle ++(#3in,-0.56in);
+  \node[anchor=west,text=white,font=\SectionText]
+    at ($(current page.north west)+(#1in+0.24in,-#2in-0.28in)$) {#4};
+}
+
+\newcommand{\Panel}[4]{%
+  \draw[Black,line width=1.4pt]
+    ($(current page.north west)+(#1in,-#2in)$) rectangle ++(#3in,-#4in);
+}
+
+\newcommand{\Bullet}{\textcolor{RutgersRed}{\raisebox{0.20ex}{\rule{0.18in}{0.055in}}}\hspace{0.12in}}

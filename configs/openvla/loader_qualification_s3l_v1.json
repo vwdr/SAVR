@@ -1,0 +1,59 @@
+{
+  "schema_version": "openvla-loader-qualification-s3l-v1",
+  "run_id": "openvla-loader-qualification-s3l-v01",
+  "output_root": "results/openvla-loader-qualification-s3l-v01",
+  "authorization": {
+    "authorized": true,
+    "source": "User authorized cautious loader-only qualification on 2026-08-31",
+    "policy_calls": 0,
+    "actions": 0,
+    "simulator": false,
+    "outcomes": false,
+    "automatic_retry": false
+  },
+  "official_source": {
+    "relative": "third_party/openvla-oft",
+    "revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "disable_model_logic_sync": true
+  },
+  "model": {
+    "checkpoint_relative": "checkpoints/openvla-7b-oft-libero-four-suite",
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "dtype": "torch.bfloat16",
+    "checkpoint_metadata_sha256": {
+      "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+      "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+      "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+    }
+  },
+  "authenticated_files": {
+    "docs/OPENVLA_SEMANTIC_REQUALIFICATION_PROTOCOL_V1.md": "1979a894eca3b46c79b9978da278589602335f394715d33bc4ce3c3f3bc61cc7",
+    "configs/pair/libero_runtime/config.yaml": "dbd195f1b830abfc8580461a24335d1e1d72cb00548253a394f0abe2d8fdd74c",
+    "results/openvla-semantic-parity-s3-v01/technical_stop.json": "8ed37d0422671ac1984757db88978e4226e255c1f3c890a29d435c8957ed560e",
+    "src/savr/acr/v5_d_recovery.py": "8d55e47c2f83432361660debfaa63879ea09a3859422ae6f1f49571866e1a118",
+    "scripts/run_openvla_semantic_parity.py": "8d2900b8930eb20eb35dd20faf49ee9224c2cc28572e4275f9701a708882389d",
+    "scripts/run_openvla_semantic_parity_recovery01.py": "5ff933110d26ecd210bb153f2114d8bb6429dcdcaa6f7da34cdce414b7386bd9",
+    "scripts/run_openvla_loader_qualification.py": "51943f0dd1a121979ca053cba313fb2576c88f356df2956ccb1ff12fcd6ef8b0",
+    "scripts/preflight_openvla_loader_qualification.py": "4aff5eba52ba79f1d93fe45fc7b2178a57d3029bad8ad07c2d5a1fbac6972d89",
+    "scripts/launch_openvla_loader_qualification.sh": "01c499b2b5433504f61cf20e93dde7f658ea9526c670c1fbdc0725804924ec7d"
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "policy_calls": 0,
+    "vision_encoder_calls": 0,
+    "action_head_calls": 0,
+    "wall_seconds": 900,
+    "artifact_bytes": 268435456,
+    "peak_gpu_memory_mib_strict_max": 23552,
+    "downloads": 0,
+    "simulator_outcomes": 0,
+    "automatic_retry": false
+  },
+  "advance": {
+    "next_stage": "S3_RECOVERY01",
+    "authorized": false,
+    "stop_before_next_stage": true
+  },
+  "semantic_sha256": "36db6dc793b115981a1b846f00edd42697eec984eb42b55ca95b1393916c7b55"
+}

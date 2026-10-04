@@ -1,0 +1,127 @@
+\documentclass{article}
+\usepackage[paperwidth=24in,paperheight=36in,margin=0in]{geometry}
+\usepackage{fontspec,graphicx,xcolor,tikz,pgfplots}
+\setsansfont{TeX Gyre Heros}\renewcommand{\familydefault}{\sfdefault}
+\usetikzlibrary{arrows.meta,calc,positioning}\pgfplotsset{compat=1.18}
+\pagestyle{empty}\setlength{\parindent}{0pt}\hyphenpenalty=10000
+\definecolor{scarlet}{HTML}{A6192E}\definecolor{darkred}{HTML}{6D001A}\definecolor{black}{HTML}{000000}
+\newcommand{\Sec}[4]{\fill[scarlet] ($(current page.north west)+(#1in,-#2in)$) rectangle ++(#3in,-.66in);\node[anchor=center,text=white,font=\fontsize{42}{45}\selectfont\bfseries] at ($(current page.north west)+(#1in,-#2in)+(.5*#3in,-.33in)$) {#4};}
+\newcommand{\Panel}[4]{}
+\newcommand{\Body}{\fontsize{30}{35}\selectfont}\newcommand{\Small}{\fontsize{27}{31}\selectfont}
+\begin{document}
+\begin{tikzpicture}[remember picture,overlay,x=1in,y=1in]
+\fill[white] (current page.south west) rectangle (current page.north east);
+
+% Header
+\node[anchor=north,text width=17.3in,align=center,text=black,font=\fontsize{50}{55}\selectfont\bfseries] at ($(current page.north west)+(9.25in,-.35in)$) {TRAINING-FREE TEMPORAL VISUAL CACHING\\IN OPENVLA-OFT: A CLOSED-LOOP EVALUATION};
+\node[anchor=north,text width=17.3in,align=center,font=\fontsize{34}{38}\selectfont] at ($(current page.north west)+(9.25in,-1.98in)$) {Ved Dwivedi\textsuperscript{1,2}, Cheng Yang\textsuperscript{2}, and Bo Yuan\textsuperscript{2}};
+\node[anchor=north,text width=17.3in,align=center,font=\fontsize{27}{30}\selectfont] at ($(current page.north west)+(9.25in,-2.52in)$) {\textsuperscript{1}John P. Stevens High School, Edison, New Jersey};
+\node[anchor=north,text width=17.3in,align=center,font=\fontsize{27}{30}\selectfont] at ($(current page.north west)+(9.25in,-2.98in)$) {\textsuperscript{2}Department of Electrical and Computer Engineering, Rutgers University-New Brunswick, New Jersey};
+\node[anchor=west,inner sep=0pt] at ($(current page.north west)+(18.78in,-1.57in)$) {\includegraphics[width=1.38in,trim=420 1215 1460 170,clip]{assets/rutgers-signature-samples.png}};
+\node[anchor=west,align=left,font=\fontsize{30}{33}\selectfont\bfseries] at ($(current page.north west)+(20.30in,-1.57in)$) {RUTGERS\\UNIVERSITY};
+\fill[darkred] ($(current page.north west)+(0,-3.70in)$) rectangle ($(current page.north east)+(0,-3.82in)$);
+
+% Introduction
+\Sec{.45}{4.00}{8.00}{INTRODUCTION}\Panel{.45}{4.86}{8.00}{7.34}
+\node[anchor=north west,text width=7.05in,font=\fontsize{29}{34}\selectfont] at ($(current page.north west)+(.88in,-5.28in)$) {$\bullet$ VLA policies repeatedly process similar camera observations during robot control.\\[.38in]$\bullet$ Reuse may save computation, but stale visual information can change the action and all later observations.\\[.38in]$\bullet$ We evaluate three training-free reuse strategies in closed-loop manipulation.};
+\draw[black,line width=1.6pt] ($(current page.north west)+(.88in,-10.12in)$)--++(7.05in,0);
+\node[anchor=north west,text width=7.05in,font=\fontsize{29}{34}\selectfont\bfseries] at ($(current page.north west)+(.88in,-10.42in)$) {Objective: reduce complete query time without reducing task success.};
+
+% Methods
+\Sec{8.80}{4.00}{14.75}{METHODS}\Panel{8.80}{4.86}{14.75}{5.78}
+\tikzset{ib/.style={draw=black,line width=1.5pt,rounded corners=3pt,minimum height=.88in,align=center,font=\Small},ab/.style={-{Latex[length=.18in,width=.13in]},black,line width=2.5pt}}
+\node[ib,minimum width=3.1in] (obs) at ($(current page.north west)+(10.75in,-5.63in)$) {scene + wrist images\\language + robot state};
+\node[ib,minimum width=3.2in,font=\Small\bfseries] (vla) at ($(current page.north west)+(15.25in,-5.63in)$) {OpenVLA-OFT};
+\node[ib,minimum width=2.8in] (act) at ($(current page.north west)+(19.35in,-5.63in)$) {8-step action chunk};
+\node[ib,minimum width=2.2in] (lib) at ($(current page.north west)+(22.15in,-5.63in)$) {LIBERO};
+\draw[ab](obs)--(vla);\draw[ab](vla)--(act);\draw[ab](act)--(lib);
+\node[anchor=north,align=center,text width=4.0in,font=\Small] at ($(current page.north west)+(11.20in,-7.05in)$) {\textbf{Complete prefix}\\reuse both camera representations};
+\node[anchor=north,align=center,text width=4.0in,font=\Small] at ($(current page.north west)+(16.20in,-7.05in)$) {\textbf{Scene camera}\\reuse scene; refresh wrist};
+\node[anchor=north,align=center,text width=4.0in,font=\Small] at ($(current page.north west)+(21.20in,-7.05in)$) {\textbf{Internal K/V}\\reuse selected layers and regions};
+\draw[scarlet,line width=5pt] ($(current page.north west)+(9.25in,-8.55in)$)--++(3.90in,0);
+\draw[scarlet,line width=5pt] ($(current page.north west)+(14.25in,-8.55in)$)--++(3.90in,0);
+\draw[scarlet,line width=5pt] ($(current page.north west)+(19.25in,-8.55in)$)--++(3.90in,0);
+\node[anchor=north,align=center,text width=13.5in,font=\fontsize{28}{33}\selectfont] at ($(current page.north west)+(16.18in,-9.03in)$) {Every strategy is compared with dense inference using terminal success and complete query time.};
+\Panel{8.80}{10.94}{14.75}{1.26}
+\draw[black,line width=1.6pt] ($(current page.north west)+(9.20in,-10.90in)$)--++(13.95in,0);
+\node[anchor=center,align=center,text width=14.05in,font=\fontsize{26}{30}\selectfont] at ($(current page.north west)+(16.175in,-11.57in)$) {Released OpenVLA-OFT checkpoint \quad LIBERO benchmark \quad one TITAN RTX};
+
+% Results A
+\Sec{.45}{12.50}{23.10}{RESULTS}\Panel{.45}{13.36}{23.10}{5.68}
+\node[anchor=north west,font=\fontsize{32}{36}\selectfont\bfseries] at ($(current page.north west)+(.78in,-13.68in)$) {COMPLETE VISUAL-PREFIX REUSE};
+\begin{scope}[shift={(current page.south west)}]
+\begin{axis}[at={(1.15in,21.55in)},anchor=north west,width=21.70in,height=3.89in,xmin=0,xmax=90,ymin=0,ymax=105,xtick={0,15,30,45,60,75,90},ytick={0,20,40,60,80,100},xlabel={visual-prefix reuse (\% of queries)},ylabel={terminal task success (\%)},label style={font=\fontsize{27}{30}\selectfont},tick label style={font=\fontsize{26}{29}\selectfont},grid=major,grid style={draw=black,dotted,line width=.35pt},axis line style={draw=black,line width=1.4pt},legend style={font=\fontsize{26}{29}\selectfont,draw=none,at={(.98,.97)},anchor=north east,legend columns=1},clip=false]
+\addplot[only marks,mark=*,mark size=7pt,scarlet] coordinates {(34.69,52)(43.29,21)(47.28,23)(56.62,12)(63.26,4)(65.21,0)(64.14,3)(75,1)(83.68,0)};
+\addplot[only marks,mark=square*,mark size=7pt,black] coordinates {(0,100)(6.72,96.67)(10.57,90)(.9534,98.57)};
+\legend{permissive settings,dense and conservative settings}
+\end{axis}\end{scope}
+\node[anchor=south,align=center,text width=21.9in,font=\Small] at ($(current page.north west)+(12in,-18.77in)$) {Dense: \textbf{100/100}. Permissive reuse: \textbf{0--52\% success}. Conservative reuse: \textbf{69/70}, but only \textbf{0.95\%} of queries reused.};
+
+% Results B
+\Panel{.45}{19.39}{11.38}{7.91}
+\node[anchor=north west,font=\fontsize{32}{36}\selectfont\bfseries] at ($(current page.north west)+(.78in,-19.73in)$) {SCENE-CAMERA REUSE};
+\node[anchor=north,font=\Small\bfseries] at ($(current page.north west)+(3.20in,-20.75in)$) {TERMINAL SUCCESS};
+\node[anchor=north,font=\Small\bfseries] at ($(current page.north west)+(8.95in,-20.75in)$) {QUERY TIME};
+\node[anchor=east,font=\Small] at ($(current page.north west)+(1.95in,-22.05in)$) {Dense};
+\node[anchor=east,font=\Small] at ($(current page.north west)+(1.95in,-22.85in)$) {Reuse};
+\draw[black,line width=8pt] ($(current page.north west)+(2.25in,-22.05in)$)--($(current page.north west)+(5.15in,-22.05in)$);
+\draw[scarlet,line width=8pt] ($(current page.north west)+(2.25in,-22.85in)$)--($(current page.north west)+(5.15in,-22.85in)$);
+\node[anchor=west,font=\Small\bfseries] at ($(current page.north west)+(5.35in,-22.05in)$) {67/70};
+\node[anchor=west,font=\Small\bfseries] at ($(current page.north west)+(5.35in,-22.85in)$) {67/70};
+\node[anchor=east,font=\Small] at ($(current page.north west)+(7.65in,-22.05in)$) {Dense};
+\node[anchor=east,font=\Small] at ($(current page.north west)+(7.65in,-22.85in)$) {Reuse};
+\draw[black,line width=2pt] ($(current page.north west)+(7.95in,-23.55in)$)--($(current page.north west)+(11.20in,-23.55in)$);
+\node[anchor=north,font=\fontsize{26}{29}\selectfont] at ($(current page.north west)+(7.95in,-23.62in)$) {1185};
+\node[anchor=north,font=\fontsize{26}{29}\selectfont] at ($(current page.north west)+(11.20in,-23.62in)$) {1192 ms};
+\fill[black] ($(current page.north west)+(9.47in,-22.05in)$) circle (.11in);
+\fill[scarlet] ($(current page.north west)+(10.72in,-22.85in)$) circle (.11in);
+\node[anchor=south,font=\Small\bfseries] at ($(current page.north west)+(9.47in,-21.92in)$) {1188.28};
+\node[anchor=north,font=\Small\bfseries] at ($(current page.north west)+(10.72in,-23.00in)$) {1190.97};
+\node[anchor=south,align=center,text width=10.4in,font=\Small] at ($(current page.north west)+(6.14in,-26.87in)$) {Reusing the scene representation on \textbf{25.24\%} of queries preserved the observed success count (67/70), but was \textbf{0.23\% slower}.};
+
+% Results C
+\Panel{12.18}{19.39}{11.37}{7.91}
+\node[anchor=north west,font=\fontsize{32}{36}\selectfont\bfseries] at ($(current page.north west)+(12.51in,-19.73in)$) {FINE-GRAINED INTERNAL REUSE};
+\node[anchor=north,font=\Small\bfseries] at ($(current page.north west)+(15.25in,-20.75in)$) {RELATIVE QUERY TIME};
+\node[anchor=north,font=\Small\bfseries] at ($(current page.north west)+(20.75in,-20.75in)$) {TERMINAL SUCCESS};
+\node[anchor=east,font=\Small] at ($(current page.north west)+(14.20in,-22.05in)$) {Dense};
+\node[anchor=east,font=\Small] at ($(current page.north west)+(14.20in,-22.85in)$) {Reuse};
+\draw[black,line width=8pt] ($(current page.north west)+(14.50in,-22.05in)$)--($(current page.north west)+(17.35in,-22.05in)$);
+\draw[scarlet,line width=8pt] ($(current page.north west)+(14.50in,-22.85in)$)--($(current page.north west)+(16.71in,-22.85in)$);
+\node[anchor=west,font=\Small\bfseries] at ($(current page.north west)+(17.50in,-22.05in)$) {100\%};
+\node[anchor=west,font=\Small\bfseries] at ($(current page.north west)+(16.86in,-22.85in)$) {77.4\%};
+\node[anchor=east,font=\Small] at ($(current page.north west)+(19.75in,-22.05in)$) {Dense};
+\node[anchor=east,font=\Small] at ($(current page.north west)+(19.75in,-22.85in)$) {Reuse};
+\draw[black,line width=8pt] ($(current page.north west)+(20.05in,-22.05in)$)--($(current page.north west)+(22.35in,-22.05in)$);
+\fill[scarlet] ($(current page.north west)+(20.05in,-22.85in)$) circle (.11in);
+\node[anchor=west,font=\Small\bfseries] at ($(current page.north west)+(22.50in,-22.05in)$) {68/120};
+\node[anchor=west,font=\Small\bfseries] at ($(current page.north west)+(20.27in,-22.85in)$) {0/120};
+\node[anchor=south,align=center,text width=10.4in,font=\Small] at ($(current page.north west)+(17.86in,-26.87in)$) {A controlled systems test reduced median query time by \textbf{22.60\%}; closed-loop success fell from \textbf{68/120 to 0/120}.};
+
+% Discussion
+\Sec{.45}{27.60}{15.00}{DISCUSSION \& CONCLUSION}\Panel{.45}{28.46}{15.00}{4.74}
+\tikzset{lb/.style={minimum width=2.6in,minimum height=.92in,align=center,font=\fontsize{27}{30}\selectfont}}
+\node[lb](o)at($(current page.north west)+(2.2in,-29.45in)$){older visual\\state};\node[lb](a)at($(current page.north west)+(5.8in,-29.45in)$){changed\\action};\node[lb](n)at($(current page.north west)+(9.4in,-29.45in)$){changed next\\observation};\node[lb](l)at($(current page.north west)+(13in,-29.45in)$){later reuse on\\new trajectory};
+\foreach\x/\y in{o/a,a/n,n/l}\draw[-{Latex[length=.18in,width=.13in]},scarlet,line width=3pt](\x.east)--(\y.west);
+\draw[-{Latex[length=.18in,width=.13in]},darkred,line width=3pt](l.south)..controls($(l.south)+(0,-.42in)$)and($(o.south)+(0,-.42in)$)..(o.south);
+\node[anchor=north,align=center,text width=13.8in,font=\Small] at ($(current page.north west)+(7.95in,-30.39in)$) {A small reuse error can compound because each action changes the next policy input.};
+\draw[black,line width=1.6pt] ($(current page.north west)+(.88in,-31.45in)$)--++(14.14in,0);
+\node[anchor=north,align=center,text width=13.45in,font=\fontsize{29}{33}\selectfont\bfseries] at ($(current page.north west)+(7.95in,-31.78in)$) {None of the tested training-free strategies achieved both reliable closed-loop performance and meaningful end-to-end efficiency.};
+
+% Limitations
+\Sec{15.80}{27.60}{7.75}{LIMITATIONS}\Panel{15.80}{28.46}{7.75}{4.74}
+\node[anchor=north west,text width=6.85in,font=\fontsize{27}{32}\selectfont] at ($(current page.north west)+(16.18in,-28.82in)$) {$\bullet$ One OpenVLA-OFT checkpoint\\[.15in]$\bullet$ One simulator benchmark family\\[.15in]$\bullet$ One GPU class\\[.15in]$\bullet$ Different populations by method\\[.15in]$\bullet$ Terminal success, not formal safety\\[.15in]$\bullet$ No claim that all VLA caching fails};
+
+% Footer
+\draw[darkred,line width=2pt] ($(current page.north west)+(.45in,-33.50in)$)--++(23.1in,0);
+\foreach \x in {9.85,15.50,21.15}\draw[darkred,line width=1.2pt] ($(current page.north west)+(\x in,-33.68in)$)--++(0,-1.72in);
+\node[anchor=north west,text width=8.85in,font=\fontsize{26}{29}\selectfont\bfseries] at ($(current page.north west)+(.68in,-33.76in)$) {REFERENCES};
+\node[anchor=north west,text width=8.85in,font=\fontsize{26}{30}\selectfont] at ($(current page.north west)+(.68in,-34.25in)$) {[1] Kim et al., OpenVLA, CoRL 2025.\\[.06in][2] Kim et al., OpenVLA-OFT, RSS 2025.\\[.06in][3] Liu et al., LIBERO, NeurIPS 2023. \quad [4] Xu et al., VLA-Cache, NeurIPS 2025.};
+\node[anchor=north west,text width=5.05in,font=\fontsize{26}{29}\selectfont\bfseries] at ($(current page.north west)+(10.15in,-33.76in)$) {ACKNOWLEDGMENTS};
+\node[anchor=north west,text width=5.05in,font=\fontsize{26}{30}\selectfont] at ($(current page.north west)+(10.15in,-34.25in)$) {Research guidance from the Rutgers SRC Lab.};
+\node[anchor=north west,text width=5.05in,font=\fontsize{26}{29}\selectfont\bfseries] at ($(current page.north west)+(15.80in,-33.76in)$) {CONTACT};
+\node[anchor=north west,text width=5.05in,font=\fontsize{26}{30}\selectfont] at ($(current page.north west)+(15.80in,-34.25in)$) {veddwivedi39@gmail.com\\github.com/vwdr/SAVR};
+\node[anchor=north,inner sep=0pt] at ($(current page.north west)+(22.30in,-33.74in)$) {\includegraphics[width=1.48in]{assets/savr-qr.png}};
+\node[anchor=north,align=center,font=\fontsize{26}{29}\selectfont\bfseries] at ($(current page.north west)+(22.30in,-35.23in)$) {CODE};
+\end{tikzpicture}
+\end{document}

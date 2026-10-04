@@ -1,0 +1,160 @@
+{
+  "c1_authorized": false,
+  "counts": {
+    "c2_all_fresh": 240,
+    "c2_exact_repeats": 360,
+    "c2_primary": 3600,
+    "c3_contracts": 13200,
+    "c7_locked_contracts": 2880,
+    "simulator_condition_rows": 2240,
+    "tasks": 40,
+    "trajectory_roles": 2000
+  },
+  "date": "2026-08-31",
+  "file_count": 24,
+  "files": {
+    "PROJECT_STATUS.md": {
+      "bytes": 53773,
+      "sha256": "f40aa043725a6d5a664c3e68104000f09f16cade1afe6d5656d300de36ddaa49"
+    },
+    "configs/cac/c0_freeze_v1.json": {
+      "bytes": 11082,
+      "sha256": "a6ba82461a382f2d03a450301dbd94c14131ec7e4ad80efae85cc29f988eb587"
+    },
+    "configs/cac/c0_recovery01.json": {
+      "bytes": 1823,
+      "sha256": "ca660ce6de1e3b5caf4a18bbb496579973a57de656b4b3783aee54b0d62edd52"
+    },
+    "docs/CACHE_ACTION_CORRECTION_EXECUTION_PROTOCOL_V2.md": {
+      "bytes": 39995,
+      "sha256": "5b9bc46ea4e2bd0550bd28e5c3c87f74f58aa85e47cb7bd45057a821e005ffbd"
+    },
+    "docs/CACHE_ACTION_CORRECTION_FINAL_PREEXECUTION_AUDIT_2026-08-30.md": {
+      "bytes": 14800,
+      "sha256": "8069940726c2027e986e383078893bdb044718f6fd3e458de3ecd6918057616f"
+    },
+    "docs/CAC_C0_LITERATURE_COLLISION_AUDIT_2026-08-30.md": {
+      "bytes": 7843,
+      "sha256": "9e59959e6ff13b36e331566bd132aa3091080044fbd9013884c50937ebfcb4c1"
+    },
+    "docs/DECISIONS.md": {
+      "bytes": 153567,
+      "sha256": "56bb4973ecb8d298e5077da9ef6286c628f705b0f22adc209e8fdd02a59dc247"
+    },
+    "reports/CAC_C0_REPORT.md": {
+      "bytes": 7515,
+      "sha256": "14289b2a0e25dd8d51bab7a061395a1384ecf54e0895fd08a922f01b4cd61b17"
+    },
+    "reports/CAC_C0_TECHNICAL_STOP_01.json": {
+      "bytes": 1252,
+      "sha256": "4521fa34d2445c9b81c63029f6bb49e4a13cc69fbe235a6e800350b0ad82fee8"
+    },
+    "reports/CAC_C0_TECHNICAL_STOP_01.md": {
+      "bytes": 2782,
+      "sha256": "80d77f070ad935560b90dc0becf31af7eec710ccb3e4b1574b003a7f7de8f0a9"
+    },
+    "reports/cac_c0_power_simulation_v1.json": {
+      "bytes": 6219,
+      "sha256": "2ec7ef14f6a7932c6c88814d8ed1b6cc3d38b22ab1252584086dd12dad13aca3"
+    },
+    "reports/cac_c0_recovery01/c2_contracts_v1.jsonl": {
+      "bytes": 4014127,
+      "sha256": "338884f4d6737b55aaed48c517f858068a469c0cc53861735a221c1a5674f44f"
+    },
+    "reports/cac_c0_recovery01/c3_contracts_v1.jsonl": {
+      "bytes": 12565028,
+      "sha256": "8fe91787a4a50bec57fa18edbd9408a13f1a1c1c8726fbe4a176522b6077e779"
+    },
+    "reports/cac_c0_recovery01/c7_locked_contracts_v1.jsonl": {
+      "bytes": 2688020,
+      "sha256": "578551aa241bdfb6942563949b60195307674e8a58ba2d67df4ed96545dce17f"
+    },
+    "reports/cac_c0_recovery01/freeze_summary_v1.json": {
+      "bytes": 4867,
+      "sha256": "22cc9cf7f3d17ec26a875e86d69fc1176a3b10e3c1b7792a7d5b37ad19d14ffd"
+    },
+    "reports/cac_c0_recovery01/power_table_v1.json": {
+      "bytes": 3293,
+      "sha256": "c0ee526ad0cc8865556247dbdc5a0dbddd2bc783ac739cabbf843347cd4a2839"
+    },
+    "reports/cac_c0_recovery01/simulator_populations_v1.jsonl": {
+      "bytes": 868848,
+      "sha256": "f31fd5a0e2f6e7f2abc7fe5c6906f6f646d3927f5768e43ee0005ee9d3a02e41"
+    },
+    "reports/cac_c0_recovery01/trajectory_roles_v1.jsonl": {
+      "bytes": 938790,
+      "sha256": "4a400436bbd67185f90114f817452d10d7ffad5278dce4b0ccbae0f73fa5e753"
+    },
+    "schemas/cac/feature_record.schema.json": {
+      "bytes": 2485,
+      "sha256": "f431cf3718a87f4b1ca066c93644fd44ff6e36aaa2a0f233fed248293763f39a"
+    },
+    "scripts/analyze_cac_c7.py": {
+      "bytes": 11126,
+      "sha256": "b4376e3c4dba7dcdee58a2f97f798054640953aada74b32b63eeeb365bd9c669"
+    },
+    "scripts/freeze_cac_c0.py": {
+      "bytes": 26848,
+      "sha256": "145ae52759e76f222e35ee5f9b688f447160d3176ce4c6aebc65dafd821a83b0"
+    },
+    "scripts/seal_cac_c0.py": {
+      "bytes": 4944,
+      "sha256": "e89c47cbd7e2e77b1a464c8803733bbbfca76df58e640473cd6026a8c5d3264d"
+    },
+    "scripts/simulate_cac_c0_power.py": {
+      "bytes": 5153,
+      "sha256": "d5a79418c127e6b5597305b978181eba744a3e2825d0a38384cdb8a9d8b8dc27"
+    },
+    "tests/test_cac_c0.py": {
+      "bytes": 3391,
+      "sha256": "1d95f8c7a51728bf5010e2bff6be4d45a3cbf69ace34432a3a8af90cd95ada1a"
+    }
+  },
+  "model_calls": {
+    "c2": 17640,
+    "c3": 57200,
+    "c7_locked": 12480
+  },
+  "protection": {
+    "locked_test_action_values_opened": false,
+    "locked_transition_labels_present": false,
+    "state_ids_10_49_outcomes_opened": false
+  },
+  "recovery": "c0_recovery01",
+  "resources": {
+    "downloads": 0,
+    "gpu_used": false,
+    "model_loaded": false,
+    "simulator_used": false,
+    "terminal_outcomes_accessed": false
+  },
+  "schema_version": "cac-c0-semantic-manifest-v1",
+  "semantic_sha256": "70812e4183a4535c2673a69fce6bb36df62db5df85f902173aea3eafc555b413",
+  "status": "complete_pass_stop_before_c1",
+  "storage_bytes": {
+    "c2": 5799628800,
+    "c3_plus_c7": 22204293120
+  },
+  "transition_shortfalls": [
+    {
+      "availability_by_role_horizon": {
+        "total": 0
+      },
+      "eligible_transition_contracts": 0,
+      "reason": "fewer than eight eligible demonstrated transition contracts",
+      "selected_transition_contracts": 0,
+      "suite": "libero_goal",
+      "task_id": "open_the_middle_drawer_of_the_cabinet"
+    },
+    {
+      "availability_by_role_horizon": {
+        "total": 0
+      },
+      "eligible_transition_contracts": 0,
+      "reason": "fewer than eight eligible demonstrated transition contracts",
+      "selected_transition_contracts": 0,
+      "suite": "libero_goal",
+      "task_id": "push_the_plate_to_the_front_of_the_stove"
+    }
+  ]
+}

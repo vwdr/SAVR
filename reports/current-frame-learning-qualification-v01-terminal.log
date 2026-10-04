@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/ved/SAVR/scripts/run_current_frame_learning_qualification.py", line 304, in <module>
+    if __name__ == '__main__': main()
+  File "/home/ved/SAVR/scripts/run_current_frame_learning_qualification.py", line 273, in main
+    require(initial['uuid'] == c['gpu']['uuid'] and initial['memory_mib'] <= 1024
+  File "/home/ved/SAVR/scripts/run_fixed_compression_qualification.py", line 32, in require
+    if not value: raise ValueError(message)
+ValueError: selected GPU not idle

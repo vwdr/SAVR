@@ -1,0 +1,24 @@
+{
+  "checkpoint_rule": "final_only",
+  "checkpoints": {
+    "action_only": {
+      "optimizer_steps": 2000,
+      "path": "action_only-final.pt",
+      "sha256": "8a01608b9690bf2e62017968fbc2ab4afd86325503ccfd3322994ab1838b8640"
+    },
+    "visual": {
+      "optimizer_steps": 2000,
+      "path": "visual-final.pt",
+      "sha256": "15489080d2752d3cf90a7b9cb016cb4c95c9a395b335b400d63e74c33f6bb951"
+    },
+    "visual_shuffled": {
+      "optimizer_steps": 2000,
+      "path": "visual_shuffled-final.pt",
+      "sha256": "1524bbd2527a4ad362c1d4dff7ab33a17c2bd2cbfded8bb523c507cd75627cc9"
+    }
+  },
+  "complete": true,
+  "created_at": "2026-09-18T04:02:58.445905+00:00",
+  "optimizer_steps": 6000,
+  "validation_records_opened": 0
+}

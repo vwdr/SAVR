@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://savr.local/schemas/pair/router_artifact.schema.json",
+  "title": "PAIR router artifact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_id", "freeze_sha256", "project_revision",
+    "dataset_revision", "split_manifest_sha256", "feature_schema_sha256",
+    "architecture", "training_seed", "training_statistics_sha256",
+    "checkpoint_sha256", "calibration_sha256", "created_at_utc"
+  ],
+  "properties": {
+    "schema_version": {"const": "pair-router-artifact-v1"},
+    "artifact_id": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "freeze_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "project_revision": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "dataset_revision": {"type": "string", "pattern": "^[a-f0-9]{40,64}$"},
+    "split_manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "feature_schema_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "architecture": {"type": "string", "minLength": 1},
+    "training_seed": {"enum": [17, 29, 43]},
+    "training_statistics_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "checkpoint_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "calibration_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "created_at_utc": {"type": "string", "format": "date-time"}
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "schema_version": "pair-p3-physical-config-v1",
+  "run_id": "pair-p3-physical-v02",
+  "protocol": "docs/PAIR_VLA_EXECUTION_PROTOCOL_V1.md",
+  "p0_freeze": "configs/pair/p0_freeze_v1.json",
+  "p2_manifest_semantic_sha256": "9cd16e29f0df1cd173187fdbda36ca0043ff279de2d975d5dcef22aae2e7229d",
+  "input_manifest": "configs/pair/p3_inputs_v1.json",
+  "model": {
+    "checkpoint_relative": "checkpoints/openvla-7b-oft-libero-four-suite",
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "vla_cache_revision": "a4909880573868dee2769343d52e793c0341678b",
+    "dtype": "torch.bfloat16",
+    "actions_per_query": 8,
+    "action_dimension": 7,
+    "proprio_dimension": 8,
+    "patches_per_camera": 256,
+    "decoder_layers": 32,
+    "onset_layers": [2, 6, 9, 11],
+    "sidecar_layers": [6, 15, 24]
+  },
+  "profiles": [
+    {
+      "profile_id": "D37_BAL_PT1",
+      "base_profile_id": "D37_BAL",
+      "primary_budgets": [32, 64, 96, 128],
+      "wrist_budgets": [16, 32, 48, 64],
+      "protected_primary_tiles": 1,
+      "protected_wrist_tiles": 1
+    },
+    {
+      "profile_id": "D50_BAL_PT1",
+      "base_profile_id": "D50_BAL",
+      "primary_budgets": [32, 80, 112, 160],
+      "wrist_budgets": [16, 48, 64, 96],
+      "protected_primary_tiles": 1,
+      "protected_wrist_tiles": 1
+    },
+    {
+      "profile_id": "D50_SCENE_PT1",
+      "base_profile_id": "D50_SCENE",
+      "primary_budgets": [48, 96, 144, 192],
+      "wrist_budgets": [0, 16, 32, 64],
+      "protected_primary_tiles": 1,
+      "protected_wrist_tiles": 1
+    },
+    {
+      "profile_id": "D50_LATE_PT1",
+      "base_profile_id": "D50_LATE",
+      "primary_budgets": [0, 64, 128, 160],
+      "wrist_budgets": [0, 32, 64, 96],
+      "protected_primary_tiles": 1,
+      "protected_wrist_tiles": 1
+    },
+    {
+      "profile_id": "D59_BAL_PT1",
+      "base_profile_id": "D59_BAL",
+      "primary_budgets": [48, 96, 144, 192],
+      "wrist_budgets": [16, 48, 80, 112],
+      "protected_primary_tiles": 1,
+      "protected_wrist_tiles": 1
+    },
+    {
+      "profile_id": "D62_BAL_PT1",
+      "base_profile_id": "D62_BAL",
+      "primary_budgets": [48, 96, 144, 192],
+      "wrist_budgets": [32, 64, 96, 128],
+      "protected_primary_tiles": 1,
+      "protected_wrist_tiles": 1
+    },
+    {
+      "profile_id": "D50_BAL_PT0",
+      "base_profile_id": "D50_BAL",
+      "primary_budgets": [32, 80, 112, 160],
+      "wrist_budgets": [16, 48, 64, 96],
+      "protected_primary_tiles": 0,
+      "protected_wrist_tiles": 0
+    },
+    {
+      "profile_id": "D50_BAL_PT2",
+      "base_profile_id": "D50_BAL",
+      "primary_budgets": [32, 80, 112, 160],
+      "wrist_budgets": [16, 48, 64, 96],
+      "protected_primary_tiles": 2,
+      "protected_wrist_tiles": 1
+    }
+  ],
+  "measurement": {
+    "seed": 20260829,
+    "horizons": [1, 2, 4],
+    "timed_repetitions_per_profile_horizon": 4,
+    "model_warmup_queries": 4,
+    "control_queries": 4,
+    "profile_warmup_horizon": 4,
+    "planned_model_queries": 688,
+    "randomized_paired_arm_order": true,
+    "synchronize_every_measurement": true,
+    "outlier_deletion": false,
+    "bootstrap_replicates": 20000,
+    "bootstrap_seed": 20260831
+  },
+  "overhead": {
+    "mock_iterations": 1000,
+    "upper_quantile": 0.99,
+    "minimum_service_rate": 0.70,
+    "maximum_total_overhead_fraction": 0.02,
+    "minimum_net_saving_fraction": 0.10
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "model_query_hard_cap": 700,
+    "wall_seconds": 21600,
+    "artifact_bytes": 2147483648,
+    "peak_gpu_memory_mib_strict_max": 23552,
+    "downloads": 0,
+    "simulator_outcomes": 0,
+    "protected_outcome_access": false,
+    "automatic_retry": false
+  },
+  "protection": {
+    "action_record_fields": ["shape", "finite", "sha256"],
+    "action_values_persisted": false,
+    "action_comparisons_permitted": false,
+    "expert_actions_accessed": false,
+    "terminal_outcomes_accessed": false
+  },
+  "advance": {
+    "next_phase": "P4",
+    "authorized": false,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "3afc6af7f8be7c21bdc5dd2413a5069a1d821533fa6cb7f47ee8807b4a380294"
+}

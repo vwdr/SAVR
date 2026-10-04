@@ -1,0 +1,126 @@
+{
+  "schema_version": "cac-c1h-config-v1",
+  "run_id": "cac-c1h-headroom-v03-recovery02",
+  "phase": "C1H",
+  "created_date": "2026-08-31",
+  "protocol": "docs/CACHE_ACTION_CORRECTION_EXECUTION_PROTOCOL_V2.md",
+  "protocol_sha256": "5b9bc46ea4e2bd0550bd28e5c3c87f74f58aa85e47cb7bd45057a821e005ffbd",
+  "c0_freeze": "configs/cac/c0_freeze_v1.json",
+  "c0_freeze_sha256": "a6ba82461a382f2d03a450301dbd94c14131ec7e4ad80efae85cc29f988eb587",
+  "population_manifest": "reports/cac_c0_recovery01/simulator_populations_v1.jsonl",
+  "population_manifest_sha256": "f31fd5a0e2f6e7f2abc7fe5c6906f6f646d3927f5768e43ee0005ee9d3a02e41",
+  "profile_config": "configs/pair/p3_physical_v03.json",
+  "profile_config_sha256": "c1c81cb5a4f7ae99325d7ebd4ffcc619cf12f0af9ef37ec5b8697b40ed75701b",
+  "c1_result": "results/cac-c1-tensor-feasibility-v01-recovery01/result.json",
+  "c1_result_sha256": "b0c13df156e88c5f6f0b7a6ac2a623193a4cf0c3b448cb3cb30e547aa0fd3c4d",
+  "authorization": {
+    "c1h_authorized": true,
+    "c2_authorized": false,
+    "terminal_outcomes": true,
+    "locked_state_ids_10_49": false
+  },
+  "technical_recovery": {
+    "source_run_id": "cac-c1h-headroom-v02-recovery01",
+    "source_technical_stop": "results/cac-c1h-headroom-v02-recovery01/technical_stop.json",
+    "source_technical_stop_sha256": "1136ccefc257a08ea7ba13894accef9b3a427cbf7f7044dd5a5637ebf6fca42a",
+    "source_technical_stop_semantic_sha256": "d5e09ff100a1331f870b9419fdb3f1af74cf2d7f1d8eb774ce9214e6a1fa5c1d",
+    "source_episode_attempts": 0,
+    "source_model_queries": 1,
+    "source_partial_outcomes_opened": false,
+    "failure": "the pre-episode official action path required prev_images and returns a four-item tuple; its observation contract and return unpacking were incomplete",
+    "repair": "copy an unmodified observation for the official path, provide current images as prev_images, unpack and release the full official return, add dense plus D62 anchor/reuse controls, authenticate source evidence generically, and persist technical tracebacks",
+    "scientific_method_or_gates_changed": false,
+    "automatic_retry": false
+  },
+  "populations": {
+    "stage1": "headroom_stage1",
+    "extension": "headroom_extension",
+    "conditions_per_stage": 120,
+    "episodes_per_stage": 240
+  },
+  "schedule": {
+    "seed": 20260905,
+    "condition_order": "seeded shuffle independently within each frozen population",
+    "arm_order": "exactly balanced paired 2x2 alternation after shuffle",
+    "partial_outcomes": "held in worker memory and written only after exact stage completion",
+    "optional_stopping": false
+  },
+  "suites": ["libero_spatial", "libero_object", "libero_goal", "libero_10"],
+  "cache_substrate": {
+    "profile": "D62_BAL_PT1",
+    "maximum_cached_query_intervals": 4,
+    "reset_rule": "complete dense reset after at most four cached query intervals",
+    "actions_per_query": 8
+  },
+  "query_accounting": {
+    "technical_control_queries": 4,
+    "stage1_worst_case_queries": 9964,
+    "cumulative_worst_case_queries": 19924
+  },
+  "gate_h": {
+    "stage1_proceed": "dense>=0.75 and D62>=0.50 and 8<=100*(dense-D62)<=35 and suites_favoring_dense>=2",
+    "stage1_stop": "dense<0.75 or D62<0.50 or 100*(dense-D62)<=2 or 100*(dense-D62)>35",
+    "stage1_otherwise": "open headroom_extension",
+    "cumulative_proceed": "dense>=0.75 and D62>=0.50 and 5<=100*(dense-D62)<=35 and suites_favoring_dense>=2",
+    "cumulative_otherwise": "stop"
+  },
+  "model": {
+    "checkpoint_relative": "checkpoints/openvla-7b-oft-libero-four-suite",
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "vla_cache_revision": "a4909880573868dee2769343d52e793c0341678b",
+    "libero_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "sidecar_layers": [6, 15, 24],
+    "checkpoint_metadata_sha256": {
+      "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+      "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+      "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+    },
+    "suite_max_steps": {
+      "libero_spatial": 220,
+      "libero_object": 280,
+      "libero_goal": 300,
+      "libero_10": 520
+    }
+  },
+  "code": {
+    "src/savr/pair/p3_openvla.py": "407abe4174cb938f087bb37166a574de3644d5f2c3723fa2855d1a197a963acf",
+    "src/savr/cac/c1h.py": "6b0b87b1bf12beafb4d879d6ebb92b746936811191da08e233220faf77225adb",
+    "scripts/run_cac_c1h_worker.py": "5f2208352f6e925209018e114b99d0f17f38793e1e95eb2eadb165bc36e8db74",
+    "scripts/analyze_cac_c1h.py": "de7057dddb38491d77a7ebdf987bc7800d126785d344f8d72665247dd168a6ac",
+    "scripts/launch_cac_c1h_recovery02.sh": "02d1c64a5c27d8def22958789d9eaea760bf4d88a430c1dc6ea30fd63ae0e76d",
+    "tests/test_cac_c1h_recovery.py": "d712d6ed83a029707d129be03e4205ee40dbcccf1394a0e582c44c80b1999eaf"
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "episode_attempts": 480,
+    "model_queries": 20000,
+    "wall_seconds": 36000,
+    "artifact_bytes": 1073741824,
+    "peak_gpu_memory_mib_strict_max": 23552,
+    "downloads": 0,
+    "automatic_retry": false
+  },
+  "forecast": {
+    "basis": "C0 frozen forecast based on 57.89 seconds per dense LIBERO episode plus setup and interruption margin",
+    "stage1_hours_max": 5.0,
+    "cumulative_hours_max": 10.0,
+    "project_disk_margin_required_bytes": 2147483648
+  },
+  "protection": {
+    "states_10_49_accessed": false,
+    "training": false,
+    "cac_features_or_models": false,
+    "raw_action_values_persisted": false,
+    "partial_terminal_outcomes_opened": false,
+    "technical_failure_policy": "fail closed; preserve evidence; no automatic retry",
+    "runtime_writes": "only the new C1H Recovery 02 output root"
+  },
+  "advance": {
+    "next_phase": "C2",
+    "authorized": false,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "38a4e5cb5f61d91c594ba082805213fd5fde26fa84e11624aafddc18321b035b"
+}

@@ -1,0 +1,112 @@
+{
+  "both_failure": 1,
+  "both_success": 5,
+  "causal_only_success": 0,
+  "complete": true,
+  "elapsed_seconds": 788.8284432776272,
+  "episodes_per_arm": 8,
+  "interpretation_scope": "Eight consumed development conditions, same weights/runtime, attention-only intervention. Not a benchmark estimate or caching-method test.",
+  "model_queries": 455,
+  "offline_causal_normalized_action_max_abs": [
+    0.3232421875,
+    0.89501953125,
+    1.0054779052734375,
+    0.9732666015625,
+    0.294921875,
+    0.46484375,
+    0.528350830078125,
+    0.951904296875
+  ],
+  "original_only_success": 2,
+  "paired_conditions": 8,
+  "paired_success_difference_percentage_points": 25,
+  "pairs": [
+    {
+      "causal_control": true,
+      "condition_id": "d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9",
+      "original": true,
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate"
+    },
+    {
+      "causal_control": true,
+      "condition_id": "2ddf6fb6aea4c18c415794fccf600c6920e7568c6a1c03447248e103d215a027",
+      "original": true,
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate"
+    },
+    {
+      "causal_control": true,
+      "condition_id": "48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536",
+      "original": true,
+      "suite": "libero_object",
+      "task_id": "pick_up_the_alphabet_soup_and_place_it_in_the_basket"
+    },
+    {
+      "causal_control": true,
+      "condition_id": "0c95a86eafb6915d2699eb89113ad212afa1dc243ddd91ab718a282181e1c9cb",
+      "original": true,
+      "suite": "libero_object",
+      "task_id": "pick_up_the_bbq_sauce_and_place_it_in_the_basket"
+    },
+    {
+      "causal_control": true,
+      "condition_id": "f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf",
+      "original": true,
+      "suite": "libero_goal",
+      "task_id": "open_the_middle_drawer_of_the_cabinet"
+    },
+    {
+      "causal_control": false,
+      "condition_id": "7fb637b98e47c76f8e20704f1012be67e0eeed0e4be9dcb29e2560748d2643e8",
+      "original": false,
+      "suite": "libero_goal",
+      "task_id": "open_the_top_drawer_and_put_the_bowl_inside"
+    },
+    {
+      "causal_control": false,
+      "condition_id": "6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c",
+      "original": true,
+      "suite": "libero_10",
+      "task_id": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it"
+    },
+    {
+      "causal_control": false,
+      "condition_id": "7fc0e5f21097ab9564715057c39df3e4e80e64654165312018c18f7484348efb",
+      "original": true,
+      "suite": "libero_10",
+      "task_id": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it"
+    }
+  ],
+  "peak_aggregate_gpu_memory_mib": 16306,
+  "per_suite": {
+    "libero_10": {
+      "causal_control": 0,
+      "original": 2
+    },
+    "libero_goal": {
+      "causal_control": 1,
+      "original": 1
+    },
+    "libero_object": {
+      "causal_control": 2,
+      "original": 2
+    },
+    "libero_spatial": {
+      "causal_control": 2,
+      "original": 2
+    }
+  },
+  "positive_method_result": false,
+  "reconciled": true,
+  "successes": {
+    "causal_control": 5,
+    "original": 7
+  },
+  "verification": {
+    "max_reference_difference": 2.8203848589924974e-8,
+    "max_restoration_difference": 0,
+    "worker_summary_sha256": "ff833d835b6a42043d0bddaa78a09848c8114f187a5ffdda13fc4acb6f0180d1",
+    "local_evidence_bytes": 140448
+  }
+}

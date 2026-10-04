@@ -1,0 +1,143 @@
+\documentclass{article}
+\usepackage[paperwidth=24in,paperheight=36in,margin=0in]{geometry}
+\usepackage{fontspec}
+\setsansfont{TeX Gyre Heros}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\definecolor{RutgersScarlet}{HTML}{A6192E}
+\definecolor{DarkRed}{HTML}{6D001A}
+\definecolor{Black}{HTML}{000000}
+
+\newcommand{\sectionfont}{\fontsize{42}{45}\selectfont\bfseries}
+\newcommand{\placeholdertitle}{\fontsize{34}{38}\selectfont\bfseries}
+\newcommand{\placeholderbody}{\fontsize{30}{34}\selectfont}
+
+\newcommand{\SectionBar}[4]{%
+  \pgfmathsetlengthmacro{\barhalf}{0.5*#3in}%
+  \fill[RutgersScarlet]
+    ($(current page.north west)+(#1in,-#2in)$) rectangle ++(#3in,-0.66in);
+  \node[anchor=center,text=white,font=\sectionfont]
+    at ($(current page.north west)+(#1in,-#2in)+(\barhalf,-0.33in)$) {#4};
+}
+
+\newcommand{\Placeholder}[6]{%
+  \pgfmathsetlengthmacro{\phalfw}{0.5*#3in}%
+  \pgfmathsetlengthmacro{\phalfh}{0.5*#4in}%
+  \pgfmathsetlengthmacro{\ptextw}{#3in-0.80in}%
+  \fill[white]
+    ($(current page.north west)+(#1in,-#2in)$) rectangle ++(#3in,-#4in);
+  \draw[Black,dashed,line width=2pt]
+    ($(current page.north west)+(#1in,-#2in)$) rectangle ++(#3in,-#4in);
+  \node[anchor=center,align=center,text width=\ptextw,text=Black]
+    at ($(current page.north west)+(#1in,-#2in)+(\phalfw,-\phalfh)$)
+    {{\placeholdertitle #5}\par\vspace{0.16in}{\placeholderbody #6}};
+}
+
+\newcommand{\FigurePlaceholder}[6]{%
+  \pgfmathsetlengthmacro{\fhalfw}{0.5*#3in}%
+  \pgfmathsetlengthmacro{\fhalfh}{0.5*#4in}%
+  \pgfmathsetlengthmacro{\ftextw}{#3in-0.80in}%
+  \fill[white]
+    ($(current page.north west)+(#1in,-#2in)$) rectangle ++(#3in,-#4in);
+  \draw[Black,dashed,line width=2.2pt]
+    ($(current page.north west)+(#1in,-#2in)$) rectangle ++(#3in,-#4in);
+  \node[anchor=center,align=center,text width=\ftextw,text=Black]
+    at ($(current page.north west)+(#1in,-#2in)+(\fhalfw,-\fhalfh)$)
+    {{\placeholdertitle #5}\par\vspace{0.18in}{\placeholderbody #6}};
+}
+
+\newcommand{\CompactPlaceholder}[5]{%
+  \pgfmathsetlengthmacro{\chalfw}{0.5*#3in}%
+  \pgfmathsetlengthmacro{\chalfh}{0.5*#4in}%
+  \pgfmathsetlengthmacro{\ctextw}{#3in-0.55in}%
+  \fill[white]
+    ($(current page.north west)+(#1in,-#2in)$) rectangle ++(#3in,-#4in);
+  \draw[Black,dashed,line width=2pt]
+    ($(current page.north west)+(#1in,-#2in)$) rectangle ++(#3in,-#4in);
+  \node[anchor=center,align=center,text width=\ctextw,text=Black,
+        font=\fontsize{28}{31}\selectfont\bfseries]
+    at ($(current page.north west)+(#1in,-#2in)+(\chalfw,-\chalfh)$) {#5};
+}
+
+\begin{document}
+\begin{tikzpicture}[remember picture,overlay,x=1in,y=1in]
+
+\fill[white] (current page.south west) rectangle (current page.north east);
+
+% Header: one consistent title treatment
+\node[anchor=north,text width=17.2in,align=center,text=Black,
+      font=\fontsize{50}{55}\selectfont\bfseries]
+  at ($(current page.north west)+(9.25in,-0.35in)$)
+  {\mbox{TRAINING-FREE TEMPORAL VISUAL CACHING}\\
+   \mbox{IN OPENVLA-OFT: A CLOSED-LOOP EVALUATION}};
+
+\node[anchor=north,text width=17.2in,align=center,text=Black,
+      font=\fontsize{34}{38}\selectfont]
+  at ($(current page.north west)+(9.25in,-1.98in)$)
+  {Ved Dwivedi\textsuperscript{1,2}, Cheng Yang\textsuperscript{2}, and Bo Yuan\textsuperscript{2}};
+
+\node[anchor=north,text width=17.2in,align=center,text=Black,
+      font=\fontsize{28}{31}\selectfont]
+  at ($(current page.north west)+(9.25in,-2.52in)$)
+  {\textsuperscript{1}John P. Stevens High School, Edison, New Jersey};
+
+\node[anchor=north,text width=17.2in,align=center,text=Black,
+      font=\fontsize{28}{31}\selectfont]
+  at ($(current page.north west)+(9.25in,-3.00in)$)
+  {\textsuperscript{2}Dept. of Electrical and Computer Engineering, Rutgers University-New Brunswick, New Jersey};
+
+\Placeholder{18.35}{0.52}{5.00}{2.72}{RUTGERS LOGO}{official vector or high-resolution asset};
+\fill[DarkRed] ($(current page.north west)+(0,-3.70in)$) rectangle ($(current page.north east)+(0,-3.82in)$);
+
+% Side-by-side Introduction and Methods
+\SectionBar{0.45}{4.00}{8.00}{INTRODUCTION}
+\Placeholder{0.45}{4.86}{8.00}{7.34}{INTRODUCTION}{two or three concise bullets covering background, motivation, and study objective};
+
+\SectionBar{8.80}{4.00}{14.75}{METHODS}
+\FigurePlaceholder{8.80}{4.86}{14.75}{5.78}{EXPERIMENT OVERVIEW FIGURE}{inputs $\rightarrow$ OpenVLA-OFT $\rightarrow$ reuse strategies $\rightarrow$ LIBERO evaluation};
+\CompactPlaceholder{8.80}{10.94}{14.75}{1.26}{MODEL \enspace|\enspace BENCHMARK \enspace|\enspace INPUTS \enspace|\enspace METRICS \enspace|\enspace HARDWARE}
+
+% Results
+\SectionBar{0.45}{12.50}{23.10}{RESULTS}
+\FigurePlaceholder{0.45}{13.36}{23.10}{5.68}{FIGURE 1: COMPLETE VISUAL-PREFIX REUSE}{large success-versus-skipped-refresh plot with a short explanatory caption};
+\FigurePlaceholder{0.45}{19.39}{11.38}{7.91}{FIGURE 2: SCENE-CAMERA REUSE}{success and latency visuals with a direct caption};
+\FigurePlaceholder{12.18}{19.39}{11.37}{7.91}{FIGURE 3: FINE-GRAINED INTERNAL REUSE}{controlled timing and closed-loop success shown separately};
+
+% Discussion, conclusion, and limitations
+\SectionBar{0.45}{27.60}{15.00}{DISCUSSION \& CONCLUSION}
+\FigurePlaceholder{0.45}{28.46}{15.00}{4.74}{CLOSED-LOOP FEEDBACK FIGURE}{brief interpretation followed by the final evidence-based conclusion};
+
+\SectionBar{15.80}{27.60}{7.75}{LIMITATIONS}
+\Placeholder{15.80}{28.46}{7.75}{4.74}{EVIDENCE BOUNDARY}{checkpoint, benchmark, hardware, populations, and limits on generalization};
+
+% Expanded footer with four dedicated areas
+\draw[Black,line width=2pt] ($(current page.north west)+(0.45in,-33.50in)$) -- ++(23.10in,0);
+\draw[Black,line width=1.2pt] ($(current page.north west)+(10.75in,-33.68in)$) -- ++(0,-1.72in);
+\draw[Black,line width=1.2pt] ($(current page.north west)+(17.25in,-33.68in)$) -- ++(0,-1.72in);
+\draw[Black,line width=1.2pt] ($(current page.north west)+(21.35in,-33.68in)$) -- ++(0,-1.72in);
+
+\node[anchor=north west,text width=9.80in,text=Black,font=\fontsize{28}{31}\selectfont\bfseries]
+  at ($(current page.north west)+(0.68in,-33.76in)$) {REFERENCES};
+\node[anchor=north west,text width=9.80in,text=Black,font=\fontsize{28}{31}\selectfont]
+  at ($(current page.north west)+(0.68in,-34.33in)$) {four to six abbreviated sources with readable spacing};
+
+\node[anchor=north west,text width=5.70in,text=Black,font=\fontsize{28}{31}\selectfont\bfseries]
+  at ($(current page.north west)+(11.05in,-33.76in)$) {ACKNOWLEDGMENTS};
+\node[anchor=north west,text width=5.70in,text=Black,font=\fontsize{28}{31}\selectfont]
+  at ($(current page.north west)+(11.05in,-34.33in)$) {research guidance and institutional support};
+
+\node[anchor=north west,text width=3.35in,text=Black,font=\fontsize{28}{31}\selectfont\bfseries]
+  at ($(current page.north west)+(17.55in,-33.76in)$) {CONTACT};
+\node[anchor=north west,text width=3.35in,text=Black,font=\fontsize{28}{31}\selectfont]
+  at ($(current page.north west)+(17.55in,-34.33in)$) {email\\repository URL};
+
+\draw[Black,dashed,line width=1.8pt]
+  ($(current page.north west)+(21.68in,-33.82in)$) rectangle ++(1.54in,-1.54in);
+
+\end{tikzpicture}
+\end{document}

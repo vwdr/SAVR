@@ -1,0 +1,128 @@
+{
+  "schema_version": "openvla-d62-requalification-s4-recovery01-v1",
+  "run_id": "openvla-d62-requalification-s4-v02-recovery01",
+  "protocol": "docs/OPENVLA_D62_S4_RECOVERY01_PROTOCOL.md",
+  "input_manifest": "configs/pair/p3_inputs_v1.json",
+  "model_config": "configs/pair/p3_physical_v03.json",
+  "output_root": "results/openvla-d62-requalification-s4-v02-recovery01",
+  "seed": 20260901,
+  "authorization": {
+    "s4_recovery01_authorized": true,
+    "source": "User approved S4 Recovery 01 on 2026-09-01",
+    "simulator": false,
+    "terminal_outcomes": false,
+    "expert_actions": false,
+    "training": false,
+    "automatic_retry": false
+  },
+  "technical_parent": {
+    "stop": "results/openvla-d62-requalification-s4-v01/technical_stop.json",
+    "stop_sha256": "c378d341617c5ef022a63369e3e3ad95fd24595aa558d5eef0558b7c402672db",
+    "traceback": "results/openvla-d62-requalification-s4-v01/technical_traceback.log",
+    "traceback_sha256": "76b49e1ad35384882dac1c323898f1f861d5430b7f50bef05769874265c93e2e",
+    "error": "dense-only selector rejected explicit compact hidden layout",
+    "model_calls": 26,
+    "scientific_decision": false
+  },
+  "s3_parent": {
+    "summary": "results/openvla-semantic-parity-s3-v06-recovery05/worker_summary.json",
+    "summary_sha256": "19d5519d1a11574a3ed02904b55464ea9e7ee4ed7857e62ab10d8f85073ddf9e",
+    "semantic_sha256": "eae02332c936c7816e2de7870b14fb78122e1acc603cc0dd04b39683f1695380",
+    "passed": true
+  },
+  "qualification": {
+    "run_id": "openvla-compact-position-qualification-s4q-v01",
+    "output_root": "results/openvla-compact-position-qualification-s4q-v01",
+    "summary": "results/openvla-compact-position-qualification-s4q-v01/worker_summary.json",
+    "tiny_model_calls": 2,
+    "openvla_checkpoint_loads": 0,
+    "must_pass_before_openvla": true
+  },
+  "population": {
+    "selection_audit_observations": 8,
+    "allfresh_official_controls": 8,
+    "recursive_windows": 1,
+    "recursive_repetitions": 2,
+    "recursive_ages": [1, 2, 3, 4],
+    "cadence_steps": 8,
+    "terminal_outcomes_accessed": false,
+    "expert_actions_accessed": false
+  },
+  "call_schedule": {
+    "suite_balanced_anchor_calls": 8,
+    "suite_balanced_official_calls": 8,
+    "suite_balanced_allfresh_calls": 8,
+    "recursive_anchor_calls": 2,
+    "recursive_transition_calls": 8,
+    "reset_official_calls": 1,
+    "reset_custom_calls": 2,
+    "planned_model_calls": 37
+  },
+  "substrate": {
+    "historical_id": "D62_BAL_PT1",
+    "corrected_candidate_id": "D62_BAL_PT1_S4C_V1",
+    "canonical_action_positions": true,
+    "instruction_only_positions": true,
+    "compact_positions_explicitly_mapped": true,
+    "selection_materiality_rule": "material if any age-1 ordered position, onset assignment, or protected tile differs across the eight frozen observations",
+    "freeze_new_identity": true
+  },
+  "model": {
+    "checkpoint_relative": "checkpoints/openvla-7b-oft-libero-four-suite",
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "vla_cache_revision": "a4909880573868dee2769343d52e793c0341678b",
+    "installed_vla_cache_llama_sha256": "34b00dd58c9887780a7947329cb96468a7fe1427e8fa49dc773ce2c1afc627d4",
+    "dtype": "torch.bfloat16",
+    "sidecar_layers": [6, 15, 24],
+    "checkpoint_metadata_sha256": {
+      "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+      "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+      "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+    }
+  },
+  "authenticated_files": {
+    "docs/OPENVLA_SEMANTIC_REQUALIFICATION_PROTOCOL_V1.md": "1979a894eca3b46c79b9978da278589602335f394715d33bc4ce3c3f3bc61cc7",
+    "docs/OPENVLA_D62_S4_RECOVERY01_PROTOCOL.md": "5f3c6f25892bdadf683092f7da781d8a8cd25a6cecfc4a593f305d9a2a887008",
+    "configs/pair/p3_inputs_v1.json": "e3b4064eba73cdfe0f82e4b9c282052e81f19f65b5a4e13d41674fdf45c42262",
+    "configs/pair/p3_physical_v03.json": "c1c81cb5a4f7ae99325d7ebd4ffcc619cf12f0af9ef37ec5b8697b40ed75701b",
+    "configs/pair/libero_runtime/config.yaml": "dbd195f1b830abfc8580461a24335d1e1d72cb00548253a394f0abe2d8fdd74c",
+    "results/openvla-semantic-parity-s3-v06-recovery05/worker_summary.json": "19d5519d1a11574a3ed02904b55464ea9e7ee4ed7857e62ab10d8f85073ddf9e",
+    "src/savr/openvla/official_semantics.py": "ffcf1b779086a5602e7670cf5e406af02797039c5b9d4910f5364bdfcac61445",
+    "src/savr/pair/p3_openvla.py": "f85f02464d59915c82f101cbbebd322948b5b65f8232f75ecef971de177425f4",
+    "src/savr/pair/p4_openvla.py": "418f91a2bd66f2c685dff31d91afbfb17025ecd598f897e57a420af2779e2076",
+    "src/savr/brace/b3_openvla.py": "beb4f3ed7ed683f120ecf2d4516137d784c96ad163cbbcd060fc26ea9bf4849e",
+    "src/savr/pair/interventions.py": "cebff313cc659d4034f5c586f4ce8b9b9f104c9806abd99fc86a5ec86dfe5b0e",
+    "src/savr/cac/c1.py": "ca228d3a0fa0f636d4df841b634fcf23549da0adfffb20ce599199579aa9d579",
+    "src/savr/acr/v5_d_recovery.py": "8d55e47c2f83432361660debfaa63879ea09a3859422ae6f1f49571866e1a118",
+    "scripts/run_openvla_semantic_parity_recovery05.py": "12240d6456f652c2cb34d9118db4deac60d1708a689558958c89f59b36b204a7",
+    "scripts/run_openvla_d62_requalification_s4.py": "6282cf1a40a5741bdde74dc0b26445ac937c96fdb2878de0d72dc2c0d1452382",
+    "scripts/run_openvla_compact_position_qualification.py": "1cc5cad31c73c46ba229162a8aa70174a33916eb7726c28ba3e44d6b2e2afdf6",
+    "scripts/run_openvla_d62_requalification_s4_recovery01.py": "00481d3f4555da0dbc2b341abebe7f8f85674771c281a548715c78e00f5271e8",
+    "scripts/preflight_openvla_d62_requalification_s4_recovery01.py": "3e52ab218ffff21d0d50f495d15f628d2860dc7cc69f0295621c2f7f285c8aca",
+    "scripts/launch_openvla_d62_requalification_s4_recovery01.sh": "a9d4c0da871f6b368b410ad9da6882719d9adf7b6162e964ae90cb8fe193d3dc",
+    "tests/openvla/test_official_semantics.py": "ff0f94642bdb723d6fff6593e3af06164eca4ac10941f422d35ede87576bee11",
+    "tests/pair/test_p3_openvla.py": "9bd1cfce67d3bace092488f6088d2fd2791aa09828060d3d67a6b52b6c1bfaa8",
+    "tests/openvla/test_d62_requalification_s4.py": "c72a75d6e1dc0e55fedee5c84f59c26d259a1fae51677aa924358f14bacf9505",
+    "tests/openvla/test_d62_requalification_s4_recovery01.py": "b1fa1e41794683b64da6faa343f40c6d3458027959992e30cdc3444941516ae7"
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "model_call_hard_cap": 48,
+    "planned_model_calls": 37,
+    "wall_seconds": 1800,
+    "artifact_bytes": 268435456,
+    "peak_gpu_memory_mib_strict_max": 23552,
+    "downloads": 0,
+    "simulator_outcomes": 0,
+    "raw_actions_persisted": false,
+    "automatic_retry": false
+  },
+  "advance": {
+    "next_stage": "S5_CAC_C1_REQUALIFICATION",
+    "authorized": false,
+    "stop_before_next_stage": true
+  },
+  "semantic_sha256": "c5172a9d97468becbd1719a996cf8a1b54571a30c898b27df8b9e9a5b724ae32"
+}

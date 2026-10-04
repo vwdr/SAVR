@@ -1,0 +1,53 @@
+{
+  "all_same_observation_command_bytes_equal": true,
+  "artifacts_sha256": {
+    "launch.json": "4485a419584a7a4943734ddc3f252c977199aa68a149cc465177f21959f8b490",
+    "loaded_runtime.json": "a59956fa931e46396ff08f1b7caa89ae3ceda8ecd86d93e489b63dc9e3bee38b",
+    "progress.jsonl": "9e729ee30d82b42a3a7ff20bf5d23d25abeabf96cb647df263e744ea271a1082",
+    "records.json": "d1ff95883ba3a03bc96ae5ed4a592c438ea7c401acb7141f046f2867503db393",
+    "technical_stop.json": "74cac44df63b8cc0048ef09009d3bff3ef87a55bdf076fcffe870e32f6b7303c",
+    "technical_traceback.log": "f1c5cb7ce25b98bc79bea5c0eaa5aacf1b2f27d6d645b409b3d07dee91bc286f",
+    "trace.jsonl": "c0e23e99a1c847ce3159e746e484dba80533e9208d05d4a4b601b871959dbc5b"
+  },
+  "cross_episode_matching_query_indices": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "elapsed_seconds": 137.38032887503505,
+  "episodes": [
+    {
+      "controller_enabled": false,
+      "discarded_actions": 0,
+      "executed_steps": 79,
+      "history_frames": 6,
+      "mode": "native",
+      "policy_queries": 10,
+      "replans": 0,
+      "success": true
+    },
+    {
+      "controller_enabled": false,
+      "discarded_actions": 0,
+      "executed_steps": 79,
+      "history_frames": 6,
+      "mode": "bridge",
+      "policy_queries": 10,
+      "replans": 0,
+      "success": true
+    }
+  ],
+  "model_queries": 40,
+  "peak_aggregate_gpu_memory_mib": 16184,
+  "same_observation_max_errors": {
+    "hidden": 0.0,
+    "normalized": 0.0,
+    "raw_actions": 0.0
+  },
+  "status": "historical_gate_failed"
+}

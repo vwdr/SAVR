@@ -1,0 +1,5 @@
+assets: /home/ved/SAVR/third_party/LIBERO/libero/libero/assets
+bddl_files: /home/ved/SAVR/third_party/LIBERO/libero/libero/bddl_files
+benchmark_root: /home/ved/SAVR/third_party/LIBERO/libero/libero
+datasets: /home/ved/SAVR/data/pair/libero_hdf5/f13aa24a3da8c43c7225569f28c562979fa0e35a
+init_states: /home/ved/SAVR/third_party/LIBERO/libero/libero/init_files

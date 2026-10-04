@@ -1,0 +1,105 @@
+{
+ "note": "read-only offline diagnostic on saved 2026-09-16 collection and 2026-09-18 fit evidence",
+ "scene_ood_quartiles": [
+  823.5047607421875,
+  1175.662353515625,
+  1702.8712158203125
+ ],
+ "base_adequacy_quartiles": [
+  0.02184760244563222,
+  0.0305729229003191,
+  0.04233556240797043
+ ],
+ "scene_quartile": {
+  "0": {
+   "n": 200,
+   "improvement_rate": 0.725,
+   "mean_delta_l1": -0.0023315340420231225
+  },
+  "1": {
+   "n": 200,
+   "improvement_rate": 0.705,
+   "mean_delta_l1": -0.0022963627940043806
+  },
+  "2": {
+   "n": 200,
+   "improvement_rate": 0.64,
+   "mean_delta_l1": -0.0015058512380346657
+  },
+  "3": {
+   "n": 200,
+   "improvement_rate": 0.63,
+   "mean_delta_l1": -0.001223669652827084
+  }
+ },
+ "base_adequacy": {
+  "0": {
+   "n": 200,
+   "improvement_rate": 0.51,
+   "mean_delta_l1": 6.815853528678417e-05,
+   "mean_residual": 0.00945525042945519
+  },
+  "1": {
+   "n": 200,
+   "improvement_rate": 0.615,
+   "mean_delta_l1": -0.0008511658199131488,
+   "mean_residual": 0.010992615007562562
+  },
+  "2": {
+   "n": 200,
+   "improvement_rate": 0.705,
+   "mean_delta_l1": -0.0021133436262607574,
+   "mean_residual": 0.011893180012702943
+  },
+  "3": {
+   "n": 200,
+   "improvement_rate": 0.87,
+   "mean_delta_l1": -0.00446106681600213,
+   "mean_residual": 0.014914329026360064
+  }
+ },
+ "near_base_lt_002": {
+  "n": 144,
+  "improvement_rate": 0.4652777777777778,
+  "mean_delta_l1": 0.00026701967645850446,
+  "mean_residual": 0.009167825958381096
+ },
+ "spearman": {
+  "delta_vs_ood_k1": 0.1039607093136083,
+  "delta_vs_ood_k10": 0.11443909287358262,
+  "delta_vs_base_l1": -0.4112663535411774,
+  "delta_vs_residual": -0.35841278658247905,
+  "residual_vs_base_l1": 0.3875824649726015
+ },
+ "per_suite": {
+  "libero_10": {
+   "n": 200,
+   "improvement_rate": 0.615,
+   "mean_delta_l1": -0.0008729305677115918,
+   "median_ood_k1": 1643.935546875
+  },
+  "libero_goal": {
+   "n": 200,
+   "improvement_rate": 0.72,
+   "mean_delta_l1": -0.0026331707555800675,
+   "median_ood_k1": 1074.45556640625
+  },
+  "libero_object": {
+   "n": 200,
+   "improvement_rate": 0.64,
+   "mean_delta_l1": -0.0011476006591692566,
+   "median_ood_k1": 1151.06689453125
+  },
+  "libero_spatial": {
+   "n": 200,
+   "improvement_rate": 0.725,
+   "mean_delta_l1": -0.0027037157444283364,
+   "median_ood_k1": 1002.734375
+  }
+ },
+ "overall": {
+  "n": 800,
+  "improvement_rate": 0.675,
+  "mean_delta_visual_base": -0.0018393544317223131
+ }
+}

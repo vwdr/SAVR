@@ -1,0 +1,2096 @@
+{
+  "date": "2026-09-26",
+  "local": {
+    "config_count": 95,
+    "configs": [
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/candidates.json",
+        "reserved_references": [],
+        "sha256": "8f1503e4f579df9a0a4026b178492566b4ad206830886dfba2418852574567a4"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "path": "configs/acr/development_a5.json",
+        "reserved_references": [],
+        "sha256": "892207dbcac9ee5021a9ce96ce2f7dfb143d82310cd30963a20795a9af786d8a"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "path": "configs/acr/development_fr.json",
+        "reserved_references": [],
+        "sha256": "fa00cd68a3ff6b4f3bc9e019927894233dfbea0b6b26b07ea51ef3972ef8c021"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/phase_a1_freeze.json",
+        "reserved_references": [],
+        "sha256": "b78440b1b8e0c2aa36e017163d291937958c1634ea96f272ab9e32959548f29b"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v2_c_gate.json",
+        "reserved_references": [],
+        "sha256": "c97176bbb86f1f330239ec08023450aae693a2a89cf18537025eac61d4ea00af"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v2_c_recovery.json",
+        "reserved_references": [],
+        "sha256": "fe7600c2ce2aa6fef4a7020570f2a127b9a6747fa5d823d713c252e6d92c5170"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49
+        ],
+        "path": "configs/acr/v2_freeze.json",
+        "reserved_references": [
+          {
+            "ids": [
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49
+            ],
+            "key": "$.protected_populations.final_state_ids"
+          }
+        ],
+        "sha256": "d94a33e80b7ab0e592e372f1fd99d70274fac44441bc80a79c83e91010f6de61"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v3_c_gate.json",
+        "reserved_references": [],
+        "sha256": "48def66e6d5b27b0c9b74cb998ec3b92fe24eb98d431b16a9cdd705518c09f68"
+      },
+      {
+        "explicit_state_ids": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "path": "configs/acr/v3_d_development.json",
+        "reserved_references": [],
+        "sha256": "de91dffab91275b84f5ab3f891e19bd90795741a58d3b4545f4c38ed106391a6"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v3_d_recovery.json",
+        "reserved_references": [],
+        "sha256": "9fdc166961ab5acf3fdbfbc0b4fb157f8e302d759ec72c57a79f475b7e0a610e"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v3_d_recovery_2.json",
+        "reserved_references": [],
+        "sha256": "2ebae60568f189256d5c074f13209e648e970c514235364700d0128534cd42f6"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49
+        ],
+        "path": "configs/acr/v3_freeze.json",
+        "reserved_references": [
+          {
+            "ids": [
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49
+            ],
+            "key": "$.protected_populations.final_state_ids"
+          }
+        ],
+        "sha256": "c0e8957bcc79042facef6b7c152bc236692979cc52d0df1a34462cd3afda79ce"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v4_a_diagnosis_preflight.json",
+        "reserved_references": [],
+        "sha256": "61f0f3ae8b9a208ad50132c2537147cf5c93d9c5863047d32904af0c3e4418cf"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v4_a_recovery.json",
+        "reserved_references": [],
+        "sha256": "d2febf74c6954810a3ec9e5683edfc2dd1dfa6e6f62c4b5a3bcff1271217578a"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v4_a_recovery_2.json",
+        "reserved_references": [],
+        "sha256": "19ad8aa95012944154fd589b81166180e7748567bd66ae2ecad1e4d4d7a515a2"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49
+        ],
+        "path": "configs/acr/v4_redesign_freeze.json",
+        "reserved_references": [
+          {
+            "ids": [
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49
+            ],
+            "key": "$.protected_populations.all_four_suites_state_ids"
+          }
+        ],
+        "sha256": "4a69300355dc69943c79e9dfa1858c2c9a3791fb5c320927d42197f9c8c1d7e7"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "path": "configs/acr/v5_b_output_blind_preflight.json",
+        "reserved_references": [],
+        "sha256": "d052d21eded48d72fad82bc49216116730dd146513569bc0ca4070621a3e387d"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_c_cpu_executor_freeze.json",
+        "reserved_references": [],
+        "sha256": "2117d8529bd5f76bf73b18c8b84890f1d2c4497946a0a43ca2cc3f76df2335fe"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_default_allocator_recovery_v09.json",
+        "reserved_references": [],
+        "sha256": "dc8feef380cfca7019764935d4a344650fc68a42f6cce19d36a24e7fb2f4cbec"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_downstream_only_graph_recovery_v10.json",
+        "reserved_references": [],
+        "sha256": "1d9c8a03308e3180c08d602b6b4782a5f14b4d7882dc9f181d5693407cbfa7c0"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_expandable_segments_recovery_v07.json",
+        "reserved_references": [],
+        "sha256": "b6957d9e111fe9797e96a38dc1146ef4b9d348cbcd6961d2ff66953032dfd5af"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_gpu_feasibility_freeze.json",
+        "reserved_references": [],
+        "sha256": "ab49a35df44f2945973866400f294f00b8ba0b56ec7562e9f274fba5607d7638"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_gpu_feasibility_recovery_v02.json",
+        "reserved_references": [],
+        "sha256": "9f2168e88761683a211172cc13d0c54bf8d6889369e38fb0b56e9468ccbb3171"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_gpu_feasibility_recovery_v03.json",
+        "reserved_references": [],
+        "sha256": "b28c249f65e1574228a37dc294c388b1794a0aef8653024489a7616e600e3e3a"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_inference_semantics_recovery_v08.json",
+        "reserved_references": [],
+        "sha256": "b2cd9ebe9418f7498754b8186a6ee11f69ba3a7334109ce548e559fe212c6783"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_precapture_warmup_recovery_v06.json",
+        "reserved_references": [],
+        "sha256": "0ccd29c3bfae9be450d2e91b5def4289199078dcd1cae37c58b30f96ea6826a6"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_titan_memory_recovery_v04.json",
+        "reserved_references": [],
+        "sha256": "1c1f406c340d60ceda00f49bab41484d107e8394f4ced555bcc5d6b91f89a116"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_transition_recovery_v05.json",
+        "reserved_references": [],
+        "sha256": "73e892321424e07c53c2dd5e81679a5c0ee6f6137ef2f5fc18c4f1d919663f5d"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_isolated_reuse_freeze.json",
+        "reserved_references": [],
+        "sha256": "06f662f97150c47d5477a8a988ac15b98a36dcbd04650cb984c8097c4e12373a"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/brace/b1_replay_v1.json",
+        "reserved_references": [],
+        "sha256": "d812f12b85f46d225de319c0fd904fb8ddfe61f6f835eec2e5a9ac1487ec85f4"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b2_correctness_v1.json",
+        "reserved_references": [],
+        "sha256": "8a58d8c5ff827fa620a913990edee015b0bc140c451f5a69f0d09f71f9cfa83d"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b2_correctness_v2.json",
+        "reserved_references": [],
+        "sha256": "e5f6cb191fe6c0df60b3636ae2538d57a6b65957f7be6e9e211237352eb0902c"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b3_physical_v1.json",
+        "reserved_references": [],
+        "sha256": "4361df574759d20556a10f009b060f443fef261bb37c0bad745730105c5f479f"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b3_physical_v2_recovery.json",
+        "reserved_references": [],
+        "sha256": "c99931bd47280a26ba07c4e17e07bf661464bc835324b1901931690fda189e72"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b3_physical_v3_recovery.json",
+        "reserved_references": [],
+        "sha256": "2c5643cdc2b5ad1f0c3ac3a802bdb170303f2469063dfe7ad48b0c585cfa05df"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b3_physical_v4_recovery.json",
+        "reserved_references": [],
+        "sha256": "3e50500b64f657a0172b60d3482cdc49a0a3d368b823ad7e56de8cbc4c83daf1"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b3_physical_v5_recovery.json",
+        "reserved_references": [],
+        "sha256": "d718359d33762711b6a41edf9255685b16ca2e30e289f52311f83a957ed97309"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "path": "configs/cac/c0_freeze_v1.json",
+        "reserved_references": [],
+        "sha256": "a6ba82461a382f2d03a450301dbd94c14131ec7e4ad80efae85cc29f988eb587"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c0_recovery01.json",
+        "reserved_references": [],
+        "sha256": "ca660ce6de1e3b5caf4a18bbb496579973a57de656b4b3783aee54b0d62edd52"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1_s5_requalification_v01.json",
+        "reserved_references": [],
+        "sha256": "a91aaaf5040b0b3faf4bd2966d2018ad7538f19a2091f3187ea3153a8095ca15"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1_tensor_feasibility_recovery01.json",
+        "reserved_references": [],
+        "sha256": "1c705473cbb350c06b0372a635c64d54420980d465f237bac05aefef1fc0b79a"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1_tensor_feasibility_v1.json",
+        "reserved_references": [],
+        "sha256": "b70df25844feaaf5cc8d97c9a2430fa20559753794e4f44441496edad850f431"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1h_headroom_s6_v01.json",
+        "reserved_references": [],
+        "sha256": "2aa8f447518d2cc8ec6940b694a3a71a3fd2981708074ed07f0313448c3e10cb"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1h_headroom_s6_v02_recovery01.json",
+        "reserved_references": [],
+        "sha256": "b4e60d351985d6699591b43b18fabd1a045c4c63f2e6e4d5845de0b844d14095"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1h_headroom_v02_recovery01.json",
+        "reserved_references": [],
+        "sha256": "7afa74be27b47843d011a1511bdfc5807bc1f9d48b6be8ee3261670e6d7df9ec"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1h_headroom_v03_recovery02.json",
+        "reserved_references": [],
+        "sha256": "6fbec606629cc27e46a6d57dc3a53e499ef81b1cd9676a9b946af24a5b65b630"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1h_headroom_v1.json",
+        "reserved_references": [],
+        "sha256": "961aed48519957b9a7b104314084313c8983e597d7eea291062ebe889ee90c54"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/calibration/phase6_fr_signals.json",
+        "reserved_references": [],
+        "sha256": "8897f8db0cb135461c842e8afa23f11b1e0d6bfee08bc0e7339cd8641df6e4f5"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/calibration/phase6_savr_grid.json",
+        "reserved_references": [],
+        "sha256": "34c4c53e577518f9bb338c6e42c0c5e7859d036da95931a4d8f40f720c98ebfe"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2
+        ],
+        "path": "configs/calibration/phase6r_d_stage1.json",
+        "reserved_references": [],
+        "sha256": "370afcf02731d87e2ae56f88a682ede0421c0a8dd37b9be9d26f1f75e91c5326"
+      },
+      {
+        "explicit_state_ids": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "path": "configs/calibration/phase6s_d_validation.json",
+        "reserved_references": [],
+        "sha256": "131752a9e818b6cef926eef4603fdacd414ed95e9c61e7358b2789616bf92424"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/adaptive_qualification_v1.json",
+        "reserved_references": [],
+        "sha256": "a6065403d35929038e5cd6f3fbcc11689bf839401e0cbe42bfe9d8a6fc63309a"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/adaptive_qualification_v3.json",
+        "reserved_references": [],
+        "sha256": "6f3a36decbb18706aa6cf39f2a727eb64601fd53de8efa19b334bf87ea10fc63"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/openvla/adaptive_screen_v1.json",
+        "reserved_references": [],
+        "sha256": "0247588a86c6ca2a1c445479c53c4b62427c1c00979ec4098587e11c9c01ae4f"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/openvla/adaptive_screen_v3.json",
+        "reserved_references": [],
+        "sha256": "ae1cbd7d0dbaccb3ff14a335cae6b451baa2b6ea62f25968e52c5ea5e3c8c768"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/openvla/attention_baseline_diagnostic_v1.json",
+        "reserved_references": [],
+        "sha256": "4dc04df06f60268cc12a9fb54a8e3d6cafd5cb630a88b8610806a4be65bbca35"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/contemporary_hook_qualification_v1.json",
+        "reserved_references": [],
+        "sha256": "e642cffcd44e82e97999b3a24a0b6002f1a800844b8d9c6087dfbcc19166984a"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/contemporary_hook_qualification_v2_recovery01.json",
+        "reserved_references": [],
+        "sha256": "e585c3341921f86dd88c2f3af62622a909a7aacc8e230b299a6cf67e3d190b9e"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/openvla/contemporary_reference_design_v1.json",
+        "reserved_references": [],
+        "sha256": "2052468afb21fd7015542c460ca44c1174eb1d5585321a737ad71b5d45de54ba"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/contemporary_reference_evaluation_v2.json",
+        "reserved_references": [],
+        "sha256": "afa1bc948880b072b74c9f150e7dbab77fe90468040746c73b82af603f91ec67"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/current_frame_adapter_fit_v1.json",
+        "reserved_references": [],
+        "sha256": "cafa427d5e5e4a5e5a88f2f93ac85b39b49871b5a689a009f89bc2f6bfc8c031"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/current_frame_feature_collection_v1.json",
+        "reserved_references": [],
+        "sha256": "e810cb53f7a836d7a4d9dbb95ee406e919355f70a215e6788d5b760b7863a124"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/current_frame_learning_qualification_v1.json",
+        "reserved_references": [],
+        "sha256": "b82b4ec88792d9253a7a90bbf7f4bdad90e83b2dcf384d5cdb91df1a84a3c8b5"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "path": "configs/openvla/current_frame_robot_pilot_v1.json",
+        "reserved_references": [],
+        "sha256": "9e3f6728be56821d5da73185f310f1119adda32e2a4fc6e50672cc2e71612c8e"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/current_frame_training_inputs_v1.json",
+        "reserved_references": [],
+        "sha256": "2fd13ced3e5a9a2b810eb299a5c1667f8c1de3ee2c5487a4a0683e61847d9ae8"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/d62_requalification_s4_recovery01_v01.json",
+        "reserved_references": [],
+        "sha256": "0db95d20e6e47f78a006d3437f187b3dcacf7816b7a704367af1f9756e7529be"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/d62_requalification_s4_v01.json",
+        "reserved_references": [],
+        "sha256": "2a34a90a9e848dddfd1c4ee2ae36047fe428afab05ac4c0ca7c679fcc7b850a2"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/dense_precision_trace_v1.json",
+        "reserved_references": [],
+        "sha256": "2fcc0591cb04adeb28aace93745a07411f8b376908bdd79111737dc02f0a693f"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/fixed_compression_qualification_v1.json",
+        "reserved_references": [],
+        "sha256": "d4cb82d508b16a923270d4e979eced5f243b4a902d851b71772bc9702aa862b4"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/openvla/fixed_compression_screen_v1.json",
+        "reserved_references": [],
+        "sha256": "cc0100823806caac8770f4bb533dda181985b6224a3275997af0793b19590ac3"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/loader_qualification_s3l_v1.json",
+        "reserved_references": [],
+        "sha256": "5ce793c1299a0c79f78d72088a0fdd497b748dd3958fc07b3a172543bb987530"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/openvla/original_baseline_40task_v1.json",
+        "reserved_references": [],
+        "sha256": "90a65540dfade976ad58924b8318576b38c310ac1d8831db31ceb3d4682daa27"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/semantic_parity_s3_v02_recovery01.json",
+        "reserved_references": [],
+        "sha256": "a6b93dd7b89e3b8485f904aca4280c28952019bb9aad069c12194cad511bc490"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/semantic_parity_s3_v03_recovery02.json",
+        "reserved_references": [],
+        "sha256": "4a1e766d574f2fb608384978a3111c445a4ecab737a71b0d56025c77a54f8cef"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/semantic_parity_s3_v04_recovery03.json",
+        "reserved_references": [],
+        "sha256": "5d621b897feac19cefba64bdddb8b06d3df6c5023b3b9d5cdcf1d4537f536b9c"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/semantic_parity_s3_v05_recovery04.json",
+        "reserved_references": [],
+        "sha256": "3c03d8c84380e4590d781de2a5a1f98ba58957a58a7eaa95c8ee8cd7b750f48e"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/semantic_parity_s3_v06_recovery05.json",
+        "reserved_references": [],
+        "sha256": "6ca5c237fc0c1688bc19c93ea461aaf1bd48ed69088a7aa67e709cd9b13ab597"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/semantic_parity_s3_v1.json",
+        "reserved_references": [],
+        "sha256": "799b72151217fec8d5f362ebbbd1d39eb6b9dde697f5a31ff439517e70916617"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/specprune_episode_qualification_v1.json",
+        "reserved_references": [],
+        "sha256": "ae52f5f8d535d5f786a050ce46800dbaff4560f007ee7e88bb0c0dd9bf599de7"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/specprune_real_qualification_v1.json",
+        "reserved_references": [],
+        "sha256": "8adc9dde86d08f8d717c96e4017250229c71d7f5062ebe697cbb4c53eb75e168"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p0_freeze_v1.json",
+        "reserved_references": [],
+        "sha256": "dad74fb3a6a46d43fc023739422dc132d95801f73b3df4701c80e2e300dfbe7e"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p1_data_v1.json",
+        "reserved_references": [],
+        "sha256": "b3513e81f92c04959e1f0638ba699bcb80c2410e2d010f9a40bf96d60b114494"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p2_cpu_v1.json",
+        "reserved_references": [],
+        "sha256": "678def47f438b24cb05da59beba6f4c8275c8adaa6f79aae0d231ca3c0d7ba17"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3_inputs_v1.json",
+        "reserved_references": [],
+        "sha256": "e3b4064eba73cdfe0f82e4b9c282052e81f19f65b5a4e13d41674fdf45c42262"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3_physical_v02.json",
+        "reserved_references": [],
+        "sha256": "4203fa2b849f01c0257d5661d2b05835131092ba29a07747f8daf32c3b977eca"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3_physical_v03.json",
+        "reserved_references": [],
+        "sha256": "c1c81cb5a4f7ae99325d7ebd4ffcc619cf12f0af9ef37ec5b8697b40ed75701b"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3_physical_v1.json",
+        "reserved_references": [],
+        "sha256": "18403b2e5f5df33afa816c5277faef1df8d4b7bc6cdee348b291f7f78c057548"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3_v03_recovery01.json",
+        "reserved_references": [],
+        "sha256": "a30fea84379d200c797a7441cef56a8aad708ddd621b3cc905fb1faa2447b734"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3r_vectorized_v02_recovery01.json",
+        "reserved_references": [],
+        "sha256": "072fae8843f9d98ac711daea91d284a202c90eda0cf9c029fd1bba7775ae0c25"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3r_vectorized_v1.json",
+        "reserved_references": [],
+        "sha256": "6ef9722d9dbb7074f2fb8715e22946b16b32f8b044adf2128ff00b964c539c5f"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p4_pilot_v1.json",
+        "reserved_references": [],
+        "sha256": "8257ba4c35362edaecf3775ce9d3c99e3f726a8b0395203952bc66c181dd67e0"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p4_schedule_recovery01.json",
+        "reserved_references": [],
+        "sha256": "f39b122fb2788be0b81e36b65d7e9f2251e28b1a666c55a3eac806529d7188cc"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p4b_confirmatory_v1.json",
+        "reserved_references": [],
+        "sha256": "fee37cb3a2d70f6919ddebb71fa1893b50a889c5b9d517786628ae0bbbee7832"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p4b_launch_v01.json",
+        "reserved_references": [],
+        "sha256": "9cec50eddf359936641bd0afab5c87035ee320d7b0b73d88ddbeee0d3f54edf6"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p4b_schedule_v01.summary.json",
+        "reserved_references": [],
+        "sha256": "5b2eec8df57b84f8289b9552904f66ab7f044f823b561cc2aa767051b2d95ee2"
+      }
+    ],
+    "exposure_certified": false,
+    "limitation": "Configuration references are not proof of executed exposure or its absence.",
+    "outcome_files_opened": [],
+    "result_directories": [
+      "acr-v5d-real-tensor-feasibility-v01",
+      "adaptive-qualification-v01",
+      "adaptive-qualification-v02",
+      "adaptive-qualification-v03",
+      "adaptive-screen-v03",
+      "adaptive-zero-diagnosis-v01",
+      "brace-b3-physical-v05",
+      "cac-c1-s5-requalification-v01",
+      "cac-c1-tensor-feasibility-v01",
+      "cac-c1-tensor-feasibility-v01-recovery01",
+      "cac-c1h-analyzer-extension-preflight-v02",
+      "cac-c1h-analyzer-preflight-v02",
+      "cac-c1h-headroom-s6-v01",
+      "cac-c1h-headroom-s6-v02-recovery01",
+      "cac-c1h-headroom-v01",
+      "cac-c1h-headroom-v02-recovery01",
+      "cac-c1h-headroom-v03-recovery02",
+      "cac-c1h-s6-recovery01-qualification-v01",
+      "cac-c1h-sim-preflight-v02",
+      "contemporary-hook-qualification-v01",
+      "contemporary-hook-qualification-v02-recovery01",
+      "contemporary-reference-v02",
+      "current-frame-adapter-fit-v01",
+      "current-frame-correction-benefit-signals-v01",
+      "current-frame-correction-coverage-diagnostic-v01",
+      "current-frame-correction-coverage-diagnostic-v02",
+      "current-frame-feature-collection-v01",
+      "current-frame-learning-qualification-v01",
+      "current-frame-robot-pilot-v01",
+      "dense-precision-trace-v01",
+      "fixed-compression-qualification-v01",
+      "fixed-compression-screen-v01",
+      "openvla-attention-baseline-diagnostic-20260909-v01",
+      "openvla-cache-mode-qualification-s3q-v01",
+      "openvla-compact-position-qualification-s4q-v01",
+      "openvla-comparator-qualification-s3q-v01",
+      "openvla-d62-requalification-s4-v01",
+      "openvla-d62-requalification-s4-v02-recovery01",
+      "openvla-dense-helper-qualification-s3q-v01",
+      "openvla-loader-qualification-s3l-v01",
+      "openvla-original-baseline-40task-v01",
+      "openvla-semantic-parity-s3-v01",
+      "openvla-semantic-parity-s3-v02-recovery01",
+      "openvla-semantic-parity-s3-v03-recovery02",
+      "openvla-semantic-parity-s3-v04-recovery03",
+      "openvla-semantic-parity-s3-v05-recovery04",
+      "openvla-semantic-parity-s3-v06-recovery05",
+      "pair-p3-physical-v01",
+      "pair-p3-physical-v02",
+      "pair-p3-physical-v03",
+      "pair-p3-physical-v03-recovery01",
+      "pair-p3r-vectorized-v01",
+      "pair-p3r-vectorized-v02-recovery01",
+      "pair-p4-pilot-v02-schedule-recovery01",
+      "pair-p4b-confirmatory-v01",
+      "phase5-analysis-v1",
+      "phase5-core-smoke-v1",
+      "phase5-vla-cache-compatibility-v1",
+      "phase6-fr-signals-v1",
+      "phase6-savr-grid-v1",
+      "phase6-savr-selection-v1",
+      "phase6-savr-thresholds-v1",
+      "phase6r-a-diagnosis-v1",
+      "specprune-episode-qualification-v01",
+      "specprune-real-qualification-v01"
+    ],
+    "root": "/Users/veddwivedi/Documents/VLA/SAVR",
+    "schema": "confirmation-metadata-inventory-v1"
+  },
+  "remote": {
+    "config_count": 95,
+    "configs": [
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/candidates.json",
+        "reserved_references": [],
+        "sha256": "8f1503e4f579df9a0a4026b178492566b4ad206830886dfba2418852574567a4"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "path": "configs/acr/development_a5.json",
+        "reserved_references": [],
+        "sha256": "892207dbcac9ee5021a9ce96ce2f7dfb143d82310cd30963a20795a9af786d8a"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "path": "configs/acr/development_fr.json",
+        "reserved_references": [],
+        "sha256": "fa00cd68a3ff6b4f3bc9e019927894233dfbea0b6b26b07ea51ef3972ef8c021"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/phase_a1_freeze.json",
+        "reserved_references": [],
+        "sha256": "b78440b1b8e0c2aa36e017163d291937958c1634ea96f272ab9e32959548f29b"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v2_c_gate.json",
+        "reserved_references": [],
+        "sha256": "c97176bbb86f1f330239ec08023450aae693a2a89cf18537025eac61d4ea00af"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v2_c_recovery.json",
+        "reserved_references": [],
+        "sha256": "fe7600c2ce2aa6fef4a7020570f2a127b9a6747fa5d823d713c252e6d92c5170"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49
+        ],
+        "path": "configs/acr/v2_freeze.json",
+        "reserved_references": [
+          {
+            "ids": [
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49
+            ],
+            "key": "$.protected_populations.final_state_ids"
+          }
+        ],
+        "sha256": "d94a33e80b7ab0e592e372f1fd99d70274fac44441bc80a79c83e91010f6de61"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v3_c_gate.json",
+        "reserved_references": [],
+        "sha256": "48def66e6d5b27b0c9b74cb998ec3b92fe24eb98d431b16a9cdd705518c09f68"
+      },
+      {
+        "explicit_state_ids": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "path": "configs/acr/v3_d_development.json",
+        "reserved_references": [],
+        "sha256": "de91dffab91275b84f5ab3f891e19bd90795741a58d3b4545f4c38ed106391a6"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v3_d_recovery.json",
+        "reserved_references": [],
+        "sha256": "9fdc166961ab5acf3fdbfbc0b4fb157f8e302d759ec72c57a79f475b7e0a610e"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v3_d_recovery_2.json",
+        "reserved_references": [],
+        "sha256": "2ebae60568f189256d5c074f13209e648e970c514235364700d0128534cd42f6"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49
+        ],
+        "path": "configs/acr/v3_freeze.json",
+        "reserved_references": [
+          {
+            "ids": [
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49
+            ],
+            "key": "$.protected_populations.final_state_ids"
+          }
+        ],
+        "sha256": "c0e8957bcc79042facef6b7c152bc236692979cc52d0df1a34462cd3afda79ce"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v4_a_diagnosis_preflight.json",
+        "reserved_references": [],
+        "sha256": "61f0f3ae8b9a208ad50132c2537147cf5c93d9c5863047d32904af0c3e4418cf"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v4_a_recovery.json",
+        "reserved_references": [],
+        "sha256": "d2febf74c6954810a3ec9e5683edfc2dd1dfa6e6f62c4b5a3bcff1271217578a"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v4_a_recovery_2.json",
+        "reserved_references": [],
+        "sha256": "19ad8aa95012944154fd589b81166180e7748567bd66ae2ecad1e4d4d7a515a2"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49
+        ],
+        "path": "configs/acr/v4_redesign_freeze.json",
+        "reserved_references": [
+          {
+            "ids": [
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19,
+              20,
+              21,
+              22,
+              23,
+              24,
+              25,
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33,
+              34,
+              35,
+              36,
+              37,
+              38,
+              39,
+              40,
+              41,
+              42,
+              43,
+              44,
+              45,
+              46,
+              47,
+              48,
+              49
+            ],
+            "key": "$.protected_populations.all_four_suites_state_ids"
+          }
+        ],
+        "sha256": "4a69300355dc69943c79e9dfa1858c2c9a3791fb5c320927d42197f9c8c1d7e7"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "path": "configs/acr/v5_b_output_blind_preflight.json",
+        "reserved_references": [],
+        "sha256": "d052d21eded48d72fad82bc49216116730dd146513569bc0ca4070621a3e387d"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_c_cpu_executor_freeze.json",
+        "reserved_references": [],
+        "sha256": "2117d8529bd5f76bf73b18c8b84890f1d2c4497946a0a43ca2cc3f76df2335fe"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_default_allocator_recovery_v09.json",
+        "reserved_references": [],
+        "sha256": "dc8feef380cfca7019764935d4a344650fc68a42f6cce19d36a24e7fb2f4cbec"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_downstream_only_graph_recovery_v10.json",
+        "reserved_references": [],
+        "sha256": "1d9c8a03308e3180c08d602b6b4782a5f14b4d7882dc9f181d5693407cbfa7c0"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_expandable_segments_recovery_v07.json",
+        "reserved_references": [],
+        "sha256": "b6957d9e111fe9797e96a38dc1146ef4b9d348cbcd6961d2ff66953032dfd5af"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_gpu_feasibility_freeze.json",
+        "reserved_references": [],
+        "sha256": "ab49a35df44f2945973866400f294f00b8ba0b56ec7562e9f274fba5607d7638"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_gpu_feasibility_recovery_v02.json",
+        "reserved_references": [],
+        "sha256": "9f2168e88761683a211172cc13d0c54bf8d6889369e38fb0b56e9468ccbb3171"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_gpu_feasibility_recovery_v03.json",
+        "reserved_references": [],
+        "sha256": "b28c249f65e1574228a37dc294c388b1794a0aef8653024489a7616e600e3e3a"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_inference_semantics_recovery_v08.json",
+        "reserved_references": [],
+        "sha256": "b2cd9ebe9418f7498754b8186a6ee11f69ba3a7334109ce548e559fe212c6783"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_precapture_warmup_recovery_v06.json",
+        "reserved_references": [],
+        "sha256": "0ccd29c3bfae9be450d2e91b5def4289199078dcd1cae37c58b30f96ea6826a6"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_titan_memory_recovery_v04.json",
+        "reserved_references": [],
+        "sha256": "1c1f406c340d60ceda00f49bab41484d107e8394f4ced555bcc5d6b91f89a116"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_d_transition_recovery_v05.json",
+        "reserved_references": [],
+        "sha256": "73e892321424e07c53c2dd5e81679a5c0ee6f6137ef2f5fc18c4f1d919663f5d"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/acr/v5_isolated_reuse_freeze.json",
+        "reserved_references": [],
+        "sha256": "06f662f97150c47d5477a8a988ac15b98a36dcbd04650cb984c8097c4e12373a"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/brace/b1_replay_v1.json",
+        "reserved_references": [],
+        "sha256": "d812f12b85f46d225de319c0fd904fb8ddfe61f6f835eec2e5a9ac1487ec85f4"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b2_correctness_v1.json",
+        "reserved_references": [],
+        "sha256": "8a58d8c5ff827fa620a913990edee015b0bc140c451f5a69f0d09f71f9cfa83d"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b2_correctness_v2.json",
+        "reserved_references": [],
+        "sha256": "e5f6cb191fe6c0df60b3636ae2538d57a6b65957f7be6e9e211237352eb0902c"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b3_physical_v1.json",
+        "reserved_references": [],
+        "sha256": "4361df574759d20556a10f009b060f443fef261bb37c0bad745730105c5f479f"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b3_physical_v2_recovery.json",
+        "reserved_references": [],
+        "sha256": "c99931bd47280a26ba07c4e17e07bf661464bc835324b1901931690fda189e72"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b3_physical_v3_recovery.json",
+        "reserved_references": [],
+        "sha256": "2c5643cdc2b5ad1f0c3ac3a802bdb170303f2469063dfe7ad48b0c585cfa05df"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b3_physical_v4_recovery.json",
+        "reserved_references": [],
+        "sha256": "3e50500b64f657a0172b60d3482cdc49a0a3d368b823ad7e56de8cbc4c83daf1"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/brace/b3_physical_v5_recovery.json",
+        "reserved_references": [],
+        "sha256": "d718359d33762711b6a41edf9255685b16ca2e30e289f52311f83a957ed97309"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "path": "configs/cac/c0_freeze_v1.json",
+        "reserved_references": [],
+        "sha256": "a6ba82461a382f2d03a450301dbd94c14131ec7e4ad80efae85cc29f988eb587"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c0_recovery01.json",
+        "reserved_references": [],
+        "sha256": "ca660ce6de1e3b5caf4a18bbb496579973a57de656b4b3783aee54b0d62edd52"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1_s5_requalification_v01.json",
+        "reserved_references": [],
+        "sha256": "a91aaaf5040b0b3faf4bd2966d2018ad7538f19a2091f3187ea3153a8095ca15"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1_tensor_feasibility_recovery01.json",
+        "reserved_references": [],
+        "sha256": "1c705473cbb350c06b0372a635c64d54420980d465f237bac05aefef1fc0b79a"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1_tensor_feasibility_v1.json",
+        "reserved_references": [],
+        "sha256": "b70df25844feaaf5cc8d97c9a2430fa20559753794e4f44441496edad850f431"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1h_headroom_s6_v01.json",
+        "reserved_references": [],
+        "sha256": "2aa8f447518d2cc8ec6940b694a3a71a3fd2981708074ed07f0313448c3e10cb"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1h_headroom_s6_v02_recovery01.json",
+        "reserved_references": [],
+        "sha256": "b4e60d351985d6699591b43b18fabd1a045c4c63f2e6e4d5845de0b844d14095"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1h_headroom_v02_recovery01.json",
+        "reserved_references": [],
+        "sha256": "7afa74be27b47843d011a1511bdfc5807bc1f9d48b6be8ee3261670e6d7df9ec"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1h_headroom_v03_recovery02.json",
+        "reserved_references": [],
+        "sha256": "6fbec606629cc27e46a6d57dc3a53e499ef81b1cd9676a9b946af24a5b65b630"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/cac/c1h_headroom_v1.json",
+        "reserved_references": [],
+        "sha256": "961aed48519957b9a7b104314084313c8983e597d7eea291062ebe889ee90c54"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/calibration/phase6_fr_signals.json",
+        "reserved_references": [],
+        "sha256": "8897f8db0cb135461c842e8afa23f11b1e0d6bfee08bc0e7339cd8641df6e4f5"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/calibration/phase6_savr_grid.json",
+        "reserved_references": [],
+        "sha256": "34c4c53e577518f9bb338c6e42c0c5e7859d036da95931a4d8f40f720c98ebfe"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2
+        ],
+        "path": "configs/calibration/phase6r_d_stage1.json",
+        "reserved_references": [],
+        "sha256": "370afcf02731d87e2ae56f88a682ede0421c0a8dd37b9be9d26f1f75e91c5326"
+      },
+      {
+        "explicit_state_ids": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "path": "configs/calibration/phase6s_d_validation.json",
+        "reserved_references": [],
+        "sha256": "131752a9e818b6cef926eef4603fdacd414ed95e9c61e7358b2789616bf92424"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/adaptive_qualification_v1.json",
+        "reserved_references": [],
+        "sha256": "a6065403d35929038e5cd6f3fbcc11689bf839401e0cbe42bfe9d8a6fc63309a"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/adaptive_qualification_v3.json",
+        "reserved_references": [],
+        "sha256": "6f3a36decbb18706aa6cf39f2a727eb64601fd53de8efa19b334bf87ea10fc63"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/openvla/adaptive_screen_v1.json",
+        "reserved_references": [],
+        "sha256": "0247588a86c6ca2a1c445479c53c4b62427c1c00979ec4098587e11c9c01ae4f"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/openvla/adaptive_screen_v3.json",
+        "reserved_references": [],
+        "sha256": "ae1cbd7d0dbaccb3ff14a335cae6b451baa2b6ea62f25968e52c5ea5e3c8c768"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/openvla/attention_baseline_diagnostic_v1.json",
+        "reserved_references": [],
+        "sha256": "4dc04df06f60268cc12a9fb54a8e3d6cafd5cb630a88b8610806a4be65bbca35"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/contemporary_hook_qualification_v1.json",
+        "reserved_references": [],
+        "sha256": "e642cffcd44e82e97999b3a24a0b6002f1a800844b8d9c6087dfbcc19166984a"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/contemporary_hook_qualification_v2_recovery01.json",
+        "reserved_references": [],
+        "sha256": "e585c3341921f86dd88c2f3af62622a909a7aacc8e230b299a6cf67e3d190b9e"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/openvla/contemporary_reference_design_v1.json",
+        "reserved_references": [],
+        "sha256": "2052468afb21fd7015542c460ca44c1174eb1d5585321a737ad71b5d45de54ba"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/contemporary_reference_evaluation_v2.json",
+        "reserved_references": [],
+        "sha256": "afa1bc948880b072b74c9f150e7dbab77fe90468040746c73b82af603f91ec67"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/current_frame_adapter_fit_v1.json",
+        "reserved_references": [],
+        "sha256": "cafa427d5e5e4a5e5a88f2f93ac85b39b49871b5a689a009f89bc2f6bfc8c031"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/current_frame_feature_collection_v1.json",
+        "reserved_references": [],
+        "sha256": "e810cb53f7a836d7a4d9dbb95ee406e919355f70a215e6788d5b760b7863a124"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/current_frame_learning_qualification_v1.json",
+        "reserved_references": [],
+        "sha256": "b82b4ec88792d9253a7a90bbf7f4bdad90e83b2dcf384d5cdb91df1a84a3c8b5"
+      },
+      {
+        "explicit_state_ids": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "path": "configs/openvla/current_frame_robot_pilot_v1.json",
+        "reserved_references": [],
+        "sha256": "9e3f6728be56821d5da73185f310f1119adda32e2a4fc6e50672cc2e71612c8e"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/current_frame_training_inputs_v1.json",
+        "reserved_references": [],
+        "sha256": "2fd13ced3e5a9a2b810eb299a5c1667f8c1de3ee2c5487a4a0683e61847d9ae8"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/d62_requalification_s4_recovery01_v01.json",
+        "reserved_references": [],
+        "sha256": "0db95d20e6e47f78a006d3437f187b3dcacf7816b7a704367af1f9756e7529be"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/d62_requalification_s4_v01.json",
+        "reserved_references": [],
+        "sha256": "2a34a90a9e848dddfd1c4ee2ae36047fe428afab05ac4c0ca7c679fcc7b850a2"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/dense_precision_trace_v1.json",
+        "reserved_references": [],
+        "sha256": "2fcc0591cb04adeb28aace93745a07411f8b376908bdd79111737dc02f0a693f"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/fixed_compression_qualification_v1.json",
+        "reserved_references": [],
+        "sha256": "d4cb82d508b16a923270d4e979eced5f243b4a902d851b71772bc9702aa862b4"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/openvla/fixed_compression_screen_v1.json",
+        "reserved_references": [],
+        "sha256": "cc0100823806caac8770f4bb533dda181985b6224a3275997af0793b19590ac3"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/loader_qualification_s3l_v1.json",
+        "reserved_references": [],
+        "sha256": "5ce793c1299a0c79f78d72088a0fdd497b748dd3958fc07b3a172543bb987530"
+      },
+      {
+        "explicit_state_ids": [
+          0
+        ],
+        "path": "configs/openvla/original_baseline_40task_v1.json",
+        "reserved_references": [],
+        "sha256": "90a65540dfade976ad58924b8318576b38c310ac1d8831db31ceb3d4682daa27"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/semantic_parity_s3_v02_recovery01.json",
+        "reserved_references": [],
+        "sha256": "a6b93dd7b89e3b8485f904aca4280c28952019bb9aad069c12194cad511bc490"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/semantic_parity_s3_v03_recovery02.json",
+        "reserved_references": [],
+        "sha256": "4a1e766d574f2fb608384978a3111c445a4ecab737a71b0d56025c77a54f8cef"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/semantic_parity_s3_v04_recovery03.json",
+        "reserved_references": [],
+        "sha256": "5d621b897feac19cefba64bdddb8b06d3df6c5023b3b9d5cdcf1d4537f536b9c"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/semantic_parity_s3_v05_recovery04.json",
+        "reserved_references": [],
+        "sha256": "3c03d8c84380e4590d781de2a5a1f98ba58957a58a7eaa95c8ee8cd7b750f48e"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/semantic_parity_s3_v06_recovery05.json",
+        "reserved_references": [],
+        "sha256": "6ca5c237fc0c1688bc19c93ea461aaf1bd48ed69088a7aa67e709cd9b13ab597"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/semantic_parity_s3_v1.json",
+        "reserved_references": [],
+        "sha256": "799b72151217fec8d5f362ebbbd1d39eb6b9dde697f5a31ff439517e70916617"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/specprune_episode_qualification_v1.json",
+        "reserved_references": [],
+        "sha256": "ae52f5f8d535d5f786a050ce46800dbaff4560f007ee7e88bb0c0dd9bf599de7"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/openvla/specprune_real_qualification_v1.json",
+        "reserved_references": [],
+        "sha256": "8adc9dde86d08f8d717c96e4017250229c71d7f5062ebe697cbb4c53eb75e168"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p0_freeze_v1.json",
+        "reserved_references": [],
+        "sha256": "dad74fb3a6a46d43fc023739422dc132d95801f73b3df4701c80e2e300dfbe7e"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p1_data_v1.json",
+        "reserved_references": [],
+        "sha256": "b3513e81f92c04959e1f0638ba699bcb80c2410e2d010f9a40bf96d60b114494"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p2_cpu_v1.json",
+        "reserved_references": [],
+        "sha256": "678def47f438b24cb05da59beba6f4c8275c8adaa6f79aae0d231ca3c0d7ba17"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3_inputs_v1.json",
+        "reserved_references": [],
+        "sha256": "e3b4064eba73cdfe0f82e4b9c282052e81f19f65b5a4e13d41674fdf45c42262"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3_physical_v02.json",
+        "reserved_references": [],
+        "sha256": "4203fa2b849f01c0257d5661d2b05835131092ba29a07747f8daf32c3b977eca"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3_physical_v03.json",
+        "reserved_references": [],
+        "sha256": "c1c81cb5a4f7ae99325d7ebd4ffcc619cf12f0af9ef37ec5b8697b40ed75701b"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3_physical_v1.json",
+        "reserved_references": [],
+        "sha256": "18403b2e5f5df33afa816c5277faef1df8d4b7bc6cdee348b291f7f78c057548"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3_v03_recovery01.json",
+        "reserved_references": [],
+        "sha256": "a30fea84379d200c797a7441cef56a8aad708ddd621b3cc905fb1faa2447b734"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3r_vectorized_v02_recovery01.json",
+        "reserved_references": [],
+        "sha256": "072fae8843f9d98ac711daea91d284a202c90eda0cf9c029fd1bba7775ae0c25"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p3r_vectorized_v1.json",
+        "reserved_references": [],
+        "sha256": "6ef9722d9dbb7074f2fb8715e22946b16b32f8b044adf2128ff00b964c539c5f"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p4_pilot_v1.json",
+        "reserved_references": [],
+        "sha256": "8257ba4c35362edaecf3775ce9d3c99e3f726a8b0395203952bc66c181dd67e0"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p4_schedule_recovery01.json",
+        "reserved_references": [],
+        "sha256": "f39b122fb2788be0b81e36b65d7e9f2251e28b1a666c55a3eac806529d7188cc"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p4b_confirmatory_v1.json",
+        "reserved_references": [],
+        "sha256": "fee37cb3a2d70f6919ddebb71fa1893b50a889c5b9d517786628ae0bbbee7832"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p4b_launch_v01.json",
+        "reserved_references": [],
+        "sha256": "9cec50eddf359936641bd0afab5c87035ee320d7b0b73d88ddbeee0d3f54edf6"
+      },
+      {
+        "explicit_state_ids": [],
+        "path": "configs/pair/p4b_schedule_v01.summary.json",
+        "reserved_references": [],
+        "sha256": "5b2eec8df57b84f8289b9552904f66ab7f044f823b561cc2aa767051b2d95ee2"
+      }
+    ],
+    "exposure_certified": false,
+    "limitation": "Configuration references are not proof of executed exposure or its absence.",
+    "outcome_files_opened": [],
+    "result_directories": [
+      "acr-a3-correctness-none-v01",
+      "acr-a4-upstream-fr-object-dev00-09-v01",
+      "acr-a5-launch-logs",
+      "acr-a5-sa-acr-object-stage1-acr-t25-h2-b30-v01",
+      "acr-a5-sa-acr-object-stage1-acr-t50-h4-b55-v01",
+      "acr-a5-sa-acr-object-stage1-acr-t70-h8-b75-v01",
+      "acr-a5-stage1-analysis-v01",
+      "acr-v2-diagnosis-v01",
+      "acr-v2c-correctness-latency-v01",
+      "acr-v2c-latency-recovery-v01",
+      "acr-v3c-correctness-latency-v01",
+      "acr-v3d-analysis-v01",
+      "acr-v3d-paired-object-dev03-09-recovery-02-v01",
+      "acr-v3d-paired-object-dev03-09-recovery-v01",
+      "acr-v3d-paired-object-dev03-09-v01",
+      "acr-v4a-diagnosis-v01",
+      "acr-v5d-real-tensor-feasibility-v01",
+      "acr-v5d-real-tensor-feasibility-v02",
+      "acr-v5d-real-tensor-feasibility-v03",
+      "acr-v5d-real-tensor-feasibility-v04",
+      "acr-v5d-real-tensor-feasibility-v05",
+      "acr-v5d-real-tensor-feasibility-v06",
+      "acr-v5d-real-tensor-feasibility-v07",
+      "acr-v5d-real-tensor-feasibility-v08",
+      "acr-v5d-real-tensor-feasibility-v09",
+      "acr-v5d-real-tensor-feasibility-v10",
+      "acr-v5d-v02-libero-import-preflight-v01",
+      "acr-v5d-v03-cpu-test-preflight-v02",
+      "acr-v5d-v03-final-cpu-verification-v01",
+      "acr-v5d-v03-libero-import-preflight-v01",
+      "acr-v5d-v04-focused-pytest-v01",
+      "acr-v5d-v04-pool-api-import-preflight-v01",
+      "acr-v5d-v04-pytest-repeat-01",
+      "acr-v5d-v04-pytest-repeat-02",
+      "acr-v5d-v04-pytest-tmp-v01",
+      "acr-v5d-v05-full-02",
+      "acr-v5d-v05-transition-import-preflight-v01",
+      "acr-v5d-v05-transition-import-preflight-v02",
+      "acr-v5d-v06-precapture-warmup-import-preflight-v01",
+      "adaptive-qualification-v01",
+      "adaptive-qualification-v01-crashed-evidence",
+      "adaptive-qualification-v02",
+      "adaptive-qualification-v03",
+      "adaptive-screen-v03",
+      "adaptive-zero-diagnosis-v01",
+      "brace-b1-replay-v01",
+      "brace-b2-correctness-v01",
+      "brace-b2-correctness-v02",
+      "brace-b3-physical-v01",
+      "brace-b3-physical-v02",
+      "brace-b3-physical-v03",
+      "brace-b3-physical-v04",
+      "brace-b3-physical-v05",
+      "cac-c1-s5-requalification-v01",
+      "cac-c1-tensor-feasibility-v01",
+      "cac-c1-tensor-feasibility-v01-recovery01",
+      "cac-c1h-headroom-s6-v01",
+      "cac-c1h-headroom-s6-v02-recovery01",
+      "cac-c1h-headroom-v01",
+      "cac-c1h-headroom-v02-recovery01",
+      "cac-c1h-headroom-v03-recovery02",
+      "cac-c1h-s6-recovery01-qualification-v01",
+      "cac-c1h-sim-preflight-v02",
+      "contemporary-hook-qualification-v01",
+      "contemporary-hook-qualification-v02-recovery01",
+      "contemporary-reference-v02",
+      "current-frame-adapter-fit-v01",
+      "current-frame-feature-collection-v01",
+      "current-frame-learning-qualification-v01",
+      "current-frame-robot-pilot-v01",
+      "dense-precision-trace-v01",
+      "fixed-compression-qualification-v01",
+      "fixed-compression-screen-v01",
+      "openvla-attention-baseline-diagnostic-20260909-v01",
+      "openvla-cache-mode-qualification-s3q-v01",
+      "openvla-compact-position-qualification-s4q-v01",
+      "openvla-comparator-qualification-s3q-v01",
+      "openvla-d62-requalification-s4-v01",
+      "openvla-d62-requalification-s4-v02-recovery01",
+      "openvla-dense-helper-qualification-s3q-v01",
+      "openvla-loader-qualification-s3l-v01",
+      "openvla-original-baseline-40task-v01",
+      "openvla-semantic-parity-s3-v01",
+      "openvla-semantic-parity-s3-v02-recovery01",
+      "openvla-semantic-parity-s3-v03-recovery02",
+      "openvla-semantic-parity-s3-v04-recovery03",
+      "openvla-semantic-parity-s3-v05-recovery04",
+      "openvla-semantic-parity-s3-v06-recovery05",
+      "pair-p3-physical-v01",
+      "pair-p3-physical-v02",
+      "pair-p3-physical-v03",
+      "pair-p3-physical-v03-recovery01",
+      "pair-p3r-vectorized-v01",
+      "pair-p3r-vectorized-v02-recovery01",
+      "pair-p4-pilot-v02-schedule-recovery01",
+      "pair-p4b-confirmatory-v01",
+      "phase2a-fr-20260729T220204Z",
+      "phase2b-fr-spatial-pilot-v1",
+      "phase4-correctness-v1",
+      "phase5-analysis-v1",
+      "phase5-core-smoke-v1",
+      "phase5-vla-cache-compatibility-v1",
+      "phase6-fr-signals-v1",
+      "phase6-savr-grid-v1",
+      "phase6-savr-selection-v1",
+      "phase6-savr-thresholds-v1",
+      "phase6r-a-diagnosis-v1",
+      "phase6r-c-correctness-v1",
+      "phase6r-c-trace-recovery-v1",
+      "phase6r-d-stage1-v1",
+      "phase6s-d-validation-v1",
+      "pytest-v08-full",
+      "specprune-episode-qualification-v01",
+      "specprune-real-qualification-v01"
+    ],
+    "root": "/home/ved/SAVR",
+    "schema": "confirmation-metadata-inventory-v1"
+  },
+  "configs_identical": true,
+  "exposure_certified": false
+}

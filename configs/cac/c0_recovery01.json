@@ -1,0 +1,47 @@
+{
+  "schema_version": "cac-c0-recovery-config-v1",
+  "date": "2026-08-31",
+  "authorization": "User explicitly approved C0 Recovery 01 on 2026-08-31",
+  "base_attempt_root": "reports/cac_c0",
+  "output_root": "reports/cac_c0_recovery01",
+  "authenticated_inputs": {
+    "base_config": {
+      "path": "configs/cac/c0_freeze_v1.json",
+      "sha256": "a6ba82461a382f2d03a450301dbd94c14131ec7e4ad80efae85cc29f988eb587"
+    },
+    "technical_stop_report": {
+      "path": "reports/CAC_C0_TECHNICAL_STOP_01.md",
+      "sha256": "80d77f070ad935560b90dc0becf31af7eec710ccb3e4b1574b003a7f7de8f0a9"
+    },
+    "technical_stop_machine": {
+      "path": "reports/CAC_C0_TECHNICAL_STOP_01.json",
+      "sha256": "4521fa34d2445c9b81c63029f6bb49e4a13cc69fbe235a6e800350b0ad82fee8"
+    },
+    "protocol": {
+      "path": "docs/CACHE_ACTION_CORRECTION_EXECUTION_PROTOCOL_V2.md",
+      "sha256": "4799b255ef23c01260e78daf16fb80388f604057ca696a9103a1c1548de778e7"
+    },
+    "expanded_test": {
+      "path": "tests/test_cac_c0.py",
+      "sha256": "1d95f8c7a51728bf5010e2bff6be4d45a3cbf69ace34432a3a8af90cd95ada1a"
+    }
+  },
+  "previous_freezer_sha256": "a5e4bb59b2332b570807d8b0fa1ab49fc5378dc4d32a1af3289110ac7820b126",
+  "recovery_freezer_sha256": "145ae52759e76f222e35ee5f9b688f447160d3176ce4c6aebc65dafd821a83b0",
+  "correction": {
+    "preserve_first_attempt_root": true,
+    "enforce_eight_when_at_least_eight_are_available": true,
+    "report_unavailable_shortfalls": true,
+    "scientific_settings_changed": false
+  },
+  "resource_boundary": {
+    "gpu": false,
+    "model": false,
+    "simulator": false,
+    "locked_action_values": false,
+    "state_ids_10_49_outcomes": false,
+    "automatic_retry": false
+  },
+  "c1_authorized": false,
+  "semantic_sha256": "0c644c3c4da4505b7101b4ef2cccccf27fe45f4e7ff2ee87def107bdf0992b5c"
+}

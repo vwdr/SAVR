@@ -1,0 +1,39 @@
+{
+  "schema_version": "cac-c0-technical-stop-v1",
+  "date": "2026-08-30",
+  "status": "preserved_recovery_not_authorized",
+  "error": "C2 transition-opportunity minimum failed",
+  "attempt_root": "/home/ved/SAVR/reports/cac_c0",
+  "attempt_root_files": 0,
+  "identities": {
+    "config_sha256": "a6ba82461a382f2d03a450301dbd94c14131ec7e4ad80efae85cc29f988eb587",
+    "freezer_sha256": "a5e4bb59b2332b570807d8b0fa1ab49fc5378dc4d32a1af3289110ac7820b126",
+    "protocol_sha256": "eb5007eeb52065bc0db873e022bc2b8c522fe658d09ce583dbcff9356a86bba7"
+  },
+  "shortfalls": [
+    {
+      "suite": "libero_goal",
+      "task_id": "open_the_middle_drawer_of_the_cabinet",
+      "eligible_transition_windows": 0
+    },
+    {
+      "suite": "libero_goal",
+      "task_id": "push_the_plate_to_the_front_of_the_stove",
+      "eligible_transition_windows": 0
+    }
+  ],
+  "resources": {
+    "gpu_calls": 0,
+    "model_calls": 0,
+    "simulator_episodes": 0,
+    "downloads": 0
+  },
+  "protected_access": {
+    "locked_test_action_values": false,
+    "state_ids_10_49_outcomes": false,
+    "terminal_outcomes": false
+  },
+  "recovery_authorized": false,
+  "c1_authorized": false,
+  "semantic_sha256": "2e6b13cb74f2e198544e3cfb8288421b94aee99f032b1770ba1216b595bb5799"
+}

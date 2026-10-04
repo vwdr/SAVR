@@ -1,0 +1,36 @@
+{
+  "schema_version": "pair-p2-cpu-config-v1",
+  "run_id": "pair-p2-cpu-synthetic-v01",
+  "phase": "P2",
+  "protocol": "docs/PAIR_VLA_EXECUTION_PROTOCOL_V1.md",
+  "freeze": "configs/pair/p0_freeze_v1.json",
+  "scope": {
+    "synthetic_only": true,
+    "gpu_count": 0,
+    "cuda_visible_devices": "",
+    "model_access": false,
+    "checkpoint_access": false,
+    "demonstration_access": false,
+    "simulator_access": false,
+    "outcome_access": false,
+    "network_access": false,
+    "wall_hours_maximum": 4,
+    "artifact_bytes_maximum": 1073741824
+  },
+  "tests": {
+    "focused": ["tests/pair", "tests/brace"],
+    "pythonpath": ".:src",
+    "required_environment": {"CUDA_VISIBLE_DEVICES": ""}
+  },
+  "outputs": {
+    "technical_record": "reports/pair_p2/technical_record.json",
+    "run_summary": "reports/pair_p2/run_summary.json",
+    "artifact_manifest": "reports/pair_p2/artifact_manifest.json"
+  },
+  "advance": {
+    "next_phase": "P3",
+    "requires_explicit_user_approval": true,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "7ae61bfb9bce015eb1b69dd428d5c0854e17825f38cea41d4b071e129995e811"
+}

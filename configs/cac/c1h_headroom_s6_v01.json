@@ -1,0 +1,147 @@
+{
+  "schema_version": "cac-c1h-corrected-s6-v1",
+  "run_id": "cac-c1h-headroom-s6-v01",
+  "phase": "C1H",
+  "created_date": "2026-09-01",
+  "output_root": "results/cac-c1h-headroom-s6-v01",
+  "protocol": "docs/CAC_C1H_S6_CORRECTED_SUBSTRATE_PROTOCOL_V1.md",
+  "protocol_sha256": "eaf18a0f9fe7ebaf6d53450f64eef558efcb8c726b03bca439afb932c0b73000",
+  "parent_protocol": "docs/CACHE_ACTION_CORRECTION_EXECUTION_PROTOCOL_V2.md",
+  "parent_protocol_sha256": "5b9bc46ea4e2bd0550bd28e5c3c87f74f58aa85e47cb7bd45057a821e005ffbd",
+  "c0_freeze": "configs/cac/c0_freeze_v1.json",
+  "c0_freeze_sha256": "a6ba82461a382f2d03a450301dbd94c14131ec7e4ad80efae85cc29f988eb587",
+  "population_manifest": "reports/cac_c0_recovery01/simulator_populations_v1.jsonl",
+  "population_manifest_sha256": "f31fd5a0e2f6e7f2abc7fe5c6906f6f646d3927f5768e43ee0005ee9d3a02e41",
+  "profile_config": "configs/pair/p3_physical_v03.json",
+  "profile_config_sha256": "c1c81cb5a4f7ae99325d7ebd4ffcc619cf12f0af9ef37ec5b8697b40ed75701b",
+  "c1_result": "results/cac-c1-s5-requalification-v01/result.json",
+  "c1_result_sha256": "44c2d69bcc3ccd0983b75a75639140cb39d85c457fe6d162ee5b37cffbcd084e",
+  "corrected_foundation": {
+    "s3_summary": "results/openvla-semantic-parity-s3-v06-recovery05/worker_summary.json",
+    "s3_summary_sha256": "19d5519d1a11574a3ed02904b55464ea9e7ee4ed7857e62ab10d8f85073ddf9e",
+    "s3_semantic_sha256": "eae02332c936c7816e2de7870b14fb78122e1acc603cc0dd04b39683f1695380",
+    "s4_summary": "results/openvla-d62-requalification-s4-v02-recovery01/worker_summary.json",
+    "s4_summary_sha256": "452488620591e74cf70ca96a800b240c991239634339a72ef953b1b55267dc3c",
+    "s4_semantic_sha256": "988df0eaafb6eaf03549ee9fce8c66677bb9c524ec6eebba12ce6df5b922f38d",
+    "s5_result": "results/cac-c1-s5-requalification-v01/result.json",
+    "s5_result_sha256": "44c2d69bcc3ccd0983b75a75639140cb39d85c457fe6d162ee5b37cffbcd084e",
+    "s5_semantic_sha256": "c4cd5bc67e181fb0e18e0e5f4b78750a6eccb635c9b73aadd0a6709f570fd46c"
+  },
+  "authorization": {
+    "c1h_authorized": true,
+    "c2_authorized": false,
+    "terminal_outcomes": true,
+    "locked_state_ids_10_49": false
+  },
+  "technical_recovery": {
+    "source_run_id": "cac-c1h-headroom-v03-recovery02",
+    "source_technical_stop": "results/cac-c1h-headroom-v03-recovery02/technical_stop.json",
+    "source_technical_stop_sha256": "db6e09bff9e772fa4b2ac3676624efa5b9f55e19d24bc126a790f2e94e5b9e66",
+    "source_technical_stop_semantic_sha256": "486fffb9aa9212de591f0e7bf105c2be2c1b2bdf492db044538fbf042f48994a",
+    "source_episode_attempts": 0,
+    "source_model_queries": 2,
+    "source_partial_outcomes_opened": false,
+    "failure": "the historical custom path used a shifted cache-tail action readout and differed from the released official evaluator by 0.18178841471672058",
+    "repair": "use the S3-qualified official loader and the S4/S5-corrected prompt-derived action readout plus explicit compact-position mapping; preserve the frozen D62 values, population, schedule, and Gate H",
+    "scientific_method_or_gates_changed": false,
+    "automatic_retry": false
+  },
+  "populations": {
+    "stage1": "headroom_stage1",
+    "extension": "headroom_extension",
+    "conditions_per_stage": 120,
+    "episodes_per_stage": 240
+  },
+  "schedule": {
+    "seed": 20260905,
+    "condition_order": "seeded shuffle independently within each frozen population",
+    "arm_order": "exactly balanced paired 2x2 alternation after shuffle",
+    "partial_outcomes": "held in worker memory and written only after exact stage completion",
+    "optional_stopping": false
+  },
+  "suites": ["libero_spatial", "libero_object", "libero_goal", "libero_10"],
+  "cache_substrate": {
+    "profile": "D62_BAL_PT1_S4C_V1",
+    "historical_profile_id": "D62_BAL_PT1",
+    "historical_profile_values_reused": true,
+    "action_readout_corrected": true,
+    "compact_positions_explicitly_mapped": true,
+    "maximum_cached_query_intervals": 4,
+    "reset_rule": "complete dense reset after at most four cached query intervals",
+    "actions_per_query": 8
+  },
+  "query_accounting": {
+    "technical_control_queries": 4,
+    "stage1_worst_case_queries": 9964,
+    "cumulative_worst_case_queries": 19924
+  },
+  "gate_h": {
+    "stage1_proceed": "dense>=0.75 and D62>=0.50 and 8<=100*(dense-D62)<=35 and suites_favoring_dense>=2",
+    "stage1_stop": "dense<0.75 or D62<0.50 or 100*(dense-D62)<=2 or 100*(dense-D62)>35",
+    "stage1_otherwise": "open headroom_extension",
+    "cumulative_proceed": "dense>=0.75 and D62>=0.50 and 5<=100*(dense-D62)<=35 and suites_favoring_dense>=2",
+    "cumulative_otherwise": "stop"
+  },
+  "model": {
+    "checkpoint_relative": "checkpoints/openvla-7b-oft-libero-four-suite",
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "vla_cache_revision": "a4909880573868dee2769343d52e793c0341678b",
+    "libero_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "sidecar_layers": [6, 15, 24],
+    "checkpoint_metadata_sha256": {
+      "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+      "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+      "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+    },
+    "suite_max_steps": {
+      "libero_spatial": 220,
+      "libero_object": 280,
+      "libero_goal": 300,
+      "libero_10": 520
+    }
+  },
+  "code": {
+    "src/savr/pair/p3_openvla.py": "f85f02464d59915c82f101cbbebd322948b5b65f8232f75ecef971de177425f4",
+    "src/savr/cac/c1h.py": "6b0b87b1bf12beafb4d879d6ebb92b746936811191da08e233220faf77225adb",
+    "scripts/run_cac_c1h_worker.py": "604bda884bb81f3c44b92807a3111947b655b9e61e020f3e95acd6d0207ee239",
+    "scripts/analyze_cac_c1h.py": "327748cff95a09b18298bc6e6e6b7e9d4825ccc1ab529cc9f978d48d9312a89f",
+    "scripts/preflight_cac_c1h_s6.py": "e7cdd124a78aef3c592d4be8e3e641de2c0e9695ea25ad09348e682632851d84",
+    "scripts/launch_cac_c1h_s6.sh": "f14f6c384cf7750e12765106f4a990f03fffb39b5348115760164daa391eb430",
+    "scripts/run_openvla_semantic_parity_recovery05.py": "12240d6456f652c2cb34d9118db4deac60d1708a689558958c89f59b36b204a7",
+    "scripts/run_openvla_semantic_parity_recovery01.py": "7cf3294873041f5bb128023eb90883fbde79fc35643ae6880cefce8b38b02c83",
+    "tests/cac/test_c1h_s6_corrected.py": "41ae76d2954257975f80b70b4b095e14b908c58fe7e882f3f28c4c64f7a20ab5"
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "episode_attempts": 480,
+    "model_queries": 20000,
+    "wall_seconds": 36000,
+    "artifact_bytes": 1073741824,
+    "peak_gpu_memory_mib_strict_max": 23552,
+    "downloads": 0,
+    "automatic_retry": false
+  },
+  "forecast": {
+    "basis": "C0 frozen forecast based on 57.89 seconds per dense LIBERO episode plus setup and interruption margin",
+    "stage1_hours_max": 5.0,
+    "cumulative_hours_max": 10.0,
+    "project_disk_margin_required_bytes": 2147483648
+  },
+  "protection": {
+    "states_10_49_accessed": false,
+    "training": false,
+    "cac_features_or_models": false,
+    "raw_action_values_persisted": false,
+    "partial_terminal_outcomes_opened": false,
+    "technical_failure_policy": "fail closed; preserve evidence; no automatic retry",
+    "runtime_writes": "only the new C1H S6 output root"
+  },
+  "advance": {
+    "next_phase": "C2",
+    "authorized": false,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "4d94f2dd1b042cb4e60094d344186d726ac3be6003341ddddc3d4677e61ebc67"
+}

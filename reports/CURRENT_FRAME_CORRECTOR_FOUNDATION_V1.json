@@ -1,0 +1,18 @@
+{
+  "action_only_parameters": 3485959,
+  "failed": 0,
+  "full_size_cpu_optimizer_step_passed": true,
+  "gpu_training": false,
+  "recorded_at": "2026-09-12T18:33:50.142443+00:00",
+  "robot_data_training": false,
+  "sha256": {
+    "src/savr/openvla/current_frame_corrector.py": "c17017eb13c0cd04468e109c0586b6e07458760a6a328508e59ea28db95206cc",
+    "src/savr/openvla/spatial_selection.py": "038962d019bb5fe6c799f7e68df3a9168b310c4085e6d7c32fdb42284540cedc",
+    "tests/openvla/test_current_frame_corrector.py": "3fcff740f00b00d2170fb51f5a36b3f2ef2f2185cdf288750de26c9ed0d05fba",
+    "tests/openvla/test_spatial_selection.py": "917b3391bf1c316459c50d654b3625f5991aa1ea43242a90e802cfbd85466fb8"
+  },
+  "skipped": 0,
+  "synthetic_only": true,
+  "unit_tests": 10,
+  "visual_parameters": 5071879
+}

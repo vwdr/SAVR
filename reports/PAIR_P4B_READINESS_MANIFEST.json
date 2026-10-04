@@ -1,0 +1,53 @@
+{
+  "schema_version": "pair-p4b-readiness-manifest-v1",
+  "run_id": "pair-p4b-confirmatory-v01",
+  "status": "launch_frozen_not_started",
+  "configuration_semantic_sha256": "ae2e35524d6d745ce54f94ec33c8be76ecf77cb7b3f175275e41417d4301248e",
+  "schedule": {
+    "path": "configs/pair/p4b_schedule_v01.jsonl",
+    "sha256": "412047cffd46844db1e493a151d1f71530a3e55435a18e26dd28be910658344e",
+    "anchors": 280,
+    "unique_trajectories": 280,
+    "p4_overlap": 0,
+    "locked_test_use": 0
+  },
+  "schedule_summary": {
+    "path": "configs/pair/p4b_schedule_v01.summary.json",
+    "sha256": "5b2eec8df57b84f8289b9552904f66ab7f044f823b561cc2aa767051b2d95ee2",
+    "semantic_sha256": "6dbf6277eca3625a23634f43f2e5a9a38e632a21b91340f801d8a77b6ceb2af2"
+  },
+  "full_preflight": {
+    "path": "reports/pair_p4b/preflight_v01.json",
+    "sha256": "0207d0940b4f8123dbc999e6b88bb04ba3f6a54c5cc713302d22a9c2e7852b64",
+    "semantic_sha256": "1acf031a3a82b4985037a2f344b61ee04fa117ceae52657ee918eb70f5cdb3ac",
+    "status": "passed"
+  },
+  "launch_manifest": {
+    "path": "configs/pair/p4b_launch_v01.json",
+    "sha256": "9cec50eddf359936641bd0afab5c87035ee320d7b0b73d88ddbeee0d3f54edf6",
+    "semantic_sha256": "5d52b2df02d107e84328c5c57afee646e53a2ba6045c8eff445c3c66d16e5fc8",
+    "status": "frozen_not_started"
+  },
+  "accounting": {
+    "planned_model_calls": 1784,
+    "model_call_hard_cap": 1900,
+    "intervention_records": 776,
+    "feature_records": 560,
+    "contract_records": 304
+  },
+  "access": {
+    "expert_action_values_accessed": false,
+    "observation_values_accessed": false,
+    "locked_test_values_accessed": false,
+    "model_accessed": false,
+    "gpu_accessed": false,
+    "simulator_accessed": false,
+    "run_root_created": false
+  },
+  "authorization": {
+    "gpu_attempt_authorized": false,
+    "automatic_retry": false,
+    "p5_authorized": false
+  },
+  "semantic_sha256": "7f4499d199a4c66ac0b55282ae549307200266348380d44ede62cf5a1cfd4068"
+}

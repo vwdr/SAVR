@@ -1,0 +1,17 @@
+{
+  "artifact_bytes": 53520003,
+  "completed_at_utc": "2026-08-28T21:46:50.080652+00:00",
+  "config_sha256": "b3513e81f92c04959e1f0638ba699bcb80c2410e2d010f9a40bf96d60b114494",
+  "expected_terminal_records": 40,
+  "gpu_ids": [],
+  "observed_terminal_records": 40,
+  "peak_gpu_memory_mib": null,
+  "phase": "P1",
+  "project_revision": "0a274b6ea0c0748adabe386ffa0d61670c4ece7a",
+  "records_sha256": "9b851a1b31e7b33a0cd97c8510cb63ecc868e8fc7da744b2d8b44368eda7308d",
+  "run_id": "pair-p1-data-v1",
+  "schema_version": "pair-run-summary-v1",
+  "started_at_utc": "2026-08-28T21:46:02.224786+00:00",
+  "status": "completed",
+  "stop_reason": null
+}

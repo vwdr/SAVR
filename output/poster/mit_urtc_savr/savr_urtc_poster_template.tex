@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage[paperwidth=24in,paperheight=36in,margin=0in]{geometry}
+\usepackage{fontspec,graphicx,xcolor,tikz}
+\setsansfont{TeX Gyre Heros}\renewcommand{\familydefault}{\sfdefault}
+\usetikzlibrary{arrows.meta,calc}
+\pagestyle{empty}\setlength{\parindent}{0pt}\hyphenpenalty=10000
+\definecolor{scarlet}{HTML}{A6192E}\definecolor{darkred}{HTML}{6D001A}\definecolor{black}{HTML}{000000}
+\newcommand{\Body}{\fontsize{40}{46}\selectfont}\newcommand{\Head}{\fontsize{46}{50}\selectfont\bfseries}
+\newcommand{\Section}[4]{\fill[scarlet] ($(current page.north west)+(#1in,-#2in)$) rectangle ++(#3in,-.72in);\node[anchor=center,text=white,font=\fontsize{50}{54}\selectfont\bfseries] at ($(current page.north west)+(#1in,-#2in)+(.5*#3in,-.36in)$) {#4};}
+\begin{document}\null
+\begin{tikzpicture}[remember picture,overlay,x=1in,y=1in]
+\fill[white] (current page.south west) rectangle (current page.north east);
+
+% Header
+\node[anchor=north,text width=17.6in,align=center,font=\fontsize{52}{57}\selectfont\bfseries] at ($(current page.north west)+(9.35in,-.28in)$) {TRAINING-FREE TEMPORAL VISUAL CACHING\\IN OPENVLA-OFT: A CLOSED-LOOP EVALUATION};
+\node[anchor=north,text width=17.6in,align=center,font=\fontsize{46}{50}\selectfont] at ($(current page.north west)+(9.35in,-1.70in)$) {Ved Dwivedi\raisebox{.25ex}{\fontsize{40}{40}\selectfont 1,2}, Cheng Yang\raisebox{.25ex}{\fontsize{40}{40}\selectfont 2}, and Bo Yuan\raisebox{.25ex}{\fontsize{40}{40}\selectfont 2}};
+\node[anchor=north,text width=17.6in,align=center,font=\fontsize{40}{44}\selectfont] at ($(current page.north west)+(9.35in,-2.35in)$) {1 John P. Stevens High School, Edison, NJ};
+\node[anchor=north,text width=17.6in,align=center,font=\fontsize{40}{44}\selectfont] at ($(current page.north west)+(9.35in,-2.90in)$) {2 Department of ECE, Rutgers University};
+\node[anchor=center,inner sep=0pt] at ($(current page.north west)+(21.10in,-1.52in)$) {\includegraphics[width=4.55in,trim=0 560 0 560,clip]{assets/rutgers-primary.png}};
+\fill[darkred] ($(current page.north west)+(0,-3.63in)$) rectangle ($(current page.north east)+(0,-3.77in)$);
+
+% Introduction
+\Section{.45}{4.00}{7.85}{INTRODUCTION}
+\node[anchor=north west,text width=7.05in,font=\Body] at ($(current page.north west)+(.78in,-5.02in)$) {\textbullet\ VLA policies repeatedly process similar camera views.\\[.32in]\textbullet\ Reuse may save work, but stale visual states can change actions.\\[.32in]\textbullet\ Goal: lower query time without reducing task success.};
+
+% Methods graphical abstract
+\Section{8.65}{4.00}{14.90}{METHODS}
+\tikzset{flow/.style={draw=black,line width=1.8pt,rounded corners=4pt,minimum height=1.15in,align=center,font=\Body},arr/.style={-{Latex[length=.22in,width=.15in]},black,line width=3pt}}
+\node[flow,minimum width=3.25in] (input) at ($(current page.north west)+(10.50in,-5.55in)$) {scene + wrist\\language + state};
+\node[flow,minimum width=3.10in,font=\Body\bfseries] (policy) at ($(current page.north west)+(15.00in,-5.55in)$) {OpenVLA-OFT};
+\node[flow,minimum width=2.75in] (action) at ($(current page.north west)+(19.05in,-5.55in)$) {action chunk};
+\node[flow,minimum width=2.25in] (env) at ($(current page.north west)+(22.15in,-5.55in)$) {LIBERO};
+\draw[arr](input)--(policy);\draw[arr](policy)--(action);\draw[arr](action)--(env);
+\draw[-{Latex[length=.22in,width=.15in]},scarlet,line width=3.5pt] (env.south)..controls ($(env.south)+(0,-.55in)$) and ($(input.south)+(0,-.55in)$)..(input.south);
+\node[anchor=north,align=center,text width=4.25in,font=\Body] at ($(current page.north west)+(11.10in,-7.38in)$) {\textbf{Complete prefix}\\reuse both cameras};
+\node[anchor=north,align=center,text width=4.25in,font=\Body] at ($(current page.north west)+(16.10in,-7.38in)$) {\textbf{Scene camera}\\refresh wrist camera};
+\node[anchor=north,align=center,text width=4.25in,font=\Body] at ($(current page.north west)+(21.10in,-7.38in)$) {\textbf{Internal K/V}\\reuse layers + regions};
+\draw[scarlet,line width=6pt] ($(current page.north west)+(9.15in,-8.75in)$)--++(3.90in,0);\draw[scarlet,line width=6pt] ($(current page.north west)+(14.15in,-8.75in)$)--++(3.90in,0);\draw[scarlet,line width=6pt] ($(current page.north west)+(19.15in,-8.75in)$)--++(3.90in,0);
+\node[anchor=north,align=center,text width=13.8in,font=\Body] at ($(current page.north west)+(16.10in,-9.22in)$) {Compared with dense inference using\\\textbf{task success, reuse rate, and complete query time}.};
+\draw[black,line width=1.5pt] ($(current page.north west)+(9.10in,-10.72in)$)--++(14.00in,0);
+\node[anchor=north,align=center,text width=13.8in,font=\Body] at ($(current page.north west)+(16.10in,-11.00in)$) {OpenVLA-OFT \quad | \quad LIBERO-Spatial \quad | \quad TITAN RTX};
+
+% Results: whole-prefix frontier
+\Section{.45}{12.30}{23.10}{RESULTS}
+\node[anchor=north west,font=\Head] at ($(current page.north west)+(.78in,-13.28in)$) {COMPLETE VISUAL-PREFIX REUSE};
+\fill[scarlet] ($(current page.north west)+(13.00in,-13.50in)$) circle (.11in);
+\node[anchor=west,font=\Body] at ($(current page.north west)+(13.28in,-13.50in)$) {permissive reuse};
+\fill[black] ($(current page.north west)+(18.15in,-13.61in)$) rectangle ++(.22in,.22in);
+\node[anchor=west,font=\Body] at ($(current page.north west)+(18.53in,-13.50in)$) {dense / conservative};
+\node[anchor=west,font=\Body] at ($(current page.north west)+(1.20in,-14.28in)$) {task success (\%)};
+\begin{scope}[shift={($(current page.north west)+(1.20in,-17.25in)$)},x=.238in,y=.027in]
+  \foreach \xv in {0,15,30,45,60,75,90} {
+    \draw[black!28,line width=.8pt] (\xv,0)--(\xv,100);
+    \node[anchor=north,font=\Body] at (\xv,-2) {\xv};
+  }
+  \foreach \yv in {0,20,40,60,80,100} {
+    \draw[black!28,line width=.8pt] (0,\yv)--(90,\yv);
+    \node[anchor=east,font=\Body] at (-1.0,\yv) {\yv};
+  }
+  \draw[black,line width=2pt] (0,0)--(90,0);
+  \draw[black,line width=2pt] (0,0)--(0,100);
+  \foreach \xv/\yv in {34.69/52,43.29/21,47.28/23,56.62/12,63.26/4,65.21/0,64.14/3,75/1,83.68/0}
+    \node[circle,fill=scarlet,minimum size=.23in,inner sep=0pt] at (\xv,\yv) {};
+  \foreach \xv/\yv in {0/100,6.72/96.67,10.57/90,.9534/98.57}
+    \node[rectangle,fill=black,minimum size=.23in,inner sep=0pt] at (\xv,\yv) {};
+\end{scope}
+\node[anchor=north,font=\Body] at ($(current page.north west)+(11.90in,-17.96in)$) {visual-prefix reuse (\% of queries)};
+\node[anchor=north,align=center,text width=22.1in,font=\Body] at ($(current page.north west)+(12in,-18.70in)$) {Dense: \textbf{100/100}. Reusing 34.69--83.68\% of queries gave \textbf{0--52\% success}.\\Conservative reuse reached \textbf{69/70}, but reused only \textbf{0.95\%} of queries.};
+
+% Results: two clear comparison figures
+\draw[black,line width=1.5pt] ($(current page.north west)+(12.00in,-20.20in)$)--++(0,-6.55in);
+\node[anchor=north west,font=\Head] at ($(current page.north west)+(.78in,-20.38in)$) {SCENE-CAMERA REUSE};
+\node[anchor=north west,font=\Body\bfseries] at ($(current page.north west)+(.95in,-21.38in)$) {Task success};
+\node[anchor=east,font=\Body] at ($(current page.north west)+(3.10in,-22.28in)$) {Dense};\node[anchor=east,font=\Body] at ($(current page.north west)+(3.10in,-23.08in)$) {Scene reuse};
+\draw[black,line width=12pt] ($(current page.north west)+(3.35in,-22.28in)$)--++(4.10in,0);\draw[scarlet,line width=12pt] ($(current page.north west)+(3.35in,-23.08in)$)--++(4.10in,0);
+\node[anchor=west,font=\Body\bfseries] at ($(current page.north west)+(7.70in,-22.28in)$) {67/70};\node[anchor=west,font=\Body\bfseries] at ($(current page.north west)+(7.70in,-23.08in)$) {67/70};
+\node[anchor=north west,font=\Body\bfseries] at ($(current page.north west)+(.95in,-23.82in)$) {Mean complete-query time};
+\node[anchor=north,align=center,text width=4.7in,font=\Body] at ($(current page.north west)+(3.35in,-24.58in)$) {Dense\\\textbf{1,188.28 ms}};
+\node[anchor=north,align=center,text width=4.7in,font=\Body] at ($(current page.north west)+(8.70in,-24.58in)$) {Scene reuse\\\textbf{1,190.97 ms}};
+\node[anchor=north,align=center,text width=10.4in,font=\Body] at ($(current page.north west)+(6.00in,-25.72in)$) {Scene reused on 25.24\% of queries.\\Success: 67/70; query time: \textbf{+0.23\%}.};
+
+\node[anchor=north west,font=\Head] at ($(current page.north west)+(12.35in,-20.38in)$) {FINE-GRAINED INTERNAL REUSE};
+\node[anchor=north west,font=\Body\bfseries] at ($(current page.north west)+(12.55in,-21.38in)$) {Median complete-query time};
+\node[anchor=east,font=\Body] at ($(current page.north west)+(15.55in,-22.28in)$) {Dense};\node[anchor=east,font=\Body] at ($(current page.north west)+(15.55in,-23.08in)$) {Selective reuse};
+\draw[black,line width=12pt] ($(current page.north west)+(15.80in,-22.28in)$)--++(4.40in,0);\draw[scarlet,line width=12pt] ($(current page.north west)+(15.80in,-23.08in)$)--++(3.41in,0);
+\node[anchor=west,font=\Body\bfseries] at ($(current page.north west)+(20.45in,-22.28in)$) {100\%};\node[anchor=west,font=\Body\bfseries] at ($(current page.north west)+(19.46in,-23.08in)$) {77.4\%};
+\node[anchor=north west,font=\Body\bfseries] at ($(current page.north west)+(12.55in,-23.82in)$) {Closed-loop task success};
+\node[anchor=north,align=center,text width=10.4in,font=\Body] at ($(current page.north west)+(17.95in,-24.58in)$) {Dense: 68/120 \quad Selective reuse: \textbf{0/120}};
+\node[anchor=north,align=center,text width=10.4in,font=\Body] at ($(current page.north west)+(17.95in,-25.36in)$) {\textbf{22.60\% lower} median query time;\\no successful cached episodes.};
+
+% Interpretation
+\Section{.45}{27.40}{15.05}{CONCLUSION}\Section{15.85}{27.40}{7.70}{LIMITATIONS}
+\node[draw=black,line width=1.5pt,rounded corners=4pt,minimum width=3.75in,minimum height=1.05in,align=center,font=\Body] (stale) at ($(current page.north west)+(3.12in,-29.30in)$) {stale visual\\state};
+\node[draw=black,line width=1.5pt,rounded corners=4pt,minimum width=3.75in,minimum height=1.05in,align=center,font=\Body] (changed) at ($(current page.north west)+(7.98in,-29.30in)$) {changed\\action};
+\node[draw=black,line width=1.5pt,rounded corners=4pt,minimum width=3.75in,minimum height=1.05in,align=center,font=\Body] (trajectory) at ($(current page.north west)+(12.84in,-29.30in)$) {changed\\trajectory};
+\draw[arr](stale)--(changed);\draw[arr](changed)--(trajectory);
+\node[anchor=north,align=center,text width=14.1in,font=\Body\bfseries] at ($(current page.north west)+(7.98in,-30.35in)$) {The tested training-free reuse strategies did not preserve task success while reducing end-to-end query time.};
+\node[anchor=north west,text width=6.8in,font=\Body] at ($(current page.north west)+(16.25in,-28.65in)$) {\textbullet\ One model checkpoint\\[.18in]\textbullet\ One benchmark and GPU class\\[.18in]\textbullet\ Terminal task success only};
+
+% Footer, all text >= 40 pt
+\draw[darkred,line width=2pt] ($(current page.north west)+(.45in,-33.05in)$)--++(23.10in,0);
+\node[anchor=north west,text width=8.7in,font=\fontsize{40}{45}\selectfont] at ($(current page.north west)+(.68in,-33.32in)$) {\textbf{REFERENCES}\\[.08in][1] Kim et al., RSS 2025.\\[.08in][2] Liu et al., NeurIPS 2023.\\[.08in][3] Xu et al., NeurIPS 2025.};
+\node[anchor=north west,text width=8.7in,font=\fontsize{40}{45}\selectfont] at ($(current page.north west)+(9.60in,-33.32in)$) {\textbf{ACKNOWLEDGMENTS}\\[.08in]Rutgers SRC Lab\\[.08in]\textbf{CODE} github.com/vwdr/SAVR};
+\node[anchor=north,inner sep=0pt] at ($(current page.north west)+(22.00in,-33.32in)$) {\includegraphics[width=2.15in]{assets/savr-qr.png}};
+\end{tikzpicture}\end{document}

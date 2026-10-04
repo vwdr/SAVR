@@ -1,0 +1,4 @@
+{"copy_verified": true, "verified_root": "/home/ved/SAVR/results/current-frame-feature-collection-v01", "hashed_artifacts": 4005, "records": 4000, "fit": 3200, "validation": 800, "tasks": 40, "fit_trajectories": 1054, "validation_trajectories": 271, "model_queries": 8000, "optimizer_steps": 0, "episodes": 0, "positive_method_result": false, "summary_sha256": "7bde8cd59846d5f5b54c7b9a8302b30ebe74ef13606eb92aeb754465d5b1a8c3", "analysis_sha256": "ae9ba225dce1d14318b8b7d6c5493657eec307a6142cab2df6f48e27e7eb2273"}
+/home/ved/SAVR/envs/openvla-oft/lib/python3.10/site-packages/transformers/utils/hub.py:124: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+{"complete": true, "optimizer_steps": 6000, "checkpoints": 3, "validation_records": 800}

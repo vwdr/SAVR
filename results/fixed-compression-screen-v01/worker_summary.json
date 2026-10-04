@@ -1,0 +1,24 @@
+{
+  "artifacts_sha256": {
+    "episodes.jsonl": "a2715e9ace5388510b46a7326f5d4455e3ebeffab104f0d2d9d5ce88d3ca6b78",
+    "input_preflight.json": "93408bd9954ce6c59a5f8dabd6ea85d9133e8603e8f11747dec77f70ce02cbbb",
+    "launch.json": "49ee5035f1a3b02da79f6a861efd0136c16066c9e729c4cdbca4823a1f8f49f0",
+    "loaded_runtime.json": "9df15e5e7291448563c215c0f820fa1c6e150e17c246616d4003b68524ab11ff",
+    "parity.jsonl": "1f57fa2f33f15acff5a8bcf01bcb3381d37b7dde89112f5147f81ae7debf2a0f",
+    "progress.jsonl": "e58712b52b56ded0814b60ef9e9f8c081b55f21d8deb3a3736157b67d2cea32e",
+    "records.json": "7fd7460d9fa5944364f599a92ec5a565f0e6d454c9c2234bfa20badee3300c73",
+    "timing.jsonl": "8639b6c5f96f65c45005c76724091f829bf0a0086ec3b78fdd701747b89b0944"
+  },
+  "authenticated_files_unchanged": true,
+  "automatic_retry": false,
+  "checkpoint_unchanged": true,
+  "complete": true,
+  "completed_at": "2026-09-13T22:34:20.749294+00:00",
+  "elapsed_seconds": 4222.589825959876,
+  "episodes": 128,
+  "model_queries": 2846,
+  "peak_aggregate_gpu_memory_mib": 16504,
+  "positive_method_result": false,
+  "training_performed": false,
+  "worker_sha256": "6d7a77e9a097f5d7ade95b568f100ae6a8eb130c4cb57710663ef737a416cf72"
+}

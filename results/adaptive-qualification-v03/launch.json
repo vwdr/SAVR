@@ -1,0 +1,63 @@
+{
+  "config": {
+    "adaptive_zero_tolerance_max": 0.001,
+    "analyzer_sha256": "9b09b397ed28d2a05ff6db443c451d9f0e589b5e4ba564c09f8d0b9cd4de8feb",
+    "arms": [
+      "adaptive_75",
+      "adaptive_50"
+    ],
+    "authenticated_files": {
+      "docs/ADAPTIVE_SCREEN_PROTOCOL_V2.md": "edfe109ca3d31c19f588aa690a729a9bc119089846b36f2b55c94f6ec8f3ebae",
+      "scripts/analyze_adaptive_qualification.py": "9b09b397ed28d2a05ff6db443c451d9f0e589b5e4ba564c09f8d0b9cd4de8feb",
+      "scripts/run_adaptive_qualification.py": "dbfda9a551387a6b7e95b5e25b2d4c3e68b64a4fbecce2e35fe604930e27c53a",
+      "src/savr/openvla/adaptive_query.py": "f0cff4ebd79f1e76ebea623ed03e7acdba7b04483e5b19ca7eee13f4d4e7b74f",
+      "src/savr/openvla/adaptive_sdpa.py": "47e8123fd33bca52d89c70f867ea7a9cf904687a5a5865e8f9debb5fad0a9ba4",
+      "src/savr/openvla/vlapruner_adaptive.py": "53c3f9ad38283250cb53209ee46bb41b57b7a9fadfca2cc8f8901226bdd9a151",
+      "tests/openvla/test_adaptive_qualification.py": "61ea844eca3be6074c2c37e69a2f190d43b31a73e67ae0fbbad4c5f20e791a30",
+      "tests/openvla/test_adaptive_sdpa.py": "811af20230c0c8bd1af8aa9ec99d856db0b17fb9b18a591b8afd93ba7f2334ab",
+      "tests/openvla/test_vlapruner_adaptive.py": "c85839bbce578000ab1f540b6f4df2218f4013f6e87a69b7a044bcea7d737973"
+    },
+    "automatic_retry": false,
+    "caps": {
+      "aggregate_memory_mib": 23552,
+      "artifact_bytes": 268435456,
+      "episodes": 0,
+      "model_calls": 256,
+      "seconds": 3600
+    },
+    "fastv_ratios": {
+      "adaptive_50": 0.5,
+      "adaptive_75": 0.25
+    },
+    "gpu": {
+      "index": 0,
+      "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+    },
+    "input_preflight_report": "reports/CONTEMPORARY_RECOVERY01_REAL_INPUT_PREFLIGHT_V1.json",
+    "launch_ready": true,
+    "observation_ids": [
+      "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+      "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+      "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+      "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+      "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+      "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+      "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+      "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae"
+    ],
+    "output_root": "results/adaptive-qualification-v03",
+    "reference_summary": "results/contemporary-reference-v02/worker_summary.json",
+    "reference_summary_sha256": "6c8fc825f55ba2154a48df3ae3171f674e47ebd363e620efa5f929082148326b",
+    "schema_version": "adaptive-qualification-v1",
+    "tolerance": 1e-06,
+    "worker_sha256": "dbfda9a551387a6b7e95b5e25b2d4c3e68b64a4fbecce2e35fe604930e27c53a"
+  },
+  "config_sha256": "6f3a36decbb18706aa6cf39f2a727eb64601fd53de8efa19b334bf87ea10fc63",
+  "initial_gpu": {
+    "memory_mib": 6,
+    "utilization": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+  },
+  "pid": 3072450,
+  "started_at": "2026-09-26T17:50:30.227492+00:00"
+}

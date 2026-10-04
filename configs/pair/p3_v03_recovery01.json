@@ -1,0 +1,50 @@
+{
+  "schema_version": "pair-p3-terminal-recovery-config-v1",
+  "run_id": "pair-p3-physical-v03-recovery01",
+  "source_run_id": "pair-p3-physical-v03",
+  "p3_config": "configs/pair/p3_physical_v03.json",
+  "preflight": {
+    "path": "reports/pair_p3/preflight_v03.json",
+    "sha256": "95a3e0c0b4d0040c5d20109d63a5ed2438781649d6018d70ab81d262025f91ba"
+  },
+  "runtime_sources": {
+    "worker_path": "reports/pair_p3/v03_runtime_sources/scripts/run_pair_p3_worker.py",
+    "worker_sha256": "3f58f896a3a9c4308b61e50c4e145daa626c68614c2193d1aced5b7d0342870e",
+    "openvla_helper_path": "reports/pair_p3/v03_runtime_sources/src/savr/pair/p3_openvla.py",
+    "openvla_helper_sha256": "75fd1b9131e9eb9c050ad988c7d593a2cb9a630519fe4f0c24ab83e635a8bdbb"
+  },
+  "support_sources": {
+    "sidecar_path": "src/savr/brace/b3_openvla.py",
+    "sidecar_sha256": "7a9993a4754f7368ba399d205b5b804b20b1ba2efe861d17ec95f8d1b2ff237e",
+    "router_path": "src/savr/pair/router.py",
+    "router_sha256": "a29836719360f4c2a3b0317519329a7bf3a66af2427c53a7373eb66ac46e833d",
+    "runtime_path": "src/savr/pair/runtime.py",
+    "runtime_sha256": "a21783e9706f729fc71ed32c6a539baf0992857d709e5da1011094930fdd0f19"
+  },
+  "source_evidence": {
+    "blocks_path": "results/pair-p3-physical-v03/blocks.jsonl",
+    "blocks_sha256": "e9d56ebe73d989ecb3cde7027629792fa5edc658a77ca77f2a4eb39fd2e2f652",
+    "technical_stop_path": "results/pair-p3-physical-v03/technical_stop.json",
+    "technical_stop_sha256": "5f5f0103dc1d84a0a428911f5cd2072343af2b93892086cb76346c917ca06c4b"
+  },
+  "recovery_scope": {
+    "gpu_count": 0,
+    "model_queries": 0,
+    "model_access": false,
+    "checkpoint_access": false,
+    "demonstration_access": false,
+    "simulator_access": false,
+    "outcome_access": false,
+    "network_access": false,
+    "modify_source_evidence": false,
+    "router_seed": 17,
+    "overhead_mock_iterations": 1000
+  },
+  "output_root": "results/pair-p3-physical-v03-recovery01",
+  "advance": {
+    "next_phase": "P4",
+    "authorized": false,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "6bfb7a7ea5f6f0ce65d9959ea7215bb1c12854781efb0717b25ccee9f60714d7"
+}

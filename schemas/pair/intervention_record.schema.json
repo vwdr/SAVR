@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://savr.local/schemas/pair/intervention_record.schema.json",
+  "title": "PAIR outcome-protected intervention record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "record_id", "run_id", "phase", "split", "suite",
+    "task_id", "trajectory_id", "query_step", "horizon", "profile_id",
+    "mask_id", "source_ages", "valid_action_count", "dense_expert_l1",
+    "cached_expert_l1", "signed_regret", "positive_regret", "action_l1_distortion",
+    "action_max_abs_distortion", "gripper_coordinate_error", "expert_action_sha256",
+    "dense_action_sha256", "cached_action_sha256", "gripper_transition",
+    "technical_valid", "created_at_utc"
+  ],
+  "properties": {
+    "schema_version": {"const": "pair-intervention-v1"},
+    "record_id": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "run_id": {"type": "string", "minLength": 1},
+    "phase": {"enum": ["P4", "P4B", "P5"]},
+    "split": {"enum": ["train", "calibration", "locked_test"]},
+    "suite": {"enum": ["libero_spatial", "libero_object", "libero_goal", "libero_10"]},
+    "task_id": {"type": "string", "minLength": 1},
+    "trajectory_id": {"type": "string", "minLength": 1},
+    "query_step": {"type": "integer", "minimum": 0},
+    "horizon": {"enum": [1, 2, 4]},
+    "profile_id": {"type": "string", "minLength": 1},
+    "mask_id": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "source_ages": {"type": "array", "items": {"type": "integer", "minimum": 0, "maximum": 4}, "minItems": 1},
+    "valid_action_count": {"type": "integer", "minimum": 1, "maximum": 56},
+    "dense_expert_l1": {"type": "number"},
+    "cached_expert_l1": {"type": "number"},
+    "signed_regret": {"type": "number"},
+    "positive_regret": {"type": "number", "minimum": 0},
+    "action_l1_distortion": {"type": "number", "minimum": 0},
+    "action_max_abs_distortion": {"type": "number", "minimum": 0},
+    "gripper_coordinate_error": {"type": "number", "minimum": 0},
+    "expert_action_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "dense_action_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "cached_action_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "gripper_transition": {"type": "boolean"},
+    "repeat_of_record_id": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "technical_valid": {"const": true},
+    "created_at_utc": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {"not": {"required": ["success"]}},
+    {"not": {"required": ["terminal_success"]}},
+    {"not": {"required": ["reward"]}},
+    {"not": {"required": ["task_success"]}},
+    {"not": {"required": ["episode_outcome"]}}
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": "pair-p0-semantic-manifest-v1",
+  "created_at_utc": "2026-08-28T00:00:00Z",
+  "phase": "P0",
+  "decision": "PASS_STOP_BEFORE_P1",
+  "project_revision_at_freeze": "0a274b6ea0c0748adabe386ffa0d61670c4ece7a",
+  "semantic_payload_sha256": "cd54f90d45ef1cb96fe13a7d35270c05d15823cfa6727aa25253a41f25b658c6",
+  "hash_rule": "SHA-256 of newline-separated path, space, sha256 entries in the order shown below; this manifest is excluded from its own semantic hash.",
+  "files": [
+    {
+      "path": "docs/PAIR_VLA_EXECUTION_PROTOCOL_V1.md",
+      "sha256": "145668e8757ab7a6e9ab88f51d0d1d4903de41fb7db14a5653e3e13c198d47c8",
+      "role": "approved protocol"
+    },
+    {
+      "path": "docs/PAIR_P0_FREEZE.md",
+      "sha256": "39de542b1de73ede5d45e26e7af007aafd416e9f4e6f69477af80b0cbcf7d543",
+      "role": "human-readable scientific freeze"
+    },
+    {
+      "path": "configs/pair/p0_freeze_v1.json",
+      "sha256": "dad74fb3a6a46d43fc023739422dc132d95801f73b3df4701c80e2e300dfbe7e",
+      "role": "authoritative machine-readable freeze"
+    },
+    {
+      "path": "schemas/pair/intervention_record.schema.json",
+      "sha256": "6eec82a631d34efc8e40d0c63f11707d5e5fa745bd5712cec1a1a6abd6018e6f",
+      "role": "outcome-protected intervention schema"
+    },
+    {
+      "path": "schemas/pair/episode_record.schema.json",
+      "sha256": "d1f142c17a20b87140a2a246351c5a22d7dd4f38a13605369608625e0fd704d7",
+      "role": "closed-loop terminal episode schema"
+    },
+    {
+      "path": "schemas/pair/router_artifact.schema.json",
+      "sha256": "3b8ad26992731e3f404c4f2060847995cd64d227195002ca344d9b62a158ed0d",
+      "role": "router identity schema"
+    },
+    {
+      "path": "schemas/pair/run_summary.schema.json",
+      "sha256": "7636d4154ca98164cc2fe0e0607071e5cd2112904e25ef9af4de84fb03182bef",
+      "role": "immutable terminal run summary schema"
+    },
+    {
+      "path": "reports/PAIR_P0_REPORT.md",
+      "sha256": "0f38e893ef597c39e1b931edc78386bfcb7ed5c54cb999805381bce743ddf92d",
+      "role": "P0 gate adjudication"
+    }
+  ],
+  "protected_population_state": {
+    "synthetic": "closed",
+    "timing": "closed",
+    "demonstration_regret": "closed",
+    "locked_offline_regret": "closed",
+    "development_success": "closed",
+    "confirmatory_success": "closed"
+  },
+  "material_actions": {
+    "gpu_used": false,
+    "downloads_performed": false,
+    "outcomes_opened": false,
+    "implementation_changed": false,
+    "server_files_modified": false,
+    "committed": false,
+    "pushed": false
+  }
+}

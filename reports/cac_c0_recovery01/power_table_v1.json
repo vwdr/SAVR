@@ -1,0 +1,99 @@
+{
+  "alpha": 0.05,
+  "hierarchical_sensitivity": {
+    "historical_task_pattern": "LIBERO-Spatial FR task successes 10/10 for tasks 0-8 and 9/10 for task 9, repeated only as a planning sensitivity across four suites",
+    "limitation": "historical development outcomes do not identify final paired discordance; C5/C6 must update the forecast without changing the margin or population",
+    "result": "task-level heterogeneity cannot improve analytic power; the final analyzer uses a 20,000-replicate task-then-state bootstrap and the lower analytic/hierarchical forecast governs"
+  },
+  "margin": 0.02,
+  "n": 1600,
+  "rows": [
+    {
+      "analytic_power_n1600": 0.9733729770919354,
+      "discordance": 0.05,
+      "minimum_n_for_80_percent": 773,
+      "true_cac_minus_dense": 0.0,
+      "within_final_population": true
+    },
+    {
+      "analytic_power_n1600": 0.5579573215595871,
+      "discordance": 0.05,
+      "minimum_n_for_80_percent": 3086,
+      "true_cac_minus_dense": -0.01,
+      "within_final_population": false
+    },
+    {
+      "analytic_power_n1600": 0.050000000000000155,
+      "discordance": 0.05,
+      "minimum_n_for_80_percent": null,
+      "true_cac_minus_dense": -0.02,
+      "within_final_population": false
+    },
+    {
+      "analytic_power_n1600": 0.8119131898703726,
+      "discordance": 0.1,
+      "minimum_n_for_80_percent": 1546,
+      "true_cac_minus_dense": 0.0,
+      "within_final_population": true
+    },
+    {
+      "analytic_power_n1600": 0.3522289737015877,
+      "discordance": 0.1,
+      "minimum_n_for_80_percent": 6177,
+      "true_cac_minus_dense": -0.01,
+      "within_final_population": false
+    },
+    {
+      "analytic_power_n1600": 0.050000000000000155,
+      "discordance": 0.1,
+      "minimum_n_for_80_percent": null,
+      "true_cac_minus_dense": -0.02,
+      "within_final_population": false
+    },
+    {
+      "analytic_power_n1600": 0.6630266093553683,
+      "discordance": 0.15,
+      "minimum_n_for_80_percent": 2319,
+      "true_cac_minus_dense": 0.0,
+      "within_final_population": false
+    },
+    {
+      "analytic_power_n1600": 0.27036362101287015,
+      "discordance": 0.15,
+      "minimum_n_for_80_percent": 9268,
+      "true_cac_minus_dense": -0.01,
+      "within_final_population": false
+    },
+    {
+      "analytic_power_n1600": 0.050000000000000155,
+      "discordance": 0.15,
+      "minimum_n_for_80_percent": null,
+      "true_cac_minus_dense": -0.02,
+      "within_final_population": false
+    },
+    {
+      "analytic_power_n1600": 0.5572500632955463,
+      "discordance": 0.2,
+      "minimum_n_for_80_percent": 3092,
+      "true_cac_minus_dense": 0.0,
+      "within_final_population": false
+    },
+    {
+      "analytic_power_n1600": 0.22656630283009316,
+      "discordance": 0.2,
+      "minimum_n_for_80_percent": 12359,
+      "true_cac_minus_dense": -0.01,
+      "within_final_population": false
+    },
+    {
+      "analytic_power_n1600": 0.050000000000000155,
+      "discordance": 0.2,
+      "minimum_n_for_80_percent": null,
+      "true_cac_minus_dense": -0.02,
+      "within_final_population": false
+    }
+  ],
+  "schema_version": "cac-c0-power-v1",
+  "semantic_sha256": "809b91a8fcb0c8179d2fac99d9fa856706adf06ca2032498e377dcd7f4dcc02e",
+  "test": "one-sided paired noninferiority normal approximation"
+}

@@ -1,0 +1,32 @@
+3aac24cec583a6ef5f60b6ec634a8bd3c8377784c5c63c8cc14cb6790554c52e  envs/openvla-oft/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py
+f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa  checkpoints/openvla-7b-oft-libero-four-suite/modeling_prismatic.py
+test_keep_all_is_identity (test_visual_compaction.MapTests) ... ok
+test_no_token_resurrection (test_visual_compaction.MapTests) ... ok
+test_reject_camera_deletion (test_visual_compaction.MapTests) ... ok
+test_reject_corrupt_position_map (test_visual_compaction.MapTests) ... ok
+test_reject_cross_query_layout (test_visual_compaction.MapTests) ... ok
+test_reject_invalid_visual_selection (test_visual_compaction.MapTests) ... ok
+test_reject_removed_nonvisual_token (test_visual_compaction.MapTests) ... ok
+test_repeated_compaction_preserves_action_and_nonvisual_tokens (test_visual_compaction.MapTests) ... ok
+test_tail_offset_is_not_the_official_readout (test_visual_compaction.MapTests) ... ok
+test_compact_real_runtime_and_readout (test_visual_compaction.TensorTests) ... ok
+test_dense_explicit_positions_match_native_dense (test_visual_compaction.TensorTests) ... ok
+test_future_token_still_influences_earlier_tokens_after_compaction (test_visual_compaction.TensorTests) ... ok
+test_reject_wrong_hidden_shape (test_visual_compaction.TensorTests) ... ok
+test_repeated_tensor_compaction_keeps_sentinels (test_visual_compaction.TensorTests) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.504s
+
+OK
+test_absolute_reference_expression (test_specprune_source_audit.SourceTests) ... ok
+test_calls_are_not_executed (test_specprune_source_audit.SourceTests) ... ok
+test_negative_tail_expression (test_specprune_source_audit.SourceTests) ... ok
+test_pinned_source_identity (test_specprune_source_audit.SourceTests) ... ok
+test_reads_actual_upstream_slice (test_specprune_source_audit.SourceTests) ... ok
+test_source_drift_rejected (test_specprune_source_audit.SourceTests) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.007s
+
+OK

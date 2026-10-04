@@ -1,0 +1,219 @@
+{
+  "bootstrap_replicates_per_outer_dataset": 20000,
+  "historical_pattern": "Jeffreys-smoothed 10/10 for tasks 0-8 and 9/10 for task 9, repeated over four suites",
+  "limitation": "100 outer datasets give coarse power resolution; Wilson intervals are reported and the lower of analytic and simulated evidence governs planning",
+  "outer_replicates": 100,
+  "rows": [
+    {
+      "discordance": 0.05,
+      "estimated_power": 0.78,
+      "mean_bootstrap_lower": -0.01557500030961819,
+      "mean_observed_difference": 3.750000000000003e-05,
+      "outer_replicates": 100,
+      "passes": 78,
+      "power_wilson_95": [
+        0.6892964648501421,
+        0.8499871761539459
+      ],
+      "task_discordance_range": [
+        0.04166666666666666,
+        0.12500000000000008
+      ],
+      "true_cac_minus_dense": 0.0
+    },
+    {
+      "discordance": 0.05,
+      "estimated_power": 0.13,
+      "mean_bootstrap_lower": -0.02670000048354268,
+      "mean_observed_difference": -0.010762500000000003,
+      "outer_replicates": 100,
+      "passes": 13,
+      "power_wilson_95": [
+        0.07757167427240512,
+        0.20980351440076428
+      ],
+      "task_discordance_range": [
+        0.04166666666666666,
+        0.12500000000000008
+      ],
+      "true_cac_minus_dense": -0.01
+    },
+    {
+      "discordance": 0.05,
+      "estimated_power": 0.0,
+      "mean_bootstrap_lower": -0.037018750868737696,
+      "mean_observed_difference": -0.02065625,
+      "outer_replicates": 100,
+      "passes": 0,
+      "power_wilson_95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "task_discordance_range": [
+        0.04166666666666666,
+        0.12500000000000008
+      ],
+      "true_cac_minus_dense": -0.02
+    },
+    {
+      "discordance": 0.1,
+      "estimated_power": 0.4,
+      "mean_bootstrap_lower": -0.022106250384822487,
+      "mean_observed_difference": 3.750000000000009e-05,
+      "outer_replicates": 100,
+      "passes": 40,
+      "power_wilson_95": [
+        0.3094012864324589,
+        0.4979974132089382
+      ],
+      "task_discordance_range": [
+        0.08333333333333331,
+        0.25000000000000017
+      ],
+      "true_cac_minus_dense": 0.0
+    },
+    {
+      "discordance": 0.1,
+      "estimated_power": 0.11,
+      "mean_bootstrap_lower": -0.03193750035017729,
+      "mean_observed_difference": -0.00971875,
+      "outer_replicates": 100,
+      "passes": 11,
+      "power_wilson_95": [
+        0.06254196357064568,
+        0.18631296503080313
+      ],
+      "task_discordance_range": [
+        0.08333333333333331,
+        0.25000000000000017
+      ],
+      "true_cac_minus_dense": -0.01
+    },
+    {
+      "discordance": 0.1,
+      "estimated_power": 0.0,
+      "mean_bootstrap_lower": -0.044237500596791504,
+      "mean_observed_difference": -0.021506249999999994,
+      "outer_replicates": 100,
+      "passes": 0,
+      "power_wilson_95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "task_discordance_range": [
+        0.08333333333333331,
+        0.25000000000000017
+      ],
+      "true_cac_minus_dense": -0.02
+    },
+    {
+      "discordance": 0.15,
+      "estimated_power": 0.32,
+      "mean_bootstrap_lower": -0.025912500054109843,
+      "mean_observed_difference": 0.00114375,
+      "outer_replicates": 100,
+      "passes": 32,
+      "power_wilson_95": [
+        0.23669147324999093,
+        0.41662618610452384
+      ],
+      "task_discordance_range": [
+        0.12499999999999997,
+        0.37500000000000017
+      ],
+      "true_cac_minus_dense": 0.0
+    },
+    {
+      "discordance": 0.15,
+      "estimated_power": 0.03,
+      "mean_bootstrap_lower": -0.03649375030770898,
+      "mean_observed_difference": -0.009181250000000002,
+      "outer_replicates": 100,
+      "passes": 3,
+      "power_wilson_95": [
+        0.010254524024038925,
+        0.0845193642905276
+      ],
+      "task_discordance_range": [
+        0.12499999999999997,
+        0.37500000000000017
+      ],
+      "true_cac_minus_dense": -0.01
+    },
+    {
+      "discordance": 0.15,
+      "estimated_power": 0.01,
+      "mean_bootstrap_lower": -0.05030625030398369,
+      "mean_observed_difference": -0.023075,
+      "outer_replicates": 100,
+      "passes": 1,
+      "power_wilson_95": [
+        0.0017674320641406505,
+        0.054486196178705315
+      ],
+      "task_discordance_range": [
+        0.12499999999999997,
+        0.37500000000000017
+      ],
+      "true_cac_minus_dense": -0.02
+    },
+    {
+      "discordance": 0.2,
+      "estimated_power": 0.1,
+      "mean_bootstrap_lower": -0.0332687503285706,
+      "mean_observed_difference": -0.00208125,
+      "outer_replicates": 100,
+      "passes": 10,
+      "power_wilson_95": [
+        0.0552291370606751,
+        0.17436566150491345
+      ],
+      "task_discordance_range": [
+        0.16666666666666663,
+        0.5000000000000003
+      ],
+      "true_cac_minus_dense": 0.0
+    },
+    {
+      "discordance": 0.2,
+      "estimated_power": 0.04,
+      "mean_bootstrap_lower": -0.03960625047795475,
+      "mean_observed_difference": -0.008237499999999998,
+      "outer_replicates": 100,
+      "passes": 4,
+      "power_wilson_95": [
+        0.01566330399154762,
+        0.0983707143588792
+      ],
+      "task_discordance_range": [
+        0.16666666666666663,
+        0.5000000000000003
+      ],
+      "true_cac_minus_dense": -0.01
+    },
+    {
+      "discordance": 0.2,
+      "estimated_power": 0.0,
+      "mean_bootstrap_lower": -0.051031250394880774,
+      "mean_observed_difference": -0.019531249999999997,
+      "outer_replicates": 100,
+      "passes": 0,
+      "power_wilson_95": [
+        3.469446951953614e-18,
+        0.03699349820698568
+      ],
+      "task_discordance_range": [
+        0.16666666666666663,
+        0.5000000000000003
+      ],
+      "true_cac_minus_dense": -0.02
+    }
+  ],
+  "schema_version": "cac-c0-hierarchical-power-v1",
+  "seed": 20260908,
+  "semantic_sha256": "16e0cad84eb093a611afb6ee9d0e5676ea491cefeecfb31db8822de2b404b8a3",
+  "simulation_scope": "paired-difference power forecast; not a simulator or policy-outcome forecast",
+  "states_per_task": 40,
+  "tasks": 40,
+  "test": "C7 task-then-state paired bootstrap; point >= -0.02 and one-sided 95% lower > -0.02"
+}

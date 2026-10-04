@@ -1,0 +1,113 @@
+{
+  "schema_version": "openvla-semantic-parity-s3-recovery02-v1",
+  "run_id": "openvla-semantic-parity-s3-v03-recovery02",
+  "protocol": "docs/OPENVLA_SEMANTIC_REQUALIFICATION_PROTOCOL_V1.md",
+  "input_manifest": "configs/pair/p3_inputs_v1.json",
+  "model_config": "configs/pair/p3_physical_v03.json",
+  "output_root": "results/openvla-semantic-parity-s3-v03-recovery02",
+  "seed": 20260831,
+  "tolerance": 0.000001,
+  "authorization": {
+    "s3_recovery02_authorized": true,
+    "source": "User approved S3 Recovery 02 on 2026-09-01",
+    "simulator": false,
+    "terminal_outcomes": false,
+    "training": false,
+    "automatic_retry": false
+  },
+  "technical_recovery": {
+    "source_run_id": "openvla-semantic-parity-s3-v02-recovery01",
+    "source_record": "results/openvla-semantic-parity-s3-v02-recovery01/technical_stop_reconstruction.json",
+    "source_record_sha256": "6b1a35859b33c6a14088b7a5d257b63bee774c58479958040800c30a1306a244",
+    "source_model_calls": 4,
+    "source_observations_completed": 0,
+    "source_worker_terminal_record_written": false,
+    "scientific_population_changed": false,
+    "scientific_gate_changed": false,
+    "automatic_retry": false
+  },
+  "corrections": {
+    "canonicalize_normalized_proprio_before_comparison": true,
+    "official_shape": [8],
+    "custom_previous_shape": [1, 8],
+    "model_canonical_shape": [1, 8],
+    "model_computation_changed": false,
+    "strict_json_nonfinite_comparison_encoding": true,
+    "failure_record_required": true
+  },
+  "population": {
+    "observation_step": 0,
+    "selection": "all eight frozen P3 inputs; exactly two per LIBERO suite",
+    "expert_actions_accessed": false,
+    "terminal_outcomes_accessed": false,
+    "locked_state_ids_accessed": false
+  },
+  "call_schedule": {
+    "per_observation": [
+      "released_official_evaluator",
+      "corrected_dense_use_cache_none",
+      "corrected_dense_use_cache_true",
+      "corrected_dense_use_cache_true_sidecar"
+    ],
+    "alternate_official_custom_order": true,
+    "total_calls": 32
+  },
+  "loader_recovery": {
+    "official_source_tree": "third_party/openvla-oft",
+    "official_source_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "disable_model_logic_sync": true,
+    "qualified_loader_guard_sha256": "c4dfb61c9b1d36ebc2cacd0f80ec9349ec304304eac37f609c77f5c140eaa643",
+    "require_checkpoint_prompt_derived_action_readout": true,
+    "reject_cache_tail_action_readout": true,
+    "adapt_official_return_without_changing_actions": true,
+    "discard_vla_cache_only_config_argument": true,
+    "inject_absent_dense_cache_controls_as_none": true
+  },
+  "model": {
+    "checkpoint_relative": "checkpoints/openvla-7b-oft-libero-four-suite",
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "vla_cache_revision": "a4909880573868dee2769343d52e793c0341678b",
+    "dtype": "torch.bfloat16",
+    "sidecar_layers": [6, 15, 24],
+    "checkpoint_metadata_sha256": {
+      "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+      "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+      "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+    }
+  },
+  "authenticated_files": {
+    "docs/OPENVLA_SEMANTIC_REQUALIFICATION_PROTOCOL_V1.md": "1979a894eca3b46c79b9978da278589602335f394715d33bc4ce3c3f3bc61cc7",
+    "configs/pair/p3_inputs_v1.json": "e3b4064eba73cdfe0f82e4b9c282052e81f19f65b5a4e13d41674fdf45c42262",
+    "configs/pair/p3_physical_v03.json": "c1c81cb5a4f7ae99325d7ebd4ffcc619cf12f0af9ef37ec5b8697b40ed75701b",
+    "configs/pair/libero_runtime/config.yaml": "dbd195f1b830abfc8580461a24335d1e1d72cb00548253a394f0abe2d8fdd74c",
+    "src/savr/openvla/official_semantics.py": "9dc8bda16642cd3c76e7bc468e84b1de5899826d86cc9ee528e3c1fdc723459c",
+    "src/savr/cac/c1.py": "ca228d3a0fa0f636d4df841b634fcf23549da0adfffb20ce599199579aa9d579",
+    "src/savr/acr/v5_d_recovery.py": "8d55e47c2f83432361660debfaa63879ea09a3859422ae6f1f49571866e1a118",
+    "scripts/run_openvla_semantic_parity.py": "8d2900b8930eb20eb35dd20faf49ee9224c2cc28572e4275f9701a708882389d",
+    "scripts/run_openvla_semantic_parity_recovery01.py": "7cf3294873041f5bb128023eb90883fbde79fc35643ae6880cefce8b38b02c83",
+    "scripts/run_openvla_semantic_parity_recovery02.py": "22dd7c279d968c1d09ddaee3b051b2e131037cf7511f4ab4ed20cfacecc8b51f",
+    "scripts/preflight_openvla_semantic_parity_recovery02.py": "80eb2de8075cba504ac0714d7a627a0782eaebf420e4a17cbb5fd12499811cfd",
+    "scripts/launch_openvla_semantic_parity_recovery02.sh": "1d861da39ac1326710c00520294c133ad6bfd5e411762b9260ebe54f607d3cc8"
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "observations": 8,
+    "calls_per_observation": 4,
+    "model_call_hard_cap": 32,
+    "wall_seconds": 1800,
+    "artifact_bytes": 268435456,
+    "peak_gpu_memory_mib_strict_max": 23552,
+    "downloads": 0,
+    "simulator_outcomes": 0,
+    "raw_actions_persisted": false,
+    "automatic_retry": false
+  },
+  "advance": {
+    "next_stage": "S4_D62_REQUALIFICATION",
+    "authorized": false,
+    "stop_before_next_stage": true
+  },
+  "semantic_sha256": "91e84276ce1a977cb3f327712c8330ddf10d9326a277b1c077519b3e18e345fd"
+}

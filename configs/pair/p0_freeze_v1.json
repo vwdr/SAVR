@@ -1,0 +1,264 @@
+{
+  "schema_version": "pair-p0-freeze-v1",
+  "frozen_at_utc": "2026-08-28T00:00:00Z",
+  "protocol": {
+    "path": "docs/PAIR_VLA_EXECUTION_PROTOCOL_V1.md",
+    "sha256": "145668e8757ab7a6e9ab88f51d0d1d4903de41fb7db14a5653e3e13c198d47c8"
+  },
+  "scope": {
+    "method_name": "Provenance-Aware Intervention-Risk Routing for VLA Caches",
+    "short_name": "PAIR-VLA",
+    "claim": "On the pinned OpenVLA-OFT/LIBERO stack, PAIR-VLA improves the reliability-efficiency frontier over dense inference and the strongest faithfully runnable same-stack cache comparator.",
+    "claim_exclusions": [
+      "formal robot safety",
+      "all VLA backbones",
+      "state-of-the-art superiority over unreleased or non-runnable methods",
+      "unseen task identities",
+      "training-free operation"
+    ],
+    "primary_backbone": "OpenVLA-OFT 7B LIBERO four-suite checkpoint",
+    "primary_suites": ["libero_spatial", "libero_object", "libero_goal", "libero_10"],
+    "actions_per_query": 8,
+    "action_dimension": 7,
+    "outcome_access_before_p7": false
+  },
+  "authenticated_revisions": {
+    "project_git": "0a274b6ea0c0748adabe386ffa0d61670c4ece7a",
+    "openvla_oft_git": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "libero_git": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "vla_cache_git": "a4909880573868dee2769343d52e793c0341678b",
+    "checkpoint_hf_repo": "moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10",
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "original_libero_data_hf_repo": "yifengzhu-hf/LIBERO-datasets",
+    "original_libero_data_revision": "f13aa24a3da8c43c7225569f28c562979fa0e35a",
+    "diagnostic_filtered_rlds_hf_repo": "openvla/modified_libero_rlds",
+    "diagnostic_filtered_rlds_revision": "6ce6aaaaabdbe590b1eef5cd29c0d33f14a08551",
+    "python_environment": {
+      "path": "/home/ved/SAVR/envs/vla-cache-compat",
+      "torch": "2.2.0+cu118",
+      "transformers": "4.47.0",
+      "accelerate": "1.14.0",
+      "numpy": "1.26.4",
+      "tensorflow": "2.15.0",
+      "robosuite": "1.4.1",
+      "libero": "0.1.0",
+      "cuda_build": "11.8"
+    }
+  },
+  "expert_objective": {
+    "normalization": "checkpoint q99 bounds",
+    "label": "mean absolute error over valid normalized continuous actions in the 8x7 chunk",
+    "reduction": "mean",
+    "valid_mask": "current_action_mask OR next_actions_mask",
+    "terminal_padding": "excluded using the dataset validity mask",
+    "signed_contract_regret": "L1(expert, recursively cached action chunk) - L1(expert, dense action chunk)",
+    "gripper_training_coordinate": "checkpoint-normalized continuous gripper coordinate before execution postprocessing",
+    "gripper_execution_diagnostic": "unnormalize, map [0,1] to [-1,1], sign-binarize, then invert to the LIBERO convention"
+  },
+  "data": {
+    "primary_source": "original sequential LIBERO HDF5 demonstrations",
+    "eligible_suites": ["libero_10", "libero_goal", "libero_object", "libero_spatial"],
+    "source_bytes": 33784856577,
+    "compressed_transfer_cap_bytes": 36507222016,
+    "unpacked_source_cap_bytes": 42949672960,
+    "index_cap_bytes": 2147483648,
+    "temporary_cap_bytes": 8589934592,
+    "p1_total_new_storage_cap_bytes": 53687091200,
+    "required_fields": [
+      "primary_image",
+      "wrist_image",
+      "trajectory_id",
+      "environment_step_id",
+      "proprioception",
+      "instruction",
+      "eight_future_expert_actions",
+      "episode_boundary",
+      "action_validity_mask",
+      "no_op_filter_identity",
+      "dataset_revision",
+      "preprocessing_revision"
+    ],
+    "primary_exclusion": "modified_libero_rlds/no_noops cannot establish original eight-step chronology and is diagnostic-only",
+    "p1_fail_closed": "reject any trajectory lacking both cameras, original sequential identity, exact eight-future-action alignment, or matching normalization"
+  },
+  "atomic_groups": {
+    "patch_grid": [16, 16],
+    "spatial_tile": [4, 4],
+    "tiles_per_camera": 16,
+    "cameras": ["primary", "wrist"],
+    "onset_layers": [2, 6, 9, 11],
+    "maximum_groups_per_query": 128,
+    "horizons_queries": [1, 2, 4],
+    "maximum_source_age_queries": 4,
+    "beta": "1 divided by the contract horizon for every query in the horizon",
+    "mask_rule": "suffix-safe, tile-aligned, nested by onset layer and resolved against exact SourceLedger provenance",
+    "forbidden_primary_mask": "any profile requiring token-wise fallback or an inferred previous-query source"
+  },
+  "physical_profiles": [
+    {"id": "D37_BAL", "primary_budgets": [32, 64, 96, 128], "wrist_budgets": [16, 32, 48, 64]},
+    {"id": "D50_BAL", "primary_budgets": [32, 80, 112, 160], "wrist_budgets": [16, 48, 64, 96]},
+    {"id": "D50_SCENE", "primary_budgets": [48, 96, 144, 192], "wrist_budgets": [0, 16, 32, 64]},
+    {"id": "D50_LATE", "primary_budgets": [0, 64, 128, 160], "wrist_budgets": [0, 32, 64, 96]},
+    {"id": "D59_BAL", "primary_budgets": [48, 96, 144, 192], "wrist_budgets": [16, 48, 80, 112]},
+    {"id": "D62_BAL", "primary_budgets": [48, 96, 144, 192], "wrist_budgets": [32, 64, 96, 128]}
+  ],
+  "router_features": {
+    "allowed": [
+      "exact source query and source age",
+      "camera, tile, onset layer, profile, and horizon identity",
+      "current-versus-actual-source raw patch L1, cosine, mean, maximum, and q90 change",
+      "current-versus-actual-source projected-tile L1, L2, cosine, norm, maximum, and q90 change",
+      "current and source normalized proprioception plus L1 and Linf changes",
+      "model-produced previous action summaries and source/current changes",
+      "previous executed gripper transition",
+      "contract horizon, remaining steps, source-mixture count, and abort history",
+      "previous-query attention or salience retained without a current dense pass",
+      "16-dimensional fixed-projection instruction summary"
+    ],
+    "projected_feature_justification": "OpenVLA-OFT computes current projected visual tokens before the downstream K/V reuse decision in the pinned BRACE path; summarization and transfer time are charged to routed overhead.",
+    "forbidden": [
+      "expert or future actions as router inputs",
+      "terminal success or future observations",
+      "current dense action outputs",
+      "current dense downstream activations",
+      "hidden dense forward passes",
+      "expert previous actions during deployment"
+    ],
+    "nonfinite_or_missing": "dense fallback"
+  },
+  "router": {
+    "group_hidden_widths": [64, 32],
+    "set_hidden_widths": [64, 32],
+    "activation": "GELU",
+    "dropout": 0.0,
+    "parameter_cap": 250000,
+    "vla_gradients": false,
+    "deterministic_inference": true,
+    "target_standardization": "training split only",
+    "outputs": ["signed_group_regret", "signed_contract_regret", "positive_regret_q50", "positive_regret_q90", "dense_action_distortion"],
+    "loss": {
+      "signed_contract_huber": 1.0,
+      "signed_group_huber": 0.5,
+      "positive_q50_pinball": 0.25,
+      "positive_q90_pinball": 0.5,
+      "dense_distortion_huber": 0.25,
+      "huber_delta_standardized_units": 1.0
+    },
+    "optimizer": "AdamW",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size_contracts": 64,
+    "maximum_epochs": 200,
+    "early_stopping_patience": 20,
+    "early_stopping_min_delta": 0.0001,
+    "gradient_clip_norm": 1.0,
+    "training_seeds": [17, 29, 43],
+    "selection": "lowest calibration composite loss; within 1 percent choose the lower seed"
+  },
+  "splits": {
+    "unit": "complete trajectory within task",
+    "hash": "SHA-256(dataset revision, suite, task, original trajectory id, split seed)",
+    "seed": 20260828,
+    "training_fraction": 0.70,
+    "calibration_fraction": 0.15,
+    "locked_test_fraction": 0.15,
+    "rounding": "deterministic largest remainder per task",
+    "derived_record_inheritance": true
+  },
+  "intervention_sampling": {
+    "seed": 20260829,
+    "p4_anchor_cap": 400,
+    "p4_forward_call_cap": 4000,
+    "allocation": {"all_fresh_and_repeat_controls": 0.20, "atomic": 0.30, "multi_group_contract": 0.50},
+    "noncontrol_exact_repeat_fraction": 0.10,
+    "strata": ["suite", "task", "trajectory", "camera", "onset_layer", "source_age", "horizon", "profile", "gripper_transition"],
+    "immutable_mask_id": "SHA-256(anchor id, horizon, ordered source-resolved groups, sampling seed)"
+  },
+  "risk_selection": {
+    "positive_regret_quantile": 0.90,
+    "delta_grid_normalized_mean_l1": [0.0005, 0.001, 0.002, 0.004],
+    "selection_population": "calibration only",
+    "selection_rule": "maximize P3-measured complete-cycle saving subject to frozen coverage, service, memory, and net-speed gates",
+    "empirical_q90_coverage_interval": [0.85, 0.95],
+    "minimum_service_rate": 0.70,
+    "maximum_overhead_fraction_dense_cycle": 0.02,
+    "minimum_net_saving_fraction": 0.10,
+    "gripper_transition_veto": "fallback when predicted q90 gripper-coordinate distortion exceeds the selected delta or the transition lies outside calibration support",
+    "out_of_support": "dense fallback"
+  },
+  "p4_gates": {
+    "spearman_point_minimum": 0.30,
+    "spearman_one_sided_90pct_lower_minimum": 0.15,
+    "cvar90_positive_regret_improvement_point_minimum": 0.15,
+    "cvar90_improvement_one_sided_90pct_lower_minimum": 0.0,
+    "positive_regret_prevalence_interval": [0.05, 0.80],
+    "single_record_positive_cvar_mass_maximum": 0.20,
+    "repeat_noise_median_absolute_maximum": 0.00001,
+    "repeat_noise_p95_absolute_maximum": 0.0001,
+    "all_fresh_action_max_abs_maximum": 0.0002,
+    "all_fresh_regret_abs_maximum": 0.00001,
+    "interaction_residual_to_repeat_noise_minimum": 2.0,
+    "source_aware_horizon24_cvar_improvement_minimum": 0.10,
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20260830
+  },
+  "statistics": {
+    "individual_success_interval": "two-sided 95 percent Wilson",
+    "paired_success_primary": "suite-stratified paired-condition bootstrap with equal suite weighting",
+    "paired_success_bootstrap_replicates": 20000,
+    "paired_success_bootstrap_seed": 20260831,
+    "paired_success_confidence": "one-sided 95 percent lower bound",
+    "noninferiority_margin_percentage_points": -2.0,
+    "secondary_paired_test": "exact McNemar",
+    "latency_bootstrap": "20000 episode/query-contract block replicates",
+    "latency_gate": "point net saving at least 10 percent and one-sided 95 percent lower bound above zero",
+    "hierarchical_order": ["dense_noninferiority", "net_latency", "matched_comparator_frontier", "mechanistic_ablations"],
+    "confirmatory_alpha_one_sided": 0.05,
+    "target_power": 0.80
+  },
+  "comparator_matching": {
+    "primary": ["same_stack_dense", "optimized_core_fr_reference", "vla_cache_official_or_validated_correction", "pair_vla"],
+    "paper_only": ["LAC", "Action-JND", "Gated VLA-Cache"],
+    "matched_rule": "For every PAIR operating point, select the comparator point with measured complete-cycle saving within 2 percentage points; if none exists, linearly interpolate only between two predeclared comparator budgets that bracket the PAIR point, otherwise report unmatched.",
+    "no_extrapolation": true,
+    "profile_choice_population": "P3 timing only",
+    "outcome_based_comparator_choice": false,
+    "claim_narrowing": "No direct state-of-the-art claim against an unavailable or unfaithfully reproduced method."
+  },
+  "phase_caps": {
+    "p0": {"gpu_count": 0, "download_bytes": 0, "outcomes": false},
+    "p1": {"gpu_count": 0, "network_bytes": 36507222016, "new_storage_bytes": 53687091200},
+    "p2": {"gpu_count": 0, "wall_hours": 4, "artifact_bytes": 1073741824},
+    "p3": {"gpu_count": 1, "query_cap": 800, "wall_hours": 6, "artifact_bytes": 2147483648, "gpu_memory_mib_strict_max": 23552},
+    "p4": {"gpu_count": 1, "anchor_cap": 400, "forward_call_cap": 4000, "wall_hours": 8, "artifact_bytes": 4294967296},
+    "p5": {"gpu_count": 1, "forward_call_cap": 20000, "wall_hours": 30, "artifact_bytes": 8589934592},
+    "p6": {"gpu_count": 1, "query_cap": 2400, "wall_hours": 12, "artifact_bytes": 2147483648},
+    "p7": {"gpu_count": 1, "episode_cap": 900, "wall_hours": 24, "artifact_bytes": 8589934592},
+    "p7r": {"gpu_count": 1, "episode_cap": 900, "wall_hours": 24, "artifact_bytes": 8589934592},
+    "p8": {"gpu_count": 1, "starting_total_episode_cap": 6000, "absolute_total_episode_cap": 9000, "per_method_cap": 3000, "wall_hours": 180, "artifact_bytes": 21474836480},
+    "p9": {"gpu_count": 0, "artifact_bytes": 5368709120}
+  },
+  "p8_power_rule": {
+    "input": "P7 paired discordance rates and their upper 95 percent confidence bounds only",
+    "method": "pre-outcome paired multinomial simulation at zero effect and the frozen noninferiority margin",
+    "minimum_per_method": 2000,
+    "maximum_per_method": 3000,
+    "starting_per_suite_per_method": 500,
+    "stop": "If 80 percent power requires more than 3000 episodes per method, stop for advisor review before P8."
+  },
+  "outcome_protection": {
+    "technical_schema": "schemas/pair/intervention_record.schema.json",
+    "episode_schema": "schemas/pair/episode_record.schema.json",
+    "router_schema": "schemas/pair/router_artifact.schema.json",
+    "summary_schema": "schemas/pair/run_summary.schema.json",
+    "technical_forbidden_fields": ["success", "terminal_success", "reward", "task_success", "episode_outcome"],
+    "unblind_rule": "episode success may be analyzed only after the expected terminal record count and a completed run summary both exist"
+  },
+  "stop_rules": [
+    "Any provenance, chronology, normalization, mask, or identity mismatch stops the phase.",
+    "Any scientific threshold or population change after its protected population opens requires a versioned amendment and new approval.",
+    "Any memory reading at or above 23552 MiB, OOM, nonfinite value, or invalid timing stops the GPU phase.",
+    "Any use of success before the protected terminal condition invalidates the run.",
+    "No next phase begins without explicit user approval."
+  ]
+}

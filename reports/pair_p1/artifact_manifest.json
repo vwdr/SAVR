@@ -1,0 +1,32 @@
+{
+  "dataset_revision": "f13aa24a3da8c43c7225569f28c562979fa0e35a",
+  "files": [
+    {
+      "bytes": 13150,
+      "path": "data/pair/index/f13aa24a3da8c43c7225569f28c562979fa0e35a/source_manifest.json",
+      "sha256": "f40b24986ed299c0593c0d7f8210a42e206d918287d53028207a7e09d86f5456"
+    },
+    {
+      "bytes": 2155325,
+      "path": "data/pair/index/f13aa24a3da8c43c7225569f28c562979fa0e35a/trajectory_index.jsonl",
+      "sha256": "4d5c8829e3070db1ba96af1920a7bdb1e9581af295932fbc7d310cae15c40f8a"
+    },
+    {
+      "bytes": 51314350,
+      "path": "data/pair/index/f13aa24a3da8c43c7225569f28c562979fa0e35a/query_index.jsonl",
+      "sha256": "4e455cd031db78aee3803964d90332061c38ff47c7479e93c325e49a4f280e67"
+    },
+    {
+      "bytes": 6743,
+      "path": "data/pair/index/f13aa24a3da8c43c7225569f28c562979fa0e35a/split_manifest.json",
+      "sha256": "2f0131608bacd74d71df82de07f852fcaec315783f67ba550a663da56b899d56"
+    },
+    {
+      "bytes": 29144,
+      "path": "data/pair/index/f13aa24a3da8c43c7225569f28c562979fa0e35a/audit_report.json",
+      "sha256": "ef62e977e7ecaa5f85b523bff233be383c7027c6dd2988b8c47109e1f134db30"
+    }
+  ],
+  "schema_version": "pair-p1-artifact-manifest-v1",
+  "semantic_sha256": "9b851a1b31e7b33a0cd97c8510cb63ecc868e8fc7da744b2d8b44368eda7308d"
+}

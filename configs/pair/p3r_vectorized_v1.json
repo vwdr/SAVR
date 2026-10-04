@@ -1,0 +1,56 @@
+{
+  "schema_version": "pair-p3r-vectorized-config-v1",
+  "run_id": "pair-p3r-vectorized-v01",
+  "parent_p3_analysis": "results/pair-p3-physical-v03-recovery01/analysis.json",
+  "parent_p3_analysis_sha256": "d8cbaa0ed3a441369bb2df0826faec0d16ef601a94df3c9269faddee036f61d3",
+  "protocol": "docs/PAIR_P3R_OVERHEAD_OPTIMIZATION_PROTOCOL_V1.md",
+  "protocol_sha256": "81b1fdf5c2f9a32c96add7aa232b61aa0f15b3dcb214c0d5d2323b6255b11b91",
+  "model_config": "configs/pair/p3_physical_v03.json",
+  "input_manifest": "configs/pair/p3_inputs_v1.json",
+  "profiles": [
+    "D59_BAL_PT1",
+    "D62_BAL_PT1"
+  ],
+  "horizons": [
+    2,
+    4
+  ],
+  "timed_repetitions_per_profile_horizon": 6,
+  "measurement": {
+    "seed": 20260901,
+    "bootstrap_seed": 20260901,
+    "bootstrap_replicates": 20000,
+    "model_warmup_queries": 4,
+    "technical_control_queries": 4,
+    "equivalence_control_queries": 10,
+    "timed_model_queries": 192,
+    "planned_model_queries": 210,
+    "randomized_paired_arm_order": true,
+    "synchronize_every_measurement": true,
+    "outlier_deletion": false
+  },
+  "gates": {
+    "minimum_service_rate": 0.70,
+    "maximum_total_overhead_fraction": 0.02,
+    "minimum_net_saving_fraction": 0.10,
+    "legacy_vectorized_exact_equivalence": true,
+    "peak_gpu_memory_mib_strict_max": 23552
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "model_query_hard_cap": 220,
+    "wall_seconds": 7200,
+    "artifact_bytes": 1073741824,
+    "downloads": 0,
+    "simulator_outcomes": 0,
+    "protected_outcome_access": false,
+    "automatic_retry": false
+  },
+  "advance": {
+    "next_phase": "P4",
+    "authorized": false,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "39eb973ca52d70aeabcbdb09757bae44f6cd35ed0925550bd67a9ac36d7f0751"
+}

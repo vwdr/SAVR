@@ -1,0 +1,62 @@
+{
+  "schema_version": "pair-p3-semantic-manifest-v1",
+  "phase": "P3",
+  "decision": "SCIENTIFIC_STOP",
+  "source_run_id": "pair-p3-physical-v03",
+  "recovery_run_id": "pair-p3-physical-v03-recovery01",
+  "project_revision": "0a274b6ea0c0748adabe386ffa0d61670c4ece7a",
+  "p3_config_file_sha256": "c1c81cb5a4f7ae99325d7ebd4ffcc619cf12f0af9ef37ec5b8697b40ed75701b",
+  "recovery_config_file_sha256": "a30fea84379d200c797a7441cef56a8aad708ddd621b3cc905fb1faa2447b734",
+  "preflight_file_sha256": "95a3e0c0b4d0040c5d20109d63a5ed2438781649d6018d70ab81d262025f91ba",
+  "blocks_file_sha256": "e9d56ebe73d989ecb3cde7027629792fa5edc658a77ca77f2a4eb39fd2e2f652",
+  "technical_stop_file_sha256": "5f5f0103dc1d84a0a428911f5cd2072343af2b93892086cb76346c917ca06c4b",
+  "recovery_summary_file_sha256": "d9540ab8730591cae6962c39bb9eee057ee65e3f84127d054ad3bcf8c229fce9",
+  "analysis_file_sha256": "d8cbaa0ed3a441369bb2df0826faec0d16ef601a94df3c9269faddee036f61d3",
+  "report_file_sha256": "76356eed44713c28d2669245b59d792e4943dd6d247615cba27c2ee26268d72d",
+  "analyzer_file_sha256": "d460339b6623d0957fd6409a5f50aadc3351c864d73575e6ee34cf4b081aff2f",
+  "recovery_script_file_sha256": "77cd34d7391a218fc8fc17ec215fb5671dae6bad46b9215460c185cc69d9c410",
+  "population": {
+    "model_queries": 688,
+    "additional_recovery_model_queries": 0,
+    "paired_blocks": 96,
+    "profiles": 8,
+    "horizons": 3,
+    "repetitions_per_profile_horizon": 4
+  },
+  "gates": {
+    "passing_points": 0,
+    "total_points": 24,
+    "positive_raw_lower_bound_points": 24,
+    "net_lower_at_least_10_percent_points": 8,
+    "overhead_at_most_2_percent_points": 0,
+    "controls": true,
+    "provenance": true,
+    "shape": true,
+    "memory": true,
+    "resource_caps": true,
+    "protected_population_boundary": true
+  },
+  "strongest_point": {
+    "profile_id": "D62_BAL_PT1",
+    "horizon": 4,
+    "raw_complete_cycle_saving": 0.20887811321302585,
+    "raw_complete_cycle_saving_one_sided_95_lower": 0.20538946637354283,
+    "net_saving_lower": 0.14368935195844745,
+    "total_overhead_fraction_upper": 0.04905719900484952,
+    "passed": false
+  },
+  "resources": {
+    "peak_aggregate_gpu_memory_mib": 18265,
+    "strict_gpu_memory_limit_mib": 23552,
+    "artifact_bytes": 541141,
+    "expert_actions_accessed": false,
+    "terminal_outcomes_accessed": false,
+    "simulator_used": false
+  },
+  "advance": {
+    "next_phase": "P4",
+    "authorized": false,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "9177ffec11cc1170efeea7af6277ae188d2bdac0e7f965eba19d8a48e0850567"
+}

@@ -1,0 +1,32 @@
+{
+  "completed_at": "2026-09-11T18:11:28.370589+00:00",
+  "tests_run": 65,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "original_qualification_sources_verified": true,
+  "cuda_hidden": true,
+  "gpu_experiment_launched": false,
+  "test_patterns": [
+    "test_specprune_episode.py",
+    "test_specprune_port.py",
+    "test_specprune_source_audit.py",
+    "test_specprune_qualification.py",
+    "test_visual_compaction.py",
+    "test_attention_diagnostic.py"
+  ],
+  "runtime": "/home/ved/SAVR/envs/openvla-oft/bin/python",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "src:scripts"
+  },
+  "verification": "run_specprune_qualification.verify on unchanged configs/openvla/specprune_real_qualification_v1.json; unittest discovery over the six recorded patterns; fail on errors, failures or skips",
+  "sha256": {
+    "src/savr/openvla/specprune_episode.py": "17d8b3dffcd2e480445b20d257a6785e3670997135d77fbd0bc29632ce137985",
+    "tests/openvla/test_specprune_episode.py": "cd80947fdb5a89c68f58737e770794fb0ddcb237ec769c746a703c34c8314199",
+    "src/savr/openvla/specprune.py": "edf4d8886915237fe5cc8c7a636e41d08bfcb81e450ae5f96a1d9ac508f63c17",
+    "src/savr/openvla/attention_diagnostic.py": "5f1610f909b4fc05a8a39ab9c5297c956343b29e0d677c0b8a49c901e3a542e3",
+    "src/savr/openvla/official_semantics.py": "ffcf1b779086a5602e7670cf5e406af02797039c5b9d4910f5364bdfcac61445"
+  }
+}

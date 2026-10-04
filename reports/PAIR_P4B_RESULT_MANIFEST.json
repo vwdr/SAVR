@@ -1,0 +1,49 @@
+{
+  "schema_version": "pair-p4b-result-manifest-v1",
+  "run_id": "pair-p4b-confirmatory-v01",
+  "status": "scientific_stop",
+  "worker_summary": {
+    "path": "results/pair-p4b-confirmatory-v01/worker_summary.json",
+    "sha256": "447cc4bc7b12e0a0aca4169fedc53c4b2c4af9f3da5270acbabccd15347a0a31",
+    "semantic_sha256": "facc7073fe8d4862cc7508efdf5488b1caf695ba0bf8158b8cf81b481f0b2aac"
+  },
+  "worker_seal": {
+    "path": "results/pair-p4b-confirmatory-v01/worker_seal.json",
+    "sha256": "557ad663d35fa6e8223cdc5ed793e77099dc314ae468ffd5f50b9fc43c844ed6",
+    "semantic_sha256": "ceeb6929c883d5e69c3dee30bcd5c5e7e6606afd3e273da7604dc7e82fe30eea"
+  },
+  "primary_analysis": {
+    "path": "results/pair-p4b-confirmatory-v01/analysis.json",
+    "sha256": "8dad3217473ec157dc1aa249457050f8cfbe05a7af22d7da68110848808ffa35",
+    "semantic_sha256": "6750d1101c43304cf235cd0b3cb4e2125dab808c578b50627e16a6c6b133701d"
+  },
+  "secondary_analysis": {
+    "path": "results/pair-p4b-confirmatory-v01/secondary_analysis.json",
+    "sha256": "9482c2dcd1215bd6dfb74bbde06c825726b756794ba418ecc96ef0b5f37e40e1",
+    "semantic_sha256": "d88580d0e92da459aeb74bbe2c769b54827870d797b7bbe042adf2aa83b3d9f8",
+    "gating_use": false
+  },
+  "sealed_records": {
+    "interventions_sha256": "2abbb435807d48cfce11337a4321e26669819b3b6e07ce951aced5bd1cbe23b4",
+    "features_sha256": "70f8fe9fc50ab1c1061651aea2be53e3ec3ae4c46ebd31ba29f269f86087d640",
+    "contracts_sha256": "91aea4891591780b2aa616fea9537634d130865be8a635210ffc95643da6ed37"
+  },
+  "execution": {
+    "model_calls": 1784,
+    "intervention_records": 776,
+    "feature_records": 560,
+    "contract_records": 304,
+    "gpu_ids": [0],
+    "peak_gpu_memory_mib": 17799,
+    "automatic_retry": false
+  },
+  "failed_gates": ["cvar_improvement", "horizon24_cvar", "spearman"],
+  "protection": {
+    "terminal_outcomes_accessed": false,
+    "locked_test_values_accessed": false,
+    "raw_action_arrays_persisted": false,
+    "simulator_accessed": false,
+    "p5_authorized": false
+  },
+  "semantic_sha256": "7babbfb9e8669816bffc9f44c1b6153dbd027b7057d271e7e4c74adbbdcda75f"
+}

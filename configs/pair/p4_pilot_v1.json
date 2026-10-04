@@ -1,0 +1,155 @@
+{
+  "schema_version": "pair-p4-pilot-config-v1",
+  "run_id": "pair-p4-pilot-v01",
+  "protocol": "docs/PAIR_P4_EXPERT_REGRET_PILOT_PROTOCOL_V1.md",
+  "protocol_sha256": "9e89f01d3443275e218765b1673f6f36c7ce17035ac325f6d2b9fa0c55b34b7d",
+  "authenticated_inputs": {
+    "p0_freeze": {
+      "path": "configs/pair/p0_freeze_v1.json",
+      "sha256": "dad74fb3a6a46d43fc023739422dc132d95801f73b3df4701c80e2e300dfbe7e"
+    },
+    "p1_config": {
+      "path": "configs/pair/p1_data_v1.json",
+      "sha256": "b3513e81f92c04959e1f0638ba699bcb80c2410e2d010f9a40bf96d60b114494"
+    },
+    "p1_artifact_manifest": {
+      "path": "reports/pair_p1/artifact_manifest.json",
+      "sha256": "df4d5221d51944a9fb394538969d1ebd7ed01044b2a6a9ec93acd0f6b871963f"
+    },
+    "p2_semantic_manifest": {
+      "path": "reports/PAIR_P2_SEMANTIC_MANIFEST.json",
+      "sha256": "735b0ce087f0cce8182917f7ab5b09508a61c8beedbe098ddc44cf831ba6218c"
+    },
+    "p3r_analysis": {
+      "path": "results/pair-p3r-vectorized-v02-recovery01/analysis.json",
+      "sha256": "6f1bad7752403884a880438a24ea77af6702bac48bb75a74c99ceb105907ebda"
+    },
+    "trajectory_index": {
+      "path": "data/pair/index/f13aa24a3da8c43c7225569f28c562979fa0e35a/trajectory_index.jsonl",
+      "sha256": "4d5c8829e3070db1ba96af1920a7bdb1e9581af295932fbc7d310cae15c40f8a"
+    },
+    "query_index": {
+      "path": "data/pair/index/f13aa24a3da8c43c7225569f28c562979fa0e35a/query_index.jsonl",
+      "sha256": "4e455cd031db78aee3803964d90332061c38ff47c7479e93c325e49a4f280e67"
+    }
+  },
+  "model_config": "configs/pair/p3_physical_v03.json",
+  "runtime_python": "/home/ved/SAVR/envs/vla-cache-compat/bin/python",
+  "schedule": {
+    "seed": 20260829,
+    "task_count": 40,
+    "anchors_per_task": 10,
+    "anchor_count": 400,
+    "train_anchors": 320,
+    "calibration_anchors": 80,
+    "locked_test_anchors": 0,
+    "base_allocation": {
+      "all_fresh_control": 80,
+      "atomic": 120,
+      "structured": 200
+    },
+    "slot_design": [
+      ["all_fresh_control", 1],
+      ["all_fresh_control", 4],
+      ["atomic", 1],
+      ["atomic", 2],
+      ["atomic", 4],
+      ["structured", 1],
+      ["structured", 2],
+      ["structured", 4],
+      ["structured", 2],
+      ["structured", 4]
+    ],
+    "calibration_slot_rule": ["task_index_mod_10", "task_index_plus_5_mod_10"],
+    "atomic_repeat_count": 12,
+    "structured_repeat_count": 20,
+    "structured_partition_branches_per_anchor": 2,
+    "desired_gripper_transition_rule": "(task_index + slot) mod 2",
+    "instruction_projection_seed": 20260828
+  },
+  "schedule_artifacts": {
+    "schedule": "configs/pair/p4_schedule_v1.jsonl",
+    "summary": "reports/pair_p4/schedule_summary_v1.json"
+  },
+  "profile": {
+    "profile_id": "D62_BAL_PT1",
+    "base_profile_id": "D62_BAL",
+    "primary_budgets": [48, 96, 144, 192],
+    "wrist_budgets": [32, 64, 96, 128],
+    "protected_primary_tiles": 1,
+    "protected_wrist_tiles": 1
+  },
+  "accounting": {
+    "planned_model_calls": 3528,
+    "model_call_hard_cap": 4000,
+    "planned_intervention_records": 2120,
+    "planned_contract_summaries": 832,
+    "planned_base_noncontrol_feature_rows": 800,
+    "warmup_calls": 4,
+    "technical_control_calls": 4
+  },
+  "labels": {
+    "expert_normalization": "checkpoint_q99_bounds",
+    "query_regret": "mean_l1_expert_branch_minus_mean_l1_expert_dense",
+    "contract_reduction": "arithmetic_mean_over_future_queries",
+    "raw_action_arrays_persisted": false
+  },
+  "router": {
+    "training_seeds": [17, 29, 43],
+    "internal_train_fit_fraction": 0.80,
+    "internal_split_seed": 20260829,
+    "maximum_epochs": 200,
+    "patience": 20,
+    "minimum_delta": 0.0001,
+    "batch_size_contracts": 64,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 1.0,
+    "parameter_cap": 250000,
+    "matched_service_rate": 0.70,
+    "proxy_candidates": [
+      "source_age",
+      "raw_change",
+      "projected_change",
+      "proprio_change",
+      "previous_action_change",
+      "retained_salience",
+      "seeded_random"
+    ]
+  },
+  "gates": {
+    "repeat_noise_median_absolute_maximum": 0.00001,
+    "repeat_noise_p95_absolute_maximum": 0.0001,
+    "all_fresh_action_max_abs_maximum": 0.0002,
+    "all_fresh_regret_abs_maximum": 0.00001,
+    "signed_regret_iqr_minimum": 0.00001,
+    "signed_regret_iqr_to_repeat_p95_minimum": 2.0,
+    "positive_regret_prevalence_interval": [0.05, 0.80],
+    "single_record_positive_cvar_mass_maximum": 0.20,
+    "spearman_point_minimum": 0.30,
+    "spearman_one_sided_90pct_lower_minimum": 0.15,
+    "cvar90_improvement_point_minimum": 0.15,
+    "cvar90_improvement_one_sided_90pct_lower_minimum": 0.0,
+    "horizon24_cvar_improvement_minimum": 0.10,
+    "interaction_residual_to_repeat_noise_minimum": 2.0,
+    "bootstrap_replicates": 10000,
+    "bootstrap_seed": 20260830,
+    "peak_gpu_memory_mib_strict_max": 23552
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "wall_seconds": 28800,
+    "artifact_bytes": 4294967296,
+    "downloads": 0,
+    "simulator_outcomes": 0,
+    "locked_test_labels": 0,
+    "automatic_retry": false
+  },
+  "advance": {
+    "next_phase": "P5",
+    "authorized": false,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "5b689ae78006860b105c99be8a7b4842db22b6ae261ef997e925d1c52207d88c"
+}

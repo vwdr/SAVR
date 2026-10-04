@@ -1,0 +1,46 @@
+{
+  "summary": {
+    "artifacts_sha256": {
+      "hook_checks.jsonl": "197765ab9628f122f9e5d972df414da3241a0467e313b7ad6077f2243cf0f61e",
+      "input_preflight.json": "93408bd9954ce6c59a5f8dabd6ea85d9133e8603e8f11747dec77f70ce02cbbb",
+      "launch.json": "580d0c86061942edf7751cf88f5b6d0c6db34a65985c9781e4f957dec3d4dc01",
+      "loaded_runtime.json": "cd33897f8e58b8be868f536d4a5837278c7df073459674c063e5389c4e0ffec4",
+      "progress.jsonl": "79cfa43f07a776359aaac3bdd2123e3f6a1b61719a15ec8f189017c92791d5bd",
+      "records.json": "9a54d05e1b99a6c96d3e1b9684b98557ec894838212d826fc602abc79860bf71"
+    },
+    "authenticated_files_unchanged": true,
+    "automatic_retry": false,
+    "checkpoint_unchanged": true,
+    "complete": true,
+    "completed_at": "2026-09-13T02:40:22.523962+00:00",
+    "elapsed_seconds": 139.73454018682241,
+    "episodes": 0,
+    "hook_neutrality_passed": true,
+    "model_queries": 80,
+    "peak_aggregate_gpu_memory_mib": 15679,
+    "positive_method_result": false,
+    "training_performed": false,
+    "worker_sha256": "99e784f05d71820c285c4bb0481baa88b83aca61b30c57841dc871ca70f95d94"
+  },
+  "independent_cpu_reconciliation": true,
+  "artifact_hashes_verified": true,
+  "source_hashes_verified": true,
+  "hook_checks": 24,
+  "total_bytes": 93079,
+  "schema_version": "contemporary-hook-recovery01-result-v1",
+  "config_sha256": "e585c3341921f86dd88c2f3af62622a909a7aacc8e230b299a6cf67e3d190b9e",
+  "cpu_checks": {
+    "targeted_tests_passed": 96,
+    "new_recovery_tests": 10,
+    "actual_stored_frames_checked": 16,
+    "gpu_hidden": true
+  },
+  "gpu_after": {
+    "index": 0,
+    "memory_mib": 6,
+    "utilization_percent": 0
+  },
+  "stopped_before_primary_comparison": true,
+  "check_is_not_method_efficacy_evidence": true,
+  "owned_pid": 1251217
+}

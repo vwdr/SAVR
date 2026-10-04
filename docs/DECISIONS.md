@@ -1,6 +1,6 @@
 # SAVR Decision Log
 
-Last updated: 2026-08-25
+Last updated: 2026-08-30
 
 ## D-001 — University-server safety boundary
 
@@ -2300,3 +2300,1704 @@ Last updated: 2026-08-25
 - Disposition: Stop BRACE before B4. No automatic retry or post-hoc gate change.
 - Evidence: `reports/BRACE_B3_V05_REPORT.md` and
   `results/brace-b3-physical-v05/`.
+
+## D-133 — Preserve the zero-query P3R v01 runtime technical stop
+
+- Date: 2026-08-29
+- Classification: `DECISION`
+- Status: COMPLETE_TECHNICAL_STOP_NO_RESULT
+- Decision: Preserve `pair-p3r-vectorized-v01` without scientific analysis.
+  The launch used the base OpenVLA runtime rather than the authenticated
+  VLA-Cache compatibility runtime and stopped on a missing `seaborn` import.
+- Accounting: 0/210 model queries, 0/24 timed blocks, no model load, simulator,
+  protected outcome, or scientific result.
+- Correction boundary: Use the existing compatibility runtime, force an
+  absolute project result path, and add a CUDA-hidden real import gate. No
+  scientific setting or acceptance gate may change.
+- Evidence: `reports/PAIR_P3R_TECHNICAL_STOP_01.md`.
+
+## D-134 — Accept the positive PAIR P3R timing checkpoint
+
+- Date: 2026-08-29
+- Classification: `DECISION`
+- Status: COMPLETE_ACCEPTED
+- Decision: Accept `pair-p3r-vectorized-v02-recovery01` as the predeclared
+  outcome-blind physical timing result for the vectorized PAIR implementation.
+- Result: 210/210 queries, 24/24 paired blocks, exact equivalence in 8/8
+  recursive checks, and all four profile/horizon points passed every frozen
+  gate. Selected `D62_BAL_PT1` at horizon 4 achieved 24.59% raw saving, a
+  24.40% one-sided lower bound, a 17.05% conservative net lower bound, 0.78%
+  total overhead, and 100% service.
+- Resources/protection: Peak aggregate memory 18,261 MiB; no expert actions,
+  action comparisons, terminal outcomes, simulator use, downloads, automatic
+  retry, or outlier deletion.
+- Interpretation: Positive efficiency evidence only. Reliability and task
+  performance remain untested in P3R.
+- Authorization boundary: P4 is not authorized.
+- Evidence: `reports/PAIR_P3R_REPORT.md`,
+  `reports/PAIR_P3R_SEMANTIC_MANIFEST.json`, and
+  `results/pair-p3r-vectorized-v02-recovery01/`.
+
+## D-135 — Preserve the corrected P4 schedule and accept the frozen P4 scientific stop
+
+- Date: 2026-08-30
+- Classification: `DECISION`
+- Status: COMPLETE_SCIENTIFIC_STOP
+- Schedule correction: The initial CPU-only schedule used the retained
+  unnormalized gripper coordinate directly, which made every observed stratum
+  false. The versioned recovery applied only the documented `2*x-1` mapping.
+  Its corrected 400-anchor schedule contains both transition strata in every
+  split/category cell, with 10 deterministic opposite-stratum fills. The
+  invalid schedule remains preserved and used zero model/GPU calls.
+- Execution: The single frozen run
+  `pair-p4-pilot-v02-schedule-recovery01` completed 3,528/3,528 model calls,
+  2,120 intervention records, 800 deployment-feature records, and 832 contract
+  summaries. Peak aggregate GPU-0 memory was 17,771 MiB.
+- Positive signals: Calibration structured Spearman was 0.3452; matched 70%
+  service positive-regret CVaR90 improvement was 21.48%; horizon-2/4
+  improvement was 25.85%. Repeat noise was exactly zero, all-fresh parity was
+  exact, positive-regret prevalence was 69.75%, and the identifiability,
+  concentration, interaction, resource, and protection gates passed.
+- Frozen failures: The one-sided 90% Spearman lower bound was 0.1260, below the
+  required value greater than 0.15. The matched-service CVaR90 one-sided lower
+  bound was exactly 0.0, failing the required strictly positive bound. The
+  conjunctive analyzer therefore returned `scientific_stop`; favorable point
+  estimates do not override the uncertainty failures.
+- Protection: The router artifact was frozen before calibration labels were
+  opened. No terminal outcome, simulator, locked-test label, raw persisted
+  expert/model action array, download, retry, or P5 action occurred.
+- Authorization boundary: Stop before P5. Any larger reliability sample or
+  revised method requires a separately researched, versioned protocol and new
+  user authorization; the P4 gates and evidence may not be changed.
+- Evidence: `reports/PAIR_P4_SEMANTIC_MANIFEST.json` and
+  `results/pair-p4-pilot-v02-schedule-recovery01/`.
+
+## D-136 — Propose one independent P4B reliability confirmation
+
+- Date: 2026-08-30
+- Classification: `DECISION`
+- Status: PROPOSED_NOT_AUTHORIZED
+- Rationale: P4 passed eight of ten gates and produced favorable point
+  estimates, but its 40-contract calibration sample did not establish the two
+  required uncertainty bounds. P4B addresses sample uncertainty without
+  changing the frozen router, method, proxy, physical profile, point gates, or
+  service rate.
+- Population: All 240 calibration trajectories unused by P4 provide 80
+  structured contracts at each horizon and 20 per suite-by-horizon cell.
+  Forty separate unused train trajectories provide all-fresh controls. P4
+  overlap and locked-test use are exactly zero; all 280 locked-test
+  trajectories remain sealed for P5.
+- Inference: P4B-only one-sided 95% confirmation with suite-by-horizon balanced
+  70% service. Both pooled Spearman and matched-service positive-regret CVaR90
+  gates must pass; P4/P4B pooling is secondary and cannot rescue a failure.
+- Planning evidence: The design-aligned P4 plug-in estimates are Spearman
+  0.3452 and 20.43% tail improvement. At 240 contracts, empirical projected
+  one-sided 95% lower bounds are 0.2503 and 13.41%, while the Fisher analysis
+  shows that attenuation toward correlation 0.30 would leave limited power.
+  These projections are not results or guarantees.
+- Terminal rule: P4B is a one-shot development confirmation. A scientific
+  failure ends PAIR without P4C. A pass only justifies separately authorizing
+  P5; it is not by itself a positive-results paper.
+- Authorization boundary: Design, CPU-only tests, and metadata/power audit
+  only. No unused calibration label, locked-test value, model, GPU, simulator,
+  schedule execution, P4B run, or P5 action is authorized.
+- Implementation checkpoint: The outcome-blind scheduler, full/implementation
+  preflight, launch-manifest freezer, one-shot worker, worker count/hash seal,
+  and confirmatory analyzer are complete. Forty-two local PAIR tests and 53
+  TITAN PAIR tests passed. The CUDA-hidden TITAN implementation preflight
+  passed with the schedule and run outputs absent. This does not change the
+  authorization boundary above.
+- Evidence: `docs/PAIR_P4B_CONFIRMATORY_RELIABILITY_PROTOCOL_V1.md`,
+  `reports/PAIR_P4B_DESIGN_AND_POWER_AUDIT.md`,
+  `reports/pair_p4b/design_audit_v4.json`, and
+  `reports/PAIR_P4B_PROPOSAL_MANIFEST.json`.
+
+## D-137 — Freeze P4B schedule and launch readiness without starting the run
+
+- Date: 2026-08-30
+- Classification: `DECISION`
+- Status: COMPLETE_READY_NOT_STARTED
+- Authorization: The user approved outcome-blind schedule generation, full
+  data preflight, and launch-manifest freezing, but not GPU execution.
+- Schedule: 280 unique anchors comprising 240 structured unused-calibration
+  trajectories and 40 unused-train controls. All 12 suite-by-horizon cells
+  contain exactly 20 structured contracts. P4 overlap and locked-test use are
+  both zero.
+- Full preflight: Passed authentication of all 40 scheduled source files,
+  dataset names/shapes, complete expert windows, exact counts, code identities,
+  schema identities, free-space allowance, and protected-data boundaries.
+- Launch: The one-attempt launch manifest is frozen at 1,784 planned model
+  calls under a 1,900 hard cap. Automatic retry and P5 remain forbidden.
+- Access: No expert-action or observation value, locked-test value, model, GPU,
+  simulator, or run output was accessed. The P4B run root remains absent.
+- Evidence: `reports/PAIR_P4B_READINESS_MANIFEST.json`,
+  `configs/pair/p4b_schedule_v01.summary.json`,
+  `reports/pair_p4b/preflight_v01.json`, and
+  `configs/pair/p4b_launch_v01.json`.
+
+## D-138 — Accept the P4B scientific stop and stop PAIR before P5
+
+- Date: 2026-08-30
+- Classification: `DECISION`
+- Status: COMPLETE_SCIENTIFIC_STOP
+- Execution: The one authorized attempt completed 1,784/1,784 model calls,
+  776/776 intervention records, 560/560 feature records, and 304/304 contract
+  records on GPU 0. Peak aggregate memory was 17,799 MiB.
+- Passed gates: Exact-repeat noise, all-fresh parity, cell balance, CVaR
+  concentration, and resources/protection.
+- Failed gates: Structured Spearman was 0.2001 with one-sided 95% lower 0.0999
+  versus required point >=0.30 and lower >0.15. Matched-service CVaR90
+  improvement was 3.14% with lower -1.07% versus required point >=15% and
+  lower >0%. Horizon-2/4 improvement was 1.62% versus required >=10%.
+- Interpretation: The larger independent confirmation materially attenuated
+  P4's favorable pilot estimates. This is a method-generalization failure, not
+  a technical or sample-width-only stop.
+- Secondary diagnostics: Task-cluster lower bounds agree with the stop.
+  Horizon 4 retained a non-gating positive signal, but horizon 2 and pooled
+  performance do not support the confirmatory claim. No subgroup or P4/P4B
+  pooled statistic may rescue a failed primary gate.
+- Protection: No retry, terminal outcome, simulator, locked-test value, or raw
+  persisted action array. GPU 0 returned to 6 MiB/0% after completion.
+- Terminal boundary: Stop PAIR before P5. No P4C, gate revision, population
+  substitution, or router redesign on P4B outcomes is permitted.
+- Evidence: `reports/PAIR_P4B_REPORT.md`,
+  `reports/PAIR_P4B_RESULT_MANIFEST.json`, and
+  `results/pair-p4b-confirmatory-v01/`.
+
+## D-139 — CAC Protocol V2 replaces V1 before execution
+
+- Date: 2026-08-30
+- Classification: `DECISION`
+- Status: `PROPOSED_NOT_AUTHORIZED`
+- Decision: `docs/CACHE_ACTION_CORRECTION_EXECUTION_PROTOCOL_V1.md` is
+  superseded and must not be executed.
+- Reason: exhaustive re-audit against the pinned action-head/source-tracker
+  implementation and true evidence ledger found material design errors:
+  coordinate-token pooling contradicted the action head, one source per tile
+  contradicted layer-resolved physical provenance, 60 requested disjoint
+  rollout conditions exceeded LIBERO's 50 official states, and P1 calibration
+  trajectories had already been consumed by PAIR P4/P4B.
+- Replacement: `docs/CACHE_ACTION_CORRECTION_EXECUTION_PROTOCOL_V2.md`.
+- Key safeguards: pre-training terminal headroom screen; states `0-9` treated
+  as exposed development and `10-49` as final; 280 locked-test demonstrations
+  reserved for final offline mechanism evidence; exact `8 x 4096` action-head
+  penultimate hook; four layer-resolved source deltas; independently trained
+  matched controls; fixed-sequence inference; 1,600-pair power boundary; and
+  append-only resumable technical evidence.
+- Authorization: documentation and review only. C0, implementation, GPU,
+  simulator, training, and protected-data access remain unauthorized.
+
+## D-140 — Accept CAC Protocol V2 without starting C0
+
+- Date: 2026-08-30
+- Classification: `DECISION`
+- Status: `ACCEPTED`
+- Decision: The user approved
+  `docs/CACHE_ACTION_CORRECTION_EXECUTION_PROTOCOL_V2.md` as the governing CAC
+  protocol.
+- Boundary: Protocol acceptance does not authorize C0, implementation, GPU,
+  simulator, training, or protected-data access. C0 requires a separate explicit
+  approval.
+
+## D-141 — Authorize CAC Phase C0
+
+- Date: 2026-08-30
+- Classification: `AUTHORIZATION`
+- Status: `TECHNICAL_STOP_01`
+- Decision: The user separately authorized Phase C0 of
+  `docs/CACHE_ACTION_CORRECTION_EXECUTION_PROTOCOL_V2.md`.
+- Scope: Literature collision audit, identity and evidence authentication,
+  outcome-blind manifests, exact method/statistical freeze, power and resource
+  accounting, technical-resume/output-sealing contracts, and C0 reports.
+- Boundary: No GPU, model execution, simulator outcome, adapter training,
+  protected-data access, C1 work, or manuscript modification is authorized.
+
+## D-142 — Preserve CAC C0 technical stop 01
+
+- Date: 2026-08-30
+- Classification: `TECHNICAL_STOP`
+- Status: `PRESERVED_RECOVERY_NOT_AUTHORIZED`
+- Event: The CPU-only C0 freezer authenticated the permitted identities and
+  constructed the in-memory outcome-blind schedule, then stopped before writing
+  any manifest because its final assertion required at least eight observed
+  gripper-transition contracts for every task.
+- Diagnosis: Two permitted tasks—`open_the_middle_drawer_of_the_cabinet` and
+  `push_the_plate_to_the_front_of_the_stove` in LIBERO-Goal—have zero eligible
+  transition windows in both `adapter_fit` and `architecture_selection` for
+  horizons 1, 2, and 4. The protocol says “where available” and requires
+  shortfalls to be reported; the unconditional assertion was therefore a code
+  defect, not a failed scientific gate.
+- Preservation: `/home/ved/SAVR/reports/cac_c0` remains as the empty immutable
+  attempt root. No generated unit was deleted, overwritten, or selectively
+  repeated.
+- Protection: Zero GPU/model/simulator calls, zero terminal outcomes, zero
+  locked-test action values, and zero state-ID 10-49 outcomes. Only permitted
+  train/development expert gripper coordinates were used for schedule strata.
+- Recovery boundary: A versioned recovery may change only the assertion to
+  enforce eight transitions when at least eight are available and to emit an
+  explicit shortfall table otherwise. It must use a new output root and requires
+  separate user authorization before execution.
+- Evidence: `reports/CAC_C0_TECHNICAL_STOP_01.md` and
+  `reports/CAC_C0_TECHNICAL_STOP_01.json`.
+
+## D-143 — Authorize CAC C0 Recovery 01
+
+- Date: 2026-08-31
+- Classification: `AUTHORIZATION`
+- Status: `COMPLETE_PASS_STOP_BEFORE_C1`
+- Decision: The user explicitly approved the single versioned C0 Recovery 01.
+- Permitted change: Preserve the empty first attempt, use a new immutable
+  `reports/cac_c0_recovery01` root, enforce eight selected transition contracts
+  whenever at least eight eligible contracts exist, and report unavailable
+  shortfalls otherwise.
+- Frozen fields: No role, population, contract count, horizon, seed, method,
+  feature, objective, gate, model-call budget, storage budget, or protected
+  boundary may change.
+- Resource boundary: CPU-only; no GPU, model, simulator, terminal outcome,
+  locked-test action value, state-ID 10-49 outcome, download, or automatic
+  retry. C1 remains unauthorized.
+
+## D-144 — Accept completed CAC C0 Recovery 01 and stop before C1
+
+- Date: 2026-08-31
+- Classification: `DECISION`
+- Status: `COMPLETE_PASS_STOP_BEFORE_C1`
+- Recovery result: The one authorized CPU-only recovery completed the exact
+  2,000 trajectory roles, 4,200 C2 records, 13,200 C3 contracts, 2,880 locked
+  contracts, and 2,240 simulator identity rows. The first attempt root remains
+  preserved empty.
+- Shortfalls: Exactly two LIBERO-Goal tasks have zero eligible demonstrated
+  gripper-transition contracts. They are explicitly recorded; every task with
+  at least eight available transitions satisfies the frozen minimum.
+- Method freeze: The 5,070,599-parameter full candidate, 3,521-dimensional
+  pooled summary, ridge/MLP comparators, feature layout, losses, bounds, seeds,
+  controls, ablations, C7 analyzer, and recovery/sealing rules are explicit.
+- Resources: C2 is 17,640 calls and 5.40 GiB; C3 is 57,200 calls; combined C3
+  plus locked feature storage is 20.68 GiB. No cap was raised.
+- Power: Hierarchical planning simulation is materially more conservative than
+  the analytic paired calculation. Final noninferiority is plausibly powered
+  only at very low paired discordance; C5/C6 must update this forecast without
+  changing the final population or margin.
+- Protection: Zero GPU/model/simulator calls, terminal outcomes, locked-test
+  action values, state-ID 10-49 outcomes, downloads, or changes outside
+  `/home/ved/SAVR`.
+- Boundary: C0 passes. C1 has not started and requires separate user approval.
+- Evidence: `reports/CAC_C0_REPORT.md`,
+  `reports/CAC_C0_SEMANTIC_MANIFEST.json`,
+  `reports/cac_c0_recovery01/`, and
+  `reports/cac_c0_power_simulation_v1.json`.
+
+## D-145 — Preserve C1 technical stop 01 and authorize Recovery 01
+
+- Date: 2026-08-31
+- Classification: `AUTHORIZATION`
+- Status: `RECOVERY_AUTHORIZED_AND_COMPLETED`
+- First attempt: C1 stopped before any VLA call because seven prepared visual
+  queries retained autograd graphs and exhausted GPU memory. No scientific or
+  protected outcome was opened.
+- Recovery corrections: Force inference-mode preparation; bound cache/tensor
+  lifetimes; time complete visual-plus-decoder cycles; verify full-byte cache
+  isolation and reset/all-fresh semantics; harden bounded writes; continuously
+  sample aggregate memory; confine runtime caches; and restore checkpoint
+  metadata before completion.
+- Freeze: D62, observations, 95-call schedule, all gates, budgets, and protected
+  boundaries remained unchanged. The failed root was preserved.
+- Authorization: The user explicitly approved one versioned Recovery 01 after
+  the expanded readiness audit. Automatic retry and C1H remained forbidden.
+- Evidence: `reports/CAC_C1_TECHNICAL_STOP_01.md` and
+  `reports/CAC_C1_RECOVERY01_READINESS_AUDIT.md`.
+
+## D-146 — Accept completed CAC C1 and stop before C1H
+
+- Date: 2026-08-31
+- Classification: `DECISION`
+- Status: `COMPLETE_PASS_STOP_BEFORE_C1H`
+- Execution: Recovery 01 completed exactly 95/95 planned calls on GPU 0 with
+  16,785 MiB peak aggregate memory and 97,972,847 evidence bytes.
+- Correctness: Every exactness, chronology, source, clone-isolation, reset,
+  action-head, finite-tensor, streaming, and resource gate passed. All-fresh and
+  action-head maximum absolute errors were both zero.
+- Headroom: Median complete-cycle D62 saving was 18.68% at h2 and 22.41% at h4,
+  above the 8% h4 gate. Feature extraction was 9.03 ms and the full adapter
+  forward 2.38 ms per cached query.
+- Protection: No training, simulator, expert action, terminal outcome, persisted
+  raw action value, download, or automatic retry. Checkpoint metadata and loader
+  inventory were restored exactly.
+- Interpretation: CAC is technically and systemically feasible. C1 does not
+  show repair effectiveness or terminal success and is not a positive-paper
+  result.
+- Boundary: Stop before C1H. C1H requires separate explicit approval.
+- Evidence: `reports/CAC_C1_REPORT.md` and
+  `results/cac-c1-tensor-feasibility-v01-recovery01/result.json`.
+
+## D-147 — Preserve C1H technical stop 01 and prepare Recovery 01
+
+- Date: 2026-08-31
+- Classification: `TECHNICAL_STOP`
+- Status: `RECOVERY_PREPARED_AWAITING_AUTHORIZATION`
+- Authorization: The user authorized C1H, including its prespecified extension
+  if Gate H labels Stage 1 ambiguous. C2 remains unauthorized.
+- First attempt: The worker authenticated its inputs and wrote outcome-free
+  schedules, then stopped while importing two LIBERO environment helpers from
+  the wrong upstream module.
+- Evidence boundary: Zero episode attempts, model queries, progress records, or
+  partial outcomes. This is not a method result and cannot inform Gate H.
+- Recovery: v02 changes only the two import locations and adds a regression
+  test. The population, schedule, D62 chronology, Gate H, caps, sealing, and
+  stop-before-C2 boundary remain unchanged.
+- Verification: 33 relevant tests and the actual pinned-upstream helper import
+  pass on TITAN. The v01 output remains immutable.
+- Boundary: The protocol forbids automatic retry. Recovery v02 requires explicit
+  approval before any GPU/model/simulator execution.
+- Evidence: `reports/CAC_C1H_V01_TECHNICAL_STOP_AND_RECOVERY.md` and
+  `results/cac-c1h-headroom-v01/technical_stop.json`.
+
+## D-148 — Complete comprehensive C1H Recovery 01 readiness audit
+
+- Date: 2026-08-31
+- Classification: `READINESS`
+- Status: `READY_AWAITING_EXPLICIT_RECOVERY_AUTHORIZATION`
+- Exhaustive simulator check: All 40 tasks and all state IDs 0--5 completed
+  setup and observation validation, 240/240, with no GPU, model query, or
+  terminal-outcome access.
+- Integration controls: Recovery now requires exact official-dense action
+  parity before terminal episodes, exact suite normalization, checkpoint
+  restoration, project-confined offline caches, safe D62 reset cleanup,
+  continuous aggregate-memory monitoring, and a bounded launcher.
+- Resource proof: The cumulative worst case is exactly 19,922 model calls
+  including two controls, below the unchanged 20,000-call implementation cap
+  and within the protocol's 480-episode/10-hour bounds.
+- Analysis proof: Synthetic direct-proceed and extension-proceed runs both pass
+  full schedule, hash, resource, sealing, restoration, and Gate-H reconciliation.
+- Tests: 37 focused tests pass. The full suite records 511 passes and 9 subtest
+  passes; its one failure is the unrelated historical V10 verifier's stale
+  expectation that completed V10 result directories remain absent.
+- Boundary: No recovery GPU/model attempt was launched. Persisted authorization
+  remains false; explicit approval is still required. C2 remains unauthorized.
+- Evidence: `reports/CAC_C1H_RECOVERY01_COMPREHENSIVE_READINESS_AUDIT.md` and
+  `results/cac-c1h-sim-preflight-v02/result.json`.
+
+## D-149 — Authorize one C1H Recovery 01 attempt
+
+- Date: 2026-08-31
+- Classification: `AUTHORIZATION`
+- Status: `ONE_RECOVERY_ATTEMPT_AUTHORIZED`
+- Authorization: After the comprehensive readiness audit, the user explicitly
+  approved one C1H Recovery 01 GPU/model/simulator attempt, including the
+  already-prespecified extension only if Stage 1 is ambiguous.
+- Freeze: The population, paired schedule, D62 substrate, Gate H, 480-episode
+  maximum, 19,922-call implementation cap, 10-hour wall cap, and stop-before-C2
+  boundary are unchanged.
+- Monitoring: While the worker is active, only process health, progress counts,
+  artifact bytes, elapsed time, and aggregate selected-GPU telemetry may be
+  inspected. Partial terminal outcomes and Gate-H values remain sealed.
+- Recovery boundary: This authorization permits one attempt only. Any technical
+  stop is fail-closed and cannot trigger an automatic retry.
+- Prohibited: C2, training, downloads, unrelated server inspection or changes,
+  and any work outside `/home/ved/SAVR` remain unauthorized.
+
+## D-150 — Preserve C1H Recovery 01 technical stop 02
+
+- Date: 2026-08-31
+- Classification: `TECHNICAL_STOP`
+- Status: `FAIL_CLOSED_NO_METHOD_RESULT`
+- Stop: The pre-episode official-helper parity control raised
+  `KeyError: 'prev_images'` after its query counter was incremented.
+- Boundary: 0 episode attempts, 1 pre-episode model query, 0 progress records,
+  no partial terminal outcomes, and no completed worker summary. No Gate-H
+  value exists and CAC's scientific plausibility is unchanged.
+- Resources: Peak aggregate selected-GPU memory was 15,275 MiB. Checkpoint
+  protected bytes and inventory were restored exactly; GPU 0 returned to
+  6 MiB/0% aggregate use.
+- Cause class: The pinned action path expected the cache-specific
+  `prev_images` field, but the new official dense parity control supplied the
+  standard prepared observation. The control stopped evaluation before the
+  first scheduled episode.
+- Boundary: The one authorized attempt is consumed. No automatic retry is
+  permitted; C1H remains unmeasured and C2 remains unauthorized.
+- Evidence: `reports/CAC_C1H_RECOVERY01_TECHNICAL_STOP_02.md` and
+  `results/cac-c1h-headroom-v02-recovery01/technical_stop.json`.
+
+## D-151 — Authorize C1H Recovery 02 after expanded contract audit
+
+- Date: 2026-08-31
+- Classification: `AUTHORIZATION`
+- Status: `ONE_RECOVERY02_ATTEMPT_AUTHORIZED`
+- Finding: The pinned helper always requires `prev_images`, returns four
+  objects, and normalizes observation state in place. The first issue caused
+  stop 02; the latter two were masked behind it and were corrected before a new
+  launch.
+- Repair: Clone the official-control observation, provide independent current
+  images as `prev_images`, validate/unpack/release the full return, run dense
+  parity plus D62 anchor/reuse before terminal episodes, and persist technical
+  tracebacks.
+- Accounting: Four technical calls change only the implementation overhead;
+  worst cases are 9,964 Stage-1 and 19,924 cumulative calls under the unchanged
+  20,000-call cap. Scientific populations, schedules, method, and Gate H are
+  unchanged.
+- Verification: 39 focused checks pass. The full suite has 514 passes plus 9
+  subtest passes and only the unrelated historical ACR-V10 stale pre-attempt
+  failure.
+- Boundary: One Recovery 02 attempt is authorized. No automatic retry; partial
+  outcomes remain sealed; C2 remains unauthorized.
+- Evidence: `reports/CAC_C1H_RECOVERY02_READINESS_AUDIT.md`.
+
+## D-152 — Preserve C1H Recovery 02 dense-parity stop 03
+
+- Date: 2026-08-31
+- Classification: `TECHNICAL_STOP`
+- Status: `FAIL_CLOSED_PARITY_MISMATCH_NO_METHOD_RESULT`
+- Stop: The repaired official action path and the custom cache-capable dense
+  path differed by maximum absolute action value 0.1817884, exceeding the
+  frozen 1e-6 parity tolerance.
+- Boundary: 0 episode attempts, 2 pre-episode model queries, 0 progress records,
+  no D62 control, no partial outcomes, and no Gate-H value.
+- Interpretation: Recovery 02 fixed the earlier observation contract. The new
+  stop shows that C1's internal all-fresh reproduction did not establish
+  equivalence to the released evaluator entry point. The current C1H substrate
+  is not yet an authenticated drop-in evaluation of the pinned policy.
+- Integrity: Peak aggregate memory was 16,437 MiB; checkpoint bytes and
+  inventory were restored exactly; GPU 0 returned to 6 MiB/0%.
+- Boundary: The authorized attempt is consumed. No automatic retry; C2 remains
+  unauthorized. The discrepancy must be explained before another run.
+- Evidence: `reports/CAC_C1H_RECOVERY02_TECHNICAL_STOP_03.md` and
+  `results/cac-c1h-headroom-v03-recovery02/technical_stop.json`.
+
+## D-153 — Replace retries with OpenVLA semantic requalification
+
+- Date: 2026-08-31
+- Classification: `METHOD_AND_ENGINEERING_CONTAINMENT`
+- Status: `S0_COMPLETE_S1_FOUNDATION_COMPLETE_STOP_BEFORE_GPU`
+- Root cause: The BRACE/PAIR/CAC custom path uses the 56 placeholder-token
+  hidden states, shifted one position after the pinned evaluator's 56 causal
+  action-readout states. D62 sidecar action positions inherit the shift.
+- Impact: Internal historical measurements remain immutable, but claims that
+  require equivalence to the pinned policy are provisional. CAC C1 must be
+  requalified after the substrate is corrected.
+- Correction strategy: One shared runtime-derived contract, an independent hook
+  capturing the exact official action-head input and intermediate boundaries,
+  adversarial CPU tests, then an eight-observation outcome-free GPU parity gate.
+- Verification: 15 dedicated semantic tests, 33 combined focused tests, and
+  526 complete-suite tests plus 9 subtests pass. The only failure is the known
+  unrelated historical ACR-V10 stale pre-attempt assertion.
+- Boundary: No GPU/model/simulator work occurred. Build and audit the S3 launch
+  package next; stop for explicit phase approval before GPU selection. C1H and
+  C2 remain unauthorized.
+- Evidence: `reports/OPENVLA_CUSTOM_PATH_SEMANTIC_AUDIT_2026-08-31.md`,
+  `docs/OPENVLA_SEMANTIC_REQUALIFICATION_PROTOCOL_V1.md`, and
+  `reports/OPENVLA_SEMANTIC_REQUALIFICATION_FOUNDATION_REPORT.md`.
+
+## D-154 — Freeze and authorize one S3 semantic-parity attempt
+
+- Date: 2026-08-31
+- Classification: `OUTCOME_FREE_SEMANTIC_REQUALIFICATION`
+- Status: `READY_ONE_ATTEMPT_AUTHORIZED`
+- Population: Eight frozen offline observations, exactly two per LIBERO suite;
+  no simulator, reward, success, expert action, or locked-state access.
+- Schedule: One independent official call plus corrected dense `use_cache=None`,
+  corrected dense `use_cache=True`, and sidecar-on dense per observation;
+  exactly 32 calls with alternating official/custom order.
+- Gate: Every preprocessing, multimodal, hidden-state, normalized-action, and
+  unnormalized-action boundary must agree within `1e-6`; cache/sidecar
+  determinism is exact. The first mismatch stops the stage.
+- Verification: 22 focused tests pass; the complete suite has 536 passes and 9
+  subtest passes with only the known unrelated historical ACR-V10 stale
+  pre-attempt failure. Static real-data/checkpoint preflight passes.
+- Authorization: The user approved continuation on 2026-08-31. One S3 attempt
+  is authorized subject to one-GPU coordination. No automatic retry.
+- Boundary: S4, CAC C1 requalification, C1H, C2, training, and simulator work
+  remain unauthorized.
+- Evidence: `reports/OPENVLA_SEMANTIC_PARITY_S3_READINESS_AUDIT.md` and
+  `configs/openvla/semantic_parity_s3_v1.json`.
+
+## D-155 — Preserve S3 technical stop and freeze Recovery 01
+
+- Date: 2026-08-31
+- Classification: `TECHNICAL_STOP_AND_VERSIONED_RECOVERY`
+- Status: `RECOVERY01_READY_NOT_AUTHORIZED`
+- Stop: S3 v01 loaded the model, then attempted to read two absent
+  VLA-Cache-only LlamaConfig attributes before the first policy invocation.
+- Evidence boundary: 0 model calls, 0 completed observations, no action or
+  semantic comparison, no simulator/outcome access, and no method result.
+- Integrity: Peak aggregate GPU-0 memory was 15,243 MiB. Checkpoint bytes and
+  inventory were restored exactly and GPU 0 returned to 6 MiB/0%.
+- Additional finding: v01 initialized from the VLA-Cache fork, whose loader
+  synchronizes modified modeling code into local checkpoints. That would not
+  be an independent released-policy oracle even after fixing the missing
+  attributes.
+- Recovery: Use the pinned official OpenVLA-OFT source tree at revision
+  `e4287e94541f459edc4feabc4e181f537cd569a8`, disable model-logic sync, verify
+  prompt-derived readout after load, adapt only the official return/config API,
+  and create absent dense cache controls only after proving absence.
+- Unchanged: Eight observations, 32 calls, all boundaries, `1e-6` tolerance,
+  resources, no outcomes, no automatic retry, and stop before S4.
+- Verification: CUDA-hidden real-source/data/checkpoint/API preflight passes.
+- Boundary: Recovery 01 requires explicit approval. S4, C1, C1H, C2, training,
+  and simulator work remain unauthorized.
+- Evidence: `reports/OPENVLA_SEMANTIC_PARITY_S3_TECHNICAL_STOP_AND_RECOVERY01.md`,
+  `results/openvla-semantic-parity-s3-v01/technical_stop.json`, and
+  `configs/openvla/semantic_parity_s3_v02_recovery01.json`.
+
+## D-156 — Pass zero-call official-loader qualification
+
+- Date: 2026-09-01
+- Classification: `TECHNICAL_QUALIFICATION`
+- Status: `PASS_STOP_BEFORE_S3_RECOVERY01`
+- Authorization: The user authorized cautious continuation limited to one
+  loader-only model load. Policy, vision, action-head, action-production,
+  simulator, outcome, and automatic-retry calls were fixed at zero.
+- Preflight correction: Local tests caught and corrected source-indentation
+  normalization and prohibited-call scanner defects before remote execution.
+  The corrected CUDA-hidden preflight and all 8 focused remote tests passed.
+- Result: The official checkpoint class loaded successfully. Runtime sources
+  for `_regression_or_discrete_prediction` and `predict_action` exactly matched
+  the authenticated checkpoint, action readout was prompt-derived, model logic
+  was not synchronized, and absent cache controls were safely injected as
+  dense `None` values.
+- Boundary: 0 policy calls, 0 vision-encoder calls, 0 action-head calls, 0
+  actions, and no simulator outcomes. This is not a semantic or method result.
+- Integrity: Peak aggregate GPU-0 memory was 15,275 MiB; checkpoint bytes and
+  inventory were restored exactly; GPU 0 returned to 6 MiB/0%.
+- Interpretation: The loader defect that stopped S3 v01 is technically
+  resolved. S3 Recovery 01 is eligible for a fresh authorization but remains
+  unauthorized. S4, D62/C1, C1H, C2, simulator work, and training remain
+  blocked.
+- Evidence: `reports/OPENVLA_LOADER_QUALIFICATION_S3L_REPORT.md` and
+  `results/openvla-loader-qualification-s3l-v01/worker_summary.json`.
+
+## D-157 — Authorize one S3 Recovery 01 semantic-parity attempt
+
+- Date: 2026-09-01
+- Classification: `AUTHORIZATION`
+- Status: `ONE_OUTCOME_FREE_ATTEMPT_AUTHORIZED`
+- Basis: The independently separated S3L loader qualification passed with the
+  exact checkpoint class and method sources, zero policy calls, exact
+  checkpoint restoration, and safe one-GPU memory headroom.
+- Authorization: The user explicitly approved one S3 Recovery 01 attempt on
+  2026-09-01.
+- Frozen execution: Eight authenticated offline observations, four calls per
+  observation, exactly 32 calls, alternating path order, and the unchanged
+  `1e-6` semantic-parity tolerance.
+- Protected boundary: No simulator, reward, success, expert action, locked
+  state, training, download, raw-action persistence, or automatic retry.
+- Advance boundary: S4, D62/C1, C1H, and C2 remain unauthorized regardless of
+  the S3 result.
+
+## D-158 — Preserve S3 Recovery 01 harness-shape stop
+
+- Date: 2026-09-01
+- Classification: `TECHNICAL_STOP`
+- Status: `NO_SEMANTIC_DECISION_NO_AUTOMATIC_RETRY`
+- Stop: After four calls on the first offline observation, the ordered gate
+  reached `normalized_proprio`. Seven earlier boundaries had passed, but the
+  harness compared official shape `[8]` with custom shape `[1,8]` and stopped.
+- Diagnosis: The checkpoint's `_process_proprio_features` canonicalizes either
+  form to `[1,8]` before projection. The stop therefore reflects a pre-reshape
+  capture mismatch, not demonstrated policy disagreement.
+- Evidence-writer defect: Shape mismatch was represented as positive infinity,
+  which strict JSON serialization rejected. No worker summary or comparison
+  manifest was written. A clearly labeled post-hoc reconstruction preserves
+  only deterministically recoverable facts and does not impersonate a worker
+  terminal record.
+- Boundary: 4 model calls, 0 completed observations, no simulator outcomes,
+  expert actions, raw actions, semantic decision, or method result.
+- Integrity: Protected checkpoint hashes match exactly, no stale loader backup
+  remains, and GPU 0 returned to 6 MiB/0%. Peak memory is unknown and is not
+  estimated.
+- Recovery requirement: Versioned Recovery 02 must canonicalize the proprio
+  comparison, guarantee strict-JSON terminal records for every failure class,
+  and pass adversarial failure-path plus zero-call shape tests without changing
+  the scientific population, schedule, gate, or resources.
+- Boundary: The authorized attempt is consumed. Recovery 02, S4, D62/C1, C1H,
+  and C2 remain unauthorized.
+- Evidence: `reports/OPENVLA_SEMANTIC_PARITY_S3_RECOVERY01_TECHNICAL_STOP.md`
+  and
+  `results/openvla-semantic-parity-s3-v02-recovery01/technical_stop_reconstruction.json`.
+
+## D-159 — Freeze and authorize S3 Recovery 02
+
+- Date: 2026-09-01
+- Classification: `VERSIONED_TECHNICAL_RECOVERY_AUTHORIZATION`
+- Status: `READY_ONE_ATTEMPT_AUTHORIZED`
+- Corrections: Canonicalize only the exposed normalized-proprio comparison from
+  `[1,8]` to the official pre-reshape `[8]`, and encode non-finite mismatch
+  sentinels as labeled strict-JSON values. Model computation is unchanged.
+- Verification: CUDA-hidden validation and all 33 focused remote tests pass,
+  including actual shape-mismatch sealing and adversarial non-finite records.
+- Freeze: Eight observations, 32 calls, alternating schedule, official loader,
+  semantic boundaries, `1e-6` gate, one-GPU limits, and protected-data rules
+  are unchanged and hash-authenticated.
+- Authorization: The user approved one Recovery 02 attempt on 2026-09-01.
+- Boundary: No automatic retry. S4, D62/C1, C1H, C2, simulator work, and
+  training remain unauthorized.
+- Evidence: `reports/OPENVLA_SEMANTIC_PARITY_S3_RECOVERY02_READINESS_AUDIT.md`
+  and `configs/openvla/semantic_parity_s3_v03_recovery02.json`.
+
+## D-160 — Preserve S3 Recovery 02 mixed-representation stop
+
+- Date: 2026-09-01
+- Classification: `TECHNICAL_STOP`
+- Status: `NO_SEMANTIC_DECISION_NO_AUTOMATIC_RETRY`
+- Verified repairs: The normalized-proprio canonicalization passed its former
+  stop, and strict-JSON failure sealing produced a complete technical record.
+- Stop: After four calls and 15 passing ordered comparisons, the
+  `normalized_actions` comparison received an official CUDA tensor and a
+  custom CPU NumPy array. The comparator attempted direct NumPy conversion of
+  the CUDA tensor and raised a deterministic `TypeError`.
+- Interpretation: This is a heterogeneous comparison-representation defect,
+  not an observed action-value mismatch or method result.
+- Integrity: 0 completed observations, no outcomes or raw actions, peak
+  aggregate GPU-0 memory 16,413 MiB, exact checkpoint restoration, and GPU 0
+  returned to 6 MiB/0%.
+- Recovery requirement: Recovery 03 must normalize only heterogeneous
+  comparison values through detached float32 CPU representations and audit
+  every boundary type before GPU execution. Scientific computation, inputs,
+  schedule, gates, and resources remain unchanged.
+- Boundary: The attempt is consumed. Recovery 03, S4, D62/C1, C1H, and C2 are
+  unauthorized.
+- Evidence: `reports/OPENVLA_SEMANTIC_PARITY_S3_RECOVERY02_TECHNICAL_STOP.md`
+  and `results/openvla-semantic-parity-s3-v03-recovery02/technical_stop.json`.
+
+## D-161 — Qualify the complete Recovery 03 comparison contract
+
+- Date: 2026-09-01
+- Classification: `COMPREHENSIVE_HARNESS_QUALIFICATION`
+- Status: `PASS_ONE_MODEL_ATTEMPT_AUTHORIZED`
+- Contract: All 22 unique S3 boundaries have explicit reference/candidate
+  representation pairs; unknown boundaries and representation drift fail
+  closed. Only the heterogeneous normalized-action comparison is converted to
+  detached float32 CPU arrays; model computation is unchanged.
+- Static verification: All hashes reconcile, CUDA-hidden preflight passes, and
+  37 focused remote tests pass.
+- GPU micro-qualification: All 22 contracts, CUDA tensor/NumPy conversion,
+  shape mismatch, NaN, strict-JSON sealing, and drift rejection passed with 0
+  model loads and 0 model calls. GPU 0 returned to 6 MiB/0%.
+- Authorization: The user's Recovery 03 approval includes one model attempt
+  after this mandatory qualification passed.
+- Boundary: The model attempt remains capped at 32 calls with no simulator,
+  outcomes, automatic retry, or later-stage authorization.
+- Evidence: `reports/OPENVLA_SEMANTIC_PARITY_S3_RECOVERY03_READINESS_AUDIT.md`
+  and `results/openvla-comparator-qualification-s3q-v01/worker_summary.json`.
+
+## D-162 — Preserve Recovery 03 post-comparison cache-contract stop
+
+- Date: 2026-09-01
+- Classification: `TECHNICAL_STOP`
+- Status: `NO_STAGE_RESULT_NO_AUTOMATIC_RETRY`
+- Passed evidence: The zero-call GPU comparator qualification passed all 22
+  representation contracts. The model attempt then passed all 43 ordered
+  comparisons for the first observation, including official/custom hidden and
+  action parity plus cache and sidecar determinism.
+- Stop: The original harness next asserted that `use_cache=None` must return no
+  cache. The pinned Transformers implementation resolves `None` to
+  `self.config.use_cache`, whose enabled default correctly produces a cache.
+- Interpretation: The no-cache control was mis-specified. It must use explicit
+  `False`; `True` remains the cache-producing control. This is not a semantic
+  mismatch or method result.
+- Integrity: 4 calls, 0 completed observations, no outcomes or raw actions,
+  peak GPU-0 memory 16,413 MiB, exact checkpoint restoration, and GPU 0 returned
+  to 6 MiB/0%.
+- Remaining-path audit: Sidecar capture and structural layout already validate
+  inside each forward; the remaining resource, arithmetic, manifest, and
+  sealing paths are covered. The incorrect `None` assertion is the only
+  identified remaining execution-path defect.
+- Boundary: Recovery 04 must be separately versioned and authorized. S4,
+  D62/C1, C1H, and C2 remain unauthorized.
+- Evidence: `reports/OPENVLA_SEMANTIC_PARITY_S3_RECOVERY03_TECHNICAL_STOP.md`
+  and `results/openvla-semantic-parity-s3-v04-recovery03/technical_stop.json`.
+
+## D-163 — Qualify and preserve S3 Recovery 04
+
+- Date: 2026-09-01
+- Classification: `VERSIONED_TECHNICAL_RECOVERY_AND_STOP`
+- Status: `NO_STAGE_RESULT_NO_AUTOMATIC_RETRY`
+- Qualification: CUDA-hidden preflight and 40 focused remote tests passed. A
+  selected-GPU synthetic proof then verified the pinned `None`/`False`/`True`
+  cache behavior with 3 synthetic Llama calls and 0 OpenVLA model loads/calls.
+- Authorized attempt: The user approved one Recovery 04 model attempt. It
+  stopped fail-closed after 2 calls and before completing an observation.
+- Stop: The versioned wrapper translated the legacy no-cache control from
+  `None` to explicit `False`, but `structurally_aligned_dense_forward` retained
+  a higher-level guard accepting only `None` or `True` and rejected the value
+  before it reached the language model.
+- Interpretation: The qualification did not traverse the complete helper path.
+  This is a technical integration stop and supplies no semantic or method
+  result.
+- Integrity: 0 completed observations, no outcomes or raw actions, peak
+  selected-GPU memory 15,699 MiB, exact checkpoint restoration, and GPU 0
+  returned to 6 MiB/0%.
+- Recovery requirement: Any Recovery 05 must qualify the full dense-helper path
+  with a synthetic model stub and prove accepted/forwarded cache modes before a
+  real checkpoint is loaded. Scientific inputs, schedule, gate, and resources
+  remain unchanged.
+- Boundary: Recovery 05, S4, D62/C1, C1H, and C2 are unauthorized.
+- Evidence: `reports/OPENVLA_SEMANTIC_PARITY_S3_RECOVERY04_TECHNICAL_STOP.md`,
+  `results/openvla-cache-mode-qualification-s3q-v01/worker_summary.json`, and
+  `results/openvla-semantic-parity-s3-v05-recovery04/technical_stop.json`.
+
+## D-164 — Accept S3 semantic parity after Recovery 05
+
+- Date: 2026-09-01
+- Classification: `SEMANTIC_FOUNDATION_QUALIFICATION`
+- Status: `PASS_STOP_BEFORE_S4`
+- Full-path qualification: The actual dense helper forwarded
+  `[None, False, True, True]`; the control returned no cache, both cache paths
+  returned caches, the sidecar completed, and actions were identical. It used
+  4 synthetic helper calls and 0 OpenVLA model loads/calls.
+- Model result: All 8 frozen observations and 32 calls completed. All 344
+  ordered comparisons passed, with 43 comparisons per observation and maximum
+  absolute error `1.4014237548209962e-08` under the frozen `1e-6` tolerance.
+- Interpretation: The corrected dense path reproduces the released evaluator's
+  semantic readout on the frozen offline population. Cache production and the
+  observation-only sidecar are neutral at this boundary. This does not measure
+  closed-loop success, reuse safety, or the proposed learned method.
+- Integrity: No outcomes, expert actions, or raw actions were accessed or
+  persisted. Peak GPU-0 memory was 16,955 MiB; checkpoint restoration was exact;
+  GPU 0 returned to 6 MiB/0%; no automatic retry occurred.
+- Boundary: S3 is complete. S4 D62 requalification, C1H, and C2 remain
+  unauthorized and unstarted.
+- Evidence: `reports/OPENVLA_SEMANTIC_PARITY_S3_RECOVERY05_PASS.md`,
+  `results/openvla-dense-helper-qualification-s3q-v01/worker_summary.json`,
+  `results/openvla-semantic-parity-s3-v06-recovery05/worker_summary.json`, and
+  `results/openvla-semantic-parity-s3-v06-recovery05/comparison_manifest.json`.
+
+## D-165 — Preserve S4 V01 compact-layout technical stop
+
+- Date: 2026-09-01
+- Classification: `TECHNICAL_STOP`
+- Status: `NO_S4_DECISION_NO_AUTOMATIC_RETRY`
+- Execution: The authorized S4 attempt stopped after 26 of 37 planned calls,
+  when the first recursive reuse transition produced a compact active hidden
+  sequence. No partial scientific manifest was sealed.
+- Cause: The canonical selector retained a dense-only length invariant. The
+  pinned cache fork explicitly returns the surviving absolute position map,
+  but the harness had not yet used it to map official action positions into
+  compact tensor offsets.
+- Interpretation: This is a cache-fork integration defect, not an observed D62
+  action, reuse-provenance, or scientific gate failure.
+- Repair: Active paths now use the explicit position map, require a sorted
+  unique in-range layout, require all 56 official action states to survive, and
+  reject malformed compaction. No tail slice or inferred offset is used.
+- Verification: All 63 focused CUDA-hidden OpenVLA/P3 tests pass on TITAN. No
+  model retry or GPU qualification occurred during the repair.
+- Integrity: No outcomes, expert actions, or raw actions were accessed; peak
+  selected-GPU memory was 16,165 MiB; checkpoint restoration was exact; GPU 0
+  returned to 6 MiB/0%.
+- Boundary: S4 Recovery 01 requires separate authorization and a preceding
+  tiny-model compact-position qualification. S5/C1, C1H, C2, training, and
+  simulator work remain blocked.
+- Evidence: `reports/OPENVLA_D62_S4_V01_TECHNICAL_STOP.md` and
+  `results/openvla-d62-requalification-s4-v01/technical_stop.json`.
+
+## D-166 — Accept corrected D62 substrate after S4 Recovery 01
+
+- Date: 2026-09-01
+- Classification: `D62_SUBSTRATE_REQUALIFICATION`
+- Status: `PASS_STOP_BEFORE_S5`
+- Qualification: The exact pinned cache fork reduced a tiny 592-token sequence
+  to 464 by removing 128 designated visual positions, preserved all 56 action
+  states, mapped sentinel values exactly, and rejected three malformed maps.
+  It used 2 tiny-model calls and 0 OpenVLA checkpoint loads.
+- OpenVLA result: All 37 planned calls completed. All 8 official/all-fresh
+  controls had exactly zero hidden and action error. Two recursive age-1--4
+  cycles were exact; cache provenance, parent immutability, clone isolation,
+  maximum source age 4, and reset gates passed.
+- Materiality: Corrected action/instruction salience changed no protected tile,
+  ordered position, or onset assignment across the 8 frozen observations. The
+  corrected identity remains `D62_BAL_PT1_S4C_V1` because its action-readout
+  semantics and qualification differ from the historical implementation.
+- Integrity: 16,165 MiB peak selected-GPU memory, exact checkpoint restoration,
+  GPU 0 returned to 6 MiB/0%, no outcomes/expert actions/raw actions, and no
+  automatic retry.
+- Interpretation: S4 establishes corrected substrate integrity, not task
+  success, reuse safety, or a positive-paper result.
+- Boundary: S5/CAC C1 requalification is eligible but unauthorized. C1H, C2,
+  simulator work, training, and any further stage remain blocked.
+- Evidence: `reports/OPENVLA_D62_S4_RECOVERY01_PASS.md`,
+  `results/openvla-compact-position-qualification-s4q-v01/worker_summary.json`,
+  `results/openvla-d62-requalification-s4-v02-recovery01/worker_summary.json`,
+  and `results/openvla-d62-requalification-s4-v02-recovery01/evidence_manifest.json`.
+
+## D-167 — Freeze and authorize corrected CAC C1 S5 requalification
+
+- Date: 2026-09-01
+- Classification: `S5_C1_REQUALIFICATION_AUTHORIZATION`
+- Status: `READY_ONE_ATTEMPT_AUTHORIZED`
+- Design: Preserve all 95 historical C1 calls and add 2 mandatory calls for
+  independent released-evaluator versus corrected-custom hidden, normalized,
+  and unnormalized action parity before internal controls.
+- Semantic boundary: Use the S3-qualified official loader/oracle, corrected
+  absolute-position action selection, instruction-only positions, and corrected
+  substrate identity `D62_BAL_PT1_S4C_V1`.
+- Verification: 79 focused CUDA-hidden TITAN tests and every authenticated
+  preflight check pass. No GPU was selected and no model call occurred.
+- Authorization: The user approved S5/CAC C1 requalification on 2026-09-01.
+- Boundary: One fail-closed 97-call attempt on one idle GPU; no automatic retry.
+  Stop before C1H. C1H, C2, simulator work, outcomes, and training remain
+  unauthorized.
+- Evidence: `reports/CAC_C1_S5_REQUALIFICATION_READINESS_AUDIT.md`,
+  `docs/CAC_C1_S5_REQUALIFICATION_PROTOCOL_V1.md`, and
+  `configs/cac/c1_s5_requalification_v01.json`.
+
+## D-168 — Accept corrected CAC C1 S5 requalification
+
+- Date: 2026-09-01
+- Classification: `S5_C1_REQUALIFICATION_RESULT`
+- Status: `PASS_STOP_BEFORE_C1H`
+- Official parity: Independently captured official/custom 56x4096 hidden,
+  normalized actions, and unnormalized actions matched with maximum absolute
+  error 0.0; observation isolation passed.
+- C1 result: All 97 calls completed and all 9 gates passed. Recursive ages 1--4,
+  reset, cache/tracker/RNG isolation, `fc2(Z_C)`, streaming, adapter bypass,
+  memory, storage, and chronology contracts passed.
+- Systems: 22.5969% median h4 gross complete-cycle saving, 10.5964 ms feature
+  extraction, 2.3883 ms adapter forward, and 16,789 MiB peak aggregate memory.
+- Integrity: Exact checkpoint restoration; GPU 0 returned to 6 MiB/0%; no
+  outcomes, expert actions, raw actions, training, downloads, or automatic
+  retry.
+- Interpretation: Corrected CAC is technically feasible. This does not show
+  repair quality, closed-loop success, or a positive-paper result.
+- Boundary: C1H is eligible but unauthorized. C2 and training remain blocked.
+- Evidence: `reports/CAC_C1_S5_REQUALIFICATION_PASS.md` and
+  `results/cac-c1-s5-requalification-v01/result.json`.
+
+## D-169 — Record C1H S6 pre-episode technical stop
+
+- Date: 2026-09-01
+- Classification: `C1H_CORRECTED_SUBSTRATE_TECHNICAL_STOP`
+- Status: `TECHNICAL_STOP_NO_METHOD_RESULT`
+- Preparation: 95 focused CUDA-hidden tests and every authenticated preflight
+  check passed; the frozen population, paired schedule, Gate H, D62 values,
+  resource limits, and stop-before-C2 boundary were preserved.
+- Failure: After two pre-episode model calls, the S6 wrapper attempted to read
+  `action_hidden` without returning that already computed capture tensor from
+  `policy_query`; it raised `KeyError` before the parity comparison completed.
+- Integrity: 0 episode attempts, 0 progress/terminal records, no partial
+  outcomes, no Gate-H value, 15,699 MiB peak GPU-0 memory, exact checkpoint
+  restoration, and GPU 0 returned to 6 MiB/0%.
+- Interpretation: Narrow return-plumbing omission; not an action-semantic,
+  cache, simulator, Gate-H, or scientific-method result.
+- Boundary: No automatic retry. A separately versioned and authorized recovery
+  must first qualify the exact four-call pre-episode contract without outcomes.
+  C2 and training remain blocked.
+- Evidence: `reports/CAC_C1H_S6_TECHNICAL_STOP_04.md` and
+  `results/cac-c1h-headroom-s6-v01/technical_stop.json`.
+
+## D-170 — Stop corrected D62 CAC route at Gate H
+
+- Date: 2026-09-02
+- Classification: `C1H_CORRECTED_SUBSTRATE_SCIENTIFIC_RESULT`
+- Status: `GATE_H_STOP_NO_C2`
+- Qualification: Exact four-call outcome-free qualification passed with 0.0
+  official/custom hidden, normalized-action, and unnormalized-action error;
+  observation isolation, D62 anchor/reuse, resources, and restoration passed.
+- Population: Exact frozen Stage 1 completed 120 paired conditions and 240
+  episodes. The extension was not opened because the Stage-1 stop was decisive.
+- Outcome: Dense succeeded 68/120 (56.67%); corrected D62 succeeded 0/120
+  (0.00%); dense minus D62 was 56.67 points and dense favored all four suites.
+- Gate H: Stop because dense <75%, D62 <50%, and gap >35 points. All 12
+  independent reconciliation gates passed.
+- Integrity: 8,525 model queries, 16,301 MiB peak GPU-0 memory, exact checkpoint
+  restoration, GPU 0 returned to 6 MiB/0%, C2 not started, no retry.
+- Interpretation: This is a valid scientific result. The exact corrected D62
+  substrate is not viable for the CAC V2 repair route; its systems savings do
+  not translate to closed-loop reliability. Do not train the planned adapter.
+- Boundary: C2 and training remain blocked and unauthorized. Any different
+  learned solution requires a new scientific protocol and substrate, not a
+  continuation of CAC V2.
+- Evidence: `reports/CAC_C1H_S6_RECOVERY01_GATE_H_STOP.md` and
+  `results/cac-c1h-headroom-s6-v02-recovery01/analysis.json`.
+
+## D-171 — Qualify historical interpretation after independent attention audit
+
+- Date: 2026-09-08
+- Classification: `CONFIRMED_RUNTIME_SEMANTICS_MISMATCH`
+- Evidence: Original SDPA is bidirectional; the later compatibility runtime is
+  causal, including dense/no-reuse operation. CPU probes observed masks and
+  token-intervention effects. The installed compatibility source hash matches
+  the historical S4 record. Five artifacts reconciled and 12 tests passed.
+- Validation gap: Earlier released-evaluator/custom-helper comparisons shared
+  the same modified Transformer dependency. They authenticated the action
+  readout inside that runtime, not the entire released inference computation.
+- Correction to D-170: Keep all counts and the original frozen stop. Interpret
+  them as outcomes of the historical compatibility-stack policies, not as an
+  independently authenticated failure of the intended released-policy cache.
+  The attention mismatch's contribution to 68/120 versus 0/120 is unmeasured.
+- Scope: Do not automatically invalidate earlier original-runtime experiments,
+  revive CAC, claim that a fix produces a positive result, or train the new
+  candidate before baseline qualification.
+- Next action: Original-stack reference check, attention-only diagnostic, then
+  a frozen small closed-loop comparison on already-consumed development data.
+  Confirm one GPU with the user before any GPU workload. No new GPU run has
+  started; no existing runtime, checkpoint, or historical result was edited.
+- Evidence: `reports/OPENVLA_ATTENTION_RUNTIME_AUDIT_2026-09-08.md` and
+  `reports/attention_audit_2026-09-08/`.
+
+## D-172 — Complete original-runtime attention diagnostic; broaden reference next
+
+- Date: 2026-09-09
+- Classification: `ATTENTION_ONLY_BASELINE_DIAGNOSTIC_COMPLETE`
+- Scope: User delegated selection of one available GPU. GPU 0 was checked using
+  aggregate telemetry only; original runtime and checkpoint were preserved.
+- Reference: All 32 offline calls completed. Original evaluator/helper maximum
+  discrepancy was 2.8203848589924974e-08; restoration discrepancy was zero.
+  All 32 live attention layers used the authenticated original SDPA contract.
+- Paired outcomes: 16 episodes on eight fixed consumed conditions. Original
+  attention 7/8; same-runtime causal control 5/8. Five both succeeded, one both
+  failed, two Long pairs favored original, none favored the control.
+- Integrity: Every reconciliation check passed; 455 model calls; 788.83 seconds;
+  16,306 MiB peak aggregate GPU memory; unchanged checkpoint; GPU 0 returned to
+  6 MiB/0%; no training, held-out data, technical stop, or retry.
+- Interpretation: Attention changed actions and paired behavior. This supports
+  an attention-specific contribution, not complete explanation of historical
+  results, corrected-cache viability, a precise benchmark estimate, or a
+  positive-method paper. The common Goal failure remains unresolved.
+- Next: A broader fixed original-stack dense evaluation on consumed development
+  conditions before published-comparator qualification and method selection.
+  Stop after this diagnostic; no subsequent run is launched or authorized here.
+- Evidence: `reports/OPENVLA_ATTENTION_BASELINE_DIAGNOSTIC_V1.md`, its JSON report,
+  and `results/openvla-attention-baseline-diagnostic-20260909-v01`.
+
+## D-173 — Authorize and launch fixed forty-task original dense baseline
+
+- Date: 2026-09-10. User approved the proposed broader reference and continued.
+- Population: all forty tasks, initial-state ID 0, seed 7, previously consumed
+  development conditions. Original attention only in forty closed-loop episodes.
+- Reuse the tested evaluator and episode path, with a repeated 32-call offline
+  parity/restoration check. No caching, training or protected test use.
+- All 29 CPU tests passed on TITAN; preflight authenticated forty files plus
+  eight training-observation HDF5 sources. No model was loaded during preflight.
+- Owned runner PID 982803; GPU 0 after idle aggregate telemetry; immutable root
+  `results/openvla-original-baseline-40task-v01`. Config hash:
+  `90a65540dfade976ad58924b8318576b38c310ac1d8831db31ceb3d4682daa27`.
+- Caps: forty episodes, 1,692 total calls, two hours, aggregate memory strictly
+  below 23,552 MiB, and 512 MiB run artifacts.
+- Monitor counts/resources only until completion. On technical stop preserve
+  evidence without retry. On completion reconcile before reading/reporting
+  outcomes; report repeated-condition disagreements and all failures.
+- This is coverage, not a precise benchmark estimate or positive-method result.
+  No post-hoc performance gate or automatic comparator/method run.
+- Heartbeat: `monitor-original-openvla-40-task-baseline`; remove after reporting.
+- Evidence/protocol: `reports/OPENVLA_ORIGINAL_BASELINE_40TASK_READINESS_V1.md`
+  and `docs/OPENVLA_ORIGINAL_BASELINE_40TASK_PROTOCOL_V1.md`.
+
+## D-174 — Complete forty-task original baseline; stop before comparator
+
+- Date: 2026-09-10. Result: 39/40 original-policy successes, no caching.
+- Suites: Spatial 10/10, Object 10/10, Goal 9/10, Long 10/10.
+- All eight repeats matched prior original-attention outcomes and step counts.
+  The sole failure was open_the_top_drawer_and_put_the_bowl_inside, 300 steps.
+  Retain it; no physical cause is established by the recorded endpoints.
+- Integrity: forty episode records, 32 offline calls, 794 total calls; CPU-only
+  reconciliation passed on TITAN and locally. Authenticated sources/checkpoint
+  unchanged; maximum parity discrepancy 2.8203848589924974e-08, restoration zero.
+- Resources: 1,413.89 seconds; peak aggregate GPU memory 16,624 MiB; GPU 0 idle
+  afterward. PID 982803 exited. No technical stop, retry or training.
+- Scope: one consumed state per task and one seed. Do not pool pilot repeats,
+  compare unmatched historical totals as paired, or claim a positive method.
+- Decision: original baseline coverage supports planning a published comparator
+  on the authenticated original runtime. Stop here; no next run authorized.
+- Six non-cache artifacts synced to the local project. Report and complete
+  machine-readable evidence: `reports/OPENVLA_ORIGINAL_BASELINE_40TASK_RESULT_V1.md`
+  and `reports/OPENVLA_ORIGINAL_BASELINE_40TASK_RESULT_V1.json`.
+
+## D-175 — Qualify a same-checkpoint SpecPrune-OFT comparator
+
+- Date: 2026-09-10. User approved proceeding after the dense baseline and asked
+  to continue. This advances comparator development, not adapter training.
+- Select official SpecPrune-OFT revision
+  `8091adc4b574ce9008d49a1dc9a210f4eec314c1` as implementation reference. Archive
+  and authenticate eight source/license text files, with no model/data download.
+- AST audit confirms matching input-extension operations but a one-position
+  readout difference relative to our checkpoint. Preserve our authenticated
+  readout through absolute token maps; disclose the same-checkpoint adaptation.
+  This does not establish that the authors' published results are invalid.
+- Attention fallback, loader writes, timing selection, controller presets and
+  importance/prune ordering require explicit qualification, not silent changes.
+- Implement shared visual-only compaction and source-audit tests. All twenty
+  new CPU tests passed on TITAN with CUDA hidden. Retain-all tiny-model outputs
+  are identical; compacted readout positions and bidirectional flow pass.
+- No pretrained comparator evaluation, GPU run, training, new held-out use,
+  installation, checkpoint/runtime modification, or GitHub push occurred.
+- Next: isolated selection/controller port and synthetic equivalence, then a
+  frozen real-checkpoint qualification before a matched development benchmark.
+- Evidence: `reports/SPECPRUNE_SOURCE_AND_COMPACTION_AUDIT_V1.md`; protocol:
+  `docs/SPECPRUNE_COMPARATOR_QUALIFICATION_V1.md`. The completed 39/40 baseline
+  remains unchanged; no positive acceleration claim is established.
+
+## D-176 — Complete CPU core of the SpecPrune-OFT comparator port
+
+- Date: 2026-09-10 (US Eastern). User requested continuation of comparator work.
+- Implemented isolated current-frame selection, layerwise importance/pruning,
+  episode confidence/index state, controller thresholds, frame lookback and a
+  native-SDPA decoder runner. No checkpoint or installed runtime modification.
+- Thirteen new CPU tests pass. Six synthetic cases match the actual upstream
+  32-layer forward in position maps, importance vectors and prior-query indices.
+  Tiny original-runtime float32/bfloat16 models retain exact dense outputs when
+  pruning is disabled or all tokens are retained with auxiliary score computation.
+- All 44 selected CPU regressions passed on TITAN with CUDA hidden and no skips.
+  One initial test-harness import error was resolved with an independent block-
+  slicing oracle, without installing the missing skimage dependency.
+- Preserve source selection windows, global retention and signed controller
+  thresholds. Explicitly adapt policy readout/attention and require our original
+  simulator execution rather than copying different horizons or skipped steps.
+- The decoder-only runner omits unused logits/history; use the same optimization
+  for the timed dense control rather than misattributing that saving to pruning.
+- Next: freeze and execute bounded real-checkpoint qualification. Simulator
+  controller integration, matched performance evaluation and adapter training
+  have not run. No positive-method, speed or task-success claim follows yet.
+- Source archive/log/report: `reports/specprune_algorithm_port_v1/` and
+  `reports/SPECPRUNE_ALGORITHM_PORT_CPU_V1.md`. No GPU run or GitHub push.
+
+## D-177 — Launch bounded real-checkpoint comparator qualification
+
+- Date: 2026-09-11. User requested continuation of the approved comparator work.
+- Owned PID 1038935, GPU 0 after aggregate idle check. Exactly eight consumed
+  observations, five fixed calls each, 40 total; no simulator or training.
+- Preflight passed for 46 authenticated files plus eight data sources. All 27
+  targeted CPU tests passed, as did combined observer/score-capture bfloat16
+  execution. No installed runtime, checkpoint, or old evidence was changed.
+- Frozen config: `configs/openvla/specprune_real_qualification_v1.json`, SHA-256
+  `8adc9dde86d08f8d717c96e4017250229c71d7f5062ebe697cbb4c53eb75e168`.
+- Mode order: native, disabled, keep-all with scores, compressed, restored.
+  Identity tolerance 1e-6; 30-minute cap; memory strictly below 23,552 MiB;
+  artifacts below 256 MiB. Preserve technical stops, never automatically retry.
+- Immutable root: `results/specprune-real-qualification-v01`. Monitor only
+  counts/resources until completion, then reconcile and sync evidence/status.
+- Stop before any simulator benchmark. Passing is implementation qualification,
+  not a positive method, inference speedup, or closed-loop performance result.
+
+## D-178 — Complete real-checkpoint comparator qualification: PASS
+
+- Date: 2026-09-11. All 40 frozen calls completed on eight consumed observations.
+- Disabled, keep-all-with-scoring and restored native paths match native action-
+  head inputs, normalized actions and unnormalized actions exactly: max error 0.
+- Every compressed query completed 32 original SDPA layers, preserved required
+  positions and produced finite outputs. Final layer retained 59/512 visual
+  tokens; this follows the pinned floor expression, not a measured speedup.
+- Source/checkpoint identities and inventory unchanged. Peak aggregate memory
+  15,679 MiB; elapsed 107.50 seconds. PID 1038935 exited, GPU 0 returned idle.
+- Completed artifacts, hashes, counts and CPU reconciliation verified remotely
+  and locally. No technical stop, retry, simulator episode or training occurred.
+- Next: integrate and test the simulator/controller/frame-history bridge, then
+  freeze a matched development comparison. No automatic benchmark or training.
+- Report: `reports/SPECPRUNE_REAL_QUALIFICATION_RESULT_V1.md` and JSON; immutable
+  evidence `results/specprune-real-qualification-v01/`. No positive method yet.
+
+## D-179 — Integrate the comparator with original episode semantics
+
+- Date: 2026-09-11. User requested continuation after the 40-call qualification.
+- New isolated episode/query bridge preserves original initialization, horizons,
+  eight-action chunks, gripper transforms and every executed simulator step.
+  Only pinned controller mode/replan rules are added. Count discarded actions,
+  replans and all policy queries; do not hide their cost.
+- Pair both evaluator-resized camera images on each control step; bound history
+  to six pairs, reset every episode, and crop current/prior views once per query.
+  Historical pixels affect selection only, never the current vision input.
+  This intentionally uses a consistent policy-input history boundary rather
+  than the upstream comparator's raw-scene/resized-wrist replay combination.
+- Timed dense control must share the direct decoder/head optimization. Include
+  actual selection/preprocessing/transfer overhead and report episode cost.
+- All 65 CPU regressions passed without skips, including 13 new bridge tests.
+  Original qualification sources/checkpoint verified unchanged. Neural wiring
+  mocks do not establish the new bridge's real-model parity.
+- Next: bounded live integration qualification, then frozen matched development
+  success/timing evaluation. No GPU launch, training, install, automatic retry,
+  benchmark outcome, positive-method claim, or GitHub push in this step.
+- Specification: `docs/SPECPRUNE_EPISODE_INTEGRATION_V1.md`. Test log and source
+  hashes: `reports/specprune_episode_integration_v1/`. Sync locally and to TITAN.
+
+## D-180 — Launch bounded live episode integration qualification
+
+- Date: 2026-09-11. User authorized continuation. Owned PID 1069815 started
+  18:21:06 UTC on GPU 0 after fresh aggregate telemetry showed 6 MiB and 0% use.
+- Exactly 56 offline calls, then dense and compressed episodes on the first
+  consumed Spatial condition. Native/dense and reset parity tolerance 1e-6;
+  match original dense episode behavior. Compressed success is not a pass gate.
+- Source/input preflight and 48 targeted comparator CPU tests passed. Preserve
+  the prior 65-test integration evidence and all historical source/results.
+- Frozen config SHA-256:
+  `ae52f5f8d535d5f786a050ce46800dbaff4560f007ee7e88bb0c0dd9bf599de7`.
+  Caps: 512 calls, two episodes, 1,800 seconds, memory below 23,552 MiB,
+  artifacts below 256 MiB. No automatic retry, training or benchmark expansion.
+- Monitor only owned health, counts, bytes and selected aggregate telemetry;
+  reconcile after immutable completion. Preserve technical stops without retry.
+- Output `results/specprune-episode-qualification-v01`; protocol
+  `docs/SPECPRUNE_LIVE_INTEGRATION_CHECK_V1.md`. Stop before matched development.
+
+## D-181 — Preserve live integration reference mismatch; no retry
+
+- Date: 2026-09-11. All 56 offline calls and both episodes executed, 101 calls
+  total. Final reconciliation failed the exact dense-reference tuple check.
+  This is not a GPU-memory failure or evidence against the proposed method.
+- Earlier checks and final source/checkpoint re-verification were reached
+  without error. Integration remains unaccepted: no worker summary was written.
+- Technical elapsed time 178.92 seconds, peak aggregate memory 16,206 MiB.
+  Owned PID 1069815 exited. GPU 0 returned to 6 MiB, 0% utilization.
+- Read only the technical stop/traceback after failure. Preserve and sync all
+  six artifacts, including opaque raw records, without reading task outcomes.
+  No automatic recovery, pruning change, gate relaxation or benchmark launch.
+- Next: narrowly scoped dense-discrepancy diagnosis, then freeze any necessary
+  same-observation trace check. Distinguish integration drift from repeatability
+  before proceeding; the current technical evidence does not identify the cause.
+- Report: `reports/SPECPRUNE_LIVE_INTEGRATION_STOP_V1.md`. No positive-method
+  result, training or GitHub publication. No heartbeat remains to delete.
+
+## D-182 — Diagnose dense discrepancy without opening compressed outcomes
+
+- Date: 2026-09-11. User approved scoped dense diagnosis after the technical stop.
+- Both dense runs succeeded with ten queries; new bridge took 79 steps versus
+  78 previously. Offline dense head/action differences were exactly zero.
+- Confirmed source inconsistency: baseline wrapper explicitly casts actions to
+  float32, whereas the bridge preserves float64 unnormalized actions. The pure
+  checkpoint method and actual fine-tuning statistics reproduce this on CPU.
+- This is a plausible cause, not established causation. The previous mock
+  unnormalization and offline comparison missed the executed-command boundary.
+- Recommend a new precision-aligned wrapper, float64-input command regression
+  tests and a separately frozen dense-only same-observation trace diagnostic.
+  Preserve old files/gates/results. No implementation patch or GPU retry yet.
+- Compressed outcomes remain uninspected. No scientific performance conclusion
+  follows. Evidence: `reports/SPECPRUNE_DENSE_PRECISION_DIAGNOSIS_V1.md` and JSON.
+
+## D-183 — Execute the approved streamlined development plan
+
+- Date: 2026-09-12. User approved reducing unnecessary sequencing and routine
+  approval stops. Develop corrector code while the targeted precision/comparator
+  checks run; retain frozen experiments, split protection and fail-closed checks.
+- Launched dense-only precision trace, PID 1195889, GPU 0 initially 6 MiB/0%.
+  Two episodes with shadow native/bridge queries and byte-exact processed-command
+  comparison. Preserve 78-step reference gate and compare full observation hashes.
+  Config SHA `2fcc0591cb04adeb28aace93745a07411f8b376908bdd79111737dc02f0a693f`.
+- Nine new precision/reconciliation CPU tests and source preflight passed.
+  Limit 112 calls, two episodes, 1,200 seconds, <23,552 MiB, <256 MiB artifacts.
+  No compressed outcome access, no automatic retry, no benchmark expansion.
+- Implemented current-frame corrector and action-only ablation. Seven CPU tests
+  and a default-dimension synthetic optimizer step passed. Default visual model
+  has 5,071,879 parameters; action-only has 3,485,959. These are not trained robot
+  policies or evidence of efficacy. Existing CAC architecture/evidence unchanged.
+- Plan: `docs/STREAMLINED_METHOD_PILOT_PLAN_V1.md`. Continue routine in-scope
+  preparation without requesting approval after each small code/test milestone.
+
+## D-184 — Preserve trace stop; distinguish inference from rollout repeatability
+
+- Date: 2026-09-12. Dense-only trace completed 40 calls. Both controlled episodes
+  succeeded in 79 steps/10 queries, failing the frozen historical 78-step gate.
+- All twenty same-observation pairs had zero head/action discrepancy and exact
+  processed-command bytes. Across resets, hashes matched for queries 1–8 then
+  diverged at 9–10. This implicates rollout/observation repeatability, not a
+  demonstrated conditional inference difference. Precise cause unresolved.
+- No retrospective pass, gate relaxation, automatic retry or compressed outcome
+  inspection. Define prospective repeatability treatment before another run.
+- PID 1195889 exited, 137.38 seconds, peak 16,184 MiB; GPU returned idle.
+  Source/checkpoint re-verification completed. Seven raw artifacts preserved.
+- Corrector foundation also completed: ten CPU tests, full-size synthetic Adam
+  step, visual/action-only implementations and fixed spatial selection. No
+  robot-data training or proposed-method rollout. Report and machine-readable
+  evidence: `reports/CURRENT_FRAME_CORRECTOR_FOUNDATION_V1.*`.
+- Trace report: `reports/DENSE_PRECISION_TRACE_RESULT_V1.md`. No benchmark or
+  positive-method result. No heartbeat was created or remains active.
+
+## D-185 — Approve prospective contemporaneous-reference methodology
+
+- Date: 2026-09-12. User explicitly approved revising the next evaluation to use
+  contemporaneous native controls and measured rollout variability. Historical
+  stopped runs/configurations/gates remain unchanged and unaccepted.
+- New implementation criterion: native and bridge outputs on the same input
+  must retain 1e-6 head/action tolerance and byte-exact processed float32 commands.
+  Independent rollout lengths/hashes are measured, not required to match 78 steps.
+- Design: 40 consumed paired D/S conditions, balanced within-suite arm ordering,
+  plus before/after native controls on one fixed task per suite; 88 episodes.
+  Repeat controls are diagnostics, not extra independent benchmark tasks. Any
+  success discordance is flagged rather than excluded or silently averaged away.
+- Separate fixed coarse two-query timing traces: eight warm-up plus 128 measured
+  calls. Scope limitations and deployment episode costs must both be reported.
+- Protocol: `docs/CONTEMPORANEOUS_REFERENCE_EVALUATION_PROTOCOL_V1.md`.
+  Schedule: `configs/openvla/contemporary_reference_design_v1.json`, explicitly
+  not launch-ready. Worker/analyzer and authenticated execution preflight pending.
+- Corrector/data-pipeline preparation proceeds alongside comparator work. No
+  new GPU execution, training, retries, outcome inspection or GitHub push here.
+
+## D-186 — Implement prospective evaluation; preserve zero-query hook stop
+
+- Date: 2026-09-12 local. Implemented the new schedule/loop/worker/analyzer and
+  lossless, provenance-checked corrector feature records. 86 targeted CPU tests
+  passed on TITAN with CUDA hidden, including 24 new tests.
+- A separately frozen 80-call hook-neutrality preflight was launched on idle
+  GPU 0 after source/checkpoint checks. Config SHA:
+  `e642cffcd44e82e97999b3a24a0b6002f1a800844b8d9c6087dfbcc19166984a`.
+- Owned PID 1247115 stopped before query one because the assistant used the
+  live 224x224 camera helper for raw 128x128 HDF5 images. The error was avoidable
+  with a real input-schema preflight. Passing synthetic tests did not cover it.
+- Zero model queries, zero episodes, zero training; no scientific outcome.
+  21.61 seconds after launch, 14,763 MiB peak aggregate GPU memory. Process
+  exited and selected GPU returned idle. No completed summary or automatic retry.
+- Preserve frozen source/config/evidence. Recovery must be separately versioned,
+  preserve single released preprocessing, and validate actual 128x128 offline
+  versus 224x224 live inputs on CPU before model loading. New attempt needs approval.
+- The 88-episode evaluation remains unlaunched. Feature serialization is not
+  actual hard-compressed GPU feature extraction or corrector training.
+- Report/evidence: `reports/CONTEMPORARY_REFERENCE_IMPLEMENTATION_AND_STOP_V1.*`.
+  Local/server sync only; no GitHub push, heartbeat or unrelated server changes.
+
+## D-187 — Execute one authorized stored-image boundary recovery
+
+- Date: 2026-09-12 local. User approved the correction and one frozen recovery.
+  Failed v01 source/config/evidence remain unchanged and retain their hashes.
+- Added a distinct raw 128x128 offline camera pair. No early resize/crop, no
+  weakening of the live 224x224 guard, no changed model/selection/controller rules.
+- All eight consumed training trajectories and both frozen frames now receive
+  CPU shape/dtype/state checks before model setup. Actual released preprocessing
+  matches the current/history wrapper byte-for-byte for all 16 frames; each view
+  is prepared once. Input observation hashes and CPU preflight report are frozen.
+- 96 targeted CPU tests passed with GPU hidden, including 10 new recovery tests.
+  Source/checkpoint/input execution preflight passed. GPU 0 was 6 MiB/0% idle.
+- Config SHA `e585c3341921f86dd88c2f3af62622a909a7aacc8e230b299a6cf67e3d190b9e`.
+  Worker SHA `99e784f05d71820c285c4bb0481baa88b83aca61b30c57841dc871ca70f95d94`.
+  Dispatch submitted to `results/contemporary-hook-qualification-v02-recovery01`.
+- Unchanged caps: 80 calls, zero episodes, 1,800 seconds, <23,552 MiB aggregate
+  selected-GPU memory, <256 MiB output. No training, auto-retry or GitHub push.
+  Reconcile only after completion, preserve technical stops, and stop before
+  the 88-episode comparison. Passing cannot establish proposed-method efficacy.
+
+## D-188 — Accept completed recovery qualification, not a scientific result
+
+- Date: 2026-09-12 local. The single recovery completed 80 calls, 24 ordered
+  trajectory/arm checks and zero episodes. All hook-neutrality comparisons passed:
+  processed commands were byte-identical and selection metadata/history matched.
+- Independent CPU reconciliation and source/artifact hashes verified. 139.73
+  seconds after initialization, 15,679 MiB peak aggregate GPU memory. Owned PID
+  1251217 exited successfully; selected GPU 0 returned to 6 MiB/0% utilization.
+- The corrected raw/live boundary passed actual preprocessing on all 16 frozen
+  stored frames before model loading. 96 targeted CPU tests passed, 10 newly
+  added for recovery. The old failed v01 source/config/evidence remain unchanged.
+- No training, task-success evaluation, speedup claim or positive-method result.
+  No automatic retry, heartbeat, GitHub push or changes outside the server project.
+- Stopped before the 88-episode comparison. Its next executable freeze must
+  reference this completed qualification and the version-2 analyzer. Do not
+  treat recovery completion as an already-running benchmark or trained corrector.
+- Verified report: `reports/CONTEMPORARY_HOOK_RECOVERY01_RESULT_V1.md` and JSON.
+
+## D-189 — Launch the approved contemporaneous-reference evaluation
+
+- Date: 2026-09-13. User requested continuation after the accepted recovery.
+  Freeze and launch the existing 88-episode design, not another method revision.
+- Config: `configs/openvla/contemporary_reference_evaluation_v2.json`, SHA
+  `afa1bc948880b072b74c9f150e7dbab77fe90468040746c73b82af603f91ec67`.
+  Recovery-qualified worker SHA and v2 analyzer are unchanged. Config authenticates
+  the completed recovery and actual-image CPU preflight. No gate or arm tuning.
+- Evaluation-mode config validation, synthetic v2 analyzer reconciliation and
+  full source/checkpoint/input preflight passed. Prior 96 CPU tests and 80-call
+  real-checkpoint recovery remain the supporting qualification, not task outcomes.
+- Launched owned worker PID 1301012 with one freshly idle GPU 0 (6 MiB/0%).
+  Detached job survives terminal closure. Output: `results/contemporary-reference-v02`.
+- 40 paired D/S conditions plus eight bracketing native controls, 136 timing calls
+  including eight warm-ups. Caps: 6,000 total calls, 88 episodes, six hours,
+  <23,552 MiB aggregate selected-GPU memory, <512 MiB output. No automatic retry.
+- Quiet ten-minute heartbeat `monitor-contemporaneous-reference-v2` tracks owned
+  process/counts/bytes/elapsed/aggregate telemetry only. No partial outcomes.
+  Analyze after authenticated complete 88/136 evidence; sync and report, then
+  delete heartbeat. Stop before compression screening or corrector training.
+- Protocol launch record: `docs/CONTEMPORARY_REFERENCE_LAUNCH_V2.md`.
+  No GitHub push, altered historical evidence, new model download or unrelated
+  server activity. This is comparator characterization, not learned-method efficacy.
+
+## D-190 — Accept completed reference evidence; stop before the proposed-method screen
+
+- Date: 2026-09-13. Run completed all 88 episodes and 136 timing calls without
+  a technical stop. Frozen analyzer and independent local reconciliation passed.
+  Exactly 2,255 model calls; 2,973.42 seconds; 16,506 MiB peak aggregate GPU memory.
+- Dense 39/40; same-checkpoint SpecPrune adaptation 32/40. Eight dense-only and
+  one SpecPrune-only successes. Controlled mean query-time reduction 53.80%,
+  not a reliability-preserving acceleration or exact publication reproduction.
+- Native controls 8/8; 144 same-input shadow comparisons had zero head/action
+  discrepancy and byte-identical commands. No frozen success-repeatability flag,
+  but Spatial and Goal independent native traces differ. Retain that limitation.
+- All data, failures, sources, gates and historical stops preserved. Summary
+  hook flag is mode-dependent, not a newly failed check; authenticated separate
+  24-check hook qualification remains the prerequisite. Documented transparently.
+- Stop before screening 384/256 current tokens or training. The comparator's
+  17.5-point success loss exceeds the approximate 15-point triage target; do not
+  assume the proposed correction is feasible at this setting. No learner tested.
+- Full report `reports/CONTEMPORARY_REFERENCE_RESULT_V2.md`; paired outcomes,
+  controls, descriptive intervals and cost accounting in run `analysis.json`.
+  Sync all evidence/status locally, retire completion heartbeat. No GPU retry,
+  GitHub push, unrelated server access or resource interference.
+
+## D-191 — Authorize the fixed current-frame compression screen
+
+- Date: 2026-09-13. User approved the gentler-compression step after D-190 and
+  requested continuation. New protocol `docs/CURRENT_FRAME_COMPRESSION_SCREEN_V1.md`.
+- Keep 384/256 current tokens with the existing per-camera stratified selection,
+  delete before layer zero, preserve absolute positions and all protected/readout
+  states. No recursive cache, backbone training, adaptive routing or replanning.
+- 53 targeted CPU tests passed, including six new execution tests and three
+  qualification tests. All-token output exactly matches the qualified direct
+  decoder on CPU. Actual smaller sequences at every layer, bidirectional
+  attention, readout preservation and input/state checks passed.
+- Freeze one 112-call real-checkpoint qualification on 16 consumed stored frames:
+  16 same-input dense parity comparisons and 48 hook-neutrality checks. Zero
+  robot episodes. Caps 1,800 seconds, <23,552 MiB, <256 MiB; no automatic retry.
+  Config SHA `d4cb82d508b16a923270d4e979eced5f243b4a902d851b71772bc9702aa862b4`.
+- Only after qualification: executable freeze of 128 episodes and 204 timing
+  calls using all 40 consumed conditions. Predeclared >=10% timing saving and
+  <=15-point success loss for substrate triage; choose 384 if both eligible.
+  These gates do not prove correctability or method efficacy. Stop before training.
+- Preflight pending; no GPU dispatch recorded at this decision. No change to
+  historical sources/results, no GitHub push or unrelated server activity.
+
+## D-192 — Accept fixed-compression qualification and freeze the robot screen
+
+- Date: 2026-09-13. The single authorized GPU qualification completed 112 calls
+  with 16 exact dense comparisons and 48 hook-neutrality checks. Max dense error
+  zero; every compressed layer used its intended original positions and length.
+  Owned PID 1331329 exited; 179.88 seconds, 15,295 MiB peak memory. No retry.
+- CPU analyzer and independent local evidence reconciliation passed. Zero robot
+  episodes or trained-method evidence. Qualification report:
+  `reports/FIXED_COMPRESSION_QUALIFICATION_RESULT_V1.md`.
+- Implemented the approved 128-episode screen and independent CPU analysis.
+  Seven further screen tests passed, totaling 60 targeted tests in this phase.
+  Screen config SHA `cc0100823806caac8770f4bb533dda181985b6224a3275997af0793b19590ac3`.
+- Three arms on all 40 consumed conditions, eight native shadows/controls,
+  204 timing records. Frozen schedule, full action/call accounting, no exclusions.
+  Select only at >=10% mean query saving, <=6/40 lost successes, no baseline or
+  control concern; prefer 384 if both qualify. No positive-method claim from triage.
+- Preflight and fresh GPU check required before dispatch. Stop after screen
+  analysis before training, preserve failures and retire the completion monitor.
+  No source/gate revisions, GPU retries, GitHub push or unrelated server work.
+
+## D-193 — Dispatch the authorized fixed-compression robot screen
+
+- Date: 2026-09-13. Full screen source/checkpoint/actual-input preflight passed.
+  GPU 0 freshly idle at 6 MiB/0%. Single detached worker PID 1333597 dispatched
+  through ssh titan; output `results/fixed-compression-screen-v01`.
+- Frozen config SHA `cc0100823806caac8770f4bb533dda181985b6224a3275997af0793b19590ac3`.
+  The query source is unchanged from the completed 112-call qualification.
+- 128 episodes: 40 per fixed 512/384/256 arm and eight native controls; 204 timing
+  calls (12 warm-up, 192 measured). Caps 7,000 calls, six hours, <23,552 MiB and
+  <512 MiB. Worker repeats actual-input/resource checks before model loading.
+- Quiet heartbeat `monitor-fixed-compression-screen-v1` monitors only owned
+  health/counts/bytes/elapsed and aggregate GPU telemetry. No partial outcomes.
+  Verify immutable counts and hashes before CPU-only analysis; preserve all
+  failures and stop without retry if technical failure occurs.
+- Sync evidence/status, report substrate triage without efficacy claims, delete
+  monitor and stop before data generation or training. No GitHub push, altered
+  historical evidence or unrelated university files/processes/allocations.
+
+## D-194 — Accept completed screen and preserve the predeclared 384-token selection
+
+- Completed 2026-09-13 22:34 UTC; reviewed 2026-09-14 UTC. Exact 128 episodes,
+  204 timing records and 2,846 model calls verified; no technical stop or retry.
+  CPU analyzer and independent local reconciliation passed. 70.38 minutes,
+  16,504 MiB peak memory; owned PID 1333597 exited and GPU returned idle.
+- Dense 39/40; 384 tokens 39/40, 15.32% controlled mean query-time reduction;
+  256 tokens 37/40, 32.50% reduction. All failures and cost records retained.
+  Both settings satisfy frozen triage; gentler-budget preference selects 384.
+- Eight native successes and 144 exact same-input shadow checks; no frozen
+  baseline/control success flag. Spatial independent native traces differed.
+- At 384 the sample has no compression-induced terminal failures to recover.
+  This ceiling must inform the next prospective learning design. Do not change
+  the selection retrospectively, quietly switch budgets, or claim adapter efficacy.
+  A zero-width paired bootstrap interval does not establish zero uncertainty.
+- Report `reports/FIXED_COMPRESSION_SCREEN_RESULT_V1.md`; machine-readable full
+  evidence in `results/fixed-compression-screen-v01/analysis.json`. Sync locally,
+  retire heartbeat and stop before data generation/training. No new GPU launch,
+  gate/source change, GitHub push or unrelated university activity.
+
+## D-195 — Continue with one integrated real-feature/learning qualification
+
+- 2026-09-14. User requests faster, effective continuation. Preserve primary 384
+  selection and recognize its ceiling on the consumed 40-condition screen.
+  No silent budget switch or outcome-driven task selection. A broader prospective
+  development comparison, not offline loss, must test adapter added value.
+- New `docs/CURRENT_FRAME_LEARNING_PILOT_V1.md` and actual feature/deployment
+  implementation. Head features come from the released final linear layer input;
+  all current visual patches bypass the shortened transformer. Backbone frozen.
+- 33 CPU tests and full original-runtime source/actual-input preflight passed.
+  Integrated 80-call, 16-record, 128-update engineering run dispatched on selected
+  GPU 0 with its own fresh idle check. No episodes, automatic retry or GitHub push.
+- Frozen config SHA `b82b4ec88792d9253a7a90bbf7f4bdad90e83b2dcf384d5cdb91df1a84a3c8b5`.
+  Result directory `results/current-frame-learning-qualification-v01`.
+  Stop on technical failure; diagnostic fit models cannot be promoted to research
+  evaluation. Bulk data and evaluation manifests must be frozen before use.
+
+## D-196 — Preserve pre-allocation resource stop; do not retry automatically
+
+- Owned launcher 1446582 failed the fresh idle-GPU check before model loading and
+  result creation: zero inference/training/episode work. Later permitted aggregate
+  GPU-0 telemetry was 1,227 MiB / 96% utilization. No unrelated process was read
+  or changed and no other GPU selected. This is not a method result.
+- Preserve log SHA `9b4fa77680b0293a69a553c5add5b870669183c3e24d87e01f11feab4fe8e1c1`
+  and the frozen config. No automatic retry, threshold relaxation or evidence
+  overwrite. No completed worker summary exists and no analysis is authorized.
+- CPU-only deterministic training-data preparation proceeds without GPU access.
+  Resource availability must be coordinated before another GPU dispatch.
+
+## D-197 — Freeze balanced training-only observation selection
+
+- CPU preparation complete; 36 CPU tests total. Authenticated all 40 dataset
+  sources and actual selected raw camera/state schemas. Independent local checks
+  verify counts, per-task balance, trajectory disjointness and sample hashes.
+- 3,200 fit / 800 validation observations, 80/20 per task, on 1,054 / 271 disjoint
+  selected trajectories. Roles come solely from the original training split;
+  no calibration or locked observations, expert actions or model outcomes opened.
+- Manifest SHA `2fd13ced3e5a9a2b810eb299a5c1667f8c1de3ee2c5487a4a0683e61847d9ae8`.
+  `configs/openvla/current_frame_training_inputs_v1.json`. Salted-hash sampling,
+  stride eight and complete chunks only. No feature/teacher-label generation yet.
+- Existing screen selection and failed pre-allocation launch evidence unchanged.
+  All current owned work has ended; no active GPU run or automatic retry.
+
+## D-198 — User-authorized resource recovery with unchanged scientific configuration
+
+- 2026-09-15 continuation authorized a fresh dispatch. GPU 0 checked idle at
+  6 MiB / 0%, expected UUID. Unchanged config SHA
+  `b82b4ec88792d9253a7a90bbf7f4bdad90e83b2dcf384d5cdb91df1a84a3c8b5`.
+- Prior attempt stopped before result creation/model loading. Its log hash
+  remains `9b4fa77680b0293a69a553c5add5b870669183c3e24d87e01f11feab4fe8e1c1`.
+  New log `reports/current-frame-learning-qualification-v01-resource-recovery01-terminal.log`.
+- Existing absent result path may be created exclusively by the worker. All
+  scientific/technical gates unchanged; no automatic retry after a failure.
+  This dispatch is an engineering qualification, not a closed-loop method test.
+
+## D-199 — Accept integrated feature/optimizer qualification
+
+- Completed 2026-09-15 22:41:43 UTC, owned PID 1544204 exited. Exact 80 calls,
+  16 records and 128 optimizer updates, zero episodes. All feature/zero-init
+  commands matched plain 384, records round-tripped, both real tiny fits reduced
+  L1, and weights reloaded identically. Backbone remained frozen without gradients.
+- 151.81 seconds, 15,343 MiB peak aggregate GPU memory, 102,703,374 bytes before
+  summary. Frozen CPU analysis and independent local reconciliation/hash checks
+  passed. All 25 listed artifacts and the full result directory synced locally.
+- Summary SHA `a0a1ea06d51883692057862cbaf38e81208486e4d717864a64e62ac5b48a2934`;
+  analysis SHA `4809134cf3e680ac356394f62e612b91be9527243307c10a00aefc36189cd5f5`.
+- Engineering-only tiny fits are not research adapters, generalization evidence,
+  or a positive method result. Keep them out of closed-loop research evaluation.
+
+## D-200 — Freeze current-frame feature collection
+
+- New `docs/CURRENT_FRAME_FEATURE_COLLECTION_V1.md`: same 384 selection and
+  immutable 4,000-observation manifest (3,200 fit/800 validation, separate
+  trajectories, all historically training). No calibration/locked observations.
+- Exactly 8,000 sequential dense/student calls, 4,000 numeric records, no optimizer
+  steps or simulator episodes. Caps eight hours, <23,552 MiB aggregate memory,
+  <20 GiB artifacts, >=30 GiB initial free space and >=10 GiB free-space floor.
+- Collection config SHA `e810cb53f7a836d7a4d9dbb95ee406e919355f70a215e6788d5b760b7863a124`.
+  Four new reconciliation tests and nine existing sampling/record tests passed.
+  Full source/raw-input preflight must pass before launch. No automatic retry.
+- Purpose is producing qualified features and dense teacher labels, not fitting
+  a research adapter or establishing success. Freeze matched training settings
+  before using these labels for fitting; validation role cannot enter optimization.
+
+## D-201 — Dispatch collection and monitor to immutable completion
+
+- Full frozen source/raw-observation preflight passed. GPU 0 freshly idle at
+  6 MiB / 0%. Owned PID 1546237 dispatched unchanged collection config
+  `e810cb53f7a836d7a4d9dbb95ee406e919355f70a215e6788d5b760b7863a124`.
+- Run `results/current-frame-feature-collection-v01`. Quiet 10-minute heartbeat
+  `monitor-current-frame-feature-collection` created successfully in this task.
+  No partial label/action/error inspection, duplicate launch or automatic retry.
+- On completion verify exact 8,000 calls/4,000 records and every hash, role and
+  resource gate; run frozen CPU analysis, sync evidence, report and retire monitor.
+  Do not promote diagnostic adapters or change research fitting gates. No push.
+
+## D-202 — Collection completed and CPU analysis passed; finish local integrity sync
+
+- Verified 2026-09-18; worker completed 2026-09-16 01:23:11 UTC. Exact 4,000
+  records and 8,000 calls; 3,200 fit / 800 validation; zero updates/episodes.
+- Frozen CPU analyzer passed all source ancestry, sample membership, role,
+  numerical record, hash and resource checks. 9,215.60 seconds, peak 15,295 MiB,
+  17,092,424,025 bytes before summary, within frozen caps. No retry occurred.
+- Summary SHA `7bde8cd59846d5f5b54c7b9a8302b30ebe74ef13606eb92aeb754465d5b1a8c3`;
+  analysis SHA `ae9ba225dce1d14318b8b7d6c5493657eec307a6142cab2df6f48e27e7eb2273`.
+- Local free space checked before full transfer. Owned local rsync PID 72647
+  (terminal session 16277) copies only this result directory through ssh titan.
+  Transfer/integrity verification is pending; do not represent the partial copy
+  as complete. Keep existing monitoring active until verification and final sync.
+- New independent read-only copy verifier checks all 4,005 listed artifact hashes,
+  exact samples, calls, per-task balance, trajectory separation and resource caps.
+  It must pass on the local copy before acceptance of that copy.
+- Independent server-side reconciliation passed all 4,005 artifact hashes,
+  40-task balance, and disjoint 1,054 fit / 271 validation trajectories. This
+  verifies the server source, not the still-transferring local destination.
+- No efficacy claim, research fitting, robot evaluation or GitHub push. Next
+  research stage requires a prospective executable optimizer/checkpoint freeze.
+
+## D-203 — Accept the verified local collection copy; close collection monitoring
+
+- 2026-09-18: owned rsync PID 72647 / terminal session 16277 exited successfully.
+  Complete run copied to `results/current-frame-feature-collection-v01` in the
+  local `/Users/veddwivedi/Documents/VLA/SAVR` repository, with analysis and log.
+- Independent local checker passed all 4,005 artifact hashes, unique sample
+  identities/order, 3,200 fit / 800 validation roles, 80/20 observations per task,
+  disjoint 1,054/271 trajectory sets, 8,000 calls and frozen resource limits.
+  Summary and analysis hashes match D-202. No action values/losses used for tuning.
+- Local free space after transfer: 57,066,452 KiB. No cleanup, duplicate transfer,
+  GPU retry or new workload. D-202's pending-copy condition is now resolved.
+- Close the collection heartbeat after syncing final status/report. Stop before
+  research fitting until the executable optimizer/checkpoint configuration is
+  frozen. This is a completed dataset, not a positive-method result. No push.
+
+## D-204 — Freeze matched adapter fitting before research updates
+
+- User authorized continuation. Freeze `docs/CURRENT_FRAME_ADAPTER_FIT_V1.md`
+  and config SHA `cafa427d5e5e4a5e5a88f2f93ac85b39b49871b5a689a009f89bc2f6bfc8c031`.
+- Action-only, visual, visual-shuffled: 10 epochs x 200 batches = 2,000 updates
+  per arm, 6,000 total. AdamW 1e-4, zero decay, clip norm 1, batch 16, seed 7,
+  no scheduler/AMP/early stopping. Shared parameters initialized identically;
+  visual control uses exactly the visual initialization and a within-task label
+  derangement. Same sample order/budget; no validation labels enter fitting.
+- Use final checkpoints only, seal all three hashes before decoding validation.
+  Validation is offline development data, not the independent final test. No
+  research labels or losses were examined for optimizer selection before freeze.
+- 29 CPU tests passed in original TITAN runtime, CUDA hidden. Full hash/real-batch
+  preflight must pass before dispatch. One coordinated GPU 0, no backbone model,
+  no simulator, no automatic retry. Output cap 2 GiB, eight-hour cap, aggregate
+  memory <23,552 MiB, own allocated peak <4,096 MiB, free-space floor 10 GiB.
+- Predeclared offline triage requires visual L1 below compression-alone and
+  shuffled control; report action-only comparison regardless. This is not
+  statistical evidence or a robot-performance claim. Stop before separately
+  freezing the closed-loop development evaluation. No GitHub push.
+
+## D-205 — Dispatch matched adapter fitting after complete CPU preflight
+
+- All 4,005 collection hashes, sample/role/resource contracts and actual 16-record
+  fitting batch passed preflight. Zero validation records decoded, no updates.
+- Owned PID 1789748 dispatched `current_frame_adapter_fit_v1.json`, SHA
+  `cafa427d5e5e4a5e5a88f2f93ac85b39b49871b5a689a009f89bc2f6bfc8c031`.
+  Run `results/current-frame-adapter-fit-v01`; log
+  `reports/current-frame-adapter-fit-v01-terminal.log`. The worker rechecks
+  source/data hashes and GPU-0 availability before allocation. No duplicate/retry.
+- Monitor only owned health, update count, artifact size, time and aggregate
+  GPU-0 telemetry. No loss or validation inspection before completed summary.
+- After completion reconcile exact 6,000 updates, 3 final checkpoints and 800
+  validation rows; run CPU-only analysis, sync all evidence and report honest
+  offline triage. Stop before new simulator evaluation. No GitHub push.
+
+## D-206 — Accept completed fitting evidence; offline triage passes, robot result unknown
+
+- Completed 2026-09-18 04:03:14 UTC: 6,000 updates, three final checkpoints and
+  800 validation rows. Zero backbone calls and zero robot episodes. No retry.
+- Frozen analyzer passed; local copy independently verified all 12 listed hashes,
+  every sample/role/update, frozen schedules, all resource caps, save/reload checks,
+  sealing before validation, unchanged post-validation weights and recomputed
+  prediction metrics. CPU reconstruction confirms shared initialization and the
+  identical visual/control initialization. No GPU was used for reconciliation.
+- L1: base 0.03489550550; action-only 0.03332297899; visual 0.03305615107;
+  shuffled visual 0.16091179267. Visual improves 5.271% over base but just 0.801%
+  over action-only. Gripper teacher disagreement is slightly worse: 6.81250%
+  versus base 6.71875%. Report both the favorable and unfavorable diagnostics.
+- Predeclared offline triage passed, not a closed-loop efficacy or significance
+  claim. Single seed and demonstration-distribution validation remain limitations.
+  No new gate, checkpoint selection, extra fitting or outcome-selected population.
+- Runtime 2,356.20 seconds, aggregate peak 907 MiB, own allocated peak 486.01 MiB,
+  62,488,536 bytes before summary. Evidence/checkpoints copied locally and verified.
+- Summary SHA `c863b31bff5ea15f4c93bed21fda430734711642df56aa3e791e9a402c466627`;
+  analysis SHA `d9ed6108eef40d4c4466343e04baea42d58a88ba5e06a44368f89bfcbb64a2de`.
+- Stop before separately freezing the robot development evaluation. Retire the
+  completed fitting heartbeat after final status sync. No GitHub push.
+
+## D-207 — Freeze the matched robot-development comparison after CPU preflight
+
+- User authorized continuation. Compare dense, plain 384 compression, final
+  action-only and final visual adapters, without any new fitting or selection.
+- Freeze 120 development conditions (all 40 tasks, states 1/2/3, seed 7), four
+  policies per condition, plus eight native controls: 488 episodes. Do not pool
+  the old state-0 screen or label historically exposed conditions as holdout.
+- 96 deployed qualification calls precede 272 controlled timing calls and all
+  episodes. Frozen timing counts all adapter/extraction/copy costs. Technical
+  integration failure stops before episode evaluation; no automatic retry.
+- 41 CPU tests and full authenticated CPU preflight passed, including 124 initial
+  state hashes and both trained checkpoints on 16 real batch-one feature inputs.
+- Config SHA `9e3f6728be56821d5da73185f310f1119adda32e2a4fc6e50672cc2e71612c8e`.
+  Criteria and resource caps are fixed before GPU execution. A preliminary signal
+  requires incremental successes versus compression and action-only, retained
+  dense success and at least 10% controlled mean query reduction. It is not a
+  significance/noninferiority or publication claim. Report ceiling limitations.
+- Permit one fresh-idle-checked GPU-0 dispatch. Monitor counts/health only, then
+  reconcile all completed evidence, CPU-analyze, sync and stop. No new training,
+  holdout use, GitHub push, second GPU, unrelated server access or automatic retry.
+
+## D-208 — Dispatch the single frozen robot pilot and attach monitoring
+
+- Owned worker PID 2016420, `results/current-frame-robot-pilot-v01`, log
+  `reports/current-frame-robot-pilot-v01-terminal.log`. Config and criteria remain
+  D-207's exact frozen values. GPU 0 was freshly idle at 6 MiB / 0%, UUID matched.
+- Worker alive during authenticated preflight; no result directory or episode
+  records at the first health check is expected. Do not duplicate the launch.
+- Ten-minute heartbeat `monitor-current-frame-robot-pilot` created successfully.
+  Quiet on routine progress, no partial outcome or timing inspection. On completed
+  immutable evidence require 488 episode, 272 timing and 16 qualification rows,
+  exact artifact hashes and resource accounting before CPU-only frozen analysis.
+- On early failure inspect technical evidence only, preserve/sync and stop without
+  retry. On completion report every arm, distinguish preliminary development from
+  confirmation, sync locally and retire monitoring. No extension or GitHub push.
+- First GPU-active health check on 2026-09-20 00:19 UTC: owned worker running,
+  three qualification records, zero episode records, 15,753 MiB aggregate GPU-0
+  memory. No outcome or qualification fields opened. Continue blind monitoring.
+
+## D-209 — Accept completed robot pilot; no positive visual-adapter development signal
+
+- Completed 2026-09-20 04:38:29 UTC: 488 episodes, 272 timing records, 16 integrated
+  qualifications and 144 native shadow comparisons. No technical stop or retry.
+- Frozen CPU analyzer passed after complete counts/hashes were verified. Independent
+  local, standard-library reconciliation reproduced all success counts, paired
+  gains/losses, timing means and six scientific criteria; all nine evidence hashes
+  matched. Full evidence and terminal log copied locally without deletion.
+- Successes: dense 120/120, compression 117/120, action-only 118/120, visual 117/120.
+  Visual gained two and lost two versus compression. No net learned visual benefit.
+  The action-only one-success difference is descriptive, not confirmation.
+- Visual controlled mean query time 1,019.80 ms versus dense 1,201.22 ms (15.10%
+  reduction). Compression alone 1,017.60 ms. Attribute the speed gain to compression,
+  not the correction model. No success-only timing or favorable-suite selection.
+- Baseline, per-suite loss and speed criteria passed. Incremental success over
+  compression, advantage over action-only and dense retention criteria failed.
+  Keep all gates unchanged. Positive-development and paper-ready decisions false.
+- Native controls 8/8; exact independent traces differed in three of four suites,
+  despite passing all same-observation shadows. Preserve this rollout limitation.
+- 10,120 calls, 15,569.69 seconds, 16,598 MiB peak aggregate memory; caps passed.
+  Summary SHA `699de8203703ea508ab5668584ed2d7d52452f53af6dc20a539809a50221588e`;
+  analysis SHA `4ef6ae0873f5c0d24b5caffcd223a9673d067f951080af4d2492da093e4fba70`.
+- Stop before any new evaluation, fitting, retry or GitHub push. Sync status/report
+  and retire the completed monitor. No unrelated university resource access.
+- Evidence/status/report synced and heartbeat `monitor-current-frame-robot-pilot`
+  deletion confirmed. The completed experiment is no longer being monitored.
+
+## D-210 — Correct diagnostic interpretation and preserve OpenCode continuation
+
+- Recorded 2026-09-21 UTC. User requested continued work plus a comprehensive
+  local Markdown handoff before Codex usage runs low. `OPENCODE_HANDOFF.md`
+  records results, architecture, evidence identities, safety, workflow and next
+  decision in the actual `/Users/veddwivedi/Documents/VLA/SAVR` repository.
+- A read-only audit found the offline gripper metric uses threshold zero instead
+  of the official execution boundary 0.5. With float32/tie semantics, disagreement
+  is compression 331/6400, action-only 330/6400, visual 330/6400, shuffled 1963/6400.
+  Earlier executed-gripper-worsening interpretations are superseded by
+  `reports/CURRENT_FRAME_GRIPPER_DIAGNOSTIC_ERRATUM_V1.md`.
+- This is a reporting correction, not a training or robot-execution correction.
+  Preserve frozen code, weights, summaries and all observed robot outcomes.
+  No execution bug explaining the robot result was established; proposed objective
+  or distribution limitations remain hypotheses, not proven causes.
+- A paper need not dominate every metric, but claims must match measured benefits.
+  Plain compression's observed speed/success tradeoff remains distinct from the
+  unproven incremental learned-adapter benefit. No gate changes or selective claims.
+- Continue bounded CPU research and planning; require a new prospective protocol
+  for materially new GPU work. No automatic retry, new fitting/evaluation, holdout
+  access, GitHub push or unrelated university-resource access.
+
+## D-211 — Hold advisor email/draft and assess a matched positive tradeoff claim
+
+- User explicitly chose to resolve contribution and necessary validation before
+  emailing the advisors. No message sent or manuscript begun.
+- `reports/PAPER_CONTRIBUTION_AND_MINIMUM_VALIDATION_V2.md` checks primary
+  literature, local implementation and existing comparator evidence. Novel
+  visual pruning is not established; the frozen visual corrector has no net
+  observed robot advantage. Preserve all measured gains and limitations.
+- Restore the omitted SpecPrune adaptation study, without claiming exact paper
+  reproduction or matched-cost superiority. Fix V1's blanket publication/sample
+  requirements and gripper interpretation by explicit superseding guidance.
+- Recommended next preparation: pinned VLA-Pruner OFT compatibility audit and
+  one proposed matched development comparison before considering broad validation.
+  Four arms/40 consumed conditions is a bounded proposal, not a launch approval
+  or confirmatory sample. Any future experiment requires a complete frozen plan.
+- No new training, GPU use, server access, code/dependency downloads, gate change,
+  manuscript, email or GitHub push. Nine immutable robot artifacts independently
+  verified again. Latest documentation saved locally and not synced to TITAN.

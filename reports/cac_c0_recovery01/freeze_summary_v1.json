@@ -1,0 +1,118 @@
+{
+  "advance": {
+    "authorized": false,
+    "next_phase": "C1",
+    "stop_before_next_phase": true
+  },
+  "authenticated_inputs": {
+    "checkpoint_config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "checkpoint_dataset_statistics.json": "6ec6ef68d0d5bae4cb5f9fc9acb715a22b9f4545e9e9b300d0d88695cd7afec3",
+    "checkpoint_model.safetensors.index.json": "ca8b53fed8133ee2afcd2fc483de8febf7f5bb0f6bcb09f91189772e59e8f659",
+    "checkpoint_preprocessor_config.json": "bd024783fb785cbdfe35b710b621c5e8678d4c157a9ba625675e67d40d1757da",
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "checkpoint_tokenizer.json": "8f5e2869e1807b8bb3c7717a294539c37e9de5d728ad60e31ef57e83cc5ea527",
+    "checkpoint_tokenizer_config.json": "f5f1d3ed015ebb71cf11686ff00bc8e0c25957bbf3952f95312cecc9b168fbea",
+    "dataset_revision": "f13aa24a3da8c43c7225569f28c562979fa0e35a",
+    "libero_git": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "openvla_oft_git": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "p1_query_index.jsonl": "4e455cd031db78aee3803964d90332061c38ff47c7479e93c325e49a4f280e67",
+    "p1_split_manifest.json": "2f0131608bacd74d71df82de07f852fcaec315783f67ba550a663da56b899d56",
+    "p1_trajectory_index.jsonl": "4d5c8829e3070db1ba96af1920a7bdb1e9581af295932fbc7d310cae15c40f8a",
+    "project_git_base": "0a274b6ea0c0748adabe386ffa0d61670c4ece7a",
+    "substrate_profile_config": "072fae8843f9d98ac711daea91d284a202c90eda0cf9c029fd1bba7775ae0c25",
+    "substrate_vectorized_source_helper": "c651abb125a13082049c20a16ea39f235371ae0ee9fe98a5ba146859b33a1e20",
+    "vla_cache_git": "a4909880573868dee2769343d52e793c0341678b"
+  },
+  "counts": {
+    "c2_all_fresh": 240,
+    "c2_exact_repeats": 360,
+    "c2_primary": 3600,
+    "c3_contracts": 13200,
+    "c7_locked_contracts": 2880,
+    "simulator_condition_rows": 2240,
+    "tasks": 40,
+    "trajectory_roles": 2000
+  },
+  "decision": "pass_stop_before_c1",
+  "files": {
+    "c2_contracts_v1.jsonl": {
+      "count": 4200,
+      "semantic_stream_sha256": "338884f4d6737b55aaed48c517f858068a469c0cc53861735a221c1a5674f44f",
+      "sha256": "338884f4d6737b55aaed48c517f858068a469c0cc53861735a221c1a5674f44f"
+    },
+    "c3_contracts_v1.jsonl": {
+      "count": 13200,
+      "semantic_stream_sha256": "8fe91787a4a50bec57fa18edbd9408a13f1a1c1c8726fbe4a176522b6077e779",
+      "sha256": "8fe91787a4a50bec57fa18edbd9408a13f1a1c1c8726fbe4a176522b6077e779"
+    },
+    "c7_locked_contracts_v1.jsonl": {
+      "count": 2880,
+      "semantic_stream_sha256": "578551aa241bdfb6942563949b60195307674e8a58ba2d67df4ed96545dce17f",
+      "sha256": "578551aa241bdfb6942563949b60195307674e8a58ba2d67df4ed96545dce17f"
+    },
+    "power_table_v1.json": {
+      "sha256": "c0ee526ad0cc8865556247dbdc5a0dbddd2bc783ac739cabbf843347cd4a2839"
+    },
+    "simulator_populations_v1.jsonl": {
+      "count": 2240,
+      "semantic_stream_sha256": "f31fd5a0e2f6e7f2abc7fe5c6906f6f646d3927f5768e43ee0005ee9d3a02e41",
+      "sha256": "f31fd5a0e2f6e7f2abc7fe5c6906f6f646d3927f5768e43ee0005ee9d3a02e41"
+    },
+    "trajectory_roles_v1.jsonl": {
+      "count": 2000,
+      "semantic_stream_sha256": "4a400436bbd67185f90114f817452d10d7ffad5278dce4b0ccbae0f73fa5e753",
+      "sha256": "4a400436bbd67185f90114f817452d10d7ffad5278dce4b0ccbae0f73fa5e753"
+    }
+  },
+  "locked_boundaries": {
+    "locked_test_action_values_opened": false,
+    "locked_transition_labels_present": false,
+    "state_ids_10_49_outcomes_opened": false
+  },
+  "model_calls": {
+    "c2": 17640,
+    "c3": 57200,
+    "c7_locked": 12480
+  },
+  "recovery": {
+    "configuration_semantic_sha256": "0c644c3c4da4505b7101b4ef2cccccf27fe45f4e7ff2ee87def107bdf0992b5c",
+    "first_attempt_root_preserved": true,
+    "used": true
+  },
+  "resources": {
+    "downloads": 0,
+    "gpu_used": false,
+    "model_loaded": false,
+    "simulator_used": false,
+    "terminal_outcomes_accessed": false
+  },
+  "schema_version": "cac-c0-freeze-summary-v1",
+  "semantic_sha256": "f4f176bae0ad7a5451b66e64cba546fec84c9443dc0e4726d00bdebbe3a3199b",
+  "status": "completed",
+  "storage_bytes": {
+    "c2": 5799628800,
+    "c3_plus_c7": 22204293120
+  },
+  "transition_shortfalls": [
+    {
+      "availability_by_role_horizon": {
+        "total": 0
+      },
+      "eligible_transition_contracts": 0,
+      "reason": "fewer than eight eligible demonstrated transition contracts",
+      "selected_transition_contracts": 0,
+      "suite": "libero_goal",
+      "task_id": "open_the_middle_drawer_of_the_cabinet"
+    },
+    {
+      "availability_by_role_horizon": {
+        "total": 0
+      },
+      "eligible_transition_contracts": 0,
+      "reason": "fewer than eight eligible demonstrated transition contracts",
+      "selected_transition_contracts": 0,
+      "suite": "libero_goal",
+      "task_id": "push_the_plate_to_the_front_of_the_stove"
+    }
+  ]
+}

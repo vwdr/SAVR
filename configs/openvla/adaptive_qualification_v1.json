@@ -1,0 +1,51 @@
+{
+  "adaptive_zero_tolerance_max": 0.001,
+  "analyzer_sha256": "99c972ecbaed7c1975b0158a7aa7bad747f98656d8885b075b2b730ed438116e",
+  "arms": [
+    "adaptive_75",
+    "adaptive_50"
+  ],
+  "authenticated_files": {
+    "docs/ADAPTIVE_SCREEN_PROTOCOL_V1.md": "1bdfc19fde83113ff2d309a418a345cafa10d991dd6ba833c832cdc1f87752db",
+    "scripts/analyze_adaptive_qualification.py": "99c972ecbaed7c1975b0158a7aa7bad747f98656d8885b075b2b730ed438116e",
+    "scripts/run_adaptive_qualification.py": "c3fc7dcb68c9220d22c87985c6d6a52f3037220741f186b7498093aa99d9f22b",
+    "src/savr/openvla/adaptive_query.py": "0b14a093098ed59429f42d48fbd8cacc949b63d6c257e2e41c878b03ec5b9d94",
+    "src/savr/openvla/vlapruner_adaptive.py": "53c3f9ad38283250cb53209ee46bb41b57b7a9fadfca2cc8f8901226bdd9a151",
+    "tests/openvla/test_adaptive_qualification.py": "70e81370c46ec452c64866f1836b9aebe8736e7cb517f56768ef4a6f4d5ee4f9",
+    "tests/openvla/test_vlapruner_adaptive.py": "c85839bbce578000ab1f540b6f4df2218f4013f6e87a69b7a044bcea7d737973"
+  },
+  "automatic_retry": false,
+  "caps": {
+    "aggregate_memory_mib": 23552,
+    "artifact_bytes": 268435456,
+    "episodes": 0,
+    "model_calls": 256,
+    "seconds": 3600
+  },
+  "fastv_ratios": {
+    "adaptive_50": 0.5,
+    "adaptive_75": 0.25
+  },
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+  },
+  "input_preflight_report": "reports/CONTEMPORARY_RECOVERY01_REAL_INPUT_PREFLIGHT_V1.json",
+  "launch_ready": true,
+  "observation_ids": [
+    "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+    "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+    "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+    "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+    "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+    "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+    "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+    "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae"
+  ],
+  "output_root": "results/adaptive-qualification-v02",
+  "reference_summary": "results/contemporary-reference-v02/worker_summary.json",
+  "reference_summary_sha256": "6c8fc825f55ba2154a48df3ae3171f674e47ebd363e620efa5f929082148326b",
+  "schema_version": "adaptive-qualification-v1",
+  "tolerance": 1e-06,
+  "worker_sha256": "c3fc7dcb68c9220d22c87985c6d6a52f3037220741f186b7498093aa99d9f22b"
+}

@@ -1,0 +1,49 @@
+{
+  "complete": true,
+  "decision": {
+    "eligible_for_development_evaluation": true,
+    "positive_method_result": false,
+    "reason": "offline_triage_pass",
+    "visual_better_than_action_only": true,
+    "visual_relative_l1_reduction": 0.052710353535077914
+  },
+  "metrics": {
+    "action_only_gripper_sign_disagreement": 0.06546875,
+    "action_only_l1": 0.03332297898945399,
+    "base_gripper_sign_disagreement": 0.0671875,
+    "base_l1": 0.034895505500608125,
+    "by_suite": {
+      "libero_10": {
+        "action_only_l1": 0.03184187519364059,
+        "base_l1": 0.0326566757960245,
+        "visual_l1": 0.03178374522831291,
+        "visual_shuffled_l1": 0.1429563019052148
+      },
+      "libero_goal": {
+        "action_only_l1": 0.031389986616559326,
+        "base_l1": 0.03375688694883138,
+        "visual_l1": 0.031123716193251313,
+        "visual_shuffled_l1": 0.1484659794718027
+      },
+      "libero_object": {
+        "action_only_l1": 0.029194285525009037,
+        "base_l1": 0.02995609801495448,
+        "visual_l1": 0.02880849735578522,
+        "visual_shuffled_l1": 0.17874089509248733
+      },
+      "libero_spatial": {
+        "action_only_l1": 0.04086576862260699,
+        "base_l1": 0.043212361242622135,
+        "visual_l1": 0.0405086454981938,
+        "visual_shuffled_l1": 0.17348399419337512
+      }
+    },
+    "visual_gripper_sign_disagreement": 0.068125,
+    "visual_l1": 0.03305615106888581,
+    "visual_shuffled_gripper_sign_disagreement": 0.13890625,
+    "visual_shuffled_l1": 0.16091179266571998
+  },
+  "positive_method_result": false,
+  "summary_sha256": "c863b31bff5ea15f4c93bed21fda430734711642df56aa3e791e9a402c466627",
+  "technical_pass": true
+}

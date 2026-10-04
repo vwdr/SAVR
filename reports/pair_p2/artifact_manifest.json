@@ -1,0 +1,109 @@
+{
+  "files": [
+    {
+      "bytes": 1126,
+      "path": "configs/pair/p2_cpu_v1.json",
+      "sha256": "678def47f438b24cb05da59beba6f4c8275c8adaa6f79aae0d231ca3c0d7ba17"
+    },
+    {
+      "bytes": 1331,
+      "path": "schemas/pair/technical_record.schema.json",
+      "sha256": "5a73de160f17c555a62381b9ee3c1d94343adb50f7d1f58a875778dc7852d2a8"
+    },
+    {
+      "bytes": 6660,
+      "path": "scripts/verify_pair_p2.py",
+      "sha256": "fc88a45be83f3c9b607edb236b3955cf613174cad81bc3801e89325b93ddd7c7"
+    },
+    {
+      "bytes": 148,
+      "path": "src/savr/pair/__init__.py",
+      "sha256": "5174f5d48b933791d19676f940d50fa1803b27281219d56d5937578c5c7fae17"
+    },
+    {
+      "bytes": 5266,
+      "path": "src/savr/pair/calibration.py",
+      "sha256": "1afb1d9c4efc04b38d3165fa4181c170b543cdc89539b9408eda55104ae4fa34"
+    },
+    {
+      "bytes": 8092,
+      "path": "src/savr/pair/features.py",
+      "sha256": "b532c64d1df12781259e97f4369b80c6780535599c41a19973f1dfe7d2bfd3d0"
+    },
+    {
+      "bytes": 10237,
+      "path": "src/savr/pair/interventions.py",
+      "sha256": "cebff313cc659d4034f5c586f4ce8b9b9f104c9806abd99fc86a5ec86dfe5b0e"
+    },
+    {
+      "bytes": 2240,
+      "path": "src/savr/pair/metrics.py",
+      "sha256": "5921b76926b1db0e54757a2f81246672fba4ab284864a27c0a9a35f4dab00047"
+    },
+    {
+      "bytes": 2930,
+      "path": "src/savr/pair/query_alignment.py",
+      "sha256": "15266ea33395e57823631e64e4e939c0a04eb53df75416ef15ca3aaab524edc7"
+    },
+    {
+      "bytes": 3039,
+      "path": "src/savr/pair/records.py",
+      "sha256": "eec84423036ab7594aebf26844514acb59572a2bb4a86f06cf90a30fbc88c0d0"
+    },
+    {
+      "bytes": 11957,
+      "path": "src/savr/pair/router.py",
+      "sha256": "a29836719360f4c2a3b0317519329a7bf3a66af2427c53a7373eb66ac46e833d"
+    },
+    {
+      "bytes": 6143,
+      "path": "src/savr/pair/router_torch.py",
+      "sha256": "e3be7bb1a16d3c5a0c7b399bda9929f36c089edbb8319da078018fef34353f54"
+    },
+    {
+      "bytes": 3911,
+      "path": "src/savr/pair/runtime.py",
+      "sha256": "a21783e9706f729fc71ed32c6a539baf0992857d709e5da1011094930fdd0f19"
+    },
+    {
+      "bytes": 3335,
+      "path": "src/savr/pair/types.py",
+      "sha256": "9306806a6691621a317af7b1b3fa216fbdd94679c100857b3947f75832630356"
+    },
+    {
+      "bytes": 1532,
+      "path": "tests/pair/conftest.py",
+      "sha256": "0ad4cfb7318d60bd4bc7ae3718276707a4eb8a2b201daeaa62cfe021fcf6dfc0"
+    },
+    {
+      "bytes": 5573,
+      "path": "tests/pair/test_features_router_calibration.py",
+      "sha256": "aa43fdd2bf3b109c68c92fbd310178bdf0b547098284679f2e2913d4e00a56d5"
+    },
+    {
+      "bytes": 4988,
+      "path": "tests/pair/test_interventions.py",
+      "sha256": "719f4b7e692e1709de0c969bf0f834653b298b02877672f272a45cee601fbef3"
+    },
+    {
+      "bytes": 2871,
+      "path": "tests/pair/test_query_and_metrics.py",
+      "sha256": "bd5cbc3b22a5cc72c2a309ad52cc310c641d3e15f35fc038eba469a68188df83"
+    },
+    {
+      "bytes": 3073,
+      "path": "tests/pair/test_records_runtime.py",
+      "sha256": "e791577010775c6d449a57c53103ade42ce5fc30c98f338a5cd6276596aaef3d"
+    },
+    {
+      "bytes": 2064,
+      "path": "tests/pair/test_router_torch.py",
+      "sha256": "531d2093f1fcddf535740b64a6b08178d7672554db57b16c7224da320bc02b9d"
+    }
+  ],
+  "project_revision": "0a274b6ea0c0748adabe386ffa0d61670c4ece7a",
+  "run_id": "pair-p2-cpu-synthetic-v01",
+  "schema_version": "pair-p2-artifact-manifest-v1",
+  "semantic_sha256": "9cd16e29f0df1cd173187fdbda36ca0043ff279de2d975d5dcef22aae2e7229d",
+  "total_bytes": 86516
+}

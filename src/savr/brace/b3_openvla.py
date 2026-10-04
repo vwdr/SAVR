@@ -168,6 +168,7 @@ class PreparedQuery:
     prompt_tokens: int
     normalized_proprio: Any
     preprocessed_pixels: Any
+    instruction_token_indices: tuple[int, ...]
 
 
 def prepare_query(
@@ -192,7 +193,13 @@ def prepare_query(
     wrist = processor(prompt, images[1]).to("cuda:0", dtype=torch.bfloat16)
     pixel_values = torch.cat([primary["pixel_values"], wrist["pixel_values"]], dim=1)
     input_ids = primary["input_ids"]
+    original_input_ids = input_ids.clone()
     attention_mask = primary["attention_mask"]
+    from savr.cac.c1 import instruction_token_indices
+
+    instruction_indices = instruction_token_indices(
+        processor.tokenizer, prompt, instruction, original_input_ids
+    )
     if not torch.all(input_ids[:, -1] == 29871):
         input_ids = torch.cat(
             [input_ids, torch.tensor([[29871]], device=input_ids.device, dtype=input_ids.dtype)],
@@ -232,32 +239,20 @@ def prepare_query(
         prompt_tokens=prompt_tokens,
         normalized_proprio=normalized,
         preprocessed_pixels=pixel_values,
+        instruction_token_indices=instruction_indices,
     )
 
 
 def runtime_positions(prepared: PreparedQuery, torch_module: Any) -> dict[str, tuple[int, ...]]:
-    torch = torch_module
-    action_input = tuple(
-        int(index) for index in torch.nonzero(prepared.action_mask[0], as_tuple=False).flatten().tolist()
+    del torch_module
+    from savr.openvla.official_semantics import derive_semantic_runtime_positions
+
+    canonical = derive_semantic_runtime_positions(
+        action_mask=prepared.action_mask,
+        projected_tokens=int(prepared.projected_patches.shape[1]),
+        instruction_token_indices=prepared.instruction_token_indices,
     )
-    action = tuple(513 + index for index in action_input if index > 0)
-    nonaction_input = tuple(
-        index
-        for index in range(1, int(prepared.action_mask.shape[1]) - 1)
-        if index not in action_input
-    )
-    instruction = tuple(513 + index for index in nonaction_input)
-    positions = {
-        "scene": tuple(range(1, 257)),
-        "wrist": tuple(range(257, 513)),
-        "proprio": (513,),
-        "instruction": instruction,
-        "action": action,
-    }
-    complete = set().union(*(set(value) for value in positions.values()))
-    if len(complete) != 590 or min(complete) != 1 or max(complete) != 590:
-        raise B3ProtocolError("B3 runtime position map is incomplete or overlapping")
-    return positions
+    return {"scene": canonical["primary"], **canonical}
 
 
 def dense_or_cached_forward(
@@ -311,8 +306,20 @@ def dense_or_cached_forward(
                 output_hidden_states=True,
                 return_dict=True,
             )
+    from savr.openvla.official_semantics import (
+        cache_fork_active_positions,
+        derive_official_layout,
+        select_official_action_hidden,
+    )
+
     last_hidden = output.hidden_states[-1]
-    hidden = last_hidden[:, -57:-1, :]
+    layout = derive_official_layout(
+        action_mask=prepared.action_mask,
+        projected_tokens=int(prepared.projected_patches.shape[1]),
+        instruction_token_indices=prepared.instruction_token_indices,
+    )
+    active_positions = cache_fork_active_positions(output)
+    hidden = select_official_action_hidden(last_hidden, layout, active_positions)
     normalized = action_head.predict_action(hidden).reshape(8, 7)
     normalized_cpu = normalized.float().cpu().detach().numpy()
     actions = model._unnormalize_actions(normalized_cpu, cfg.unnorm_key)

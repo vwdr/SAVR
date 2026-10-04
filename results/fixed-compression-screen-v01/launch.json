@@ -1,0 +1,3916 @@
+{
+  "config": {
+    "analyzer_sha256": "6837e7a77b885d3e8e3d187d73430e3b66ea97923e8376cf5767ad29d62bc7a6",
+    "authenticated_files": {
+      "scripts/analyze_fixed_compression_screen.py": "6837e7a77b885d3e8e3d187d73430e3b66ea97923e8376cf5767ad29d62bc7a6",
+      "scripts/run_fixed_compression_screen.py": "6d7a77e9a097f5d7ade95b568f100ae6a8eb130c4cb57710663ef737a416cf72",
+      "src/savr/openvla/compression_screen_contract.py": "b53b3aa85a4142a8e702fd0c9d73eae6c761d88af2dc4b9a755cfb755fab617a",
+      "tests/openvla/test_compression_screen.py": "292541a5f7ae8df5ce57e460d57798b55de56838b2bdcccda86e3444cc0edafd"
+    },
+    "automatic_retry": false,
+    "budgets": [
+      512,
+      384,
+      256
+    ],
+    "caps": {
+      "aggregate_memory_mib": 23552,
+      "artifact_bytes": 536870912,
+      "episodes": 128,
+      "model_calls": 7000,
+      "seconds": 21600
+    },
+    "episode_slots": [
+      {
+        "arm": "native",
+        "condition": {
+          "condition_id": "d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "2b5c2c65251463d30f89250b4dc11dcc922b8b876702843f1f82b5e36202dd58",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+          "task_index": 30
+        },
+        "role": "native_before",
+        "slot": 1,
+        "slot_id": "native_before:d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9:native"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "2b5c2c65251463d30f89250b4dc11dcc922b8b876702843f1f82b5e36202dd58",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+          "task_index": 30
+        },
+        "role": "primary",
+        "slot": 2,
+        "slot_id": "primary:d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "2b5c2c65251463d30f89250b4dc11dcc922b8b876702843f1f82b5e36202dd58",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+          "task_index": 30
+        },
+        "role": "primary",
+        "slot": 3,
+        "slot_id": "primary:d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "2b5c2c65251463d30f89250b4dc11dcc922b8b876702843f1f82b5e36202dd58",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+          "task_index": 30
+        },
+        "role": "primary",
+        "slot": 4,
+        "slot_id": "primary:d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9:256"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "2ddf6fb6aea4c18c415794fccf600c6920e7568c6a1c03447248e103d215a027",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "8223ba3a8e4474ea34e8d0b0a816e4c63dddf093524135ab5f66d668db6a1459",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate",
+          "task_index": 31
+        },
+        "role": "primary",
+        "slot": 5,
+        "slot_id": "primary:2ddf6fb6aea4c18c415794fccf600c6920e7568c6a1c03447248e103d215a027:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "2ddf6fb6aea4c18c415794fccf600c6920e7568c6a1c03447248e103d215a027",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "8223ba3a8e4474ea34e8d0b0a816e4c63dddf093524135ab5f66d668db6a1459",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate",
+          "task_index": 31
+        },
+        "role": "primary",
+        "slot": 6,
+        "slot_id": "primary:2ddf6fb6aea4c18c415794fccf600c6920e7568c6a1c03447248e103d215a027:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "2ddf6fb6aea4c18c415794fccf600c6920e7568c6a1c03447248e103d215a027",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "8223ba3a8e4474ea34e8d0b0a816e4c63dddf093524135ab5f66d668db6a1459",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate",
+          "task_index": 31
+        },
+        "role": "primary",
+        "slot": 7,
+        "slot_id": "primary:2ddf6fb6aea4c18c415794fccf600c6920e7568c6a1c03447248e103d215a027:512"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "981d7f86a25ba63cc27fed3268d6f6f5a13657268cadc9293d12ebffc3fbebde",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "a4f58789fe72f916e1ff6988e72ba70e0b0694e88c904d04acb1a695d81db39c",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate",
+          "task_index": 32
+        },
+        "role": "primary",
+        "slot": 8,
+        "slot_id": "primary:981d7f86a25ba63cc27fed3268d6f6f5a13657268cadc9293d12ebffc3fbebde:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "981d7f86a25ba63cc27fed3268d6f6f5a13657268cadc9293d12ebffc3fbebde",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "a4f58789fe72f916e1ff6988e72ba70e0b0694e88c904d04acb1a695d81db39c",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate",
+          "task_index": 32
+        },
+        "role": "primary",
+        "slot": 9,
+        "slot_id": "primary:981d7f86a25ba63cc27fed3268d6f6f5a13657268cadc9293d12ebffc3fbebde:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "981d7f86a25ba63cc27fed3268d6f6f5a13657268cadc9293d12ebffc3fbebde",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "a4f58789fe72f916e1ff6988e72ba70e0b0694e88c904d04acb1a695d81db39c",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate",
+          "task_index": 32
+        },
+        "role": "primary",
+        "slot": 10,
+        "slot_id": "primary:981d7f86a25ba63cc27fed3268d6f6f5a13657268cadc9293d12ebffc3fbebde:384"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "8987c57cff4848d26305364076d84200c29b8a43a5366b84f44b112828d1fcc8",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "ede0f1b6715bc271533a231d6a4b184175048814bfc634473c7de964a0d49ba4",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate",
+          "task_index": 33
+        },
+        "role": "primary",
+        "slot": 11,
+        "slot_id": "primary:8987c57cff4848d26305364076d84200c29b8a43a5366b84f44b112828d1fcc8:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "8987c57cff4848d26305364076d84200c29b8a43a5366b84f44b112828d1fcc8",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "ede0f1b6715bc271533a231d6a4b184175048814bfc634473c7de964a0d49ba4",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate",
+          "task_index": 33
+        },
+        "role": "primary",
+        "slot": 12,
+        "slot_id": "primary:8987c57cff4848d26305364076d84200c29b8a43a5366b84f44b112828d1fcc8:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "8987c57cff4848d26305364076d84200c29b8a43a5366b84f44b112828d1fcc8",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "ede0f1b6715bc271533a231d6a4b184175048814bfc634473c7de964a0d49ba4",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate",
+          "task_index": 33
+        },
+        "role": "primary",
+        "slot": 13,
+        "slot_id": "primary:8987c57cff4848d26305364076d84200c29b8a43a5366b84f44b112828d1fcc8:256"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "477e25c6a1d7ea1aae8cb6565e1de9be77f9a8ee383d55b10ee9aabe7b36d89b",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "523498730e3fb75b18cbb16dba83e619943064d2688b62586c629f3896d5d5d0",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
+          "task_index": 34
+        },
+        "role": "primary",
+        "slot": 14,
+        "slot_id": "primary:477e25c6a1d7ea1aae8cb6565e1de9be77f9a8ee383d55b10ee9aabe7b36d89b:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "477e25c6a1d7ea1aae8cb6565e1de9be77f9a8ee383d55b10ee9aabe7b36d89b",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "523498730e3fb75b18cbb16dba83e619943064d2688b62586c629f3896d5d5d0",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
+          "task_index": 34
+        },
+        "role": "primary",
+        "slot": 15,
+        "slot_id": "primary:477e25c6a1d7ea1aae8cb6565e1de9be77f9a8ee383d55b10ee9aabe7b36d89b:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "477e25c6a1d7ea1aae8cb6565e1de9be77f9a8ee383d55b10ee9aabe7b36d89b",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "523498730e3fb75b18cbb16dba83e619943064d2688b62586c629f3896d5d5d0",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
+          "task_index": 34
+        },
+        "role": "primary",
+        "slot": 16,
+        "slot_id": "primary:477e25c6a1d7ea1aae8cb6565e1de9be77f9a8ee383d55b10ee9aabe7b36d89b:512"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "7e8785d92b33246e7431d50ba97f721a4cb47acddadc7691c3d60bda1049885f",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "6263df8c581e351e74f4f42b1e9a54ea052190436998080741ecab8c9b8113c8",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate",
+          "task_index": 35
+        },
+        "role": "primary",
+        "slot": 17,
+        "slot_id": "primary:7e8785d92b33246e7431d50ba97f721a4cb47acddadc7691c3d60bda1049885f:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "7e8785d92b33246e7431d50ba97f721a4cb47acddadc7691c3d60bda1049885f",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "6263df8c581e351e74f4f42b1e9a54ea052190436998080741ecab8c9b8113c8",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate",
+          "task_index": 35
+        },
+        "role": "primary",
+        "slot": 18,
+        "slot_id": "primary:7e8785d92b33246e7431d50ba97f721a4cb47acddadc7691c3d60bda1049885f:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "7e8785d92b33246e7431d50ba97f721a4cb47acddadc7691c3d60bda1049885f",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "6263df8c581e351e74f4f42b1e9a54ea052190436998080741ecab8c9b8113c8",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate",
+          "task_index": 35
+        },
+        "role": "primary",
+        "slot": 19,
+        "slot_id": "primary:7e8785d92b33246e7431d50ba97f721a4cb47acddadc7691c3d60bda1049885f:384"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "01f642ab927fd89b242e1fd87350208bd160c4f1c220708ebfdc9f52eb7586c0",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "785a345d6e6fd45c4687adba6645f7cb479c8f66051004a235ea24f32cca6c63",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate",
+          "task_index": 36
+        },
+        "role": "primary",
+        "slot": 20,
+        "slot_id": "primary:01f642ab927fd89b242e1fd87350208bd160c4f1c220708ebfdc9f52eb7586c0:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "01f642ab927fd89b242e1fd87350208bd160c4f1c220708ebfdc9f52eb7586c0",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "785a345d6e6fd45c4687adba6645f7cb479c8f66051004a235ea24f32cca6c63",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate",
+          "task_index": 36
+        },
+        "role": "primary",
+        "slot": 21,
+        "slot_id": "primary:01f642ab927fd89b242e1fd87350208bd160c4f1c220708ebfdc9f52eb7586c0:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "01f642ab927fd89b242e1fd87350208bd160c4f1c220708ebfdc9f52eb7586c0",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "785a345d6e6fd45c4687adba6645f7cb479c8f66051004a235ea24f32cca6c63",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate",
+          "task_index": 36
+        },
+        "role": "primary",
+        "slot": 22,
+        "slot_id": "primary:01f642ab927fd89b242e1fd87350208bd160c4f1c220708ebfdc9f52eb7586c0:256"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "bcba2d3f6e692542d61360a23e42c1a96674b4ead02d391da7ac9c47966378a8",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "7ec0a083088cf07acb9eeacd3dbc2956dcbab4e28116ed889cf9dd68806f56b0",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate",
+          "task_index": 37
+        },
+        "role": "primary",
+        "slot": 23,
+        "slot_id": "primary:bcba2d3f6e692542d61360a23e42c1a96674b4ead02d391da7ac9c47966378a8:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "bcba2d3f6e692542d61360a23e42c1a96674b4ead02d391da7ac9c47966378a8",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "7ec0a083088cf07acb9eeacd3dbc2956dcbab4e28116ed889cf9dd68806f56b0",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate",
+          "task_index": 37
+        },
+        "role": "primary",
+        "slot": 24,
+        "slot_id": "primary:bcba2d3f6e692542d61360a23e42c1a96674b4ead02d391da7ac9c47966378a8:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "bcba2d3f6e692542d61360a23e42c1a96674b4ead02d391da7ac9c47966378a8",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "7ec0a083088cf07acb9eeacd3dbc2956dcbab4e28116ed889cf9dd68806f56b0",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate",
+          "task_index": 37
+        },
+        "role": "primary",
+        "slot": 25,
+        "slot_id": "primary:bcba2d3f6e692542d61360a23e42c1a96674b4ead02d391da7ac9c47966378a8:512"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "a87a5bf2f326016af32dc0a6bd499f9251fe6ed67c56c5c1905b5fcca370e4fd",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "547f21c5e8dc54e52dd39308d946ee8e5104efa6f229d4c43f37afe240a49deb",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate",
+          "task_index": 38
+        },
+        "role": "primary",
+        "slot": 26,
+        "slot_id": "primary:a87a5bf2f326016af32dc0a6bd499f9251fe6ed67c56c5c1905b5fcca370e4fd:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "a87a5bf2f326016af32dc0a6bd499f9251fe6ed67c56c5c1905b5fcca370e4fd",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "547f21c5e8dc54e52dd39308d946ee8e5104efa6f229d4c43f37afe240a49deb",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate",
+          "task_index": 38
+        },
+        "role": "primary",
+        "slot": 27,
+        "slot_id": "primary:a87a5bf2f326016af32dc0a6bd499f9251fe6ed67c56c5c1905b5fcca370e4fd:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "a87a5bf2f326016af32dc0a6bd499f9251fe6ed67c56c5c1905b5fcca370e4fd",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "547f21c5e8dc54e52dd39308d946ee8e5104efa6f229d4c43f37afe240a49deb",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate",
+          "task_index": 38
+        },
+        "role": "primary",
+        "slot": 28,
+        "slot_id": "primary:a87a5bf2f326016af32dc0a6bd499f9251fe6ed67c56c5c1905b5fcca370e4fd:384"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "5c8b4f0745e5eba3bdd20499bc315cc84b2730adfd8a3631697e1ce218b56dbd",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "8cf73c1ff69cba32ad9ef1b4626f03d6ec5ba78ad5a2b8bcc1b19a4ab4e629b3",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
+          "task_index": 39
+        },
+        "role": "primary",
+        "slot": 29,
+        "slot_id": "primary:5c8b4f0745e5eba3bdd20499bc315cc84b2730adfd8a3631697e1ce218b56dbd:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "5c8b4f0745e5eba3bdd20499bc315cc84b2730adfd8a3631697e1ce218b56dbd",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "8cf73c1ff69cba32ad9ef1b4626f03d6ec5ba78ad5a2b8bcc1b19a4ab4e629b3",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
+          "task_index": 39
+        },
+        "role": "primary",
+        "slot": 30,
+        "slot_id": "primary:5c8b4f0745e5eba3bdd20499bc315cc84b2730adfd8a3631697e1ce218b56dbd:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "5c8b4f0745e5eba3bdd20499bc315cc84b2730adfd8a3631697e1ce218b56dbd",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "8cf73c1ff69cba32ad9ef1b4626f03d6ec5ba78ad5a2b8bcc1b19a4ab4e629b3",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
+          "task_index": 39
+        },
+        "role": "primary",
+        "slot": 31,
+        "slot_id": "primary:5c8b4f0745e5eba3bdd20499bc315cc84b2730adfd8a3631697e1ce218b56dbd:256"
+      },
+      {
+        "arm": "native",
+        "condition": {
+          "condition_id": "d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "2b5c2c65251463d30f89250b4dc11dcc922b8b876702843f1f82b5e36202dd58",
+          "suite": "libero_spatial",
+          "task_id": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+          "task_index": 30
+        },
+        "role": "native_after",
+        "slot": 32,
+        "slot_id": "native_after:d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9:native"
+      },
+      {
+        "arm": "native",
+        "condition": {
+          "condition_id": "48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "231ab30ce94ce2416840d85d425e4c8af0933ec7369aca14eb0e9d99b81f9580",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+          "task_index": 20
+        },
+        "role": "native_before",
+        "slot": 33,
+        "slot_id": "native_before:48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536:native"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "231ab30ce94ce2416840d85d425e4c8af0933ec7369aca14eb0e9d99b81f9580",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+          "task_index": 20
+        },
+        "role": "primary",
+        "slot": 34,
+        "slot_id": "primary:48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "231ab30ce94ce2416840d85d425e4c8af0933ec7369aca14eb0e9d99b81f9580",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+          "task_index": 20
+        },
+        "role": "primary",
+        "slot": 35,
+        "slot_id": "primary:48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "231ab30ce94ce2416840d85d425e4c8af0933ec7369aca14eb0e9d99b81f9580",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+          "task_index": 20
+        },
+        "role": "primary",
+        "slot": 36,
+        "slot_id": "primary:48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536:512"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "0c95a86eafb6915d2699eb89113ad212afa1dc243ddd91ab718a282181e1c9cb",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "31c937aae96382c0bcdedebffcdc8ac74a9c340fb0d7df26586a8080daa1e32d",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_bbq_sauce_and_place_it_in_the_basket",
+          "task_index": 21
+        },
+        "role": "primary",
+        "slot": 37,
+        "slot_id": "primary:0c95a86eafb6915d2699eb89113ad212afa1dc243ddd91ab718a282181e1c9cb:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "0c95a86eafb6915d2699eb89113ad212afa1dc243ddd91ab718a282181e1c9cb",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "31c937aae96382c0bcdedebffcdc8ac74a9c340fb0d7df26586a8080daa1e32d",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_bbq_sauce_and_place_it_in_the_basket",
+          "task_index": 21
+        },
+        "role": "primary",
+        "slot": 38,
+        "slot_id": "primary:0c95a86eafb6915d2699eb89113ad212afa1dc243ddd91ab718a282181e1c9cb:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "0c95a86eafb6915d2699eb89113ad212afa1dc243ddd91ab718a282181e1c9cb",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "31c937aae96382c0bcdedebffcdc8ac74a9c340fb0d7df26586a8080daa1e32d",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_bbq_sauce_and_place_it_in_the_basket",
+          "task_index": 21
+        },
+        "role": "primary",
+        "slot": 39,
+        "slot_id": "primary:0c95a86eafb6915d2699eb89113ad212afa1dc243ddd91ab718a282181e1c9cb:384"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "cf0df362c363c2869070e3bac72fff59ee3f02f7eedb3da853264d0e05d6db2a",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "9ae8e49f74ebd25bf5281fdf1505408b970fd761cb811415147d080fc45e7aa7",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_butter_and_place_it_in_the_basket",
+          "task_index": 22
+        },
+        "role": "primary",
+        "slot": 40,
+        "slot_id": "primary:cf0df362c363c2869070e3bac72fff59ee3f02f7eedb3da853264d0e05d6db2a:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "cf0df362c363c2869070e3bac72fff59ee3f02f7eedb3da853264d0e05d6db2a",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "9ae8e49f74ebd25bf5281fdf1505408b970fd761cb811415147d080fc45e7aa7",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_butter_and_place_it_in_the_basket",
+          "task_index": 22
+        },
+        "role": "primary",
+        "slot": 41,
+        "slot_id": "primary:cf0df362c363c2869070e3bac72fff59ee3f02f7eedb3da853264d0e05d6db2a:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "cf0df362c363c2869070e3bac72fff59ee3f02f7eedb3da853264d0e05d6db2a",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "9ae8e49f74ebd25bf5281fdf1505408b970fd761cb811415147d080fc45e7aa7",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_butter_and_place_it_in_the_basket",
+          "task_index": 22
+        },
+        "role": "primary",
+        "slot": 42,
+        "slot_id": "primary:cf0df362c363c2869070e3bac72fff59ee3f02f7eedb3da853264d0e05d6db2a:256"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "102eb16989ae82581fd3a5e45d0b5e751bd54513c79e8d9300e5c2c6c0f84c84",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "0c87f7fdd4ab2a095808d8410562fb7336615d90ea67ad7665741b695a3084c4",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_chocolate_pudding_and_place_it_in_the_basket",
+          "task_index": 23
+        },
+        "role": "primary",
+        "slot": 43,
+        "slot_id": "primary:102eb16989ae82581fd3a5e45d0b5e751bd54513c79e8d9300e5c2c6c0f84c84:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "102eb16989ae82581fd3a5e45d0b5e751bd54513c79e8d9300e5c2c6c0f84c84",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "0c87f7fdd4ab2a095808d8410562fb7336615d90ea67ad7665741b695a3084c4",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_chocolate_pudding_and_place_it_in_the_basket",
+          "task_index": 23
+        },
+        "role": "primary",
+        "slot": 44,
+        "slot_id": "primary:102eb16989ae82581fd3a5e45d0b5e751bd54513c79e8d9300e5c2c6c0f84c84:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "102eb16989ae82581fd3a5e45d0b5e751bd54513c79e8d9300e5c2c6c0f84c84",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "0c87f7fdd4ab2a095808d8410562fb7336615d90ea67ad7665741b695a3084c4",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_chocolate_pudding_and_place_it_in_the_basket",
+          "task_index": 23
+        },
+        "role": "primary",
+        "slot": 45,
+        "slot_id": "primary:102eb16989ae82581fd3a5e45d0b5e751bd54513c79e8d9300e5c2c6c0f84c84:512"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "4e742d333760fda8418d83539409081de21ae57151048fe6f284d59bc97b0ff2",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "21cbf3daa047c1c81bd628a75eb7a0c101aec4586c02a16f3046cdae49044399",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_cream_cheese_and_place_it_in_the_basket",
+          "task_index": 24
+        },
+        "role": "primary",
+        "slot": 46,
+        "slot_id": "primary:4e742d333760fda8418d83539409081de21ae57151048fe6f284d59bc97b0ff2:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "4e742d333760fda8418d83539409081de21ae57151048fe6f284d59bc97b0ff2",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "21cbf3daa047c1c81bd628a75eb7a0c101aec4586c02a16f3046cdae49044399",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_cream_cheese_and_place_it_in_the_basket",
+          "task_index": 24
+        },
+        "role": "primary",
+        "slot": 47,
+        "slot_id": "primary:4e742d333760fda8418d83539409081de21ae57151048fe6f284d59bc97b0ff2:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "4e742d333760fda8418d83539409081de21ae57151048fe6f284d59bc97b0ff2",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "21cbf3daa047c1c81bd628a75eb7a0c101aec4586c02a16f3046cdae49044399",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_cream_cheese_and_place_it_in_the_basket",
+          "task_index": 24
+        },
+        "role": "primary",
+        "slot": 48,
+        "slot_id": "primary:4e742d333760fda8418d83539409081de21ae57151048fe6f284d59bc97b0ff2:384"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "c789e70e196b2c37a6485f6226aea772a170f31a64cb6f70a11a4a8c5d159a38",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "e26f9a1cad0a16c4e21adf74e6c49e854cf855bebfa7e691b2e7a7379c66cf8b",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_ketchup_and_place_it_in_the_basket",
+          "task_index": 25
+        },
+        "role": "primary",
+        "slot": 49,
+        "slot_id": "primary:c789e70e196b2c37a6485f6226aea772a170f31a64cb6f70a11a4a8c5d159a38:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "c789e70e196b2c37a6485f6226aea772a170f31a64cb6f70a11a4a8c5d159a38",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "e26f9a1cad0a16c4e21adf74e6c49e854cf855bebfa7e691b2e7a7379c66cf8b",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_ketchup_and_place_it_in_the_basket",
+          "task_index": 25
+        },
+        "role": "primary",
+        "slot": 50,
+        "slot_id": "primary:c789e70e196b2c37a6485f6226aea772a170f31a64cb6f70a11a4a8c5d159a38:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "c789e70e196b2c37a6485f6226aea772a170f31a64cb6f70a11a4a8c5d159a38",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "e26f9a1cad0a16c4e21adf74e6c49e854cf855bebfa7e691b2e7a7379c66cf8b",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_ketchup_and_place_it_in_the_basket",
+          "task_index": 25
+        },
+        "role": "primary",
+        "slot": 51,
+        "slot_id": "primary:c789e70e196b2c37a6485f6226aea772a170f31a64cb6f70a11a4a8c5d159a38:256"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "66cafc7caa7af85e93307042881bebb0e7bae2d38306d6714b4dc60f9f1e6786",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "d62880f5639f111a5fce8e8ae7e4161dd0a0aa5e26662ca53b683cd5d35511ab",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_milk_and_place_it_in_the_basket",
+          "task_index": 26
+        },
+        "role": "primary",
+        "slot": 52,
+        "slot_id": "primary:66cafc7caa7af85e93307042881bebb0e7bae2d38306d6714b4dc60f9f1e6786:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "66cafc7caa7af85e93307042881bebb0e7bae2d38306d6714b4dc60f9f1e6786",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "d62880f5639f111a5fce8e8ae7e4161dd0a0aa5e26662ca53b683cd5d35511ab",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_milk_and_place_it_in_the_basket",
+          "task_index": 26
+        },
+        "role": "primary",
+        "slot": 53,
+        "slot_id": "primary:66cafc7caa7af85e93307042881bebb0e7bae2d38306d6714b4dc60f9f1e6786:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "66cafc7caa7af85e93307042881bebb0e7bae2d38306d6714b4dc60f9f1e6786",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "d62880f5639f111a5fce8e8ae7e4161dd0a0aa5e26662ca53b683cd5d35511ab",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_milk_and_place_it_in_the_basket",
+          "task_index": 26
+        },
+        "role": "primary",
+        "slot": 54,
+        "slot_id": "primary:66cafc7caa7af85e93307042881bebb0e7bae2d38306d6714b4dc60f9f1e6786:512"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "1367172aaf3cda51d81537dd4cd4b3e4c4f455f9810ed0539f8e327c817c2abf",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "305c26cbb2250b302d51dbd821ff9a3f47863e8f479e1d064a13d938206570f6",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_orange_juice_and_place_it_in_the_basket",
+          "task_index": 27
+        },
+        "role": "primary",
+        "slot": 55,
+        "slot_id": "primary:1367172aaf3cda51d81537dd4cd4b3e4c4f455f9810ed0539f8e327c817c2abf:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "1367172aaf3cda51d81537dd4cd4b3e4c4f455f9810ed0539f8e327c817c2abf",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "305c26cbb2250b302d51dbd821ff9a3f47863e8f479e1d064a13d938206570f6",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_orange_juice_and_place_it_in_the_basket",
+          "task_index": 27
+        },
+        "role": "primary",
+        "slot": 56,
+        "slot_id": "primary:1367172aaf3cda51d81537dd4cd4b3e4c4f455f9810ed0539f8e327c817c2abf:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "1367172aaf3cda51d81537dd4cd4b3e4c4f455f9810ed0539f8e327c817c2abf",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "305c26cbb2250b302d51dbd821ff9a3f47863e8f479e1d064a13d938206570f6",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_orange_juice_and_place_it_in_the_basket",
+          "task_index": 27
+        },
+        "role": "primary",
+        "slot": 57,
+        "slot_id": "primary:1367172aaf3cda51d81537dd4cd4b3e4c4f455f9810ed0539f8e327c817c2abf:384"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "16fbd28ebedf1400ab94211b28617ed0c0e4a6619b41b2333467e5e5b1e8377a",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "f2aa5c8674dd49a2355ab6fe73f10219d6468847fe90f4378f63faf5e34e4673",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_salad_dressing_and_place_it_in_the_basket",
+          "task_index": 28
+        },
+        "role": "primary",
+        "slot": 58,
+        "slot_id": "primary:16fbd28ebedf1400ab94211b28617ed0c0e4a6619b41b2333467e5e5b1e8377a:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "16fbd28ebedf1400ab94211b28617ed0c0e4a6619b41b2333467e5e5b1e8377a",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "f2aa5c8674dd49a2355ab6fe73f10219d6468847fe90f4378f63faf5e34e4673",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_salad_dressing_and_place_it_in_the_basket",
+          "task_index": 28
+        },
+        "role": "primary",
+        "slot": 59,
+        "slot_id": "primary:16fbd28ebedf1400ab94211b28617ed0c0e4a6619b41b2333467e5e5b1e8377a:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "16fbd28ebedf1400ab94211b28617ed0c0e4a6619b41b2333467e5e5b1e8377a",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "f2aa5c8674dd49a2355ab6fe73f10219d6468847fe90f4378f63faf5e34e4673",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_salad_dressing_and_place_it_in_the_basket",
+          "task_index": 28
+        },
+        "role": "primary",
+        "slot": 60,
+        "slot_id": "primary:16fbd28ebedf1400ab94211b28617ed0c0e4a6619b41b2333467e5e5b1e8377a:256"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "f84036230d9a88021b2e8d102d844e391de66f9e0223c0fd62b3c2ba72bf494d",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "6cea3aab6b7bdfd9c1499b611233b109b90f70f7e1b99fb95666bc45ac173946",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_tomato_sauce_and_place_it_in_the_basket",
+          "task_index": 29
+        },
+        "role": "primary",
+        "slot": 61,
+        "slot_id": "primary:f84036230d9a88021b2e8d102d844e391de66f9e0223c0fd62b3c2ba72bf494d:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "f84036230d9a88021b2e8d102d844e391de66f9e0223c0fd62b3c2ba72bf494d",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "6cea3aab6b7bdfd9c1499b611233b109b90f70f7e1b99fb95666bc45ac173946",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_tomato_sauce_and_place_it_in_the_basket",
+          "task_index": 29
+        },
+        "role": "primary",
+        "slot": 62,
+        "slot_id": "primary:f84036230d9a88021b2e8d102d844e391de66f9e0223c0fd62b3c2ba72bf494d:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "f84036230d9a88021b2e8d102d844e391de66f9e0223c0fd62b3c2ba72bf494d",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "6cea3aab6b7bdfd9c1499b611233b109b90f70f7e1b99fb95666bc45ac173946",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_tomato_sauce_and_place_it_in_the_basket",
+          "task_index": 29
+        },
+        "role": "primary",
+        "slot": 63,
+        "slot_id": "primary:f84036230d9a88021b2e8d102d844e391de66f9e0223c0fd62b3c2ba72bf494d:512"
+      },
+      {
+        "arm": "native",
+        "condition": {
+          "condition_id": "48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "231ab30ce94ce2416840d85d425e4c8af0933ec7369aca14eb0e9d99b81f9580",
+          "suite": "libero_object",
+          "task_id": "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+          "task_index": 20
+        },
+        "role": "native_after",
+        "slot": 64,
+        "slot_id": "native_after:48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536:native"
+      },
+      {
+        "arm": "native",
+        "condition": {
+          "condition_id": "f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "71c77822ba283ff9b8f790b5a1080dec42147766d1c9a55a255ac472211c6715",
+          "suite": "libero_goal",
+          "task_id": "open_the_middle_drawer_of_the_cabinet",
+          "task_index": 10
+        },
+        "role": "native_before",
+        "slot": 65,
+        "slot_id": "native_before:f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf:native"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "71c77822ba283ff9b8f790b5a1080dec42147766d1c9a55a255ac472211c6715",
+          "suite": "libero_goal",
+          "task_id": "open_the_middle_drawer_of_the_cabinet",
+          "task_index": 10
+        },
+        "role": "primary",
+        "slot": 66,
+        "slot_id": "primary:f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "71c77822ba283ff9b8f790b5a1080dec42147766d1c9a55a255ac472211c6715",
+          "suite": "libero_goal",
+          "task_id": "open_the_middle_drawer_of_the_cabinet",
+          "task_index": 10
+        },
+        "role": "primary",
+        "slot": 67,
+        "slot_id": "primary:f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "71c77822ba283ff9b8f790b5a1080dec42147766d1c9a55a255ac472211c6715",
+          "suite": "libero_goal",
+          "task_id": "open_the_middle_drawer_of_the_cabinet",
+          "task_index": 10
+        },
+        "role": "primary",
+        "slot": 68,
+        "slot_id": "primary:f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf:384"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "7fb637b98e47c76f8e20704f1012be67e0eeed0e4be9dcb29e2560748d2643e8",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "f825fc4dfbedf47ed380e8d7022227a9a64781d0a74bbb682e966a5d7e60660f",
+          "suite": "libero_goal",
+          "task_id": "open_the_top_drawer_and_put_the_bowl_inside",
+          "task_index": 11
+        },
+        "role": "primary",
+        "slot": 69,
+        "slot_id": "primary:7fb637b98e47c76f8e20704f1012be67e0eeed0e4be9dcb29e2560748d2643e8:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "7fb637b98e47c76f8e20704f1012be67e0eeed0e4be9dcb29e2560748d2643e8",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "f825fc4dfbedf47ed380e8d7022227a9a64781d0a74bbb682e966a5d7e60660f",
+          "suite": "libero_goal",
+          "task_id": "open_the_top_drawer_and_put_the_bowl_inside",
+          "task_index": 11
+        },
+        "role": "primary",
+        "slot": 70,
+        "slot_id": "primary:7fb637b98e47c76f8e20704f1012be67e0eeed0e4be9dcb29e2560748d2643e8:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "7fb637b98e47c76f8e20704f1012be67e0eeed0e4be9dcb29e2560748d2643e8",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "f825fc4dfbedf47ed380e8d7022227a9a64781d0a74bbb682e966a5d7e60660f",
+          "suite": "libero_goal",
+          "task_id": "open_the_top_drawer_and_put_the_bowl_inside",
+          "task_index": 11
+        },
+        "role": "primary",
+        "slot": 71,
+        "slot_id": "primary:7fb637b98e47c76f8e20704f1012be67e0eeed0e4be9dcb29e2560748d2643e8:256"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "87f1d8ba0fb90a63b66da87b9022bc5ed5bf5e5df573fffe7caa53f7d497916f",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "d10fd57819618b00ad32c78814417774cfc658f67ce893ffe2bce08856ccd6cc",
+          "suite": "libero_goal",
+          "task_id": "push_the_plate_to_the_front_of_the_stove",
+          "task_index": 12
+        },
+        "role": "primary",
+        "slot": 72,
+        "slot_id": "primary:87f1d8ba0fb90a63b66da87b9022bc5ed5bf5e5df573fffe7caa53f7d497916f:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "87f1d8ba0fb90a63b66da87b9022bc5ed5bf5e5df573fffe7caa53f7d497916f",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "d10fd57819618b00ad32c78814417774cfc658f67ce893ffe2bce08856ccd6cc",
+          "suite": "libero_goal",
+          "task_id": "push_the_plate_to_the_front_of_the_stove",
+          "task_index": 12
+        },
+        "role": "primary",
+        "slot": 73,
+        "slot_id": "primary:87f1d8ba0fb90a63b66da87b9022bc5ed5bf5e5df573fffe7caa53f7d497916f:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "87f1d8ba0fb90a63b66da87b9022bc5ed5bf5e5df573fffe7caa53f7d497916f",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "d10fd57819618b00ad32c78814417774cfc658f67ce893ffe2bce08856ccd6cc",
+          "suite": "libero_goal",
+          "task_id": "push_the_plate_to_the_front_of_the_stove",
+          "task_index": 12
+        },
+        "role": "primary",
+        "slot": 74,
+        "slot_id": "primary:87f1d8ba0fb90a63b66da87b9022bc5ed5bf5e5df573fffe7caa53f7d497916f:512"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "6324dae91fc586c01f90c1512dc89898b575fb4be273e8f3d6e473e51d08aa89",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "3263d95296b3c4e341923f011495e37e4c24ab0225627032b9d0a276e628f1a7",
+          "suite": "libero_goal",
+          "task_id": "put_the_bowl_on_the_plate",
+          "task_index": 13
+        },
+        "role": "primary",
+        "slot": 75,
+        "slot_id": "primary:6324dae91fc586c01f90c1512dc89898b575fb4be273e8f3d6e473e51d08aa89:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "6324dae91fc586c01f90c1512dc89898b575fb4be273e8f3d6e473e51d08aa89",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "3263d95296b3c4e341923f011495e37e4c24ab0225627032b9d0a276e628f1a7",
+          "suite": "libero_goal",
+          "task_id": "put_the_bowl_on_the_plate",
+          "task_index": 13
+        },
+        "role": "primary",
+        "slot": 76,
+        "slot_id": "primary:6324dae91fc586c01f90c1512dc89898b575fb4be273e8f3d6e473e51d08aa89:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "6324dae91fc586c01f90c1512dc89898b575fb4be273e8f3d6e473e51d08aa89",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "3263d95296b3c4e341923f011495e37e4c24ab0225627032b9d0a276e628f1a7",
+          "suite": "libero_goal",
+          "task_id": "put_the_bowl_on_the_plate",
+          "task_index": 13
+        },
+        "role": "primary",
+        "slot": 77,
+        "slot_id": "primary:6324dae91fc586c01f90c1512dc89898b575fb4be273e8f3d6e473e51d08aa89:384"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "fd83e0ad2739efa02b9e2e7c50a02861c65fe7eb21d835cbedabda994a272f39",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "8b8307b85f50eefabb952ee0aaf9054d1f14e079b74a5b04d77304be4456bc07",
+          "suite": "libero_goal",
+          "task_id": "put_the_bowl_on_the_stove",
+          "task_index": 14
+        },
+        "role": "primary",
+        "slot": 78,
+        "slot_id": "primary:fd83e0ad2739efa02b9e2e7c50a02861c65fe7eb21d835cbedabda994a272f39:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "fd83e0ad2739efa02b9e2e7c50a02861c65fe7eb21d835cbedabda994a272f39",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "8b8307b85f50eefabb952ee0aaf9054d1f14e079b74a5b04d77304be4456bc07",
+          "suite": "libero_goal",
+          "task_id": "put_the_bowl_on_the_stove",
+          "task_index": 14
+        },
+        "role": "primary",
+        "slot": 79,
+        "slot_id": "primary:fd83e0ad2739efa02b9e2e7c50a02861c65fe7eb21d835cbedabda994a272f39:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "fd83e0ad2739efa02b9e2e7c50a02861c65fe7eb21d835cbedabda994a272f39",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "8b8307b85f50eefabb952ee0aaf9054d1f14e079b74a5b04d77304be4456bc07",
+          "suite": "libero_goal",
+          "task_id": "put_the_bowl_on_the_stove",
+          "task_index": 14
+        },
+        "role": "primary",
+        "slot": 80,
+        "slot_id": "primary:fd83e0ad2739efa02b9e2e7c50a02861c65fe7eb21d835cbedabda994a272f39:256"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "f100a9751761c58d4bba7eeb5595d73560b0d8178011e2f1dc6c94e82573e0ec",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "02eb5038cae65327efb900368f93177c1ffb07eb5d6ed5e9690219b0236ae753",
+          "suite": "libero_goal",
+          "task_id": "put_the_bowl_on_top_of_the_cabinet",
+          "task_index": 15
+        },
+        "role": "primary",
+        "slot": 81,
+        "slot_id": "primary:f100a9751761c58d4bba7eeb5595d73560b0d8178011e2f1dc6c94e82573e0ec:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "f100a9751761c58d4bba7eeb5595d73560b0d8178011e2f1dc6c94e82573e0ec",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "02eb5038cae65327efb900368f93177c1ffb07eb5d6ed5e9690219b0236ae753",
+          "suite": "libero_goal",
+          "task_id": "put_the_bowl_on_top_of_the_cabinet",
+          "task_index": 15
+        },
+        "role": "primary",
+        "slot": 82,
+        "slot_id": "primary:f100a9751761c58d4bba7eeb5595d73560b0d8178011e2f1dc6c94e82573e0ec:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "f100a9751761c58d4bba7eeb5595d73560b0d8178011e2f1dc6c94e82573e0ec",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "02eb5038cae65327efb900368f93177c1ffb07eb5d6ed5e9690219b0236ae753",
+          "suite": "libero_goal",
+          "task_id": "put_the_bowl_on_top_of_the_cabinet",
+          "task_index": 15
+        },
+        "role": "primary",
+        "slot": 83,
+        "slot_id": "primary:f100a9751761c58d4bba7eeb5595d73560b0d8178011e2f1dc6c94e82573e0ec:512"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "7648e1c99087642e267a9978f93f44e987783733657f9af6d0e993ea7f0e9d92",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "c2efd0a2fdc8086b536e38ea3c93c2469cc21fed2aad83f58b40e5747bd857b5",
+          "suite": "libero_goal",
+          "task_id": "put_the_cream_cheese_in_the_bowl",
+          "task_index": 16
+        },
+        "role": "primary",
+        "slot": 84,
+        "slot_id": "primary:7648e1c99087642e267a9978f93f44e987783733657f9af6d0e993ea7f0e9d92:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "7648e1c99087642e267a9978f93f44e987783733657f9af6d0e993ea7f0e9d92",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "c2efd0a2fdc8086b536e38ea3c93c2469cc21fed2aad83f58b40e5747bd857b5",
+          "suite": "libero_goal",
+          "task_id": "put_the_cream_cheese_in_the_bowl",
+          "task_index": 16
+        },
+        "role": "primary",
+        "slot": 85,
+        "slot_id": "primary:7648e1c99087642e267a9978f93f44e987783733657f9af6d0e993ea7f0e9d92:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "7648e1c99087642e267a9978f93f44e987783733657f9af6d0e993ea7f0e9d92",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "c2efd0a2fdc8086b536e38ea3c93c2469cc21fed2aad83f58b40e5747bd857b5",
+          "suite": "libero_goal",
+          "task_id": "put_the_cream_cheese_in_the_bowl",
+          "task_index": 16
+        },
+        "role": "primary",
+        "slot": 86,
+        "slot_id": "primary:7648e1c99087642e267a9978f93f44e987783733657f9af6d0e993ea7f0e9d92:384"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "10ff739060dd2c7f6ee9bc668c5a4ccebce5483eaa2637ac7d78b14c3d0e5c9d",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "801a8cf19c6b9249443852bc3309ec65a57e8429484b6a2e19f5749f24bff451",
+          "suite": "libero_goal",
+          "task_id": "put_the_wine_bottle_on_the_rack",
+          "task_index": 17
+        },
+        "role": "primary",
+        "slot": 87,
+        "slot_id": "primary:10ff739060dd2c7f6ee9bc668c5a4ccebce5483eaa2637ac7d78b14c3d0e5c9d:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "10ff739060dd2c7f6ee9bc668c5a4ccebce5483eaa2637ac7d78b14c3d0e5c9d",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "801a8cf19c6b9249443852bc3309ec65a57e8429484b6a2e19f5749f24bff451",
+          "suite": "libero_goal",
+          "task_id": "put_the_wine_bottle_on_the_rack",
+          "task_index": 17
+        },
+        "role": "primary",
+        "slot": 88,
+        "slot_id": "primary:10ff739060dd2c7f6ee9bc668c5a4ccebce5483eaa2637ac7d78b14c3d0e5c9d:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "10ff739060dd2c7f6ee9bc668c5a4ccebce5483eaa2637ac7d78b14c3d0e5c9d",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "801a8cf19c6b9249443852bc3309ec65a57e8429484b6a2e19f5749f24bff451",
+          "suite": "libero_goal",
+          "task_id": "put_the_wine_bottle_on_the_rack",
+          "task_index": 17
+        },
+        "role": "primary",
+        "slot": 89,
+        "slot_id": "primary:10ff739060dd2c7f6ee9bc668c5a4ccebce5483eaa2637ac7d78b14c3d0e5c9d:256"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "65415cd7bd3c388796395618b91c856918b5aa4d1ba1b37dead030d2e92fd877",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "0e29a8cd1c2adcc52d0eaa48774aea0f32bccbab5b0e55ed383dadee5477a242",
+          "suite": "libero_goal",
+          "task_id": "put_the_wine_bottle_on_top_of_the_cabinet",
+          "task_index": 18
+        },
+        "role": "primary",
+        "slot": 90,
+        "slot_id": "primary:65415cd7bd3c388796395618b91c856918b5aa4d1ba1b37dead030d2e92fd877:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "65415cd7bd3c388796395618b91c856918b5aa4d1ba1b37dead030d2e92fd877",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "0e29a8cd1c2adcc52d0eaa48774aea0f32bccbab5b0e55ed383dadee5477a242",
+          "suite": "libero_goal",
+          "task_id": "put_the_wine_bottle_on_top_of_the_cabinet",
+          "task_index": 18
+        },
+        "role": "primary",
+        "slot": 91,
+        "slot_id": "primary:65415cd7bd3c388796395618b91c856918b5aa4d1ba1b37dead030d2e92fd877:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "65415cd7bd3c388796395618b91c856918b5aa4d1ba1b37dead030d2e92fd877",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "0e29a8cd1c2adcc52d0eaa48774aea0f32bccbab5b0e55ed383dadee5477a242",
+          "suite": "libero_goal",
+          "task_id": "put_the_wine_bottle_on_top_of_the_cabinet",
+          "task_index": 18
+        },
+        "role": "primary",
+        "slot": 92,
+        "slot_id": "primary:65415cd7bd3c388796395618b91c856918b5aa4d1ba1b37dead030d2e92fd877:512"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "244898941a2e55c813b6919b2a4dcaf44800f0bc61e0b03cfdb84a499f5c050e",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "7633ec82be4399e00602b4b5885d4449fe396a0ac13e573228947c211147434f",
+          "suite": "libero_goal",
+          "task_id": "turn_on_the_stove",
+          "task_index": 19
+        },
+        "role": "primary",
+        "slot": 93,
+        "slot_id": "primary:244898941a2e55c813b6919b2a4dcaf44800f0bc61e0b03cfdb84a499f5c050e:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "244898941a2e55c813b6919b2a4dcaf44800f0bc61e0b03cfdb84a499f5c050e",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "7633ec82be4399e00602b4b5885d4449fe396a0ac13e573228947c211147434f",
+          "suite": "libero_goal",
+          "task_id": "turn_on_the_stove",
+          "task_index": 19
+        },
+        "role": "primary",
+        "slot": 94,
+        "slot_id": "primary:244898941a2e55c813b6919b2a4dcaf44800f0bc61e0b03cfdb84a499f5c050e:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "244898941a2e55c813b6919b2a4dcaf44800f0bc61e0b03cfdb84a499f5c050e",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "7633ec82be4399e00602b4b5885d4449fe396a0ac13e573228947c211147434f",
+          "suite": "libero_goal",
+          "task_id": "turn_on_the_stove",
+          "task_index": 19
+        },
+        "role": "primary",
+        "slot": 95,
+        "slot_id": "primary:244898941a2e55c813b6919b2a4dcaf44800f0bc61e0b03cfdb84a499f5c050e:384"
+      },
+      {
+        "arm": "native",
+        "condition": {
+          "condition_id": "f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "71c77822ba283ff9b8f790b5a1080dec42147766d1c9a55a255ac472211c6715",
+          "suite": "libero_goal",
+          "task_id": "open_the_middle_drawer_of_the_cabinet",
+          "task_index": 10
+        },
+        "role": "native_after",
+        "slot": 96,
+        "slot_id": "native_after:f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf:native"
+      },
+      {
+        "arm": "native",
+        "condition": {
+          "condition_id": "6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "856f1695860a601295fdb23946aa367d3f985d0dac824f239cc78e7ba7a8a3a8",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it",
+          "task_index": 0
+        },
+        "role": "native_before",
+        "slot": 97,
+        "slot_id": "native_before:6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c:native"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "856f1695860a601295fdb23946aa367d3f985d0dac824f239cc78e7ba7a8a3a8",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it",
+          "task_index": 0
+        },
+        "role": "primary",
+        "slot": 98,
+        "slot_id": "primary:6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "856f1695860a601295fdb23946aa367d3f985d0dac824f239cc78e7ba7a8a3a8",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it",
+          "task_index": 0
+        },
+        "role": "primary",
+        "slot": 99,
+        "slot_id": "primary:6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "856f1695860a601295fdb23946aa367d3f985d0dac824f239cc78e7ba7a8a3a8",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it",
+          "task_index": 0
+        },
+        "role": "primary",
+        "slot": 100,
+        "slot_id": "primary:6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c:256"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "7fc0e5f21097ab9564715057c39df3e4e80e64654165312018c18f7484348efb",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "733e829bc895363f1ee74c8e9b7d644f402d46a0f3f556f06ad6ed44cbf31845",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it",
+          "task_index": 1
+        },
+        "role": "primary",
+        "slot": 101,
+        "slot_id": "primary:7fc0e5f21097ab9564715057c39df3e4e80e64654165312018c18f7484348efb:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "7fc0e5f21097ab9564715057c39df3e4e80e64654165312018c18f7484348efb",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "733e829bc895363f1ee74c8e9b7d644f402d46a0f3f556f06ad6ed44cbf31845",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it",
+          "task_index": 1
+        },
+        "role": "primary",
+        "slot": 102,
+        "slot_id": "primary:7fc0e5f21097ab9564715057c39df3e4e80e64654165312018c18f7484348efb:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "7fc0e5f21097ab9564715057c39df3e4e80e64654165312018c18f7484348efb",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "733e829bc895363f1ee74c8e9b7d644f402d46a0f3f556f06ad6ed44cbf31845",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it",
+          "task_index": 1
+        },
+        "role": "primary",
+        "slot": 103,
+        "slot_id": "primary:7fc0e5f21097ab9564715057c39df3e4e80e64654165312018c18f7484348efb:512"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "860ae7eb801cdc6de14e60c3e51c1453d404e783df7398686bd455a22b7e9471",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "4bb62dce100be35917f3c5496e9f233ad2c2938e843236ac7ba77909b1845212",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+          "task_index": 2
+        },
+        "role": "primary",
+        "slot": 104,
+        "slot_id": "primary:860ae7eb801cdc6de14e60c3e51c1453d404e783df7398686bd455a22b7e9471:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "860ae7eb801cdc6de14e60c3e51c1453d404e783df7398686bd455a22b7e9471",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "4bb62dce100be35917f3c5496e9f233ad2c2938e843236ac7ba77909b1845212",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+          "task_index": 2
+        },
+        "role": "primary",
+        "slot": 105,
+        "slot_id": "primary:860ae7eb801cdc6de14e60c3e51c1453d404e783df7398686bd455a22b7e9471:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "860ae7eb801cdc6de14e60c3e51c1453d404e783df7398686bd455a22b7e9471",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "4bb62dce100be35917f3c5496e9f233ad2c2938e843236ac7ba77909b1845212",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+          "task_index": 2
+        },
+        "role": "primary",
+        "slot": 106,
+        "slot_id": "primary:860ae7eb801cdc6de14e60c3e51c1453d404e783df7398686bd455a22b7e9471:384"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "852707f1d002fda94f457331dd419cdb7c80c4e2ef74ceed424446d931a81855",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "192020fcd97181744d0c4db5d1f3689418d4932627c8292ce3f978e4d1ad7893",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove",
+          "task_index": 3
+        },
+        "role": "primary",
+        "slot": 107,
+        "slot_id": "primary:852707f1d002fda94f457331dd419cdb7c80c4e2ef74ceed424446d931a81855:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "852707f1d002fda94f457331dd419cdb7c80c4e2ef74ceed424446d931a81855",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "192020fcd97181744d0c4db5d1f3689418d4932627c8292ce3f978e4d1ad7893",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove",
+          "task_index": 3
+        },
+        "role": "primary",
+        "slot": 108,
+        "slot_id": "primary:852707f1d002fda94f457331dd419cdb7c80c4e2ef74ceed424446d931a81855:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "852707f1d002fda94f457331dd419cdb7c80c4e2ef74ceed424446d931a81855",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "192020fcd97181744d0c4db5d1f3689418d4932627c8292ce3f978e4d1ad7893",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove",
+          "task_index": 3
+        },
+        "role": "primary",
+        "slot": 109,
+        "slot_id": "primary:852707f1d002fda94f457331dd419cdb7c80c4e2ef74ceed424446d931a81855:256"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "96932b3ea0435b90d948a2a421c72a52661ea420973b5c366e8ef902b35636a8",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "0966fd3d495f93e3edbef14a5ce9036dd05444b4e5ba331635a17a2114e84eb6",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket",
+          "task_index": 4
+        },
+        "role": "primary",
+        "slot": 110,
+        "slot_id": "primary:96932b3ea0435b90d948a2a421c72a52661ea420973b5c366e8ef902b35636a8:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "96932b3ea0435b90d948a2a421c72a52661ea420973b5c366e8ef902b35636a8",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "0966fd3d495f93e3edbef14a5ce9036dd05444b4e5ba331635a17a2114e84eb6",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket",
+          "task_index": 4
+        },
+        "role": "primary",
+        "slot": 111,
+        "slot_id": "primary:96932b3ea0435b90d948a2a421c72a52661ea420973b5c366e8ef902b35636a8:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "96932b3ea0435b90d948a2a421c72a52661ea420973b5c366e8ef902b35636a8",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "0966fd3d495f93e3edbef14a5ce9036dd05444b4e5ba331635a17a2114e84eb6",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket",
+          "task_index": 4
+        },
+        "role": "primary",
+        "slot": 112,
+        "slot_id": "primary:96932b3ea0435b90d948a2a421c72a52661ea420973b5c366e8ef902b35636a8:512"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "6281ebcbf2e103a8ef9d228e033c681ca3df43c8f56143da5e7514d7e5d05e7a",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "5fd265e39e6b9d484abc6ce1e6d4da74b9a1aeed0973a0dee498c5955611c942",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket",
+          "task_index": 5
+        },
+        "role": "primary",
+        "slot": 113,
+        "slot_id": "primary:6281ebcbf2e103a8ef9d228e033c681ca3df43c8f56143da5e7514d7e5d05e7a:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "6281ebcbf2e103a8ef9d228e033c681ca3df43c8f56143da5e7514d7e5d05e7a",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "5fd265e39e6b9d484abc6ce1e6d4da74b9a1aeed0973a0dee498c5955611c942",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket",
+          "task_index": 5
+        },
+        "role": "primary",
+        "slot": 114,
+        "slot_id": "primary:6281ebcbf2e103a8ef9d228e033c681ca3df43c8f56143da5e7514d7e5d05e7a:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "6281ebcbf2e103a8ef9d228e033c681ca3df43c8f56143da5e7514d7e5d05e7a",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "5fd265e39e6b9d484abc6ce1e6d4da74b9a1aeed0973a0dee498c5955611c942",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket",
+          "task_index": 5
+        },
+        "role": "primary",
+        "slot": 115,
+        "slot_id": "primary:6281ebcbf2e103a8ef9d228e033c681ca3df43c8f56143da5e7514d7e5d05e7a:384"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "704aa8068fa1b6893fa6637d5df5c029d5144c3ee1668eddddf8a420182e30d2",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "0b29fae1c5309b3380e5ab023f90690a926bf45243ac63fa382be6afead0928f",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket",
+          "task_index": 6
+        },
+        "role": "primary",
+        "slot": 116,
+        "slot_id": "primary:704aa8068fa1b6893fa6637d5df5c029d5144c3ee1668eddddf8a420182e30d2:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "704aa8068fa1b6893fa6637d5df5c029d5144c3ee1668eddddf8a420182e30d2",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "0b29fae1c5309b3380e5ab023f90690a926bf45243ac63fa382be6afead0928f",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket",
+          "task_index": 6
+        },
+        "role": "primary",
+        "slot": 117,
+        "slot_id": "primary:704aa8068fa1b6893fa6637d5df5c029d5144c3ee1668eddddf8a420182e30d2:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "704aa8068fa1b6893fa6637d5df5c029d5144c3ee1668eddddf8a420182e30d2",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "0b29fae1c5309b3380e5ab023f90690a926bf45243ac63fa382be6afead0928f",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket",
+          "task_index": 6
+        },
+        "role": "primary",
+        "slot": 118,
+        "slot_id": "primary:704aa8068fa1b6893fa6637d5df5c029d5144c3ee1668eddddf8a420182e30d2:256"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "4cfef28d52be2aeba7dc0004a2c5f61318d27f140d4dc33504a258272ee8bfcf",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "b3dca9604ca18e6403763b8afb6a8aa48ca4287b5ec48ab960b9089921993dbd",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate",
+          "task_index": 7
+        },
+        "role": "primary",
+        "slot": 119,
+        "slot_id": "primary:4cfef28d52be2aeba7dc0004a2c5f61318d27f140d4dc33504a258272ee8bfcf:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "4cfef28d52be2aeba7dc0004a2c5f61318d27f140d4dc33504a258272ee8bfcf",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "b3dca9604ca18e6403763b8afb6a8aa48ca4287b5ec48ab960b9089921993dbd",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate",
+          "task_index": 7
+        },
+        "role": "primary",
+        "slot": 120,
+        "slot_id": "primary:4cfef28d52be2aeba7dc0004a2c5f61318d27f140d4dc33504a258272ee8bfcf:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "4cfef28d52be2aeba7dc0004a2c5f61318d27f140d4dc33504a258272ee8bfcf",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "b3dca9604ca18e6403763b8afb6a8aa48ca4287b5ec48ab960b9089921993dbd",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate",
+          "task_index": 7
+        },
+        "role": "primary",
+        "slot": 121,
+        "slot_id": "primary:4cfef28d52be2aeba7dc0004a2c5f61318d27f140d4dc33504a258272ee8bfcf:512"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "4c43f91d82f1e1c8ba7a0dda0efed474e96854bf410ca364b3a54d0e9f07d154",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "16aa932b439c9863cf2fa14eb3e951715beb5fb1bde8fdfcbae5bd8a3b322207",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate",
+          "task_index": 8
+        },
+        "role": "primary",
+        "slot": 122,
+        "slot_id": "primary:4c43f91d82f1e1c8ba7a0dda0efed474e96854bf410ca364b3a54d0e9f07d154:256"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "4c43f91d82f1e1c8ba7a0dda0efed474e96854bf410ca364b3a54d0e9f07d154",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "16aa932b439c9863cf2fa14eb3e951715beb5fb1bde8fdfcbae5bd8a3b322207",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate",
+          "task_index": 8
+        },
+        "role": "primary",
+        "slot": 123,
+        "slot_id": "primary:4c43f91d82f1e1c8ba7a0dda0efed474e96854bf410ca364b3a54d0e9f07d154:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "4c43f91d82f1e1c8ba7a0dda0efed474e96854bf410ca364b3a54d0e9f07d154",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "16aa932b439c9863cf2fa14eb3e951715beb5fb1bde8fdfcbae5bd8a3b322207",
+          "suite": "libero_10",
+          "task_id": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate",
+          "task_index": 8
+        },
+        "role": "primary",
+        "slot": 124,
+        "slot_id": "primary:4c43f91d82f1e1c8ba7a0dda0efed474e96854bf410ca364b3a54d0e9f07d154:384"
+      },
+      {
+        "arm": "512",
+        "condition": {
+          "condition_id": "ac75880ec5618f3aab655bcf12551f02a48b6f02e61a481f83cbd00142e9de79",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "64b8fdad304c2c46596135f5908aa25915912ef5ab46c18f87a2b04337f4ac2b",
+          "suite": "libero_10",
+          "task_id": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy",
+          "task_index": 9
+        },
+        "role": "primary",
+        "slot": 125,
+        "slot_id": "primary:ac75880ec5618f3aab655bcf12551f02a48b6f02e61a481f83cbd00142e9de79:512"
+      },
+      {
+        "arm": "384",
+        "condition": {
+          "condition_id": "ac75880ec5618f3aab655bcf12551f02a48b6f02e61a481f83cbd00142e9de79",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "64b8fdad304c2c46596135f5908aa25915912ef5ab46c18f87a2b04337f4ac2b",
+          "suite": "libero_10",
+          "task_id": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy",
+          "task_index": 9
+        },
+        "role": "primary",
+        "slot": 126,
+        "slot_id": "primary:ac75880ec5618f3aab655bcf12551f02a48b6f02e61a481f83cbd00142e9de79:384"
+      },
+      {
+        "arm": "256",
+        "condition": {
+          "condition_id": "ac75880ec5618f3aab655bcf12551f02a48b6f02e61a481f83cbd00142e9de79",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "64b8fdad304c2c46596135f5908aa25915912ef5ab46c18f87a2b04337f4ac2b",
+          "suite": "libero_10",
+          "task_id": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy",
+          "task_index": 9
+        },
+        "role": "primary",
+        "slot": 127,
+        "slot_id": "primary:ac75880ec5618f3aab655bcf12551f02a48b6f02e61a481f83cbd00142e9de79:256"
+      },
+      {
+        "arm": "native",
+        "condition": {
+          "condition_id": "6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c",
+          "initial_state_id": 0,
+          "population": "headroom_stage1",
+          "schema_version": "cac-simulator-condition-v1",
+          "seed": 7,
+          "semantic_sha256": "856f1695860a601295fdb23946aa367d3f985d0dac824f239cc78e7ba7a8a3a8",
+          "suite": "libero_10",
+          "task_id": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it",
+          "task_index": 0
+        },
+        "role": "native_after",
+        "slot": 128,
+        "slot_id": "native_after:6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c:native"
+      }
+    ],
+    "gpu": {
+      "index": 0,
+      "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+    },
+    "initial_state_sha256": {
+      "01f642ab927fd89b242e1fd87350208bd160c4f1c220708ebfdc9f52eb7586c0": "36424fa758f0e72399a35cefa285d0658e4b5bd17bfb3e2127f85aa2e0944517",
+      "0c95a86eafb6915d2699eb89113ad212afa1dc243ddd91ab718a282181e1c9cb": "65b4e812d49c1bc043dd16e4226442779ebaaf106dca39030d9a8576460bc091",
+      "102eb16989ae82581fd3a5e45d0b5e751bd54513c79e8d9300e5c2c6c0f84c84": "b50e9e8d6831fdd4481179c1ce2f962065ef508c5d358045cfe9d26cc3547dad",
+      "10ff739060dd2c7f6ee9bc668c5a4ccebce5483eaa2637ac7d78b14c3d0e5c9d": "c12cdf642eb5c7b4fd04e4d3b55870f592770742ee5434ad8f80eda6168c9654",
+      "1367172aaf3cda51d81537dd4cd4b3e4c4f455f9810ed0539f8e327c817c2abf": "c838e04306b82002976ee1b73da8a9d0f2d09cd7e51442e899862c51e19b0da9",
+      "16fbd28ebedf1400ab94211b28617ed0c0e4a6619b41b2333467e5e5b1e8377a": "02feb7104ff3af12f1247c461997f1113686f704fb702cd3280d6bfba56e6f71",
+      "244898941a2e55c813b6919b2a4dcaf44800f0bc61e0b03cfdb84a499f5c050e": "7c961c34d695eb9099bdabaf55dfe7c856665830c84ca2555affd2788d70a8a3",
+      "2ddf6fb6aea4c18c415794fccf600c6920e7568c6a1c03447248e103d215a027": "408c455fb617e5320060d643ef80ec2035d4e98600659cc3deb5a1e85482bf76",
+      "477e25c6a1d7ea1aae8cb6565e1de9be77f9a8ee383d55b10ee9aabe7b36d89b": "aef30979e2ee8c9893c9161c881264362f750a34df952f381e3969a567688451",
+      "48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536": "6cd4976519943bdc84677396a6e2942e9816ae87e56fc72943914e147f9b6e1e",
+      "4c43f91d82f1e1c8ba7a0dda0efed474e96854bf410ca364b3a54d0e9f07d154": "533340bd717874417ec05cd3d626b05c9464795440da917ce21e8a0a6fc50f72",
+      "4cfef28d52be2aeba7dc0004a2c5f61318d27f140d4dc33504a258272ee8bfcf": "4365b3c5a82da7f8818c11ef5fd494c4890c17c4c3e27948dc290a9ac2f08131",
+      "4e742d333760fda8418d83539409081de21ae57151048fe6f284d59bc97b0ff2": "4404ff0ecec75d07dbe02cdb0a6284fb3b24c79f2c164987433f00d3b885948c",
+      "5c8b4f0745e5eba3bdd20499bc315cc84b2730adfd8a3631697e1ce218b56dbd": "885cdd89e3d71824f79e4f0ae4711f9ca04367c0011147cb657ecc32be3f375b",
+      "6281ebcbf2e103a8ef9d228e033c681ca3df43c8f56143da5e7514d7e5d05e7a": "747b653b2ca1feeae8f3bd994880ce743730993ea5ce4bd003623e877f26b3bd",
+      "6324dae91fc586c01f90c1512dc89898b575fb4be273e8f3d6e473e51d08aa89": "66b1883f351c4c374c742516714921b55bd5eca7fd6f0fa8e2e0a86abff19ccd",
+      "65415cd7bd3c388796395618b91c856918b5aa4d1ba1b37dead030d2e92fd877": "c42c3f992ef65b98b14e2f505837a6a31516c00a1afabd0607aa6d70362ca6fd",
+      "66cafc7caa7af85e93307042881bebb0e7bae2d38306d6714b4dc60f9f1e6786": "f0161129a0b12199cbd541c0b406015976bbf13af728ecb767c63c5ca8c8b34b",
+      "6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c": "9ae67aa7e7dd9987ecd1f2930e2b061fb66a414dd94e4b575417356a556cbd90",
+      "704aa8068fa1b6893fa6637d5df5c029d5144c3ee1668eddddf8a420182e30d2": "5abdf8f466f490901dee9f931b32eb181b2928eaa17bb6379742f988581d564a",
+      "7648e1c99087642e267a9978f93f44e987783733657f9af6d0e993ea7f0e9d92": "485e7e27990ed3190e7ef7d9cf4bf2a79fb673410033ced06a99f184b74e9c95",
+      "7e8785d92b33246e7431d50ba97f721a4cb47acddadc7691c3d60bda1049885f": "d116842e01703fbea595511db813a3816c8d9f2302b4e979ebec4f15b7a750a2",
+      "7fb637b98e47c76f8e20704f1012be67e0eeed0e4be9dcb29e2560748d2643e8": "cbedd58789f8211e0c0435637d9c71750d5aa2ae3216b354ec03b6630c8caa78",
+      "7fc0e5f21097ab9564715057c39df3e4e80e64654165312018c18f7484348efb": "ea2ad0a67ceabe915bc4744e8231bf7fe71bddb74ff8c67eae6c821ff82078a4",
+      "852707f1d002fda94f457331dd419cdb7c80c4e2ef74ceed424446d931a81855": "61a34575b44313156895ce73996cf18dd243c396572fd0e1cd476e0e9fbe70af",
+      "860ae7eb801cdc6de14e60c3e51c1453d404e783df7398686bd455a22b7e9471": "ea7db2b727794199cfa1e42f8d924c5841e4af18716a392adf30d5517114c87f",
+      "87f1d8ba0fb90a63b66da87b9022bc5ed5bf5e5df573fffe7caa53f7d497916f": "cea30572c1ece1c5d5a53c64fef51544c3a02dbb6bf6bc06d02d3a03ea719aa7",
+      "8987c57cff4848d26305364076d84200c29b8a43a5366b84f44b112828d1fcc8": "d81530779b15be6bdfe4935a7a802102e3e3883823b29fefd40a2131e50fd515",
+      "96932b3ea0435b90d948a2a421c72a52661ea420973b5c366e8ef902b35636a8": "d02d4d5533fbcab414bfc49e4896182cd40e173dfa6316e39a2b418e902ae826",
+      "981d7f86a25ba63cc27fed3268d6f6f5a13657268cadc9293d12ebffc3fbebde": "2e3f91b350eaef1b23c2d4ee14c513b2158a106bff7ed6c249b58e2cf89367f4",
+      "a87a5bf2f326016af32dc0a6bd499f9251fe6ed67c56c5c1905b5fcca370e4fd": "501105aff4e1897d96cac0d0ee69fc702ad209e317511807e27df8b421ae1f2a",
+      "ac75880ec5618f3aab655bcf12551f02a48b6f02e61a481f83cbd00142e9de79": "407c3d5eb11fd5b33bd2a6dea73a37415a99d7e72f0cc291074de29b1c63c37c",
+      "bcba2d3f6e692542d61360a23e42c1a96674b4ead02d391da7ac9c47966378a8": "63f019944e240d60a5770936f1eaa3853e38bbfeb1c26c987826fb004ed4346c",
+      "c789e70e196b2c37a6485f6226aea772a170f31a64cb6f70a11a4a8c5d159a38": "18c4d582007cfa2a76303af28f67aeab015a8f95fac59ea882ec786c120b8919",
+      "cf0df362c363c2869070e3bac72fff59ee3f02f7eedb3da853264d0e05d6db2a": "bad9bba0fbdf574e67aa4f37c8ec45b157b0f587a4f1c255fef5f0c2c146998d",
+      "d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9": "4e3eaf7a315bc3bafb6db4837c8eef0e5f8aea717782a2a3ea33139392d966ed",
+      "f100a9751761c58d4bba7eeb5595d73560b0d8178011e2f1dc6c94e82573e0ec": "ed35dbd746e6efe630908bc93ea0659cc4c4cd10cd9c1c1ccc336fb2012cb5dd",
+      "f84036230d9a88021b2e8d102d844e391de66f9e0223c0fd62b3c2ba72bf494d": "000a33b33f0beeee61ad6bc3f11f362fd5d9c6d8ecf7a7627575d9ebc775e121",
+      "f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf": "5a8f40221c0b59dfaa1061b36a49d4b10b0b47ffb82a1ac0b10080a2aa466ec4",
+      "fd83e0ad2739efa02b9e2e7c50a02861c65fe7eb21d835cbedabda994a272f39": "5b071f3bb26bf0ce3b866621d8c9037d793aae5d25f9ae686a1d9048c4e56b88"
+    },
+    "launch_ready": true,
+    "observation_ids": [
+      "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+      "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+      "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+      "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+      "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+      "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+      "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+      "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae"
+    ],
+    "output_root": "results/fixed-compression-screen-v01",
+    "qualification_summary": "results/fixed-compression-qualification-v01/worker_summary.json",
+    "qualification_summary_sha256": "ad197c96e75d8c6c753d4c786c924aa49415d5e5632873ff81fcbe9a197ca5a9",
+    "schema_version": "fixed-compression-screen-v1",
+    "timing_slots": [
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 1,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 0,
+        "warmup": true
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 2,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 0,
+        "warmup": true
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 3,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 0,
+        "warmup": true
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 4,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 0,
+        "warmup": true
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 5,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 0,
+        "warmup": true
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 6,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 0,
+        "warmup": true
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 7,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 1,
+        "warmup": true
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 8,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 1,
+        "warmup": true
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 9,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 1,
+        "warmup": true
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 10,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 1,
+        "warmup": true
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 11,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 1,
+        "warmup": true
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 12,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 1,
+        "warmup": true
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 13,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 14,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 15,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 16,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 17,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 18,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 19,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 20,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 21,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 22,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 23,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 24,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 25,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 26,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 27,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 28,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 29,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 30,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 31,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 32,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 33,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 34,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 35,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 36,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 37,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 38,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 39,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 40,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 41,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 42,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 43,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 44,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 45,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 46,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 47,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 48,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 49,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 50,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 51,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 52,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 53,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 54,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 55,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 56,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 57,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 58,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 59,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 60,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 0,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 61,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 62,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 63,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 64,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 65,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 66,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 67,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 68,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 69,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 70,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 71,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 72,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 73,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 74,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 75,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 76,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 77,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 78,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 79,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 80,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 81,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 82,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 83,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 84,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 85,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 86,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 87,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 88,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 89,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 90,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 91,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 92,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 93,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 94,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 95,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 96,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 97,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 98,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 99,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 100,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 101,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 102,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 103,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 104,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 105,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 106,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 107,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 108,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 1,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 109,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 110,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 111,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 112,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 113,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 114,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 115,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 116,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 117,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 118,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 119,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 120,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 121,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 122,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 123,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 124,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 125,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 126,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 127,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 128,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 129,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 130,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 131,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 132,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 133,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 134,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 135,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 136,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 137,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 138,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 139,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 140,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 141,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 142,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 143,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 144,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 145,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 146,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 147,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 148,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 149,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 150,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 151,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 152,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 153,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 154,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 155,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 156,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 2,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 157,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 158,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 159,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 160,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 161,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 162,
+        "observation_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 163,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 164,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 165,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 166,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 167,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 168,
+        "observation_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 169,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 170,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 171,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 172,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 173,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 174,
+        "observation_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 175,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 176,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 177,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 178,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 179,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 180,
+        "observation_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 181,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 182,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 183,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 184,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 185,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 186,
+        "observation_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 187,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 188,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 189,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 190,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 191,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 192,
+        "observation_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 193,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 194,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 195,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 196,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 197,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 198,
+        "observation_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 0,
+        "index": 199,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "384",
+        "frame": 1,
+        "index": 200,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 0,
+        "index": 201,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "256",
+        "frame": 1,
+        "index": 202,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 0,
+        "index": 203,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 3,
+        "warmup": false
+      },
+      {
+        "arm": "512",
+        "frame": 1,
+        "index": 204,
+        "observation_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "round": 3,
+        "warmup": false
+      }
+    ],
+    "tolerance": 1e-06,
+    "triage": {
+      "dense_minimum_successes": 39,
+      "maximum_success_count_loss": 6,
+      "minimum_mean_time_reduction": 0.1,
+      "preference": [
+        384,
+        256
+      ]
+    },
+    "worker_sha256": "6d7a77e9a097f5d7ade95b568f100ae6a8eb130c4cb57710663ef737a416cf72"
+  },
+  "config_sha256": "cc0100823806caac8770f4bb533dda181985b6224a3275997af0793b19590ac3",
+  "initial_gpu": {
+    "memory_mib": 6,
+    "utilization": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+  },
+  "pid": 1333597,
+  "started_at": "2026-09-13T21:23:58.149820+00:00"
+}

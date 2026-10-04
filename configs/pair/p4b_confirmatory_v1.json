@@ -1,0 +1,189 @@
+{
+  "schema_version": "pair-p4b-confirmatory-config-v1",
+  "run_id": "pair-p4b-confirmatory-v01",
+  "model_config": "configs/pair/p3_physical_v03.json",
+  "protocol": "docs/PAIR_P4B_CONFIRMATORY_RELIABILITY_PROTOCOL_V1.md",
+  "protocol_sha256": "92919c6b4ad9fe231745e71f6d8a62d9370788a7373b2b0ab8694636a0091812",
+  "authenticated_inputs": {
+    "p4_semantic_manifest": {
+      "path": "reports/PAIR_P4_SEMANTIC_MANIFEST.json",
+      "sha256": "b75a0c80fcbe4bd1d282f59665057f34019bbba6f91ca73dfa1c57261089501e"
+    },
+    "p4_analysis": {
+      "path": "results/pair-p4-pilot-v02-schedule-recovery01/analysis.json",
+      "sha256": "364f53defb656f941c965639a74a1be3137af2813405861a156a049d3ee50366"
+    },
+    "p4_schedule": {
+      "path": "configs/pair/p4_schedule_v02_recovery01.jsonl",
+      "sha256": "3d5fa8e1667ce30df185ce26bc8b64e84a1f6c30933111199e122b66de2e0f89"
+    },
+    "router_artifact": {
+      "path": "results/pair-p4-pilot-v02-schedule-recovery01/router_artifact.json",
+      "sha256": "98bf953bd7bde33b8e7e43ef8e65256f88438997dca82ad9bc6008fe4f39ba1a"
+    },
+    "router_checkpoint": {
+      "path": "results/pair-p4-pilot-v02-schedule-recovery01/router_checkpoint.json",
+      "sha256": "ec1f83ea76c6977e2401db212e8e5373966ee491eea660d5017ec7ff030b435f"
+    },
+    "router_training_summary": {
+      "path": "results/pair-p4-pilot-v02-schedule-recovery01/router_training_summary.json",
+      "sha256": "a55d7f17f34160a7e93a6f63fd3db6b81a903aaea78ca49c445307ff072ae4eb"
+    },
+    "power_audit": {
+      "path": "reports/PAIR_P4B_DESIGN_AND_POWER_AUDIT.md",
+      "sha256": "e334904eee01be5760d6e06e338c6fc649954ea9e6dea836b63bb0774fe58e23"
+    },
+    "model_config": {
+      "path": "configs/pair/p3_physical_v03.json",
+      "sha256": "c1c81cb5a4f7ae99325d7ebd4ffcc619cf12f0af9ef37ec5b8697b40ed75701b"
+    },
+    "trajectory_index": {
+      "path": "data/pair/index/f13aa24a3da8c43c7225569f28c562979fa0e35a/trajectory_index.jsonl",
+      "sha256": "4d5c8829e3070db1ba96af1920a7bdb1e9581af295932fbc7d310cae15c40f8a",
+      "large_remote_input": true
+    },
+    "split_manifest": {
+      "path": "data/pair/index/f13aa24a3da8c43c7225569f28c562979fa0e35a/split_manifest.json",
+      "sha256": "2f0131608bacd74d71df82de07f852fcaec315783f67ba550a663da56b899d56",
+      "large_remote_input": true
+    }
+  },
+  "population": {
+    "task_count": 40,
+    "suite_count": 4,
+    "structured_split": "calibration",
+    "structured_trajectories_per_task": 6,
+    "structured_trajectory_count": 240,
+    "structured_trajectories_per_suite": 60,
+    "control_split": "train",
+    "control_trajectories_per_task": 1,
+    "control_trajectory_count": 40,
+    "locked_test_trajectory_access": 0,
+    "locked_test_trajectories_preserved": 280,
+    "base_anchor_overlap": 0,
+    "consume_once": true
+  },
+  "schedule": {
+    "seed": 20260901,
+    "instruction_projection_seed": 20260828,
+    "slot_design": [
+      ["all_fresh_control", 4],
+      ["structured", 1],
+      ["structured", 1],
+      ["structured", 2],
+      ["structured", 2],
+      ["structured", 4],
+      ["structured", 4]
+    ],
+    "action_value_access": false,
+    "gripper_stratification": false,
+    "control_split": "train",
+    "structured_split": "calibration",
+    "exclude_p4_schedule": true,
+    "locked_test_use": false,
+    "aligned_start_stride": 8,
+    "exact_repeats_per_suite_horizon_cell": 2
+  },
+  "artifacts": {
+    "schedule": "configs/pair/p4b_schedule_v01.jsonl",
+    "schedule_summary": "configs/pair/p4b_schedule_v01.summary.json",
+    "preflight": "reports/pair_p4b/preflight_v01.json",
+    "launch_manifest": "configs/pair/p4b_launch_v01.json",
+    "run_root": "results/pair-p4b-confirmatory-v01"
+  },
+  "profile": {
+    "profile_id": "D62_BAL_PT1",
+    "base_profile_id": "D62_BAL",
+    "primary_budgets": [48, 96, 144, 192],
+    "wrist_budgets": [32, 64, 96, 128],
+    "protected_primary_tiles": 1,
+    "protected_wrist_tiles": 1
+  },
+  "router": {
+    "artifact_id": "76a28416f57e94a86511f003772c5887417a3914218fd416e7bfb580b6f14519",
+    "checkpoint_sha256": "ec1f83ea76c6977e2401db212e8e5373966ee491eea660d5017ec7ff030b435f",
+    "training_seed": 43,
+    "retraining": false,
+    "proxy_name": "projected_change",
+    "proxy_orientation": -1,
+    "matched_service_rate": 0.70,
+    "selection_cell": "suite_by_horizon",
+    "contracts_per_cell": 20,
+    "served_per_cell": 14
+  },
+  "accounting": {
+    "anchors": 280,
+    "all_fresh_controls": 40,
+    "structured_contracts": 240,
+    "structured_horizon1": 80,
+    "structured_horizon2": 80,
+    "structured_horizon4": 80,
+    "exact_repeats": 24,
+    "intervention_records": 776,
+    "feature_records": 560,
+    "contract_records": 304,
+    "scheduled_model_calls": 1776,
+    "planned_model_calls": 1784
+  },
+  "inference": {
+    "primary_bootstrap_unit": "complete_trajectory_stratified_by_suite_horizon",
+    "task_cluster_sensitivity": true,
+    "bootstrap_replicates": 20000,
+    "bootstrap_seed": 20260902,
+    "confidence": "one_sided_95_percent",
+    "degenerate_value": -1.0,
+    "primary_population": "p4b_only",
+    "p4_p4b_meta_analysis_primary": false,
+    "intersection_union_conjunction": true
+  },
+  "planning": {
+    "sample_sizes": [48, 84, 120, 156, 204, 240],
+    "empirical_replicates": 20000,
+    "empirical_seed": 20260830,
+    "lower_quantile": 0.05,
+    "fisher_null_correlation": 0.15,
+    "fisher_assumed_correlations": [0.3452157598499062, 0.30, 0.275],
+    "fisher_powers": [0.80, 0.90]
+  },
+  "gates": {
+    "repeat_noise_median_absolute_maximum": 0.00001,
+    "repeat_noise_p95_absolute_maximum": 0.0001,
+    "all_fresh_action_max_abs_maximum": 0.0002,
+    "all_fresh_regret_abs_maximum": 0.00001,
+    "single_record_positive_cvar_mass_maximum": 0.20,
+    "spearman_point_minimum": 0.30,
+    "spearman_one_sided_95pct_lower_minimum": 0.15,
+    "cvar90_improvement_point_minimum": 0.15,
+    "cvar90_improvement_one_sided_95pct_lower_minimum": 0.0,
+    "horizon24_cvar_improvement_minimum": 0.10,
+    "peak_gpu_memory_mib_strict_max": 23552
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "model_call_hard_cap": 1900,
+    "wall_seconds": 28800,
+    "artifact_bytes": 4294967296,
+    "downloads": 0,
+    "simulator_outcomes": 0,
+    "automatic_retry": false
+  },
+  "protection": {
+    "scientific_analysis_before_completed_worker_summary": false,
+    "worker_label_access_only_after_frozen_schedule_and_controls": true,
+    "raw_action_arrays_persisted": false,
+    "terminal_outcomes_accessed": false,
+    "simulator_accessed": false,
+    "locked_test_labels_accessed": false,
+    "network_accessed": false,
+    "p4_router_mutation": false,
+    "partial_scientific_monitoring": false
+  },
+  "advance": {
+    "next_phase": "P5",
+    "authorized": false,
+    "stop_before_next_phase": true,
+    "p4c_permitted": false
+  },
+  "semantic_sha256": "ae2e35524d6d745ce54f94ec33c8be76ecf77cb7b3f175275e41417d4301248e"
+}

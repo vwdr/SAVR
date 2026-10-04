@@ -1,0 +1,87 @@
+{
+  "schema_version": "cac-c1-tensor-feasibility-v1",
+  "run_id": "cac-c1-tensor-feasibility-v01-recovery01",
+  "phase": "C1 Recovery 01",
+  "authorization": "User explicitly approved C1 Recovery 01 on 2026-08-31",
+  "protocol": "docs/CACHE_ACTION_CORRECTION_EXECUTION_PROTOCOL_V2.md",
+  "c0_parent": "reports/CAC_C0_REPORT.md",
+  "technical_stop": "reports/CAC_C1_TECHNICAL_STOP_01.md",
+  "source_attempt": "results/cac-c1-tensor-feasibility-v01",
+  "model_config": "configs/pair/p3_physical_v03.json",
+  "input_manifest": "configs/pair/p3_inputs_v1.json",
+  "seed": 20260908,
+  "timing_seed": 20260909,
+  "profile": "D62_BAL_PT1",
+  "schedule": {
+    "warmup_calls": 4,
+    "sidecar_and_allfresh_controls": 4,
+    "hook_control_calls": 8,
+    "recursive_repeat_and_reset_calls": 12,
+    "isolation_calls": 3,
+    "timing_calls": 64,
+    "timing_horizons": [2, 4],
+    "timing_repetitions_per_horizon": 4,
+    "total_calls": 95
+  },
+  "recovery": {
+    "version": 1,
+    "preserve_source_attempt": true,
+    "source_model_calls": 0,
+    "correction": "force inference mode; bound tensor lifetimes; time complete visual-plus-decoder cycles; verify reset/all-fresh/cache isolation; harden asynchronous writes; confine runtime caches; sample aggregate memory; and restore checkpoint metadata before completion",
+    "scientific_settings_changed": false,
+    "automatic_retry": false,
+    "output_root": "results/cac-c1-tensor-feasibility-v01-recovery01"
+  },
+  "authenticated_files": {
+    "configs/cac/c0_freeze_v1.json": "a6ba82461a382f2d03a450301dbd94c14131ec7e4ad80efae85cc29f988eb587",
+    "reports/CAC_C0_REPORT.md": "14289b2a0e25dd8d51bab7a061395a1384ecf54e0895fd08a922f01b4cd61b17",
+    "reports/cac_c0_recovery01/freeze_summary_v1.json": "22cc9cf7f3d17ec26a875e86d69fc1176a3b10e3c1b7792a7d5b37ad19d14ffd",
+    "configs/cac/c1_tensor_feasibility_v1.json": "b70df25844feaaf5cc8d97c9a2430fa20559753794e4f44441496edad850f431",
+    "reports/CAC_C1_TECHNICAL_STOP_01.md": "ec18980d6680f05580135673023cd85c53a57d035e8b9d4a7b84516e7c79f379",
+    "results/cac-c1-tensor-feasibility-v01/technical_stop.json": "79c83fe2791301578d301418fb657a116d4486d3bca88e4d0477c5f715991df7",
+    "results/cac-c1-tensor-feasibility-v01/loader-backups/config.json.back.20260831_101821": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "results/cac-c1-tensor-feasibility-v01/loader-backups/modeling_prismatic.py.back.20260831_101821": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa",
+    "configs/pair/p3_inputs_v1.json": "e3b4064eba73cdfe0f82e4b9c282052e81f19f65b5a4e13d41674fdf45c42262",
+    "configs/pair/p3_physical_v03.json": "c1c81cb5a4f7ae99325d7ebd4ffcc619cf12f0af9ef37ec5b8697b40ed75701b",
+    "docs/CACHE_ACTION_CORRECTION_EXECUTION_PROTOCOL_V2.md": "5b9bc46ea4e2bd0550bd28e5c3c87f74f58aa85e47cb7bd45057a821e005ffbd",
+    "scripts/run_cac_c1_worker.py": "cd19f83f6f4777ab56c139b0d42b0b90b294bd29ef8db6e6943458d6f13a727f",
+    "scripts/preflight_cac_c1.py": "d3d8e00524894311fe916ac9431e0a6329a2bbfe7909c1da48dc4e1d415ad8ab",
+    "src/savr/cac/c1.py": "ca228d3a0fa0f636d4df841b634fcf23549da0adfffb20ce599199579aa9d579",
+    "src/savr/pair/p3_openvla.py": "c8bc4bb89ac3170b0c1c7097d18a5a44078d28d31d036c98a8287049a5b5c4c2",
+    "tests/cac/test_c1.py": "5c819e6986dae7a14ff0d6941aab4018c79ce3d82ff62fd5fa4cb78b3410b84e"
+  },
+  "checkpoint_metadata_sha256": {
+    "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+  },
+  "required_gates": {
+    "dense_and_reset_bypass": "bitwise where architectural, otherwise maximum absolute normalized-action error 1e-6",
+    "source_age_maximum": 4,
+    "gross_h4_complete_cycle_saving_fraction_minimum": 0.08,
+    "peak_aggregate_memory_mib_strict_max": 23552,
+    "nonfinite_values": 0,
+    "adapter_parameters": 5070599,
+    "fixed_numeric_record_bytes": 1380352
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "model_call_hard_cap": 160,
+    "planned_model_calls": 95,
+    "temporary_bytes": 4294967296,
+    "peak_aggregate_memory_mib_strict_max": 23552,
+    "downloads": 0,
+    "training": false,
+    "simulator_outcomes": 0,
+    "protected_outcomes": false,
+    "automatic_retry": false,
+    "wall_seconds": 3600
+  },
+  "advance": {
+    "next_phase": "C1H",
+    "authorized": false,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "0b6bf5496d27d7b8116f2293527ad74184f3c050f7c6f8fc3e258d5cf83b6f28"
+}

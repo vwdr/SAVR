@@ -1,0 +1,66 @@
+{
+  "schema_version": "pair-p3r-vectorized-config-v1",
+  "run_id": "pair-p3r-vectorized-v02-recovery01",
+  "parent_p3_analysis": "results/pair-p3-physical-v03-recovery01/analysis.json",
+  "parent_p3_analysis_sha256": "d8cbaa0ed3a441369bb2df0826faec0d16ef601a94df3c9269faddee036f61d3",
+  "protocol": "docs/PAIR_P3R_TECHNICAL_RECOVERY_01_PROTOCOL.md",
+  "protocol_sha256": "9a8b7e39533ba67eabd8a6296b6df66f4c35c5ff254297b7c50f5fff1f61b356",
+  "model_config": "configs/pair/p3_physical_v03.json",
+  "input_manifest": "configs/pair/p3_inputs_v1.json",
+  "technical_recovery": {
+    "source_run_id": "pair-p3r-vectorized-v01",
+    "technical_stop": "results/pair-p3r-vectorized-v01/technical_stop.json",
+    "technical_stop_sha256": "2d4b34e3171c2190cbd881f2aace3c94c2e014cb7c6e6deed4a9136fca85743b",
+    "source_queries_used": 0,
+    "source_blocks_completed": 0,
+    "authorized_attempts": 1,
+    "runtime_python": "/home/ved/SAVR/envs/vla-cache-compat/bin/python",
+    "absolute_output_root_required": true
+  },
+  "profiles": [
+    "D59_BAL_PT1",
+    "D62_BAL_PT1"
+  ],
+  "horizons": [
+    2,
+    4
+  ],
+  "timed_repetitions_per_profile_horizon": 6,
+  "measurement": {
+    "seed": 20260901,
+    "bootstrap_seed": 20260901,
+    "bootstrap_replicates": 20000,
+    "model_warmup_queries": 4,
+    "technical_control_queries": 4,
+    "equivalence_control_queries": 10,
+    "timed_model_queries": 192,
+    "planned_model_queries": 210,
+    "randomized_paired_arm_order": true,
+    "synchronize_every_measurement": true,
+    "outlier_deletion": false
+  },
+  "gates": {
+    "minimum_service_rate": 0.70,
+    "maximum_total_overhead_fraction": 0.02,
+    "minimum_net_saving_fraction": 0.10,
+    "legacy_vectorized_exact_equivalence": true,
+    "peak_gpu_memory_mib_strict_max": 23552
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "model_query_hard_cap": 220,
+    "wall_seconds": 7200,
+    "artifact_bytes": 1073741824,
+    "downloads": 0,
+    "simulator_outcomes": 0,
+    "protected_outcome_access": false,
+    "automatic_retry": false
+  },
+  "advance": {
+    "next_phase": "P4",
+    "authorized": false,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "49b22736e4679420eac376168ba61e8b3af7a0b6f93618ad6ad9caa9c7ea622a"
+}

@@ -1,0 +1,358 @@
+{
+  "pid": 1247115,
+  "started_at": "2026-09-13T02:23:21.981834+00:00",
+  "config_sha256": "e642cffcd44e82e97999b3a24a0b6002f1a800844b8d9c6087dfbcc19166984a",
+  "artifacts_sha256": {
+    "technical_traceback.log": "0f1105f42d35ba91e51203e1ce54e4f5aa594142bf833668b4c74dc5ae5b3385",
+    "launch.json": "6387b5d7874bf0b804a69636345e2439731662b59eb35733bb37850f9183b05f",
+    "loaded_runtime.json": "9add6ddb6d14f792235c5194435138859d5686c22dc9f8e56c06b31362a20c5f",
+    "technical_stop.json": "4876ce7a1a8448c9b89b4b10c6627c430a8141c5a6c3936f2775f4b11b4fd7a7",
+    "runtime-cache/hf/transformers/version.txt": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+    "runtime-cache/hf/modules/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime-cache/hf/hub/version_diffusers_cache.txt": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+    "runtime-cache/hf/modules/transformers_modules/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime-cache/hf/modules/transformers_modules/openvla-7b-oft-libero-four-suite/configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "runtime-cache/hf/modules/transformers_modules/openvla-7b-oft-libero-four-suite/processing_prismatic.py": "06563586bbc73d36501a14a231a3174904ede830d33174d0c625ece8e931ef1e",
+    "runtime-cache/hf/modules/transformers_modules/openvla-7b-oft-libero-four-suite/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runtime-cache/hf/modules/transformers_modules/openvla-7b-oft-libero-four-suite/modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+  },
+  "stop": {
+    "automatic_retry": false,
+    "complete": false,
+    "elapsed_seconds": 21.61167542077601,
+    "error": "expected evaluator-resized uint8 RGB camera pair",
+    "error_type": "ValueError",
+    "model_queries": 0,
+    "peak_aggregate_gpu_memory_mib": 14763
+  },
+  "worker_summary_exists": false,
+  "total_artifact_bytes": 80066,
+  "schema_version": "contemporary-implementation-and-hook-stop-v1",
+  "cpu_tests": {
+    "targeted_tests_passed": 86,
+    "new_tests": 24,
+    "skipped_on_titan": 0,
+    "gpu_hidden": true
+  },
+  "metadata_audit": {
+    "metadata_only": true,
+    "pixel_values_inspected": false,
+    "action_labels_inspected": false,
+    "rows": [
+      {
+        "trajectory_id": "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+        "split": "train",
+        "fields": {
+          "agentview_rgb": {
+            "shape": [
+              140,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "eye_in_hand_rgb": {
+            "shape": [
+              140,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "ee_states": {
+            "shape": [
+              140,
+              6
+            ],
+            "dtype": "float64"
+          },
+          "gripper_states": {
+            "shape": [
+              140,
+              2
+            ],
+            "dtype": "float64"
+          }
+        }
+      },
+      {
+        "trajectory_id": "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+        "split": "train",
+        "fields": {
+          "agentview_rgb": {
+            "shape": [
+              122,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "eye_in_hand_rgb": {
+            "shape": [
+              122,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "ee_states": {
+            "shape": [
+              122,
+              6
+            ],
+            "dtype": "float64"
+          },
+          "gripper_states": {
+            "shape": [
+              122,
+              2
+            ],
+            "dtype": "float64"
+          }
+        }
+      },
+      {
+        "trajectory_id": "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+        "split": "train",
+        "fields": {
+          "agentview_rgb": {
+            "shape": [
+              150,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "eye_in_hand_rgb": {
+            "shape": [
+              150,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "ee_states": {
+            "shape": [
+              150,
+              6
+            ],
+            "dtype": "float64"
+          },
+          "gripper_states": {
+            "shape": [
+              150,
+              2
+            ],
+            "dtype": "float64"
+          }
+        }
+      },
+      {
+        "trajectory_id": "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+        "split": "train",
+        "fields": {
+          "agentview_rgb": {
+            "shape": [
+              150,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "eye_in_hand_rgb": {
+            "shape": [
+              150,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "ee_states": {
+            "shape": [
+              150,
+              6
+            ],
+            "dtype": "float64"
+          },
+          "gripper_states": {
+            "shape": [
+              150,
+              2
+            ],
+            "dtype": "float64"
+          }
+        }
+      },
+      {
+        "trajectory_id": "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+        "split": "train",
+        "fields": {
+          "agentview_rgb": {
+            "shape": [
+              97,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "eye_in_hand_rgb": {
+            "shape": [
+              97,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "ee_states": {
+            "shape": [
+              97,
+              6
+            ],
+            "dtype": "float64"
+          },
+          "gripper_states": {
+            "shape": [
+              97,
+              2
+            ],
+            "dtype": "float64"
+          }
+        }
+      },
+      {
+        "trajectory_id": "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+        "split": "train",
+        "fields": {
+          "agentview_rgb": {
+            "shape": [
+              101,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "eye_in_hand_rgb": {
+            "shape": [
+              101,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "ee_states": {
+            "shape": [
+              101,
+              6
+            ],
+            "dtype": "float64"
+          },
+          "gripper_states": {
+            "shape": [
+              101,
+              2
+            ],
+            "dtype": "float64"
+          }
+        }
+      },
+      {
+        "trajectory_id": "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+        "split": "train",
+        "fields": {
+          "agentview_rgb": {
+            "shape": [
+              300,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "eye_in_hand_rgb": {
+            "shape": [
+              300,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "ee_states": {
+            "shape": [
+              300,
+              6
+            ],
+            "dtype": "float64"
+          },
+          "gripper_states": {
+            "shape": [
+              300,
+              2
+            ],
+            "dtype": "float64"
+          }
+        }
+      },
+      {
+        "trajectory_id": "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae",
+        "split": "train",
+        "fields": {
+          "agentview_rgb": {
+            "shape": [
+              167,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "eye_in_hand_rgb": {
+            "shape": [
+              167,
+              128,
+              128,
+              3
+            ],
+            "dtype": "uint8"
+          },
+          "ee_states": {
+            "shape": [
+              167,
+              6
+            ],
+            "dtype": "float64"
+          },
+          "gripper_states": {
+            "shape": [
+              167,
+              2
+            ],
+            "dtype": "float64"
+          }
+        }
+      }
+    ]
+  },
+  "outcome": "technical_stop_before_first_model_query",
+  "diagnosis": "Stored HDF5 frames are uint8 128x128 RGB. The worker used the live evaluator's CameraPair.capture guard requiring 224x224 before policy preprocessing.",
+  "no_automatic_retry": true,
+  "positive_method_result": false,
+  "gpu_returned_idle": {
+    "index": 0,
+    "memory_mib": 6,
+    "utilization": 0
+  },
+  "next_step": "Versioned raw-training-frame adapter; CPU real-input preflight before model loading; 128/224 preprocessing-once regression tests; obtain approval before a single frozen recovery."
+}

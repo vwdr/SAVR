@@ -1,0 +1,54 @@
+{
+  "compressed_outcome_inspected": false,
+  "confirmed_cause_of_step_difference": false,
+  "dense_record": {
+    "all_original_layers": true,
+    "condition_id": "d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9",
+    "controller_enabled": false,
+    "discarded_actions": 0,
+    "executed_steps": 79,
+    "history_frames": 6,
+    "initial_state_sha256": "4e3eaf7a315bc3bafb6db4837c8eef0e5f8aea717782a2a3ea33139392d966ed",
+    "mode": "dense",
+    "policy_queries": 10,
+    "replans": 0,
+    "success": true
+  },
+  "gpu_used": false,
+  "offline_dense_identity_max_abs": 0.0,
+  "statistics_file": "checkpoints/openvla-7b-oft-libero-four-suite/dataset_statistics.json",
+  "synthetic_only_not_recorded_actions": [
+    {
+      "baseline_execution_dtype": "float32",
+      "checkpoint_output_dtype": "float64",
+      "max_abs_rounding_difference": 2.755318484481961e-08,
+      "new_bridge_execution_dtype": "float64",
+      "normalized_dtype": "float32",
+      "statistics_key": "libero_10_no_noops"
+    },
+    {
+      "baseline_execution_dtype": "float32",
+      "checkpoint_output_dtype": "float64",
+      "max_abs_rounding_difference": 2.8514689165426432e-08,
+      "new_bridge_execution_dtype": "float64",
+      "normalized_dtype": "float32",
+      "statistics_key": "libero_goal_no_noops"
+    },
+    {
+      "baseline_execution_dtype": "float32",
+      "checkpoint_output_dtype": "float64",
+      "max_abs_rounding_difference": 1.9453724298124087e-08,
+      "new_bridge_execution_dtype": "float64",
+      "normalized_dtype": "float32",
+      "statistics_key": "libero_object_no_noops"
+    },
+    {
+      "baseline_execution_dtype": "float32",
+      "checkpoint_output_dtype": "float64",
+      "max_abs_rounding_difference": 2.923707642654705e-08,
+      "new_bridge_execution_dtype": "float64",
+      "normalized_dtype": "float32",
+      "statistics_key": "libero_spatial_no_noops"
+    }
+  ]
+}

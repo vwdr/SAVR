@@ -1,0 +1,20 @@
+{
+  "check_id": "focused-pair-and-brace-regression",
+  "checkpoint_accessed": false,
+  "created_at_utc": "2026-08-28T22:08:55.131298+00:00",
+  "cuda_visible": false,
+  "details": {
+    "artifact_manifest_sha256": "9cd16e29f0df1cd173187fdbda36ca0043ff279de2d975d5dcef22aae2e7229d",
+    "passed": 69,
+    "skipped": 0,
+    "summary": "69 passed in 2.97s"
+  },
+  "model_accessed": false,
+  "phase": "P2",
+  "record_id": "23561f1bae41ded33b21e1c9d41ebf342179c0d85a064e88adf556ab2ef15e4e",
+  "run_id": "pair-p2-cpu-synthetic-v01",
+  "schema_version": "pair-technical-v1",
+  "simulator_accessed": false,
+  "status": "passed",
+  "synthetic": true
+}

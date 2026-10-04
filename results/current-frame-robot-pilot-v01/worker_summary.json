@@ -1,0 +1,25 @@
+{
+  "artifact_bytes_before_summary": 4791004,
+  "artifacts_sha256": {
+    "episodes.jsonl": "23a72b56bbe21361fd8a90c5b885de475789519b6e880e0ca7aaa837b325964f",
+    "input_preflight.json": "3530612e64cc7975a330635f98dafb2bffd2243c5b66c7478559cdd563d8dcd1",
+    "launch.json": "777ae4319d6348b5d26caa801b50f5eb411adb227e037da7b4e918f329f0292e",
+    "loaded_runtime.json": "4ffc0ac10af9757157ff83b4d3c53288a547ca6f97792c0223579a4a4381f01c",
+    "parity.jsonl": "208a458484c25677a5996fc1afeafb69491cafce8fe57a465862c6bdc78e3087",
+    "progress.jsonl": "930ad70cad00989fe84537ebc4084522005d91fc9686c943693931dca190cffc",
+    "qualification.jsonl": "aac2170882cc26e33808f75e694512fa1f7feee4bd128d98a0b87fa0beeaaefc",
+    "records.json": "e31a24ee40d43cf60ffba8471ee7aa96ef71c9e600a3e51ca4fe0bec3d380bdb",
+    "timing.jsonl": "07f5d4ed99338505a797dd4c28cc77d930f5af0d141dd0522121abf1184b463e"
+  },
+  "authenticated_files_unchanged": true,
+  "automatic_retry": false,
+  "checkpoint_unchanged": true,
+  "complete": true,
+  "completed_at": "2026-09-20T04:38:29.606410+00:00",
+  "elapsed_seconds": 15569.690935201943,
+  "episodes": 488,
+  "model_queries": 10120,
+  "peak_aggregate_gpu_memory_mib": 16598,
+  "positive_method_result": false,
+  "training_performed": false
+}

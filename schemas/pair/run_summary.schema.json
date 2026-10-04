@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://savr.local/schemas/pair/run_summary.schema.json",
+  "title": "PAIR immutable run summary",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "run_id", "phase", "status", "expected_terminal_records",
+    "observed_terminal_records", "records_sha256", "config_sha256",
+    "project_revision", "gpu_ids", "peak_gpu_memory_mib", "artifact_bytes",
+    "started_at_utc", "completed_at_utc"
+  ],
+  "properties": {
+    "schema_version": {"const": "pair-run-summary-v1"},
+    "run_id": {"type": "string", "minLength": 1},
+    "phase": {"enum": ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P7R", "P8", "P9"]},
+    "status": {"enum": ["completed", "technical_stop", "scientific_stop"]},
+    "expected_terminal_records": {"type": "integer", "minimum": 0},
+    "observed_terminal_records": {"type": "integer", "minimum": 0},
+    "records_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "config_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "project_revision": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "gpu_ids": {"type": "array", "items": {"type": "integer", "minimum": 0}, "maxItems": 1},
+    "peak_gpu_memory_mib": {"type": ["number", "null"], "minimum": 0},
+    "artifact_bytes": {"type": "integer", "minimum": 0},
+    "stop_reason": {"type": ["string", "null"]},
+    "started_at_utc": {"type": "string", "format": "date-time"},
+    "completed_at_utc": {"type": "string", "format": "date-time"}
+  }
+}

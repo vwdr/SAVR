@@ -1,0 +1,50 @@
+{
+  "schema_version": "pair-p4b-proposal-manifest-v1",
+  "status": "implemented_not_authorized",
+  "date": "2026-08-30",
+  "protocol": {
+    "path": "docs/PAIR_P4B_CONFIRMATORY_RELIABILITY_PROTOCOL_V1.md",
+    "sha256": "92919c6b4ad9fe231745e71f6d8a62d9370788a7373b2b0ab8694636a0091812"
+  },
+  "configuration": {
+    "path": "configs/pair/p4b_confirmatory_v1.json",
+    "file_sha256": "fee37cb3a2d70f6919ddebb71fa1893b50a889c5b9d517786628ae0bbbee7832",
+    "semantic_sha256": "ae2e35524d6d745ce54f94ec33c8be76ecf77cb7b3f175275e41417d4301248e"
+  },
+  "design_and_power_report": {
+    "path": "reports/PAIR_P4B_DESIGN_AND_POWER_AUDIT.md",
+    "sha256": "e334904eee01be5760d6e06e338c6fc649954ea9e6dea836b63bb0774fe58e23"
+  },
+  "authoritative_design_audit": {
+    "path": "reports/pair_p4b/design_audit_v4.json",
+    "sha256": "c5336d0a59062aa6dc80a4b93e265a7c7df369a7786fb3e58aa8baa422cc5619",
+    "semantic_sha256": "a3e537029762aace1437789afa0fb8b9e199dcd6718b6771fe07370687747e7f"
+  },
+  "implementation": {
+    "design_module_sha256": "27d0a00db3e1790376d3bfcea6565079c95f34f7a5b8e43b1dd3ef737464a6f7",
+    "audit_script_sha256": "b0d3dee083994c83ab458141139b8a923d13808f22d114be97f93eb7145624f4",
+    "scheduler_sha256": "fccf7a5ca886f11fc4173321736c1d3b1ae437bd1bf8adca117641ccb325a66e",
+    "preflight_sha256": "0a99597d1da91e783d0d41f2ab7044ceb65e60606ede26e085acbb4aee1ce8eb",
+    "launch_freezer_sha256": "fb424a329f69decd44031b050a102b0491a566610227ea8ef64f5179c7688b95",
+    "worker_sha256": "a43f2bb1468520112b4b611a0cfde6be9749c2df1a29c408498f0e4cf4dbb9e7",
+    "worker_sealer_sha256": "3a8ddaffa061ef11f2f157d72265bceb6bd6f96753637517ce138ac5e8d1a08a",
+    "analyzer_sha256": "4ee051c3dcca0b20dd08953ca2c4582cf881befa3fee001270c16a7263f2e3ac",
+    "record_schema_sha256": "f5ed890e0a266c378e4dc49c0ff858f78ec4c8e985473bc6bdaaed2d4380b455",
+    "test_sha256": "c5d7d0d31bc3959aef750343d97ebcc9de2cb3e2a8ef7933ce7a9d8b46616157"
+  },
+  "implementation_preflight": {
+    "path": "reports/pair_p4b/implementation_preflight_v01.json",
+    "sha256": "94a99b6b3a3c2b2c5fc1a253b349072d10410fce8cdcbd365d806528a75d013c",
+    "semantic_sha256": "b25a5a8d5f97e6f9a8ce43fe00bac652f42dc0fa430e8defd995206209d7897e"
+  },
+  "verified_boundaries": {
+    "unused_calibration_labels_accessed": false,
+    "locked_test_values_accessed": false,
+    "model_accessed": false,
+    "gpu_accessed": false,
+    "simulator_accessed": false,
+    "p4b_execution_authorized": false,
+    "p5_authorized": false
+  },
+  "semantic_sha256": "a2ef11c4882d5d438cfae4b226066fc5ab616fd8208365d284922de8c53786d5"
+}

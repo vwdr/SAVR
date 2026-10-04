@@ -1,0 +1,53 @@
+{
+  "all_checks_passed": true,
+  "summary": {
+    "artifacts_sha256": {
+      "loaded_runtime.json": "a59956fa931e46396ff08f1b7caa89ae3ceda8ecd86d93e489b63dc9e3bee38b",
+      "progress.jsonl": "ff7262b0271cca5a9a8147dd787a380b7d568a682f454a112515d6c7dd673599",
+      "records.json": "f9f52b8ab455de08e3a65b659022b89bb1711cd8ec4d7a0a8770f86a085a2b09"
+    },
+    "authenticated_files_unchanged": true,
+    "automatic_retry": false,
+    "checkpoint_unchanged": true,
+    "complete": true,
+    "completed_at": "2026-09-11T11:12:55.352832+00:00",
+    "elapsed_seconds": 107.49659389071167,
+    "model_queries": 40,
+    "peak_aggregate_gpu_memory_mib": 15679,
+    "positive_method_result": false,
+    "simulator_episodes": 0,
+    "training_performed": false
+  },
+  "max_parity_errors": {
+    "disabled": {
+      "hidden": 0,
+      "normalized": 0,
+      "actions": 0
+    },
+    "keep_all": {
+      "hidden": 0,
+      "normalized": 0,
+      "actions": 0
+    },
+    "restored": {
+      "hidden": 0,
+      "normalized": 0,
+      "actions": 0
+    }
+  },
+  "retained_visual_tokens": [
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59,
+    59
+  ],
+  "native_visual_tokens": 512,
+  "completed_observations": 8,
+  "config_sha256": "8adc9dde86d08f8d717c96e4017250229c71d7f5062ebe697cbb4c53eb75e168",
+  "started_at": "2026-09-11T11:11:07.855151+00:00",
+  "pid": 1038935
+}

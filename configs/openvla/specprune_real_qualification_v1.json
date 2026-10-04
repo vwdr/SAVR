@@ -1,0 +1,46 @@
+{
+  "authenticated_files": {
+    "scripts/run_specprune_qualification.py": "1dad144a4a5e88159ba0d7cf726fa464cee3da44dfbf3ddab2f9d1200816b2f3",
+    "src/savr/openvla/specprune.py": "edf4d8886915237fe5cc8c7a636e41d08bfcb81e450ae5f96a1d9ac508f63c17",
+    "src/savr/openvla/specprune_APACHE_LICENSE.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "src/savr/openvla/specprune_LICENSE.txt": "99327560087babb7d064e2b7d3c32efd26bcfe5d056e1605dc63149bd171501b",
+    "tests/openvla/test_specprune_port.py": "50e76653a93befef12fe3fa6de8cd0589a528bd397a0a1df6148451969fe4bef",
+    "tests/openvla/test_specprune_qualification.py": "20fb617e848f1de64a0ec1a39b82d19cba245b44465e7f696e5e6a23b182022d"
+  },
+  "automatic_retry": false,
+  "caps": {
+    "artifact_bytes": 268435456,
+    "episodes": 0,
+    "memory_mib": 23552,
+    "queries": 40,
+    "seconds": 1800
+  },
+  "compression_preset": "source-default-coarse-first-query",
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+  },
+  "modes": [
+    "native",
+    "disabled",
+    "keep_all",
+    "compressed",
+    "restored"
+  ],
+  "observation_ids": [
+    "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+    "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+    "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+    "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+    "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+    "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+    "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+    "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae"
+  ],
+  "observations": 8,
+  "output_root": "results/specprune-real-qualification-v01",
+  "reference_config": "configs/openvla/original_baseline_40task_v1.json",
+  "reference_config_sha256": "90a65540dfade976ad58924b8318576b38c310ac1d8831db31ceb3d4682daa27",
+  "schema_version": "specprune-real-qualification-v1",
+  "tolerance": 1e-06
+}

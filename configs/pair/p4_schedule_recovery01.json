@@ -1,0 +1,35 @@
+{
+  "schema_version": "pair-p4-schedule-recovery-config-v1",
+  "run_id": "pair-p4-pilot-v02-schedule-recovery01",
+  "base_config": "configs/pair/p4_pilot_v1.json",
+  "base_config_sha256": "8257ba4c35362edaecf3775ce9d3c99e3f726a8b0395203952bc66c181dd67e0",
+  "base_config_semantic_sha256": "5b689ae78006860b105c99be8a7b4842db22b6ae261ef997e925d1c52207d88c",
+  "protocol": "docs/PAIR_P4_SCHEDULE_RECOVERY_01_PROTOCOL.md",
+  "protocol_sha256": "6514568061a3aa36b77092dc4e51a128881ed4ba445b2a5ea094655f67939919",
+  "technical_stop_report": "reports/PAIR_P4_SCHEDULE_TECHNICAL_STOP_01.md",
+  "technical_stop_report_sha256": "ea897fefcafbee581f4d75485a67becd29b5defb0d113c33ed1b986c58154128",
+  "invalid_schedule": "configs/pair/p4_schedule_v1.jsonl",
+  "invalid_schedule_sha256": "d7d2c8b9b151c4cbabf0e90769365e249d3bdcaf0752a0bbcc5fc8efdb3ae5c6",
+  "invalid_summary": "reports/pair_p4/schedule_summary_v1.json",
+  "invalid_summary_sha256": "b22808b82549389a3b692fc620658eb46d0409d4487329ee001a11bb1faad88d",
+  "correction": {
+    "gripper_coordinate_mapping": "2*x-1 before sign classification",
+    "other_scientific_settings_changed": false
+  },
+  "schedule_artifacts": {
+    "schedule": "configs/pair/p4_schedule_v02_recovery01.jsonl",
+    "summary": "reports/pair_p4/schedule_summary_v02_recovery01.json"
+  },
+  "resource_caps": {
+    "gpu_count": 0,
+    "model_calls": 0,
+    "simulator_outcomes": 0,
+    "locked_test_labels": 0,
+    "automatic_retry": false
+  },
+  "advance": {
+    "gpu_p4_authorized_after_valid_schedule": true,
+    "p5_authorized": false
+  },
+  "semantic_sha256": "0a930e49ae167201cf63e641c14f53c42d8479531116b4f37f90fd35d2b6cdb6"
+}

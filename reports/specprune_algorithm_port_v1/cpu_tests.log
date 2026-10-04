@@ -1,0 +1,59 @@
+test_attention_capture_is_neutral_and_matches_manual_scores (test_specprune_port.PortTests) ... ok
+test_bfloat16_native_keep_all_and_compressed (test_specprune_port.PortTests) ... ok
+test_capture_rejects_non_native_masks_and_dropout (test_specprune_port.PortTests) ... ok
+test_controller_thresholds_and_signed_z (test_specprune_port.PortTests) ... ok
+test_extra_source_identity (test_specprune_port.PortTests) ... ok
+test_first_prune_precedes_importance_update (test_specprune_port.PortTests) ... ok
+test_frame_lookback_and_confidence_persist_only_within_episode (test_specprune_port.PortTests) ... ok
+test_full_32_layer_selection_matches_actual_source (test_specprune_port.PortTests) ... ok
+test_patch_invalid_shape_and_budget (test_specprune_port.PortTests) ... ok
+test_patch_similarity_matches_source_both_views (test_specprune_port.PortTests) ... ok
+test_requires_reset_and_ordered_complete_query (test_specprune_port.PortTests) ... ok
+test_resets_even_repeated_one_query_episode_id (test_specprune_port.PortTests) ... ok
+test_tiny_original_decoder_keep_all_and_pruning (test_specprune_port.PortTests) ... ok
+test_absolute_reference_expression (test_specprune_source_audit.SourceTests) ... ok
+test_calls_are_not_executed (test_specprune_source_audit.SourceTests) ... ok
+test_negative_tail_expression (test_specprune_source_audit.SourceTests) ... ok
+test_pinned_source_identity (test_specprune_source_audit.SourceTests) ... ok
+test_reads_actual_upstream_slice (test_specprune_source_audit.SourceTests) ... ok
+test_source_drift_rejected (test_specprune_source_audit.SourceTests) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 1.932s
+
+OK
+test_keep_all_is_identity (test_visual_compaction.MapTests) ... ok
+test_no_token_resurrection (test_visual_compaction.MapTests) ... ok
+test_reject_camera_deletion (test_visual_compaction.MapTests) ... ok
+test_reject_corrupt_position_map (test_visual_compaction.MapTests) ... ok
+test_reject_cross_query_layout (test_visual_compaction.MapTests) ... ok
+test_reject_invalid_visual_selection (test_visual_compaction.MapTests) ... ok
+test_reject_removed_nonvisual_token (test_visual_compaction.MapTests) ... ok
+test_repeated_compaction_preserves_action_and_nonvisual_tokens (test_visual_compaction.MapTests) ... ok
+test_tail_offset_is_not_the_official_readout (test_visual_compaction.MapTests) ... ok
+test_compact_real_runtime_and_readout (test_visual_compaction.TensorTests) ... ok
+test_dense_explicit_positions_match_native_dense (test_visual_compaction.TensorTests) ... ok
+test_future_token_still_influences_earlier_tokens_after_compaction (test_visual_compaction.TensorTests) ... ok
+test_reject_wrong_hidden_shape (test_visual_compaction.TensorTests) ... ok
+test_repeated_tensor_compaction_keeps_sentinels (test_visual_compaction.TensorTests) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.505s
+
+OK
+test_exact_trace_matches_released_episode (test_attention_diagnostic.EpisodeTests) ... ok
+test_horizon_exhaustion_is_a_task_failure (test_attention_diagnostic.EpisodeTests) ... ok
+test_queue_and_terminal_accounting (test_attention_diagnostic.EpisodeTests) ... ok
+test_technical_error_is_not_a_task_failure (test_attention_diagnostic.EpisodeTests) ... ok
+test_attention_output_fallback_is_rejected (test_attention_diagnostic.InterventionTests) ... ok
+test_causal_control_changes_information_flow (test_attention_diagnostic.InterventionTests) ... ok
+test_native_observer_does_not_change_output (test_attention_diagnostic.InterventionTests) ... ok
+test_non_llama_attention_is_unchanged (test_attention_diagnostic.InterventionTests) ... ok
+test_padding_is_excluded_in_both_modes (test_attention_diagnostic.InterventionTests) ... ok
+test_restoration_after_control (test_attention_diagnostic.InterventionTests) ... ok
+test_restoration_after_exception (test_attention_diagnostic.InterventionTests) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.502s
+
+OK

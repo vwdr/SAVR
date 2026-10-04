@@ -1,0 +1,17 @@
+{
+  "artifact_bytes": 86516,
+  "completed_at_utc": "2026-08-28T22:08:55.131795+00:00",
+  "config_sha256": "678def47f438b24cb05da59beba6f4c8275c8adaa6f79aae0d231ca3c0d7ba17",
+  "expected_terminal_records": 1,
+  "gpu_ids": [],
+  "observed_terminal_records": 1,
+  "peak_gpu_memory_mib": null,
+  "phase": "P2",
+  "project_revision": "0a274b6ea0c0748adabe386ffa0d61670c4ece7a",
+  "records_sha256": "79202faecd2a8d87a80dcb43703a1ec242070797e9952f88026592716e7d77e8",
+  "run_id": "pair-p2-cpu-synthetic-v01",
+  "schema_version": "pair-run-summary-v1",
+  "started_at_utc": "2026-08-28T22:08:51.113929+00:00",
+  "status": "completed",
+  "stop_reason": null
+}

@@ -1,0 +1,140 @@
+{
+  "schema_version": "cac-c1-requalification-s5-v1",
+  "run_id": "cac-c1-s5-requalification-v01",
+  "phase": "S5 / CAC C1 requalification",
+  "authorization": {
+    "s5_c1_requalification_authorized": true,
+    "source": "User approved S5/CAC C1 requalification on 2026-09-01",
+    "simulator": false,
+    "terminal_outcomes": false,
+    "expert_actions": false,
+    "training": false,
+    "automatic_retry": false
+  },
+  "protocol": "docs/CAC_C1_S5_REQUALIFICATION_PROTOCOL_V1.md",
+  "output_root": "results/cac-c1-s5-requalification-v01",
+  "model_config": "configs/pair/p3_physical_v03.json",
+  "input_manifest": "configs/pair/p3_inputs_v1.json",
+  "seed": 20260908,
+  "timing_seed": 20260909,
+  "substrate": {
+    "corrected_id": "D62_BAL_PT1_S4C_V1",
+    "historical_profile_id": "D62_BAL_PT1",
+    "historical_profile_values_reused": true,
+    "s4_selection_materially_changed": false,
+    "s4_selection_changed_observations": 0,
+    "action_readout_corrected": true,
+    "compact_positions_explicitly_mapped": true
+  },
+  "s4_parent": {
+    "summary": "results/openvla-d62-requalification-s4-v02-recovery01/worker_summary.json",
+    "summary_sha256": "452488620591e74cf70ca96a800b240c991239634339a72ef953b1b55267dc3c",
+    "semantic_sha256": "988df0eaafb6eaf03549ee9fce8c66677bb9c524ec6eebba12ce6df5b922f38d",
+    "passed": true,
+    "corrected_substrate_id": "D62_BAL_PT1_S4C_V1",
+    "model_calls": 37
+  },
+  "s3_parent": {
+    "summary": "results/openvla-semantic-parity-s3-v06-recovery05/worker_summary.json",
+    "summary_sha256": "19d5519d1a11574a3ed02904b55464ea9e7ee4ed7857e62ab10d8f85073ddf9e",
+    "semantic_sha256": "eae02332c936c7816e2de7870b14fb78122e1acc603cc0dd04b39683f1695380",
+    "passed": true
+  },
+  "historical_c1": {
+    "result": "results/cac-c1-tensor-feasibility-v01-recovery01/result.json",
+    "result_sha256": "b0c13df156e88c5f6f0b7a6ac2a623193a4cf0c3b448cb3cb30e547aa0fd3c4d",
+    "report": "reports/CAC_C1_REPORT.md",
+    "report_sha256": "aa1c633ad564e8c9c7ab235ff24b178767e7baa7111975ed1d941219079fd16c",
+    "interpretation": "historical engineering evidence; official-equivalence-dependent measurements are provisional"
+  },
+  "official_parity": {
+    "independent_released_evaluator": true,
+    "reversible_action_head_capture": true,
+    "observation_index": 2,
+    "hidden_tolerance": 0.000001,
+    "normalized_action_tolerance": 0.000001,
+    "unnormalized_action_tolerance": 0.000001,
+    "raw_values_persisted": false,
+    "must_pass_before_internal_controls": true
+  },
+  "schedule": {
+    "official_parity_calls": 2,
+    "warmup_calls": 4,
+    "sidecar_and_allfresh_controls": 4,
+    "hook_control_calls": 8,
+    "recursive_repeat_and_reset_calls": 12,
+    "isolation_calls": 3,
+    "timing_calls": 64,
+    "timing_horizons": [2, 4],
+    "timing_repetitions_per_horizon": 4,
+    "total_calls": 97
+  },
+  "authenticated_files": {
+    "docs/CAC_C1_S5_REQUALIFICATION_PROTOCOL_V1.md": "d3f2a0b3106cb02dc50c43bcff9f9b57346c725c443d230a07a6952f94d3f885",
+    "docs/OPENVLA_SEMANTIC_REQUALIFICATION_PROTOCOL_V1.md": "1979a894eca3b46c79b9978da278589602335f394715d33bc4ce3c3f3bc61cc7",
+    "reports/OPENVLA_D62_S4_RECOVERY01_PASS.md": "8fe1c5870256e89cd03308cd919e8a63b82a7668c36858ced81c9fca25a37362",
+    "results/openvla-d62-requalification-s4-v02-recovery01/worker_summary.json": "452488620591e74cf70ca96a800b240c991239634339a72ef953b1b55267dc3c",
+    "results/openvla-d62-requalification-s4-v02-recovery01/evidence_manifest.json": "d01413b2021a9131a2e7da49c4f23c3cece46023087b69d4fbe2d5a994176cfa",
+    "results/openvla-semantic-parity-s3-v06-recovery05/worker_summary.json": "19d5519d1a11574a3ed02904b55464ea9e7ee4ed7857e62ab10d8f85073ddf9e",
+    "results/cac-c1-tensor-feasibility-v01-recovery01/result.json": "b0c13df156e88c5f6f0b7a6ac2a623193a4cf0c3b448cb3cb30e547aa0fd3c4d",
+    "reports/CAC_C1_REPORT.md": "aa1c633ad564e8c9c7ab235ff24b178767e7baa7111975ed1d941219079fd16c",
+    "configs/pair/p3_inputs_v1.json": "e3b4064eba73cdfe0f82e4b9c282052e81f19f65b5a4e13d41674fdf45c42262",
+    "configs/pair/p3_physical_v03.json": "c1c81cb5a4f7ae99325d7ebd4ffcc619cf12f0af9ef37ec5b8697b40ed75701b",
+    "configs/pair/libero_runtime/config.yaml": "dbd195f1b830abfc8580461a24335d1e1d72cb00548253a394f0abe2d8fdd74c",
+    "scripts/run_cac_c1_worker.py": "7407280f786a732fd87ef7a725735c1a77b8d438c3341468a9ba33ed2431e0d3",
+    "scripts/preflight_cac_c1_s5.py": "52fe0eb27c0d3f68b0d5b34e6cce5719f271f8df992a7f423b67ef4908ee90f7",
+    "scripts/launch_cac_c1_s5.sh": "fdc49b531c98bcf76352c127e2f9e9d0f865c9e21c04c462d7999582bac8d4f0",
+    "scripts/run_openvla_semantic_parity.py": "8d2900b8930eb20eb35dd20faf49ee9224c2cc28572e4275f9701a708882389d",
+    "scripts/run_openvla_semantic_parity_recovery01.py": "7cf3294873041f5bb128023eb90883fbde79fc35643ae6880cefce8b38b02c83",
+    "scripts/run_openvla_semantic_parity_recovery02.py": "22dd7c279d968c1d09ddaee3b051b2e131037cf7511f4ab4ed20cfacecc8b51f",
+    "scripts/run_openvla_semantic_parity_recovery03.py": "3fe3b64b5bf19749c9fedea7ca3de1eb6789881c96741a2c60f078bd68b60d2f",
+    "scripts/run_openvla_semantic_parity_recovery04.py": "b54f00c41bbac8ffa0d807eb354599aa42b7764f6ad00395c7d6bcf0c673c320",
+    "scripts/run_openvla_semantic_parity_recovery05.py": "12240d6456f652c2cb34d9118db4deac60d1708a689558958c89f59b36b204a7",
+    "src/savr/cac/c1.py": "ca228d3a0fa0f636d4df841b634fcf23549da0adfffb20ce599199579aa9d579",
+    "src/savr/openvla/official_semantics.py": "ffcf1b779086a5602e7670cf5e406af02797039c5b9d4910f5364bdfcac61445",
+    "src/savr/pair/p3_openvla.py": "f85f02464d59915c82f101cbbebd322948b5b65f8232f75ecef971de177425f4",
+    "src/savr/pair/p4_openvla.py": "418f91a2bd66f2c685dff31d91afbfb17025ecd598f897e57a420af2779e2076",
+    "src/savr/brace/b3_openvla.py": "beb4f3ed7ed683f120ecf2d4516137d784c96ad163cbbcd060fc26ea9bf4849e",
+    "src/savr/pair/interventions.py": "cebff313cc659d4034f5c586f4ce8b9b9f104c9806abd99fc86a5ec86dfe5b0e",
+    "src/savr/pair/p3.py": "317842beb37ec4f655ed78bdbdb0c4bd979c5aeb9c2e082cc44f728da9cf5f7d",
+    "src/savr/pair/types.py": "9306806a6691621a317af7b1b3fa216fbdd94679c100857b3947f75832630356",
+    "src/savr/acr/v5_d_recovery.py": "8d55e47c2f83432361660debfaa63879ea09a3859422ae6f1f49571866e1a118",
+    "tests/cac/test_c1.py": "5c819e6986dae7a14ff0d6941aab4018c79ce3d82ff62fd5fa4cb78b3410b84e",
+    "tests/cac/test_c1_s5_requalification.py": "8fb172cb7ac54630bf6c5c2532c81ccb3864536007f9e0f8a799b37be077d6b7"
+  },
+  "checkpoint_metadata_sha256": {
+    "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+  },
+  "required_gates": {
+    "official_hidden_action_parity_max_abs": 0.000001,
+    "dense_and_reset_bypass": "bitwise where architectural, otherwise maximum absolute normalized-action error 1e-6",
+    "source_age_maximum": 4,
+    "gross_h4_complete_cycle_saving_fraction_minimum": 0.08,
+    "peak_aggregate_memory_mib_strict_max": 23552,
+    "nonfinite_values": 0,
+    "adapter_parameters": 5070599,
+    "fixed_numeric_record_bytes": 1380352
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "model_call_hard_cap": 160,
+    "planned_model_calls": 97,
+    "temporary_bytes": 4294967296,
+    "peak_aggregate_memory_mib_strict_max": 23552,
+    "downloads": 0,
+    "training": false,
+    "simulator_outcomes": 0,
+    "protected_outcomes": false,
+    "automatic_retry": false,
+    "wall_seconds": 3600
+  },
+  "advance": {
+    "next_phase": "C1H",
+    "authorized": false,
+    "stop_before_next_phase": true
+  },
+  "semantic_sha256": "c029aea2add0c12c0dbdcc6f8b684613243929fcc85db63e340c58cd24a25a23"
+}

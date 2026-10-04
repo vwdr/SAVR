@@ -1,0 +1,62 @@
+{
+  "direct_same_checkpoint_readout_compatible": false,
+  "gpu_or_model_execution": false,
+  "identical_input_extension_ast": true,
+  "kind": "source_contract_audit_not_policy_result",
+  "reference_output_attentions": false,
+  "reference_readout_slice": "NUM_PATCHES + NUM_PROMPT_TOKENS:NUM_PATCHES + NUM_PROMPT_TOKENS + ACTION_DIM * NUM_ACTIONS_CHUNK",
+  "reference_sha256": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa",
+  "synthetic_layouts": [
+    {
+      "equal": false,
+      "prompt_tokens": 12,
+      "reference_first": 525,
+      "reference_last": 580,
+      "sequence_tokens": 583,
+      "upstream_first": 526,
+      "upstream_last": 581
+    },
+    {
+      "equal": false,
+      "prompt_tokens": 34,
+      "reference_first": 547,
+      "reference_last": 602,
+      "sequence_tokens": 605,
+      "upstream_first": 548,
+      "upstream_last": 603
+    },
+    {
+      "equal": false,
+      "prompt_tokens": 70,
+      "reference_first": 583,
+      "reference_last": 638,
+      "sequence_tokens": 641,
+      "upstream_first": 584,
+      "upstream_last": 639
+    }
+  ],
+  "upstream_git_blob_sha1": {
+    "LICENSE": "b2c22d519c9b30ad4cc809cb686074f658520044",
+    "Readme.md": "a5a6b8f4a57d40b444b5e2aa3cf73bda3d1b2ad0",
+    "SETUP.md": "bed19d2975234f9ee279bec2b1acb510e4872b83",
+    "modeling_llama.py": "12473d0af453e1f1d9be92432f73b4fd2dd816ef",
+    "modeling_prismatic.py": "0eaf8fc4bbd1cc6e50c28e7c0d2d7e81d6b8a678",
+    "openvla_utils.py": "be5b5ade3d786612bb0a4285d1c9bc29f0133eb4",
+    "run_libero_eval.py": "981e36be805c9a64fde490e06f3b8ce6792fa036",
+    "spec_prune_constants.py": "5807d3fdc7d50ca00f670bc6e115e88ab423dc5d"
+  },
+  "upstream_output_attentions": true,
+  "upstream_readout_slice": "-ACTION_DIM * NUM_ACTIONS_CHUNK - 1:-1",
+  "upstream_revision": "8091adc4b574ce9008d49a1dc9a210f4eec314c1",
+  "upstream_sha256": {
+    "LICENSE": "53f449ef3886b1ccd71039d9a75a9f503fda1a6912e4095d1d72e2ac7b8767bd",
+    "Readme.md": "aeea2b7bd22add8c88fc6c23899d55d3c2ae4b990676d1a1f0f41616da00ff1a",
+    "SETUP.md": "460c3bdfffcc867dce4d6238695925d046853f83f495ec35b2425d20471bf4e0",
+    "modeling_llama.py": "33e60d851de64cf61aaeef8590727538ca5265c505ee597dbc9a7ef5b143e9e6",
+    "modeling_prismatic.py": "a2d7d7b389a00163152d903a6239758ad3d8dc9a7f5ea3363485645bfd51ee7e",
+    "openvla_utils.py": "54ce810e8d172c3dfa3a483023d7659e2b7d6ed88ba013506d15124b1c82c2f0",
+    "run_libero_eval.py": "1b8709fc995e947d60d8b4abba07c25bbec3c769861b1d226e9a362e75c20889",
+    "spec_prune_constants.py": "fbbef4ac1ba3fb267d867dba95100e9a61cff1d77aff6d969a25edae3c458fc3"
+  },
+  "upstream_git_blob_identity_verified": true
+}

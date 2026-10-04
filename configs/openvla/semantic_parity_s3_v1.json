@@ -1,0 +1,80 @@
+{
+  "schema_version": "openvla-semantic-parity-s3-v1",
+  "run_id": "openvla-semantic-parity-s3-v01",
+  "protocol": "docs/OPENVLA_SEMANTIC_REQUALIFICATION_PROTOCOL_V1.md",
+  "input_manifest": "configs/pair/p3_inputs_v1.json",
+  "model_config": "configs/pair/p3_physical_v03.json",
+  "output_root": "results/openvla-semantic-parity-s3-v01",
+  "seed": 20260831,
+  "tolerance": 0.000001,
+  "authorization": {
+    "s3_authorized": true,
+    "source": "User approved continuation on 2026-08-31",
+    "simulator": false,
+    "terminal_outcomes": false,
+    "training": false,
+    "automatic_retry": false
+  },
+  "population": {
+    "observation_step": 0,
+    "selection": "all eight frozen P3 inputs; exactly two per LIBERO suite",
+    "expert_actions_accessed": false,
+    "terminal_outcomes_accessed": false,
+    "locked_state_ids_accessed": false
+  },
+  "call_schedule": {
+    "per_observation": [
+      "released_official_evaluator",
+      "corrected_dense_use_cache_none",
+      "corrected_dense_use_cache_true",
+      "corrected_dense_use_cache_true_sidecar"
+    ],
+    "alternate_official_custom_order": true,
+    "total_calls": 32
+  },
+  "model": {
+    "checkpoint_relative": "checkpoints/openvla-7b-oft-libero-four-suite",
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "vla_cache_revision": "a4909880573868dee2769343d52e793c0341678b",
+    "dtype": "torch.bfloat16",
+    "sidecar_layers": [6, 15, 24],
+    "checkpoint_metadata_sha256": {
+      "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+      "configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+      "modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa"
+    }
+  },
+  "authenticated_files": {
+    "docs/OPENVLA_SEMANTIC_REQUALIFICATION_PROTOCOL_V1.md": "1979a894eca3b46c79b9978da278589602335f394715d33bc4ce3c3f3bc61cc7",
+    "configs/pair/p3_inputs_v1.json": "e3b4064eba73cdfe0f82e4b9c282052e81f19f65b5a4e13d41674fdf45c42262",
+    "configs/pair/p3_physical_v03.json": "c1c81cb5a4f7ae99325d7ebd4ffcc619cf12f0af9ef37ec5b8697b40ed75701b",
+    "configs/pair/libero_runtime/config.yaml": "dbd195f1b830abfc8580461a24335d1e1d72cb00548253a394f0abe2d8fdd74c",
+    "src/savr/openvla/official_semantics.py": "9dc8bda16642cd3c76e7bc468e84b1de5899826d86cc9ee528e3c1fdc723459c",
+    "src/savr/cac/c1.py": "ca228d3a0fa0f636d4df841b634fcf23549da0adfffb20ce599199579aa9d579",
+    "src/savr/acr/v5_d_recovery.py": "8d55e47c2f83432361660debfaa63879ea09a3859422ae6f1f49571866e1a118",
+    "scripts/run_openvla_semantic_parity.py": "8d2900b8930eb20eb35dd20faf49ee9224c2cc28572e4275f9701a708882389d",
+    "scripts/preflight_openvla_semantic_parity.py": "d29168a2dc7628951453004f87f23d4e68ee991e008ebfd66c68bcb41a08e2d9",
+    "scripts/launch_openvla_semantic_parity.sh": "9cf9711d5833e79ecdd68138951cbfb585798655dec164c4f251a99a37a5723a"
+  },
+  "resource_caps": {
+    "gpu_count": 1,
+    "model_processes": 1,
+    "observations": 8,
+    "calls_per_observation": 4,
+    "model_call_hard_cap": 32,
+    "wall_seconds": 1800,
+    "artifact_bytes": 268435456,
+    "peak_gpu_memory_mib_strict_max": 23552,
+    "downloads": 0,
+    "simulator_outcomes": 0,
+    "raw_actions_persisted": false,
+    "automatic_retry": false
+  },
+  "advance": {
+    "next_stage": "S4_D62_REQUALIFICATION",
+    "authorized": false,
+    "stop_before_next_stage": true
+  },
+  "semantic_sha256": "52cdfbbb7e14704a1d01ec8bdbdf64e806e6bffc54f759071b2582a46cd1bdd9"
+}

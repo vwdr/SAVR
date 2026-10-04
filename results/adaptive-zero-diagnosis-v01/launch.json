@@ -1,0 +1,32 @@
+{
+  "automatic_retry": false,
+  "caps": {
+    "artifact_bytes": 67108864,
+    "calls": 64,
+    "memory_mib": 23552,
+    "seconds": 1800
+  },
+  "episodes": 0,
+  "initial_gpu": {
+    "memory_mib": 6,
+    "utilization": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+  },
+  "pid": 2933629,
+  "sources": {
+    "configs/openvla/contemporary_reference_evaluation_v2.json": "afa1bc948880b072b74c9f150e7dbab77fe90468040746c73b82af603f91ec67",
+    "docs/ADAPTIVE_SCREEN_PROTOCOL_V1.md": "1bdfc19fde83113ff2d309a418a345cafa10d991dd6ba833c832cdc1f87752db",
+    "docs/ADAPTIVE_ZERO_RECOVERY_PLAN_2026-09-25.md": "1bea0742fba6a6200a4cdc8efcc5d0cb1843795f34dfbbb8a241f2f5732ab52e",
+    "scripts/analyze_adaptive_qualification.py": "99c972ecbaed7c1975b0158a7aa7bad747f98656d8885b075b2b730ed438116e",
+    "scripts/diagnose_adaptive_zero_v1.py": "6789d95c2335bdfcf0d6afff9c4eb9cbccc1081ebc2d3875c26803c9025b8bcb",
+    "scripts/run_adaptive_qualification.py": "c3fc7dcb68c9220d22c87985c6d6a52f3037220741f186b7498093aa99d9f22b",
+    "src/savr/openvla/adaptive_query.py": "0b14a093098ed59429f42d48fbd8cacc949b63d6c257e2e41c878b03ec5b9d94",
+    "src/savr/openvla/execution_precision.py": "a3582b4cedefe08e9f38884f4bf3213f796d35a22630e91e2b6f272f07958b79",
+    "src/savr/openvla/official_semantics.py": "ffcf1b779086a5602e7670cf5e406af02797039c5b9d4910f5364bdfcac61445",
+    "src/savr/openvla/specprune.py": "edf4d8886915237fe5cc8c7a636e41d08bfcb81e450ae5f96a1d9ac508f63c17",
+    "src/savr/openvla/specprune_episode.py": "17d8b3dffcd2e480445b20d257a6785e3670997135d77fbd0bc29632ce137985",
+    "src/savr/openvla/vlapruner_adaptive.py": "53c3f9ad38283250cb53209ee46bb41b57b7a9fadfca2cc8f8901226bdd9a151",
+    "tests/openvla/test_adaptive_qualification.py": "70e81370c46ec452c64866f1836b9aebe8736e7cb517f56768ef4a6f4d5ee4f9",
+    "tests/openvla/test_vlapruner_adaptive.py": "c85839bbce578000ab1f540b6f4df2218f4013f6e87a69b7a044bcea7d737973"
+  }
+}

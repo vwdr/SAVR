@@ -1,0 +1,45 @@
+{
+  "schema_version": "current-frame-learning-qualification-v1",
+  "caps": {
+    "model_calls": 80,
+    "optimizer_steps": 128,
+    "episodes": 0,
+    "seconds": 1800,
+    "aggregate_memory_mib": 23552,
+    "artifact_bytes": 536870912
+  },
+  "budget": 384,
+  "automatic_retry": false,
+  "optimizer": {
+    "name": "AdamW",
+    "steps_per_arm": 64,
+    "lr": 0.0001,
+    "weight_decay": 0,
+    "batch": 2,
+    "seed": 7
+  },
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+  },
+  "observation_ids": [
+    "55b76fe760989671b0c82fd5df245f06c276413e7acaf6a9a9b2e68dea8437e7",
+    "359828bf52a238cf02de8b59040095051d9d507bb0d090b8772e7f2797565745",
+    "6f6f93c361139d20339ff91c337c3fdf5beb4138a4f01dd8c6287adcfec86b64",
+    "b5cd83a06c401701709cb5847c55172f0f65247e6beeb49b875749379a3d6634",
+    "fac89244952ddfe3d489dd3bd1a9bced3d5bfaaa69cd0d95755c77eb5184c5e4",
+    "907c38c8dc9ec16ea950de2c180e128aef856910f73bc62df865049481fdb0bf",
+    "f98a94bf2d0761ad708aa0e3ccc85428445b422feaa4cffb6f807a4a1f126c78",
+    "793e9cd64d7f9ef71ca13adba944cfe92329e88ed645e27437468b62a10a48ae"
+  ],
+  "output_root": "results/current-frame-learning-qualification-v01",
+  "authenticated_files": {
+    "scripts/run_current_frame_learning_qualification.py": "7a3b4b4bb3b7ffe399cc049040f54a11fdbd67d3eef405a686adbf358be38e53",
+    "src/savr/openvla/current_frame_features.py": "e63177ade228ed90bf1e836c598ed08ad4a23172a26fc09f3abad5198b0057a0",
+    "src/savr/openvla/current_frame_corrector.py": "c17017eb13c0cd04468e109c0586b6e07458760a6a328508e59ea28db95206cc",
+    "src/savr/openvla/current_frame_records.py": "c1d1d7f986c92278894da04c95e9da211dd1a2bab352526320c986e3b5368486",
+    "tests/openvla/test_current_frame_features.py": "117195831b9364d9e1f23f2679b914e1f0139135203aba4b990c16f868f62b8c",
+    "tests/openvla/test_learning_qualification.py": "4a1d4ef7d901fd6c96a74fbff0be95359e3f000bb1c8b204b1e242a2ced5c001",
+    "docs/CURRENT_FRAME_LEARNING_PILOT_V1.md": "e91248e104133a129ed424da51c08ee5c321f840ae2a82c59e5b954ae6f5f54c"
+  }
+}

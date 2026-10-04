@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://savr.local/schemas/pair/episode_record.schema.json",
+  "title": "PAIR protected closed-loop episode record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "record_id", "run_id", "phase", "method", "suite",
+    "task_id", "initial_state_id", "simulator_seed", "pair_id", "terminal",
+    "success", "query_count", "episode_wall_seconds", "complete_cycle_seconds",
+    "service_rate", "effective_reuse_fraction", "fallback_count", "created_at_utc"
+  ],
+  "properties": {
+    "schema_version": {"const": "pair-episode-v1"},
+    "record_id": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "run_id": {"type": "string", "minLength": 1},
+    "phase": {"enum": ["P7", "P7R", "P8"]},
+    "method": {"enum": ["same_stack_dense", "optimized_core_fr", "vla_cache", "pair_vla"]},
+    "suite": {"enum": ["libero_spatial", "libero_object", "libero_goal", "libero_10"]},
+    "task_id": {"type": "string", "minLength": 1},
+    "initial_state_id": {"type": "string", "minLength": 1},
+    "simulator_seed": {"type": "integer", "minimum": 0},
+    "pair_id": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "terminal": {"const": true},
+    "success": {"type": "boolean"},
+    "query_count": {"type": "integer", "minimum": 1},
+    "episode_wall_seconds": {"type": "number", "exclusiveMinimum": 0},
+    "complete_cycle_seconds": {"type": "number", "exclusiveMinimum": 0},
+    "service_rate": {"type": "number", "minimum": 0, "maximum": 1},
+    "effective_reuse_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+    "fallback_count": {"type": "integer", "minimum": 0},
+    "abort_reason": {"type": ["string", "null"]},
+    "created_at_utc": {"type": "string", "format": "date-time"}
+  }
+}

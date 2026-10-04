@@ -1,0 +1,62 @@
+{
+  "schema_version": "pair-p1-semantic-manifest-v1",
+  "created_at_utc": "2026-08-28T21:46:50.080652+00:00",
+  "phase": "P1",
+  "decision": "PASS_STOP_BEFORE_P2",
+  "project_revision_at_audit": "0a274b6ea0c0748adabe386ffa0d61670c4ece7a",
+  "remote_data_artifact_semantic_sha256": "9b851a1b31e7b33a0cd97c8510cb63ecc868e8fc7da744b2d8b44368eda7308d",
+  "semantic_payload_sha256": "d518c20fc9718cc028412f5260f7d825fa7417cff9d8e7d62c67b301ab8239f5",
+  "hash_rule": "SHA-256 of newline-separated path, space, sha256 entries in the order shown; this manifest is excluded from its own hash.",
+  "files": [
+    {
+      "path": "configs/pair/p1_data_v1.json",
+      "sha256": "b3513e81f92c04959e1f0638ba699bcb80c2410e2d010f9a40bf96d60b114494"
+    },
+    {
+      "path": "scripts/audit_pair_p1_data.py",
+      "sha256": "02740fb4fa083ac4ca99eaeb82b6bd1770c1beab070b59f75bddfbd58b3ee359"
+    },
+    {
+      "path": "reports/pair_p1/source_manifest.json",
+      "sha256": "f40b24986ed299c0593c0d7f8210a42e206d918287d53028207a7e09d86f5456"
+    },
+    {
+      "path": "reports/pair_p1/split_manifest.json",
+      "sha256": "2f0131608bacd74d71df82de07f852fcaec315783f67ba550a663da56b899d56"
+    },
+    {
+      "path": "reports/pair_p1/audit_report.json",
+      "sha256": "ef62e977e7ecaa5f85b523bff233be383c7027c6dd2988b8c47109e1f134db30"
+    },
+    {
+      "path": "reports/pair_p1/artifact_manifest.json",
+      "sha256": "df4d5221d51944a9fb394538969d1ebd7ed01044b2a6a9ec93acd0f6b871963f"
+    },
+    {
+      "path": "reports/pair_p1/run_summary.json",
+      "sha256": "4ed2956bdb7bf480e5e5e1f134ce4b35737da189964d1309a3abacc663e43319"
+    },
+    {
+      "path": "reports/PAIR_P1_REPORT.md",
+      "sha256": "c6bb5a3fc04f8f82853e1f8e3e9ab6ef53d22089aa1a2a4444ed607d31c1266b"
+    }
+  ],
+  "protected_population_state": {
+    "synthetic": "closed",
+    "timing": "closed",
+    "demonstration_regret": "closed",
+    "locked_offline_regret": "closed",
+    "development_success": "closed",
+    "confirmatory_success": "closed"
+  },
+  "material_actions": {
+    "network_bytes": 33784856577,
+    "combined_data_and_index_bytes": 33838467202,
+    "gpu_used": false,
+    "simulator_outcomes_opened": false,
+    "pair_method_implemented": false,
+    "files_outside_server_project_modified": false,
+    "committed": false,
+    "pushed": false
+  }
+}

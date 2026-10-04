@@ -1,0 +1,135 @@
+\documentclass{article}
+\input{preamble}
+\input{figures}
+
+\begin{document}
+\null
+\begin{tikzpicture}[remember picture,overlay,x=1in,y=1in]
+\fill[white] (current page.south west) rectangle (current page.north east);
+
+% Header
+\node[anchor=north west,text width=18.35in,align=left,text=Black,
+      font=\fontsize{48}{52}\selectfont\bfseries]
+  at ($(current page.north west)+(0.42in,-0.30in)$)
+  {A NEGATIVE RESULT FOR TRAINING-FREE TEMPORAL\\VISUAL CACHING IN OPENVLA-OFT};
+
+\node[anchor=north west,text width=18.35in,text=Black,
+      font=\fontsize{27}{31}\selectfont]
+  at ($(current page.north west)+(0.42in,-1.78in)$)
+  {Ved Dwivedi\textsuperscript{1,2}\hspace{0.32in}
+   Cheng Yang\textsuperscript{2}\hspace{0.32in}
+   Bo Yuan\textsuperscript{2}};
+
+\node[anchor=north west,text width=18.35in,text=Black,
+      font=\fontsize{19}{23}\selectfont]
+  at ($(current page.north west)+(0.42in,-2.30in)$)
+  {\textsuperscript{1}John P. Stevens High School, Edison, New Jersey};
+
+\node[anchor=north west,text width=18.35in,text=Black,
+      font=\fontsize{19}{23}\selectfont]
+  at ($(current page.north west)+(0.42in,-2.72in)$)
+  {\textsuperscript{2}Department of Electrical and Computer Engineering,
+   Rutgers University-New Brunswick, New Jersey};
+
+\node[anchor=center,inner sep=0pt]
+  at ($(current page.north west)+(21.25in,-1.47in)$)
+  {\includegraphics[width=4.55in,trim=0 560 0 560,clip]{assets/rutgers-primary.png}};
+
+\fill[DarkRed]
+  ($(current page.north west)+(0,-3.28in)$) rectangle ($(current page.north east)+(0,-3.40in)$);
+
+% Introduction and methods
+\SectionBar{0.35}{3.62}{7.20}{INTRODUCTION}
+\Panel{0.35}{4.18}{7.20}{6.28}
+\node[anchor=north west,text width=6.55in,align=left,text=Black,font=\Body]
+  at ($(current page.north west)+(0.68in,-4.55in)$)
+  {\Bullet Vision-language-action policies repeatedly process two camera views during robot control.\\[0.32in]
+   \Bullet Consecutive observations are often similar, but reused representations may omit small changes that affect the next action.\\[0.32in]
+   \Bullet We test whether three training-free reuse boundaries can preserve task success while reducing complete-query latency in closed-loop LIBERO tasks.};
+
+\SectionBar{7.82}{3.62}{15.83}{METHODS}
+\Panel{7.82}{4.18}{15.83}{6.28}
+\node[anchor=north west,inner sep=0pt]
+  at ($(current page.north west)+(8.12in,-4.43in)$)
+  {\includegraphics[width=15.22in]{\MethodsFigure}};
+\node[anchor=north,text width=15.15in,align=center,text=Black,
+      font=\fontsize{17}{20}\selectfont\bfseries]
+  at ($(current page.north west)+(15.73in,-10.04in)$)
+  {OpenVLA-OFT 7B \enspace \textbullet\enspace LIBERO \enspace \textbullet\enspace NVIDIA TITAN RTX
+   \enspace \textbullet\enspace task success \enspace \textbullet\enspace query wall time};
+
+% Results
+\SectionBar{0.35}{10.72}{23.30}{RESULTS}
+\Panel{0.35}{11.28}{23.30}{14.72}
+
+\node[anchor=north west,inner sep=0pt]
+  at ($(current page.north west)+(0.58in,-11.50in)$)
+  {\includegraphics[width=22.84in]{\PrefixFigure}};
+
+\draw[Black,line width=1.2pt]
+  ($(current page.north west)+(11.98in,-19.30in)$) -- ++(0,-6.42in);
+
+\node[anchor=north west,inner sep=0pt]
+  at ($(current page.north west)+(0.58in,-19.42in)$)
+  {\includegraphics[width=11.10in]{\CameraFigure}};
+
+\node[anchor=north west,inner sep=0pt]
+  at ($(current page.north west)+(12.22in,-19.42in)$)
+  {\includegraphics[width=11.10in]{\KVFigure}};
+
+% Discussion and limitations
+\SectionBar{0.35}{26.25}{14.95}{DISCUSSION AND CONCLUSION}
+\Panel{0.35}{26.81}{14.95}{3.56}
+\node[anchor=north west,text width=14.25in,align=left,text=Black,font=\Body]
+  at ($(current page.north west)+(0.68in,-27.18in)$)
+  {\Bullet Complete-prefix reuse preserved success only when reuse became rare.\\[0.20in]
+   \Bullet Scene-camera reuse preserved the observed success count but did not improve latency relative to batched dense inference.\\[0.20in]
+   \Bullet Fine-grained K/V reuse reduced measured query time but failed all 120 cached closed-loop episodes.\\[0.20in]
+   \Bullet The tested strategies did not provide a reliable success and latency tradeoff.};
+
+\SectionBar{15.57}{26.25}{8.08}{LIMITATIONS}
+\Panel{15.57}{26.81}{8.08}{3.56}
+\node[anchor=north west,text width=7.38in,align=left,text=Black,font=\SmallBody]
+  at ($(current page.north west)+(15.90in,-27.18in)$)
+  {\Bullet One OpenVLA-OFT checkpoint\\[0.15in]
+   \Bullet One simulator benchmark family\\[0.15in]
+   \Bullet One GPU class\\[0.15in]
+   \Bullet Different populations across mechanisms\\[0.15in]
+   \Bullet Terminal task success only};
+
+% Footer
+\draw[DarkRed,line width=2pt]
+  ($(current page.north west)+(0.35in,-30.62in)$) -- ++(23.30in,0);
+\draw[Black,line width=1pt]
+  ($(current page.north west)+(12.70in,-30.78in)$) -- ++(0,-0.92in);
+\draw[Black,line width=1pt]
+  ($(current page.north west)+(18.45in,-30.78in)$) -- ++(0,-0.92in);
+
+\node[anchor=north west,text width=11.85in,align=left,text=Black,
+      font=\fontsize{18}{21}\selectfont]
+  at ($(current page.north west)+(0.50in,-30.80in)$)
+  {\textbf{REFERENCES}\\{}
+   [1] Kim et al. OpenVLA. CoRL 2024. \quad
+   [2] Kim et al. OpenVLA-OFT. RSS 2025.\\{}
+   [3] Liu et al. LIBERO. NeurIPS 2023. \quad
+   [4] Xu et al. VLA-Cache. NeurIPS 2025.};
+
+\node[anchor=north west,text width=5.20in,align=left,text=Black,
+      font=\fontsize{18}{21}\selectfont]
+  at ($(current page.north west)+(13.00in,-30.80in)$)
+  {\textbf{ACKNOWLEDGMENTS}\\
+   Rutgers SRC Lab\\
+   Research guidance from Cheng Yang and Bo Yuan};
+
+\node[anchor=north west,text width=3.15in,align=left,text=Black,
+      font=\fontsize{18}{21}\selectfont]
+  at ($(current page.north west)+(18.75in,-30.80in)$)
+  {\textbf{CODE AND EVIDENCE}\\
+   github.com/vwdr/SAVR};
+
+\node[anchor=north east,inner sep=0pt]
+  at ($(current page.north east)+(-0.42in,-30.77in)$)
+  {\includegraphics[width=1.02in]{assets/savr-qr.png}};
+
+\end{tikzpicture}
+\end{document}

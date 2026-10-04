@@ -1,0 +1,412 @@
+{
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 7,
+    "success_unit": "task cluster stratified by suite, three states kept together",
+    "timing_unit": "paired two-frame trajectory"
+  },
+  "comparisons": [
+    {
+      "candidate": "compressed",
+      "candidate_only": 0,
+      "controlled_mean_query_reduction": 0.15286113016220138,
+      "descriptive_paired_success_interval_95": [
+        -0.05,
+        0.0
+      ],
+      "descriptive_paired_time_interval_95": [
+        0.15265325748390904,
+        0.15306376839469693
+      ],
+      "net_successes": -3,
+      "reference": "dense",
+      "reference_only": 3,
+      "success_difference": -0.025
+    },
+    {
+      "candidate": "action_only",
+      "candidate_only": 0,
+      "controlled_mean_query_reduction": 0.15173289711690474,
+      "descriptive_paired_success_interval_95": [
+        -0.041666666666666664,
+        0.0
+      ],
+      "descriptive_paired_time_interval_95": [
+        0.1515976772770259,
+        0.15185804771813194
+      ],
+      "net_successes": -2,
+      "reference": "dense",
+      "reference_only": 2,
+      "success_difference": -0.016666666666666666
+    },
+    {
+      "candidate": "visual",
+      "candidate_only": 0,
+      "controlled_mean_query_reduction": 0.1510294782855408,
+      "descriptive_paired_success_interval_95": [
+        -0.058333333333333334,
+        0.0
+      ],
+      "descriptive_paired_time_interval_95": [
+        0.15089040173113483,
+        0.1511852389704852
+      ],
+      "net_successes": -3,
+      "reference": "dense",
+      "reference_only": 3,
+      "success_difference": -0.025
+    },
+    {
+      "candidate": "visual",
+      "candidate_only": 2,
+      "controlled_mean_query_reduction": -0.0021621624763970004,
+      "descriptive_paired_success_interval_95": [
+        -0.03333333333333333,
+        0.025
+      ],
+      "descriptive_paired_time_interval_95": [
+        -0.002429250695329843,
+        -0.0019556675823626524
+      ],
+      "net_successes": 0,
+      "reference": "compressed",
+      "reference_only": 2,
+      "success_difference": 0.0
+    },
+    {
+      "candidate": "visual",
+      "candidate_only": 2,
+      "controlled_mean_query_reduction": -0.0008292421443354403,
+      "descriptive_paired_success_interval_95": [
+        -0.041666666666666664,
+        0.025
+      ],
+      "descriptive_paired_time_interval_95": [
+        -0.001029680574814007,
+        -0.00061505856563282
+      ],
+      "net_successes": -1,
+      "reference": "action_only",
+      "reference_only": 3,
+      "success_difference": -0.008333333333333333
+    },
+    {
+      "candidate": "action_only",
+      "candidate_only": 1,
+      "controlled_mean_query_reduction": -0.0013318159341604296,
+      "descriptive_paired_success_interval_95": [
+        0.0,
+        0.025
+      ],
+      "descriptive_paired_time_interval_95": [
+        -0.0015322566297584217,
+        -0.0011355517033002638
+      ],
+      "net_successes": 1,
+      "reference": "compressed",
+      "reference_only": 0,
+      "success_difference": 0.008333333333333333
+    }
+  ],
+  "complete": true,
+  "controlled_policy_query_seconds": {
+    "action_only": {
+      "mean": 1.018953024817165,
+      "median": 1.0191237227991223,
+      "n": 64,
+      "p95": 1.0206685416400432
+    },
+    "compressed": {
+      "mean": 1.0175977718899958,
+      "median": 1.017754090949893,
+      "n": 64,
+      "p95": 1.0196380360983313
+    },
+    "dense": {
+      "mean": 1.2012171889655292,
+      "median": 1.2012977413833141,
+      "n": 64,
+      "p95": 1.2036424174904823
+    },
+    "visual": {
+      "mean": 1.0197979836084414,
+      "median": 1.019841967150569,
+      "n": 64,
+      "p95": 1.0218325955793262
+    }
+  },
+  "controlled_reductions": {
+    "action_only": 0.15173289711690474,
+    "compressed": 0.15286113016220138,
+    "visual": 0.1510294782855408
+  },
+  "decision": {
+    "checks": {
+      "baseline": true,
+      "dense_success_retained": false,
+      "incremental_success": false,
+      "no_large_suite_loss": true,
+      "useful_controlled_speed": true,
+      "visual_over_action_only": false
+    },
+    "confirmatory_result": false,
+    "paper_ready": false,
+    "positive_development_signal": false
+  },
+  "episode_costs": {
+    "action_only": {
+      "controller_seconds": {
+        "mean": 0.004059861926361918,
+        "median": 0.0032382626086473465,
+        "n": 120,
+        "p95": 0.008094090316444631
+      },
+      "episode_seconds": {
+        "mean": 27.562671321583913,
+        "median": 23.033469925634563,
+        "n": 120,
+        "p95": 51.232909580692635
+      },
+      "executed_steps": {
+        "mean": 157.08333333333334,
+        "median": 126.0,
+        "n": 120,
+        "p95": 312.4999999999999
+      },
+      "nonquery_preparation_seconds": {
+        "mean": 1.0951026649214328,
+        "median": 0.8867146410048008,
+        "n": 120,
+        "p95": 2.2035503016784777
+      },
+      "policy_queries": {
+        "mean": 20.058333333333334,
+        "median": 16.0,
+        "n": 120,
+        "p95": 39.29999999999998
+      },
+      "query_seconds": {
+        "mean": 1.023194442809984,
+        "median": 1.0208289995789528,
+        "n": 2407,
+        "p95": 1.025544577091932
+      },
+      "simulator_seconds": {
+        "mean": 5.93854100665388,
+        "median": 5.433048718608916,
+        "n": 120,
+        "p95": 8.623811609949914
+      }
+    },
+    "compressed": {
+      "controller_seconds": {
+        "mean": 0.003976779043053587,
+        "median": 0.003185499459505081,
+        "n": 120,
+        "p95": 0.007488670572638505
+      },
+      "episode_seconds": {
+        "mean": 27.26502159037627,
+        "median": 22.592148466967046,
+        "n": 120,
+        "p95": 49.880528716277304
+      },
+      "executed_steps": {
+        "mean": 155.29166666666666,
+        "median": 125.0,
+        "n": 120,
+        "p95": 294.7999999999998
+      },
+      "nonquery_preparation_seconds": {
+        "mean": 1.0820005871045093,
+        "median": 0.8734754538163543,
+        "n": 120,
+        "p95": 2.051632520277052
+      },
+      "policy_queries": {
+        "mean": 19.833333333333332,
+        "median": 16.0,
+        "n": 120,
+        "p95": 37.449999999999974
+      },
+      "query_seconds": {
+        "mean": 1.0219535302558616,
+        "median": 1.01956292334944,
+        "n": 2380,
+        "p95": 1.049258221965283
+      },
+      "simulator_seconds": {
+        "mean": 5.908925007283687,
+        "median": 5.410095549188554,
+        "n": 120,
+        "p95": 8.636230582278221
+      }
+    },
+    "dense": {
+      "controller_seconds": {
+        "mean": 0.00382875157520175,
+        "median": 0.00316812377423048,
+        "n": 120,
+        "p95": 0.006805012468248606
+      },
+      "episode_seconds": {
+        "mean": 29.783726846100762,
+        "median": 25.251697215251625,
+        "n": 120,
+        "p95": 49.30041738441213
+      },
+      "executed_steps": {
+        "mean": 148.80833333333334,
+        "median": 125.0,
+        "n": 120,
+        "p95": 263.2
+      },
+      "nonquery_preparation_seconds": {
+        "mean": 1.0370207162884375,
+        "median": 0.8730388293042779,
+        "n": 120,
+        "p95": 1.850696442835033
+      },
+      "policy_queries": {
+        "mean": 19.025,
+        "median": 16.0,
+        "n": 120,
+        "p95": 33.05
+      },
+      "query_seconds": {
+        "mean": 1.2057533472836788,
+        "median": 1.2032799236476421,
+        "n": 2283,
+        "p95": 1.2337223015725614
+      },
+      "simulator_seconds": {
+        "mean": 5.802091882952179,
+        "median": 5.50689725484699,
+        "n": 120,
+        "p95": 8.540312975086271
+      }
+    },
+    "visual": {
+      "controller_seconds": {
+        "mean": 0.00401305576475958,
+        "median": 0.003240581601858139,
+        "n": 120,
+        "p95": 0.007556974794715643
+      },
+      "episode_seconds": {
+        "mean": 27.458674076292663,
+        "median": 23.24602648615837,
+        "n": 120,
+        "p95": 49.28660912513733
+      },
+      "executed_steps": {
+        "mean": 155.76666666666668,
+        "median": 127.0,
+        "n": 120,
+        "p95": 295.25
+      },
+      "nonquery_preparation_seconds": {
+        "mean": 1.0854328197892755,
+        "median": 0.8892891136929393,
+        "n": 120,
+        "p95": 2.0634044603444637
+      },
+      "policy_queries": {
+        "mean": 19.95,
+        "median": 16.0,
+        "n": 120,
+        "p95": 37.05
+      },
+      "query_seconds": {
+        "mean": 1.0240921075809857,
+        "median": 1.0217106295749545,
+        "n": 2394,
+        "p95": 1.0357676532119493
+      },
+      "simulator_seconds": {
+        "mean": 5.937210358989735,
+        "median": 5.554214865900576,
+        "n": 120,
+        "p95": 8.717564665246755
+      }
+    }
+  },
+  "limitations": [
+    "Single training seed and rollout seed; development exposure, no confirmatory inference.",
+    "Degenerate bootstrap intervals at ceiling do not imply zero uncertainty.",
+    "Controlled timing excludes simulator observation resizing; episode query timing includes it.",
+    "Different closed-loop trajectories confound causal comparisons of episode-average time.",
+    "No outcome-selected checkpoint, state, arm or subset; no timing-only positive claim."
+  ],
+  "native_controls": [
+    {
+      "observation_command_traces_equal": false,
+      "successes": [
+        true,
+        true
+      ],
+      "suite": "libero_spatial"
+    },
+    {
+      "observation_command_traces_equal": true,
+      "successes": [
+        true,
+        true
+      ],
+      "suite": "libero_object"
+    },
+    {
+      "observation_command_traces_equal": false,
+      "successes": [
+        true,
+        true
+      ],
+      "suite": "libero_goal"
+    },
+    {
+      "observation_command_traces_equal": false,
+      "successes": [
+        true,
+        true
+      ],
+      "suite": "libero_10"
+    }
+  ],
+  "old_state_zero_screen": "historical context only, excluded from primary counts",
+  "per_suite": {
+    "libero_10": {
+      "action_only": 28,
+      "compressed": 27,
+      "dense": 30,
+      "visual": 29
+    },
+    "libero_goal": {
+      "action_only": 30,
+      "compressed": 30,
+      "dense": 30,
+      "visual": 29
+    },
+    "libero_object": {
+      "action_only": 30,
+      "compressed": 30,
+      "dense": 30,
+      "visual": 29
+    },
+    "libero_spatial": {
+      "action_only": 30,
+      "compressed": 30,
+      "dense": 30,
+      "visual": 30
+    }
+  },
+  "population": "120 development conditions, 40 tasks, states 1/2/3, seed 7; not independent held-out data",
+  "successes": {
+    "action_only": 118,
+    "compressed": 117,
+    "dense": 120,
+    "visual": 117
+  },
+  "summary_sha256": "699de8203703ea508ab5668584ed2d7d52452f53af6dc20a539809a50221588e",
+  "technical_pass": true
+}

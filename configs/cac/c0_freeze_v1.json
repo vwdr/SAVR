@@ -1,0 +1,262 @@
+{
+  "schema_version": "cac-c0-freeze-v1",
+  "protocol": "docs/CACHE_ACTION_CORRECTION_EXECUTION_PROTOCOL_V2.md",
+  "phase": "C0",
+  "created_date": "2026-08-30",
+  "authorization": {
+    "c0_authorized": true,
+    "c1_authorized": false,
+    "gpu_count": 0,
+    "model_execution": false,
+    "simulator_execution": false,
+    "terminal_outcomes": false,
+    "locked_action_values": false
+  },
+  "identities": {
+    "project_git_base": "0a274b6ea0c0748adabe386ffa0d61670c4ece7a",
+    "openvla_oft_git": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "vla_cache_git": "a4909880573868dee2769343d52e793c0341678b",
+    "libero_git": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+    "checkpoint_repo": "moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10",
+    "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+    "dataset_repo": "yifengzhu-hf/LIBERO-datasets",
+    "dataset_revision": "f13aa24a3da8c43c7225569f28c562979fa0e35a",
+    "checkpoint_files": {
+      "config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+      "dataset_statistics.json": "6ec6ef68d0d5bae4cb5f9fc9acb715a22b9f4545e9e9b300d0d88695cd7afec3",
+      "tokenizer.json": "8f5e2869e1807b8bb3c7717a294539c37e9de5d728ad60e31ef57e83cc5ea527",
+      "tokenizer_config.json": "f5f1d3ed015ebb71cf11686ff00bc8e0c25957bbf3952f95312cecc9b168fbea",
+      "preprocessor_config.json": "bd024783fb785cbdfe35b710b621c5e8678d4c157a9ba625675e67d40d1757da",
+      "model.safetensors.index.json": "ca8b53fed8133ee2afcd2fc483de8febf7f5bb0f6bcb09f91189772e59e8f659"
+    },
+    "p1_index_files": {
+      "trajectory_index.jsonl": "4d5c8829e3070db1ba96af1920a7bdb1e9581af295932fbc7d310cae15c40f8a",
+      "query_index.jsonl": "4e455cd031db78aee3803964d90332061c38ff47c7479e93c325e49a4f280e67",
+      "split_manifest.json": "2f0131608bacd74d71df82de07f852fcaec315783f67ba550a663da56b899d56"
+    }
+  },
+  "cache_substrate": {
+    "profile": "D62_BAL_PT1",
+    "cameras": ["primary", "wrist"],
+    "tile_grid": [4, 4],
+    "patches_per_tile": 16,
+    "onset_layers": [2, 6, 9, 11],
+    "maximum_age_queries": 4,
+    "reset_rule": "complete dense reset after at most four cached query intervals",
+    "query_stride_actions": 8,
+    "profile_config_sha256": "072fae8843f9d98ac711daea91d284a202c90eda0cf9c029fd1bba7775ae0c25",
+    "vectorized_source_helper_sha256": "c651abb125a13082049c20a16ea39f235371ae0ee9fe98a5ba146859b33a1e20"
+  },
+  "data_roles": {
+    "trajectory_role_seed": 20260902,
+    "train_per_task": {
+      "adapter_fit": 24,
+      "architecture_selection": 5,
+      "checkpoint_validation": 6
+    },
+    "development_calibration_per_task": 8,
+    "locked_test_per_task": 7,
+    "simulator": {
+      "headroom_stage1": {"state_ids": [0, 1, 2], "seed": 7},
+      "headroom_extension": {"state_ids": [3, 4, 5], "seed": 7},
+      "r0_development": {"state_ids": [0, 1, 2, 3, 4, 5], "seed": 7},
+      "r1_holdout": {"state_ids": [6, 7, 8, 9], "seed": 7},
+      "final_confirmation": {"state_id_start": 10, "state_id_end": 49, "seed": 7}
+    }
+  },
+  "contract_schedules": {
+    "seed": 20260903,
+    "horizons": [1, 2, 4],
+    "transition_definition": "after the official LIBERO transform, map the retained gripper coordinate as 2*x-1 and mark any sign change from anchor+7 through anchor+8*horizon+7",
+    "c2": {
+      "adapter_fit_per_task_horizon": 24,
+      "architecture_selection_per_task_horizon": 6,
+      "primary_contracts": 3600,
+      "all_fresh_controls_per_task_horizon": 2,
+      "all_fresh_controls": 240,
+      "exact_repeats_per_task_horizon": 3,
+      "exact_repeats": 360,
+      "model_calls": 17640,
+      "model_call_rule": "each primary/repeat contract uses h+2 calls: one clean source, h cached chronology calls, and one isolated dense endpoint; each all-fresh control uses two calls"
+    },
+    "c3": {
+      "adapter_fit_per_task_horizon": 50,
+      "adapter_fit_contracts": 6000,
+      "checkpoint_validation_per_task_horizon": 20,
+      "checkpoint_validation_contracts": 2400,
+      "development_calibration_per_task_horizon": 40,
+      "development_calibration_contracts": 4800,
+      "model_calls": 57200,
+      "lowered_from_protocol_training_ceiling": 26000,
+      "reason": "the 60000-call cap governs; exact dense labels and recursive chronology require h+2 calls per independently authenticated contract"
+    },
+    "c7_locked": {
+      "per_task_horizon": 24,
+      "contracts": 2880,
+      "model_calls": 12480,
+      "transition_values_opened_during_c0": false
+    }
+  },
+  "representation": {
+    "current_tiles": {"shape": [32, 4096], "dtype": "float16"},
+    "source_deltas": {"shape": [128, 4096], "dtype": "float16"},
+    "z_cache": {"shape": [8, 4096], "dtype": "float16"},
+    "base_action": {"shape": [8, 7], "dtype": "float32"},
+    "target_delta": {"shape": [8, 7], "dtype": "float32", "deployment_input": false},
+    "proprio": {"shape": [8], "dtype": "float32"},
+    "validity_mask": {"shape": [8, 7], "dtype": "uint8"},
+    "instruction_embedding": {"shape": [4096], "dtype": "float16", "storage": "one side-table row per task"},
+    "provenance_row_bytes": 12,
+    "provenance_rows": 128,
+    "fixed_numeric_record_bytes": 1378328,
+    "aligned_record_bytes": 1380352,
+    "sidecar_bytes_per_record_cap": 512
+  },
+  "full_adapter": {
+    "width": 256,
+    "attention_heads": 8,
+    "cross_attention_blocks": 2,
+    "ffn_multiplier": 4,
+    "activation": "GELU",
+    "pre_normalization": true,
+    "dropout": 0.0,
+    "parameter_count": 5070599,
+    "parameter_ceiling": 8000000,
+    "zero_initialized_output": true,
+    "query_count": 8,
+    "context_token_count": 160,
+    "no_context_self_attention": true,
+    "query_fusion": "concatenate projected Z_C, A_C, proprioception, instruction, and action-step embedding (5x256), then Linear(1280,256)",
+    "context_embeddings": {
+      "type": 2,
+      "onset_layer": 4,
+      "camera": 2,
+      "tile_row": 4,
+      "tile_column": 4,
+      "source_age": 5,
+      "reset_phase": 5,
+      "reused_fresh": 2
+    },
+    "learned_global_query_biases": 1,
+    "parameter_ledger": {
+      "shared_visual_projection_4096x256": 1048832,
+      "z_projection_4096x256": 1048832,
+      "instruction_projection_4096x256": 1048832,
+      "base_action_projection_7x256": 2048,
+      "proprio_projection_8x256": 2304,
+      "query_fusion_1280x256": 327936,
+      "categorical_and_step_embeddings": 9216,
+      "global_query_bias": 256,
+      "two_cross_attention_ffn_blocks": 1580544,
+      "output_projection_256x7": 1799
+    },
+    "forward_mac_estimate": {
+      "total_per_query": 233601024,
+      "convention": "multiply-accumulates for Linear and attention matrix products; excludes layer normalization, GELU, softmax, additions, indexing, and support projection",
+      "instruction_projection_may_be_cached": true
+    }
+  },
+  "pooled_candidates": {
+    "projection": "fixed signed-hash projection from 4096 to 64 dimensions; seed 20260904; scale 1/sqrt(64)",
+    "z_projection_dimensions": 128,
+    "instruction_projection_dimensions": 128,
+    "summary_definition": {
+      "z_cache_signed_hash_by_action_step": 1024,
+      "instruction_signed_hash": 128,
+      "base_action": 56,
+      "proprio": 8,
+      "current_tiles_camera_stratified_mean_maxabs_rms": 384,
+      "source_deltas_layer_camera_stratified_mean_maxabs_rms": 1536,
+      "rowwise_reused_age_reset_scalars": 384,
+      "global_reset_phase": 1
+    },
+    "summary_input_dimensions": 3521,
+    "ridge": {"l2": 0.001, "fit_intercept": true, "output_dimensions": 7, "parameter_count": 24654},
+    "mlp": {"hidden_dimensions": 512, "activation": "GELU", "parameter_count": 1806855, "parameter_ceiling": 2000000}
+  },
+  "objective": {
+    "target": "dense_normalized_action - cached_normalized_action",
+    "motion_loss": "SmoothL1 on training-only IQR-scaled coordinates",
+    "smooth_l1_beta": 0.1,
+    "gripper_continuous_loss": "SmoothL1",
+    "gripper_binary_loss": "binary cross entropy with logits",
+    "gripper_binary_weight": 0.25,
+    "gripper_threshold_normalized_coordinate": 0.5,
+    "action_step_weights": [1, 1, 1, 1, 1, 1, 1, 1],
+    "residual_bound": "training-only 99th percentile absolute dense-minus-cache residual per step/coordinate, floor 0.01",
+    "support_interval": "training-only [0.1%,99.9%] dense interval per step/coordinate expanded by 10% of its interquantile width"
+  },
+  "training": {
+    "screening_seeds": [17, 29, 43],
+    "batching": {"microbatch": 32, "gradient_accumulation": 8, "effective_batch": 256},
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 1.0,
+    "epochs": 40,
+    "warmup_fraction": 0.05,
+    "schedule": "cosine",
+    "checkpoint_metric": "trajectory-clustered composite repair score",
+    "early_stopping": false,
+    "precision": "float32 optimizer and loss; bfloat16 forward where supported",
+    "no_outlier_deletion": true
+  },
+  "timing": {
+    "warmup_queries_per_arm": 10,
+    "paired_blocks": 12,
+    "measured_queries_per_arm_per_block": 10,
+    "arm_order": "seeded 3x3 Latin square over dense, D62, CAC; seed 20260905",
+    "clock": "time.perf_counter_ns plus torch.cuda.Event synchronized boundaries",
+    "outlier_deletion": false,
+    "adapter_overhead_fraction_of_gross_saving_max": 0.35,
+    "complete_cycle_saving_min": 0.05
+  },
+  "statistics": {
+    "bootstrap_replicates": 20000,
+    "bootstrap_seed": 20260907,
+    "one_sided_alpha": 0.05,
+    "noninferiority_margin": 0.02,
+    "task_weighting": "equal across 40 tasks",
+    "resampling": "tasks then paired initial states within task",
+    "fixed_sequence": ["G3_dense_noninferiority", "G4_cache_improvement", "G5_latency", "G6_mechanism"],
+    "g6_multiplicity": "Holm"
+  },
+  "technical_recovery": {
+    "unit": "contract or paired episode condition",
+    "append_only": true,
+    "semantic_hash_per_unit": true,
+    "resume_missing_units_only": true,
+    "automatic_retry": false,
+    "code_or_environment_change": "versioned recovery report, expanded failing-path test, new hashes, and explicit approval",
+    "protected_outcome_opened": "no recovery or rerun"
+  },
+  "resource_caps": {
+    "c1_calls": 160,
+    "c1_bytes": 4294967296,
+    "c1h_episodes": 480,
+    "c2_calls": 17640,
+    "c2_bytes": 5799628800,
+    "c3_calls": 57200,
+    "c3_and_c7_feature_bytes": 22204293120,
+    "c4_calls": 600,
+    "c5_new_episodes": 480,
+    "c6_teacher_calls": 4800,
+    "c6_episodes": 480,
+    "c7_primary_episodes": 4800,
+    "c7_locked_calls": 12480,
+    "gpu_memory_mib_strict_max": 23552,
+    "wall_time_forecast": {
+      "basis": "prior measured 1.06-1.27 seconds per isolated model call and 57.89 seconds per dense LIBERO episode; budgets include setup, writes, and a conservative interruption margin",
+      "c1_hours": 1.0,
+      "c1h_max_hours": 10.0,
+      "c2_collection_hours": 8.0,
+      "c3_collection_hours": 24.0,
+      "c4_hours": 2.0,
+      "c5_max_hours": 12.0,
+      "c6_teacher_hours": 3.0,
+      "c6_rollout_hours": 12.0,
+      "c7_primary_hours": 96.0,
+      "c7_locked_collection_hours": 6.0
+    }
+  }
+}

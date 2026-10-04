@@ -1,0 +1,46 @@
+{
+  "schema_version": "pair-p4-semantic-manifest-v1",
+  "phase": "P4",
+  "run_id": "pair-p4-pilot-v02-schedule-recovery01",
+  "decision": "SCIENTIFIC_STOP",
+  "failed_gates": ["cvar_improvement", "spearman"],
+  "protocol_sha256": "9e89f01d3443275e218765b1673f6f36c7ce17035ac325f6d2b9fa0c55b34b7d",
+  "schedule_recovery_protocol_sha256": "6514568061a3aa36b77092dc4e51a128881ed4ba445b2a5ea094655f67939919",
+  "config_file_sha256": "8257ba4c35362edaecf3775ce9d3c99e3f726a8b0395203952bc66c181dd67e0",
+  "config_semantic_sha256": "5b689ae78006860b105c99be8a7b4842db22b6ae261ef997e925d1c52207d88c",
+  "schedule_recovery_config_file_sha256": "f39b122fb2788be0b81e36b65d7e9f2251e28b1a666c55a3eac806529d7188cc",
+  "schedule_recovery_config_semantic_sha256": "0a930e49ae167201cf63e641c14f53c42d8479531116b4f37f90fd35d2b6cdb6",
+  "schedule_sha256": "3d5fa8e1667ce30df185ce26bc8b64e84a1f6c30933111199e122b66de2e0f89",
+  "preflight_file_sha256": "55c00b675c61b8e99b0c7e60e01cf8035a5a5c2b4b27bb4166c4b7aaab7e20fb",
+  "worker_summary_file_sha256": "59a6e79a3851cec8cc271e1d65ce782df294ebee69f5ebf04aa28290013256f7",
+  "router_training_summary_file_sha256": "a55d7f17f34160a7e93a6f63fd3db6b81a903aaea78ca49c445307ff072ae4eb",
+  "router_artifact_file_sha256": "98bf953bd7bde33b8e7e43ef8e65256f88438997dca82ad9bc6008fe4f39ba1a",
+  "router_checkpoint_file_sha256": "ec1f83ea76c6977e2401db212e8e5373966ee491eea660d5017ec7ff030b435f",
+  "analysis_file_sha256": "364f53defb656f941c965639a74a1be3137af2813405861a156a049d3ee50366",
+  "analysis_semantic_sha256": "048624ab91315dffb8333b7fe2319ff6aacc4609d48f7307ec3f4854023aa3de",
+  "report_file_sha256": "a81cc8f17e93de3b4aee73c7e5e1b60e3e6cbdb509323a8fb370bc716ce4ab32",
+  "record_file_sha256": {
+    "train_interventions": "858c4b543b6425538043c2532b99c5e00a994d3f34ffe71b608b70648dfaddf0",
+    "calibration_interventions": "099230f4a1c86b3a32560a5d33a7265736b04dffd3ab836994c5f2e4eb112291",
+    "train_features": "f603fec3ae764b40a7c6bebdc276da950fe099719cc4f3af6b621cf2ebca89f3",
+    "calibration_features": "426b5d34683e91fd25fecf850d82de99405e647bed70ac58baa7f592e2da70cb",
+    "train_contracts": "18cd147ebe4ae1480c479bafdc76b7fe9061d1c758b152e05f75fbebdfe55a86",
+    "calibration_contracts": "a7b67f9ee1dc1fe199f2612d1eae9a01a9d8b7949393a22d409dcf37ff88bfa4"
+  },
+  "accounting": {
+    "model_calls": 3528,
+    "intervention_records": 2120,
+    "feature_records": 800,
+    "contract_records": 832,
+    "peak_gpu_memory_mib": 17771
+  },
+  "protection": {
+    "router_frozen_before_calibration_open": true,
+    "terminal_outcomes_accessed": false,
+    "simulator_accessed": false,
+    "locked_test_labels_accessed": false,
+    "raw_action_arrays_persisted": false,
+    "automatic_retry": false,
+    "p5_authorized": false
+  }
+}

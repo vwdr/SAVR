@@ -1,0 +1,632 @@
+{
+  "schema_version": "openvla-original-baseline-40task-v1",
+  "created_date": "2026-09-10",
+  "authorization": "User approved broader original baseline across all forty tasks; single GPU selection delegated. No caching/training.",
+  "output_root": "results/openvla-original-baseline-40task-v01",
+  "checkpoint": "checkpoints/openvla-7b-oft-libero-four-suite",
+  "checkpoint_revision": "638918f3d1c2e43a39a8a20772bdb8b91835e4b7",
+  "openvla_oft_revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+  "libero_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+  },
+  "suites": [
+    "libero_spatial",
+    "libero_object",
+    "libero_goal",
+    "libero_10"
+  ],
+  "offline_queries": 32,
+  "caps": {
+    "queries": 1692,
+    "episodes": 40,
+    "seconds": 7200,
+    "memory_mib": 23552,
+    "artifact_bytes": 536870912
+  },
+  "episode_conditions": [
+    {
+      "condition_id": "d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "2b5c2c65251463d30f89250b4dc11dcc922b8b876702843f1f82b5e36202dd58",
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate",
+      "task_index": 30,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "2ddf6fb6aea4c18c415794fccf600c6920e7568c6a1c03447248e103d215a027",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "8223ba3a8e4474ea34e8d0b0a816e4c63dddf093524135ab5f66d668db6a1459",
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate",
+      "task_index": 31,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "981d7f86a25ba63cc27fed3268d6f6f5a13657268cadc9293d12ebffc3fbebde",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "a4f58789fe72f916e1ff6988e72ba70e0b0694e88c904d04acb1a695d81db39c",
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate",
+      "task_index": 32,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "8987c57cff4848d26305364076d84200c29b8a43a5366b84f44b112828d1fcc8",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "ede0f1b6715bc271533a231d6a4b184175048814bfc634473c7de964a0d49ba4",
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate",
+      "task_index": 33,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "477e25c6a1d7ea1aae8cb6565e1de9be77f9a8ee383d55b10ee9aabe7b36d89b",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "523498730e3fb75b18cbb16dba83e619943064d2688b62586c629f3896d5d5d0",
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate",
+      "task_index": 34,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "7e8785d92b33246e7431d50ba97f721a4cb47acddadc7691c3d60bda1049885f",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "6263df8c581e351e74f4f42b1e9a54ea052190436998080741ecab8c9b8113c8",
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate",
+      "task_index": 35,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "01f642ab927fd89b242e1fd87350208bd160c4f1c220708ebfdc9f52eb7586c0",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "785a345d6e6fd45c4687adba6645f7cb479c8f66051004a235ea24f32cca6c63",
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate",
+      "task_index": 36,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "bcba2d3f6e692542d61360a23e42c1a96674b4ead02d391da7ac9c47966378a8",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "7ec0a083088cf07acb9eeacd3dbc2956dcbab4e28116ed889cf9dd68806f56b0",
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate",
+      "task_index": 37,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "a87a5bf2f326016af32dc0a6bd499f9251fe6ed67c56c5c1905b5fcca370e4fd",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "547f21c5e8dc54e52dd39308d946ee8e5104efa6f229d4c43f37afe240a49deb",
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate",
+      "task_index": 38,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "5c8b4f0745e5eba3bdd20499bc315cc84b2730adfd8a3631697e1ce218b56dbd",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "8cf73c1ff69cba32ad9ef1b4626f03d6ec5ba78ad5a2b8bcc1b19a4ab4e629b3",
+      "suite": "libero_spatial",
+      "task_id": "pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate",
+      "task_index": 39,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "48ea27cca0ebf01549167a8190b268521d8512e50550c3819072cae2761b2536",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "231ab30ce94ce2416840d85d425e4c8af0933ec7369aca14eb0e9d99b81f9580",
+      "suite": "libero_object",
+      "task_id": "pick_up_the_alphabet_soup_and_place_it_in_the_basket",
+      "task_index": 20,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "0c95a86eafb6915d2699eb89113ad212afa1dc243ddd91ab718a282181e1c9cb",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "31c937aae96382c0bcdedebffcdc8ac74a9c340fb0d7df26586a8080daa1e32d",
+      "suite": "libero_object",
+      "task_id": "pick_up_the_bbq_sauce_and_place_it_in_the_basket",
+      "task_index": 21,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "cf0df362c363c2869070e3bac72fff59ee3f02f7eedb3da853264d0e05d6db2a",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "9ae8e49f74ebd25bf5281fdf1505408b970fd761cb811415147d080fc45e7aa7",
+      "suite": "libero_object",
+      "task_id": "pick_up_the_butter_and_place_it_in_the_basket",
+      "task_index": 22,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "102eb16989ae82581fd3a5e45d0b5e751bd54513c79e8d9300e5c2c6c0f84c84",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "0c87f7fdd4ab2a095808d8410562fb7336615d90ea67ad7665741b695a3084c4",
+      "suite": "libero_object",
+      "task_id": "pick_up_the_chocolate_pudding_and_place_it_in_the_basket",
+      "task_index": 23,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "4e742d333760fda8418d83539409081de21ae57151048fe6f284d59bc97b0ff2",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "21cbf3daa047c1c81bd628a75eb7a0c101aec4586c02a16f3046cdae49044399",
+      "suite": "libero_object",
+      "task_id": "pick_up_the_cream_cheese_and_place_it_in_the_basket",
+      "task_index": 24,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "c789e70e196b2c37a6485f6226aea772a170f31a64cb6f70a11a4a8c5d159a38",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "e26f9a1cad0a16c4e21adf74e6c49e854cf855bebfa7e691b2e7a7379c66cf8b",
+      "suite": "libero_object",
+      "task_id": "pick_up_the_ketchup_and_place_it_in_the_basket",
+      "task_index": 25,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "66cafc7caa7af85e93307042881bebb0e7bae2d38306d6714b4dc60f9f1e6786",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "d62880f5639f111a5fce8e8ae7e4161dd0a0aa5e26662ca53b683cd5d35511ab",
+      "suite": "libero_object",
+      "task_id": "pick_up_the_milk_and_place_it_in_the_basket",
+      "task_index": 26,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "1367172aaf3cda51d81537dd4cd4b3e4c4f455f9810ed0539f8e327c817c2abf",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "305c26cbb2250b302d51dbd821ff9a3f47863e8f479e1d064a13d938206570f6",
+      "suite": "libero_object",
+      "task_id": "pick_up_the_orange_juice_and_place_it_in_the_basket",
+      "task_index": 27,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "16fbd28ebedf1400ab94211b28617ed0c0e4a6619b41b2333467e5e5b1e8377a",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "f2aa5c8674dd49a2355ab6fe73f10219d6468847fe90f4378f63faf5e34e4673",
+      "suite": "libero_object",
+      "task_id": "pick_up_the_salad_dressing_and_place_it_in_the_basket",
+      "task_index": 28,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "f84036230d9a88021b2e8d102d844e391de66f9e0223c0fd62b3c2ba72bf494d",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "6cea3aab6b7bdfd9c1499b611233b109b90f70f7e1b99fb95666bc45ac173946",
+      "suite": "libero_object",
+      "task_id": "pick_up_the_tomato_sauce_and_place_it_in_the_basket",
+      "task_index": 29,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "f99df5534771ab0c6a8401f7cbdbbf9c32f326d5962c63ed3bbddac870c2d3cf",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "71c77822ba283ff9b8f790b5a1080dec42147766d1c9a55a255ac472211c6715",
+      "suite": "libero_goal",
+      "task_id": "open_the_middle_drawer_of_the_cabinet",
+      "task_index": 10,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "7fb637b98e47c76f8e20704f1012be67e0eeed0e4be9dcb29e2560748d2643e8",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "f825fc4dfbedf47ed380e8d7022227a9a64781d0a74bbb682e966a5d7e60660f",
+      "suite": "libero_goal",
+      "task_id": "open_the_top_drawer_and_put_the_bowl_inside",
+      "task_index": 11,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "87f1d8ba0fb90a63b66da87b9022bc5ed5bf5e5df573fffe7caa53f7d497916f",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "d10fd57819618b00ad32c78814417774cfc658f67ce893ffe2bce08856ccd6cc",
+      "suite": "libero_goal",
+      "task_id": "push_the_plate_to_the_front_of_the_stove",
+      "task_index": 12,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "6324dae91fc586c01f90c1512dc89898b575fb4be273e8f3d6e473e51d08aa89",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "3263d95296b3c4e341923f011495e37e4c24ab0225627032b9d0a276e628f1a7",
+      "suite": "libero_goal",
+      "task_id": "put_the_bowl_on_the_plate",
+      "task_index": 13,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "fd83e0ad2739efa02b9e2e7c50a02861c65fe7eb21d835cbedabda994a272f39",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "8b8307b85f50eefabb952ee0aaf9054d1f14e079b74a5b04d77304be4456bc07",
+      "suite": "libero_goal",
+      "task_id": "put_the_bowl_on_the_stove",
+      "task_index": 14,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "f100a9751761c58d4bba7eeb5595d73560b0d8178011e2f1dc6c94e82573e0ec",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "02eb5038cae65327efb900368f93177c1ffb07eb5d6ed5e9690219b0236ae753",
+      "suite": "libero_goal",
+      "task_id": "put_the_bowl_on_top_of_the_cabinet",
+      "task_index": 15,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "7648e1c99087642e267a9978f93f44e987783733657f9af6d0e993ea7f0e9d92",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "c2efd0a2fdc8086b536e38ea3c93c2469cc21fed2aad83f58b40e5747bd857b5",
+      "suite": "libero_goal",
+      "task_id": "put_the_cream_cheese_in_the_bowl",
+      "task_index": 16,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "10ff739060dd2c7f6ee9bc668c5a4ccebce5483eaa2637ac7d78b14c3d0e5c9d",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "801a8cf19c6b9249443852bc3309ec65a57e8429484b6a2e19f5749f24bff451",
+      "suite": "libero_goal",
+      "task_id": "put_the_wine_bottle_on_the_rack",
+      "task_index": 17,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "65415cd7bd3c388796395618b91c856918b5aa4d1ba1b37dead030d2e92fd877",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "0e29a8cd1c2adcc52d0eaa48774aea0f32bccbab5b0e55ed383dadee5477a242",
+      "suite": "libero_goal",
+      "task_id": "put_the_wine_bottle_on_top_of_the_cabinet",
+      "task_index": 18,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "244898941a2e55c813b6919b2a4dcaf44800f0bc61e0b03cfdb84a499f5c050e",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "7633ec82be4399e00602b4b5885d4449fe396a0ac13e573228947c211147434f",
+      "suite": "libero_goal",
+      "task_id": "turn_on_the_stove",
+      "task_index": 19,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "6f1ef16636c45c3452c9912959342edd802ed51ade9ff45bf077d4e3692f539c",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "856f1695860a601295fdb23946aa367d3f985d0dac824f239cc78e7ba7a8a3a8",
+      "suite": "libero_10",
+      "task_id": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it",
+      "task_index": 0,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "7fc0e5f21097ab9564715057c39df3e4e80e64654165312018c18f7484348efb",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "733e829bc895363f1ee74c8e9b7d644f402d46a0f3f556f06ad6ed44cbf31845",
+      "suite": "libero_10",
+      "task_id": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it",
+      "task_index": 1,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "860ae7eb801cdc6de14e60c3e51c1453d404e783df7398686bd455a22b7e9471",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "4bb62dce100be35917f3c5496e9f233ad2c2938e843236ac7ba77909b1845212",
+      "suite": "libero_10",
+      "task_id": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+      "task_index": 2,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "852707f1d002fda94f457331dd419cdb7c80c4e2ef74ceed424446d931a81855",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "192020fcd97181744d0c4db5d1f3689418d4932627c8292ce3f978e4d1ad7893",
+      "suite": "libero_10",
+      "task_id": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove",
+      "task_index": 3,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "96932b3ea0435b90d948a2a421c72a52661ea420973b5c366e8ef902b35636a8",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "0966fd3d495f93e3edbef14a5ce9036dd05444b4e5ba331635a17a2114e84eb6",
+      "suite": "libero_10",
+      "task_id": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket",
+      "task_index": 4,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "6281ebcbf2e103a8ef9d228e033c681ca3df43c8f56143da5e7514d7e5d05e7a",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "5fd265e39e6b9d484abc6ce1e6d4da74b9a1aeed0973a0dee498c5955611c942",
+      "suite": "libero_10",
+      "task_id": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket",
+      "task_index": 5,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "704aa8068fa1b6893fa6637d5df5c029d5144c3ee1668eddddf8a420182e30d2",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "0b29fae1c5309b3380e5ab023f90690a926bf45243ac63fa382be6afead0928f",
+      "suite": "libero_10",
+      "task_id": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket",
+      "task_index": 6,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "4cfef28d52be2aeba7dc0004a2c5f61318d27f140d4dc33504a258272ee8bfcf",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "b3dca9604ca18e6403763b8afb6a8aa48ca4287b5ec48ab960b9089921993dbd",
+      "suite": "libero_10",
+      "task_id": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate",
+      "task_index": 7,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "4c43f91d82f1e1c8ba7a0dda0efed474e96854bf410ca364b3a54d0e9f07d154",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "16aa932b439c9863cf2fa14eb3e951715beb5fb1bde8fdfcbae5bd8a3b322207",
+      "suite": "libero_10",
+      "task_id": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate",
+      "task_index": 8,
+      "arm_order": [
+        "original"
+      ]
+    },
+    {
+      "condition_id": "ac75880ec5618f3aab655bcf12551f02a48b6f02e61a481f83cbd00142e9de79",
+      "initial_state_id": 0,
+      "population": "headroom_stage1",
+      "schema_version": "cac-simulator-condition-v1",
+      "seed": 7,
+      "semantic_sha256": "64b8fdad304c2c46596135f5908aa25915912ef5ab46c18f87a2b04337f4ac2b",
+      "suite": "libero_10",
+      "task_id": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy",
+      "task_index": 9,
+      "arm_order": [
+        "original"
+      ]
+    }
+  ],
+  "authenticated_files": {
+    "scripts/run_openvla_attention_diagnostic.py": "47919853fb235b8f0ea2fea9702b4e69b91ca82444495a4ad1f1487c73a6bfe4",
+    "src/savr/openvla/attention_diagnostic.py": "5f1610f909b4fc05a8a39ab9c5297c956343b29e0d677c0b8a49c901e3a542e3",
+    "tests/openvla/test_attention_diagnostic.py": "2c3ad7216a9f553f2263ce500ebc3cdcd67af370210c5e41a2d00cee851dcbaa",
+    "src/savr/openvla/official_semantics.py": "ffcf1b779086a5602e7670cf5e406af02797039c5b9d4910f5364bdfcac61445",
+    "src/savr/cac/c1.py": "ca228d3a0fa0f636d4df841b634fcf23549da0adfffb20ce599199579aa9d579",
+    "configs/pair/p3_inputs_v1.json": "e3b4064eba73cdfe0f82e4b9c282052e81f19f65b5a4e13d41674fdf45c42262",
+    "reports/cac_c0_recovery01/simulator_populations_v1.jsonl": "f31fd5a0e2f6e7f2abc7fe5c6906f6f646d3927f5768e43ee0005ee9d3a02e41",
+    "docs/OPENVLA_ATTENTION_BASELINE_DIAGNOSTIC_V1.md": "4a62c1054d185d61cb0c0069602e5fc7cd8e2fed87c5cea81238f246c2dc7782",
+    "checkpoints/openvla-7b-oft-libero-four-suite/config.json": "edd5c5cf6d7927e07465cf086ebe41f7b3ec8f3b128a51f71d6db14dad7ad8b1",
+    "checkpoints/openvla-7b-oft-libero-four-suite/configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "checkpoints/openvla-7b-oft-libero-four-suite/modeling_prismatic.py": "f40ee7883e16aab1a2d89b6e8f31cc81f6b8055120b1fefe169e05c7031098fa",
+    "checkpoints/openvla-7b-oft-libero-four-suite/processing_prismatic.py": "06563586bbc73d36501a14a231a3174904ede830d33174d0c625ece8e931ef1e",
+    "checkpoints/openvla-7b-oft-libero-four-suite/processor_config.json": "167e026d8121f6cb0bf5c18310b97ba8139152f970822bb3824213bd37dc7a76",
+    "checkpoints/openvla-7b-oft-libero-four-suite/preprocessor_config.json": "bd024783fb785cbdfe35b710b621c5e8678d4c157a9ba625675e67d40d1757da",
+    "checkpoints/openvla-7b-oft-libero-four-suite/dataset_statistics.json": "6ec6ef68d0d5bae4cb5f9fc9acb715a22b9f4545e9e9b300d0d88695cd7afec3",
+    "checkpoints/openvla-7b-oft-libero-four-suite/tokenizer.json": "8f5e2869e1807b8bb3c7717a294539c37e9de5d728ad60e31ef57e83cc5ea527",
+    "checkpoints/openvla-7b-oft-libero-four-suite/tokenizer_config.json": "f5f1d3ed015ebb71cf11686ff00bc8e0c25957bbf3952f95312cecc9b168fbea",
+    "checkpoints/openvla-7b-oft-libero-four-suite/tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+    "checkpoints/openvla-7b-oft-libero-four-suite/special_tokens_map.json": "cb90ee5cf5793aa444039af9795b00db59d3fef8942e7eca9cf1990bab370d61",
+    "checkpoints/openvla-7b-oft-libero-four-suite/added_tokens.json": "ab43123267b190cb7990bc9f2ae4ad32dcb7ed029fb0fccb1b4e062c6f54a2a1",
+    "checkpoints/openvla-7b-oft-libero-four-suite/action_head--300000_checkpoint.pt": "f9647226ca9a1ee64ff8ed1ec380c89110afc6fc2bf6d0ae463cc4023165b4dc",
+    "checkpoints/openvla-7b-oft-libero-four-suite/proprio_projector--300000_checkpoint.pt": "1792c6e19381d3c7c814e2d49836a855d3a38b0693919416f52b3c5af39505c8",
+    "checkpoints/openvla-7b-oft-libero-four-suite/model-00001-of-00004.safetensors": "8b30a7951e68703e1731957190d9f1d6e1eaa82f05b53909608eb0510875b11d",
+    "checkpoints/openvla-7b-oft-libero-four-suite/model-00002-of-00004.safetensors": "af4773166950ddda1da6b3c5367796a52e7d5e7216f97041d9ad0721a25e53fe",
+    "checkpoints/openvla-7b-oft-libero-four-suite/model-00003-of-00004.safetensors": "5a62791dd46ec4a85b353920aa07eff3582ceb5e9b6b853ad0f38de36fcab75d",
+    "checkpoints/openvla-7b-oft-libero-four-suite/model-00004-of-00004.safetensors": "a877e3fece1feafb80f59f91585ce04379ee39e2bf9a25cb7b4acf237e896e60",
+    "checkpoints/openvla-7b-oft-libero-four-suite/model.safetensors.index.json": "ca8b53fed8133ee2afcd2fc483de8febf7f5bb0f6bcb09f91189772e59e8f659",
+    "third_party/openvla-oft/experiments/robot/libero/run_libero_eval.py": "701a20b6ca2942aa36e0e7d567b25647268b936a23af79c5893534f10bec7802",
+    "third_party/openvla-oft/experiments/robot/libero/libero_utils.py": "489c16dc8220845b2936ddb81aafd7469061d2009b0edddb2f85703bc51a204f",
+    "third_party/openvla-oft/experiments/robot/openvla_utils.py": "eed754d7c5f9821aae2fe0531dbe01df8c11df0d5c79b4aeeb9bb4452124bdf5",
+    "third_party/openvla-oft/experiments/robot/robot_utils.py": "93541b01edd4de49fcc9a1d9249e11fea008b9502fd755096503aaec93773da0",
+    "third_party/openvla-oft/prismatic/models/action_heads.py": "8e42df65d6407d64d47457286d9be05466d25d8a0f094aa9dfb90de84a9aa7cc",
+    "third_party/openvla-oft/prismatic/vla/constants.py": "5b53c3a07cf1ed27bf94a88da9929e82818792d6fdc32343d133afea1a0acf3d",
+    "third_party/openvla-oft/prismatic/models/projectors.py": "3ac1ef82215b30792bdaf9c980cf8b93046dec1b220597cfc0f536bfe5ebdf42",
+    "envs/openvla-oft/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py": "3aac24cec583a6ef5f60b6ec634a8bd3c8377784c5c63c8cc14cb6790554c52e",
+    "scripts/run_openvla_original_baseline.py": "813ccc08224a4e6751c115e6dde1627d686cb24b7c838ac5372460c28b55b373",
+    "scripts/analyze_openvla_original_baseline.py": "01224191f80a73df12a780c14ccb51f142cdf65ee3bcdb78240bbcb296da9542",
+    "tests/openvla/test_original_baseline_analysis.py": "f22ce9c45ef98f2057de7290a6938c686cbf67fc5bdc1ee630db19145ca3b3d2",
+    "tests/openvla/test_original_baseline_selection.py": "3f58efae3103664054637a4f10c4483151b21bf6496fbacc00ba7e4e106a4ccb",
+    "docs/OPENVLA_ORIGINAL_BASELINE_40TASK_PROTOCOL_V1.md": "6416f8374af16174bf81f92b468d964f63dc6779c57a0e03eeee4ae32bde6c95"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "config": {
+    "authenticated_files": {
+      "docs/CURRENT_FRAME_FEATURE_COLLECTION_V1.md": "f8e6c7447ec109db84ef3a12f4b27e68b6e1465654d552f990c41f5b7047b37d",
+      "scripts/collect_current_frame_features.py": "403b4f318ee83b1a333b0b1f13b8c3b2ade0588e67e8fb4c4019ab97276fa7ff",
+      "scripts/freeze_current_frame_training_inputs.py": "31bb921bacbc37db3b9ac6b4eb59125819b2392c4068a73bb7f20359c94f179e",
+      "src/savr/openvla/current_frame_sampling.py": "545999e4cb3aae1c19da4f00e06935f9bf68dbdb5184f05ecc9e50c6c4e2844b",
+      "tests/openvla/test_feature_collection.py": "616a8a0612b3901b2dd3abd29286e650711d17087e1542718b2b7e30d46fa0c1"
+    },
+    "automatic_retry": false,
+    "budget": 384,
+    "caps": {
+      "artifact_bytes": 21474836480,
+      "memory_mib": 23552,
+      "minimum_free_bytes": 10737418240,
+      "minimum_initial_free_bytes": 32212254720,
+      "model_calls": 8000,
+      "records": 4000,
+      "seconds": 28800
+    },
+    "gpu": {
+      "index": 0,
+      "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+    },
+    "output_root": "results/current-frame-feature-collection-v01",
+    "qualification_sha256": {
+      "analysis.json": "4809134cf3e680ac356394f62e612b91be9527243307c10a00aefc36189cd5f5",
+      "worker_summary.json": "a0a1ea06d51883692057862cbaf38e81208486e4d717864a64e62ac5b48a2934"
+    },
+    "schema_version": "current-frame-feature-collection-v1"
+  },
+  "config_sha256": "e810cb53f7a836d7a4d9dbb95ee406e919355f70a215e6788d5b760b7863a124",
+  "initial_gpu": {
+    "memory_mib": 6,
+    "utilization": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+  },
+  "input_manifest_sha256": "2fd13ced3e5a9a2b810eb299a5c1667f8c1de3ee2c5487a4a0683e61847d9ae8",
+  "pid": 1546237,
+  "started_at": "2026-09-15T22:49:35.992864+00:00"
+}

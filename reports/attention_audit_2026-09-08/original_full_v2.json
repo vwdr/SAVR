@@ -1,0 +1,964 @@
+{
+  "transport_exit_code": 0,
+  "diagnostics": [],
+  "result": {
+    "attention_classes": [
+      "LlamaSdpaAttention",
+      "LlamaSdpaAttention"
+    ],
+    "attention_source": "/home/ved/SAVR/envs/openvla-oft/lib/python3.10/site-packages/transformers/models/llama/modeling_llama.py",
+    "attention_source_sha256": "3aac24cec583a6ef5f60b6ec634a8bd3c8377784c5c63c8cc14cb6790554c52e",
+    "cache_production_hidden_difference": 0,
+    "calls": [
+      {
+        "case": "all_valid",
+        "sdpa_layers": [
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            ],
+            "explicit_mask": false,
+            "is_causal": false
+          },
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            ],
+            "explicit_mask": false,
+            "is_causal": false
+          }
+        ],
+        "use_cache": false
+      },
+      {
+        "case": "changed_future_token",
+        "sdpa_layers": [
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            ],
+            "explicit_mask": false,
+            "is_causal": false
+          },
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            ],
+            "explicit_mask": false,
+            "is_causal": false
+          }
+        ],
+        "use_cache": false
+      },
+      {
+        "case": "right_padding",
+        "sdpa_layers": [
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ]
+            ],
+            "explicit_mask": true,
+            "is_causal": false
+          },
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ]
+            ],
+            "explicit_mask": true,
+            "is_causal": false
+          }
+        ],
+        "use_cache": false
+      },
+      {
+        "case": "changed_padding_token",
+        "sdpa_layers": [
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ]
+            ],
+            "explicit_mask": true,
+            "is_causal": false
+          },
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ]
+            ],
+            "explicit_mask": true,
+            "is_causal": false
+          }
+        ],
+        "use_cache": false
+      },
+      {
+        "case": "all_valid",
+        "sdpa_layers": [
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            ],
+            "explicit_mask": false,
+            "is_causal": false
+          },
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            ],
+            "explicit_mask": false,
+            "is_causal": false
+          }
+        ],
+        "use_cache": true
+      },
+      {
+        "case": "changed_future_token",
+        "sdpa_layers": [
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            ],
+            "explicit_mask": false,
+            "is_causal": false
+          },
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+              ]
+            ],
+            "explicit_mask": false,
+            "is_causal": false
+          }
+        ],
+        "use_cache": true
+      },
+      {
+        "case": "right_padding",
+        "sdpa_layers": [
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ]
+            ],
+            "explicit_mask": true,
+            "is_causal": false
+          },
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ]
+            ],
+            "explicit_mask": true,
+            "is_causal": false
+          }
+        ],
+        "use_cache": true
+      },
+      {
+        "case": "changed_padding_token",
+        "sdpa_layers": [
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ]
+            ],
+            "explicit_mask": true,
+            "is_causal": false
+          },
+          {
+            "allowed_keys_by_query": [
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ],
+              [
+                1,
+                1,
+                1,
+                1,
+                1,
+                0
+              ]
+            ],
+            "explicit_mask": true,
+            "is_causal": false
+          }
+        ],
+        "use_cache": true
+      }
+    ],
+    "complete": true,
+    "device": "cpu",
+    "dtype": "float32",
+    "elapsed_seconds": 1.6275093629956245,
+    "execution": "full_model",
+    "hidden_state_sha256": {
+      "cache_False_all_valid": "4994b26c7db69f900f829ad0dfec932cd003684a732a06fcc03228fdab731149",
+      "cache_False_changed_future_token": "cf1c8dd042e9967f98601f6395ba53e8819bc2719ae070d374d19295d6d22418",
+      "cache_False_changed_padding_token": "9c2c9b44e5c9b496bd811d22798f7a294c66827ffdea7be87c5cb433c388ba21",
+      "cache_False_right_padding": "14d659ee87eb7d589b0c1f14d752cf1eb4691e93cd223ff327aa24260e0be183",
+      "cache_True_all_valid": "4994b26c7db69f900f829ad0dfec932cd003684a732a06fcc03228fdab731149",
+      "cache_True_changed_future_token": "cf1c8dd042e9967f98601f6395ba53e8819bc2719ae070d374d19295d6d22418",
+      "cache_True_changed_padding_token": "9c2c9b44e5c9b496bd811d22798f7a294c66827ffdea7be87c5cb433c388ba21",
+      "cache_True_right_padding": "14d659ee87eb7d589b0c1f14d752cf1eb4691e93cd223ff327aa24260e0be183"
+    },
+    "openvla_model_loads": 0,
+    "parameter_count": 24736,
+    "python_executable": "/home/ved/SAVR/envs/openvla-oft/bin/python",
+    "schema_version": "openvla-attention-contract-cpu-v2",
+    "sdpa_observer_restored": true,
+    "sensitivities": [
+      {
+        "earlier_tokens_change_when_padding_changes": 0,
+        "earlier_tokens_change_when_valid_future_token_changes": 0.6519075036048889,
+        "use_cache": false
+      },
+      {
+        "earlier_tokens_change_when_padding_changes": 0,
+        "earlier_tokens_change_when_valid_future_token_changes": 0.6519075036048889,
+        "use_cache": true
+      }
+    ],
+    "simulator_episodes": 0,
+    "tiny_model_forwards": 8,
+    "torch_version": "2.2.0+cu118",
+    "transformers_version": "4.40.1",
+    "weights_downloaded": false
+  }
+}

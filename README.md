@@ -1,10 +1,34 @@
 # SAVR
 
+## Current project and new-chat entry point — October 3, 2026
+
+Read [SAVR_MASTER_CONTEXT.md](SAVR_MASTER_CONTEXT.md) and [AGENTS.md](AGENTS.md)
+first. The master guide covers the research question, full SAVR → ACR → BRACE →
+PAIR → CAC → current-frame history, corrected interpretations, code/data map,
+verified results, safety boundaries and latest decisions.
+
+The latest completed development studies measured approximately 15% lower
+complete-query time with high observed task success. The visual residual adapter
+improved offline action error but did not improve aggregate robot success.
+The adaptive comparator is a local native-SDPA selection adaptation, not an
+exact published VLA-Pruner reproduction. A novel, peer-review-ready contribution
+is not yet established; no independent confirmation is frozen or launched.
+
+Current reports: [robot pilot](reports/CURRENT_FRAME_ROBOT_PILOT_RESULT_V1.md),
+[adaptive comparison](reports/ADAPTIVE_SCREEN_V03_RESULT.md), and
+[contribution audit](reports/BACKEND_PRESERVATION_CONTRIBUTION_AUDIT_V1.md).
+[Publication scope](docs/GITHUB_PUBLICATION_SCOPE_2026-10-03.md) explains included
+compact evidence and intentionally excluded data/weights. The repository was
+verified public for this snapshot. The original-paper overview below is historical,
+not the complete current project status.
+
+## Original whole-prefix study
+
 Research code and evidence for **A Negative Result for Training-Free Whole-Prefix Visual Caching in VLA Inference**.
 
 SAVR (State-Aware Visual Refresh) is a training-free controller for deciding whether a vision-language-action (VLA) policy should recompute or reuse its complete projected visual prefix. The tested implementation uses image change, robot-state change, recent-action change, and cache-history constraints without modifying the policy weights.
 
-> **Status:** The whole-prefix SAVR study is complete and produced a bounded negative result. No tested configuration preserved Full Refresh task success while also providing a useful visual-skip rate. The repository is private during author review and will require a versioned archival release before publication.
+> **Original-study status:** The whole-prefix SAVR study is complete and produced a bounded negative result. No tested configuration preserved Full Refresh task success while also providing a useful visual-skip rate. A versioned archival release and a fresh claim audit are still needed before any formal publication; old drafts predate later semantic/runtime qualifications.
 
 ## Main result
 

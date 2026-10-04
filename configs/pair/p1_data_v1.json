@@ -1,0 +1,67 @@
+{
+  "schema_version": "pair-p1-data-v1",
+  "p0_freeze": "configs/pair/p0_freeze_v1.json",
+  "dataset": {
+    "repo_id": "yifengzhu-hf/LIBERO-datasets",
+    "repo_type": "dataset",
+    "revision": "f13aa24a3da8c43c7225569f28c562979fa0e35a",
+    "license": "CC-BY-4.0",
+    "license_source": "https://github.com/Lifelong-Robot-Learning/LIBERO",
+    "root": "data/pair/libero_hdf5/f13aa24a3da8c43c7225569f28c562979fa0e35a",
+    "allowed_globs": [
+      "libero_10/*.hdf5",
+      "libero_goal/*.hdf5",
+      "libero_object/*.hdf5",
+      "libero_spatial/*.hdf5"
+    ],
+    "expected_files": 40,
+    "expected_bytes": 33784856577,
+    "expected_tasks_per_suite": 10,
+    "expected_trajectories_per_task": 50
+  },
+  "checkpoint_statistics": "checkpoints/openvla-7b-oft-libero-four-suite/dataset_statistics.json",
+  "official_source": {
+    "root": "third_party/openvla-oft",
+    "revision": "e4287e94541f459edc4feabc4e181f537cd569a8",
+    "trajectory_transform": "prismatic/vla/datasets/rlds/oxe/transforms.py:libero_dataset_transform",
+    "normalization": "prismatic/vla/datasets/rlds/utils/data_utils.py:normalize_action_and_proprio",
+    "chunking": "prismatic/vla/datasets/rlds/traj_transforms.py:chunk_act_obs"
+  },
+  "query_alignment": {
+    "actions_per_query": 8,
+    "query_stride_original_environment_actions": 8,
+    "window_size": 1,
+    "future_action_window_size": 7,
+    "terminal_policy": "exclude starts with fewer than eight actions and record the 0-7 action terminal remainder",
+    "valid_action_mask": "all 56 coordinates true for eligible primary queries; terminal-incomplete starts are not primary records"
+  },
+  "numerical_audit": {
+    "dtype": "float32",
+    "absolute_tolerance": 0.000001,
+    "relative_tolerance": 0.0,
+    "compare": "independent NumPy reconstruction against pinned TensorFlow/OpenVLA-OFT transforms"
+  },
+  "split": {
+    "seed": 20260828,
+    "unit": "trajectory within task",
+    "hash_fields": ["dataset_revision", "suite", "task_id", "original_trajectory_id", "seed"],
+    "fractions": {"train": 0.70, "calibration": 0.15, "locked_test": 0.15},
+    "counts_for_50_trajectories": {"train": 35, "calibration": 8, "locked_test": 7},
+    "largest_remainder_tie_order": ["calibration", "locked_test", "train"]
+  },
+  "outputs": {
+    "index_root": "data/pair/index/f13aa24a3da8c43c7225569f28c562979fa0e35a",
+    "source_manifest": "source_manifest.json",
+    "trajectory_index": "trajectory_index.jsonl",
+    "query_index": "query_index.jsonl",
+    "split_manifest": "split_manifest.json",
+    "audit_report": "audit_report.json",
+    "artifact_manifest": "artifact_manifest.json",
+    "run_summary": "reports/runtime/pair_p1_v1.json"
+  },
+  "caps": {
+    "network_bytes": 36507222016,
+    "new_storage_bytes": 53687091200,
+    "gpu_count": 0
+  }
+}

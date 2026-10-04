@@ -1,0 +1,29 @@
+{
+  "authenticated_files": {
+    "scripts/run_dense_precision_trace.py": "14272addf9e73bfd6913330cf60a7165a3e91382977b318cbb4e24bc1d299fe9",
+    "src/savr/openvla/execution_precision.py": "a3582b4cedefe08e9f38884f4bf3213f796d35a22630e91e2b6f272f07958b79",
+    "src/savr/openvla/specprune_episode.py": "17d8b3dffcd2e480445b20d257a6785e3670997135d77fbd0bc29632ce137985",
+    "tests/openvla/test_dense_precision_trace.py": "5992ea97a9f627a4903b39f1d9d548b0b778eeab029a5de5b620dc026d4a7c5a",
+    "tests/openvla/test_execution_precision.py": "dc0050f84b410adf8e99acc143c198c4513d0c122baca45ca3f493635f1a3ad1"
+  },
+  "automatic_retry": false,
+  "caps": {
+    "artifact_bytes": 268435456,
+    "episodes": 2,
+    "memory_mib": 23552,
+    "queries": 112,
+    "seconds": 1200
+  },
+  "condition_id": "d78f949af14d367e4a3057d13b211cc12f9ea7cbe00b6401c9bc5e1f74787bb9",
+  "episode_modes": [
+    "native",
+    "bridge"
+  ],
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-bb2451d6-2989-a112-5c18-8892943710e4"
+  },
+  "output_root": "results/dense-precision-trace-v01",
+  "schema_version": "dense-precision-trace-v1",
+  "tolerance": 1e-06
+}
