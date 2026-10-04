@@ -44,6 +44,7 @@ reports/runtime/
 /reports/*.tar.gz
 /output/**/*.zip
 /reports/cac_c0_recovery01/*.jsonl
+!/reports/cac_c0_recovery01/simulator_populations_v1.jsonl
 
 # Reviewed completed-run metadata only; tensors, weights and caches stay ignored.
 !results/current-frame-robot-pilot-v01/

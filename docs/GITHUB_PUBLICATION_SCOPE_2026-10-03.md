@@ -38,6 +38,12 @@ Completed-run root-level JSON/JSONL evidence is included for:
 - `results/fixed-compression-screen-v01`
 - `results/contemporary-reference-v02`
 
+The outcome-free `reports/cac_c0_recovery01/simulator_populations_v1.jsonl`
+is also included because the robot verifier authenticates it. Its 2,240 records
+contain condition IDs, task/suite/state/seed metadata and hashes, not actions,
+rewards, regret, success or calibration labels. It is a population declaration,
+not evidence that all declared conditions were executed.
+
 These records permit CPU reconciliation of the two latest robot studies without
 the backbone, dataset or training feature tensors. Immutable bytes/hashes are
 not edited for publication. Absolute runtime paths inside original records are
@@ -50,8 +56,9 @@ files exist in a fresh checkout.
   tensors, and runtime caches/environments.
 - `tmp/` scratch files and Git backup bundles.
 - Backup `.tar.gz` files and redundant source ZIP packages (unpacked sources remain).
-- Raw JSONL schedules/contracts under `reports/cac_c0_recovery01/`, including
-  protected/locked-pool material; compact freeze/power summaries remain.
+- Raw JSONL contracts/trajectory-role schedules under `reports/cac_c0_recovery01/`,
+  including protected/locked-pool material; the outcome-free simulator population
+  manifest and compact freeze/power summaries remain.
 - Other ignored historical raw run directories, credentials, private keys and
   local environment secrets.
 
