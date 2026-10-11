@@ -21,8 +21,6 @@ The primary study contains **1,160 terminal evaluation episodes**, plus a separa
 
 The evidence supports a narrow conclusion: **training-free whole-prefix caching did not provide a success-preserving and useful operating point for this model, benchmark, and implementation boundary.** It does not show that all visual caching methods fail. Camera-block, token-level, learned, uncertainty-aware, and model-native caching remain outside this result.
 
-The reviewed paper is available at [output/pdf/SAVR_Negative_Results_Paper.pdf](output/pdf/SAVR_Negative_Results_Paper.pdf).
-
 ## Repository contents
 
 - `src/savr/`: refresh controllers, cache adapters, signal calculations, instrumentation, and analysis utilities
@@ -66,18 +64,6 @@ The pinned OpenVLA-OFT/LIBERO environment used for the reported GPU experiments 
 - Skipped visual calls are reported as an efficiency proxy, not as measured end-to-end speedup.
 - Cross-stage SAVR 1.0, 2.0, and 3.0 comparisons are descriptive because their evaluation populations differ.
 
-## Citation
-
-Until a venue-specific record or archival DOI is available, cite the author-review preprint as:
-
-```bibtex
-@article{dwivedi2026savrnegative,
-  title   = {A Negative Result for Training-Free Whole-Prefix Visual Caching in VLA Inference},
-  author  = {Dwivedi, Ved and Yang, Cheng and Yuan, Bo},
-  year    = {2026},
-  note    = {Author-review preprint}
-}
-```
 
 ## License and release status
 
